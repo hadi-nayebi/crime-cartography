@@ -1,30 +1,38 @@
 import React, { useMemo } from "react";
 import {
   AbsoluteFill,
+  Audio,
   Sequence,
   interpolate,
   useCurrentFrame,
   useVideoConfig,
+  staticFile,
 } from "remotion";
 import type { StoryProps } from "./data/types";
-import { deriveStats, sweepMonthFloat } from "./data/derive";
+import { deriveStats } from "./data/derive";
 import { buildMapProjection, MapLayer } from "./components/MapLayer";
+import { DotLayer } from "./components/DotLayer";
 import { Clock } from "./components/Clock";
 import { Counters } from "./components/Counters";
 import { Feed } from "./components/Feed";
 import { TimelineChart } from "./components/TimelineChart";
+import { Leaderboard } from "./components/Leaderboard";
 import { ColdOpen } from "./components/ColdOpen";
 import { MethodCard } from "./components/MethodCard";
+import { HistoryEra } from "./components/HistoryEra";
+import { EraTransition } from "./components/EraTransition";
 import { Annotation } from "./components/Annotation";
+import { MapAnnotation } from "./components/MapAnnotation";
 import { Reveal } from "./components/Reveal";
 import { Credits } from "./components/Credits";
 import { SourceCredit } from "./components/SourceCredit";
-import { CAT_COLORS, COLORS, FRAME, PHASES } from "./theme";
+import { CAT_COLORS, COLORS, PHASES } from "./theme";
 
-const WINDOW_MONTHS = 6;
+const WINDOW_MONTHS = 6; // choropleth window
+const DOT_WINDOW = 3; // dot-density window
+const PER_DOT = 4; // incidents per dot
 const REPO_URL = "github.com/hadi-nayebi/crime-cartography";
 
-// Pick an accent color for an annotation from a keyword in its text.
 function accentFor(text: string): string {
   const t = text.toLowerCase();
   if (t.includes("propert")) return CAT_COLORS.property;
@@ -33,14 +41,22 @@ function accentFor(text: string): string {
   return CAT_COLORS.persons;
 }
 
+const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
+
 export const CrimeStory: React.FC<StoryProps> = (props) => {
-  const { bundle, emphasizeGroupA, annotations, title, subtitle } = props;
+  const {
+    bundle,
+    emphasizeGroupA,
+    annotations,
+    historyNotes,
+    title,
+    subtitle,
+    audioSrc,
+  } = props;
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const sec = frame / fps;
 
-  // Guard: if the bundle failed to load, render a clear placeholder rather
-  // than fabricate anything.
   if (!bundle) {
     return (
       <AbsoluteFill style={{ background: COLORS.bg, color: COLORS.ink, padding: 60 }}>
@@ -55,95 +71,149 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
   );
   const projection = useMemo(() => buildMapProjection(bundle), [bundle]);
   const monthCount = stats.months.length;
+  const history = bundle.history;
+  const nYears = history ? history.years.length : 0;
 
-  const monthFloat = sweepMonthFloat(
-    frame,
-    fps,
-    PHASES.sweepStart,
-    PHASES.sweepEnd,
-    monthCount,
+  // --- time mapping ---
+  // history yearFloat across the history phase
+  const yearFloat = clamp(
+    ((sec - PHASES.methodEnd) / (PHASES.historyEnd - PHASES.methodEnd)) * nYears,
+    0,
+    nYears,
   );
+  // granular month float across the granular phase; frozen at full after.
+  const gFloat =
+    sec <= PHASES.transitionEnd
+      ? 0
+      : sec >= PHASES.granularEnd
+        ? monthCount
+        : ((sec - PHASES.transitionEnd) / (PHASES.granularEnd - PHASES.transitionEnd)) *
+          monthCount;
 
-  // Opacity envelopes (deterministic functions of time).
-  const mapOpacity = interpolate(sec, [0.3, 5], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const heatOpacity =
-    Math.min(
-      interpolate(sec, [44, 48], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
-      interpolate(sec, [PHASES.revealEnd + 1, PHASES.revealEnd + 6], [1, 0.12], {
-        extrapolateLeft: "clamp",
-        extrapolateRight: "clamp",
-      }),
-    );
-  const hudOpacity = Math.min(
-    interpolate(sec, [43, 47], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
-    interpolate(sec, [PHASES.sweepEnd - 4, PHASES.sweepEnd], [1, 0], {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }),
+  // --- opacity envelopes ---
+  const mapOpacity = interpolate(sec, [0.3, 5], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // beats are dim context during history, full during granular/reveal
+  const beatContext = interpolate(
+    sec,
+    [PHASES.transitionEnd - 4, PHASES.transitionEnd + 2],
+    [0.18, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
-  const closeDark = interpolate(sec, [PHASES.revealEnd + 1, PHASES.revealEnd + 6], [0, 0.82], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const heatOpacity = Math.min(
+    interpolate(sec, [PHASES.transitionEnd, PHASES.transitionEnd + 3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+    interpolate(sec, [PHASES.revealEnd + 1, PHASES.revealEnd + 6], [1, 0.12], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+  );
+  const dotsOpacity = Math.min(
+    interpolate(sec, [PHASES.transitionEnd + 1, PHASES.transitionEnd + 5], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+    interpolate(sec, [PHASES.granularEnd + 1, PHASES.granularEnd + 5], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+  );
+  const granHud = Math.min(
+    interpolate(sec, [PHASES.transitionEnd + 1, PHASES.transitionEnd + 5], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+    interpolate(sec, [PHASES.granularEnd - 4, PHASES.granularEnd], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+  );
+  const historyOpacity = Math.min(
+    interpolate(sec, [PHASES.methodEnd - 2, PHASES.methodEnd + 2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+    interpolate(sec, [PHASES.historyEnd - 3, PHASES.historyEnd], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+  );
+  const closeDark = interpolate(sec, [PHASES.revealEnd + 1, PHASES.revealEnd + 6], [0, 0.82], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Annotation sequences mapped onto the sweep timeline.
+  // --- granular annotation sequences ---
   const annoSeqs = annotations
     .map((a) => {
       const i = stats.months.indexOf(a.atMonth);
       if (i < 0) return null;
-      const secAt =
-        PHASES.sweepStart + (i / monthCount) * (PHASES.sweepEnd - PHASES.sweepStart);
-      const durFrames = Math.round(4.4 * fps);
+      const secAt = PHASES.transitionEnd + (i / monthCount) * (PHASES.granularEnd - PHASES.transitionEnd);
+      const durFrames = Math.round(4.6 * fps);
       let startFrame = Math.round(secAt * fps);
-      const maxStart = Math.round(PHASES.sweepEnd * fps) - durFrames;
+      const maxStart = Math.round(PHASES.granularEnd * fps) - durFrames;
       if (startFrame > maxStart) startFrame = maxStart;
-      return { a, startFrame, durFrames };
+      const beatStat = a.beat ? stats.beats.find((b) => b.key === a.beat) : null;
+      const anchor = beatStat ? projection.project(beatStat.centroid[0], beatStat.centroid[1]) : null;
+      return { a, startFrame, durFrames, anchor };
+    })
+    .filter((x): x is NonNullable<typeof x> => x !== null);
+
+  // --- history note sequences ---
+  const histSeqs = (history ? historyNotes : [])
+    .map((h) => {
+      const i = history!.years.findIndex((y) => y.year === h.atYear);
+      if (i < 0) return null;
+      const secAt = PHASES.methodEnd + (i / nYears) * (PHASES.historyEnd - PHASES.methodEnd);
+      const durFrames = Math.round(4.6 * fps);
+      let startFrame = Math.round(secAt * fps);
+      const maxStart = Math.round(PHASES.historyEnd * fps) - durFrames;
+      if (startFrame > maxStart) startFrame = maxStart;
+      return { h, startFrame, durFrames };
     })
     .filter((x): x is NonNullable<typeof x> => x !== null);
 
   return (
     <AbsoluteFill style={{ background: COLORS.bg, fontFamily: "sans-serif" }}>
-      {/* subtle vignette */}
-      <AbsoluteFill
-        style={{
-          background:
-            "radial-gradient(ellipse at 52% 46%, rgba(20,28,40,0.5), rgba(3,5,8,0.0) 60%)",
-        }}
-      />
+      {audioSrc && <Audio src={staticFile(audioSrc)} />}
 
-      {/* The map backdrop — real beat polygons + per-beat aggregate heat */}
-      <MapLayer
-        bundle={bundle}
-        projection={projection}
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 52% 46%, rgba(20,28,40,0.5), rgba(3,5,8,0.0) 60%)" }} />
+
+      {/* Map backdrop — dim context in history, full in granular era */}
+      <div style={{ opacity: beatContext }}>
+        <MapLayer
+          bundle={bundle}
+          projection={projection}
+          stats={stats}
+          monthFloat={gFloat}
+          windowMonths={WINDOW_MONTHS}
+          emphasizeGroupA={emphasizeGroupA}
+          mapOpacity={mapOpacity}
+          heatOpacity={heatOpacity}
+          showSymbols={false}
+        />
+      </div>
+
+      {/* Dot-density (granular era) */}
+      <DotLayer
+        beatsByKey={bundle.beats.beats}
         stats={stats}
-        monthFloat={monthFloat}
-        windowMonths={WINDOW_MONTHS}
-        emphasizeGroupA={emphasizeGroupA}
-        mapOpacity={mapOpacity}
-        heatOpacity={heatOpacity}
+        projection={projection}
+        monthFloat={gFloat}
+        windowMonths={DOT_WINDOW}
+        perDot={PER_DOT}
+        opacity={dotsOpacity}
       />
 
-      {/* HUD — clock, counters, feed, chart (sweep phase) */}
-      <div style={{ opacity: hudOpacity }}>
-        <Clock months={stats.months} monthFloat={monthFloat} />
-        <Counters cityMonthly={stats.cityMonthly} monthFloat={monthFloat} />
-        <Feed feed={bundle.feed} months={stats.months} monthFloat={monthFloat} />
+      {/* History era panel */}
+      {history && historyOpacity > 0.001 && (
+        <HistoryEra history={history} yearFloat={yearFloat} opacity={historyOpacity} />
+      )}
+
+      {/* Granular HUD */}
+      <div style={{ opacity: granHud }}>
+        <Clock months={stats.months} monthFloat={gFloat} />
+        <Counters cityMonthly={stats.cityMonthly} monthFloat={gFloat} />
+        <Feed feed={bundle.feed} months={stats.months} monthFloat={gFloat} />
         <TimelineChart
           months={stats.months}
           cityMonthly={stats.cityMonthly}
           cityCumulative={stats.cityCumulative}
           grandTotalAll={stats.grandTotalAll}
-          monthFloat={monthFloat}
+          monthFloat={gFloat}
         />
       </div>
+      <Leaderboard stats={stats} gFloat={gFloat} opacity={granHud} />
 
-      {/* Annotations ("air messages") */}
-      {annoSeqs.map(({ a, startFrame, durFrames }, idx) => (
-        <Sequence key={idx} from={startFrame} durationInFrames={durFrames} layout="none">
-          <Annotation text={a.text} durationInFrames={durFrames} accent={accentFor(a.text)} />
+      {/* Granular annotations */}
+      {annoSeqs.map(({ a, startFrame, durFrames, anchor }, idx) => (
+        <Sequence key={`a${idx}`} from={startFrame} durationInFrames={durFrames} layout="none">
+          {anchor ? (
+            <MapAnnotation x={anchor[0]} y={anchor[1]} text={a.text} accent={accentFor(a.text)} durationInFrames={durFrames} />
+          ) : (
+            <Annotation text={a.text} durationInFrames={durFrames} accent={accentFor(a.text)} />
+          )}
+        </Sequence>
+      ))}
+
+      {/* History notes (lower third) */}
+      {histSeqs.map(({ h, startFrame, durFrames }, idx) => (
+        <Sequence key={`h${idx}`} from={startFrame} durationInFrames={durFrames} layout="none">
+          <Annotation text={h.text} durationInFrames={durFrames} accent={accentFor(h.text)} />
         </Sequence>
       ))}
 
@@ -153,49 +223,28 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       </Sequence>
 
       {/* Method card */}
-      <Sequence
-        from={Math.round(PHASES.coldOpenEnd * fps)}
-        durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)}
-        layout="none"
-      >
-        <MethodCard
-          summary={bundle.summary}
-          durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)}
-        />
+      <Sequence from={Math.round(PHASES.coldOpenEnd * fps)} durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)} layout="none">
+        <MethodCard summary={bundle.summary} history={history} durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)} />
+      </Sequence>
+
+      {/* Era transition */}
+      <Sequence from={Math.round(PHASES.historyEnd * fps)} durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)} layout="none">
+        <EraTransition durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)} />
       </Sequence>
 
       {/* Reveal */}
-      <Sequence
-        from={Math.round(PHASES.sweepEnd * fps)}
-        durationInFrames={Math.round((PHASES.revealEnd - PHASES.sweepEnd) * fps)}
-        layout="none"
-      >
-        <Reveal
-          stats={stats}
-          summary={bundle.summary}
-          durationInFrames={Math.round((PHASES.revealEnd - PHASES.sweepEnd) * fps)}
-        />
+      <Sequence from={Math.round(PHASES.granularEnd * fps)} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} layout="none">
+        <Reveal stats={stats} summary={bundle.summary} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} />
       </Sequence>
 
-      {/* Close darkening + credits */}
+      {/* Close */}
       <AbsoluteFill style={{ background: `rgba(3,5,8,${closeDark})`, pointerEvents: "none" }} />
-      <Sequence
-        from={Math.round(PHASES.revealEnd * fps)}
-        durationInFrames={Math.round((PHASES.closeEnd - PHASES.revealEnd) * fps)}
-        layout="none"
-      >
-        <Credits
-          summary={bundle.summary}
-          repoUrl={REPO_URL}
-          durationInFrames={Math.round((PHASES.closeEnd - PHASES.revealEnd) * fps)}
-        />
+      <Sequence from={Math.round(PHASES.revealEnd * fps)} durationInFrames={Math.round((PHASES.closeEnd - PHASES.revealEnd) * fps)} layout="none">
+        <Credits summary={bundle.summary} repoUrl={REPO_URL} durationInFrames={Math.round((PHASES.closeEnd - PHASES.revealEnd) * fps)} />
       </Sequence>
 
-      {/* Persistent honesty strip — always visible */}
-      <SourceCredit coveragePct={bundle.summary.coveragePct} showCoverage={sec >= 44} />
+      {/* Persistent honesty strip */}
+      <SourceCredit coveragePct={bundle.summary.coveragePct} showCoverage={sec >= PHASES.transitionEnd} />
     </AbsoluteFill>
   );
 };
-
-export const STORY_WIDTH = FRAME.w;
-export const STORY_HEIGHT = FRAME.h;

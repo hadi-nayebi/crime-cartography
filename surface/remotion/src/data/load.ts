@@ -5,6 +5,7 @@ import type {
   Bundle,
   CatCounts,
   FeedItem,
+  HistoryFile,
   Summary,
   TimelineFile,
 } from "./types";
@@ -31,7 +32,14 @@ export async function loadBundle(
     loadJson<FeedItem[]>(`${base}/feed.json`, signal),
     loadJson<Summary>(`${base}/summary.json`, signal),
   ]);
-  return { beats, timeline, feed, summary };
+  // history.json is optional (only datasets with a sourced deep-history era).
+  let history: HistoryFile | null = null;
+  try {
+    history = await loadJson<HistoryFile>(`${base}/history.json`, signal);
+  } catch {
+    history = null;
+  }
+  return { beats, timeline, feed, summary, history };
 }
 
 // ---- Projection ----------------------------------------------------------

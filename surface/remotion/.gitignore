@@ -8,3 +8,6 @@ out
 
 # Synced datasets (source of truth lives in /data; reproduce via scripts/sync-data.mjs)
 public/data/
+
+# Generated audio bed (reproducible via pipeline/audio/gen-bed.mjs)
+public/audio/

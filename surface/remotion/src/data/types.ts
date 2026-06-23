@@ -56,16 +56,47 @@ export interface Summary {
   beatCount: number;
 }
 
+export interface HistoryYear {
+  year: number;
+  violent: number;
+  property: number;
+  total: number;
+}
+
+export interface HistoryFile {
+  era: string;
+  taxonomy: string;
+  agency: string;
+  ori: string;
+  source: string;
+  sourceUrl: string;
+  cdeUrl: string;
+  fetchedAt: string;
+  presentation: string;
+  note: string;
+  yearMin: number;
+  yearMax: number;
+  cats: Record<"violent" | "property", { label: string; color: string }>;
+  years: HistoryYear[];
+}
+
 export interface Bundle {
   beats: BeatsFile;
   timeline: TimelineFile;
   feed: FeedItem[];
   summary: Summary;
+  history: HistoryFile | null; // FBI UCR deep-history era (optional per dataset)
 }
 
 export interface Annotation {
   atMonth: string; // "2023-07" — must exist in timeline.months
   text: string; // factual, checkable against timeline.json
+  beat?: string; // optional beat key to anchor the callout at that centroid
+}
+
+export interface HistoryNote {
+  atYear: number; // must exist in history.years
+  text: string; // checkable against history.json
 }
 
 // Props the CrimeStory composition receives (videos/<slug>/config.json).
@@ -76,8 +107,10 @@ export interface StoryConfig {
   subtitle: string;
   durationSec: number;
   fps: number;
-  annotations: Annotation[];
+  annotations: Annotation[]; // granular era (2023+)
+  historyNotes: HistoryNote[]; // deep-history era (2000–2022)
   emphasizeGroupA: boolean;
+  audioSrc?: string; // public-relative wav, e.g. "audio/grand-rapids.wav"
 }
 
 // After calculateMetadata, the bundle is attached to the props. The index

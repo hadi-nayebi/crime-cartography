@@ -40,12 +40,15 @@ export const FONT_SANS =
 // 1920×1080 layout regions (px). The map is a full-frame backdrop; panels float.
 export const FRAME = { w: 1920, h: 1080 } as const;
 
-// Phase boundaries in seconds (see DESIGN.md narrative arc).
+// Phase boundaries in seconds — two-era v2 arc (total 330s = 5:30).
+// coldopen → method → history(2000–2022) → era-transition → granular(2023+) →
+// reveal → close.
 export const PHASES = {
-  coldOpenEnd: 20,
-  methodEnd: 45,
-  sweepStart: 45,
-  sweepEnd: 210,
-  revealEnd: 270,
-  closeEnd: 300,
+  coldOpenEnd: 13,
+  methodEnd: 39,
+  historyEnd: 150, // FBI UCR deep-history sweep
+  transitionEnd: 163, // era bridge card
+  granularEnd: 292, // GRPD NIBRS granular sweep
+  revealEnd: 318,
+  closeEnd: 330,
 } as const;

@@ -22,6 +22,8 @@ interface Props {
   mapOpacity: number;
   /** 0..1 master opacity for heat (choropleth + symbols). */
   heatOpacity: number;
+  /** show the per-beat centroid symbols (false when DotLayer takes over). */
+  showSymbols?: boolean;
 }
 
 const R_MAX = 46; // px — largest centroid symbol radius
@@ -36,6 +38,7 @@ export const MapLayer: React.FC<Props> = ({
   emphasizeGroupA,
   mapOpacity,
   heatOpacity,
+  showSymbols = true,
 }) => {
   const { project } = projection;
   const frac = monthFloat - Math.floor(monthFloat);
@@ -94,7 +97,7 @@ export const MapLayer: React.FC<Props> = ({
       </g>
 
       {/* Proportional glowing symbols at real beat centroids */}
-      <g style={{ opacity: heatOpacity }}>
+      <g style={{ opacity: heatOpacity, display: showSymbols ? undefined : "none" }}>
         {stats.beats.map((b) => {
           const w = windowCountAtMonth(b.series, monthFloat, windowMonths);
           const metric = beatMetric(w, emphasizeGroupA);

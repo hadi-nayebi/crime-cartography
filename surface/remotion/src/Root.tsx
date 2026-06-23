@@ -12,19 +12,35 @@ import { FRAME } from "./theme";
 const GRAND_RAPIDS: StoryProps = {
   slug: "grand-rapids-mi",
   datasetDir: "data/grand-rapids-mi",
-  title: "Grand Rapids · Three Years of Crime, by the Numbers",
-  subtitle: "GRPD records · Jan 2023 – Jun 2026 · aggregated by police beat",
-  durationSec: 300,
+  title: "Grand Rapids · A Quarter-Century of Crime",
+  subtitle:
+    "FBI UCR 2000–2022 + GRPD NIBRS 2023–2026 · aggregated by police beat",
+  durationSec: 330,
   fps: 30,
   emphasizeGroupA: true,
+  audioSrc: "audio/grand-rapids.wav",
+  historyNotes: [
+    {
+      atYear: 2013,
+      text: "Property crime fell sharply through the 2010s — from 10,942 in 2000 toward 3,869 by 2018.",
+    },
+    {
+      atYear: 2018,
+      text: "2018: property crime bottoms out at 3,869 — about 65% below its 2000 level.",
+    },
+    {
+      atYear: 2020,
+      text: "2020: violent crime jumps about 50% (1,299 → 1,951); property rises too.",
+    },
+  ],
   annotations: [
     {
       atMonth: "2023-04",
-      text: "Most records are Local / Other ordinance reports — shown in grey, never counted as violent crime.",
+      text: "Each dot shows how many — spread within the beat to show density, not where a crime happened.",
     },
     {
       atMonth: "2023-07",
-      text: "July 2023 is the period's single highest month for Group A crime — 1,680 incidents citywide.",
+      text: "July 2023 is the highest month for Group A crime — 1,680 incidents citywide.",
     },
     {
       atMonth: "2024-07",
@@ -32,7 +48,8 @@ const GRAND_RAPIDS: StoryProps = {
     },
     {
       atMonth: "2025-06",
-      text: "Central 3 (downtown) carries the most Group A crime of any beat across the period.",
+      text: "Central 3 (downtown) carries the most Group A crime of any beat.",
+      beat: "CENTRAL 3",
     },
     {
       atMonth: "2026-05",

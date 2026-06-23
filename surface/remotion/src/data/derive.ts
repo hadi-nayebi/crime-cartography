@@ -13,6 +13,7 @@ export interface BeatStat {
   series: CatCounts[];
   groupATotalAll: number; // Group A over the whole period
   allTotal: number; // every category over the whole period
+  catTotalsAll: CatCounts; // per-category over the whole period (stable dot mix)
 }
 
 export interface Stats {
@@ -45,9 +46,19 @@ export function deriveStats(
     const beatMeta = bundle.beats.beats[key];
     let gA = 0,
       all = 0;
+    const catTotalsAll: CatCounts = {
+      persons: 0,
+      property: 0,
+      society: 0,
+      other: 0,
+    };
     for (const m of series) {
       gA += groupATotal(m);
       all += totalOf(m);
+      catTotalsAll.persons += m.persons;
+      catTotalsAll.property += m.property;
+      catTotalsAll.society += m.society;
+      catTotalsAll.other += m.other;
     }
     return {
       key,
@@ -55,6 +66,7 @@ export function deriveStats(
       series,
       groupATotalAll: gA,
       allTotal: all,
+      catTotalsAll,
     };
   });
 

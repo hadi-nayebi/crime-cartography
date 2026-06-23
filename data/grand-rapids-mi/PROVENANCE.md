@@ -40,8 +40,22 @@ Every figure rendered from this dataset traces to the public sources below. No v
 
 Incident counts are joined to these **real** beat polygons by `Beat__` = `BEAT`. Proportional symbols are drawn at each beat's polygon **centroid** and represent the beat's *aggregate count for the time window* — never an individual incident location.
 
+## Historical source — FBI UCR (2000–2022 deep-history era)
+
+| Field | Value |
+|-------|-------|
+| Dataset | **FBI Crime Data Explorer (CDE)** — summarized agency offense counts |
+| Agency | Grand Rapids Police Department — **ORI `MI4143600`** (verified via CDE `agency/byStateAbbr/MI`) |
+| Endpoint | https://api.usa.gov/crime/fbi/cde/summarized/agency/MI4143600/violent-crime (and `/property-crime`) |
+| CDE explorer | https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/explorer/crime/crime-trend |
+| Span | 2000–2022 (23 full years, no reporting gaps) |
+| Series | Annual **Violent** (39,659 total) and **Property** (168,196 total) offense counts |
+| Auth | api.data.gov key (DEMO_KEY rate-limited ~30/hr; set `FBI_API_KEY` for a free key) |
+
+These are **real annual UCR counts**. The video animates them as a **monthly average (annual ÷ 12)** and labels them as such on screen — no monthly or beat-level detail is implied for 2000–2022. UCR Summary categories (Violent/Property) are a **different taxonomy** than the NIBRS categories used from 2023; the two are presented as distinct eras, never equated. Three on-screen history captions (2013/2018/2020) are each checkable against `normalized/history.json`.
+
 ## Honesty notes
-- No per-incident coordinates exist publicly, so this project does **not** plot individual incident dots. It animates real per-beat aggregates over time.
+- No per-incident coordinates exist publicly, so this project does **not** plot individual incident dots at real locations. From 2023 it renders **dot-density**: dots are spread *within* each beat to show *how many* incidents, disclosed on screen as density (not location). Pre-2023 it shows FBI annual totals as a labeled monthly average.
 - Block addresses are shown verbatim in the incident feed as recorded (block-level, not exact addresses).
 - Crime data reflects **reported** incidents and police activity; it is not a measure of conviction or individual guilt, and reporting/recording practices vary.
 
@@ -50,8 +64,10 @@ City of Grand Rapids **GIS Data Access and Use Constraint Agreement** — data p
 
 ## Reproduce
 ```bash
-node pipeline/sources/grpd.mjs       # fetch records + beat polygons → data/grand-rapids-mi/raw/
-node pipeline/normalize.mjs grand-rapids-mi   # → data/grand-rapids-mi/normalized/
+node pipeline/sources/grpd.mjs                # fetch records + beat polygons → data/grand-rapids-mi/raw/
+node pipeline/sources/fbi-ucr.mjs             # fetch FBI UCR 2000–2022 annual → raw/fbi_ucr.json
+node pipeline/normalize.mjs grand-rapids-mi   # GRPD → normalized/{beats,timeline,feed,summary}.json
+node pipeline/normalize-history.mjs grand-rapids-mi  # FBI → normalized/history.json
 node pipeline/validate.mjs grand-rapids-mi    # invariants + provenance checks
 ```
-Fetched: see `data/grand-rapids-mi/raw/_fetch_meta.json` for the exact run timestamp and record count.
+Fetched: see `data/grand-rapids-mi/raw/_fetch_meta.json` (GRPD) and `raw/fbi_ucr.json` (FBI UCR) for run timestamps and counts.

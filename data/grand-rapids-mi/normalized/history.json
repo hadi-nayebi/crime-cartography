@@ -1,0 +1,164 @@
+{
+  "era": "history",
+  "taxonomy": "FBI UCR Summary (Violent + Property) — distinct from the NIBRS categories used from 2023",
+  "agency": "Grand Rapids Police Department",
+  "ori": "MI4143600",
+  "source": "FBI Crime Data Explorer (CDE) — summarized agency offense counts",
+  "sourceUrl": "https://api.usa.gov/crime/fbi/cde/summarized/agency/MI4143600/violent-crime",
+  "cdeUrl": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/explorer/crime/crime-trend",
+  "fetchedAt": "2026-06-23T00:00:00.000Z",
+  "presentation": "monthly-average",
+  "note": "Annual totals are real UCR counts fetched from the FBI CDE summarized agency endpoint for ORI MI4143600. The video animates them as a monthly average (annual ÷ 12) and labels them as such; no monthly or beat-level detail is implied for 2000–2022. Reproduce with pipeline/sources/fbi-ucr.mjs (set FBI_API_KEY to avoid DEMO_KEY rate limits).",
+  "yearMin": 2000,
+  "yearMax": 2022,
+  "cats": {
+    "violent": {
+      "label": "UCR Violent (murder, rape, robbery, agg. assault)",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "UCR Property (burglary, larceny, MV theft)",
+      "color": "#ffc233"
+    }
+  },
+  "years": [
+    {
+      "year": 2000,
+      "violent": 2114,
+      "property": 10942,
+      "total": 13056
+    },
+    {
+      "year": 2001,
+      "violent": 2048,
+      "property": 10044,
+      "total": 12092
+    },
+    {
+      "year": 2002,
+      "violent": 2179,
+      "property": 9212,
+      "total": 11391
+    },
+    {
+      "year": 2003,
+      "violent": 2070,
+      "property": 9415,
+      "total": 11485
+    },
+    {
+      "year": 2004,
+      "violent": 2035,
+      "property": 9532,
+      "total": 11567
+    },
+    {
+      "year": 2005,
+      "violent": 1968,
+      "property": 9905,
+      "total": 11873
+    },
+    {
+      "year": 2006,
+      "violent": 1925,
+      "property": 10243,
+      "total": 12168
+    },
+    {
+      "year": 2007,
+      "violent": 1876,
+      "property": 10270,
+      "total": 12146
+    },
+    {
+      "year": 2008,
+      "violent": 1986,
+      "property": 9346,
+      "total": 11332
+    },
+    {
+      "year": 2009,
+      "violent": 1604,
+      "property": 8911,
+      "total": 10515
+    },
+    {
+      "year": 2010,
+      "violent": 1645,
+      "property": 7860,
+      "total": 9505
+    },
+    {
+      "year": 2011,
+      "violent": 1395,
+      "property": 6245,
+      "total": 7640
+    },
+    {
+      "year": 2012,
+      "violent": 1465,
+      "property": 6708,
+      "total": 8173
+    },
+    {
+      "year": 2013,
+      "violent": 1326,
+      "property": 6250,
+      "total": 7576
+    },
+    {
+      "year": 2014,
+      "violent": 1381,
+      "property": 5238,
+      "total": 6619
+    },
+    {
+      "year": 2015,
+      "violent": 1420,
+      "property": 4649,
+      "total": 6069
+    },
+    {
+      "year": 2016,
+      "violent": 1327,
+      "property": 4394,
+      "total": 5721
+    },
+    {
+      "year": 2017,
+      "violent": 1410,
+      "property": 4156,
+      "total": 5566
+    },
+    {
+      "year": 2018,
+      "violent": 1320,
+      "property": 3869,
+      "total": 5189
+    },
+    {
+      "year": 2019,
+      "violent": 1299,
+      "property": 3906,
+      "total": 5205
+    },
+    {
+      "year": 2020,
+      "violent": 1951,
+      "property": 5918,
+      "total": 7869
+    },
+    {
+      "year": 2021,
+      "violent": 1990,
+      "property": 5213,
+      "total": 7203
+    },
+    {
+      "year": 2022,
+      "violent": 1925,
+      "property": 5970,
+      "total": 7895
+    }
+  ]
+}
