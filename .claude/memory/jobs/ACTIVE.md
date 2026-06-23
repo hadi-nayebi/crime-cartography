@@ -49,12 +49,23 @@ The GRPD Crime Data layer has **NO coordinates** (`geometryType: None`). The han
 - [x] Scaffold repo dirs; port self-compact skill (verified targets pane %3)
 - [x] git init + create PUBLIC repo: github.com/hadi-nayebi/crime-cartography
 - [x] Discover GRPD layer + schema + honest strategy (above)
-- [ ] data/grand-rapids-mi/PROVENANCE.md
-- [ ] pipeline: fetch 210k records (paginate 2000) + beat polygons GeoJSON
-- [ ] pipeline: normalize → per-beat per-month counts by category + beat centroids + validate
-- [ ] surface: Remotion beat-choropleth/bubble animation reading normalized data
-- [ ] render GR ~5-min video
-- [ ] wiki: provenance + add-a-city guide
+- [x] data/grand-rapids-mi/PROVENANCE.md
+- [x] pipeline/sources/grpd.mjs: fetched 210,488 records + 33 beat polygons (raw gitignored, _fetch_meta kept)
+- [x] pipeline/normalize.mjs: 42-month per-beat per-category timeline + centroids + 322-item feed (~178K bundle)
+- [x] pipeline/validate.mjs: 10 invariants PASS (96.7% placed, totals reconcile)
+- [x] COMMITTED + PUSHED milestone (commit 7267032). Repo: github.com/hadi-nayebi/crime-cartography
+- [x] surface/remotion/DESIGN.md written (full video blueprint — READ IT before building)
+- [ ] **RESUME HERE → build the Remotion surface** per surface/remotion/DESIGN.md:
+      1. Load `remotion-best-practices` skill FIRST.
+      2. `npm init` a Remotion project in surface/remotion/ (Root.tsx, components in DESIGN §Components).
+      3. Read normalized bundle from data/grand-rapids-mi/normalized/ (import or staticFile).
+      4. Build MapLayer (projected beat polygons + choropleth + proportional symbols), Counters, TimelineChart, Feed, Clock, Annotation, Credits. Deterministic on `frame`.
+      5. videos/grand-rapids-mi/config.json (title, annotations checkable vs timeline.json).
+      6. Render ~5-min mp4 → videos/grand-rapids-mi/out/ (gitignored). Gate on validate passing.
+      7. Keep on-screen honesty: source credit + method card + 'other' labeled + coverage shown.
+- [ ] Update surface/preview/ HTML to read the real normalized data (preview parity) — optional/after.
+- [ ] wiki: Home, Data-Provenance index, Add-a-City guide; dataset catalog (cities→counties→states→US)
+- [ ] Publish video + finalize README status
 
 ## Self-compact command (this pane)
 bash .claude/skills/self-compact/self-compact.sh "<DIRECTIVE>" "<FOLLOWUP>"
