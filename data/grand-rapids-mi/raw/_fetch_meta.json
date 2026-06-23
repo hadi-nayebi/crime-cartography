@@ -1,0 +1,13 @@
+{
+  "fetchedAt": "2026-06-23T03:23:51.993Z",
+  "completedAt": "2026-06-23T03:23:51.994Z",
+  "source": {
+    "records": "https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/GRPD_Crime_Data/FeatureServer/0",
+    "beats": "https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/GRPD_SERVICE_AREA_MAP_NEW/FeatureServer/1",
+    "hub": "https://grpd-grandrapids.hub.arcgis.com/datasets/grandrapids::grpd-crime-data"
+  },
+  "recordCount": 210488,
+  "beatFeatureCount": 33,
+  "dateMin": "2023-01-01",
+  "dateMax": "2026-06-01"
+}

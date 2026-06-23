@@ -1,0 +1,50 @@
+{
+  "slug": "grand-rapids-mi",
+  "title": "Grand Rapids · MI",
+  "source": {
+    "records": "https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/GRPD_Crime_Data/FeatureServer/0",
+    "beats": "https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/GRPD_SERVICE_AREA_MAP_NEW/FeatureServer/1",
+    "hub": "https://grpd-grandrapids.hub.arcgis.com/datasets/grandrapids::grpd-crime-data"
+  },
+  "fetchedAt": "2026-06-23T03:23:51.993Z",
+  "dateMin": "2023-01-01",
+  "dateMax": "2026-06-01",
+  "months": 42,
+  "totalRecords": 210488,
+  "placedRecords": 203480,
+  "unplacedRecords": 7008,
+  "coveragePct": 96.7,
+  "unplacedBeats": {
+    "0": 58,
+    "N8": 3522,
+    "X": 3337,
+    "∅": 73,
+    "W7": 9,
+    "x": 9
+  },
+  "catTotals": {
+    "persons": 19575,
+    "property": 26017,
+    "society": 9278,
+    "other": 155618
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Local / Other",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 33
+}

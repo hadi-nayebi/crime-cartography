@@ -12,11 +12,10 @@ videos/**/out/
 *.webm
 !videos/**/*sample*.mp4
 
-# Raw bulky data dumps (keep normalized + small samples + provenance)
-data/**/raw/*.geojson
-data/**/raw/*.csv
-data/**/raw/*.zip
-!data/**/raw/*sample*
+# Raw source pulls are reproducible via pipeline/sources/*.mjs — keep them out of
+# git (can be large), but DO keep the provenance sidecar that records each fetch.
+data/**/raw/*
+!data/**/raw/_fetch_meta.json
 
 # OS / editor
 .DS_Store

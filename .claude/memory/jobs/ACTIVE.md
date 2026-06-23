@@ -35,14 +35,24 @@ B. City of GR open data portal — https://grdata-grandrapids.opendata.arcgis.co
 C. FBI CDE — historical agency COUNTS only, no coords. https://cde.ucr.cjis.gov/
 D. Michigan MSP MICR — aggregate counts. E. FOIA GRPD — possible historical points.
 
+## KEY DATA FINDING (2026-06-22) — strategy pivot
+The GRPD Crime Data layer has **NO coordinates** (`geometryType: None`). The handoff wrongly assumed block-level points. Reality:
+- Layer: GRPD_Crime_Data/FeatureServer/0 @ services2.arcgis.com/L81TiOwAPO1ZvU9b — **210,488 records, 2023-01-01 → 2026-06-01 (3.4 yrs)**.
+- Fields: DATEOFOFFENSE, NIBRS_Category (clean!), NIBRS_GRP, Offense_Description, OFFENSETITLE, **Beat__ (38 beats)**, Service_Area, BLOCK_ADDRESS (text only), Weapon_Type, Day_of_the_Week.
+- Beat POLYGONS (real geometry): GRPD_SERVICE_AREA_MAP_NEW/FeatureServer/1 (GRPD_ServiceArea_Beats_2025, field BEAT).
+- **Honest viz = animated BEAT-LEVEL map over 3.4 yrs**: real monthly counts joined to real beat polygons; proportional symbols at real beat centroids (labeled as per-beat aggregates, NOT individual incidents); real category split; feed of real offenses. NO fabricated dots — honors the no-fabrication rule and gives a real multi-year sweep.
+- Category map via NIBRS_Category: Crimes Against Person→persons, Property→property, Society→society; Local/Local-DL/All Other/0→`other` (137,988 "Local" dominate — local-ordinance e.g. "Sound of Gunshots"; keep visible + honestly labeled). NIBRS Group A subset (persons+property+society) ≈ 54,870.
+- License: City of Grand Rapids GIS Data Access/Use Constraint Agreement ("as is", complementary public service). Record in PROVENANCE.
+
 ## Status / next actions
 - [x] Read handoff + HTML shell + sibling self-compact mechanism
-- [x] Scaffold repo dirs; port self-compact skill (targets pane %3)
-- [ ] Verify self-compact dry-run targets %3
-- [ ] git init + create public GitHub repo crime-cartography
-- [ ] WORKFLOW: locate GRPD FeatureServer layer URL, fetch GeoJSON, record provenance
-- [ ] pipeline: normalize GRPD → canonical schema + validate
-- [ ] surface: Remotion composition reading normalized data
+- [x] Scaffold repo dirs; port self-compact skill (verified targets pane %3)
+- [x] git init + create PUBLIC repo: github.com/hadi-nayebi/crime-cartography
+- [x] Discover GRPD layer + schema + honest strategy (above)
+- [ ] data/grand-rapids-mi/PROVENANCE.md
+- [ ] pipeline: fetch 210k records (paginate 2000) + beat polygons GeoJSON
+- [ ] pipeline: normalize → per-beat per-month counts by category + beat centroids + validate
+- [ ] surface: Remotion beat-choropleth/bubble animation reading normalized data
 - [ ] render GR ~5-min video
 - [ ] wiki: provenance + add-a-city guide
 
