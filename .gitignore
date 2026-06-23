@@ -1,0 +1,29 @@
+# Node / Remotion
+node_modules/
+surface/remotion/node_modules/
+.remotion/
+out/
+*.log
+
+# Rendered video outputs (large; published via Releases/YouTube, not committed)
+videos/**/out/
+*.mp4
+*.mov
+*.webm
+!videos/**/*sample*.mp4
+
+# Raw bulky data dumps (keep normalized + small samples + provenance)
+data/**/raw/*.geojson
+data/**/raw/*.csv
+data/**/raw/*.zip
+!data/**/raw/*sample*
+
+# OS / editor
+.DS_Store
+*.swp
+.env
+.env.local
+
+# Claude local machine state (keep skill/hooks/memory; ignore transient)
+.claude/.tmp/
+/tmp/
