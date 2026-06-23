@@ -1,0 +1,32 @@
+{
+  "slug": "grand-rapids-mi",
+  "datasetDir": "data/grand-rapids-mi",
+  "title": "Grand Rapids · Three Years of Crime, by the Numbers",
+  "subtitle": "GRPD records · Jan 2023 – Jun 2026 · aggregated by police beat",
+  "durationSec": 300,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "annotations": [
+    {
+      "atMonth": "2023-04",
+      "text": "Most records are Local / Other ordinance reports — shown in grey, never counted as violent crime."
+    },
+    {
+      "atMonth": "2023-07",
+      "text": "July 2023 is the period's single highest month for Group A crime — 1,680 incidents citywide."
+    },
+    {
+      "atMonth": "2024-07",
+      "text": "Property crime peaks in summer: ~663 reports/month in Jun–Aug versus ~503 in winter."
+    },
+    {
+      "atMonth": "2025-06",
+      "text": "Central 3 (downtown) carries the most Group A crime of any beat across the period."
+    },
+    {
+      "atMonth": "2026-05",
+      "text": "May 2026 is the highest month on record for Crimes Against Persons — 628 reports."
+    }
+  ],
+  "bundle": null
+}

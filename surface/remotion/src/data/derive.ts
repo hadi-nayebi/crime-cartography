@@ -1,0 +1,142 @@
+import type { Bundle, CatCounts } from "./types";
+import {
+  groupATotal,
+  totalOf,
+  windowCountAtMonth,
+  zeroCounts,
+  addCounts,
+} from "./load";
+
+export interface BeatStat {
+  key: string;
+  centroid: [number, number];
+  series: CatCounts[];
+  groupATotalAll: number; // Group A over the whole period
+  allTotal: number; // every category over the whole period
+}
+
+export interface Stats {
+  months: string[];
+  beats: BeatStat[];
+  ranking: BeatStat[]; // by groupATotalAll desc
+  maxWindowMetric: number; // max trailing-window metric across beats — stable scale
+  cityMonthly: CatCounts[]; // city-wide per-month counts (for the chart)
+  cityCumulative: CatCounts[]; // city-wide cumulative per month
+  grandTotalGroupA: number;
+  grandTotalAll: number;
+}
+
+// Metric driving choropleth + symbol size. Group A when emphasized, else total.
+export function beatMetric(c: CatCounts, emphasizeGroupA: boolean): number {
+  return emphasizeGroupA ? groupATotal(c) : totalOf(c);
+}
+
+export function deriveStats(
+  bundle: Bundle,
+  windowMonths: number,
+  emphasizeGroupA: boolean,
+): Stats {
+  const { timeline } = bundle;
+  const months = timeline.months;
+  const beatKeys = Object.keys(timeline.cells);
+
+  const beats: BeatStat[] = beatKeys.map((key) => {
+    const series = timeline.cells[key];
+    const beatMeta = bundle.beats.beats[key];
+    let gA = 0,
+      all = 0;
+    for (const m of series) {
+      gA += groupATotal(m);
+      all += totalOf(m);
+    }
+    return {
+      key,
+      centroid: beatMeta ? beatMeta.centroid : [0, 0],
+      series,
+      groupATotalAll: gA,
+      allTotal: all,
+    };
+  });
+
+  // Stable scale: largest trailing-window metric any beat reaches, sampled at
+  // each integer month. Used so symbol radii/choropleth are comparable in time.
+  let maxWindowMetric = 1;
+  for (const b of beats) {
+    for (let i = 0; i <= months.length; i++) {
+      const w = windowCountAtMonth(b.series, i, windowMonths);
+      const m = beatMetric(w, emphasizeGroupA);
+      if (m > maxWindowMetric) maxWindowMetric = m;
+    }
+  }
+
+  // City-wide monthly + cumulative series (for the timeline chart).
+  const cityMonthly: CatCounts[] = months.map((_, i) => {
+    let acc = zeroCounts();
+    for (const b of beats) acc = addCounts(acc, b.series[i]);
+    return acc;
+  });
+  const cityCumulative: CatCounts[] = [];
+  let run = zeroCounts();
+  for (const m of cityMonthly) {
+    run = addCounts(run, m);
+    cityCumulative.push({ ...run });
+  }
+
+  const ranking = [...beats].sort(
+    (a, b) => b.groupATotalAll - a.groupATotalAll,
+  );
+
+  const grandTotalGroupA = beats.reduce((s, b) => s + b.groupATotalAll, 0);
+  const grandTotalAll = beats.reduce((s, b) => s + b.allTotal, 0);
+
+  return {
+    months,
+    beats,
+    ranking,
+    maxWindowMetric,
+    cityMonthly,
+    cityCumulative,
+    grandTotalGroupA,
+    grandTotalAll,
+  };
+}
+
+// Map a fraction [0,1] across the whole-period timeline to a month-float in
+// [0, months]. monthFloat===months means "every month counted" (used at the
+// reveal/close freeze).
+export function sweepMonthFloat(
+  frame: number,
+  fps: number,
+  sweepStartSec: number,
+  sweepEndSec: number,
+  monthCount: number,
+): number {
+  const sec = frame / fps;
+  if (sec <= sweepStartSec) return 0;
+  if (sec >= sweepEndSec) return monthCount;
+  const p = (sec - sweepStartSec) / (sweepEndSec - sweepStartSec);
+  return p * monthCount;
+}
+
+export function fmtInt(n: number): string {
+  return Math.round(n).toLocaleString("en-US");
+}
+
+export function monthLabel(ym: string): { mon: string; year: string } {
+  const [y, m] = ym.split("-");
+  const names = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC",
+  ];
+  return { mon: names[Number(m) - 1] ?? m, year: y };
+}

@@ -55,14 +55,14 @@ The GRPD Crime Data layer has **NO coordinates** (`geometryType: None`). The han
 - [x] pipeline/validate.mjs: 10 invariants PASS (96.7% placed, totals reconcile)
 - [x] COMMITTED + PUSHED milestone (commit 7267032). Repo: github.com/hadi-nayebi/crime-cartography
 - [x] surface/remotion/DESIGN.md written (full video blueprint — READ IT before building)
-- [ ] **RESUME HERE → build the Remotion surface** per surface/remotion/DESIGN.md:
-      1. Load `remotion-best-practices` skill FIRST.
-      2. `npm init` a Remotion project in surface/remotion/ (Root.tsx, components in DESIGN §Components).
-      3. Read normalized bundle from data/grand-rapids-mi/normalized/ (import or staticFile).
-      4. Build MapLayer (projected beat polygons + choropleth + proportional symbols), Counters, TimelineChart, Feed, Clock, Annotation, Credits. Deterministic on `frame`.
-      5. videos/grand-rapids-mi/config.json (title, annotations checkable vs timeline.json).
-      6. Render ~5-min mp4 → videos/grand-rapids-mi/out/ (gitignored). Gate on validate passing.
-      7. Keep on-screen honesty: source credit + method card + 'other' labeled + coverage shown.
+- [x] **Remotion surface BUILT** (Opus, 2026-06-22): blank create-video scaffold in surface/remotion/.
+      - src/theme.ts (palette/phases), src/data/{types,load,derive}.ts (fetch bundle via staticFile + projection fit + cumulative/window aggregation + deriveStats).
+      - Components: MapLayer (projected beat polygons + choropleth + √-scaled glowing centroid symbols — REAL per-beat aggregates only), Counters, TimelineChart, Feed, Clock, Annotation, MethodCard, ColdOpen, Reveal, Credits, SourceCredit.
+      - src/CrimeStory.tsx ties phases (coldopen 0-20 / method 20-45 / sweep 45-210 / reveal 210-270 / close 270-300); src/Root.tsx has calculateMetadata loading bundle + duration 9000f@30fps.
+      - scripts/sync-data.mjs copies data/<slug>/normalized → public/data/ (gitignored; source of truth stays in /data). RAN for grand-rapids-mi.
+      - videos/grand-rapids-mi/config.json: 5 annotations ALL verified against timeline.json (Jul2023 peak GroupA=1680; summer property ~663 vs winter ~503; Central 3 busiest GroupA=4835; May2026 persons peak=628). tsc clean.
+      - VERIFIED via 6 half-scale stills (coldopen/method/sweep/anno/reveal/close): honesty overlays present — source credit persistent, method card states "no incident coordinates / per-beat aggregate / 96.7% / 33 beats", Local/Other labeled, reveal ranks match computed stats, close = "210,488 sourced records. No invented points."
+- [ ] **RESUME HERE → full render in progress** (bg task b9qz2bsak): `npx remotion render CrimeStory ../../videos/grand-rapids-mi/out/grand-rapids.mp4 --props=../../videos/grand-rapids-mi/config.json --concurrency=4` (run from surface/remotion/). Validate gate PASSED. When done: spot-check the mp4, then COMMIT + PUSH milestone (surface/remotion/ minus node_modules+public/data+out; videos/.../config.json). 
 - [ ] Update surface/preview/ HTML to read the real normalized data (preview parity) — optional/after.
 - [ ] wiki: Home, Data-Provenance index, Add-a-City guide; dataset catalog (cities→counties→states→US)
 - [ ] Publish video + finalize README status

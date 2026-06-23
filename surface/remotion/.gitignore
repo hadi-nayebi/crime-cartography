@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Ignore the output video from Git but not videos you import into src/.
+out
+
+# Synced datasets (source of truth lives in /data; reproduce via scripts/sync-data.mjs)
+public/data/
