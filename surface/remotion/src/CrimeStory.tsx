@@ -12,14 +12,18 @@ import type { StoryProps } from "./data/types";
 import { deriveStats } from "./data/derive";
 import { buildMapProjection, MapLayer } from "./components/MapLayer";
 import { DotLayer } from "./components/DotLayer";
+import { TrendArrows } from "./components/TrendArrows";
 import { Clock } from "./components/Clock";
 import { Counters } from "./components/Counters";
 import { Feed } from "./components/Feed";
 import { TimelineChart } from "./components/TimelineChart";
 import { Leaderboard } from "./components/Leaderboard";
+import { Legend } from "./components/Legend";
+import { PhaseTitle } from "./components/PhaseTitle";
 import { ColdOpen } from "./components/ColdOpen";
 import { MethodCard } from "./components/MethodCard";
 import { HistoryEra } from "./components/HistoryEra";
+import { Quiz } from "./components/Quiz";
 import { EraTransition } from "./components/EraTransition";
 import { Annotation } from "./components/Annotation";
 import { MapAnnotation } from "./components/MapAnnotation";
@@ -30,6 +34,7 @@ import { CAT_COLORS, COLORS, PHASES } from "./theme";
 
 const WINDOW_MONTHS = 6; // choropleth window
 const DOT_WINDOW = 3; // dot-density window
+const ARROW_WINDOW = 3; // trailing window for per-beat trend arrows
 const PER_DOT = 4; // incidents per dot
 const REPO_URL = "github.com/hadi-nayebi/crime-cartography";
 
@@ -147,6 +152,22 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
     })
     .filter((x): x is NonNullable<typeof x> => x !== null);
 
+  // --- quiz options (safest / mid / busiest), alphabetized so position is no
+  // tell. Answer (fewest Group A) is revealed only at the end. ---
+  const rk = stats.ranking;
+  const quizOptions =
+    rk.length >= 3
+      ? Array.from(
+          new Set([
+            rk[rk.length - 1].key, // safest (answer)
+            rk[Math.floor(rk.length / 2)].key, // mid
+            rk[0].key, // busiest
+          ]),
+        ).sort()
+      : rk.map((b) => b.key);
+  const quizStart = Math.round(92 * fps);
+  const quizDur = Math.round(52 * fps);
+
   return (
     <AbsoluteFill style={{ background: COLORS.bg, fontFamily: "sans-serif" }}>
       {audioSrc && <Audio src={staticFile(audioSrc)} />}
@@ -179,21 +200,32 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
         opacity={dotsOpacity}
       />
 
+      {/* Per-beat trend arrows (rising/falling vs prior window) */}
+      <TrendArrows
+        stats={stats}
+        projection={projection}
+        monthFloat={gFloat}
+        windowMonths={ARROW_WINDOW}
+        opacity={dotsOpacity}
+      />
+
       {/* History era panel */}
       {history && historyOpacity > 0.001 && (
         <HistoryEra history={history} yearFloat={yearFloat} opacity={historyOpacity} />
       )}
+
+      {/* Chapter title strip (granular era) */}
+      <PhaseTitle sec={sec} />
 
       {/* Granular HUD */}
       <div style={{ opacity: granHud }}>
         <Clock months={stats.months} monthFloat={gFloat} />
         <Counters cityMonthly={stats.cityMonthly} monthFloat={gFloat} />
         <Feed feed={bundle.feed} months={stats.months} monthFloat={gFloat} />
+        <Legend opacity={granHud} perDot={PER_DOT} />
         <TimelineChart
           months={stats.months}
           cityMonthly={stats.cityMonthly}
-          cityCumulative={stats.cityCumulative}
-          grandTotalAll={stats.grandTotalAll}
           monthFloat={gFloat}
         />
       </div>
@@ -226,6 +258,13 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       <Sequence from={Math.round(PHASES.coldOpenEnd * fps)} durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)} layout="none">
         <MethodCard summary={bundle.summary} history={history} durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)} />
       </Sequence>
+
+      {/* Engagement quiz — posed during the history era, answered at the reveal */}
+      {quizOptions.length >= 2 && (
+        <Sequence from={quizStart} durationInFrames={quizDur} layout="none">
+          <Quiz options={quizOptions} durationInFrames={quizDur} />
+        </Sequence>
+      )}
 
       {/* Era transition */}
       <Sequence from={Math.round(PHASES.historyEnd * fps)} durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)} layout="none">

@@ -49,7 +49,7 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => 
             color: COLORS.inkFaint,
           }}
         >
-          DEEP HISTORY · FBI UCR · ANNUAL TOTALS SHOWN AS MONTHLY AVERAGE
+          CHAPTER 1 · 2000–2022 · FBI UCR · ANNUAL TOTALS SHOWN AS A MONTHLY AVERAGE
         </div>
         <div style={{ fontSize: 120, fontWeight: 800, color: COLORS.ink, lineHeight: 1 }}>
           {cur.year}

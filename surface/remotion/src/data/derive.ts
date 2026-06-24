@@ -7,6 +7,59 @@ import {
   addCounts,
 } from "./load";
 
+// ---- Rate helpers (honest trend, NOT cumulative) -------------------------
+// A cumulative line always rises and hides whether crime is actually going up
+// or down. These express activity as a true PER-WEEK rate so the under-map line
+// reads as a real trend.
+
+const DAYS_PER_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+export function daysInMonth(ym: string): number {
+  const [y, m] = ym.split("-").map(Number);
+  if (m === 2 && ((y % 4 === 0 && y % 100 !== 0) || y % 400 === 0)) return 29;
+  return DAYS_PER_MONTH[(m - 1) % 12] ?? 30;
+}
+
+// Group A incidents per week for each month — monthly count scaled to a 7-day
+// week using that month's real length. No annualizing, no smoothing of future.
+export function weeklyGroupARates(
+  cityMonthly: CatCounts[],
+  months: string[],
+): number[] {
+  return cityMonthly.map(
+    (c, i) => (groupATotal(c) * 7) / daysInMonth(months[i] ?? "2023-01"),
+  );
+}
+
+// Per-week rate for one category, per month.
+export function weeklyCatRates(
+  cityMonthly: CatCounts[],
+  months: string[],
+  cat: keyof CatCounts,
+): number[] {
+  return cityMonthly.map(
+    (c, i) => (c[cat] * 7) / daysInMonth(months[i] ?? "2023-01"),
+  );
+}
+
+// Trailing-window trend for a beat: this window's Group A rate vs the prior
+// window's. dir = +1 rising (worse), -1 falling (better, green), 0 ~flat.
+export function beatTrend(
+  series: CatCounts[],
+  monthFloat: number,
+  windowMonths: number,
+): { now: number; prev: number; dir: 1 | 0 | -1 } {
+  const now = groupATotal(windowCountAtMonth(series, monthFloat, windowMonths));
+  const prev = groupATotal(
+    windowCountAtMonth(series, Math.max(0, monthFloat - windowMonths), windowMonths),
+  );
+  let dir: 1 | 0 | -1 = 0;
+  if (prev <= 0 && now <= 0) dir = 0;
+  else if (now > prev * 1.08) dir = 1;
+  else if (now < prev * 0.92) dir = -1;
+  return { now, prev, dir };
+}
+
 export interface BeatStat {
   key: string;
   centroid: [number, number];
