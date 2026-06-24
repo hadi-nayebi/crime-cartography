@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Procedural tempo music bed for the crime-cartography video.
 
-Self-generated, royalty-free. Synthesizes a drum machine (kick/snare/hats), a
-bassline, and chord/arpeggio voices at a fixed BPM, arranged to follow the
-video's sections (calm history -> fill at the 2023 transition -> full groove in
-the granular era -> breakdown at the reveal -> outro). A minor, restrained,
-documentary feel.
+Built with the `music` skill (.claude/skills/music/SKILL.md) — apply that
+checklist when editing. Self-generated, royalty-free numpy synthesis.
 
-    python3 pipeline/audio/gen_music.py [--bpm 88]
+v0.2 — anti-monotony pass: a developed lead MOTIF (sequencing + rhythmic
+displacement + rests), section-varied harmony (A-prog vs B-reharm every 4-bar
+cycle), drum variation every 4 bars + boundary fills, per-note brightness
+automation, kick-sidechained low bus. Arranged to the video's sections.
+
+    python3 pipeline/audio/gen_music.py [--bpm 92]
 
 Output: surface/remotion/public/audio/grand-rapids-music.wav
 """
@@ -23,252 +25,262 @@ DUR = 330.0  # must match config.durationSec
 P = dict(cold=0, method=13, history=39, transition=150,
          granular=163, reveal=292, outro=318, end=330)
 
-rng = np.random.default_rng(42)  # deterministic noise
-
-# ---- note frequencies (A minor) ----
-def nf(semitones_from_a4):
-    return 440.0 * 2 ** (semitones_from_a4 / 12.0)
-
-# chord progression (one per bar): Am - F - C - G  (i - VI - III - VII)
-# each entry: (root_hz, [chord tone hz for arp/pad])
-A2, F2, C3, G2 = nf(-24), nf(-28), nf(-21), nf(-26)
-CHORDS = [
-    (A2, [nf(0), nf(3), nf(7)]),    # Am: A C E
-    (F2, [nf(-4), nf(0), nf(3)]),   # F:  F A C
-    (C3, [nf(-9), nf(-5), nf(-2)]), # C:  C E G
-    (G2, [nf(-2), nf(2), nf(5)]),   # G:  G B D
-]
+rng = np.random.default_rng(42)  # deterministic
 
 
-def env(n, attack, decay, sustain=0.0, release=0.0, hold=0.0):
-    """Simple AD/ADSR envelope of length n samples (times in seconds)."""
-    a = int(attack * SR); d = int(decay * SR)
-    h = int(hold * SR); r = int(release * SR)
-    e = np.zeros(n)
-    i = 0
-    if a: e[i:i+a] = np.linspace(0, 1, a); i += a
-    if h and i < n: e[i:i+h] = 1.0; i += h
-    if d and i < n:
-        seg = min(d, n - i); e[i:i+seg] = np.linspace(1, sustain, d)[:seg]; i += seg
-    if i < n: e[i:n] = sustain
-    if r and n - r > 0:  # release tail overrides the end
-        e[n-r:n] = np.linspace(e[n-r], 0, r)
+def nf(semis):  # semitones from A4 -> Hz
+    return 440.0 * 2 ** (semis / 12.0)
+
+
+# A natural-minor scale degrees (semitones from A)
+SCALE = [0, 2, 3, 5, 7, 8, 10]
+
+
+def deg(d, octave=0):
+    """Scale degree -> semitones from A (d can exceed 6, wraps octaves)."""
+    o = d // 7 + octave
+    return SCALE[d % 7] + 12 * o
+
+
+# chords: (root semis from A2, [chord-tone semis from A4 for arp/pad])
+def chord(root_semis, tones):
+    return (nf(root_semis - 24), [nf(s) for s in tones])
+
+
+Am = chord(0,  [0, 3, 7])     # A C E
+F  = chord(-4, [-4, 0, 3])    # F A C
+C_ = chord(-9, [-9, -5, -2])  # C E G  (root low)
+G  = chord(-2, [-2, 2, 5])    # G B D
+Dm = chord(-7, [-7, -4, 0])   # D F A
+Em = chord(-5, [-5, -1, 2])   # E G B
+
+PROG_A = [Am, F, C_, G]       # i  VI III VII
+PROG_B = [Dm, C_, G, Am]      # iv III VII i   (B-section reharm)
+
+# motif: (scale-degree, duration in beats). A short idea, developed by transpose.
+MOTIF = [(0, 0.5), (3, 0.5), (2, 1.0), (4, 0.5), (3, 0.5), (0, 1.0)]
+
+
+# ---------- envelope + voices ----------
+def env(n, a, d, s=0.0, r=0.0):
+    e = np.zeros(n); i = 0
+    na, nd, nr = int(a * SR), int(d * SR), int(r * SR)
+    if na: e[:na] = np.linspace(0, 1, na); i = na
+    if nd and i < n:
+        seg = min(nd, n - i); e[i:i + seg] = np.linspace(1, s, nd)[:seg]; i += seg
+    if i < n: e[i:] = s
+    if nr and n - nr > 0: e[n - nr:] = np.linspace(e[n - nr], 0, nr)
     return e
 
 
 def kick(dur=0.32):
     n = int(dur * SR); t = np.arange(n) / SR
-    f = 120 * np.exp(-t * 28) + 46          # pitch drop
-    phase = 2 * np.pi * np.cumsum(f) / SR
-    body = np.sin(phase) * np.exp(-t * 9)
+    f = 120 * np.exp(-t * 28) + 46
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 9)
     click = np.sin(2 * np.pi * 1800 * t) * np.exp(-t * 200) * 0.4
     return (body + click) * 0.9
 
 
-def snare(dur=0.2):
+def snare(dur=0.2, g=1.0):
     n = int(dur * SR); t = np.arange(n) / SR
     noise = rng.standard_normal(n) * np.exp(-t * 22)
     tone = np.sin(2 * np.pi * 185 * t) * np.exp(-t * 26) * 0.5
-    return (noise * 0.7 + tone) * 0.65
+    return (noise * 0.7 + tone) * 0.65 * g
 
 
-def hat(dur=0.05, opn=False):
+def hat(dur=0.05, opn=False, g=1.0):
     n = int(dur * SR); t = np.arange(n) / SR
-    rate = 9 if opn else 60
-    noise = rng.standard_normal(n) * np.exp(-t * rate)
-    # crude high-pass: subtract a smoothed copy
+    noise = rng.standard_normal(n) * np.exp(-t * (9 if opn else 60))
     hp = noise - np.convolve(noise, np.ones(8) / 8, mode="same")
-    return hp * (0.32 if opn else 0.22)
+    return hp * (0.32 if opn else 0.22) * g
 
 
 def bass(freq, dur):
     n = int(dur * SR); t = np.arange(n) / SR
-    sig = (np.sin(2 * np.pi * freq * t)
-           + 0.35 * np.sin(2 * np.pi * 2 * freq * t)
-           + 0.5 * np.sin(2 * np.pi * 0.5 * freq * t))  # sub
-    sig = np.tanh(sig * 1.4)                              # gentle drive
-    e = env(n, 0.006, dur * 0.6, sustain=0.5, release=min(0.05, dur * 0.3))
-    return sig * e * 0.5
+    sig = (np.sin(2 * np.pi * freq * t) + 0.35 * np.sin(2 * np.pi * 2 * freq * t)
+           + 0.5 * np.sin(2 * np.pi * 0.5 * freq * t))
+    return np.tanh(sig * 1.4) * env(n, 0.006, dur * 0.6, 0.5, min(0.05, dur * 0.3)) * 0.5
 
 
-def pluck(freq, dur):
+def tone_voice(freq, dur, bright, harmonics, amp, a=0.004, decay_frac=0.9, sustain=0.0):
+    """Generic plucked/lead tone; `bright` (0..1) scales upper-harmonic gain."""
     n = int(dur * SR); t = np.arange(n) / SR
-    sig = (np.sin(2 * np.pi * freq * t)
-           + 0.4 * np.sin(2 * np.pi * 2 * freq * t)
-           + 0.18 * np.sin(2 * np.pi * 3 * freq * t))
-    e = env(n, 0.003, dur * 0.9, sustain=0.0)
-    return sig * e * 0.3
+    sig = np.sin(2 * np.pi * freq * t)
+    for h, base in harmonics:  # (harmonic number, base gain)
+        sig += base * (0.3 + bright) * np.sin(2 * np.pi * h * freq * t)
+    return sig * env(n, a, dur * decay_frac, sustain, min(0.04, dur * 0.2)) * amp
+
+
+def pluck(freq, dur, bright=0.5):
+    return tone_voice(freq, dur, bright, [(2, 0.4), (3, 0.18)], 0.28)
+
+
+def lead(freq, dur, bright=0.6):
+    return tone_voice(freq, dur, bright, [(2, 0.5), (3, 0.25), (4, 0.12)], 0.34,
+                      a=0.008, decay_frac=0.8, sustain=0.25)
 
 
 def pad(freqs, dur):
     n = int(dur * SR); t = np.arange(n) / SR
-    sig = np.zeros(n)
-    for f in freqs:
-        sig += np.sin(2 * np.pi * f * t) + 0.5 * np.sin(2 * np.pi * f * 2 * t)
-    sig /= len(freqs)
-    e = env(n, dur * 0.25, 0, sustain=1.0, release=dur * 0.3)
-    return sig * e * 0.16
+    sig = sum(np.sin(2 * np.pi * f * t) + 0.5 * np.sin(2 * np.pi * f * 2 * t) for f in freqs)
+    return sig / len(freqs) * env(n, dur * 0.25, 0, 1.0, dur * 0.3) * 0.16
 
 
 def riser(dur):
     n = int(dur * SR); t = np.arange(n) / SR
     f = 200 * 2 ** (t / dur * 2.2)
-    sweep = np.sin(2 * np.pi * np.cumsum(f) / SR) * (t / dur) ** 2 * 0.18
-    noise = rng.standard_normal(n) * (t / dur) ** 3 * 0.12
-    return sweep + noise
+    return (np.sin(2 * np.pi * np.cumsum(f) / SR) * (t / dur) ** 2 * 0.18
+            + rng.standard_normal(n) * (t / dur) ** 3 * 0.12)
 
 
-# ---- master buffers ----
-NSAMP = int(DUR * SR)
-left = np.zeros(NSAMP)
-right = np.zeros(NSAMP)
-duck = np.ones(NSAMP)  # sidechain ducking driven by kicks
+# ---------- master buffers ----------
+NS = int(DUR * SR)
+drums_l = np.zeros(NS); drums_r = np.zeros(NS)
+bright_l = np.zeros(NS); bright_r = np.zeros(NS)   # arp + lead (sit on top)
+low_l = np.zeros(NS); low_r = np.zeros(NS)         # bass + pad (sidechained)
+duck = np.ones(NS)
 
 
-def add(buf_l, buf_r, sample, at, gain=1.0, pan=0.0):
+def place(L, R, s, at, g=1.0, pan=0.0):
     i = int(at * SR)
-    if i >= NSAMP:
-        return
-    seg = sample[: NSAMP - i]
-    lg = gain * (1 - max(0, pan))
-    rg = gain * (1 + min(0, pan))
-    buf_l[i:i + len(seg)] += seg * lg
-    buf_r[i:i + len(seg)] += seg * rg
+    if i >= NS: return
+    seg = s[:NS - i]
+    L[i:i + len(seg)] += seg * g * (1 - max(0, pan))
+    R[i:i + len(seg)] += seg * g * (1 + min(0, pan))
 
 
-def add_kick(at, gain=1.0):
-    k = kick()
-    add(left, right, k, at, gain)
-    # carve a ducking dip into the sidechain bus for pads/bass
+def add_kick(at, g=1.0):
+    place(drums_l, drums_r, kick(), at, g)
     i = int(at * SR); n = int(0.28 * SR)
-    if i < NSAMP:
-        dip = 1 - 0.55 * np.exp(-np.arange(min(n, NSAMP - i)) / SR * 14)
+    if i < NS:
+        dip = 1 - 0.5 * np.exp(-np.arange(min(n, NS - i)) / SR * 14)
         duck[i:i + len(dip)] = np.minimum(duck[i:i + len(dip)], dip)
 
 
-BEAT = 60.0 / 88  # set after arg parse below (placeholder)
+def brightness_at(t):  # slow timbral automation (≈26s period)
+    return 0.5 + 0.5 * np.sin(2 * np.pi * t / 26.0)
 
 
 def main(bpm):
-    global BEAT
-    BEAT = 60.0 / bpm
-    bar = BEAT * 4
-    sixteenth = BEAT / 4
-
-    # bass/pad/arp go onto a separate bus so we can sidechain-duck them
-    bl = np.zeros(NSAMP); br = np.zeros(NSAMP)
-
-    def section(start, end):
-        return max(0.0, end - start)
-
-    # iterate bar by bar across the whole piece
-    t = 0.0
-    bar_idx = 0
+    BEAT = 60.0 / bpm; bar = BEAT * 4; six = BEAT / 4
+    t = 0.0; bi = 0
     while t < DUR:
-        chord_root, chord_tones = CHORDS[bar_idx % 4]
-        # which section are we in?
-        if t < P["method"]:
-            intensity = 0  # cold open: pad only
-        elif t < P["history"]:
-            intensity = 1  # method: soft pulse
-        elif t < P["transition"]:
-            intensity = 2  # history: calm minimal beat
-        elif t < P["granular"]:
-            intensity = 4  # transition: build/fill
-        elif t < P["reveal"]:
-            intensity = 5  # granular: full groove
-        elif t < P["outro"]:
-            intensity = 3  # reveal: breakdown
-        else:
-            intensity = 1  # outro
+        if t < P["method"]: intensity = 0
+        elif t < P["history"]: intensity = 1
+        elif t < P["transition"]: intensity = 2
+        elif t < P["granular"]: intensity = 4
+        elif t < P["reveal"]: intensity = 5
+        elif t < P["outro"]: intensity = 3
+        else: intensity = 1
 
-        # ---- pad (all sections that aren't silent) ----
-        if intensity >= 0:
-            add(bl, br, pad(chord_tones, bar * 1.02), t, gain=1.0)
+        cycle = bi % 4            # position in 4-bar cycle
+        macro = (bi // 4)         # which 4-bar cycle
+        prog = PROG_B if (intensity >= 4 and macro % 2 == 1) else PROG_A
+        root, tones = prog[cycle]
+        br = float(brightness_at(t))
 
-        # ---- drums + bass + arp per intensity ----
+        # pad
+        place(low_l, low_r, pad(tones, bar * 1.02), t, 1.0)
+
         for b in range(4):
-            beat_t = t + b * BEAT
-            if beat_t >= DUR:
-                break
-            # KICK
-            if intensity == 1 and b in (0, 2):
-                add_kick(beat_t, 0.5)
-            elif intensity == 2 and b in (0, 2):
-                add_kick(beat_t, 0.7)
+            bt = t + b * BEAT
+            if bt >= DUR: break
+            # ---- kick ----
+            if intensity == 1 and b in (0, 2): add_kick(bt, 0.5)
+            elif intensity == 2 and b in (0, 2): add_kick(bt, 0.7)
             elif intensity >= 4:
-                add_kick(beat_t, 0.95)
-                if b in (1, 3):  # syncopated 'and'
-                    add_kick(beat_t + sixteenth * 2, 0.5)
-            elif intensity == 3 and b == 0:
-                add_kick(beat_t, 0.8)
-            # SNARE on 2 & 4
+                add_kick(bt, 0.95)
+                if b in (1, 3): add_kick(bt + six * 2, 0.5)
+            elif intensity == 3 and b == 0: add_kick(bt, 0.8)
+            # ---- snare (+ ghost variation every other cycle) ----
             if intensity >= 4 and b in (1, 3):
-                add(left, right, snare(), beat_t, 0.8)
-            elif intensity == 2 and b == 2:
-                add(left, right, snare(), beat_t, 0.35)
-            elif intensity == 3 and b == 2:
-                add(left, right, snare(), beat_t, 0.6)
-            # HATS
+                place(drums_l, drums_r, snare(), bt, 0.8)
+                if macro % 2 == 1 and b == 3:
+                    place(drums_l, drums_r, snare(0.1, 0.3), bt + six * 2, 0.3)  # ghost
+            elif intensity == 2 and b == 2: place(drums_l, drums_r, snare(g=0.5), bt, 0.35)
+            elif intensity == 3 and b == 2: place(drums_l, drums_r, snare(), bt, 0.6)
+            # ---- hats (pattern varies by cycle) ----
             if intensity >= 2:
-                subdiv = 4 if intensity >= 4 else 2
-                for s in range(subdiv):
-                    ht = beat_t + s * (BEAT / subdiv)
-                    opn = (intensity >= 4 and s == subdiv // 2 and b in (1, 3))
-                    g = 0.6 if intensity >= 4 else 0.4
-                    add(left, right, hat(opn=opn), ht, g, pan=0.25 if s % 2 else -0.2)
-            # BASS (groove in granular/reveal, roots in history)
+                sub = 4 if intensity >= 4 else 2
+                for s in range(sub):
+                    ht = bt + s * (BEAT / sub)
+                    opn = (intensity >= 4 and s == sub // 2 and b in (1, 3))
+                    skip = (intensity >= 4 and cycle == 3 and s == 1 and b == 2)  # tiny rest
+                    if skip: continue
+                    place(drums_l, drums_r, hat(opn=opn, g=0.6 if intensity >= 4 else 0.4),
+                          ht, 1.0, pan=0.25 if s % 2 else -0.2)
+            # ---- bass ----
             if intensity >= 4:
-                add(bl, br, bass(chord_root, BEAT * 0.9), beat_t, 0.9)
-                add(bl, br, bass(chord_root, sixteenth * 1.6), beat_t + sixteenth * 2, 0.6)
-            elif intensity in (2, 3):
-                if b in (0, 2):
-                    add(bl, br, bass(chord_root, BEAT * 1.6), beat_t, 0.7)
-            # ARP (granular + reveal) -- 8th notes over chord tones
+                place(low_l, low_r, bass(root, BEAT * 0.9), bt, 0.9)
+                place(low_l, low_r, bass(root, six * 1.6), bt + six * 2, 0.6)
+            elif intensity in (2, 3) and b in (0, 2):
+                place(low_l, low_r, bass(root, BEAT * 1.6), bt, 0.7)
+            # ---- arp (granular/reveal) ----
             if intensity >= 4:
                 for s in range(2):
-                    at = beat_t + s * (BEAT / 2)
-                    tone = chord_tones[(b * 2 + s) % len(chord_tones)] * 2
-                    add(bl, br, pluck(tone, BEAT / 2 * 0.95), at, 0.7, pan=0.3 if s else -0.3)
+                    at = bt + s * (BEAT / 2)
+                    tn = tones[(b * 2 + s) % 3] * 2
+                    place(bright_l, bright_r, pluck(tn, BEAT / 2 * 0.95, br), at, 0.6,
+                          pan=0.3 if s else -0.3)
             elif intensity == 3:
-                tone = chord_tones[b % len(chord_tones)] * 2
-                add(bl, br, pluck(tone, BEAT * 0.9), beat_t, 0.5)
+                place(bright_l, bright_r, pluck(tones[b % 3] * 2, BEAT * 0.9, br), bt, 0.5)
 
-        # transition fill: snare roll + riser in the last bar before granular
+        # ---- LEAD MOTIF: develop over granular + reveal, with rests ----
+        if intensity >= 4:
+            play_motif = (cycle in (0, 1)) or (cycle == 3 and macro % 2 == 0)  # rest some bars
+            if play_motif:
+                # sequence: start motif on the bar's chord root degree; octave hops
+                base_deg = {0: 0, -4: 5, -9: 2, -2: 6, -7: 3, -5: 4}.get(
+                    round(np.log2(root / nf(-24)) * 12) if False else 0, 0)
+                # pick start degree from chord tone (root), displace rhythm on odd cycles
+                start = 0 if cycle % 2 == 0 else 2
+                disp = six * 2 if (macro % 2 == 1) else 0.0  # rhythmic displacement
+                mt = t + disp
+                for (d, dlen) in MOTIF:
+                    nd = (start + d)
+                    freq = nf(deg(nd, octave=1))  # one octave up for lead presence
+                    if mt < DUR:
+                        place(bright_l, bright_r, lead(freq, BEAT * dlen * 0.92, br),
+                              mt, 0.5, pan=0.0)
+                    mt += BEAT * dlen
+        elif intensity == 5:
+            pass
+
+        # ---- fill at the last bar of each 4-bar cycle (granular) ----
+        if intensity >= 4 and cycle == 3:
+            for s in range(4):
+                place(drums_l, drums_r, snare(0.1, 0.4 + s * 0.12), t + 3 * BEAT + s * (BEAT / 4),
+                      0.4 + s * 0.1)
+
+        # ---- transition fill + riser into the drop ----
         if P["transition"] <= t < P["granular"] and (P["granular"] - t) <= bar * 1.2:
             for s in range(8):
-                add(left, right, snare(0.12), t + s * (bar / 8), 0.3 + s * 0.05)
-            add(left, right, riser(P["granular"] - t), t, 0.9)
+                place(drums_l, drums_r, snare(0.12), t + s * (bar / 8), 0.3 + s * 0.05)
+            place(drums_l, drums_r, riser(P["granular"] - t), t, 0.9)
 
-        t += bar
-        bar_idx += 1
+        t += bar; bi += 1
 
-    # apply sidechain ducking to the melodic bus, then sum
-    bl *= duck; br *= duck
-    L = left + bl
-    R = right + br
-
-    # master: soft clip + normalize to about -1.5 dBFS
-    L = np.tanh(L * 1.1); R = np.tanh(R * 1.1)
+    # mix: duck low bus, sum buses
+    low_l_d = low_l * duck; low_r_d = low_r * duck
+    L = drums_l + bright_l + low_l_d
+    R = drums_r + bright_r + low_r_d
+    L = np.tanh(L * 1.05); R = np.tanh(R * 1.05)
     peak = max(np.max(np.abs(L)), np.max(np.abs(R)), 1e-6)
     g = (10 ** (-1.5 / 20)) / peak
     L *= g; R *= g
 
-    stereo = np.empty(NSAMP * 2, dtype=np.int16)
-    stereo[0::2] = np.clip(L * 32767, -32768, 32767).astype(np.int16)
-    stereo[1::2] = np.clip(R * 32767, -32768, 32767).astype(np.int16)
-
-    out = os.path.join(os.path.dirname(__file__),
-                       "../../surface/remotion/public/audio/grand-rapids-music.wav")
-    out = os.path.abspath(out)
+    st = np.empty(NS * 2, dtype=np.int16)
+    st[0::2] = np.clip(L * 32767, -32768, 32767).astype(np.int16)
+    st[1::2] = np.clip(R * 32767, -32768, 32767).astype(np.int16)
+    out = os.path.abspath(os.path.join(os.path.dirname(__file__),
+          "../../surface/remotion/public/audio/grand-rapids-music.wav"))
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with wave.open(out, "w") as w:
-        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
-        w.writeframes(stereo.tobytes())
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(st.tobytes())
     print(f"✓ wrote {out} ({os.path.getsize(out)/1e6:.1f} MB, {DUR:.0f}s @ {bpm} BPM)")
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--bpm", type=int, default=88)
+    ap.add_argument("--bpm", type=int, default=92)
     main(ap.parse_args().bpm)
