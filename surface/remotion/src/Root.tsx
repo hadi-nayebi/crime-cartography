@@ -18,7 +18,7 @@ const GRAND_RAPIDS: StoryProps = {
   durationSec: 330,
   fps: 30,
   emphasizeGroupA: true,
-  audioSrc: "audio/grand-rapids-music.wav",
+  audioSrc: "audio/grand-rapids-music-sao.wav",
   historyNotes: [
     {
       atYear: 2013,

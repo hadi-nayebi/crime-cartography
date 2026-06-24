@@ -79,6 +79,11 @@ per-beat. Output: `normalized/neighborhoods.json`. The one source typo
 - Block addresses are shown verbatim in the incident feed as recorded (block-level, not exact addresses).
 - Crime data reflects **reported** incidents and police activity; it is not a measure of conviction or individual guilt, and reporting/recording practices vary.
 
+## Music / audio (non-data)
+The background score is **not data** — it carries no figures and makes no factual claim. It is generated locally with **Stable Audio Open 1.0** (`stabilityai/stable-audio-open-1.0`), an open-weights text-to-audio model, prompted per video phase and arranged to 5:30 by `pipeline/audio/gen_stable_audio.py`. Output: `surface/remotion/public/audio/grand-rapids-music-sao.wav` (gitignored, like other media). A purely procedural fallback bed (`pipeline/audio/gen_music.py`, numpy synthesis) is also kept in-repo.
+- **License:** Stability AI **Community License** — free use including commercial use for individuals/organizations under **$1M USD annual revenue**; see https://stability.ai/license. Model card: https://huggingface.co/stabilityai/stable-audio-open-1.0 (gated; accept terms + `hf auth login` before generating).
+- The model is trained on royalty-free / appropriately-licensed audio (CC0, Freesound, Free Music Archive) per Stability's model card; generated output is original synthesis, not a sample of any existing recording.
+
 ## License / terms
 City of Grand Rapids **GIS Data Access and Use Constraint Agreement** — data provided "as is" as a complementary public service. Approximate; not for site-specific or financial decisions; once downloaded, not controlled by the City. Full text on each dataset's ArcGIS item page. This repository redistributes only **aggregated** counts + the published beat polygons, with attribution to GRPD / City of Grand Rapids.
 
@@ -90,5 +95,7 @@ node pipeline/normalize.mjs grand-rapids-mi   # GRPD → normalized/{beats,timel
 node pipeline/normalize-history.mjs grand-rapids-mi  # FBI → normalized/history.json
 node pipeline/sources/gr-neighborhoods.mjs    # beat centroid → neighborhood → normalized/neighborhoods.json
 node pipeline/validate.mjs grand-rapids-mi    # invariants + provenance checks
+# music (optional, non-data): needs the venv + HF gated-model access (see Music / audio)
+~/.venvs/stableaudio/bin/python pipeline/audio/gen_stable_audio.py --steps 150  # → public/audio/grand-rapids-music-sao.wav
 ```
 Fetched: see `data/grand-rapids-mi/raw/_fetch_meta.json` (GRPD) and `raw/fbi_ucr.json` (FBI UCR) for run timestamps and counts.

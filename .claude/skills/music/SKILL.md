@@ -92,3 +92,43 @@ next improvement._
   poor monotony meter — judge by ear / section previews instead. Next if still
   flat: stronger A/B contrast (drop drums in B), a counter-melody call/response,
   and a real low-pass sweep via scipy on a downsampled control signal.
+- **2026-06-24 · v0.3 (generated, awaiting user ear-check).** 62 BPM A-minor,
+  "cinematic-documentary" rewrite modelled on a measured analysis of a user
+  reference Suno track ("The Cost of Silence": ~61 BPM, A-min/C-maj family,
+  arc = sparse dark intro → long filter-opening crescendo → breakdown → bright
+  climax → outro; centroid swept 360→1460 Hz; mean −12.9 dB but master CLIPS at
+  +2.7 dB). What I changed vs v0.2: (1) tempo 92→62 (half-time, spacious);
+  (2) palette is now cinematic — sustained detuned-saw STRINGS pad as the bed,
+  piano-ish KEYS motif, deep sustained SUB bass, *muted* soft-kick + brushed
+  snare that only enter mid/late (never a crack); (3) a REAL time-varying
+  low-pass (scipy butter+lfilter, block-wise with carried zi) on the "color"
+  bus that OPENS across the piece following a keyframed cutoff curve, dipping at
+  the breakdown — the #1 fix the log asked for; (4) a genuine BREAKDOWN at the
+  era transition (150–163 s): drums strip out, level drops ~6 dB, a riser builds
+  into the granular drop; (5) borrowed bII (B-flat / Neapolitan) chord in the
+  reveal progression [Am F Bb G] for a dark climax color (matches the reference's
+  B-flat presence); (6) overall dynamic-level automation so breakdown breathes
+  and climax lifts. Measured result: −16 dB intro → −18 dB breakdown → −9 dB
+  climax (≈9 dB swing vs ~flat in v0.2); centroid 247→1050 Hz across the track;
+  peak −1.5 dBFS, no clipping. GOOD: dynamic arc + timbral sweep are clearly
+  audible now; the breakdown→drop reads. WATCH: cold-open (0–13 s) measures very
+  quiet (−43 dB) — may be too empty under the cold-open visuals; bump if the user
+  wants presence there. The scipy block-LPF is the right tool — keep it. Next if
+  needed: a counter-melody call/response in granular B-sections, gentle reverb
+  send, and lift the cold-open floor.
+- **2026-06-24 · PIVOT to neural model (Stable Audio Open).** User listened to
+  the procedural v0.3 previews and rejected them outright ("none are good") —
+  pure numpy synthesis tops out well below the produced quality of a Suno
+  reference they liked. Conclusion: **for this project, procedural synthesis is
+  a fallback, not the deliverable.** New primary path = `pipeline/audio/
+  gen_stable_audio.py`, which prompts **Stable Audio Open 1.0** (open weights,
+  Stability Community License — commercial OK under $1M/yr) once per video PHASE
+  and crossfade-arranges to 330 s. Runs locally on a 4 GB GPU via diffusers
+  `StableAudioPipeline` + `enable_model_cpu_offload()` + attention slicing; ~0.8 s
+  compute per second of audio at 100 steps (≈13 min for the full 5:30 at 150
+  steps). Gotchas: model is HF-gated (accept terms + `hf auth login`); needs
+  `torchsde` for its CosineDPM scheduler; the per-phase ANCHOR string (key/tempo/
+  instrument set) keeps independent gens tonally compatible; equal-power
+  crossfades at phase boundaries hide seams. The skill's arrangement principles
+  (section arc, breakdown, match-picture) now live in the SECTIONS prompt list,
+  not in synthesis code. gen_music.py (v0.3) stays as an offline/no-GPU fallback.
