@@ -31,10 +31,10 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
   });
   const opacity = Math.min(fadeIn, fadeOut);
 
-  const busiest = stats.ranking.slice(0, 6);
+  const busiest = stats.hoodRanking.slice(0, 6);
   const maxA = busiest[0]?.groupATotalAll || 1;
   // fewest Group A → "safest". ranking is desc, so the tail; show fewest first.
-  const safest = stats.ranking.slice(-3).reverse();
+  const safest = stats.hoodRanking.slice(-3).reverse();
   const answer = safest[0];
 
   return (
@@ -61,7 +61,7 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
         {/* LEFT — busiest */}
         <div style={{ flex: 1.25 }}>
           <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 18, color: BUSY }}>
-            Busiest beats — most Group A crime
+            Busiest neighborhoods — most Group A crime
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
             {busiest.map((b, i) => {
@@ -71,9 +71,9 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
               });
               const w = (b.groupATotalAll / maxA) * 100 * rowReveal;
               return (
-                <div key={b.key} style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                  <span style={{ width: 140, fontFamily: FONT_MONO, fontSize: 20, color: i === 0 ? BUSY : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400 }}>
-                    {b.key}
+                <div key={b.name} style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                  <span style={{ width: 210, fontFamily: FONT_MONO, fontSize: 18, color: i === 0 ? BUSY : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {b.name}
                   </span>
                   <div style={{ flex: 1, height: 22, background: "rgba(255,255,255,0.05)", borderRadius: 4 }}>
                     <div style={{ width: `${w}%`, height: "100%", borderRadius: 4, background: i === 0 ? BUSY : "rgba(120,180,220,0.5)" }} />
@@ -106,7 +106,7 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
                 fontFamily: FONT_MONO,
               }}
             >
-              {answer.key}
+              {answer.name}
             </div>
           )}
           <div style={{ display: "flex", flexDirection: "column", gap: 9, marginTop: 12 }}>
@@ -116,10 +116,10 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
                 extrapolateRight: "clamp",
               });
               return (
-                <div key={b.key} style={{ display: "flex", alignItems: "center", gap: 12, opacity: rowReveal }}>
+                <div key={b.name} style={{ display: "flex", alignItems: "center", gap: 12, opacity: rowReveal }}>
                   <span style={{ width: 22, fontFamily: FONT_MONO, fontSize: 16, color: SAFE, textAlign: "right" }}>{i + 1}</span>
-                  <span style={{ flex: 1, fontFamily: FONT_MONO, fontSize: 19, color: i === 0 ? COLORS.ink : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400 }}>
-                    {b.key}
+                  <span style={{ flex: 1, fontFamily: FONT_MONO, fontSize: 18, color: i === 0 ? COLORS.ink : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {b.name}
                   </span>
                   <span style={{ width: 70, fontFamily: FONT_MONO, fontSize: 18, textAlign: "right", color: SAFE }}>
                     {fmtInt(b.groupATotalAll)}

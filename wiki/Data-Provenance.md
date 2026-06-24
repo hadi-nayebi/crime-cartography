@@ -12,6 +12,10 @@ a reliable, citable source link.**
   - Hub: https://grpd-grandrapids.hub.arcgis.com/datasets/grandrapids::grpd-crime-data
 - **Beat polygons source:** GRPD Service Area Map
   - Layer: `GRPD_SERVICE_AREA_MAP_NEW/FeatureServer/1`
+- **Neighborhood names source:** City of Grand Rapids Neighborhood Areas
+  - Layer: `City_of_Grand_Rapids_Neighborhood_Areas/FeatureServer/0` (field `NEBRH`)
+  - Each beat centroid → containing neighborhood polygon (point-in-polygon);
+    a *locator* label only (`CENTRAL 3` → "Oldtown-Heartside"), not a data change.
 - **Deep-history source (2000–2022):** FBI Crime Data Explorer (CDE) — Grand
   Rapids PD, **ORI MI4143600** — real annual Violent + Property counts, 23 full
   years. Shown as a labeled monthly average; UCR taxonomy kept distinct from

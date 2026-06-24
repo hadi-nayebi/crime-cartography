@@ -69,15 +69,32 @@ export interface BeatStat {
   catTotalsAll: CatCounts; // per-category over the whole period (stable dot mix)
 }
 
+export interface HoodStat {
+  name: string; // official City neighborhood name (resident-known)
+  beatKeys: string[]; // member beats whose centroid falls in this neighborhood
+  series: CatCounts[]; // summed per-month counts across member beats
+  groupATotalAll: number;
+}
+
 export interface Stats {
   months: string[];
   beats: BeatStat[];
   ranking: BeatStat[]; // by groupATotalAll desc
+  hoods: HoodStat[];
+  hoodRanking: HoodStat[]; // neighborhoods by groupATotalAll desc
   maxWindowMetric: number; // max trailing-window metric across beats — stable scale
   cityMonthly: CatCounts[]; // city-wide per-month counts (for the chart)
   cityCumulative: CatCounts[]; // city-wide cumulative per month
   grandTotalGroupA: number;
   grandTotalAll: number;
+}
+
+// Resident-known name for a beat key (falls back to the key itself).
+export function hoodName(
+  neighborhoods: Bundle["neighborhoods"],
+  key: string,
+): string {
+  return neighborhoods?.map[key]?.name ?? key;
 }
 
 // Metric driving choropleth + symbol size. Group A when emphasized, else total.
@@ -151,6 +168,33 @@ export function deriveStats(
     (a, b) => b.groupATotalAll - a.groupATotalAll,
   );
 
+  // Neighborhood-level aggregation — the honest unit for "which neighborhood is
+  // safest/busiest", summing the beats whose centroid falls inside each one.
+  const hoodMap = bundle.neighborhoods?.map ?? {};
+  const byName = new Map<string, HoodStat>();
+  for (const b of beats) {
+    const name = hoodMap[b.key]?.name ?? b.key;
+    let h = byName.get(name);
+    if (!h) {
+      h = {
+        name,
+        beatKeys: [],
+        series: months.map(() => zeroCounts()),
+        groupATotalAll: 0,
+      };
+      byName.set(name, h);
+    }
+    h.beatKeys.push(b.key);
+    for (let i = 0; i < months.length; i++) {
+      h.series[i] = addCounts(h.series[i], b.series[i]);
+    }
+    h.groupATotalAll += b.groupATotalAll;
+  }
+  const hoods = [...byName.values()];
+  const hoodRanking = [...hoods].sort(
+    (a, b) => b.groupATotalAll - a.groupATotalAll,
+  );
+
   const grandTotalGroupA = beats.reduce((s, b) => s + b.groupATotalAll, 0);
   const grandTotalAll = beats.reduce((s, b) => s + b.allTotal, 0);
 
@@ -158,6 +202,8 @@ export function deriveStats(
     months,
     beats,
     ranking,
+    hoods,
+    hoodRanking,
     maxWindowMetric,
     cityMonthly,
     cityCumulative,

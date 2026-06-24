@@ -67,6 +67,18 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => 
         viewBox="0 0 1920 1080"
         style={{ position: "absolute", inset: 0 }}
       >
+        {/* y-axis reference gridlines so the bar magnitudes are readable */}
+        {[maxTotal, maxTotal / 2].map((v) => (
+          <g key={v}>
+            <line x1={X0 - 10} y1={yOf(v)} x2={X1 + 10} y2={yOf(v)} stroke={COLORS.grid} strokeWidth={1} strokeDasharray="4 6" />
+            <text x={X0 - 16} y={yOf(v) + 4} fill={COLORS.inkFaint} fontSize={13} fontFamily={FONT_MONO} textAnchor="end">
+              {fmtInt(v)}
+            </text>
+          </g>
+        ))}
+        <text x={X0 - 16} y={yOf(maxTotal) - 12} fill={COLORS.inkFaint} fontSize={12} fontFamily={FONT_MONO} textAnchor="end">
+          reports/yr
+        </text>
         <line x1={X0 - 10} y1={BASE_Y} x2={X1 + 10} y2={BASE_Y} stroke={COLORS.grid} strokeWidth={1} />
         {years.map((yr, i) => {
           const reveal = Math.max(0, Math.min(1, yearFloat - i + 0.5));

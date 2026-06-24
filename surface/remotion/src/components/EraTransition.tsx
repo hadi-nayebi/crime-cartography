@@ -4,11 +4,13 @@ import { COLORS, FONT_MONO, FONT_SANS } from "../theme";
 
 interface Props {
   durationInFrames: number;
+  ucrMonthly?: number; // 2022 UCR Violent+Property per month
+  nibrsMonthly?: number; // NIBRS Group A per month (granular era)
 }
 
 // Bridges the FBI-UCR history era and the granular GRPD/NIBRS era. Honest about
 // the taxonomy change and why the map gains detail in 2023.
-export const EraTransition: React.FC<Props> = ({ durationInFrames }) => {
+export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrMonthly, nibrsMonthly }) => {
   const frame = useCurrentFrame();
   const fadeIn = interpolate(frame, [0, 18], [0, 1], {
     extrapolateLeft: "clamp",
@@ -74,6 +76,36 @@ export const EraTransition: React.FC<Props> = ({ durationInFrames }) => {
         From here the data is incident-level and per police beat — four NIBRS
         categories, real monthly counts, distributed as density within each beat.
       </div>
+
+      {/* explicit scale bridge so the two eras' numbers are comparable */}
+      {ucrMonthly && nibrsMonthly && (
+        <div
+          style={{
+            transform: `translateY(${rise}px)`,
+            fontFamily: FONT_MONO,
+            fontSize: 19,
+            color: COLORS.inkDim,
+            maxWidth: 1180,
+            marginTop: 30,
+            lineHeight: 1.6,
+            background: "rgba(10,14,20,0.6)",
+            border: "1px solid rgba(125,145,175,0.22)",
+            borderRadius: 12,
+            padding: "16px 22px",
+          }}
+        >
+          <span style={{ color: COLORS.ink, fontWeight: 700 }}>
+            Why the number jumps:
+          </span>{" "}
+          UCR counted Violent + Property — about{" "}
+          <span style={{ color: COLORS.ink }}>{Math.round(ucrMonthly)}/month</span>{" "}
+          in 2022. NIBRS Group A also counts <i>Crimes Against Society</i> and more
+          offense types, so it reads about{" "}
+          <span style={{ color: COLORS.ink }}>{Math.round(nibrsMonthly)}/month</span>.
+          The step up is mostly <span style={{ color: COLORS.ink }}>what gets counted</span>,
+          not a sudden crime wave.
+        </div>
+      )}
     </div>
   );
 };

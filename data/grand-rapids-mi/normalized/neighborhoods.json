@@ -1,0 +1,142 @@
+{
+  "source": "City of Grand Rapids Neighborhood Areas (ArcGIS)",
+  "sourceUrl": "https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/City_of_Grand_Rapids_Neighborhood_Areas/FeatureServer/0",
+  "hub": "https://grdata-grandrapids.opendata.arcgis.com/",
+  "fetchedAt": "2026-06-24",
+  "license": "City of Grand Rapids Data Access and Use Constraint Agreement (provided 'as is')",
+  "method": "beat centroid → containing official neighborhood polygon (point-in-polygon); approx=true means nearest neighborhood when the centroid falls outside all polygons",
+  "map": {
+    "NORTH 7": {
+      "name": "Midtown",
+      "approx": false
+    },
+    "SOUTH 1": {
+      "name": "East Hills",
+      "approx": false
+    },
+    "SOUTH 5": {
+      "name": "Baxter",
+      "approx": false
+    },
+    "SOUTH 2": {
+      "name": "Eastown",
+      "approx": false
+    },
+    "NORTH 1": {
+      "name": "North End",
+      "approx": false
+    },
+    "NORTH 2": {
+      "name": "Creston",
+      "approx": false
+    },
+    "WEST 1": {
+      "name": "Richmond-Oakleigh",
+      "approx": false
+    },
+    "NORTH 5": {
+      "name": "Northeast",
+      "approx": false
+    },
+    "WEST 3": {
+      "name": "West Grand",
+      "approx": false
+    },
+    "WEST 4": {
+      "name": "West Grand",
+      "approx": false
+    },
+    "WEST 2": {
+      "name": "Shawmut Hills",
+      "approx": false
+    },
+    "CENTRAL 2": {
+      "name": "Downtown",
+      "approx": false
+    },
+    "NORTH 3": {
+      "name": "Belknap Lookout",
+      "approx": false
+    },
+    "NORTH 4": {
+      "name": "Highland Park",
+      "approx": false
+    },
+    "NORTH 6": {
+      "name": "Michigan Oaks",
+      "approx": false
+    },
+    "WEST 5": {
+      "name": "John Ball Park",
+      "approx": false
+    },
+    "CENTRAL 4": {
+      "name": "Heritage Hill",
+      "approx": false
+    },
+    "WEST 6": {
+      "name": "John Ball Park",
+      "approx": false
+    },
+    "CENTRAL 3": {
+      "name": "Oldtown-Heartside",
+      "approx": false
+    },
+    "SOUTH 8": {
+      "name": "Black Hills",
+      "approx": false
+    },
+    "SOUTH 7": {
+      "name": "Southwest",
+      "approx": false
+    },
+    "SOUTH 3": {
+      "name": "Southeast Community",
+      "approx": false
+    },
+    "SOUTH 4": {
+      "name": "Southeast Community",
+      "approx": false
+    },
+    "SOUTH 6": {
+      "name": "Southeast End",
+      "approx": false
+    },
+    "EAST 7": {
+      "name": "Roosevelt Park",
+      "approx": false
+    },
+    "EAST 4": {
+      "name": "Ridgemoor Park",
+      "approx": false
+    },
+    "EAST 8": {
+      "name": "Garfield Park",
+      "approx": false
+    },
+    "EAST 1": {
+      "name": "Garfield Park",
+      "approx": false
+    },
+    "EAST 2": {
+      "name": "Alger Heights",
+      "approx": false
+    },
+    "EAST 3": {
+      "name": "Shawnee Park",
+      "approx": false
+    },
+    "EAST 5": {
+      "name": "Ken-O-Sha Park",
+      "approx": false
+    },
+    "EAST 6": {
+      "name": "Millbank",
+      "approx": false
+    },
+    "CENTRAL 1": {
+      "name": "Belknap Lookout",
+      "approx": false
+    }
+  }
+}

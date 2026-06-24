@@ -54,6 +54,26 @@ Incident counts are joined to these **real** beat polygons by `Beat__` = `BEAT`.
 
 These are **real annual UCR counts**. The video animates them as a **monthly average (annual ÷ 12)** and labels them as such on screen — no monthly or beat-level detail is implied for 2000–2022. UCR Summary categories (Violent/Property) are a **different taxonomy** than the NIBRS categories used from 2023; the two are presented as distinct eras, never equated. Three on-screen history captions (2013/2018/2020) are each checkable against `normalized/history.json`.
 
+## Locator source — neighborhood names
+
+| Field | Value |
+|-------|-------|
+| Dataset | **City of Grand Rapids Neighborhood Areas** |
+| Publisher | City of Grand Rapids, via the City's ArcGIS Hub |
+| ArcGIS item | `a59c2c3795c442b3af86071c5ee2d74a` |
+| FeatureServer | https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/City_of_Grand_Rapids_Neighborhood_Areas/FeatureServer/0 |
+| Field used | `NEBRH` (official neighborhood name) — 40 polygons |
+
+Beats carry opaque codes (`CENTRAL 3`) that residents don't use. To label them
+with recognizable names, each beat **centroid** is matched to the official City
+neighborhood polygon that **contains** it (point-in-polygon). All 33 beats fall
+inside a neighborhood (0 nearest-fallbacks). This is a *locator*, not a
+re-aggregation of the source data: `CENTRAL 3` → "Oldtown-Heartside". Where two
+beats share a neighborhood, the leaderboard/reveal sum those beats — so
+"neighborhood" rankings are honest sums of member beats, while the map stays
+per-beat. Output: `normalized/neighborhoods.json`. The one source typo
+("ken-O-Sha Park") is shown title-cased; names are otherwise verbatim.
+
 ## Honesty notes
 - No per-incident coordinates exist publicly, so this project does **not** plot individual incident dots at real locations. From 2023 it renders **dot-density**: dots are spread *within* each beat to show *how many* incidents, disclosed on screen as density (not location). Pre-2023 it shows FBI annual totals as a labeled monthly average.
 - Block addresses are shown verbatim in the incident feed as recorded (block-level, not exact addresses).
@@ -68,6 +88,7 @@ node pipeline/sources/grpd.mjs                # fetch records + beat polygons �
 node pipeline/sources/fbi-ucr.mjs             # fetch FBI UCR 2000–2022 annual → raw/fbi_ucr.json
 node pipeline/normalize.mjs grand-rapids-mi   # GRPD → normalized/{beats,timeline,feed,summary}.json
 node pipeline/normalize-history.mjs grand-rapids-mi  # FBI → normalized/history.json
+node pipeline/sources/gr-neighborhoods.mjs    # beat centroid → neighborhood → normalized/neighborhoods.json
 node pipeline/validate.mjs grand-rapids-mi    # invariants + provenance checks
 ```
 Fetched: see `data/grand-rapids-mi/raw/_fetch_meta.json` (GRPD) and `raw/fbi_ucr.json` (FBI UCR) for run timestamps and counts.

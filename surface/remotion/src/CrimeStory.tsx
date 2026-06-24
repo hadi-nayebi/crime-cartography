@@ -152,19 +152,19 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
     })
     .filter((x): x is NonNullable<typeof x> => x !== null);
 
-  // --- quiz options (safest / mid / busiest), alphabetized so position is no
-  // tell. Answer (fewest Group A) is revealed only at the end. ---
-  const rk = stats.ranking;
+  // --- quiz options (safest / mid / busiest) by NEIGHBORHOOD, alphabetized so
+  // position is no tell. Answer (fewest Group A) is revealed only at the end. ---
+  const rk = stats.hoodRanking;
   const quizOptions =
     rk.length >= 3
       ? Array.from(
           new Set([
-            rk[rk.length - 1].key, // safest (answer)
-            rk[Math.floor(rk.length / 2)].key, // mid
-            rk[0].key, // busiest
+            rk[rk.length - 1].name, // safest (answer)
+            rk[Math.floor(rk.length / 2)].name, // mid
+            rk[0].name, // busiest
           ]),
         ).sort()
-      : rk.map((b) => b.key);
+      : rk.map((h) => h.name);
   const quizStart = Math.round(92 * fps);
   const quizDur = Math.round(52 * fps);
 
@@ -227,6 +227,12 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           months={stats.months}
           cityMonthly={stats.cityMonthly}
           monthFloat={gFloat}
+          refRate={history ? history.years[history.years.length - 1].total / 12 : undefined}
+          refLabel={
+            history
+              ? `2022 UCR Violent+Property ≈ ${Math.round(history.years[history.years.length - 1].total / 12)}/mo (narrower count)`
+              : undefined
+          }
         />
       </div>
       <Leaderboard stats={stats} gFloat={gFloat} opacity={granHud} />
@@ -268,7 +274,11 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
 
       {/* Era transition */}
       <Sequence from={Math.round(PHASES.historyEnd * fps)} durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)} layout="none">
-        <EraTransition durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)} />
+        <EraTransition
+          durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)}
+          ucrMonthly={history ? history.years[history.years.length - 1].total / 12 : undefined}
+          nibrsMonthly={monthCount > 0 ? stats.grandTotalGroupA / monthCount : undefined}
+        />
       </Sequence>
 
       {/* Reveal */}

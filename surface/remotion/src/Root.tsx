@@ -48,7 +48,7 @@ const GRAND_RAPIDS: StoryProps = {
     },
     {
       atMonth: "2025-06",
-      text: "Central 3 (downtown) carries the most Group A crime of any beat.",
+      text: "Oldtown-Heartside (beat CENTRAL 3, downtown) is the single busiest police beat for Group A crime.",
       beat: "CENTRAL 3",
     },
     {

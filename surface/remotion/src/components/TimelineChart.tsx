@@ -1,50 +1,52 @@
 import React from "react";
 import type { CatCounts } from "../data/types";
-import { weeklyGroupARates } from "../data/derive";
+import { groupATotal } from "../data/load";
 import { CAT_COLORS, COLORS, FONT_MONO } from "../theme";
 
 interface Props {
   months: string[];
   cityMonthly: CatCounts[];
   monthFloat: number;
+  /** optional reference rate (e.g. the last UCR-era monthly level) + label. */
+  refRate?: number;
+  refLabel?: string;
 }
 
 const X0 = 430;
 const X1 = 1862;
-const Y_BOTTOM = 1016;
+const Y_BOTTOM = 1014;
 const HEIGHT = 150;
 const Y_TOP = Y_BOTTOM - HEIGHT;
 
-// Under-map trend line. NORMALIZED to Group A incidents PER WEEK (trailing) so
-// the line genuinely rises and falls with the crime rate — a cumulative line
-// would only ever climb and would mislead on direction. Year ticks + playhead
-// + a live "now" readout keep it self-explanatory.
+// Under-map trend line. PER-MONTH Group A count — a true rate that rises and
+// falls (a cumulative line would only ever climb and mislead on direction). The
+// per-month unit is deliberately the SAME unit as the history era's readouts, so
+// the two chapters are directly comparable; a dashed reference line marks where
+// the 2022 UCR level sat, answering "how do the numbers relate?".
 export const TimelineChart: React.FC<Props> = ({
   months,
   cityMonthly,
   monthFloat,
+  refRate,
+  refLabel,
 }) => {
   const W = X1 - X0;
   const n = months.length;
-  const rates = weeklyGroupARates(cityMonthly, months);
-  const maxRate = Math.max(1, ...rates);
-  // round axis top up to a tidy number
-  const axisTop = Math.ceil(maxRate / 50) * 50;
+  const rates = cityMonthly.map((c) => groupATotal(c)); // Group A per month
+  const maxRate = Math.max(1, ...rates, refRate ?? 0);
+  const axisTop = Math.ceil(maxRate / 200) * 200;
 
   const xOf = (m: number) => X0 + (m / n) * W;
   const yOf = (v: number) => Y_BOTTOM - (v / axisTop) * HEIGHT;
 
   const floor = Math.floor(monthFloat);
   const frac = monthFloat - floor;
-  // current per-week rate = the in-progress month's rate (no future peeking)
   const curRate = rates[Math.min(n - 1, floor)] ?? 0;
 
-  // Build the line through completed months, then the live point at monthFloat.
+  // line through completed months + the live point (no future peeking)
   const pts: [number, number][] = [];
   for (let i = 0; i <= floor && i < n; i++) pts.push([xOf(i), yOf(rates[i])]);
-  if (monthFloat > 0 && floor < n) {
-    pts.push([xOf(Math.min(monthFloat, n)), yOf(curRate)]);
-  }
+  if (monthFloat > 0 && floor < n) pts.push([xOf(Math.min(monthFloat, n)), yOf(curRate)]);
   const line = pts
     .map(([x, y], i) => `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`)
     .join(" ");
@@ -55,7 +57,6 @@ export const TimelineChart: React.FC<Props> = ({
 
   const playheadX = xOf(Math.min(monthFloat, n));
   const playheadY = yOf(curRate);
-  // pulse the live dot on month tick-over
   const pulse = 1 + 0.5 * Math.exp(-frac * 7);
 
   return (
@@ -67,10 +68,10 @@ export const TimelineChart: React.FC<Props> = ({
     >
       {/* title + units */}
       <text x={X0} y={Y_TOP - 16} fill={COLORS.ink} fontSize={18} fontFamily={FONT_MONO} fontWeight={700}>
-        GROUP A INCIDENTS PER WEEK
+        GROUP A INCIDENTS PER MONTH
       </text>
-      <text x={X0 + 318} y={Y_TOP - 16} fill={COLORS.inkFaint} fontSize={15} fontFamily={FONT_MONO}>
-        — trailing rate · shows if crime is rising or falling (not a running total)
+      <text x={X0 + 330} y={Y_TOP - 16} fill={COLORS.inkFaint} fontSize={15} fontFamily={FONT_MONO}>
+        — monthly rate · rises &amp; falls with the real trend (not a running total)
       </text>
 
       {/* y grid: 0, mid, top with value labels */}
@@ -83,8 +84,18 @@ export const TimelineChart: React.FC<Props> = ({
         </g>
       ))}
       <text x={X0 - 10} y={Y_TOP - 2} fill={COLORS.inkFaint} fontSize={11} fontFamily={FONT_MONO} textAnchor="end">
-        /wk
+        /mo
       </text>
+
+      {/* reference line: where the old UCR era sat, same per-month unit */}
+      {refRate && refRate > 0 && (
+        <g>
+          <line x1={X0} y1={yOf(refRate)} x2={X1} y2={yOf(refRate)} stroke={COLORS.inkDim} strokeWidth={1.4} strokeDasharray="7 6" strokeOpacity={0.7} />
+          <text x={X1 - 4} y={yOf(refRate) - 7} fill={COLORS.inkDim} fontSize={13} fontFamily={FONT_MONO} textAnchor="end">
+            {refLabel ?? `${Math.round(refRate)}/mo`}
+          </text>
+        </g>
+      )}
 
       {/* year ticks */}
       {months.map((m, i) => {
@@ -100,7 +111,7 @@ export const TimelineChart: React.FC<Props> = ({
         );
       })}
 
-      {/* rate area + line (Group A = persons hue accent on the stroke) */}
+      {/* rate area + line */}
       {area && <path d={area} fill="rgba(255,46,99,0.10)" stroke="none" />}
       <path d={line} fill="none" stroke={CAT_COLORS.persons} strokeWidth={2.6} strokeLinejoin="round" />
 
@@ -110,12 +121,12 @@ export const TimelineChart: React.FC<Props> = ({
           <line x1={playheadX} y1={Y_TOP} x2={playheadX} y2={Y_BOTTOM} stroke="#ffffff" strokeOpacity={0.45} strokeWidth={1} />
           <circle cx={playheadX} cy={playheadY} r={5.5 * pulse} fill="#ffffff" />
           <circle cx={playheadX} cy={playheadY} r={5.5} fill={CAT_COLORS.persons} />
-          <g transform={`translate(${Math.min(playheadX + 12, X1 - 150)}, ${Math.max(Y_TOP + 16, playheadY - 14)})`}>
+          <g transform={`translate(${Math.min(playheadX + 12, X1 - 160)}, ${Math.max(Y_TOP + 18, playheadY - 14)})`}>
             <text x={0} y={0} fill={COLORS.ink} fontSize={26} fontFamily={FONT_MONO} fontWeight={700}>
               {Math.round(curRate)}
             </text>
             <text x={0} y={18} fill={COLORS.inkDim} fontSize={13} fontFamily={FONT_MONO}>
-              Group A / week now
+              Group A this month
             </text>
           </g>
         </>

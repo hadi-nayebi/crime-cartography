@@ -41,15 +41,18 @@ export const Credits: React.FC<Props> = ({ summary, durationInFrames, repoUrl })
       }}
     >
       <div style={{ fontSize: 56, fontWeight: 700, maxWidth: 1200, lineHeight: 1.12 }}>
-        {fmtInt(summary.totalRecords)} sourced records.
-        <br />
-        No invented points.
+        Grand Rapids · 2000–2026
       </div>
-      <div style={{ marginTop: 28, fontSize: 26, color: COLORS.inkDim, maxWidth: 1100, lineHeight: 1.5 }}>
-        Source: Grand Rapids Police Department crime data via the City of Grand
-        Rapids ArcGIS Hub. Beat polygons: GRPD Service Area Map. Used under the
-        City of Grand Rapids GIS Data Access &amp; Use Constraint Agreement
-        (provided &ldquo;as is&rdquo;).
+      <div style={{ marginTop: 18, fontSize: 30, color: COLORS.ink, maxWidth: 1100, lineHeight: 1.4 }}>
+        {fmtInt(summary.totalRecords)} reported records · {summary.beatCount}{" "}
+        police beats · {summary.months} months of NIBRS detail
+      </div>
+      <div style={{ marginTop: 28, fontSize: 24, color: COLORS.inkDim, maxWidth: 1180, lineHeight: 1.5 }}>
+        Sources: Grand Rapids Police Department crime data (2023–) &amp; FBI UCR
+        (2000–2022) via the City of Grand Rapids ArcGIS Hub. Beat polygons: GRPD
+        Service Area Map. Neighborhood names: City of Grand Rapids Neighborhood
+        Areas. Used under the City of Grand Rapids GIS Data Access &amp; Use
+        Constraint Agreement (provided &ldquo;as is&rdquo;).
       </div>
       <div
         style={{
@@ -81,7 +84,7 @@ export const Credits: React.FC<Props> = ({ summary, durationInFrames, repoUrl })
           color: COLORS.inkFaint,
         }}
       >
-        DATA-HONEST · REPRODUCIBLE · OPEN
+        OPEN DATA · OPEN SOURCE
       </div>
     </div>
   );

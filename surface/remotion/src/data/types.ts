@@ -80,12 +80,24 @@ export interface HistoryFile {
   years: HistoryYear[];
 }
 
+export interface NeighborhoodMap {
+  source: string;
+  sourceUrl: string;
+  hub: string;
+  fetchedAt: string;
+  license: string;
+  method: string;
+  // beat key -> official City neighborhood the beat centroid sits in
+  map: Record<string, { name: string; approx: boolean }>;
+}
+
 export interface Bundle {
   beats: BeatsFile;
   timeline: TimelineFile;
   feed: FeedItem[];
   summary: Summary;
   history: HistoryFile | null; // FBI UCR deep-history era (optional per dataset)
+  neighborhoods: NeighborhoodMap | null; // resident-known locator names (optional)
 }
 
 export interface Annotation {

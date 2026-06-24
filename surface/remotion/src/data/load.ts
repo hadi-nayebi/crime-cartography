@@ -6,6 +6,7 @@ import type {
   CatCounts,
   FeedItem,
   HistoryFile,
+  NeighborhoodMap,
   Summary,
   TimelineFile,
 } from "./types";
@@ -39,7 +40,17 @@ export async function loadBundle(
   } catch {
     history = null;
   }
-  return { beats, timeline, feed, summary, history };
+  // neighborhoods.json is optional (resident-known locator names).
+  let neighborhoods: NeighborhoodMap | null = null;
+  try {
+    neighborhoods = await loadJson<NeighborhoodMap>(
+      `${base}/neighborhoods.json`,
+      signal,
+    );
+  } catch {
+    neighborhoods = null;
+  }
+  return { beats, timeline, feed, summary, history, neighborhoods };
 }
 
 // ---- Projection ----------------------------------------------------------
