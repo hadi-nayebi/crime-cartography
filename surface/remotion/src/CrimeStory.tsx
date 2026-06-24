@@ -276,6 +276,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       <Sequence from={Math.round(PHASES.historyEnd * fps)} durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)} layout="none">
         <EraTransition
           durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)}
+          ucrAnnual={history ? history.years[history.years.length - 1].total : undefined}
           ucrMonthly={history ? history.years[history.years.length - 1].total / 12 : undefined}
           nibrsMonthly={monthCount > 0 ? stats.grandTotalGroupA / monthCount : undefined}
         />

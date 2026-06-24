@@ -29,8 +29,6 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => 
 
   const curIdx = Math.max(0, Math.min(n - 1, Math.floor(yearFloat)));
   const cur = years[curIdx];
-  const monthlyAvgViolent = cur.violent / 12;
-  const monthlyAvgProperty = cur.property / 12;
 
   const vColor = history.cats.violent.color;
   const pColor = history.cats.property.color;
@@ -49,14 +47,17 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => 
             color: COLORS.inkFaint,
           }}
         >
-          CHAPTER 1 · 2000–2022 · FBI UCR · ANNUAL TOTALS SHOWN AS A MONTHLY AVERAGE
+          CHAPTER 1 · 2000–2022 · FBI UCR · REAL CRIMES REPORTED PER YEAR
         </div>
         <div style={{ fontSize: 120, fontWeight: 800, color: COLORS.ink, lineHeight: 1 }}>
           {cur.year}
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 60, marginTop: 8 }}>
-          <ReadOut color={vColor} label="Violent / mo (avg)" value={monthlyAvgViolent} />
-          <ReadOut color={pColor} label="Property / mo (avg)" value={monthlyAvgProperty} />
+          <ReadOut color={vColor} label="Violent crimes / yr" value={cur.violent} />
+          <ReadOut color={pColor} label="Property crimes / yr" value={cur.property} />
+        </div>
+        <div style={{ fontFamily: FONT_MONO, fontSize: 14, color: COLORS.inkFaint, marginTop: 6 }}>
+          bars &amp; both numbers are totals for the whole year
         </div>
       </div>
 

@@ -4,13 +4,14 @@ import { COLORS, FONT_MONO, FONT_SANS } from "../theme";
 
 interface Props {
   durationInFrames: number;
-  ucrMonthly?: number; // 2022 UCR Violent+Property per month
+  ucrAnnual?: number; // 2022 UCR Violent+Property per year (as shown in Ch1)
+  ucrMonthly?: number; // same, divided by 12
   nibrsMonthly?: number; // NIBRS Group A per month (granular era)
 }
 
 // Bridges the FBI-UCR history era and the granular GRPD/NIBRS era. Honest about
 // the taxonomy change and why the map gains detail in 2023.
-export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrMonthly, nibrsMonthly }) => {
+export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrAnnual, ucrMonthly, nibrsMonthly }) => {
   const frame = useCurrentFrame();
   const fadeIn = interpolate(frame, [0, 18], [0, 1], {
     extrapolateLeft: "clamp",
@@ -77,15 +78,16 @@ export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrMonthly, n
         categories, real monthly counts, distributed as density within each beat.
       </div>
 
-      {/* explicit scale bridge so the two eras' numbers are comparable */}
-      {ucrMonthly && nibrsMonthly && (
+      {/* explicit scale bridge: converts Ch1's per-YEAR numbers to Ch2's per-MONTH
+          rate so the two eras' figures are comparable in one place. */}
+      {ucrAnnual && ucrMonthly && nibrsMonthly && (
         <div
           style={{
             transform: `translateY(${rise}px)`,
             fontFamily: FONT_MONO,
             fontSize: 19,
             color: COLORS.inkDim,
-            maxWidth: 1180,
+            maxWidth: 1220,
             marginTop: 30,
             lineHeight: 1.6,
             background: "rgba(10,14,20,0.6)",
@@ -95,15 +97,19 @@ export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrMonthly, n
           }}
         >
           <span style={{ color: COLORS.ink, fontWeight: 700 }}>
-            Why the number jumps:
+            Reading the new numbers:
           </span>{" "}
-          UCR counted Violent + Property — about{" "}
-          <span style={{ color: COLORS.ink }}>{Math.round(ucrMonthly)}/month</span>{" "}
-          in 2022. NIBRS Group A also counts <i>Crimes Against Society</i> and more
-          offense types, so it reads about{" "}
-          <span style={{ color: COLORS.ink }}>{Math.round(nibrsMonthly)}/month</span>.
-          The step up is mostly <span style={{ color: COLORS.ink }}>what gets counted</span>,
-          not a sudden crime wave.
+          in 2022 UCR logged about{" "}
+          <span style={{ color: COLORS.ink }}>{Math.round(ucrAnnual / 100) * 100}/year</span>{" "}
+          Violent + Property — roughly{" "}
+          <span style={{ color: COLORS.ink }}>{Math.round(ucrMonthly)}/month</span>.
+          From here we count <span style={{ color: COLORS.ink }}>per month</span>. NIBRS
+          Group A also includes <i>Crimes Against Society</i> and more offense types,
+          so it runs about{" "}
+          <span style={{ color: COLORS.ink }}>{Math.round(nibrsMonthly)}/month</span> —
+          the step up is mostly{" "}
+          <span style={{ color: COLORS.ink }}>what gets counted</span>, not a sudden
+          crime wave.
         </div>
       )}
     </div>
