@@ -1,9 +1,13 @@
 {
-  "name": "remotion",
+  "name": "crime-cartography-surface",
   "version": "1.0.0",
-  "description": "My Remotion video",
-  "repository": {},
-  "license": "UNLICENSED",
+  "description": "Remotion renderer of record for Crime Cartography — deterministic animated crime-map videos from sourced data.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hadi-nayebi/crime-cartography.git",
+    "directory": "surface/remotion"
+  },
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.482",

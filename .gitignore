@@ -23,6 +23,8 @@ data/**/raw/*
 .env
 .env.local
 
-# Claude local machine state (keep skill/hooks/memory; ignore transient)
+# Claude tooling: keep the skills + hooks (they document the workflow), but the
+# job memory is transient working state — not a published artifact.
 .claude/.tmp/
+.claude/memory/
 /tmp/

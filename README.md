@@ -1,10 +1,20 @@
 # Crime Cartography
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+&nbsp;[![Data: honest](https://img.shields.io/badge/data-sourced%20%C2%B7%20never%20fabricated-2ea44f.svg)](#principles)
+&nbsp;[![Renderer: Remotion](https://img.shields.io/badge/render-Remotion-7c5cff.svg)](https://www.remotion.dev/)
+
 **A data-honest video production pipeline that turns *sourced* crime data into engaging ~5-minute animated map stories — for any city, county, or state.**
 
-One reusable visual *surface* — evolving heat maps, animated incident points, live counters, a dispatch feed, and a growing timeline chart — that plugs into many real datasets. Built in [Remotion](https://www.remotion.dev/) for deterministic, frame-exact video export, with a Leaflet HTML preview for fast iteration.
+One reusable visual *surface* — evolving choropleth + point-density layers, live counters, a dispatch feed, a per-month trend line, per-neighborhood rankings, and a two-era narrative — that plugs into many real datasets. Built in [Remotion](https://www.remotion.dev/) for deterministic, frame-exact video export, with a Leaflet HTML preview for fast iteration.
 
-> **First production:** Grand Rapids, MI — from real GRPD open data to a finished 5-minute video.
+> **First production:** Grand Rapids, MI — 25 years of real data (FBI UCR 2000–2022 + GRPD NIBRS 2023–2026) in one 5½-minute animated map.
+
+## Watch
+
+📺 **Grand Rapids · A Quarter-Century of Crime** — _YouTube link coming with publication._
+
+The finished render is produced by `surface/remotion/` from the committed config in `videos/grand-rapids-mi/`. To build it yourself, see [Reproduce](#reproduce).
 
 ---
 
@@ -47,19 +57,35 @@ One reusable visual *surface* — evolving heat maps, animated incident points, 
 
 ## Status
 
-🚧 Early build. Grand Rapids vertical slice in progress. See [wiki/Home](wiki/Home.md) and the [roadmap](#roadmap).
+✅ **First video shipped.** The Grand Rapids vertical slice is complete end-to-end — real data fetched, normalized, validated, and rendered to a 5½-minute video with an original score. The pipeline is now ready to generalize to more cities. See [wiki/Home](wiki/Home.md).
 
 ## Roadmap
 
 - [x] Repo + pipeline scaffolding, data-honesty contract
-- [ ] Grand Rapids: fetch real GRPD incidents → normalize → validate
-- [ ] Remotion surface (heat + points + counters + chart + narrative)
-- [ ] Render & publish the first 5-min Grand Rapids video
+- [x] Grand Rapids: fetch real GRPD + FBI UCR data → normalize → validate
+- [x] Remotion surface (two-era narrative: choropleth + point-density, counters, trend line, neighborhood rankings)
+- [x] Original royalty-free score (Stable Audio Open), arranged to the video's phases
+- [x] Render the first 5½-min Grand Rapids video
+- [ ] Publish to YouTube + add the link here
 - [ ] Generalize: dataset catalog (cities → counties → states → US)
+
+## Reproduce
+
+The full build is scripted — see the [Reproduce block in the Grand Rapids provenance](data/grand-rapids-mi/PROVENANCE.md#reproduce) (fetch → normalize → validate), then render:
+
+```bash
+cd surface/remotion
+node scripts/sync-data.mjs grand-rapids-mi          # copy normalized data into public/
+npx remotion render CrimeStory \
+  ../../videos/grand-rapids-mi/out/grand-rapids-v2.mp4 \
+  --props=../../videos/grand-rapids-mi/config.json
+```
+
+Music is optional and regenerated separately (needs a GPU + a gated model) — see [PROVENANCE → Music / audio](data/grand-rapids-mi/PROVENANCE.md#music--audio-non-data).
 
 ## License
 
-Code: MIT (see [LICENSE](LICENSE)). Data: each dataset retains its upstream source's license, recorded in its `PROVENANCE.md`.
+Code: MIT (see [LICENSE](LICENSE)). Data: each dataset retains its upstream source's license, recorded in its `PROVENANCE.md`. Music: generated with [Stable Audio Open](https://huggingface.co/stabilityai/stable-audio-open-1.0) under the Stability AI Community License.
 
 ---
 

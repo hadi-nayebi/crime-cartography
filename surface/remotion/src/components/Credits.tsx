@@ -66,6 +66,16 @@ export const Credits: React.FC<Props> = ({ summary, durationInFrames, repoUrl })
       </div>
       <div
         style={{
+          marginTop: 14,
+          fontFamily: FONT_MONO,
+          fontSize: 15,
+          color: COLORS.inkFaint,
+        }}
+      >
+        Music generated with Stable Audio Open (Stability AI)
+      </div>
+      <div
+        style={{
           marginTop: 40,
           fontFamily: FONT_MONO,
           fontSize: 24,

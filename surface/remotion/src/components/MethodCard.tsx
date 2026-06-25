@@ -11,9 +11,9 @@ interface Props {
 }
 
 // One-time honesty card. Establishes the full data contract on screen: the two
-// eras (FBI UCR annual history shown as a monthly average, then granular GRPD
-// NIBRS), that no incidents are geolocated, that dots are density within a beat
-// (not locations), the coverage figure, and the honest category split.
+// eras (FBI UCR annual history shown per year, then granular GRPD NIBRS shown
+// per month), that no incidents are geolocated, that dots are density within a
+// beat (not locations), the coverage figure, and the honest category split.
 export const MethodCard: React.FC<Props> = ({ summary, history, durationInFrames }) => {
   const frame = useCurrentFrame();
   const fadeIn = interpolate(frame, [0, 20], [0, 1], {
@@ -64,9 +64,9 @@ export const MethodCard: React.FC<Props> = ({ summary, history, durationInFrames
         </div>
         <div style={{ fontSize: 32, lineHeight: 1.4, fontWeight: 500 }}>
           Two honest eras. <b>{history ? history.yearMin : 2000}–{history ? history.yearMax : 2022}</b>{" "}
-          uses real <b>FBI UCR annual totals</b>, shown as a monthly average
-          (annual&nbsp;&divide;&nbsp;12). From <b>2023</b> it switches to granular{" "}
-          <b>GRPD NIBRS</b> data — real monthly counts per police beat.
+          uses real <b>FBI UCR annual totals</b>, counted <b>per year</b>. From{" "}
+          <b>2023</b> it switches to granular <b>GRPD NIBRS</b> data — real counts{" "}
+          <b>per month</b>, per police beat.
         </div>
         <div style={{ fontSize: 28, lineHeight: 1.4, fontWeight: 500, marginTop: 16 }}>
           The GRPD data has <b>no incident coordinates</b>, so nothing is

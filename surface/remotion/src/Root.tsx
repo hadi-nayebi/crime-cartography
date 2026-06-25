@@ -48,7 +48,7 @@ const GRAND_RAPIDS: StoryProps = {
     },
     {
       atMonth: "2025-06",
-      text: "Oldtown-Heartside (beat CENTRAL 3, downtown) is the single busiest police beat for Group A crime.",
+      text: "Beat CENTRAL 3 (Oldtown-Heartside, downtown) is the busiest single police beat for Group A crime. Larger multi-beat neighborhoods total more — see the finish.",
       beat: "CENTRAL 3",
     },
     {

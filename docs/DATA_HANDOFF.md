@@ -1,5 +1,13 @@
 # Grand Rapids Crime Animation — Data Handoff
 
+> ⚠️ **Historical document.** This is the original spec for replacing an early
+> *preview shell's* placeholder data with real, sourced data. It is kept for
+> provenance of the project's origin. **The shipped project uses 100% real,
+> sourced data — nothing on screen is simulated.** The "simulated data" below
+> refers only to the throwaway preview shell that predated the real pipeline.
+> See [`README.md`](../README.md) and [`PROVENANCE.md`](../data/grand-rapids-mi/PROVENANCE.md)
+> for what actually ships.
+
 A spec for replacing the shell's simulated data with real, sourced data. Hand this, plus `gr_crime_timeline.html`, to Claude Code.
 
 ## 1. Status

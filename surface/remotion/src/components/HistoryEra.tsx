@@ -16,9 +16,9 @@ const BASE_Y = 800;
 const BAR_H = 360;
 
 // Era 1 (2000–2022). Real FBI UCR annual totals, animated as a year-by-year
-// stacked bar chart and a big "monthly average" readout. Labeled honestly:
-// these are annual figures shown as a monthly average — no monthly or beat
-// detail is implied.
+// stacked bar chart with a big per-year readout (violent + property for the
+// whole year). Labeled honestly as annual figures — no monthly or beat detail
+// is implied; the per-month NIBRS era begins only in 2023.
 export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => {
   const years = history.years;
   const n = years.length;

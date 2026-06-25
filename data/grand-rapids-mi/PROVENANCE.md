@@ -13,7 +13,7 @@ Every figure rendered from this dataset traces to the public sources below. No v
 | FeatureServer (records) | https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/GRPD_Crime_Data/FeatureServer/0 |
 | Records | 210,488 |
 | Temporal span | 2023-01-01 → 2026-06-01 (`DATEOFOFFENSE`) |
-| Geometry | **None** — records carry no coordinates; spatial unit is **Beat** (38) / Service Area, plus block address as free text |
+| Geometry | **None** — records carry no coordinates; spatial unit is **Beat** (38 beat codes in the source; **33** carry incidents and are mapped) / Service Area, plus block address as free text |
 | Layer "modified" | 2026-06-05 |
 
 ### Fields used
@@ -62,7 +62,7 @@ These are **real annual UCR counts**. The video animates them as a **monthly ave
 | Publisher | City of Grand Rapids, via the City's ArcGIS Hub |
 | ArcGIS item | `a59c2c3795c442b3af86071c5ee2d74a` |
 | FeatureServer | https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/City_of_Grand_Rapids_Neighborhood_Areas/FeatureServer/0 |
-| Field used | `NEBRH` (official neighborhood name) — 40 polygons |
+| Field used | `NEBRH` (official neighborhood name) — 40 polygons in the source layer; the 33 incident-bearing beats fall into 35 distinct neighborhood names |
 
 Beats carry opaque codes (`CENTRAL 3`) that residents don't use. To label them
 with recognizable names, each beat **centroid** is matched to the official City
