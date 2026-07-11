@@ -32,7 +32,7 @@ export const MapAnnotation: React.FC<Props> = ({
   const pulse = 1 + 0.3 * Math.sin(frame / 4);
 
   const toLeft = x > FRAME.w / 2;
-  const cardW = 340;
+  const cardW = 380;
   const gap = 26;
   const cardX = toLeft ? x - gap - cardW : x + gap;
   const cardY = Math.max(20, Math.min(FRAME.h - 160, y - 40));
@@ -61,7 +61,7 @@ export const MapAnnotation: React.FC<Props> = ({
           borderLeft: `4px solid ${accent}`,
           boxShadow: "0 10px 36px rgba(0,0,0,0.55)",
           fontFamily: FONT_SANS,
-          fontSize: 22,
+          fontSize: 24,
           lineHeight: 1.3,
           color: COLORS.ink,
           fontWeight: 500,

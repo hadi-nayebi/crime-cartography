@@ -23,17 +23,17 @@ export const Legend: React.FC<Props> = ({ opacity, perDot, realPoints, otherLabe
       style={{
         position: "absolute",
         left: 34,
-        top: 720,
-        width: 360,
+        top: 700,
+        width: 430,
         opacity,
         fontFamily: FONT_MONO,
-        background: "rgba(8,11,16,0.72)",
+        background: "rgba(8,11,16,0.92)",
         border: "1px solid rgba(125,145,175,0.22)",
         borderRadius: 10,
-        padding: "12px 14px",
+        padding: "14px 16px",
       }}
     >
-      <div style={{ fontSize: 12, letterSpacing: 3, color: COLORS.inkFaint, marginBottom: 9 }}>
+      <div style={{ fontSize: 17, letterSpacing: 3, color: COLORS.inkFaint, marginBottom: 9 }}>
         HOW TO READ THIS MAP
       </div>
 
@@ -50,7 +50,7 @@ export const Legend: React.FC<Props> = ({ opacity, perDot, realPoints, otherLabe
           <Dot c={CAT_COLORS.property} />
           <Dot c={CAT_COLORS.society} />
         </span>
-        <span style={{ fontSize: 13.5, color: COLORS.inkDim }}>
+        <span style={{ fontSize: 18, fontWeight: 500, color: COLORS.inkDim }}>
           {realPoints
             ? "each dot = a real reported incident (block-level, sampled)"
             : `1 dot ≈ ${perDot} incidents — spread to show density, not a location`}
@@ -58,10 +58,10 @@ export const Legend: React.FC<Props> = ({ opacity, perDot, realPoints, otherLabe
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <span style={{ fontSize: 16, color: RISE }}>▲</span>
-        <span style={{ fontSize: 13.5, color: COLORS.inkDim }}>rising vs prior 3 mo</span>
-        <span style={{ fontSize: 16, color: FALL, marginLeft: 8 }}>▼</span>
-        <span style={{ fontSize: 13.5, color: COLORS.inkDim }}>falling (better)</span>
+        <span style={{ fontSize: 20, color: RISE }}>▲</span>
+        <span style={{ fontSize: 18, fontWeight: 500, color: COLORS.inkDim }}>rising vs prior 3 mo</span>
+        <span style={{ fontSize: 20, color: FALL, marginLeft: 8 }}>▼</span>
+        <span style={{ fontSize: 18, fontWeight: 500, color: COLORS.inkDim }}>falling (better)</span>
       </div>
     </div>
   );
@@ -74,7 +74,7 @@ const Row: React.FC<{ color: string; label: string; dim?: boolean }> = ({
 }) => (
   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, opacity: dim ? 0.7 : 1 }}>
     <span style={{ width: 12, height: 12, borderRadius: 3, background: color, flex: "0 0 auto" }} />
-    <span style={{ fontSize: 14, color: COLORS.inkDim }}>{label}</span>
+    <span style={{ fontSize: 19, fontWeight: 500, color: COLORS.inkDim }}>{label}</span>
   </div>
 );
 

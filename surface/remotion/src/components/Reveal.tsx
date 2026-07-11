@@ -52,7 +52,7 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
         color: COLORS.ink,
       }}
     >
-      <div style={{ fontFamily: FONT_MONO, fontSize: 16, letterSpacing: 5, color: COLORS.inkFaint, marginBottom: 18 }}>
+      <div style={{ fontFamily: FONT_MONO, fontSize: 20, letterSpacing: 5, color: COLORS.inkFaint, marginBottom: 18 }}>
         {summary.dateMin} → {summary.dateMax} · {fmtInt(stats.grandTotalGroupA)} Group A
         (persons + property + society) incidents over {summary.months} months
       </div>
@@ -72,13 +72,13 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
               const w = (b.groupATotalAll / maxA) * 100 * rowReveal;
               return (
                 <div key={b.name} style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                  <span style={{ width: 210, fontFamily: FONT_MONO, fontSize: 18, color: i === 0 ? BUSY : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <span style={{ width: 240, fontFamily: FONT_MONO, fontSize: 20, color: i === 0 ? BUSY : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {b.name}
                   </span>
                   <div style={{ flex: 1, height: 22, background: "rgba(255,255,255,0.05)", borderRadius: 4 }}>
                     <div style={{ width: `${w}%`, height: "100%", borderRadius: 4, background: i === 0 ? BUSY : "rgba(120,180,220,0.5)" }} />
                   </div>
-                  <span style={{ width: 96, fontFamily: FONT_MONO, fontSize: 20, textAlign: "right" }}>
+                  <span style={{ width: 106, fontFamily: FONT_MONO, fontSize: 22, textAlign: "right" }}>
                     {fmtInt(b.groupATotalAll)}
                   </span>
                 </div>
@@ -89,7 +89,7 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
 
         {/* RIGHT — quiz answer / safest */}
         <div style={{ flex: 1, borderLeft: "1px solid rgba(125,145,175,0.22)", paddingLeft: 48 }}>
-          <div style={{ fontFamily: FONT_MONO, fontSize: 13, letterSpacing: 4, color: SAFE, marginBottom: 6 }}>
+          <div style={{ fontFamily: FONT_MONO, fontSize: 17, letterSpacing: 4, color: SAFE, marginBottom: 6 }}>
             QUIZ ANSWER
           </div>
           <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 4, color: SAFE }}>
@@ -117,18 +117,18 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
               });
               return (
                 <div key={b.name} style={{ display: "flex", alignItems: "center", gap: 12, opacity: rowReveal }}>
-                  <span style={{ width: 22, fontFamily: FONT_MONO, fontSize: 16, color: SAFE, textAlign: "right" }}>{i + 1}</span>
-                  <span style={{ flex: 1, fontFamily: FONT_MONO, fontSize: 18, color: i === 0 ? COLORS.ink : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <span style={{ width: 28, fontFamily: FONT_MONO, fontSize: 20, color: SAFE, textAlign: "right" }}>{i + 1}</span>
+                  <span style={{ flex: 1, fontFamily: FONT_MONO, fontSize: 20, color: i === 0 ? COLORS.ink : COLORS.inkDim, fontWeight: i === 0 ? 700 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {b.name}
                   </span>
-                  <span style={{ width: 70, fontFamily: FONT_MONO, fontSize: 18, textAlign: "right", color: SAFE }}>
+                  <span style={{ width: 80, fontFamily: FONT_MONO, fontSize: 20, textAlign: "right", color: SAFE }}>
                     {fmtInt(b.groupATotalAll)}
                   </span>
                 </div>
               );
             })}
           </div>
-          <div style={{ fontSize: 14, color: COLORS.inkFaint, marginTop: 16, lineHeight: 1.45 }}>
+          <div style={{ fontSize: 18, color: COLORS.inkFaint, marginTop: 16, lineHeight: 1.45 }}>
             "Safest" = fewest reported Group A incidents. Report counts only — not
             adjusted for population or area.
           </div>

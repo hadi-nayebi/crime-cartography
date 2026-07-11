@@ -62,7 +62,7 @@ export const PhaseTitle: React.FC<Props> = ({ sec, kicker, title, caption }) => 
       <div
         style={{
           fontFamily: FONT_MONO,
-          fontSize: 14,
+          fontSize: 18,
           letterSpacing: 4,
           color: COLORS.inkFaint,
         }}
@@ -83,7 +83,8 @@ export const PhaseTitle: React.FC<Props> = ({ sec, kicker, title, caption }) => 
       <div
         style={{
           fontFamily: FONT_SANS,
-          fontSize: 16,
+          fontSize: 20,
+          fontWeight: 500,
           color: COLORS.inkDim,
           marginTop: 3,
         }}

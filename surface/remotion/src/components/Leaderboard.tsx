@@ -12,10 +12,10 @@ interface Props {
   topN?: number;
 }
 
-const X = 1486;
-const W = 400;
-const TOP = 300;
-const ROW_H = 44;
+const X = 1426;
+const W = 460;
+const TOP = 368; // clears the enlarged Counters block above
+const ROW_H = 48;
 
 // Live leaderboard — ranks NEIGHBORHOODS by cumulative Group A so far, by their
 // resident-known names (not the opaque beat codes). Appears in the granular era
@@ -35,7 +35,7 @@ export const Leaderboard: React.FC<Props> = ({ stats, gFloat, opacity, topN = 6 
 
   return (
     <div style={{ position: "absolute", left: X, top: TOP, width: W, opacity, fontFamily: FONT_MONO }}>
-      <div style={{ fontSize: 13, letterSpacing: 3, color: COLORS.inkFaint, marginBottom: 12 }}>
+      <div style={{ fontSize: 18, letterSpacing: 1, whiteSpace: "nowrap", color: COLORS.inkFaint, marginBottom: 12 }}>
         BUSIEST NEIGHBORHOODS · GROUP A TO DATE
       </div>
       <div style={{ position: "relative", height: topN * ROW_H }}>
@@ -56,15 +56,15 @@ export const Leaderboard: React.FC<Props> = ({ stats, gFloat, opacity, topN = 6 
                 gap: 9,
               }}
             >
-              <span style={{ width: 16, fontSize: 15, color: COLORS.inkFaint, textAlign: "right", flex: "0 0 auto" }}>
+              <span style={{ width: 20, fontSize: 19, color: COLORS.inkFaint, textAlign: "right", flex: "0 0 auto" }}>
                 {rank + 1}
               </span>
               <span
                 style={{
-                  width: 150,
-                  fontSize: 14.5,
+                  width: 180,
+                  fontSize: 19,
                   color: isTop ? "#ff2e63" : COLORS.inkDim,
-                  fontWeight: isTop ? 700 : 400,
+                  fontWeight: isTop ? 700 : 500,
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
@@ -83,7 +83,7 @@ export const Leaderboard: React.FC<Props> = ({ stats, gFloat, opacity, topN = 6 
                   }}
                 />
               </div>
-              <span style={{ width: 52, fontSize: 15, color: COLORS.ink, textAlign: "right", flex: "0 0 auto" }}>
+              <span style={{ width: 64, fontSize: 19, color: COLORS.ink, textAlign: "right", flex: "0 0 auto" }}>
                 {fmtInt(h.val)}
               </span>
             </div>

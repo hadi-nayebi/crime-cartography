@@ -44,7 +44,7 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity, kicke
         <div
           style={{
             fontFamily: FONT_MONO,
-            fontSize: 15,
+            fontSize: 19,
             letterSpacing: 5,
             color: COLORS.inkFaint,
           }}
@@ -59,7 +59,7 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity, kicke
           <ReadOut color={vColor} label="Violent crimes / yr" value={cur.violent} />
           <ReadOut color={pColor} label="Property crimes / yr" value={cur.property} />
         </div>
-        <div style={{ fontFamily: FONT_MONO, fontSize: 14, color: COLORS.inkFaint, marginTop: 6 }}>
+        <div style={{ fontFamily: FONT_MONO, fontSize: 18, color: COLORS.inkFaint, marginTop: 6 }}>
           bars &amp; both numbers are totals for the whole year
         </div>
       </div>
@@ -75,12 +75,12 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity, kicke
         {[maxTotal, maxTotal / 2].map((v) => (
           <g key={v}>
             <line x1={X0 - 10} y1={yOf(v)} x2={X1 + 10} y2={yOf(v)} stroke={COLORS.grid} strokeWidth={1} strokeDasharray="4 6" />
-            <text x={X0 - 16} y={yOf(v) + 4} fill={COLORS.inkFaint} fontSize={13} fontFamily={FONT_MONO} textAnchor="end">
+            <text x={X0 - 16} y={yOf(v) + 4} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="end">
               {fmtInt(v)}
             </text>
           </g>
         ))}
-        <text x={X0 - 16} y={yOf(maxTotal) - 12} fill={COLORS.inkFaint} fontSize={12} fontFamily={FONT_MONO} textAnchor="end">
+        <text x={X0 - 16} y={yOf(maxTotal) - 12} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="end">
           reports/yr
         </text>
         <line x1={X0 - 10} y1={BASE_Y} x2={X1 + 10} y2={BASE_Y} stroke={COLORS.grid} strokeWidth={1} />
@@ -102,7 +102,7 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity, kicke
                   x={x + barW / 2}
                   y={BASE_Y + 22}
                   fill={COLORS.inkFaint}
-                  fontSize={13}
+                  fontSize={17}
                   fontFamily={FONT_MONO}
                   textAnchor="middle"
                 >
@@ -126,7 +126,7 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity, kicke
           right: 0,
           textAlign: "center",
           fontFamily: FONT_MONO,
-          fontSize: 15,
+          fontSize: 19,
           color: COLORS.inkDim,
         }}
       >
@@ -145,6 +145,6 @@ const ReadOut: React.FC<{ color: string; label: string; value: number }> = ({
 }) => (
   <div style={{ textAlign: "center" }}>
     <div style={{ fontSize: 46, fontWeight: 700, color }}>{fmtInt(value)}</div>
-    <div style={{ fontFamily: FONT_MONO, fontSize: 14, color: COLORS.inkDim }}>{label}</div>
+    <div style={{ fontFamily: FONT_MONO, fontSize: 18, color: COLORS.inkDim }}>{label}</div>
   </div>
 );

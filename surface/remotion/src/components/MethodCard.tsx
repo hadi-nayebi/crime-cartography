@@ -236,7 +236,7 @@ export const MethodCard: React.FC<Props> = ({
         style={{
           opacity: revealAt(0, frame),
           fontFamily: FONT_MONO,
-          fontSize: 16,
+          fontSize: 20,
           letterSpacing: 6,
           color: COLORS.inkFaint,
           marginBottom: 34,
@@ -273,7 +273,7 @@ export const MethodCard: React.FC<Props> = ({
                 <span
                   style={{
                     fontFamily: FONT_MONO,
-                    fontSize: 13,
+                    fontSize: 17,
                     letterSpacing: 2,
                     color: COLORS.inkDim,
                     border: `1px solid ${COLORS.panelStroke}`,
@@ -298,7 +298,7 @@ export const MethodCard: React.FC<Props> = ({
               </div>
 
               <div style={{ fontSize: 28, fontWeight: 600, color: COLORS.ink, marginBottom: 8 }}>{c.headline}</div>
-              <div style={{ fontSize: 18, lineHeight: 1.45, color: COLORS.inkDim }}>{c.sub}</div>
+              <div style={{ fontSize: 20, lineHeight: 1.45, color: COLORS.inkDim }}>{c.sub}</div>
             </div>
           );
         })}
@@ -319,13 +319,13 @@ export const MethodCard: React.FC<Props> = ({
           {CATS.map((cat) => (
             <div key={cat} style={{ display: "flex", alignItems: "center", gap: 9 }}>
               <span style={{ width: 13, height: 13, borderRadius: 7, background: CAT_COLORS[cat] }} />
-              <span style={{ fontSize: 18, color: COLORS.inkDim }}>
+              <span style={{ fontSize: 20, color: COLORS.inkDim }}>
                 {CAT_LABELS[cat]} · {fmtInt(summary.catTotals[cat])}
               </span>
             </div>
           ))}
         </div>
-        <div style={{ fontSize: 15, color: COLORS.inkFaint, fontFamily: FONT_MONO, letterSpacing: 0.5 }}>
+        <div style={{ fontSize: 18, color: COLORS.inkFaint, fontFamily: FONT_MONO, letterSpacing: 0.5 }}>
           {footnote ??
             `FBI UCR (through ${yMax}) and the city's incident data (${startYear}+) are different measures — shown as two chapters, not one line.`}
         </div>

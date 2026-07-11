@@ -2,91 +2,84 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 &nbsp;[![Data: honest](https://img.shields.io/badge/data-sourced%20%C2%B7%20never%20fabricated-2ea44f.svg)](#principles)
+&nbsp;[![Made by: Claude](https://img.shields.io/badge/made%20by-Claude%20(Anthropic)-d97706.svg)](#made-by-an-ai)
 &nbsp;[![Renderer: Remotion](https://img.shields.io/badge/render-Remotion-7c5cff.svg)](https://www.remotion.dev/)
 
-**A data-honest video production pipeline that turns *sourced* crime data into engaging ~5-minute animated map stories — for any city, county, or state.**
+**A data-honest video production pipeline that turns *sourced* crime data into ~5-minute animated map stories — for any city, county, or state.**
 
-One reusable visual *surface* — evolving choropleth + point-density layers, live counters, a dispatch feed, a per-month trend line, per-neighborhood rankings, and a two-era narrative — that plugs into many real datasets. Built in [Remotion](https://www.remotion.dev/) for deterministic, frame-exact video export, with a Leaflet HTML preview for fast iteration.
+One reusable engine — a full-arc trend chart (always to the present), an evolving neighborhood map with real OSM landmarks and highways, live counters, a dispatch feed of real offenses, and per-neighborhood rankings — that plugs into per-city data pipelines and per-city visual styles. Built in [Remotion](https://www.remotion.dev/) for deterministic, frame-exact export.
 
-> **First production:** Grand Rapids, MI — 25 years of real data (FBI UCR 2000–2022 + GRPD NIBRS 2023–2026) in one 5½-minute animated map.
+## The videos
 
-## Watch
+| City | Span | The story | Directory |
+|------|------|-----------|-----------|
+| **Chicago, IL** | 1986–2026 | Reported crime **halved** since 2001 — every one of the 77 community areas fell | [`videos/chicago-il/`](videos/chicago-il/) |
+| **Seattle, WA** | 1985–2026 | −48% from the 1987 peak, the 2010s plateau, and Capitol Hill overtaking Downtown | [`videos/seattle-wa/`](videos/seattle-wa/) |
+| **Grand Rapids, MI** | 1985–2026 | Reported crime **halved** since 1985, mapped beat by beat since 2023 | [`videos/grand-rapids-mi/`](videos/grand-rapids-mi/) |
 
-📺 **Grand Rapids · A Quarter-Century of Crime** — _YouTube link coming with publication._
+Each directory is a self-contained, reproducible record: `config.json` (every on-screen string and number), `youtube.json` (the exact YouTube listing — the publish pipeline writes the final URL back), `render.lock.json` (commit + dataset date + sha256 of the shipped render), and a README that is the video's public landing page.
 
-The finished render is produced by `surface/remotion/` from the committed config in `videos/grand-rapids-mi/`. To build it yourself, see [Reproduce](#reproduce).
+## Made by an AI
 
----
+These videos are produced **end-to-end by Claude (Anthropic)**: it locates the official data sources, writes and runs the fetch → normalize → validate pipelines, verifies every on-screen figure against the data, designs and renders the visuals, and generates the score. This repo *is* the audit trail. If you find an error, [open an issue](../../issues) — corrections are part of the record.
 
 ## Principles
 
-1. **Never fabricate.** Every point, count, and label on screen is backed by a real, citable source. We do **not** synthesize or "approximate" incident positions. Where only aggregate counts exist, we show them honestly (counts/choropleth) — we never invent dots. A data-source credit stays visible on screen.
+1. **Never fabricate.** Every point, count, and label on screen is backed by a real, citable source. Where a source publishes coordinates (Chicago, Seattle), every dot is a real reported incident location (block-level, as anonymized by the source). Where it doesn't (Grand Rapids), dots are explicitly disclosed density glyphs — how many, never where.
 2. **Provenance for everything.** Each dataset carries its source URL, fetch date, license, and field mapping in `data/<slug>/PROVENANCE.md` and the [Data Provenance wiki](wiki/Data-Provenance.md).
-3. **Reproducible.** Datasets are produced by scripts in `pipeline/`, not by hand. Configs are committed. Anyone can re-run the build.
-4. **Community-growable.** Adding a new city is a documented, contained job — see [Add a City](wiki/Add-a-City.md).
+3. **Honest seams.** The long-arc chart joins FBI UCR with each city's own incident data at an explicitly labeled measure-change seam — shapes are comparable within an era, never across it. Partial years are excluded, gaps disclosed, nothing interpolated.
+4. **Reproducible.** Datasets are produced by scripts in `pipeline/`, not by hand. Configs are committed. Anyone can re-run the build (see any video directory's README).
 
 ## How it works
 
 ```
- reliable source            pipeline/                 canonical schema           surface/
-┌──────────────┐   fetch   ┌──────────────┐  normalize ┌──────────────┐  render ┌──────────────┐
-│ GRPD ArcGIS  │ ───────▶  │ sources/*.mjs │ ─────────▶ │ data/<city>/  │ ──────▶ │ Remotion +   │ ──▶ 5-min video
-│ open data    │           │ validate.mjs  │            │ normalized/   │         │ Leaflet HTML │
-└──────────────┘           └──────────────┘            └──────────────┘         └──────────────┘
-        │                                                                              │
-   PROVENANCE.md  ◀───────────────────── source link + license recorded ──────────────┘
+ official source            pipeline/                    data/<slug>/normalized/        surface/remotion/
+┌──────────────┐  fetch    ┌────────────────────┐  emit  ┌─────────────────────────┐  render ┌─────────────┐
+│ city portal  │ ────────▶ │ sources/<city>.mjs │ ─────▶ │ timeline · beats · trend │ ──────▶ │ CrimeStory  │ ─▶ 5:30 video
+│ FBI CDE, OSM │           │ build-trend.mjs    │        │ points · feed · basemap  │         │ (per-city   │
+└──────────────┘           │ fetch-basemap.mjs  │        │ history · summary        │         │  style)     │
+       │                   └────────────────────┘        └─────────────────────────┘         └─────────────┘
+  PROVENANCE.md ◀────────────── source link + license recorded ──────────────┘
 ```
 
-**Canonical incident schema** (one object per incident):
-```json
-{ "date": "2025-11-04", "lat": 42.9637, "lng": -85.6681, "cat": "persons", "type": "Assault", "place": "Heartside" }
+The engine consumes one canonical bundle — **regions** (real polygons) × **monthly time series per region** × **category split**, plus the full-arc annual trend and optional real incident points — so new geographies plug in without touching the renderer. Per-city configs own every string, color, chart style, and annotation.
+
+## Publish pipeline
+
+```bash
+node pipeline/publish/auth-youtube.mjs        # one-time OAuth (channel owner)
+node pipeline/publish/upload-youtube.mjs <slug>   # uploads PRIVATE, writes the URL back
 ```
-`cat` ∈ `persons | property | society` (the three NIBRS groups).
+
+Uploads are private by default; the channel owner reviews and flips public. `.secrets/` is gitignored.
 
 ## Layout
 
 | Path | What |
 |------|------|
-| `data/<slug>/` | Normalized incidents + `PROVENANCE.md` per dataset |
-| `pipeline/` | `sources/` fetch adapters, `normalize.mjs`, `validate.mjs`, `schema.md` |
-| `surface/remotion/` | The Remotion video project (renderer of record) |
-| `surface/preview/` | Leaflet HTML preview/scrub tool |
-| `videos/<city>/` | Per-video config + render output |
-| `wiki/` | Docs: data provenance, add-a-city guide, source catalog |
-| `docs/` | Background (data handoff spec) |
-
-## Status
-
-✅ **First video shipped.** The Grand Rapids vertical slice is complete end-to-end — real data fetched, normalized, validated, and rendered to a 5½-minute video with an original score. The pipeline is now ready to generalize to more cities. See [wiki/Home](wiki/Home.md).
-
-## Roadmap
-
-- [x] Repo + pipeline scaffolding, data-honesty contract
-- [x] Grand Rapids: fetch real GRPD + FBI UCR data → normalize → validate
-- [x] Remotion surface (two-era narrative: choropleth + point-density, counters, trend line, neighborhood rankings)
-- [x] Original royalty-free score (Stable Audio Open), arranged to the video's phases
-- [x] Render the first 5½-min Grand Rapids video
-- [ ] Publish to YouTube + add the link here
-- [ ] Generalize: dataset catalog (cities → counties → states → US)
+| `data/<slug>/` | Normalized bundle + `PROVENANCE.md` per dataset |
+| `pipeline/` | Per-city source adapters, trend/basemap builders, validators, publish scripts, music generator |
+| `surface/remotion/` | The Remotion engine (renderer of record) |
+| `videos/<slug>/` | Per-video record: config, YouTube listing, render lock, landing README |
+| `wiki/` | Data provenance index, add-a-city guide |
 
 ## Reproduce
 
-The full build is scripted — see the [Reproduce block in the Grand Rapids provenance](data/grand-rapids-mi/PROVENANCE.md#reproduce) (fetch → normalize → validate), then render:
+Every video directory's README carries its exact reproduce commands (fetch → normalize → validate → trend → basemap → render). Example:
 
 ```bash
 cd surface/remotion
-node scripts/sync-data.mjs grand-rapids-mi          # copy normalized data into public/
-npx remotion render CrimeStory \
-  ../../videos/grand-rapids-mi/out/grand-rapids-v2.mp4 \
-  --props=../../videos/grand-rapids-mi/config.json
+node scripts/sync-data.mjs chicago-il
+npx remotion render CrimeStory ../../videos/chicago-il/out/chicago-il.mp4 \
+  --props=../../videos/chicago-il/config.json
 ```
 
-Music is optional and regenerated separately (needs a GPU + a gated model) — see [PROVENANCE → Music / audio](data/grand-rapids-mi/PROVENANCE.md#music--audio-non-data).
+Music is regenerated separately (GPU + gated model) — see `pipeline/audio/README.md`.
 
 ## License
 
-Code: MIT (see [LICENSE](LICENSE)). Data: each dataset retains its upstream source's license, recorded in its `PROVENANCE.md`. Music: generated with [Stable Audio Open](https://huggingface.co/stabilityai/stable-audio-open-1.0) under the Stability AI Community License.
+Code: MIT (see [LICENSE](LICENSE)). Data: each dataset retains its upstream license, recorded in its `PROVENANCE.md`. Basemap: © OpenStreetMap contributors (ODbL). Music: [Stable Audio Open](https://huggingface.co/stabilityai/stable-audio-open-1.0) under the Stability AI Community License.
 
 ---
 
-*Built with [Claude Code](https://claude.com/claude-code).*
+*Produced end-to-end with [Claude Code](https://claude.com/claude-code).*

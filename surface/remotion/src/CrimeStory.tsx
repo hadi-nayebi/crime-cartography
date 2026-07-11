@@ -34,6 +34,7 @@ import { Reveal } from "./components/Reveal";
 import { Credits } from "./components/Credits";
 import { SourceCredit } from "./components/SourceCredit";
 import { RealPointsLayer } from "./components/RealPointsLayer";
+import { BasemapLayer } from "./components/BasemapLayer";
 import { applyThemeOverrides, CAT_COLORS, COLORS, PHASES } from "./theme";
 
 const WINDOW_MONTHS = 6; // choropleth window
@@ -249,6 +250,17 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
         />
       </div>
 
+      {/* Orientation basemap (OSM highways + landmarks) — above the choropleth,
+          below the dots, so viewers can tell where in the city they're looking. */}
+      {bundle.basemap && (
+        <BasemapLayer
+          basemap={bundle.basemap}
+          projection={projection}
+          opacity={heatOpacity * 0.95}
+          labelOpacity={granHud}
+        />
+      )}
+
       {/* Incident dots (granular era): REAL sampled locations when the source
           publishes coordinates; disclosed density glyphs otherwise. */}
       {winBundle.points ? (
@@ -325,10 +337,10 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           months={stats.months}
           cityMonthly={stats.cityMonthly}
           monthFloat={gFloat}
-          refRate={history ? history.years[history.years.length - 1].total / 12 : undefined}
+          refRate={lastFbiTotal ? lastFbiTotal / 12 : undefined}
           refLabel={
-            history
-              ? `${lastHistYear} UCR Violent+Property ≈ ${Math.round(history.years[history.years.length - 1].total / 12)}/mo (narrower count)`
+            lastFbiTotal
+              ? `${lastHistYear} UCR Violent+Property ≈ ${Math.round(lastFbiTotal / 12)}/mo (narrower count)`
               : undefined
           }
         />

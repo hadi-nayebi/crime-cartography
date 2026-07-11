@@ -61,14 +61,14 @@ export const FullTrend: React.FC<Props> = ({
     <div style={{ position: "absolute", inset: 0, opacity, fontFamily: FONT_SANS }}>
       {/* Header: kicker + big year + readout */}
       <div style={{ position: "absolute", top: 64, left: 0, right: 0, textAlign: "center" }}>
-        <div style={{ fontFamily: FONT_MONO, fontSize: 15, letterSpacing: 5, color: COLORS.inkFaint }}>
+        <div style={{ fontFamily: FONT_MONO, fontSize: 19, letterSpacing: 5, color: COLORS.inkFaint }}>
           {kicker ??
             `THE LONG ARC · ${years[0].year}–${years[n - 1].year} · REPORTED CRIMES PER YEAR`}
         </div>
         <div style={{ fontSize: 112, fontWeight: 800, color: COLORS.ink, lineHeight: 1 }}>{cur.year}</div>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "baseline", gap: 18, marginTop: 4 }}>
           <span style={{ fontSize: 52, fontWeight: 700, color: colorOf(cur.era) }}>{fmtInt(cur.total)}</span>
-          <span style={{ fontFamily: FONT_MONO, fontSize: 17, color: COLORS.inkDim }}>
+          <span style={{ fontFamily: FONT_MONO, fontSize: 21, color: COLORS.inkDim }}>
             reports this year · {curEra?.label}
           </span>
         </div>
@@ -79,12 +79,12 @@ export const FullTrend: React.FC<Props> = ({
         {[maxTotal, maxTotal / 2].map((v) => (
           <g key={v}>
             <line x1={X0 - 10} y1={yOf(v)} x2={X1 + 10} y2={yOf(v)} stroke={COLORS.grid} strokeWidth={1} strokeDasharray="4 6" />
-            <text x={X0 - 16} y={yOf(v) + 4} fill={COLORS.inkFaint} fontSize={13} fontFamily={FONT_MONO} textAnchor="end">
+            <text x={X0 - 16} y={yOf(v) + 4} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="end">
               {fmtInt(v)}
             </text>
           </g>
         ))}
-        <text x={X0 - 16} y={yOf(maxTotal) - 12} fill={COLORS.inkFaint} fontSize={12} fontFamily={FONT_MONO} textAnchor="end">
+        <text x={X0 - 16} y={yOf(maxTotal) - 12} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="end">
           reports/yr
         </text>
         <line x1={X0 - 10} y1={BASE_Y} x2={X1 + 10} y2={BASE_Y} stroke={COLORS.grid} strokeWidth={1} />
@@ -111,7 +111,7 @@ export const FullTrend: React.FC<Props> = ({
                   <rect x={cx - slot * 0.31} y={BASE_Y - h} width={slot * 0.62} height={h} fill={c} fillOpacity={0.88} />
                 )}
                 {(yr.year % 5 === 0 || i === n - 1) && (
-                  <text x={cx} y={BASE_Y + 22} fill={COLORS.inkFaint} fontSize={13} fontFamily={FONT_MONO} textAnchor="middle">
+                  <text x={cx} y={BASE_Y + 24} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="middle">
                     {yr.year}
                   </text>
                 )}
@@ -145,7 +145,7 @@ export const FullTrend: React.FC<Props> = ({
               x={X0 + seamIdx * slot}
               y={yOf(maxTotal) - 34}
               fill={COLORS.inkDim}
-              fontSize={14}
+              fontSize={18}
               fontFamily={FONT_MONO}
               textAnchor="middle"
             >
@@ -160,7 +160,7 @@ export const FullTrend: React.FC<Props> = ({
         {trend.eras.map((e) => (
           <div key={e.key} style={{ display: "flex", alignItems: "center", gap: 9 }}>
             <span style={{ width: 13, height: 13, borderRadius: 3, background: colorOf(e.key) }} />
-            <span style={{ fontFamily: FONT_MONO, fontSize: 15, color: COLORS.inkDim }}>
+            <span style={{ fontFamily: FONT_MONO, fontSize: 19, color: COLORS.inkDim }}>
               {e.from}–{e.to} · {e.label}
             </span>
           </div>
@@ -174,7 +174,7 @@ export const FullTrend: React.FC<Props> = ({
           right: 0,
           textAlign: "center",
           fontFamily: FONT_MONO,
-          fontSize: 14,
+          fontSize: 18,
           color: COLORS.inkFaint,
         }}
       >
@@ -206,7 +206,7 @@ export const FullTrend: React.FC<Props> = ({
             }}
           >
             <div style={{ fontSize: 46, fontWeight: 800, color: accent }}>{punchline.text}</div>
-            <div style={{ fontFamily: FONT_MONO, fontSize: 16, color: COLORS.inkDim, marginTop: 6 }}>
+            <div style={{ fontFamily: FONT_MONO, fontSize: 20, color: COLORS.inkDim, marginTop: 6 }}>
               {punchline.sub}
             </div>
           </div>
@@ -256,7 +256,7 @@ const AreaSeries: React.FC<{
             x={X0 + i * slot + slot / 2}
             y={BASE_Y + 22}
             fill={COLORS.inkFaint}
-            fontSize={13}
+            fontSize={17}
             fontFamily={FONT_MONO}
             textAnchor="middle"
             opacity={i < shown ? 1 : 0}

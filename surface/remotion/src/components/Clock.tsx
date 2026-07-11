@@ -27,8 +27,8 @@ export const Clock: React.FC<Props> = ({ months, monthFloat }) => {
       </div>
       <div
         style={{
-          fontSize: 30,
-          fontWeight: 400,
+          fontSize: 34,
+          fontWeight: 500,
           color: COLORS.inkDim,
           letterSpacing: 6,
         }}

@@ -55,7 +55,7 @@ export const EraTransition: React.FC<Props> = ({
         style={{
           transform: `translateY(${rise}px)`,
           fontFamily: FONT_MONO,
-          fontSize: 19,
+          fontSize: 21,
           letterSpacing: 6,
           color: COLORS.inkFaint,
           marginBottom: 18,
@@ -98,7 +98,7 @@ export const EraTransition: React.FC<Props> = ({
           style={{
             transform: `translateY(${rise}px)`,
             fontFamily: FONT_MONO,
-            fontSize: 19,
+            fontSize: 22,
             color: COLORS.inkDim,
             maxWidth: 1220,
             marginTop: 30,

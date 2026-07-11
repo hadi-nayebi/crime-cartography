@@ -8,7 +8,7 @@ interface Props {
   monthFloat: number;
 }
 
-const VISIBLE = 9;
+const VISIBLE = 6; // larger type → fewer rows, so the list clears the legend below
 
 // Real dispatch feed — actual offenses stream in on their real dates. Nothing
 // here is synthesized; each row is a sourced record (title + block + beat).
@@ -38,14 +38,14 @@ export const Feed: React.FC<Props> = ({ feed, months, monthFloat }) => {
       style={{
         position: "absolute",
         left: 34,
-        top: 196,
-        width: 372,
+        top: 170,
+        width: 430,
         fontFamily: FONT_MONO,
       }}
     >
       <div
         style={{
-          fontSize: 13,
+          fontSize: 18,
           letterSpacing: 3,
           color: COLORS.inkFaint,
           marginBottom: 12,
@@ -77,7 +77,8 @@ export const Feed: React.FC<Props> = ({ feed, months, monthFloat }) => {
           <div style={{ minWidth: 0 }}>
             <div
               style={{
-                fontSize: 15,
+                fontSize: 19,
+                fontWeight: 500,
                 color: COLORS.ink,
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -86,7 +87,7 @@ export const Feed: React.FC<Props> = ({ feed, months, monthFloat }) => {
             >
               {it.title}
             </div>
-            <div style={{ fontSize: 12.5, color: COLORS.inkFaint }}>
+            <div style={{ fontSize: 17, fontWeight: 500, color: COLORS.inkFaint }}>
               {it.date} · {it.place} · {it.beat}
             </div>
           </div>

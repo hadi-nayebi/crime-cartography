@@ -52,9 +52,9 @@
     "methodDotsSub": "Every dot is a real reported offense location (block-level). Neighborhood detail begins 2017 — earlier records are counted, never guessed onto the map.",
     "methodFootnote": "FBI UCR (through 2016) and SPD NIBRS (2017+) are different measures — shown as two chapters, not one line.",
     "quizQuestion": "Which neighborhood is Seattle's safest?",
-    "sourceLine": "Data: Seattle Police Department via data.seattle.gov (Public Domain) · some locations redacted by SPD — counted, not plotted",
-    "coverageText": "98.4% of 2017+ records mapped to a neighborhood · earlier years counted citywide",
-    "creditsSources": "Sources: Seattle Police Department Crime Data (2008–present, Public Domain) via data.seattle.gov & FBI UCR (1985–2016) via the FBI Crime Data Explorer. Neighborhood boundaries: Seattle MCPP (Micro-Community Policing Plans). Some incident locations are redacted by SPD; those records are counted but never plotted."
+    "sourceLine": "Data: Seattle Police Department · data.seattle.gov (Public Domain) · some locations redacted",
+    "coverageText": "98.4% of 2017+ records mapped · earlier years citywide",
+    "creditsSources": "Sources: Seattle Police Department Crime Data (2008–present, Public Domain) via data.seattle.gov & FBI UCR (1985–2016) via the FBI Crime Data Explorer. Neighborhood boundaries: Seattle MCPP (Micro-Community Policing Plans). Some incident locations are redacted by SPD; those records are counted but never plotted. Basemap (highways & landmarks): © OpenStreetMap contributors (ODbL)."
   },
   "historyNotes": [
     {

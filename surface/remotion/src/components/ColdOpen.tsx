@@ -40,7 +40,7 @@ export const ColdOpen: React.FC<Props> = ({ title, subtitle, durationInFrames })
       <div
         style={{
           fontFamily: FONT_MONO,
-          fontSize: 17,
+          fontSize: 21,
           letterSpacing: 7,
           color: COLORS.inkFaint,
           marginBottom: 22,

@@ -29,7 +29,7 @@ export const SourceCredit: React.FC<Props> = ({
         left: 0,
         right: 0,
         bottom: 0,
-        height: 34,
+        height: 42,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -37,7 +37,7 @@ export const SourceCredit: React.FC<Props> = ({
         background:
           "linear-gradient(to top, rgba(3,5,8,0.92), rgba(3,5,8,0))",
         fontFamily: FONT_MONO,
-        fontSize: 14,
+        fontSize: 18,
         letterSpacing: 0.3,
         color: COLORS.inkFaint,
       }}

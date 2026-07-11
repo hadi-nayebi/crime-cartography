@@ -1,5 +1,6 @@
 import { staticFile } from "remotion";
 import type {
+  BasemapFile,
   Beat,
   BeatsFile,
   Bundle,
@@ -66,7 +67,14 @@ export async function loadBundle(
   } catch {
     trend = null;
   }
-  return { beats, timeline, feed, summary, history, neighborhoods, points, trend };
+  // basemap.json is optional (OSM highways + landmarks for orientation).
+  let basemap: BasemapFile | null = null;
+  try {
+    basemap = await loadJson<BasemapFile>(`${base}/basemap.json`, signal);
+  } catch {
+    basemap = null;
+  }
+  return { beats, timeline, feed, summary, history, neighborhoods, points, trend, basemap };
 }
 
 // ---- Projection ----------------------------------------------------------

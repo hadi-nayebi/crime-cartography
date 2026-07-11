@@ -96,7 +96,7 @@ export const Credits: React.FC<Props> = ({
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 14, fontSize: 18, color: COLORS.inkFaint, fontFamily: FONT_MONO, letterSpacing: 1 }}>
+      <div style={{ marginTop: 14, fontSize: 20, color: COLORS.inkFaint, fontFamily: FONT_MONO, letterSpacing: 1 }}>
         every number here is reproducible · full code, data &amp; sources on GitHub
       </div>
       <div style={{ marginTop: 28, fontSize: 24, color: COLORS.inkDim, maxWidth: 1180, lineHeight: 1.5 }}>
@@ -116,7 +116,7 @@ export const Credits: React.FC<Props> = ({
         style={{
           marginTop: 14,
           fontFamily: FONT_MONO,
-          fontSize: 15,
+          fontSize: 18,
           color: COLORS.inkFaint,
         }}
       >
@@ -137,7 +137,7 @@ export const Credits: React.FC<Props> = ({
         style={{
           marginTop: 14,
           fontFamily: FONT_MONO,
-          fontSize: 15,
+          fontSize: 18,
           letterSpacing: 5,
           color: COLORS.inkFaint,
         }}

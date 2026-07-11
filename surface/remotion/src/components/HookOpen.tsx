@@ -91,18 +91,18 @@ export const HookOpen: React.FC<Props> = ({
         {line}
       </div>
       {sub && (
-        <div style={{ marginTop: 10, fontFamily: FONT_MONO, fontSize: 17, color: COLORS.inkDim, opacity: lineIn }}>
+        <div style={{ marginTop: 10, fontFamily: FONT_MONO, fontSize: 20, color: COLORS.inkDim, opacity: lineIn }}>
           {sub}
         </div>
       )}
 
       {/* the promise — title arrives under the stat */}
       <div style={{ marginTop: 44, opacity: titleIn, transform: `translateY(${(1 - titleIn) * 14}px)` }}>
-        <div style={{ fontFamily: FONT_MONO, fontSize: 14, letterSpacing: 6, color: COLORS.inkFaint, marginBottom: 10 }}>
+        <div style={{ fontFamily: FONT_MONO, fontSize: 18, letterSpacing: 6, color: COLORS.inkFaint, marginBottom: 10 }}>
           CRIME CARTOGRAPHY
         </div>
         <div style={{ fontSize: 44, fontWeight: 700, color: COLORS.ink, maxWidth: 1250, lineHeight: 1.1 }}>{title}</div>
-        <div style={{ fontSize: 21, color: COLORS.inkDim, marginTop: 10 }}>{subtitle}</div>
+        <div style={{ fontSize: 24, color: COLORS.inkDim, marginTop: 10 }}>{subtitle}</div>
       </div>
     </div>
   );

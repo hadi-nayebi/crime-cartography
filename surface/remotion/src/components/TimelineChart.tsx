@@ -67,10 +67,10 @@ export const TimelineChart: React.FC<Props> = ({
       style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
     >
       {/* title + units */}
-      <text x={X0} y={Y_TOP - 16} fill={COLORS.ink} fontSize={18} fontFamily={FONT_MONO} fontWeight={700}>
+      <text x={X0} y={Y_TOP - 16} fill={COLORS.ink} fontSize={20} fontFamily={FONT_MONO} fontWeight={700}>
         GROUP A INCIDENTS PER MONTH
       </text>
-      <text x={X0 + 330} y={Y_TOP - 16} fill={COLORS.inkFaint} fontSize={15} fontFamily={FONT_MONO}>
+      <text x={X0 + 370} y={Y_TOP - 16} fill={COLORS.inkFaint} fontSize={19} fontFamily={FONT_MONO}>
         — monthly rate · rises &amp; falls with the real trend (not a running total)
       </text>
 
@@ -78,12 +78,12 @@ export const TimelineChart: React.FC<Props> = ({
       {[0, axisTop / 2, axisTop].map((v) => (
         <g key={v}>
           <line x1={X0} y1={yOf(v)} x2={X1} y2={yOf(v)} stroke={COLORS.grid} strokeWidth={1} />
-          <text x={X0 - 10} y={yOf(v) + 4} fill={COLORS.inkFaint} fontSize={13} fontFamily={FONT_MONO} textAnchor="end">
+          <text x={X0 - 10} y={yOf(v) + 4} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="end">
             {Math.round(v)}
           </text>
         </g>
       ))}
-      <text x={X0 - 10} y={Y_TOP - 2} fill={COLORS.inkFaint} fontSize={11} fontFamily={FONT_MONO} textAnchor="end">
+      <text x={X0 - 10} y={Y_TOP - 2} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="end">
         /mo
       </text>
 
@@ -91,7 +91,7 @@ export const TimelineChart: React.FC<Props> = ({
       {refRate && refRate > 0 && (
         <g>
           <line x1={X0} y1={yOf(refRate)} x2={X1} y2={yOf(refRate)} stroke={COLORS.inkDim} strokeWidth={1.4} strokeDasharray="7 6" strokeOpacity={0.7} />
-          <text x={X1 - 4} y={yOf(refRate) - 7} fill={COLORS.inkDim} fontSize={13} fontFamily={FONT_MONO} textAnchor="end">
+          <text x={X1 - 4} y={yOf(refRate) - 7} fill={COLORS.inkDim} fontSize={17} fontFamily={FONT_MONO} textAnchor="end">
             {refLabel ?? `${Math.round(refRate)}/mo`}
           </text>
         </g>
@@ -104,7 +104,7 @@ export const TimelineChart: React.FC<Props> = ({
         return (
           <g key={m}>
             <line x1={x} y1={Y_TOP} x2={x} y2={Y_BOTTOM} stroke={COLORS.grid} strokeWidth={1} />
-            <text x={x + 4} y={Y_BOTTOM + 16} fill={COLORS.inkFaint} fontSize={13} fontFamily={FONT_MONO}>
+            <text x={x + 4} y={Y_BOTTOM + 20} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO}>
               {m.slice(0, 4)}
             </text>
           </g>
@@ -121,11 +121,11 @@ export const TimelineChart: React.FC<Props> = ({
           <line x1={playheadX} y1={Y_TOP} x2={playheadX} y2={Y_BOTTOM} stroke="#ffffff" strokeOpacity={0.45} strokeWidth={1} />
           <circle cx={playheadX} cy={playheadY} r={5.5 * pulse} fill="#ffffff" />
           <circle cx={playheadX} cy={playheadY} r={5.5} fill={CAT_COLORS.persons} />
-          <g transform={`translate(${Math.min(playheadX + 12, X1 - 160)}, ${Math.max(Y_TOP + 18, playheadY - 14)})`}>
+          <g transform={`translate(${Math.min(playheadX + 12, X1 - 200)}, ${Math.max(Y_TOP + 18, playheadY - 14)})`}>
             <text x={0} y={0} fill={COLORS.ink} fontSize={26} fontFamily={FONT_MONO} fontWeight={700}>
               {Math.round(curRate)}
             </text>
-            <text x={0} y={18} fill={COLORS.inkDim} fontSize={13} fontFamily={FONT_MONO}>
+            <text x={0} y={22} fill={COLORS.inkDim} fontSize={17} fontFamily={FONT_MONO}>
               Group A this month
             </text>
           </g>

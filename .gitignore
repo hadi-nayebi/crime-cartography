@@ -29,3 +29,5 @@ data/**/raw/*
 .claude/memory/
 /tmp/
 .hn/
+# OAuth secrets for the publish pipeline — NEVER commit
+.secrets/

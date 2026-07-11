@@ -119,6 +119,17 @@ export interface TrendFile {
   years: Array<{ year: number; total: number; era: string }>;
 }
 
+// Orientation basemap from OpenStreetMap (ODbL — attribution required):
+// major highways + curated well-known landmarks, all real OSM geometry.
+export interface BasemapFile {
+  attribution: string;
+  source: string;
+  fetchedAt: string;
+  bbox: { s: number; w: number; n: number; e: number };
+  highways: Array<{ ref: string; segs: Array<Array<[number, number]>> }>;
+  landmarks: Array<{ name: string; kind: string; lng: number; lat: number }>;
+}
+
 export interface Bundle {
   beats: BeatsFile;
   timeline: TimelineFile;
@@ -128,6 +139,7 @@ export interface Bundle {
   neighborhoods: NeighborhoodMap | null; // resident-known locator names (optional)
   points: PointsFile | null; // sampled REAL coordinates (optional per dataset)
   trend: TrendFile | null; // full arc to present (optional per dataset)
+  basemap: BasemapFile | null; // OSM orientation layer (optional per dataset)
 }
 
 export interface Annotation {

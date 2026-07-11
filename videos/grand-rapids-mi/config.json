@@ -32,8 +32,8 @@
     "methodDotsSub": "96.7% mapped to 33 beats — the rest counted, disclosed, never invented",
     "methodFootnote": "FBI UCR (through 2022) and GRPD NIBRS (2023+) are different measures — shown as two chapters, not one line.",
     "quizQuestion": "Which neighborhood is Grand Rapids' safest?",
-    "sourceLine": "Data: GRPD via City of Grand Rapids ArcGIS Hub · aggregated per police beat · no individual incidents plotted",
-    "creditsSources": "Sources: Grand Rapids Police Department crime data (2023–) & FBI UCR (2000–2022) via the City of Grand Rapids ArcGIS Hub. Beat polygons: GRPD Service Area Map. Neighborhood names: City of Grand Rapids Neighborhood Areas. Used under the City of Grand Rapids GIS Data Access & Use Constraint Agreement (provided \"as is\")."
+    "sourceLine": "Data: GRPD · City of Grand Rapids ArcGIS Hub · aggregated per beat · no incidents plotted",
+    "creditsSources": "Sources: Grand Rapids Police Department crime data (2023–) & FBI UCR (2000–2022) via the City of Grand Rapids ArcGIS Hub. Beat polygons: GRPD Service Area Map. Neighborhood names: City of Grand Rapids Neighborhood Areas. Used under the City of Grand Rapids GIS Data Access & Use Constraint Agreement (provided \"as is\"). Basemap (highways & landmarks): © OpenStreetMap contributors (ODbL)."
   },
   "historyNotes": [
     {

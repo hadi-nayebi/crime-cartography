@@ -27,12 +27,12 @@ export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, 
         position: "absolute",
         top: 30,
         right: 34,
-        width: 380,
+        width: 430,
         fontFamily: FONT_MONO,
         textAlign: "right",
       }}
     >
-      <div style={{ fontSize: 13, letterSpacing: 3, color: COLORS.inkFaint, marginBottom: 6 }}>
+      <div style={{ fontSize: 18, letterSpacing: 3, color: COLORS.inkFaint, marginBottom: 6 }}>
         GROUP A · TOTAL SINCE {sinceYear ?? "START"}
       </div>
       <div
@@ -46,7 +46,7 @@ export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, 
       >
         {fmtInt(groupA)}
       </div>
-      <div style={{ fontSize: 13, color: COLORS.inkFaint, marginBottom: 14 }}>
+      <div style={{ fontSize: 18, color: COLORS.inkFaint, marginBottom: 14 }}>
         persons + property + society · cumulative
       </div>
       {GROUP_A.map((cat) => (
@@ -60,13 +60,13 @@ export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, 
             marginBottom: 7,
           }}
         >
-          <span style={{ fontSize: 16, color: COLORS.inkDim }}>{CAT_LABELS[cat]}</span>
+          <span style={{ fontSize: 20, fontWeight: 500, color: COLORS.inkDim }}>{CAT_LABELS[cat]}</span>
           <span
             style={{
-              fontSize: 22,
+              fontSize: 26,
               fontWeight: 700,
               color: CAT_COLORS[cat],
-              minWidth: 92,
+              minWidth: 110,
               textAlign: "right",
             }}
           >
@@ -88,8 +88,10 @@ export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, 
           opacity: 0.7,
         }}
       >
-        <span style={{ fontSize: 14, color: COLORS.inkFaint }}>{otherLabel ?? "Other (context)"}</span>
-        <span style={{ fontSize: 18, color: CAT_COLORS.other, minWidth: 92, textAlign: "right" }}>
+        <span style={{ fontSize: 17, fontWeight: 500, whiteSpace: "nowrap", color: COLORS.inkFaint }}>
+          {otherLabel ?? "Other (context)"}
+        </span>
+        <span style={{ fontSize: 20, color: CAT_COLORS.other, minWidth: 90, textAlign: "right" }}>
           {fmtInt(cum.other)}
         </span>
         <span style={{ width: 10, height: 10, borderRadius: 5, background: CAT_COLORS.other }} />

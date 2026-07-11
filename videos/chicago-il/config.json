@@ -52,9 +52,9 @@
     "methodDotsSub": "Every dot is a real reported incident location (block-level). 88.6% of records map to a community area — the rest counted, disclosed, never invented.",
     "methodFootnote": "FBI UCR (through 2002) and CPD incident data (2003+) are different measures — shown as two chapters, not one line.",
     "quizQuestion": "Which community area is Chicago's safest?",
-    "sourceLine": "Data: Chicago Police Department via data.cityofchicago.org · block-level locations · modified from its original source",
-    "coverageText": "88.6% of records mapped to a community area · pre-2003 counted citywide",
-    "creditsSources": "Sources: Chicago Police Department (CLEAR) incident data via data.cityofchicago.org (2001–present) & FBI UCR (1986–2002) via the FBI Crime Data Explorer. Community area boundaries: City of Chicago. Data modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago; the City makes no claims as to content, accuracy, timeliness, or completeness."
+    "sourceLine": "Data: Chicago Police Department · data.cityofchicago.org · modified from original source",
+    "coverageText": "88.6% mapped to a community area · pre-2003 citywide",
+    "creditsSources": "Sources: Chicago Police Department (CLEAR) incident data via data.cityofchicago.org (2001–present) & FBI UCR (1986–2002) via the FBI Crime Data Explorer. Community area boundaries: City of Chicago. Data modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago; the City makes no claims as to content, accuracy, timeliness, or completeness. Basemap (highways & landmarks): © OpenStreetMap contributors (ODbL)."
   },
   "historyNotes": [
     {

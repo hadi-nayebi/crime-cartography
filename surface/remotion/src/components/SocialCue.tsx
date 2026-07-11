@@ -82,7 +82,7 @@ export const SocialCue: React.FC<Props> = ({ kind, durationInFrames }) => {
       </div>
       <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
         <span style={{ fontSize: 22, fontWeight: 700, color: COLORS.ink }}>{LABEL[kind]}</span>
-        <span style={{ fontSize: 14, color: COLORS.inkDim }}>{HINT[kind]}</span>
+        <span style={{ fontSize: 17, color: COLORS.inkDim }}>{HINT[kind]}</span>
       </div>
     </div>
   );
