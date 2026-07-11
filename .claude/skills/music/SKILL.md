@@ -132,3 +132,31 @@ next improvement._
   crossfades at phase boundaries hide seams. The skill's arrangement principles
   (section arc, breakdown, match-picture) now live in the SECTIONS prompt list,
   not in synthesis code. gen_music.py (v0.3) stays as an offline/no-GPU fallback.
+- **2026-07-07 · SAO v2 (continuity fix, regenerating).** User: "pauses between
+  music parts are too long, and it keeps changing — want one continuous piece or
+  several properly stitched." Diagnosed the shipped SAO wav with ffmpeg
+  silencedetect: real dead spots — 17s (23–40s), 13.8s (115–129s), plus 5–7s at
+  74/255/296s. Root cause: gen_stable_audio v1 made one clip per phase and
+  "sparse/quiet/minimal" prompts made SAO generate a few notes then go SILENT for
+  the rest of the clip; the arranger faithfully kept the silence. Rewrote
+  gen_stable_audio.py → v2: (1) a continuous sustained PAD BED generated once and
+  loop-crossfaded across all 330s (never silent underneath); (2) per section,
+  densest_window() extracts the highest-RMS window (drops dead tails) then
+  loop_fill() loop-crossfades it to fill the section — continuity within a
+  section; (3) 6 macro-sections (was 12) with "continuous, no pauses" prompts +
+  negative-prompt "silence, long pauses, empty"; (4) per-section level envelope
+  for the dynamic arc. CF 1.2→2.5s. Lesson: with SAO, NEVER prompt "sparse/quiet/
+  minimal" for a section you need filled — it will literally output silence; force
+  continuity via a looped bed + densest-window loop-fill, and verify with
+  silencedetect. Awaiting regen + gap re-check + user ear.
+- **2026-07-11 · SAO v2 confirmed + per-city voices.** GR regen verified: 330s,
+  silencedetect NONE, arc −20.3→−15.6→−20.5 dB — the loop-fill approach works.
+  Added `--vibe` (city descriptors appended to ANCHOR), `--seed`, `--out` so each
+  city gets its own voice from the same continuous architecture: Seattle (seed
+  1300, "rain-soaked Pacific Northwest, misty, cool airy pads") → 0 gaps, arc
+  −19.9→−16.5→−22.5; Chicago (seed 2600, "midnight urban noir, brooding brass,
+  streetlight jazz tinge") → 0 gaps. OPERATIONAL LESSON: on the 4 GB GPU, never
+  run Remotion stills/renders while SAO generates — Chrome+CUDA fight, the OOMed
+  python lingers holding ~3.3 GB, and every retry OOMs against the zombie. Fix:
+  `pkill -9 -f gen_stable_audio`, verify `nvidia-smi` shows ~3.7 GB free, then
+  run gens strictly serialized (chained script) with renders only afterward.

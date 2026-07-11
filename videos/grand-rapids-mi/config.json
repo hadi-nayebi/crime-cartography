@@ -7,6 +7,23 @@
   "fps": 30,
   "emphasizeGroupA": true,
   "audioSrc": "audio/grand-rapids-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "copy": {
+    "cityName": "Grand Rapids",
+    "regionNoun": "police beat",
+    "chapter2Kicker": "CHAPTER 2 · 2023–2026 · GRPD NIBRS",
+    "chapter2Title": "The map comes alive — per police beat",
+    "chapter2Caption": "Live monthly reports by neighborhood. Dots show density within a beat, not exact spots.",
+    "transitionKicker": "2023 · GRPD NIBRS DATA BEGINS",
+    "transitionTitle": "The map comes alive",
+    "transitionDesc": "From here the data is incident-level and per police beat — four NIBRS categories, real monthly counts, distributed as density within each beat.",
+    "methodRecentTag": "GRPD NIBRS",
+    "methodDotsSub": "96.7% mapped to 33 beats — the rest counted, disclosed, never invented",
+    "methodFootnote": "FBI UCR (through 2022) and GRPD NIBRS (2023+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which neighborhood is Grand Rapids' safest?",
+    "sourceLine": "Data: GRPD via City of Grand Rapids ArcGIS Hub · aggregated per police beat · no individual incidents plotted",
+    "creditsSources": "Sources: Grand Rapids Police Department crime data (2023–) & FBI UCR (2000–2022) via the City of Grand Rapids ArcGIS Hub. Beat polygons: GRPD Service Area Map. Neighborhood names: City of Grand Rapids Neighborhood Areas. Used under the City of Grand Rapids GIS Data Access & Use Constraint Agreement (provided \"as is\")."
+  },
   "historyNotes": [
     {
       "atYear": 2013,

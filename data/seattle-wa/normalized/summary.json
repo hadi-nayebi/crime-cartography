@@ -1,0 +1,46 @@
+{
+  "slug": "seattle-wa",
+  "title": "Seattle \u00b7 WA",
+  "source": {
+    "records": "https://data.seattle.gov/resource/tazs-3rd5.json",
+    "beats": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/ArcGIS/rest/services/MCPP/FeatureServer/0/query?where=1=1&outFields=*&f=geojson",
+    "hub": "https://data.seattle.gov/d/tazs-3rd5"
+  },
+  "fetchedAt": "2026-07-11T03:30:06.779Z",
+  "dateMin": "2017-01-01",
+  "dateMax": "2026-06-30",
+  "months": 114,
+  "totalRecords": 1542608,
+  "placedRecords": 790989,
+  "unplacedRecords": 751619,
+  "coveragePct": 51.3,
+  "unplacedBeats": {
+    "pre-2017": 738885,
+    "no-neighborhood": 12734
+  },
+  "catTotals": {
+    "persons": 220727,
+    "property": 948813,
+    "society": 128677,
+    "other": 244391
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff4d6d"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#38bdf8"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#ffd166"
+    },
+    "other": {
+      "label": "Mixed / non-criminal (context)",
+      "color": "#64748b"
+    }
+  },
+  "beatCount": 58
+}

@@ -12,7 +12,25 @@ export const COLORS = {
   inkDim: "#9fb0c4",
   inkFaint: "#65788f",
   grid: "rgba(125,145,175,0.12)",
-} as const;
+};
+
+// Per-city theme overrides (config.theme) are merged into the exported theme
+// objects once per render process, before the first frame reads them. Renders
+// are one-city-per-process (CLI --props / Studio defaultProps), so in-place
+// merge is deterministic. Colors also flow through summary.cats for data-driven
+// hues — keep config.theme.catColors in sync with the dataset's cats colors.
+export function applyThemeOverrides(theme?: {
+  colors?: Partial<typeof COLORS>;
+  catColors?: Partial<Record<string, string>>;
+}): void {
+  if (!theme) return;
+  if (theme.colors) Object.assign(COLORS, theme.colors);
+  if (theme.catColors) {
+    for (const [k, v] of Object.entries(theme.catColors)) {
+      if (v && k in CAT_COLORS) CAT_COLORS[k] = v;
+    }
+  }
+}
 
 // Category hues — keep in lockstep with summary.json `cats`.
 export const CAT_COLORS: Record<string, string> = {
@@ -44,8 +62,8 @@ export const FRAME = { w: 1920, h: 1080 } as const;
 // coldopen → method → history(2000–2022) → era-transition → granular(2023+) →
 // reveal → close.
 export const PHASES = {
-  coldOpenEnd: 13,
-  methodEnd: 39,
+  coldOpenEnd: 7, // short title card — get to content fast
+  methodEnd: 30,
   historyEnd: 150, // FBI UCR deep-history sweep
   transitionEnd: 163, // era bridge card
   granularEnd: 292, // GRPD NIBRS granular sweep

@@ -22,6 +22,7 @@ import { Legend } from "./components/Legend";
 import { PhaseTitle } from "./components/PhaseTitle";
 import { ColdOpen } from "./components/ColdOpen";
 import { MethodCard } from "./components/MethodCard";
+import { SocialCue } from "./components/SocialCue";
 import { HistoryEra } from "./components/HistoryEra";
 import { Quiz } from "./components/Quiz";
 import { EraTransition } from "./components/EraTransition";
@@ -30,13 +31,14 @@ import { MapAnnotation } from "./components/MapAnnotation";
 import { Reveal } from "./components/Reveal";
 import { Credits } from "./components/Credits";
 import { SourceCredit } from "./components/SourceCredit";
-import { CAT_COLORS, COLORS, PHASES } from "./theme";
+import { RealPointsLayer } from "./components/RealPointsLayer";
+import { applyThemeOverrides, CAT_COLORS, COLORS, PHASES } from "./theme";
 
 const WINDOW_MONTHS = 6; // choropleth window
 const DOT_WINDOW = 3; // dot-density window
 const ARROW_WINDOW = 3; // trailing window for per-beat trend arrows
 const PER_DOT = 4; // incidents per dot
-const REPO_URL = "github.com/hadi-nayebi/crime-cartography";
+const DEFAULT_REPO_URL = "github.com/hadi-nayebi/crime-cartography";
 
 function accentFor(text: string): string {
   const t = text.toLowerCase();
@@ -57,12 +59,25 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
     title,
     subtitle,
     audioSrc,
+    copy,
+    theme,
   } = props;
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const sec = frame / fps;
+  const repoUrl = props.repoUrl ?? DEFAULT_REPO_URL;
 
-  if (!bundle) {
+  // Per-city palette — merged once before any color is read this render.
+  useMemo(() => applyThemeOverrides(theme), [theme]);
+
+  // Hooks must run unconditionally (no early return above them).
+  const stats = useMemo(
+    () => (bundle ? deriveStats(bundle, WINDOW_MONTHS, emphasizeGroupA) : null),
+    [bundle, emphasizeGroupA],
+  );
+  const projection = useMemo(() => (bundle ? buildMapProjection(bundle) : null), [bundle]);
+
+  if (!bundle || !stats || !projection) {
     return (
       <AbsoluteFill style={{ background: COLORS.bg, color: COLORS.ink, padding: 60 }}>
         Dataset not loaded — run scripts/sync-data.mjs and check datasetDir.
@@ -70,14 +85,14 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
     );
   }
 
-  const stats = useMemo(
-    () => deriveStats(bundle, WINDOW_MONTHS, emphasizeGroupA),
-    [bundle, emphasizeGroupA],
-  );
-  const projection = useMemo(() => buildMapProjection(bundle), [bundle]);
   const monthCount = stats.months.length;
   const history = bundle.history;
   const nYears = history ? history.years.length : 0;
+  const startYear = bundle.summary.dateMin.slice(0, 4);
+  const endYear = bundle.summary.dateMax.slice(0, 4);
+  const lastHistYear = history ? history.years[history.years.length - 1].year : undefined;
+  const rawOtherLabel = bundle.summary.cats.other.label;
+  const otherLabel = /context/i.test(rawOtherLabel) ? rawOtherLabel : `${rawOtherLabel} (context)`;
 
   // --- time mapping ---
   // history yearFloat across the history phase
@@ -189,16 +204,28 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
         />
       </div>
 
-      {/* Dot-density (granular era) */}
-      <DotLayer
-        beatsByKey={bundle.beats.beats}
-        stats={stats}
-        projection={projection}
-        monthFloat={gFloat}
-        windowMonths={DOT_WINDOW}
-        perDot={PER_DOT}
-        opacity={dotsOpacity}
-      />
+      {/* Incident dots (granular era): REAL sampled locations when the source
+          publishes coordinates; disclosed density glyphs otherwise. */}
+      {bundle.points ? (
+        <RealPointsLayer
+          points={bundle.points}
+          projection={projection}
+          monthFloat={gFloat}
+          windowMonths={DOT_WINDOW}
+          opacity={dotsOpacity}
+          emphasizeGroupA={emphasizeGroupA}
+        />
+      ) : (
+        <DotLayer
+          beatsByKey={bundle.beats.beats}
+          stats={stats}
+          projection={projection}
+          monthFloat={gFloat}
+          windowMonths={DOT_WINDOW}
+          perDot={PER_DOT}
+          opacity={dotsOpacity}
+        />
+      )}
 
       {/* Per-beat trend arrows (rising/falling vs prior window) */}
       <TrendArrows
@@ -215,14 +242,29 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       )}
 
       {/* Chapter title strip (granular era) */}
-      <PhaseTitle sec={sec} />
+      <PhaseTitle
+        sec={sec}
+        kicker={copy?.chapter2Kicker}
+        title={copy?.chapter2Title}
+        caption={copy?.chapter2Caption}
+      />
 
       {/* Granular HUD */}
       <div style={{ opacity: granHud }}>
         <Clock months={stats.months} monthFloat={gFloat} />
-        <Counters cityMonthly={stats.cityMonthly} monthFloat={gFloat} />
+        <Counters
+          cityMonthly={stats.cityMonthly}
+          monthFloat={gFloat}
+          sinceYear={startYear}
+          otherLabel={otherLabel}
+        />
         <Feed feed={bundle.feed} months={stats.months} monthFloat={gFloat} />
-        <Legend opacity={granHud} perDot={PER_DOT} />
+        <Legend
+          opacity={granHud}
+          perDot={PER_DOT}
+          realPoints={Boolean(bundle.points)}
+          otherLabel={otherLabel}
+        />
         <TimelineChart
           months={stats.months}
           cityMonthly={stats.cityMonthly}
@@ -230,7 +272,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           refRate={history ? history.years[history.years.length - 1].total / 12 : undefined}
           refLabel={
             history
-              ? `2022 UCR Violent+Property ≈ ${Math.round(history.years[history.years.length - 1].total / 12)}/mo (narrower count)`
+              ? `${lastHistYear} UCR Violent+Property ≈ ${Math.round(history.years[history.years.length - 1].total / 12)}/mo (narrower count)`
               : undefined
           }
         />
@@ -262,13 +304,27 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
 
       {/* Method card */}
       <Sequence from={Math.round(PHASES.coldOpenEnd * fps)} durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)} layout="none">
-        <MethodCard summary={bundle.summary} history={history} durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)} />
+        <MethodCard
+          summary={bundle.summary}
+          history={history}
+          durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)}
+          recentTag={copy?.methodRecentTag}
+          recentSub={copy?.methodRecentSub}
+          dotsHeadline={copy?.methodDotsHeadline}
+          dotsSub={copy?.methodDotsSub}
+          footnote={copy?.methodFootnote}
+        />
       </Sequence>
 
       {/* Engagement quiz — posed during the history era, answered at the reveal */}
       {quizOptions.length >= 2 && (
         <Sequence from={quizStart} durationInFrames={quizDur} layout="none">
-          <Quiz options={quizOptions} durationInFrames={quizDur} />
+          <Quiz
+            options={quizOptions}
+            durationInFrames={quizDur}
+            question={copy?.quizQuestion}
+            spanLabel={`${startYear}–${endYear}`}
+          />
         </Sequence>
       )}
 
@@ -279,6 +335,10 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           ucrAnnual={history ? history.years[history.years.length - 1].total : undefined}
           ucrMonthly={history ? history.years[history.years.length - 1].total / 12 : undefined}
           nibrsMonthly={monthCount > 0 ? stats.grandTotalGroupA / monthCount : undefined}
+          kicker={copy?.transitionKicker}
+          title={copy?.transitionTitle}
+          desc={copy?.transitionDesc}
+          lastHistoryYear={lastHistYear}
         />
       </Sequence>
 
@@ -290,11 +350,40 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       {/* Close */}
       <AbsoluteFill style={{ background: `rgba(3,5,8,${closeDark})`, pointerEvents: "none" }} />
       <Sequence from={Math.round(PHASES.revealEnd * fps)} durationInFrames={Math.round((PHASES.closeEnd - PHASES.revealEnd) * fps)} layout="none">
-        <Credits summary={bundle.summary} repoUrl={REPO_URL} durationInFrames={Math.round((PHASES.closeEnd - PHASES.revealEnd) * fps)} />
+        <Credits
+          summary={bundle.summary}
+          repoUrl={repoUrl}
+          durationInFrames={Math.round((PHASES.closeEnd - PHASES.revealEnd) * fps)}
+          headline={
+            copy?.cityName
+              ? `${copy.cityName} · ${history ? history.yearMin : startYear}–${endYear}`
+              : undefined
+          }
+          sources={copy?.creditsSources}
+          musicCredit={copy?.musicCredit}
+          regionNounPlural={copy?.regionNoun ? `${copy.regionNoun}s` : undefined}
+        />
+      </Sequence>
+
+      {/* Engagement drops — like / subscribe / share, spaced across the runtime */}
+      <Sequence from={Math.round(52 * fps)} durationInFrames={Math.round(4.5 * fps)} layout="none">
+        <SocialCue kind="subscribe" durationInFrames={Math.round(4.5 * fps)} />
+      </Sequence>
+      <Sequence from={Math.round(205 * fps)} durationInFrames={Math.round(4.5 * fps)} layout="none">
+        <SocialCue kind="like" durationInFrames={Math.round(4.5 * fps)} />
+      </Sequence>
+      <Sequence from={Math.round(272 * fps)} durationInFrames={Math.round(4.5 * fps)} layout="none">
+        <SocialCue kind="share" durationInFrames={Math.round(4.5 * fps)} />
       </Sequence>
 
       {/* Persistent honesty strip */}
-      <SourceCredit coveragePct={bundle.summary.coveragePct} showCoverage={sec >= PHASES.transitionEnd} />
+      <SourceCredit
+        coveragePct={bundle.summary.coveragePct}
+        showCoverage={sec >= PHASES.transitionEnd}
+        line={copy?.sourceLine}
+        regionNoun={copy?.regionNoun}
+        coverageText={copy?.coverageText}
+      />
     </AbsoluteFill>
   );
 };

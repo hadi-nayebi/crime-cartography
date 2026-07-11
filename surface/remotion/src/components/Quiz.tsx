@@ -6,12 +6,16 @@ interface Props {
   /** beat-name options, already ordered (answer not revealed). */
   options: string[];
   durationInFrames: number;
+  /** city-specific question (from config.copy); engine default is neutral. */
+  question?: string;
+  /** e.g. "2023–2026" — derived from the dataset span. */
+  spanLabel?: string;
 }
 
 // Engagement hook posed DURING the history era: ask the viewer to guess which
 // neighborhood is "safest" (fewest reported Group A crimes), answered from real
 // data at the reveal. Sits on the right, clear of the history bar chart.
-export const Quiz: React.FC<Props> = ({ options, durationInFrames }) => {
+export const Quiz: React.FC<Props> = ({ options, durationInFrames, question, spanLabel }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pop = spring({ frame, fps, config: { damping: 18, mass: 0.8 } });
@@ -43,10 +47,10 @@ export const Quiz: React.FC<Props> = ({ options, durationInFrames }) => {
         QUICK QUIZ
       </div>
       <div style={{ fontSize: 23, fontWeight: 700, color: COLORS.ink, lineHeight: 1.25, marginBottom: 6 }}>
-        Which neighborhood is Grand Rapids' safest?
+        {question ?? "Which neighborhood is the safest?"}
       </div>
       <div style={{ fontSize: 14, color: COLORS.inkDim, marginBottom: 14 }}>
-        i.e. the fewest reported Group A crimes, 2023–2026. Take a guess:
+        i.e. the fewest reported Group A crimes{spanLabel ? `, ${spanLabel}` : ""}. Take a guess:
       </div>
       {options.map((opt, i) => {
         const rowReveal = interpolate(frame, [12 + i * 7, 26 + i * 7], [0, 1], {

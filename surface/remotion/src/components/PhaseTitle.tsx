@@ -5,6 +5,10 @@ import { COLORS, FONT_MONO, FONT_SANS, PHASES } from "../theme";
 interface Props {
   /** seconds into the video. */
   sec: number;
+  /** city-specific chapter-2 copy (from config.copy); neutral defaults. */
+  kicker?: string;
+  title?: string;
+  caption?: string;
 }
 
 interface Band {
@@ -19,20 +23,15 @@ interface Band {
 // in one line, exactly what they're looking at. Only the granular era is covered
 // here — Chapter 1 (HistoryEra) carries its own centered header, so a second
 // strip there would collide. Keeps every frame self-explanatory.
-const BANDS: Band[] = [
-  {
+export const PhaseTitle: React.FC<Props> = ({ sec, kicker, title, caption }) => {
+  const band: Band = {
     start: PHASES.transitionEnd,
     end: PHASES.granularEnd,
-    kicker: "CHAPTER 2 · 2023–2026 · GRPD NIBRS",
-    title: "The map comes alive — per police beat",
-    caption:
-      "Live monthly reports by neighborhood. Dots show density within a beat, not exact spots.",
-  },
-];
-
-export const PhaseTitle: React.FC<Props> = ({ sec }) => {
-  const band = BANDS.find((b) => sec >= b.start - 2 && sec <= b.end + 2);
-  if (!band) return null;
+    kicker: kicker ?? "CHAPTER 2",
+    title: title ?? "The map comes alive",
+    caption: caption ?? "Live monthly reports by district.",
+  };
+  if (!(sec >= band.start - 2 && sec <= band.end + 2)) return null;
   const opacity = Math.min(
     interpolate(sec, [band.start - 2, band.start + 1.5], [0, 1], {
       extrapolateLeft: "clamp",

@@ -7,6 +7,10 @@ import { CAT_COLORS, CAT_LABELS, GROUP_A, COLORS, FONT_MONO } from "../theme";
 interface Props {
   cityMonthly: CatCounts[];
   monthFloat: number;
+  /** first year of the granular era (derived from summary.dateMin). */
+  sinceYear?: string;
+  /** label for the dimmed non-Group-A context row (dataset-specific). */
+  otherLabel?: string;
 }
 
 // Top-right counters. Headline is GROUP A cumulative (persons + property +
@@ -14,7 +18,7 @@ interface Props {
 // since 2023 so it is NOT confused with the per-month averages of the history
 // era. Local/ordinance counts are shown separately and dimmed as context, so the
 // jump from UCR (Violent+Property) to NIBRS doesn't read as "crime exploded".
-export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat }) => {
+export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, otherLabel }) => {
   const cum = cumulativeAtMonth(cityMonthly, monthFloat);
   const groupA = groupATotal(cum);
   return (
@@ -29,7 +33,7 @@ export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat }) => {
       }}
     >
       <div style={{ fontSize: 13, letterSpacing: 3, color: COLORS.inkFaint, marginBottom: 6 }}>
-        GROUP A · TOTAL SINCE 2023
+        GROUP A · TOTAL SINCE {sinceYear ?? "START"}
       </div>
       <div
         style={{
@@ -84,7 +88,7 @@ export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat }) => {
           opacity: 0.7,
         }}
       >
-        <span style={{ fontSize: 14, color: COLORS.inkFaint }}>Local / ordinance (context)</span>
+        <span style={{ fontSize: 14, color: COLORS.inkFaint }}>{otherLabel ?? "Other (context)"}</span>
         <span style={{ fontSize: 18, color: CAT_COLORS.other, minWidth: 92, textAlign: "right" }}>
           {fmtInt(cum.other)}
         </span>

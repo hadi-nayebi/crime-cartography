@@ -1,0 +1,33 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Chicago Crime, 1986–2026 — Forty Years Mapped Across All 77 Community Areas",
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Chicago",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "Chicago Police Department",
+    "open data",
+    "Illinois",
+    "crime statistics",
+    "data journalism",
+    "community areas"
+  ],
+  "description": "Forty years of reported crime in Chicago — from the 1991 peak to a city where reported crime has halved, mapped across all 77 community areas.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program (1986–2002) and the Chicago Police Department's CLEAR incident data (2003–2026). Every dot on the map is a real reported incident location, anonymized to the block by the City of Chicago. Coverage and caveats are shown on screen.\n\n▶ CHAPTERS\n0:00  Intro\n0:07  What you're about to see\n0:30  Chapter 1 — 1986–2002: the long trend\n2:30  2003: incident-level data begins\n2:43  Chapter 2 — 77 community areas, month by month\n4:52  The busiest & safest community areas\n5:18  Sources & credits\n\n▶ DATA SOURCES\n• Chicago Police Department (CLEAR) incidents, data.cityofchicago.org (2001–present)\n• FBI Uniform Crime Reporting / Crime Data Explorer (1986–2002), ORI ILCPD0000\n• Community area boundaries: City of Chicago\n\nThis video uses data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided. The data provided is subject to change at any time. It is understood that the data provided is being used at one's own risk.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/chicago-il\n\nMusic generated with Stable Audio Open (Stability AI).\n\nIf this was worth a look, please Like, Subscribe, and Share it with someone from Chicago.\n\n#Chicago #CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/chicago-il",
+  "chapters": [
+    { "t": "0:00", "label": "Intro" },
+    { "t": "0:07", "label": "What you're about to see" },
+    { "t": "0:30", "label": "Chapter 1 — 1986–2002: the long trend" },
+    { "t": "2:30", "label": "2003: incident-level data begins" },
+    { "t": "2:43", "label": "Chapter 2 — 77 community areas, month by month" },
+    { "t": "4:52", "label": "The busiest & safest community areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload script (P3) reads this; url/videoId written back after upload. Chicago terms REQUIRE the verbatim disclaimer paragraph in the description — keep it. Chapters mirror theme.ts PHASES."
+}

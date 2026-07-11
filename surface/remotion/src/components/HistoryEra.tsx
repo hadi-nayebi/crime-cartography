@@ -8,6 +8,8 @@ interface Props {
   /** 0..N years elapsed across the history span (fractional). */
   yearFloat: number;
   opacity: number;
+  /** chapter kicker override; default derives from history yearMin/Max. */
+  kicker?: string;
 }
 
 const X0 = 360;
@@ -19,7 +21,7 @@ const BAR_H = 360;
 // stacked bar chart with a big per-year readout (violent + property for the
 // whole year). Labeled honestly as annual figures — no monthly or beat detail
 // is implied; the per-month NIBRS era begins only in 2023.
-export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => {
+export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity, kicker }) => {
   const years = history.years;
   const n = years.length;
   const maxTotal = Math.max(...years.map((y) => y.total));
@@ -47,7 +49,8 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => 
             color: COLORS.inkFaint,
           }}
         >
-          CHAPTER 1 · 2000–2022 · FBI UCR · REAL CRIMES REPORTED PER YEAR
+          {kicker ??
+            `CHAPTER 1 · ${history.yearMin}–${history.yearMax} · FBI UCR · REAL CRIMES REPORTED PER YEAR`}
         </div>
         <div style={{ fontSize: 120, fontWeight: 800, color: COLORS.ink, lineHeight: 1 }}>
           {cur.year}
@@ -129,7 +132,7 @@ export const HistoryEra: React.FC<Props> = ({ history, yearFloat, opacity }) => 
       >
         {history.agency} · {history.cats.violent.label.split("(")[0].trim()} &amp;{" "}
         {history.cats.property.label.split("(")[0].trim()} · these are UCR Summary counts,
-        a different taxonomy than the NIBRS categories used from 2023.
+        a different taxonomy than the incident categories used in Chapter 2.
       </div>
     </div>
   );

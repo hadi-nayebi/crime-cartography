@@ -1,0 +1,86 @@
+{
+  "slug": "chicago-il",
+  "datasetDir": "data/chicago-il",
+  "title": "Chicago · Forty Years of Crime",
+  "subtitle": "FBI UCR 1986–2002 + Chicago PD incidents 2003–2026 · 77 community areas · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/chicago-il-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "theme": {
+    "colors": {
+      "bg": "#0a0705",
+      "beatFill": "#151009",
+      "beatStroke": "rgba(200,160,110,0.25)",
+      "panelStroke": "rgba(200,160,110,0.22)",
+      "grid": "rgba(200,160,110,0.12)",
+      "ink": "#f5ede2",
+      "inkDim": "#c4b49a",
+      "inkFaint": "#8a7a63"
+    },
+    "catColors": {
+      "persons": "#ff3b47",
+      "property": "#ffb020",
+      "society": "#2dd4bf",
+      "other": "#78716c"
+    }
+  },
+  "copy": {
+    "cityName": "Chicago",
+    "regionNoun": "community area",
+    "chapter2Kicker": "CHAPTER 2 · 2003–2026 · CHICAGO PD INCIDENT DATA",
+    "chapter2Title": "The map comes alive — 77 community areas",
+    "chapter2Caption": "Live monthly reports by community area. Every dot is a real reported incident location (block-level, sampled).",
+    "transitionKicker": "2003 · INCIDENT-LEVEL DATA BEGINS",
+    "transitionTitle": "The map comes alive",
+    "transitionDesc": "From here every record is incident-level across 77 community areas — real monthly counts, and every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "CPD CLEAR",
+    "methodRecentSub": "2003–2026 · by community area, month by month · real incident locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location (block-level). 88.6% of records map to a community area — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2002) and CPD incident data (2003+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which community area is Chicago's safest?",
+    "sourceLine": "Data: Chicago Police Department via data.cityofchicago.org · block-level locations · modified from its original source",
+    "coverageText": "88.6% of records mapped to a community area · pre-2003 counted citywide",
+    "creditsSources": "Sources: Chicago Police Department (CLEAR) incident data via data.cityofchicago.org (2001–present) & FBI UCR (1986–2002) via the FBI Crime Data Explorer. Community area boundaries: City of Chicago. Data modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago; the City makes no claims as to content, accuracy, timeliness, or completeness."
+  },
+  "historyNotes": [
+    {
+      "atYear": 1991,
+      "text": "1991: the peak — 320,332 crimes reported in one year, 86,945 of them violent."
+    },
+    {
+      "atYear": 1996,
+      "text": "The early-'90s peak holds through mid-decade — then the long decline begins."
+    },
+    {
+      "atYear": 2000,
+      "text": "By 2002, reports fall to 192,221 — down 40% from the 1991 peak."
+    }
+  ],
+  "annotations": [
+    {
+      "atMonth": "2003-08",
+      "text": "August 2003 — the busiest month in the modern record: 44,271 reports citywide."
+    },
+    {
+      "atMonth": "2006-04",
+      "text": "Every dot is a real reported incident location — anonymized to the block by the City of Chicago."
+    },
+    {
+      "atMonth": "2013-06",
+      "text": "Austin — Chicago's busiest community area for Group A crime. Even here, reports fell 62% between 2003 and 2025.",
+      "beat": "AUSTIN"
+    },
+    {
+      "atMonth": "2020-10",
+      "text": "The Loop fell only 10% since 2003 — the smallest decline of any community area.",
+      "beat": "LOOP"
+    },
+    {
+      "atMonth": "2025-02",
+      "text": "Citywide, reports halved: 475,949 in 2003 → 237,497 in 2025. Every one of the 77 community areas fell."
+    }
+  ]
+}

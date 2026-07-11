@@ -1,0 +1,86 @@
+{
+  "slug": "seattle-wa",
+  "datasetDir": "data/seattle-wa",
+  "title": "Seattle · Four Decades of Crime",
+  "subtitle": "FBI UCR 1985–2016 + SPD NIBRS 2017–2026 · by neighborhood · real incident locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/seattle-wa-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "theme": {
+    "colors": {
+      "bg": "#04080c",
+      "beatFill": "#0a141c",
+      "beatStroke": "rgba(120,170,205,0.25)",
+      "panelStroke": "rgba(120,170,205,0.22)",
+      "grid": "rgba(120,170,205,0.13)",
+      "ink": "#e9f2fa",
+      "inkDim": "#a3b8cc",
+      "inkFaint": "#6b8299"
+    },
+    "catColors": {
+      "persons": "#ff4d6d",
+      "property": "#38bdf8",
+      "society": "#ffd166",
+      "other": "#64748b"
+    }
+  },
+  "copy": {
+    "cityName": "Seattle",
+    "regionNoun": "neighborhood",
+    "chapter2Kicker": "CHAPTER 2 · 2017–2026 · SPD NIBRS",
+    "chapter2Title": "The map comes alive — by neighborhood",
+    "chapter2Caption": "Live monthly reports across 58 MCPP neighborhoods. Every dot is a real reported offense location (block-level, sampled).",
+    "transitionKicker": "2017 · SPD NEIGHBORHOOD DETAIL BEGINS",
+    "transitionTitle": "The map comes alive",
+    "transitionDesc": "From here the data is incident-level across 58 neighborhoods — real monthly counts, and every dot is a real reported offense location, anonymized to the block.",
+    "methodRecentTag": "SPD NIBRS",
+    "methodRecentSub": "2017–2026 · by neighborhood, month by month · real incident locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported offense location (block-level). Neighborhood detail begins 2017 — earlier records are counted, never guessed onto the map.",
+    "methodFootnote": "FBI UCR (through 2016) and SPD NIBRS (2017+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which neighborhood is Seattle's safest?",
+    "sourceLine": "Data: Seattle Police Department via data.seattle.gov (Public Domain) · some locations redacted by SPD — counted, not plotted",
+    "coverageText": "98.4% of 2017+ records mapped to a neighborhood · earlier years counted citywide",
+    "creditsSources": "Sources: Seattle Police Department Crime Data (2008–present, Public Domain) via data.seattle.gov & FBI UCR (1985–2016) via the FBI Crime Data Explorer. Neighborhood boundaries: Seattle MCPP (Micro-Community Policing Plans). Some incident locations are redacted by SPD; those records are counted but never plotted."
+  },
+  "historyNotes": [
+    {
+      "atYear": 1987,
+      "text": "1987: the peak — 73,369 crimes reported in a single year."
+    },
+    {
+      "atYear": 1990,
+      "text": "1990: violent crime peaks at 7,780 reports — then begins a long decline."
+    },
+    {
+      "atYear": 2014,
+      "text": "By 2016, total reports fall to 42,845 — about 42% below the 1987 peak."
+    }
+  ],
+  "annotations": [
+    {
+      "atMonth": "2017-03",
+      "text": "Every dot is a real reported offense location — anonymized to the block by SPD. Redacted locations are counted, never plotted."
+    },
+    {
+      "atMonth": "2020-05",
+      "text": "May 2020 is the highest month on record — 12,536 reports, driven by a property-crime spike (10,186 vs 4,715 in April)."
+    },
+    {
+      "atMonth": "2022-06",
+      "text": "Downtown Commercial is Seattle's busiest area for Group A crime — yet reports here fell 45% between 2017 and 2025.",
+      "beat": "DOWNTOWN COMMERCIAL"
+    },
+    {
+      "atMonth": "2024-08",
+      "text": "Capitol Hill runs against the citywide trend — up about 15% since 2017.",
+      "beat": "CAPITOL HILL"
+    },
+    {
+      "atMonth": "2025-08",
+      "text": "Citywide, reports fell about 12% from 2017 to 2025 (86,919 → 76,917)."
+    }
+  ]
+}

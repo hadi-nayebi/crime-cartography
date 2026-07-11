@@ -4,6 +4,10 @@ import { CAT_COLORS, CAT_LABELS, GROUP_A, COLORS, FONT_MONO } from "../theme";
 interface Props {
   opacity: number;
   perDot: number;
+  /** true when dots are REAL sampled incident locations (block-level). */
+  realPoints?: boolean;
+  /** label for the non-Group-A context row (dataset-specific). */
+  otherLabel?: string;
 }
 
 const RISE = "#ff3b5c";
@@ -12,7 +16,7 @@ const FALL = "#36e07a";
 // Persistent legend for the granular era. Decodes every glyph on screen so any
 // single frame is self-explanatory: category colors, what a dot means (density,
 // NOT a location), and the up/down trend arrows.
-export const Legend: React.FC<Props> = ({ opacity, perDot }) => {
+export const Legend: React.FC<Props> = ({ opacity, perDot, realPoints, otherLabel }) => {
   if (opacity <= 0.001) return null;
   return (
     <div
@@ -36,7 +40,7 @@ export const Legend: React.FC<Props> = ({ opacity, perDot }) => {
       {GROUP_A.map((cat) => (
         <Row key={cat} color={CAT_COLORS[cat]} label={CAT_LABELS[cat]} />
       ))}
-      <Row color={CAT_COLORS.other} label="Local / ordinance (context)" dim />
+      <Row color={CAT_COLORS.other} label={otherLabel ?? "Other (context)"} dim />
 
       <div style={{ height: 1, background: "rgba(125,145,175,0.18)", margin: "10px 0" }} />
 
@@ -47,7 +51,9 @@ export const Legend: React.FC<Props> = ({ opacity, perDot }) => {
           <Dot c={CAT_COLORS.society} />
         </span>
         <span style={{ fontSize: 13.5, color: COLORS.inkDim }}>
-          1 dot ≈ {perDot} incidents — spread to show density, not a location
+          {realPoints
+            ? "each dot = a real reported incident (block-level, sampled)"
+            : `1 dot ≈ ${perDot} incidents — spread to show density, not a location`}
         </span>
       </div>
 

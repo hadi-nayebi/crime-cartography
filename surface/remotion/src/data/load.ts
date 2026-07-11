@@ -7,6 +7,7 @@ import type {
   FeedItem,
   HistoryFile,
   NeighborhoodMap,
+  PointsFile,
   Summary,
   TimelineFile,
 } from "./types";
@@ -50,7 +51,14 @@ export async function loadBundle(
   } catch {
     neighborhoods = null;
   }
-  return { beats, timeline, feed, summary, history, neighborhoods };
+  // points.json is optional (sampled REAL incident coordinates, block-level).
+  let points: PointsFile | null = null;
+  try {
+    points = await loadJson<PointsFile>(`${base}/points.json`, signal);
+  } catch {
+    points = null;
+  }
+  return { beats, timeline, feed, summary, history, neighborhoods, points };
 }
 
 // ---- Projection ----------------------------------------------------------

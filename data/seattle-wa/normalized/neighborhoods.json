@@ -1,0 +1,242 @@
+{
+  "source": "Seattle MCPP (official)",
+  "sourceUrl": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/ArcGIS/rest/services/MCPP/FeatureServer/0/query?where=1=1&outFields=*&f=geojson",
+  "hub": "https://data.seattle.gov/",
+  "fetchedAt": "2026-07-11T03:30:06.779Z",
+  "license": "Public Domain",
+  "method": "identity — SPD crime records carry the official MCPP neighborhood name verbatim; no spatial join or approximation is involved",
+  "map": {
+    "ALASKA JUNCTION": {
+      "name": "Alaska Junction",
+      "approx": false
+    },
+    "ALKI": {
+      "name": "Alki",
+      "approx": false
+    },
+    "BALLARD NORTH": {
+      "name": "Ballard North",
+      "approx": false
+    },
+    "DOWNTOWN COMMERCIAL": {
+      "name": "Downtown Commercial",
+      "approx": false
+    },
+    "BALLARD SOUTH": {
+      "name": "Ballard South",
+      "approx": false
+    },
+    "BELLTOWN": {
+      "name": "Belltown",
+      "approx": false
+    },
+    "BITTERLAKE": {
+      "name": "Bitterlake",
+      "approx": false
+    },
+    "BRIGHTON/DUNLAP": {
+      "name": "Brighton/Dunlap",
+      "approx": false
+    },
+    "CENTRAL AREA/SQUIRE PARK": {
+      "name": "Central Area/Squire Park",
+      "approx": false
+    },
+    "HILLMAN CITY": {
+      "name": "Hillman City",
+      "approx": false
+    },
+    "CLAREMONT/RAINIER VISTA": {
+      "name": "Claremont/Rainier Vista",
+      "approx": false
+    },
+    "COLUMBIA CITY": {
+      "name": "Columbia City",
+      "approx": false
+    },
+    "EASTLAKE - EAST": {
+      "name": "Eastlake - East",
+      "approx": false
+    },
+    "EASTLAKE - WEST": {
+      "name": "Eastlake - West",
+      "approx": false
+    },
+    "COMMERCIAL DUWAMISH": {
+      "name": "Commercial Duwamish",
+      "approx": false
+    },
+    "COMMERCIAL HARBOR ISLAND": {
+      "name": "Commercial Harbor Island",
+      "approx": false
+    },
+    "FAUNTLEROY SW": {
+      "name": "Fauntleroy Sw",
+      "approx": false
+    },
+    "FIRST HILL": {
+      "name": "First Hill",
+      "approx": false
+    },
+    "FREMONT": {
+      "name": "Fremont",
+      "approx": false
+    },
+    "GENESEE": {
+      "name": "Genesee",
+      "approx": false
+    },
+    "HIGH POINT": {
+      "name": "High Point",
+      "approx": false
+    },
+    "MORGAN": {
+      "name": "Morgan",
+      "approx": false
+    },
+    "GEORGETOWN": {
+      "name": "Georgetown",
+      "approx": false
+    },
+    "GREENWOOD": {
+      "name": "Greenwood",
+      "approx": false
+    },
+    "MADISON PARK": {
+      "name": "Madison Park",
+      "approx": false
+    },
+    "HIGHLAND PARK": {
+      "name": "Highland Park",
+      "approx": false
+    },
+    "LAKECITY": {
+      "name": "Lakecity",
+      "approx": false
+    },
+    "LAKEWOOD/SEWARD PARK": {
+      "name": "Lakewood/Seward Park",
+      "approx": false
+    },
+    "MOUNT BAKER": {
+      "name": "Mount Baker",
+      "approx": false
+    },
+    "MAGNOLIA": {
+      "name": "Magnolia",
+      "approx": false
+    },
+    "MONTLAKE/PORTAGE BAY": {
+      "name": "Montlake/Portage Bay",
+      "approx": false
+    },
+    "MID BEACON HILL": {
+      "name": "Mid Beacon Hill",
+      "approx": false
+    },
+    "MILLER PARK": {
+      "name": "Miller Park",
+      "approx": false
+    },
+    "NEW HOLLY": {
+      "name": "New Holly",
+      "approx": false
+    },
+    "NORTH ADMIRAL": {
+      "name": "North Admiral",
+      "approx": false
+    },
+    "QUEEN ANNE": {
+      "name": "Queen Anne",
+      "approx": false
+    },
+    "NORTH BEACON HILL": {
+      "name": "North Beacon Hill",
+      "approx": false
+    },
+    "PIGEON POINT": {
+      "name": "Pigeon Point",
+      "approx": false
+    },
+    "RAINIER BEACH": {
+      "name": "Rainier Beach",
+      "approx": false
+    },
+    "NORTH DELRIDGE": {
+      "name": "North Delridge",
+      "approx": false
+    },
+    "UNIVERSITY": {
+      "name": "University",
+      "approx": false
+    },
+    "PIONEER SQUARE": {
+      "name": "Pioneer Square",
+      "approx": false
+    },
+    "NORTHGATE": {
+      "name": "Northgate",
+      "approx": false
+    },
+    "SODO": {
+      "name": "Sodo",
+      "approx": false
+    },
+    "PHINNEY RIDGE": {
+      "name": "Phinney Ridge",
+      "approx": false
+    },
+    "RAINIER VIEW": {
+      "name": "Rainier View",
+      "approx": false
+    },
+    "SANDPOINT": {
+      "name": "Sandpoint",
+      "approx": false
+    },
+    "ROOSEVELT/RAVENNA": {
+      "name": "Roosevelt/Ravenna",
+      "approx": false
+    },
+    "ROXHILL/WESTWOOD/ARBOR HEIGHTS": {
+      "name": "Roxhill/Westwood/Arbor Heights",
+      "approx": false
+    },
+    "SLU/CASCADE": {
+      "name": "Slu/Cascade",
+      "approx": false
+    },
+    "SOUTH BEACON HILL": {
+      "name": "South Beacon Hill",
+      "approx": false
+    },
+    "SOUTH PARK": {
+      "name": "South Park",
+      "approx": false
+    },
+    "WALLINGFORD": {
+      "name": "Wallingford",
+      "approx": false
+    },
+    "SOUTH DELRIDGE": {
+      "name": "South Delridge",
+      "approx": false
+    },
+    "CAPITOL HILL": {
+      "name": "Capitol Hill",
+      "approx": false
+    },
+    "MADRONA/LESCHI": {
+      "name": "Madrona/Leschi",
+      "approx": false
+    },
+    "JUDKINS PARK/NORTH BEACON HILL": {
+      "name": "Judkins Park/North Beacon Hill",
+      "approx": false
+    },
+    "CHINATOWN/INTERNATIONAL DISTRICT": {
+      "name": "Chinatown/International District",
+      "approx": false
+    }
+  }
+}

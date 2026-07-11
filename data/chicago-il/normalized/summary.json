@@ -1,0 +1,47 @@
+{
+  "slug": "chicago-il",
+  "title": "Chicago \u00b7 IL",
+  "source": {
+    "records": "https://data.cityofchicago.org/resource/ijzp-q8t2.json",
+    "beats": "https://data.cityofchicago.org/resource/igwz-8jzy.geojson",
+    "hub": "https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2"
+  },
+  "fetchedAt": "2026-07-11T03:32:09.266Z",
+  "dateMin": "2003-01-01",
+  "dateMax": "2026-06-30",
+  "months": 282,
+  "totalRecords": 8590211,
+  "placedRecords": 7615113,
+  "unplacedRecords": 975098,
+  "coveragePct": 88.6,
+  "unplacedBeats": {
+    "pre-2003": 972806,
+    "no-area": 1594,
+    "partial-2026-07": 698
+  },
+  "catTotals": {
+    "persons": 2314826,
+    "property": 4661644,
+    "society": 1076991,
+    "other": 536750
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff3b47"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffb020"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#2dd4bf"
+    },
+    "other": {
+      "label": "Other / non-criminal",
+      "color": "#78716c"
+    }
+  },
+  "beatCount": 77
+}

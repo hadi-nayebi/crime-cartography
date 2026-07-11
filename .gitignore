@@ -28,3 +28,4 @@ data/**/raw/*
 .claude/.tmp/
 .claude/memory/
 /tmp/
+.hn/

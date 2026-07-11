@@ -4,14 +4,27 @@ import { COLORS, FONT_MONO, FONT_SANS } from "../theme";
 
 interface Props {
   durationInFrames: number;
-  ucrAnnual?: number; // 2022 UCR Violent+Property per year (as shown in Ch1)
+  ucrAnnual?: number; // last history-era UCR Violent+Property per year (as shown in Ch1)
   ucrMonthly?: number; // same, divided by 12
-  nibrsMonthly?: number; // NIBRS Group A per month (granular era)
+  nibrsMonthly?: number; // recent-era Group A per month
+  kicker?: string; // e.g. "2023 · GRPD NIBRS DATA BEGINS"
+  title?: string; // e.g. "The map comes alive"
+  desc?: string; // one-paragraph what-changes explanation
+  lastHistoryYear?: number; // for the bridge sentence, e.g. 2022
 }
 
 // Bridges the FBI-UCR history era and the granular GRPD/NIBRS era. Honest about
 // the taxonomy change and why the map gains detail in 2023.
-export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrAnnual, ucrMonthly, nibrsMonthly }) => {
+export const EraTransition: React.FC<Props> = ({
+  durationInFrames,
+  ucrAnnual,
+  ucrMonthly,
+  nibrsMonthly,
+  kicker,
+  title,
+  desc,
+  lastHistoryYear,
+}) => {
   const frame = useCurrentFrame();
   const fadeIn = interpolate(frame, [0, 18], [0, 1], {
     extrapolateLeft: "clamp",
@@ -48,7 +61,7 @@ export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrAnnual, uc
           marginBottom: 18,
         }}
       >
-        2023 · GRPD NIBRS DATA BEGINS
+        {kicker ?? "THE DETAILED RECORD BEGINS"}
       </div>
       <div
         style={{
@@ -61,7 +74,7 @@ export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrAnnual, uc
           lineHeight: 1.1,
         }}
       >
-        The map comes alive
+        {title ?? "The map comes alive"}
       </div>
       <div
         style={{
@@ -74,8 +87,8 @@ export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrAnnual, uc
           lineHeight: 1.45,
         }}
       >
-        From here the data is incident-level and per police beat — four NIBRS
-        categories, real monthly counts, distributed as density within each beat.
+        {desc ??
+          "From here the data is incident-level and per district — real monthly counts by category."}
       </div>
 
       {/* explicit scale bridge: converts Ch1's per-YEAR numbers to Ch2's per-MONTH
@@ -99,7 +112,7 @@ export const EraTransition: React.FC<Props> = ({ durationInFrames, ucrAnnual, uc
           <span style={{ color: COLORS.ink, fontWeight: 700 }}>
             Reading the new numbers:
           </span>{" "}
-          in 2022 UCR logged about{" "}
+          in {lastHistoryYear ?? "the last UCR year"} UCR logged about{" "}
           <span style={{ color: COLORS.ink }}>{Math.round(ucrAnnual / 100) * 100}/year</span>{" "}
           Violent + Property — roughly{" "}
           <span style={{ color: COLORS.ink }}>{Math.round(ucrMonthly)}/month</span>.
