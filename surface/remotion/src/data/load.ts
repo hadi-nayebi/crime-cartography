@@ -10,6 +10,7 @@ import type {
   PointsFile,
   Summary,
   TimelineFile,
+  TrendFile,
 } from "./types";
 import { CATS, GROUP_A } from "../theme";
 
@@ -58,7 +59,14 @@ export async function loadBundle(
   } catch {
     points = null;
   }
-  return { beats, timeline, feed, summary, history, neighborhoods, points };
+  // trend.json is optional (full long-arc annual series to the present).
+  let trend: TrendFile | null = null;
+  try {
+    trend = await loadJson<TrendFile>(`${base}/trend.json`, signal);
+  } catch {
+    trend = null;
+  }
+  return { beats, timeline, feed, summary, history, neighborhoods, points, trend };
 }
 
 // ---- Projection ----------------------------------------------------------

@@ -1,0 +1,11 @@
+{
+  "renderedAt": "2026-07-11T14:42:29Z",
+  "commit": "448df78ca501ca9cba65bcd8386647b93595f93d",
+  "datasetFetchedAt": "2026-06-23T03:23:51.993Z",
+  "durationSec": 330.048,
+  "fps": 30,
+  "audioSrc": "audio/grand-rapids-music-sao.wav",
+  "output": "out/grand-rapids-v2.mp4",
+  "sha256": "660967f1f8aae5b2a6a7c173039c75b5101596864dd2da4859c9f3ea3594f625",
+  "remotion": "render CrimeStory --props=config.json"
+}

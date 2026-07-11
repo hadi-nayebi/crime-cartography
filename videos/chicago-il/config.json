@@ -8,6 +8,17 @@
   "emphasizeGroupA": true,
   "audioSrc": "audio/chicago-il-music-sao.wav",
   "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "area",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−51%",
+    "line": "Chicago's reported crime since 2001",
+    "sub": "Chicago Police Department incident data · fully sourced"
+  },
+  "punchline": {
+    "text": "2001 → 2025: −51%",
+    "sub": "485,969 → 237,497 recorded incidents per year · CPD"
+  },
   "theme": {
     "colors": {
       "bg": "#0a0705",
@@ -29,14 +40,14 @@
   "copy": {
     "cityName": "Chicago",
     "regionNoun": "community area",
-    "chapter2Kicker": "CHAPTER 2 · 2003–2026 · CHICAGO PD INCIDENT DATA",
-    "chapter2Title": "The map comes alive — 77 community areas",
-    "chapter2Caption": "Live monthly reports by community area. Every dot is a real reported incident location (block-level, sampled).",
-    "transitionKicker": "2003 · INCIDENT-LEVEL DATA BEGINS",
-    "transitionTitle": "The map comes alive",
-    "transitionDesc": "From here every record is incident-level across 77 community areas — real monthly counts, and every dot a real reported location, anonymized to the block.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · CPD INCIDENT DATA",
+    "chapter2Title": "Now — up close, 77 community areas",
+    "chapter2Caption": "Monthly reports by community area, 2021–2026. Every dot is a real reported incident location (block-level, sampled).",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 77 community areas — every dot a real reported location, anonymized to the block.",
     "methodRecentTag": "CPD CLEAR",
-    "methodRecentSub": "2003–2026 · by community area, month by month · real incident locations",
+    "methodRecentSub": "the last five years · by community area, month by month · real locations",
     "methodDotsHeadline": "Real dots, real places",
     "methodDotsSub": "Every dot is a real reported incident location (block-level). 88.6% of records map to a community area — the rest counted, disclosed, never invented.",
     "methodFootnote": "FBI UCR (through 2002) and CPD incident data (2003+) are different measures — shown as two chapters, not one line.",
@@ -56,31 +67,39 @@
     },
     {
       "atYear": 2000,
-      "text": "By 2002, reports fall to 192,221 — down 40% from the 1991 peak."
+      "text": "By 2000, reports are down 34% from the 1991 peak — and the FBI measure ends here."
+    },
+    {
+      "atYear": 2013,
+      "text": "The fall continues under the city's own fuller count: every one of the 77 community areas declined from 2003 to 2025."
+    },
+    {
+      "atYear": 2021,
+      "text": "2025 closes at 237,497 — half of 2001. The last five years come next, up close."
     }
   ],
   "annotations": [
     {
-      "atMonth": "2003-08",
-      "text": "August 2003 — the busiest month in the modern record: 44,271 reports citywide."
-    },
-    {
-      "atMonth": "2006-04",
+      "atMonth": "2021-10",
       "text": "Every dot is a real reported incident location — anonymized to the block by the City of Chicago."
     },
     {
-      "atMonth": "2013-06",
-      "text": "Austin — Chicago's busiest community area for Group A crime. Even here, reports fell 62% between 2003 and 2025.",
+      "atMonth": "2023-08",
+      "text": "August 2023 — the busiest month of the last five years: 24,243 reports citywide."
+    },
+    {
+      "atMonth": "2024-03",
+      "text": "Austin is still Chicago's busiest community area for Group A crime — but Near North Side is closing the gap.",
       "beat": "AUSTIN"
     },
     {
-      "atMonth": "2020-10",
-      "text": "The Loop fell only 10% since 2003 — the smallest decline of any community area.",
-      "beat": "LOOP"
+      "atMonth": "2025-04",
+      "text": "The long fall has flattened: 240,091 reports in 2022 → 237,497 in 2025."
     },
     {
-      "atMonth": "2025-02",
-      "text": "Citywide, reports halved: 475,949 in 2003 → 237,497 in 2025. Every one of the 77 community areas fell."
+      "atMonth": "2025-12",
+      "text": "Edison Park — fewest reported Group A crimes of all 77 areas over these five years.",
+      "beat": "EDISON PARK"
     }
   ]
 }

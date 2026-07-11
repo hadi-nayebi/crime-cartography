@@ -103,6 +103,22 @@ export interface PointsFile {
   pts: Array<Array<[number, number, number]>>;
 }
 
+// The FULL long-arc annual series (earliest sourced year → last complete year),
+// joining FBI UCR with the city's own incident data at an explicit labeled seam.
+export interface TrendEra {
+  key: "fbi" | "incident";
+  label: string;
+  from: number;
+  to: number;
+}
+export interface TrendFile {
+  note: string;
+  fetchedAt: string;
+  seamYear: number;
+  eras: TrendEra[];
+  years: Array<{ year: number; total: number; era: string }>;
+}
+
 export interface Bundle {
   beats: BeatsFile;
   timeline: TimelineFile;
@@ -111,6 +127,7 @@ export interface Bundle {
   history: HistoryFile | null; // FBI UCR deep-history era (optional per dataset)
   neighborhoods: NeighborhoodMap | null; // resident-known locator names (optional)
   points: PointsFile | null; // sampled REAL coordinates (optional per dataset)
+  trend: TrendFile | null; // full arc to present (optional per dataset)
 }
 
 export interface Annotation {
@@ -180,6 +197,14 @@ export interface StoryConfig {
   copy?: CityCopy; // city-specific strings (engine has neutral fallbacks)
   theme?: ThemeOverride; // city-specific palette
   repoUrl?: string; // shown in credits
+  /** chart style for the long-arc chapter — per-city A/B variation. */
+  trendStyle?: "bars" | "area" | "lollipop";
+  /** cold-open hook: a verified shocking stat shown in the first seconds. */
+  hook?: { stat: string; line: string; sub?: string };
+  /** verified net-change punchline at the end of the long-arc chapter. */
+  punchline?: { text: string; sub: string };
+  /** map chapter covers at most this many trailing months (default 60 = 5yr). */
+  mapWindowMonths?: number;
 }
 
 // After calculateMetadata, the bundle is attached to the props. The index

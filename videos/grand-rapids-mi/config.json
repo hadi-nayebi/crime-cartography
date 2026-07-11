@@ -8,6 +8,17 @@
   "emphasizeGroupA": true,
   "audioSrc": "audio/grand-rapids-music-sao.wav",
   "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "bars",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−51%",
+    "line": "Grand Rapids' reported crime since 1985",
+    "sub": "FBI UCR · Violent + Property · fully sourced"
+  },
+  "punchline": {
+    "text": "1985 → 2022: −51%",
+    "sub": "15,978 → 7,895 UCR crimes per year · FBI"
+  },
   "copy": {
     "cityName": "Grand Rapids",
     "regionNoun": "police beat",
@@ -25,6 +36,10 @@
     "creditsSources": "Sources: Grand Rapids Police Department crime data (2023–) & FBI UCR (2000–2022) via the City of Grand Rapids ArcGIS Hub. Beat polygons: GRPD Service Area Map. Neighborhood names: City of Grand Rapids Neighborhood Areas. Used under the City of Grand Rapids GIS Data Access & Use Constraint Agreement (provided \"as is\")."
   },
   "historyNotes": [
+    {
+      "atYear": 1991,
+      "text": "1991: violent crime peaks at 3,278 reports — the height of the early-'90s wave."
+    },
     {
       "atYear": 2013,
       "text": "Property crime fell sharply through the 2010s — from 10,942 in 2000 toward 3,869 by 2018."

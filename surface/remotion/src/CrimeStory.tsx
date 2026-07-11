@@ -21,9 +21,11 @@ import { Leaderboard } from "./components/Leaderboard";
 import { Legend } from "./components/Legend";
 import { PhaseTitle } from "./components/PhaseTitle";
 import { ColdOpen } from "./components/ColdOpen";
+import { HookOpen } from "./components/HookOpen";
 import { MethodCard } from "./components/MethodCard";
 import { SocialCue } from "./components/SocialCue";
 import { HistoryEra } from "./components/HistoryEra";
+import { FullTrend } from "./components/FullTrend";
 import { Quiz } from "./components/Quiz";
 import { EraTransition } from "./components/EraTransition";
 import { Annotation } from "./components/Annotation";
@@ -71,13 +73,37 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
   useMemo(() => applyThemeOverrides(theme), [theme]);
 
   // Hooks must run unconditionally (no early return above them).
+  // The MAP chapter covers at most mapWindowMonths trailing months (default
+  // 5 years): the long arc belongs to the trend chapter; the map answers
+  // "where is it happening NOW and how has it shifted recently".
+  const winBundle = useMemo(() => {
+    if (!bundle) return null;
+    const w = props.mapWindowMonths ?? 60;
+    const N = bundle.timeline.months.length;
+    if (N <= w) return bundle;
+    const s = N - w;
+    const months = bundle.timeline.months.slice(s);
+    const cells = Object.fromEntries(
+      Object.entries(bundle.timeline.cells).map(([k, v]) => [k, v.slice(s)]),
+    );
+    const startDate = `${months[0]}-01`;
+    return {
+      ...bundle,
+      timeline: { months, cells },
+      feed: bundle.feed.filter((f) => f.date >= startDate),
+      points: bundle.points
+        ? { ...bundle.points, months: bundle.points.months.slice(s), pts: bundle.points.pts.slice(s) }
+        : null,
+      summary: { ...bundle.summary, dateMin: startDate, months: months.length },
+    };
+  }, [bundle, props.mapWindowMonths]);
   const stats = useMemo(
-    () => (bundle ? deriveStats(bundle, WINDOW_MONTHS, emphasizeGroupA) : null),
-    [bundle, emphasizeGroupA],
+    () => (winBundle ? deriveStats(winBundle, WINDOW_MONTHS, emphasizeGroupA) : null),
+    [winBundle, emphasizeGroupA],
   );
-  const projection = useMemo(() => (bundle ? buildMapProjection(bundle) : null), [bundle]);
+  const projection = useMemo(() => (winBundle ? buildMapProjection(winBundle) : null), [winBundle]);
 
-  if (!bundle || !stats || !projection) {
+  if (!bundle || !winBundle || !stats || !projection) {
     return (
       <AbsoluteFill style={{ background: COLORS.bg, color: COLORS.ink, padding: 60 }}>
         Dataset not loaded — run scripts/sync-data.mjs and check datasetDir.
@@ -87,10 +113,24 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
 
   const monthCount = stats.months.length;
   const history = bundle.history;
-  const nYears = history ? history.years.length : 0;
-  const startYear = bundle.summary.dateMin.slice(0, 4);
-  const endYear = bundle.summary.dateMax.slice(0, 4);
-  const lastHistYear = history ? history.years[history.years.length - 1].year : undefined;
+  const trend = bundle.trend;
+  // Chapter 1 sweeps the FULL trend (to the present) when available.
+  const nYears = trend ? trend.years.length : history ? history.years.length : 0;
+  const startYear = winBundle.summary.dateMin.slice(0, 4); // map-window start
+  const endYear = winBundle.summary.dateMax.slice(0, 4);
+  // For the era-bridge card: the last FBI-measure year (seam − 1) when a full
+  // trend exists, else the FBI history file's last year.
+  const fbiEraYears = trend ? trend.years.filter((y) => y.era === "fbi") : null;
+  const lastHistYear = fbiEraYears
+    ? fbiEraYears[fbiEraYears.length - 1].year
+    : history
+      ? history.years[history.years.length - 1].year
+      : undefined;
+  const lastFbiTotal = fbiEraYears
+    ? fbiEraYears[fbiEraYears.length - 1].total
+    : history
+      ? history.years[history.years.length - 1].total
+      : undefined;
   const rawOtherLabel = bundle.summary.cats.other.label;
   const otherLabel = /context/i.test(rawOtherLabel) ? rawOtherLabel : `${rawOtherLabel} (context)`;
 
@@ -153,10 +193,12 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
     })
     .filter((x): x is NonNullable<typeof x> => x !== null);
 
-  // --- history note sequences ---
-  const histSeqs = (history ? historyNotes : [])
+  // --- history note sequences (anchored to the full-trend years when present) ---
+  const histSeqs = (trend || history ? historyNotes : [])
     .map((h) => {
-      const i = history!.years.findIndex((y) => y.year === h.atYear);
+      const i = trend
+        ? trend.years.findIndex((y) => y.year === h.atYear)
+        : history!.years.findIndex((y) => y.year === h.atYear);
       if (i < 0) return null;
       const secAt = PHASES.methodEnd + (i / nYears) * (PHASES.historyEnd - PHASES.methodEnd);
       const durFrames = Math.round(4.6 * fps);
@@ -180,8 +222,11 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           ]),
         ).sort()
       : rk.map((h) => h.name);
-  const quizStart = Math.round(92 * fps);
-  const quizDur = Math.round(52 * fps);
+  // Quiz = the commitment hook (information gap) — posed EARLY, paid off at the
+  // reveal. Research: the viewer decides in the first ~15–30s; give them a
+  // reason to stay before the first minute ends.
+  const quizStart = Math.round(35 * fps);
+  const quizDur = Math.round(45 * fps);
 
   return (
     <AbsoluteFill style={{ background: COLORS.bg, fontFamily: "sans-serif" }}>
@@ -192,7 +237,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       {/* Map backdrop — dim context in history, full in granular era */}
       <div style={{ opacity: beatContext }}>
         <MapLayer
-          bundle={bundle}
+          bundle={winBundle}
           projection={projection}
           stats={stats}
           monthFloat={gFloat}
@@ -206,9 +251,9 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
 
       {/* Incident dots (granular era): REAL sampled locations when the source
           publishes coordinates; disclosed density glyphs otherwise. */}
-      {bundle.points ? (
+      {winBundle.points ? (
         <RealPointsLayer
-          points={bundle.points}
+          points={winBundle.points}
           projection={projection}
           monthFloat={gFloat}
           windowMonths={DOT_WINDOW}
@@ -217,7 +262,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
         />
       ) : (
         <DotLayer
-          beatsByKey={bundle.beats.beats}
+          beatsByKey={winBundle.beats.beats}
           stats={stats}
           projection={projection}
           monthFloat={gFloat}
@@ -236,10 +281,21 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
         opacity={dotsOpacity}
       />
 
-      {/* History era panel */}
-      {history && historyOpacity > 0.001 && (
+      {/* Chapter 1 — the FULL long arc to the present (trend.json); the old
+          FBI-only HistoryEra remains only as a fallback for datasets without
+          a built trend. */}
+      {trend && historyOpacity > 0.001 ? (
+        <FullTrend
+          trend={trend}
+          yearFloat={yearFloat}
+          opacity={historyOpacity}
+          style={props.trendStyle}
+          accent={CAT_COLORS.property}
+          punchline={props.punchline}
+        />
+      ) : history && historyOpacity > 0.001 ? (
         <HistoryEra history={history} yearFloat={yearFloat} opacity={historyOpacity} />
-      )}
+      ) : null}
 
       {/* Chapter title strip (granular era) */}
       <PhaseTitle
@@ -258,7 +314,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           sinceYear={startYear}
           otherLabel={otherLabel}
         />
-        <Feed feed={bundle.feed} months={stats.months} monthFloat={gFloat} />
+        <Feed feed={winBundle.feed} months={stats.months} monthFloat={gFloat} />
         <Legend
           opacity={granHud}
           perDot={PER_DOT}
@@ -297,9 +353,21 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
         </Sequence>
       ))}
 
-      {/* Cold open */}
+      {/* Cold open — a verified shock-stat HOOK when configured, else title */}
       <Sequence from={0} durationInFrames={Math.round(PHASES.coldOpenEnd * fps)} layout="none">
-        <ColdOpen title={title} subtitle={subtitle} durationInFrames={Math.round(PHASES.coldOpenEnd * fps)} />
+        {props.hook ? (
+          <HookOpen
+            stat={props.hook.stat}
+            line={props.hook.line}
+            sub={props.hook.sub}
+            title={title}
+            subtitle={subtitle}
+            durationInFrames={Math.round(PHASES.coldOpenEnd * fps)}
+            accent={CAT_COLORS.property}
+          />
+        ) : (
+          <ColdOpen title={title} subtitle={subtitle} durationInFrames={Math.round(PHASES.coldOpenEnd * fps)} />
+        )}
       </Sequence>
 
       {/* Method card */}
@@ -307,6 +375,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
         <MethodCard
           summary={bundle.summary}
           history={history}
+          trend={trend}
           durationInFrames={Math.round((PHASES.methodEnd - PHASES.coldOpenEnd) * fps)}
           recentTag={copy?.methodRecentTag}
           recentSub={copy?.methodRecentSub}
@@ -332,8 +401,8 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       <Sequence from={Math.round(PHASES.historyEnd * fps)} durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)} layout="none">
         <EraTransition
           durationInFrames={Math.round((PHASES.transitionEnd - PHASES.historyEnd) * fps)}
-          ucrAnnual={history ? history.years[history.years.length - 1].total : undefined}
-          ucrMonthly={history ? history.years[history.years.length - 1].total / 12 : undefined}
+          ucrAnnual={trend ? undefined : lastFbiTotal}
+          ucrMonthly={trend ? undefined : lastFbiTotal ? lastFbiTotal / 12 : undefined}
           nibrsMonthly={monthCount > 0 ? stats.grandTotalGroupA / monthCount : undefined}
           kicker={copy?.transitionKicker}
           title={copy?.transitionTitle}
@@ -344,7 +413,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
 
       {/* Reveal */}
       <Sequence from={Math.round(PHASES.granularEnd * fps)} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} layout="none">
-        <Reveal stats={stats} summary={bundle.summary} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} />
+        <Reveal stats={stats} summary={winBundle.summary} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} />
       </Sequence>
 
       {/* Close */}

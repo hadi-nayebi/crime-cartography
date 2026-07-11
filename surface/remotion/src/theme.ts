@@ -62,9 +62,9 @@ export const FRAME = { w: 1920, h: 1080 } as const;
 // coldopen → method → history(2000–2022) → era-transition → granular(2023+) →
 // reveal → close.
 export const PHASES = {
-  coldOpenEnd: 7, // short title card — get to content fast
-  methodEnd: 30,
-  historyEnd: 150, // FBI UCR deep-history sweep
+  coldOpenEnd: 8, // HOOK: verified shock-stat punch, then title — payoff by 15s
+  methodEnd: 22, // compressed what-you're-about-to-see boxes
+  historyEnd: 150, // full long-arc trend sweep (earliest year → present)
   transitionEnd: 163, // era bridge card
   granularEnd: 292, // GRPD NIBRS granular sweep
   revealEnd: 318,

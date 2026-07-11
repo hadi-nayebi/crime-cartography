@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-11T04:24:24Z",
-  "commit": "47a8fbce324fc0c358d7799a79a6d440b5a89bc8",
+  "renderedAt": "2026-07-11T14:32:40Z",
+  "commit": "448df78ca501ca9cba65bcd8386647b93595f93d",
   "datasetFetchedAt": "2026-07-11T03:30:06.779Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/seattle-wa-music-sao.wav",
   "output": "out/seattle-wa.mp4",
-  "sha256": "f5b7a9bc0cd845d68a72a295335e8bc53480ed7b7e45c056187908090a6d6ef7",
+  "sha256": "f8097ad23d7ee174bbe225ea50bc8c18607e853e461dd1f9a1c891db3ee62ef6",
   "remotion": "render CrimeStory --props=config.json"
 }

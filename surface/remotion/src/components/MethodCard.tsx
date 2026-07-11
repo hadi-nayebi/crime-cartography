@@ -1,12 +1,14 @@
 import React from "react";
 import { interpolate, useCurrentFrame, Easing } from "remotion";
-import type { HistoryFile, Summary } from "../data/types";
+import type { HistoryFile, Summary, TrendFile } from "../data/types";
 import { fmtInt } from "../data/derive";
 import { CAT_COLORS, CAT_LABELS, CATS, COLORS, FONT_MONO, FONT_SANS } from "../theme";
 
 interface Props {
   summary: Summary;
   history: HistoryFile | null;
+  /** full long-arc series — preferred over history for the box-01 preview. */
+  trend?: TrendFile | null;
   durationInFrames: number;
   /** city-specific copy overrides (config.copy); neutral defaults otherwise. */
   recentTag?: string; // box-02 chip, e.g. "GRPD NIBRS"
@@ -25,11 +27,10 @@ function revealAt(delay: number, frame: number) {
   });
 }
 
-// Small trend sparkline drawn from the REAL history totals (per-year).
-const Sparkline: React.FC<{ history: HistoryFile | null; t: number }> = ({ history, t }) => {
+// Small trend sparkline drawn from REAL annual totals (full arc preferred).
+const Sparkline: React.FC<{ totals: number[]; t: number }> = ({ totals, t }) => {
   const W = 372;
   const H = 128;
-  const totals = (history?.years ?? []).map((y) => y.total);
   if (totals.length < 2) return <div style={{ height: H }} />;
   const max = Math.max(...totals);
   const min = Math.min(...totals);
@@ -157,6 +158,7 @@ interface Card {
 export const MethodCard: React.FC<Props> = ({
   summary,
   history,
+  trend,
   durationInFrames,
   recentTag,
   recentSub,
@@ -170,8 +172,19 @@ export const MethodCard: React.FC<Props> = ({
     extrapolateRight: "clamp",
   });
 
-  const yMin = history ? history.yearMin : Number(summary.dateMin.slice(0, 4));
-  const yMax = history ? history.yearMax : Number(summary.dateMax.slice(0, 4));
+  const arcTotals = trend
+    ? trend.years.map((y) => y.total)
+    : (history?.years ?? []).map((y) => y.total);
+  const yMin = trend
+    ? trend.years[0].year
+    : history
+      ? history.yearMin
+      : Number(summary.dateMin.slice(0, 4));
+  const yMax = trend
+    ? trend.years[trend.years.length - 1].year
+    : history
+      ? history.yearMax
+      : Number(summary.dateMax.slice(0, 4));
   const startYear = summary.dateMin.slice(0, 4);
   const endYear = summary.dateMax.slice(0, 4);
 
@@ -237,7 +250,7 @@ export const MethodCard: React.FC<Props> = ({
         {cards.map((c, i) => {
           const t = revealAt(10 + i * 12, frame);
           const visual =
-            i === 0 ? <Sparkline history={history} t={t} /> : i === 1 ? <HeatGrid t={t} /> : <DensityGlyph t={t} />;
+            i === 0 ? <Sparkline totals={arcTotals} t={t} /> : i === 1 ? <HeatGrid t={t} /> : <DensityGlyph t={t} />;
           return (
             <div
               key={c.index}

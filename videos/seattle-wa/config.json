@@ -8,6 +8,17 @@
   "emphasizeGroupA": true,
   "audioSrc": "audio/seattle-wa-music-sao.wav",
   "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "lollipop",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−48%",
+    "line": "Seattle's reported crime, from the 1987 peak to 2007",
+    "sub": "FBI UCR · but the last five years tell a different story"
+  },
+  "punchline": {
+    "text": "1987: 73,369 → 2007: 37,810",
+    "sub": "−48% under the same FBI measure · the plateau that followed is the next chapter"
+  },
   "theme": {
     "colors": {
       "bg": "#04080c",
@@ -29,14 +40,14 @@
   "copy": {
     "cityName": "Seattle",
     "regionNoun": "neighborhood",
-    "chapter2Kicker": "CHAPTER 2 · 2017–2026 · SPD NIBRS",
-    "chapter2Title": "The map comes alive — by neighborhood",
-    "chapter2Caption": "Live monthly reports across 58 MCPP neighborhoods. Every dot is a real reported offense location (block-level, sampled).",
-    "transitionKicker": "2017 · SPD NEIGHBORHOOD DETAIL BEGINS",
-    "transitionTitle": "The map comes alive",
-    "transitionDesc": "From here the data is incident-level across 58 neighborhoods — real monthly counts, and every dot is a real reported offense location, anonymized to the block.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · SPD NIBRS",
+    "chapter2Title": "Now — up close, 58 neighborhoods",
+    "chapter2Caption": "Monthly reports by MCPP neighborhood, 2021–2026. Every dot is a real reported offense location (block-level, sampled).",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 58 neighborhoods — every dot a real reported offense location, anonymized to the block.",
     "methodRecentTag": "SPD NIBRS",
-    "methodRecentSub": "2017–2026 · by neighborhood, month by month · real incident locations",
+    "methodRecentSub": "the last five years · by neighborhood, month by month · real locations",
     "methodDotsHeadline": "Real dots, real places",
     "methodDotsSub": "Every dot is a real reported offense location (block-level). Neighborhood detail begins 2017 — earlier records are counted, never guessed onto the map.",
     "methodFootnote": "FBI UCR (through 2016) and SPD NIBRS (2017+) are different measures — shown as two chapters, not one line.",
@@ -55,32 +66,40 @@
       "text": "1990: violent crime peaks at 7,780 reports — then begins a long decline."
     },
     {
-      "atYear": 2014,
-      "text": "By 2016, total reports fall to 42,845 — about 42% below the 1987 peak."
+      "atYear": 2004,
+      "text": "By 2007 reports are down 48% from the 1987 peak — then the FBI measure ends."
+    },
+    {
+      "atYear": 2013,
+      "text": "The 2010s plateau: under SPD's broader count, reports hover near 80,000 a year."
+    },
+    {
+      "atYear": 2021,
+      "text": "2020 spikes to the highest single month on record — the last five years come next, up close."
     }
   ],
   "annotations": [
     {
-      "atMonth": "2017-03",
+      "atMonth": "2021-08",
       "text": "Every dot is a real reported offense location — anonymized to the block by SPD. Redacted locations are counted, never plotted."
     },
     {
-      "atMonth": "2020-05",
-      "text": "May 2020 is the highest month on record — 12,536 reports, driven by a property-crime spike (10,186 vs 4,715 in April)."
+      "atMonth": "2021-11",
+      "text": "October 2021 — the busiest month of the last five years: 7,790 reports."
     },
     {
-      "atMonth": "2022-06",
-      "text": "Downtown Commercial is Seattle's busiest area for Group A crime — yet reports here fell 45% between 2017 and 2025.",
-      "beat": "DOWNTOWN COMMERCIAL"
-    },
-    {
-      "atMonth": "2024-08",
-      "text": "Capitol Hill runs against the citywide trend — up about 15% since 2017.",
+      "atMonth": "2023-06",
+      "text": "Capitol Hill has overtaken Downtown as Seattle's busiest area for Group A crime.",
       "beat": "CAPITOL HILL"
     },
     {
-      "atMonth": "2025-08",
-      "text": "Citywide, reports fell about 12% from 2017 to 2025 (86,919 → 76,917)."
+      "atMonth": "2024-09",
+      "text": "South Park: reported crime nearly halved since 2022 (−46%) — the city's biggest drop.",
+      "beat": "SOUTH PARK"
+    },
+    {
+      "atMonth": "2025-11",
+      "text": "Citywide, reports fell 12% from 2022 to 2025 (87,026 → 76,917)."
     }
   ]
 }

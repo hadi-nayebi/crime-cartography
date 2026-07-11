@@ -2,7 +2,7 @@
   "status": "draft",
   "url": "",
   "videoId": "",
-  "title": "Grand Rapids Crime, 2000–2026 — How It Rose, Fell, and Moved | Data Map",
+  "title": "Grand Rapids Crime, 1985–2026 — How It Rose, Fell, and Moved | Data Map",
   "categoryId": "27",
   "privacyStatus": "private",
   "tags": [
@@ -17,16 +17,37 @@
     "crime statistics",
     "data journalism"
   ],
-  "description": "Every reported crime in Grand Rapids, Michigan — mapped and counted from 2000 to 2026.\n\nThis is a fully sourced, reproducible data visualization. No incident is invented and no dot is a fabricated location: figures come straight from the FBI UCR (2000–2022) and the Grand Rapids Police Department's NIBRS open data (2023–2026), aggregated by police beat. Where the data has no coordinates, dots show density within a beat — how many, never exactly where. Coverage and caveats are shown on screen.\n\n▶ CHAPTERS\n0:00  Intro\n0:07  What you're about to see\n0:30  Chapter 1 — 2000–2022: the long trend\n2:30  2023: the map comes alive\n2:43  Chapter 2 — neighborhood by neighborhood, 2023–2026\n4:52  The busiest & safest neighborhoods\n5:18  Sources & credits\n\n▶ DATA SOURCES\n• Grand Rapids Police Department crime data (2023–), City of Grand Rapids ArcGIS Hub\n• FBI Uniform Crime Reporting / Crime Data Explorer (2000–2022), ORI MI4143600\n• GRPD Service Area (beat) polygons & City of Grand Rapids Neighborhood Areas\nUsed under the City of Grand Rapids GIS Data Access & Use Constraint Agreement (provided \"as is\").\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/grand-rapids-mi\n\nMusic generated with Stable Audio Open (Stability AI).\n\nIf this was worth a look, please Like, Subscribe, and Share it with someone from Grand Rapids.\n\n#GrandRapids #CrimeData #DataVisualization #OpenData",
+  "description": "Every reported crime in Grand Rapids, Michigan — mapped and counted from 1985 to 2026.\n\nThis is a fully sourced, reproducible data visualization. No incident is invented and no dot is a fabricated location: figures come straight from the FBI UCR (1985–2022) and the Grand Rapids Police Department's NIBRS open data (2023–2026), aggregated by police beat. Where the data has no coordinates, dots show density within a beat — how many, never exactly where. Coverage and caveats are shown on screen.\n\n▶ CHAPTERS\n0:00  Hook — crime halved since 1985\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc, 1985–2025\n2:30  2023: the map comes alive\n2:43  Chapter 2 — neighborhood by neighborhood\n4:52  The busiest & safest neighborhoods\n5:18  Sources & credits\n\n▶ DATA SOURCES\n• Grand Rapids Police Department crime data (2023–), City of Grand Rapids ArcGIS Hub\n• FBI Uniform Crime Reporting / Crime Data Explorer (1985–2022), ORI MI4143600\n• GRPD Service Area (beat) polygons & City of Grand Rapids Neighborhood Areas\nUsed under the City of Grand Rapids GIS Data Access & Use Constraint Agreement (provided \"as is\").\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/grand-rapids-mi\n\nMusic generated with Stable Audio Open (Stability AI).\n\nIf this was worth a look, please Like, Subscribe, and Share it with someone from Grand Rapids.\n\n#GrandRapids #CrimeData #DataVisualization #OpenData",
   "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/grand-rapids-mi",
   "chapters": [
-    { "t": "0:00", "label": "Intro" },
-    { "t": "0:07", "label": "What you're about to see" },
-    { "t": "0:30", "label": "Chapter 1 — 2000–2022: the long trend" },
-    { "t": "2:30", "label": "2023: the map comes alive" },
-    { "t": "2:43", "label": "Chapter 2 — neighborhood by neighborhood" },
-    { "t": "4:52", "label": "The busiest & safest neighborhoods" },
-    { "t": "5:18", "label": "Sources & credits" }
+    {
+      "t": "0:00",
+      "label": "Hook — crime halved since 1985"
+    },
+    {
+      "t": "0:08",
+      "label": "What you're about to see"
+    },
+    {
+      "t": "0:22",
+      "label": "Chapter 1 — the long arc, 1985–2025"
+    },
+    {
+      "t": "2:30",
+      "label": "2023: the map comes alive"
+    },
+    {
+      "t": "2:43",
+      "label": "Chapter 2 — neighborhood by neighborhood"
+    },
+    {
+      "t": "4:52",
+      "label": "The busiest & safest neighborhoods"
+    },
+    {
+      "t": "5:18",
+      "label": "Sources & credits"
+    }
   ],
   "_note": "Draft publish metadata for videos/grand-rapids-mi. The upload script (P3) will read this to create the YouTube listing; url/videoId get written back after upload. Chapter timestamps mirror theme.ts PHASES; update both together."
 }
