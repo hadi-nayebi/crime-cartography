@@ -1,0 +1,105 @@
+{
+  "slug": "philadelphia-pa",
+  "datasetDir": "data/philadelphia-pa",
+  "title": "Philadelphia · Forty Years of Crime",
+  "subtitle": "FBI UCR 1985–2005 + PPD offenses 2006–2026 · 21 districts, neighborhood names · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/philadelphia-pa-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "area",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−32%",
+    "line": "Philadelphia's recorded offenses since 2006",
+    "sub": "3.5 million records · PPD via OpenDataPhilly"
+  },
+  "punchline": {
+    "text": "2006 → 2025: −32%",
+    "sub": "223,356 → 152,563 recorded offenses per year · PPD"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#0a0808",
+      "beatFill": "#131010",
+      "beatStroke": "rgba(180,160,200,0.22)",
+      "panelStroke": "rgba(180,160,200,0.2)",
+      "grid": "rgba(180,160,200,0.11)",
+      "ink": "#f3eff6",
+      "inkDim": "#b9aec6",
+      "inkFaint": "#7d7389"
+    },
+    "catColors": {
+      "persons": "#ff4338",
+      "property": "#f2a93b",
+      "society": "#7fb7ff",
+      "other": "#75717a"
+    }
+  },
+  "copy": {
+    "cityName": "Philadelphia",
+    "regionNoun": "police district",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · PPD / OPENDATAPHILLY",
+    "chapter2Title": "Now — up close, 21 police districts",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location (block-level, sampled).",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 21 police districts — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "PPD / OPENDATAPHILLY",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location (block-level). 94.3% map to a current district — retired districts counted, disclosed, never redistributed.",
+    "methodFootnote": "FBI UCR (through 2005) and PPD incident data (2006+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Philadelphia district is the safest?",
+    "sourceLine": "Data: Philadelphia Police Department via OpenDataPhilly · block-level locations · provided as-is",
+    "coverageText": "94.3% mapped to a current district · retired districts disclosed",
+    "creditsSources": "Sources: PPD incident data (2006–present) via OpenDataPhilly (City of Philadelphia license, as-is) & FBI UCR (1985–2005) via the FBI Crime Data Explorer. District boundaries: City of Philadelphia; district neighborhood labels derived from real incident locations vs the City's neighborhood layer. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    {
+      "atYear": 1985,
+      "text": "1985: 83,667 index crimes reported."
+    },
+    {
+      "atYear": 1989,
+      "text": "1989: the peak — 116,314 crimes in one year."
+    },
+    {
+      "atYear": 1999,
+      "text": "1999: violent crime peaks at 23,031 reports."
+    },
+    {
+      "atYear": 2005,
+      "text": "2005: still above 82,000 a year as the FBI era ends."
+    },
+    {
+      "atYear": 2022,
+      "text": "The modern record: down by nearly a third since 2006."
+    }
+  ],
+  "annotations": [
+    {
+      "atMonth": "2021-11",
+      "text": "Every dot is a real reported incident location — PPD via OpenDataPhilly."
+    },
+    {
+      "atMonth": "2023-08",
+      "text": "August 2023 — the busiest month of the last five years: 15,131 mapped reports."
+    },
+    {
+      "atMonth": "2024-02",
+      "text": "The 15th District — Frankford & Mayfair — Philadelphia's busiest for Group A crime.",
+      "beat": "15"
+    },
+    {
+      "atMonth": "2025-05",
+      "text": "The 18th — Cobbs Creek: down 13% since 2022, the city's biggest fall.",
+      "beat": "18"
+    },
+    {
+      "atMonth": "2026-01",
+      "text": "Citywide, recorded offenses fell 32% from 2006 to 2025 (223,356 → 152,563)."
+    }
+  ]
+}

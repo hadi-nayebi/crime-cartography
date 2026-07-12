@@ -1,0 +1,45 @@
+{
+  "slug": "washington-dc",
+  "title": "Washington \u00b7 DC",
+  "source": {
+    "records": "https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/MPD/MapServer",
+    "beats": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Administrative_Other_Boundaries_WebMercator/MapServer/17/query?where=1%3D1&outFields=NAME,NBH_NAMES,TYPE&outSR=4326&f=geojson",
+    "hub": "https://opendata.dc.gov/datasets/crime-incidents-in-2025"
+  },
+  "fetchedAt": "2026-07-12T07:11:49.150Z",
+  "dateMin": "2008-01-01",
+  "dateMax": "2026-06-30",
+  "months": 222,
+  "totalRecords": 596352,
+  "placedRecords": 591765,
+  "unplacedRecords": 4587,
+  "coveragePct": 99.2,
+  "unplacedBeats": {
+    "no-cluster": 4587
+  },
+  "catTotals": {
+    "persons": 42394,
+    "property": 553958,
+    "society": 0,
+    "other": 0
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff5d73"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#d9b26a"
+    },
+    "society": {
+      "label": "Crimes Against Society (not in DC's published feed)",
+      "color": "#7cc7ff"
+    },
+    "other": {
+      "label": "Unrecognized offense (context)",
+      "color": "#6e7887"
+    }
+  },
+  "beatCount": 46
+}

@@ -1,0 +1,174 @@
+{
+  "source": "DataSF Analysis Neighborhoods (official, 41 areas)",
+  "sourceUrl": "https://data.sfgov.org/resource/j2bu-swwd.geojson",
+  "hub": "https://data.sfgov.org/",
+  "fetchedAt": "2026-07-12T07:10:56.058Z",
+  "license": "ODC PDDL 1.0 (public-domain dedication)",
+  "method": "identity for 2018+ (wg3w rows carry the official analysis_neighborhood name verbatim). 2003–2017 (tmnf) has no neighborhood field: rows are assigned by point-in-polygon of their REAL published coordinates against the official Analysis Neighborhood polygons — real coords, official boundaries, nothing synthesized. The same point-in-polygon rescues 2018+ rows that have coordinates but a null neighborhood. Method spot-checked against DataSF's own labeling for 2019-06: 92.69% exact agreement over 10950 rows; every one of the 800 disagreements lies within 0.3 m of the labeled neighborhood's boundary — published coordinates are snapped to intersections, so points on boundary streets sit exactly on the polygon edge where either side is a valid assignment (Mission reconciles 1189 labeled vs 1189 PIP). Rows with no usable coordinates stay unplaced and are disclosed.",
+  "map": {
+    "Western Addition": {
+      "name": "Western Addition",
+      "approx": false
+    },
+    "West of Twin Peaks": {
+      "name": "West of Twin Peaks",
+      "approx": false
+    },
+    "Visitacion Valley": {
+      "name": "Visitacion Valley",
+      "approx": false
+    },
+    "Twin Peaks": {
+      "name": "Twin Peaks",
+      "approx": false
+    },
+    "South of Market": {
+      "name": "South of Market",
+      "approx": false
+    },
+    "Treasure Island": {
+      "name": "Treasure Island",
+      "approx": false
+    },
+    "Presidio Heights": {
+      "name": "Presidio Heights",
+      "approx": false
+    },
+    "Presidio": {
+      "name": "Presidio",
+      "approx": false
+    },
+    "Potrero Hill": {
+      "name": "Potrero Hill",
+      "approx": false
+    },
+    "Portola": {
+      "name": "Portola",
+      "approx": false
+    },
+    "Pacific Heights": {
+      "name": "Pacific Heights",
+      "approx": false
+    },
+    "Outer Richmond": {
+      "name": "Outer Richmond",
+      "approx": false
+    },
+    "Outer Mission": {
+      "name": "Outer Mission",
+      "approx": false
+    },
+    "Sunset/Parkside": {
+      "name": "Sunset/Parkside",
+      "approx": false
+    },
+    "Oceanview/Merced/Ingleside": {
+      "name": "Oceanview/Merced/Ingleside",
+      "approx": false
+    },
+    "North Beach": {
+      "name": "North Beach",
+      "approx": false
+    },
+    "Noe Valley": {
+      "name": "Noe Valley",
+      "approx": false
+    },
+    "Lone Mountain/USF": {
+      "name": "Lone Mountain/USF",
+      "approx": false
+    },
+    "Lincoln Park": {
+      "name": "Lincoln Park",
+      "approx": false
+    },
+    "Seacliff": {
+      "name": "Seacliff",
+      "approx": false
+    },
+    "Nob Hill": {
+      "name": "Nob Hill",
+      "approx": false
+    },
+    "Mission Bay": {
+      "name": "Mission Bay",
+      "approx": false
+    },
+    "Mission": {
+      "name": "Mission",
+      "approx": false
+    },
+    "Russian Hill": {
+      "name": "Russian Hill",
+      "approx": false
+    },
+    "Marina": {
+      "name": "Marina",
+      "approx": false
+    },
+    "Lakeshore": {
+      "name": "Lakeshore",
+      "approx": false
+    },
+    "Tenderloin": {
+      "name": "Tenderloin",
+      "approx": false
+    },
+    "McLaren Park": {
+      "name": "McLaren Park",
+      "approx": false
+    },
+    "Japantown": {
+      "name": "Japantown",
+      "approx": false
+    },
+    "Inner Sunset": {
+      "name": "Inner Sunset",
+      "approx": false
+    },
+    "Hayes Valley": {
+      "name": "Hayes Valley",
+      "approx": false
+    },
+    "Haight Ashbury": {
+      "name": "Haight Ashbury",
+      "approx": false
+    },
+    "Golden Gate Park": {
+      "name": "Golden Gate Park",
+      "approx": false
+    },
+    "Inner Richmond": {
+      "name": "Inner Richmond",
+      "approx": false
+    },
+    "Glen Park": {
+      "name": "Glen Park",
+      "approx": false
+    },
+    "Financial District/South Beach": {
+      "name": "Financial District/South Beach",
+      "approx": false
+    },
+    "Excelsior": {
+      "name": "Excelsior",
+      "approx": false
+    },
+    "Chinatown": {
+      "name": "Chinatown",
+      "approx": false
+    },
+    "Castro/Upper Market": {
+      "name": "Castro/Upper Market",
+      "approx": false
+    },
+    "Bernal Heights": {
+      "name": "Bernal Heights",
+      "approx": false
+    },
+    "Bayview Hunters Point": {
+      "name": "Bayview Hunters Point",
+      "approx": false
+    }
+  }
+}

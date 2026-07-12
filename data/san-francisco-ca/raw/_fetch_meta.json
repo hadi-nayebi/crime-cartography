@@ -1,0 +1,45 @@
+{
+  "fetchedAt": "2026-07-12T07:10:56.058Z",
+  "script": "pipeline/sources/san-francisco-ca.mjs",
+  "sources": {
+    "modern": "https://data.sfgov.org/resource/wg3w-h783.json",
+    "historical": "https://data.sfgov.org/resource/tmnf-yvry.json",
+    "polygons": "https://data.sfgov.org/resource/j2bu-swwd.geojson",
+    "fbi": "api.usa.gov/crime/fbi/cde/summarized/agency/CA0380100"
+  },
+  "window": "2003-01-01..2026-06-30",
+  "cutover": "2018-01-01",
+  "totalRecords": 3117438,
+  "buckets": {
+    "tmnfAll": 2071736,
+    "tmnfPre2003": 0,
+    "tmnfOverlap": 43733,
+    "wg3wAll": 1045702,
+    "wg3wPre2018": 0,
+    "wg3wPartial": 2115
+  },
+  "tmnfStats": {
+    "scanned": 2028003,
+    "bboxValid": 2027865,
+    "outOfBbox": 138,
+    "pipMiss": 833
+  },
+  "wg3wNullStats": {
+    "nullTotal": 57250,
+    "nullPipPlaced": 0,
+    "nullNoCoords": 56950,
+    "nullPipMiss": 300
+  },
+  "spotCheck": {
+    "month": "2019-06",
+    "rows": 10950,
+    "agreementPct": 92.69,
+    "disagreements": 800,
+    "maxBoundaryDistM": 0.3,
+    "mission": {
+      "labeled": 1189,
+      "pip": 1189
+    }
+  },
+  "note": "tmnf raw pages (1.9M rows × 4 fields) were streamed through point-in-polygon in memory and are not stored."
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "boston-ma",
+  "title": "Boston \u00b7 MA",
+  "source": {
+    "records": "https://data.boston.gov/api/3/action/datastore_search_sql",
+    "beats": "https://gisportal.boston.gov/arcgis/rest/services/PublicSafety/OpenData/MapServer/5/query?where=1%3D1&outFields=*&f=geojson&outSR=4326",
+    "hub": "https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system"
+  },
+  "fetchedAt": "2026-07-12T07:05:46.795Z",
+  "dateMin": "2015-08-01",
+  "dateMax": "2026-06-30",
+  "months": 131,
+  "totalRecords": 923773,
+  "placedRecords": 918079,
+  "unplacedRecords": 5694,
+  "coveragePct": 99.4,
+  "unplacedBeats": {
+    "no-district": 5694
+  },
+  "catTotals": {
+    "persons": 101744,
+    "property": 229433,
+    "society": 59424,
+    "other": 533172
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#e63946"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#e9b44c"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#4fbf8b"
+    },
+    "other": {
+      "label": "Service / non-crime (context)",
+      "color": "#6b7684"
+    }
+  },
+  "beatCount": 12
+}

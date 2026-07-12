@@ -1,0 +1,105 @@
+{
+  "slug": "boston-ma",
+  "datasetDir": "data/boston-ma",
+  "title": "Boston · Forty Years of Crime",
+  "subtitle": "FBI UCR 1985–2015 + BPD records 2015–2026 · 12 districts, resident names · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/boston-ma-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "lollipop",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−71%",
+    "line": "Boston's reported crime since its 1989 peak",
+    "sub": "FBI UCR 1985–2015 · fully sourced, mapped to this week"
+  },
+  "punchline": {
+    "text": "1989: 70,003 → 2015: 20,110",
+    "sub": "−71% under the same FBI measure · crime-only reports fell another 36% by 2025"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#07090c",
+      "beatFill": "#0c1210",
+      "beatStroke": "rgba(140,190,160,0.24)",
+      "panelStroke": "rgba(140,190,160,0.2)",
+      "grid": "rgba(140,190,160,0.12)",
+      "ink": "#eef4ef",
+      "inkDim": "#aec2b3",
+      "inkFaint": "#71857a"
+    },
+    "catColors": {
+      "persons": "#e63946",
+      "property": "#e9b44c",
+      "society": "#4fbf8b",
+      "other": "#6b7684"
+    }
+  },
+  "copy": {
+    "cityName": "Boston",
+    "regionNoun": "district",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · BPD / ANALYZE BOSTON",
+    "chapter2Title": "Now — up close, 12 districts",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location (block-level, sampled).",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 12 districts — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "BPD / ANALYZE BOSTON",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location. 99.4% map to a district. BPD's file mixes crime and service records — the trend counts crime only.",
+    "methodFootnote": "FBI UCR (through 2015) and BPD records (2015+) differ; BPD's public file excludes sexual-assault records — disclosed, not zero.",
+    "quizQuestion": "Which Boston district is the safest?",
+    "sourceLine": "Data: Boston Police Department via Analyze Boston (public domain) · sexual-assault records excluded by BPD",
+    "coverageText": "99.4% of records mapped to a district",
+    "creditsSources": "Sources: BPD incident reports (2015–present, ODC-PDDL public domain) via Analyze Boston & FBI UCR (1985–2015) via the FBI Crime Data Explorer. District names per boston.gov. BPD's public file excludes sexual-assault records for privacy — a gap, not zero. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    {
+      "atYear": 1985,
+      "text": "1985: 68,231 index crimes reported."
+    },
+    {
+      "atYear": 1989,
+      "text": "1989: the peak — 70,003 crimes in one year."
+    },
+    {
+      "atYear": 1997,
+      "text": "The long fall accelerates through the '90s."
+    },
+    {
+      "atYear": 2015,
+      "text": "2015: 20,110 — down 71% from the peak; the modern record begins."
+    },
+    {
+      "atYear": 2021,
+      "text": "Crime-only reports keep falling — 36% below 2016 by 2025."
+    }
+  ],
+  "annotations": [
+    {
+      "atMonth": "2021-10",
+      "text": "Every dot is a real reported incident location — BPD via Analyze Boston. Sexual-assault records are excluded from the public file (a gap, not zero)."
+    },
+    {
+      "atMonth": "2023-05",
+      "text": "South End (District D-4) — Boston's busiest for Group A crime, and rising: +33% since 2022.",
+      "beat": "D4"
+    },
+    {
+      "atMonth": "2024-08",
+      "text": "Charlestown — the quietest district, down 18% since 2022.",
+      "beat": "A15"
+    },
+    {
+      "atMonth": "2025-10",
+      "text": "October 2025 — the busiest month of the last five years: 7,398 reports."
+    },
+    {
+      "atMonth": "2026-03",
+      "text": "Crime-only reports fell 36% from 2016 to 2025 (46,849 → 29,963)."
+    }
+  ]
+}

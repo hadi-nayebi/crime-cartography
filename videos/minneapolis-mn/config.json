@@ -1,0 +1,105 @@
+{
+  "slug": "minneapolis-mn",
+  "datasetDir": "data/minneapolis-mn",
+  "title": "Minneapolis · The Fall and the Plateau",
+  "subtitle": "FBI UCR 1991–2018 + MPD NIBRS 2019–2026 · 87 neighborhoods · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/minneapolis-mn-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "bars",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−52%",
+    "line": "Minneapolis crime, from the 1991 peak to 2018",
+    "sub": "FBI UCR · then five turbulent, flat years — up close"
+  },
+  "punchline": {
+    "text": "1991: 42,115 → 2018: 20,221",
+    "sub": "−52% under the same FBI measure · Group A has run flat since 2019"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#08070c",
+      "beatFill": "#100e18",
+      "beatStroke": "rgba(170,150,220,0.24)",
+      "panelStroke": "rgba(170,150,220,0.2)",
+      "grid": "rgba(170,150,220,0.12)",
+      "ink": "#f1eef8",
+      "inkDim": "#b4abc9",
+      "inkFaint": "#78708e"
+    },
+    "catColors": {
+      "persons": "#ff4966",
+      "property": "#b48eff",
+      "society": "#ffd166",
+      "other": "#6b7280"
+    }
+  },
+  "copy": {
+    "cityName": "Minneapolis",
+    "regionNoun": "neighborhood",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · MPD NIBRS / CC0",
+    "chapter2Title": "Now — up close, 87 neighborhoods",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location (block-level, sampled).",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 87 neighborhoods — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "MPD NIBRS / CC0",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported offense location (block-level). 99.0% map to one of 87 neighborhoods — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2018) and MPD NIBRS (2019+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Minneapolis neighborhood is the safest?",
+    "sourceLine": "Data: Minneapolis Police Department via Open Data Minneapolis (CC0) · block-level locations",
+    "coverageText": "99.0% of records mapped to a neighborhood",
+    "creditsSources": "Sources: MPD NIBRS incident data (2019–present, CC0) via Open Data Minneapolis & FBI UCR (1991–2018) via the FBI Crime Data Explorer (1990 unreported by MPD; earlier years severed by that gap). Neighborhoods: City of Minneapolis. Non-NIBRS context feeds (e.g. Shots Fired Calls, published only from July 2020) are shown as context, never counted as crime. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    {
+      "atYear": 1991,
+      "text": "1991: the peak — 42,115 index crimes reported."
+    },
+    {
+      "atYear": 1995,
+      "text": "1995: violent crime peaks at 7,076 reports."
+    },
+    {
+      "atYear": 2005,
+      "text": "The 2000s grind the totals steadily down."
+    },
+    {
+      "atYear": 2018,
+      "text": "2018: 20,221 — down 52% from the peak; the NIBRS record begins."
+    },
+    {
+      "atYear": 2020,
+      "text": "2020: property crime surges after late May — the record shows the spike month by month."
+    }
+  ],
+  "annotations": [
+    {
+      "atMonth": "2021-08",
+      "text": "Every dot is a real reported offense location — anonymized to the block by MPD (CC0 open data)."
+    },
+    {
+      "atMonth": "2022-07",
+      "text": "July 2022 — the busiest Group A month of the last five years: 4,518."
+    },
+    {
+      "atMonth": "2023-09",
+      "text": "Downtown West — Minneapolis's busiest neighborhood for Group A crime.",
+      "beat": "Downtown West"
+    },
+    {
+      "atMonth": "2025-02",
+      "text": "Northeast Park: down 42% since 2022 — the city's biggest drop.",
+      "beat": "Northeast Park"
+    },
+    {
+      "atMonth": "2026-03",
+      "text": "Group A has run flat citywide: 41,473 (2019) → 42,765 (2025)."
+    }
+  ]
+}

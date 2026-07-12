@@ -1,0 +1,58 @@
+{
+  "source": "Boston Police Department districts (official)",
+  "sourceUrl": "https://gisportal.boston.gov/arcgis/rest/services/PublicSafety/OpenData/MapServer/5/query?where=1%3D1&outFields=*&f=geojson&outSR=4326",
+  "hub": "https://data.boston.gov/",
+  "fetchedAt": "2026-07-12T07:05:46.795Z",
+  "license": "ODC-PDDL (Open Data Commons Public Domain Dedication and License)",
+  "method": "identity — BPD crime records carry the official district code (A1…E18) verbatim; polygons join 12↔12 on the DISTRICT field with no spatial approximation. Resident-known district names are the official boston.gov police-district names (https://www.boston.gov/departments/police).",
+  "map": {
+    "A1": {
+      "name": "Downtown & Beacon Hill",
+      "approx": false
+    },
+    "A15": {
+      "name": "Charlestown",
+      "approx": false
+    },
+    "A7": {
+      "name": "East Boston",
+      "approx": false
+    },
+    "B2": {
+      "name": "Roxbury",
+      "approx": false
+    },
+    "B3": {
+      "name": "Mattapan",
+      "approx": false
+    },
+    "C6": {
+      "name": "South Boston",
+      "approx": false
+    },
+    "C11": {
+      "name": "Dorchester",
+      "approx": false
+    },
+    "D4": {
+      "name": "South End",
+      "approx": false
+    },
+    "D14": {
+      "name": "Allston/Brighton",
+      "approx": false
+    },
+    "E5": {
+      "name": "West Roxbury",
+      "approx": false
+    },
+    "E13": {
+      "name": "Jamaica Plain",
+      "approx": false
+    },
+    "E18": {
+      "name": "Hyde Park",
+      "approx": false
+    }
+  }
+}

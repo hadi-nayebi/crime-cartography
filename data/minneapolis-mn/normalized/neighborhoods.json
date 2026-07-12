@@ -1,0 +1,358 @@
+{
+  "source": "Minneapolis official neighborhoods (City of Minneapolis)",
+  "sourceUrl": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Minneapolis_Neighborhoods/FeatureServer/0/query?where=1=1&outFields=*&f=geojson",
+  "hub": "https://opendata.minneapolismn.gov/",
+  "fetchedAt": "2026-07-12T07:13:42.752Z",
+  "license": "CC0 1.0 (City of Minneapolis has waived all copyright and related rights)",
+  "method": "identity — MPD crime records carry the official neighborhood name (BDNAME) verbatim; no spatial join or approximation is involved",
+  "map": {
+    "Phillips West": {
+      "name": "Phillips West",
+      "approx": false
+    },
+    "Downtown West": {
+      "name": "Downtown West",
+      "approx": false
+    },
+    "Downtown East": {
+      "name": "Downtown East",
+      "approx": false
+    },
+    "Ventura Village": {
+      "name": "Ventura Village",
+      "approx": false
+    },
+    "Sumner - Glenwood": {
+      "name": "Sumner - Glenwood",
+      "approx": false
+    },
+    "Shingle Creek": {
+      "name": "Shingle Creek",
+      "approx": false
+    },
+    "Lind - Bohanon": {
+      "name": "Lind - Bohanon",
+      "approx": false
+    },
+    "Webber - Camden": {
+      "name": "Webber - Camden",
+      "approx": false
+    },
+    "Bottineau": {
+      "name": "Bottineau",
+      "approx": false
+    },
+    "Victory": {
+      "name": "Victory",
+      "approx": false
+    },
+    "Humboldt Industrial Area": {
+      "name": "Humboldt Industrial Area",
+      "approx": false
+    },
+    "Howe": {
+      "name": "Howe",
+      "approx": false
+    },
+    "Hiawatha": {
+      "name": "Hiawatha",
+      "approx": false
+    },
+    "Windom": {
+      "name": "Windom",
+      "approx": false
+    },
+    "Ericsson": {
+      "name": "Ericsson",
+      "approx": false
+    },
+    "Field": {
+      "name": "Field",
+      "approx": false
+    },
+    "Page": {
+      "name": "Page",
+      "approx": false
+    },
+    "Como": {
+      "name": "Como",
+      "approx": false
+    },
+    "Cedar Riverside": {
+      "name": "Cedar Riverside",
+      "approx": false
+    },
+    "Prospect Park - East River Road": {
+      "name": "Prospect Park - East River Road",
+      "approx": false
+    },
+    "University of Minnesota": {
+      "name": "University of Minnesota",
+      "approx": false
+    },
+    "Jordan": {
+      "name": "Jordan",
+      "approx": false
+    },
+    "Hawthorne": {
+      "name": "Hawthorne",
+      "approx": false
+    },
+    "Willard - Hay": {
+      "name": "Willard - Hay",
+      "approx": false
+    },
+    "Near - North": {
+      "name": "Near - North",
+      "approx": false
+    },
+    "Harrison": {
+      "name": "Harrison",
+      "approx": false
+    },
+    "Loring Park": {
+      "name": "Loring Park",
+      "approx": false
+    },
+    "Steven's Square - Loring Heights": {
+      "name": "Steven's Square - Loring Heights",
+      "approx": false
+    },
+    "Minnehaha": {
+      "name": "Minnehaha",
+      "approx": false
+    },
+    "Diamond Lake": {
+      "name": "Diamond Lake",
+      "approx": false
+    },
+    "Cooper": {
+      "name": "Cooper",
+      "approx": false
+    },
+    "Tangletown": {
+      "name": "Tangletown",
+      "approx": false
+    },
+    "North Loop": {
+      "name": "North Loop",
+      "approx": false
+    },
+    "Hale": {
+      "name": "Hale",
+      "approx": false
+    },
+    "Keewaydin": {
+      "name": "Keewaydin",
+      "approx": false
+    },
+    "Fulton": {
+      "name": "Fulton",
+      "approx": false
+    },
+    "Lynnhurst": {
+      "name": "Lynnhurst",
+      "approx": false
+    },
+    "Bancroft": {
+      "name": "Bancroft",
+      "approx": false
+    },
+    "Standish": {
+      "name": "Standish",
+      "approx": false
+    },
+    "Seward": {
+      "name": "Seward",
+      "approx": false
+    },
+    "Longfellow": {
+      "name": "Longfellow",
+      "approx": false
+    },
+    "Lowry Hill East": {
+      "name": "Lowry Hill East",
+      "approx": false
+    },
+    "South Uptown": {
+      "name": "South Uptown",
+      "approx": false
+    },
+    "East Phillips": {
+      "name": "East Phillips",
+      "approx": false
+    },
+    "Cleveland": {
+      "name": "Cleveland",
+      "approx": false
+    },
+    "Wenonah": {
+      "name": "Wenonah",
+      "approx": false
+    },
+    "Holland": {
+      "name": "Holland",
+      "approx": false
+    },
+    "Audubon Park": {
+      "name": "Audubon Park",
+      "approx": false
+    },
+    "Regina": {
+      "name": "Regina",
+      "approx": false
+    },
+    "Northrop": {
+      "name": "Northrop",
+      "approx": false
+    },
+    "Sheridan": {
+      "name": "Sheridan",
+      "approx": false
+    },
+    "Logan Park": {
+      "name": "Logan Park",
+      "approx": false
+    },
+    "Windom Park": {
+      "name": "Windom Park",
+      "approx": false
+    },
+    "Linden Hills": {
+      "name": "Linden Hills",
+      "approx": false
+    },
+    "East Harriet": {
+      "name": "East Harriet",
+      "approx": false
+    },
+    "King Field": {
+      "name": "King Field",
+      "approx": false
+    },
+    "Morris Park": {
+      "name": "Morris Park",
+      "approx": false
+    },
+    "Mid - City Industrial": {
+      "name": "Mid - City Industrial",
+      "approx": false
+    },
+    "Midtown Phillips": {
+      "name": "Midtown Phillips",
+      "approx": false
+    },
+    "Bryn - Mawr": {
+      "name": "Bryn - Mawr",
+      "approx": false
+    },
+    "Northeast Park": {
+      "name": "Northeast Park",
+      "approx": false
+    },
+    "St. Anthony West": {
+      "name": "St. Anthony West",
+      "approx": false
+    },
+    "St. Anthony East": {
+      "name": "St. Anthony East",
+      "approx": false
+    },
+    "Central": {
+      "name": "Central",
+      "approx": false
+    },
+    "Powderhorn Park": {
+      "name": "Powderhorn Park",
+      "approx": false
+    },
+    "Corcoran": {
+      "name": "Corcoran",
+      "approx": false
+    },
+    "Bryant": {
+      "name": "Bryant",
+      "approx": false
+    },
+    "Kenny": {
+      "name": "Kenny",
+      "approx": false
+    },
+    "Armatage": {
+      "name": "Armatage",
+      "approx": false
+    },
+    "Beltrami": {
+      "name": "Beltrami",
+      "approx": false
+    },
+    "Cedar - Isles - Dean": {
+      "name": "Cedar - Isles - Dean",
+      "approx": false
+    },
+    "Kenwood": {
+      "name": "Kenwood",
+      "approx": false
+    },
+    "Lowry Hill": {
+      "name": "Lowry Hill",
+      "approx": false
+    },
+    "East Isles": {
+      "name": "East Isles",
+      "approx": false
+    },
+    "Elliot Park": {
+      "name": "Elliot Park",
+      "approx": false
+    },
+    "Nicollet Island - East Bank": {
+      "name": "Nicollet Island - East Bank",
+      "approx": false
+    },
+    "Marcy Holmes": {
+      "name": "Marcy Holmes",
+      "approx": false
+    },
+    "Folwell": {
+      "name": "Folwell",
+      "approx": false
+    },
+    "McKinley": {
+      "name": "McKinley",
+      "approx": false
+    },
+    "Camden Industrial": {
+      "name": "Camden Industrial",
+      "approx": false
+    },
+    "Columbia Park": {
+      "name": "Columbia Park",
+      "approx": false
+    },
+    "Waite Park": {
+      "name": "Waite Park",
+      "approx": false
+    },
+    "Marshall Terrace": {
+      "name": "Marshall Terrace",
+      "approx": false
+    },
+    "Whittier": {
+      "name": "Whittier",
+      "approx": false
+    },
+    "Lyndale": {
+      "name": "Lyndale",
+      "approx": false
+    },
+    "East Bde Maka Ska": {
+      "name": "East Bde Maka Ska",
+      "approx": false
+    },
+    "West Maka Ska": {
+      "name": "West Maka Ska",
+      "approx": false
+    }
+  }
+}

@@ -134,6 +134,113 @@ const PLANS = {
   },
 };
 
+// Generic plan for cities whose history.json already spans exactly the FBI era
+// (ends at seam−1) and whose incident era comes fully from the timeline.
+// groupAOnly=true excludes the dataset's "other" bucket (e.g. service records)
+// from the incident-era annual totals — the era label must say so.
+function genericPlan(cfg) {
+  return async () => {
+    const h = JSON.parse(await readFile(join(NORM, "history.json")));
+    const fbi = {};
+    for (const y of h.years) fbi[y.year] = y.total;
+    const inc = await timelineAnnual(cfg.groupAOnly);
+    const incFrom = Math.min(...Object.keys(inc).map(Number));
+    const incTo = Math.max(...Object.keys(inc).map(Number));
+    return {
+      eras: [
+        { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+        { key: "incident", label: cfg.incidentLabel, from: incFrom, to: incTo },
+      ],
+      fbi,
+      inc,
+      note:
+        `UCR index crimes (${h.yearMin}–${h.yearMax}) vs ${cfg.incidentLabel} (${incFrom}+) are ` +
+        "different measures — compare shapes within an era, not across the seam. " +
+        "Partial current year excluded." + (cfg.extraNote ? ` ${cfg.extraNote}` : ""),
+    };
+  };
+}
+PLANS["washington-dc"] = genericPlan({
+  groupAOnly: false,
+  incidentLabel: "MPD — reported crime incidents",
+});
+PLANS["san-francisco-ca"] = genericPlan({
+  groupAOnly: false,
+  incidentLabel: "SFPD — all recorded incidents",
+});
+PLANS["boston-ma"] = genericPlan({
+  groupAOnly: true,
+  incidentLabel: "BPD — crime reports (service records excluded)",
+  extraNote: "Boston's incident file mixes in non-crime service records; the trend counts crime categories only (persons+property+society).",
+});
+// Philadelphia: the trend must be CITYWIDE from the source — the timeline's
+// placed cells exclude ~200k records from districts retired in later mergers
+// (concentrated in early years), which would understate the decline.
+PLANS["philadelphia-pa"] = async () => {
+  const h = JSON.parse(await readFile(join(NORM, "history.json")));
+  const fbi = {};
+  for (const y of h.years) fbi[y.year] = y.total;
+  const sql =
+    "SELECT date_part('year',dispatch_date::date) AS y, count(*) AS n FROM incidents_part1_part2 " +
+    "WHERE dispatch_date::date >= '2006-01-01' AND dispatch_date::date < '2026-01-01' GROUP BY 1 ORDER BY 1";
+  const j = await getJson(`https://phl.carto.com/api/v2/sql?q=${encodeURIComponent(sql)}`);
+  const inc = {};
+  for (const r of j.rows) inc[Number(r.y)] = Number(r.n);
+  return {
+    eras: [
+      { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+      { key: "incident", label: "PPD — all recorded offenses", from: 2006, to: 2025 },
+    ],
+    fbi,
+    inc,
+    note:
+      `UCR index crimes (${h.yearMin}–${h.yearMax}) vs all PPD-recorded offenses (2006+) are different ` +
+      "measures — compare shapes within an era, not across the seam. Citywide totals include districts " +
+      "retired in later boundary mergers. Partial current year excluded.",
+  };
+};
+// San Francisco: citywide annuals fetched per source — the ~58k no-location
+// rows exist only in the 2018+ dataset, so placed-only annuals would
+// understate recent years relative to 2003–2017.
+PLANS["san-francisco-ca"] = async () => {
+  const h = JSON.parse(await readFile(join(NORM, "history.json")));
+  const fbi = {};
+  for (const y of h.years) fbi[y.year] = y.total;
+  const inc = {};
+  const tm = await soda("https://data.sfgov.org/resource/tmnf-yvry.json", {
+    "$select": "date_extract_y(date) AS y,count(*) AS n",
+    "$where": "date >= '2003-01-01T00:00:00' AND date < '2018-01-01T00:00:00'",
+    "$group": "y", "$order": "y",
+  });
+  for (const r of tm) inc[Number(r.y)] = Number(r.n);
+  const wg = await soda("https://data.sfgov.org/resource/wg3w-h783.json", {
+    "$select": "date_extract_y(incident_datetime) AS y,count(*) AS n",
+    "$where": "incident_datetime >= '2018-01-01T00:00:00' AND incident_datetime < '2026-01-01T00:00:00'",
+    "$group": "y", "$order": "y",
+  });
+  for (const r of wg) inc[Number(r.y)] = Number(r.n);
+  return {
+    eras: [
+      { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+      { key: "incident", label: "SFPD — all recorded incidents", from: 2003, to: 2025 },
+    ],
+    fbi,
+    inc,
+    note:
+      `UCR index crimes (${h.yearMin}–${h.yearMax}) vs all SFPD-recorded incidents (2003+) are different ` +
+      "measures — compare shapes within an era, not across the seam. Citywide totals include records " +
+      "without a mappable location. Partial current year excluded.",
+  };
+};
+
+PLANS["minneapolis-mn"] = genericPlan({
+  groupAOnly: true, // the 'other' bucket contains Shots-Fired Calls that only
+  // exist from 2020-07 — a data-availability artifact that must not shape the trend
+  incidentLabel: "MPD — NIBRS Group A offenses",
+  extraNote:
+    "Non-NIBRS context records (e.g. Shots Fired Calls, published only from July 2020) are excluded from the trend.",
+});
+
 const plan = PLANS[slug];
 if (!plan) { console.error(`no trend plan for ${slug}`); process.exit(1); }
 const { eras, fbi, inc, note } = await plan();

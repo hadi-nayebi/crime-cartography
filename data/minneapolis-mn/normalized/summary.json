@@ -1,0 +1,46 @@
+{
+  "slug": "minneapolis-mn",
+  "title": "Minneapolis \u00b7 MN",
+  "source": {
+    "records": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Crime_Data/FeatureServer/0",
+    "beats": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Minneapolis_Neighborhoods/FeatureServer/0",
+    "hub": "https://opendata.minneapolismn.gov/"
+  },
+  "fetchedAt": "2026-07-12T07:13:42.752Z",
+  "dateMin": "2019-01-01",
+  "dateMax": "2026-06-30",
+  "months": 90,
+  "totalRecords": 382475,
+  "placedRecords": 378538,
+  "unplacedRecords": 3937,
+  "coveragePct": 99,
+  "unplacedBeats": {
+    "occurred-pre-2019": 1304,
+    "no-neighborhood": 2633
+  },
+  "catTotals": {
+    "persons": 69334,
+    "property": 235313,
+    "society": 20343,
+    "other": 57485
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff4966"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#b48eff"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#ffd166"
+    },
+    "other": {
+      "label": "Other / non-criminal (context)",
+      "color": "#6b7280"
+    }
+  },
+  "beatCount": 87
+}

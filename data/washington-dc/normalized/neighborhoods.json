@@ -1,0 +1,194 @@
+{
+  "source": "DC Neighborhood Clusters (official, Office of Planning)",
+  "sourceUrl": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Administrative_Other_Boundaries_WebMercator/MapServer/17/query?where=1%3D1&outFields=NAME,NBH_NAMES,TYPE&outSR=4326&f=geojson",
+  "hub": "https://opendata.dc.gov/",
+  "fetchedAt": "2026-07-12T07:11:49.150Z",
+  "license": "CC BY 4.0 — attribution: Open Data DC / Metropolitan Police Department",
+  "method": "identity — MPD crime records carry the official Neighborhood Cluster name ('Cluster N') verbatim; no spatial join or approximation is involved. Display names are the first two resident-known neighborhood names from the cluster's NBH_NAMES; the full list is in beats.json (beats[key].desc).",
+  "map": {
+    "Cluster 31": {
+      "name": "Deanwood / Burrville",
+      "approx": false
+    },
+    "Cluster 30": {
+      "name": "Mayfair / Hillbrook",
+      "approx": false
+    },
+    "Cluster 5": {
+      "name": "West End / Foggy Bottom",
+      "approx": false
+    },
+    "Cluster 25": {
+      "name": "Union Station / Stanton Park",
+      "approx": false
+    },
+    "Cluster 8": {
+      "name": "Downtown / Chinatown",
+      "approx": false
+    },
+    "Cluster 32": {
+      "name": "River Terrace / Benning",
+      "approx": false
+    },
+    "Cluster 33": {
+      "name": "Capitol View / Marshall Heights",
+      "approx": false
+    },
+    "Cluster 26": {
+      "name": "Capitol Hill / Lincoln Park",
+      "approx": false
+    },
+    "Cluster 9": {
+      "name": "Southwest Employment Area / Southwest/Waterfront",
+      "approx": false
+    },
+    "Cluster 34": {
+      "name": "Twining / Fairlawn",
+      "approx": false
+    },
+    "Cluster 27": {
+      "name": "Near Southeast / Navy Yard",
+      "approx": false
+    },
+    "Cluster 37": {
+      "name": "Sheridan / Barry Farm",
+      "approx": false
+    },
+    "Cluster 28": {
+      "name": "Historic Anacostia",
+      "approx": false
+    },
+    "Cluster 44": {
+      "name": "Joint Base Anacostia-Bolling",
+      "approx": false
+    },
+    "Cluster 16": {
+      "name": "Colonial Village / Shepherd Park",
+      "approx": false
+    },
+    "Cluster 41": {
+      "name": "Rock Creek Park",
+      "approx": false
+    },
+    "Cluster 10": {
+      "name": "Hawthorne / Barnaby Woods",
+      "approx": false
+    },
+    "Cluster 17": {
+      "name": "Takoma / Brightwood",
+      "approx": false
+    },
+    "Cluster 40": {
+      "name": "Walter Reed",
+      "approx": false
+    },
+    "Cluster 19": {
+      "name": "Lamont Riggs / Queens Chapel",
+      "approx": false
+    },
+    "Cluster 11": {
+      "name": "Friendship Heights / American University Park",
+      "approx": false
+    },
+    "Cluster 18": {
+      "name": "Brightwood Park / Crestwood",
+      "approx": false
+    },
+    "Cluster 12": {
+      "name": "North Cleveland Park / Forest Hills",
+      "approx": false
+    },
+    "Cluster 35": {
+      "name": "Fairfax Village / Naylor Gardens",
+      "approx": false
+    },
+    "Cluster 36": {
+      "name": "Woodland/Fort Stanton / Garfield Heights",
+      "approx": false
+    },
+    "Cluster 43": {
+      "name": "Saint Elizabeths",
+      "approx": false
+    },
+    "Cluster 38": {
+      "name": "Douglas / Shipley Terrace",
+      "approx": false
+    },
+    "Cluster 39": {
+      "name": "Congress Heights / Bellevue",
+      "approx": false
+    },
+    "Cluster 20": {
+      "name": "North Michigan Park / Michigan Park",
+      "approx": false
+    },
+    "Cluster 13": {
+      "name": "Spring Valley / Palisades",
+      "approx": false
+    },
+    "Cluster 21": {
+      "name": "Edgewood / Bloomingdale",
+      "approx": false
+    },
+    "Cluster 14": {
+      "name": "Cathedral Heights / McLean Gardens",
+      "approx": false
+    },
+    "Cluster 15": {
+      "name": "Cleveland Park / Woodley Park",
+      "approx": false
+    },
+    "Cluster 24": {
+      "name": "Woodridge / Fort Lincoln",
+      "approx": false
+    },
+    "Cluster 22": {
+      "name": "Brookland / Brentwood",
+      "approx": false
+    },
+    "Cluster 2": {
+      "name": "Columbia Heights / Mt. Pleasant",
+      "approx": false
+    },
+    "Cluster 45": {
+      "name": "National Mall / Potomac River",
+      "approx": false
+    },
+    "Cluster 3": {
+      "name": "Howard University / Le Droit Park",
+      "approx": false
+    },
+    "Cluster 1": {
+      "name": "Kalorama Heights / Adams Morgan",
+      "approx": false
+    },
+    "Cluster 42": {
+      "name": "Observatory Circle",
+      "approx": false
+    },
+    "Cluster 6": {
+      "name": "Dupont Circle / Connecticut Avenue/K Street",
+      "approx": false
+    },
+    "Cluster 46": {
+      "name": "Arboretum / Anacostia River",
+      "approx": false
+    },
+    "Cluster 4": {
+      "name": "Georgetown / Burleith/Hillandale",
+      "approx": false
+    },
+    "Cluster 29": {
+      "name": "Eastland Gardens / Kenilworth",
+      "approx": false
+    },
+    "Cluster 23": {
+      "name": "Ivy City / Arboretum",
+      "approx": false
+    },
+    "Cluster 7": {
+      "name": "Shaw / Logan Circle",
+      "approx": false
+    }
+  }
+}

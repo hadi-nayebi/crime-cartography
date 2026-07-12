@@ -1,0 +1,53 @@
+{
+  "slug": "philadelphia-pa",
+  "title": "Philadelphia \u00b7 PA",
+  "source": {
+    "records": "https://phl.carto.com/api/v2/sql?q=SELECT * FROM incidents_part1_part2",
+    "beats": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Boundaries_District/FeatureServer/0",
+    "hub": "https://opendataphilly.org/datasets/crime-incidents/"
+  },
+  "fetchedAt": "2026-07-12T07:07:04.538Z",
+  "dateMin": "2006-01-01",
+  "dateMax": "2026-06-30",
+  "months": 246,
+  "totalRecords": 3566030,
+  "placedRecords": 3361035,
+  "unplacedRecords": 204995,
+  "coveragePct": 94.3,
+  "unplacedBeats": {
+    "retired-districts": 200745,
+    "no-district": 1,
+    "partial-2026-07": 4249
+  },
+  "unplacedByDist": {
+    "23": 26306,
+    "92": 1491,
+    "04": 27987,
+    "06": 144961
+  },
+  "catTotals": {
+    "persons": 739596,
+    "property": 1830963,
+    "society": 385032,
+    "other": 610439
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff4338"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#f2a93b"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#7fb7ff"
+    },
+    "other": {
+      "label": "Other / non-criminal",
+      "color": "#75717a"
+    }
+  },
+  "beatCount": 21
+}

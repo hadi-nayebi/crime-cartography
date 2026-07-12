@@ -1,0 +1,105 @@
+{
+  "slug": "washington-dc",
+  "datasetDir": "data/washington-dc",
+  "title": "Washington DC · Forty Years of Crime",
+  "subtitle": "FBI UCR 1985–2007 + MPD incidents 2008–2026 · 46 neighborhood clusters · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/washington-dc-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "bars",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−48%",
+    "line": "Washington DC's reported crime, from the 1993 peak to 2007",
+    "sub": "FBI UCR · and the fall continued — mapped to this week"
+  },
+  "punchline": {
+    "text": "1993: 68,146 → 2007: 35,706",
+    "sub": "−48% under the same FBI measure · the modern record falls another 29%"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#05070d",
+      "beatFill": "#0b101c",
+      "beatStroke": "rgba(150,170,205,0.25)",
+      "panelStroke": "rgba(150,170,205,0.22)",
+      "grid": "rgba(150,170,205,0.12)",
+      "ink": "#edf1f9",
+      "inkDim": "#a8b4c8",
+      "inkFaint": "#6d7b94"
+    },
+    "catColors": {
+      "persons": "#ff5d73",
+      "property": "#d9b26a",
+      "society": "#7cc7ff",
+      "other": "#6e7887"
+    }
+  },
+  "copy": {
+    "cityName": "Washington DC",
+    "regionNoun": "neighborhood cluster",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · MPD OPEN DATA",
+    "chapter2Title": "Now — up close, 46 neighborhood clusters",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location (block-level, sampled).",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 46 neighborhood clusters — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "MPD OPEN DATA",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location (block-level). 99.2% map to a neighborhood cluster — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2007) and MPD incident data (2008+) are different systems — shown as two chapters, not one line.",
+    "quizQuestion": "Which DC neighborhood is the safest?",
+    "sourceLine": "Data: Metropolitan Police Department via Open Data DC (CC BY 4.0) · block-level locations",
+    "coverageText": "99.2% of records mapped to a neighborhood cluster",
+    "creditsSources": "Sources: Metropolitan Police Department crime incidents (2008–present, CC BY 4.0) via Open Data DC & FBI UCR (1985–2007) via the FBI Crime Data Explorer. Neighborhood clusters: DC Office of Planning. DC publishes only major (Part I-style) offenses — drug/vice categories are not published, not zero. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    {
+      "atYear": 1985,
+      "text": "1985: 50,369 index crimes reported."
+    },
+    {
+      "atYear": 1993,
+      "text": "1993: the peak — 68,146 crimes, 16,888 of them violent."
+    },
+    {
+      "atYear": 2001,
+      "text": "The fall runs through the 2000s, year after year."
+    },
+    {
+      "atYear": 2007,
+      "text": "2007: 35,706 — down 48% from the peak; the city's own record takes over."
+    },
+    {
+      "atYear": 2017,
+      "text": "The modern record keeps falling through the 2010s."
+    }
+  ],
+  "annotations": [
+    {
+      "atMonth": "2021-10",
+      "text": "Every dot is a real reported incident location — anonymized to the block by MPD. DC publishes only major (Part I-style) offenses."
+    },
+    {
+      "atMonth": "2023-07",
+      "text": "July 2023 — the busiest month of the last five years: 3,398 reports."
+    },
+    {
+      "atMonth": "2024-05",
+      "text": "Union Station / Stanton Park — DC's busiest area for reported crime.",
+      "beat": "Cluster 25"
+    },
+    {
+      "atMonth": "2025-03",
+      "text": "Capitol View / Marshall Heights: down 33% since 2022 — the city's biggest drop.",
+      "beat": "Cluster 33"
+    },
+    {
+      "atMonth": "2026-01",
+      "text": "Citywide, mapped reports fell 28.5% from 2008 to 2025 (33,780 → 24,153)."
+    }
+  ]
+}

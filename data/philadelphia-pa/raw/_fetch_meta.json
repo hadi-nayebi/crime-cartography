@@ -1,0 +1,22 @@
+{
+  "fetchedAt": "2026-07-12T07:07:04.538Z",
+  "script": "pipeline/sources/philadelphia-pa.mjs",
+  "sources": {
+    "records": "https://phl.carto.com/api/v2/sql (table incidents_part1_part2)",
+    "hub": "https://opendataphilly.org/datasets/crime-incidents/",
+    "districts": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Boundaries_District/FeatureServer/0/query?where=1%3D1&outFields=dist_numc&f=geojson",
+    "neighborhoods": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Neighborhoods/FeatureServer/0/query?where=1%3D1&outFields=NAME,LISTNAME,MAPNAME&f=geojson",
+    "districtList": "https://www.phillypolice.com/district/districts-list/",
+    "fbi": "api.usa.gov/crime/fbi/cde/summarized/agency/PAPEP0000"
+  },
+  "totalRecords": 3566030,
+  "window": "2006-01-01..2026-06-30",
+  "unrecognizedCodes": [],
+  "unplacedByDist": {
+    "23": 26306,
+    "92": 1491,
+    "04": 27987,
+    "06": 144961
+  },
+  "outOfBboxPoints": 22
+}

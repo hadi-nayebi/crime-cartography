@@ -1,0 +1,49 @@
+{
+  "slug": "san-francisco-ca",
+  "title": "San Francisco \u00b7 CA",
+  "source": {
+    "records": "https://data.sfgov.org/resource/wg3w-h783.json",
+    "recordsHistorical": "https://data.sfgov.org/resource/tmnf-yvry.json",
+    "beats": "https://data.sfgov.org/resource/j2bu-swwd.geojson",
+    "hub": "https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783",
+    "hubHistorical": "https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-Historical-2003/tmnf-yvry"
+  },
+  "fetchedAt": "2026-07-12T07:10:56.058Z",
+  "dateMin": "2003-01-01",
+  "dateMax": "2026-06-30",
+  "months": 282,
+  "totalRecords": 3117438,
+  "placedRecords": 3013369,
+  "unplacedRecords": 104069,
+  "coveragePct": 96.7,
+  "unplacedBeats": {
+    "no-location": 58221,
+    "tmnf-2018-overlap-dropped": 43733,
+    "partial-2026-07": 2115
+  },
+  "catTotals": {
+    "persons": 260146,
+    "property": 1508006,
+    "society": 264153,
+    "other": 1039285
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#f0433e"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#f7b32b"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#59c9d5"
+    },
+    "other": {
+      "label": "Other / non-criminal (context)",
+      "color": "#77808c"
+    }
+  },
+  "beatCount": 41
+}

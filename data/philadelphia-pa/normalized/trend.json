@@ -1,0 +1,226 @@
+{
+  "note": "UCR index crimes (1985–2005) vs all PPD-recorded offenses (2006+) are different measures — compare shapes within an era, not across the seam. Citywide totals include districts retired in later boundary mergers. Partial current year excluded.",
+  "fetchedAt": "2026-07-12T07:18:20.872Z",
+  "seamYear": 2006,
+  "eras": [
+    {
+      "key": "fbi",
+      "label": "FBI UCR — Violent + Property",
+      "from": 1985,
+      "to": 2005
+    },
+    {
+      "key": "incident",
+      "label": "PPD — all recorded offenses",
+      "from": 2006,
+      "to": 2025
+    }
+  ],
+  "years": [
+    {
+      "year": 1985,
+      "total": 83667,
+      "era": "fbi"
+    },
+    {
+      "year": 1986,
+      "total": 86094,
+      "era": "fbi"
+    },
+    {
+      "year": 1987,
+      "total": 94575,
+      "era": "fbi"
+    },
+    {
+      "year": 1988,
+      "total": 101332,
+      "era": "fbi"
+    },
+    {
+      "year": 1989,
+      "total": 116314,
+      "era": "fbi"
+    },
+    {
+      "year": 1990,
+      "total": 115684,
+      "era": "fbi"
+    },
+    {
+      "year": 1991,
+      "total": 111102,
+      "era": "fbi"
+    },
+    {
+      "year": 1992,
+      "total": 99460,
+      "era": "fbi"
+    },
+    {
+      "year": 1993,
+      "total": 99941,
+      "era": "fbi"
+    },
+    {
+      "year": 1994,
+      "total": 102917,
+      "era": "fbi"
+    },
+    {
+      "year": 1995,
+      "total": 110499,
+      "era": "fbi"
+    },
+    {
+      "year": 1996,
+      "total": 97246,
+      "era": "fbi"
+    },
+    {
+      "year": 1997,
+      "total": 98849,
+      "era": "fbi"
+    },
+    {
+      "year": 1998,
+      "total": 108957,
+      "era": "fbi"
+    },
+    {
+      "year": 1999,
+      "total": 107755,
+      "era": "fbi"
+    },
+    {
+      "year": 2000,
+      "total": 100581,
+      "era": "fbi"
+    },
+    {
+      "year": 2001,
+      "total": 93878,
+      "era": "fbi"
+    },
+    {
+      "year": 2002,
+      "total": 83392,
+      "era": "fbi"
+    },
+    {
+      "year": 2003,
+      "total": 83074,
+      "era": "fbi"
+    },
+    {
+      "year": 2004,
+      "total": 81833,
+      "era": "fbi"
+    },
+    {
+      "year": 2005,
+      "total": 82028,
+      "era": "fbi"
+    },
+    {
+      "year": 2006,
+      "total": 223356,
+      "era": "incident"
+    },
+    {
+      "year": 2007,
+      "total": 211396,
+      "era": "incident"
+    },
+    {
+      "year": 2008,
+      "total": 211892,
+      "era": "incident"
+    },
+    {
+      "year": 2009,
+      "total": 195276,
+      "era": "incident"
+    },
+    {
+      "year": 2010,
+      "total": 194308,
+      "era": "incident"
+    },
+    {
+      "year": 2011,
+      "total": 190210,
+      "era": "incident"
+    },
+    {
+      "year": 2012,
+      "total": 189465,
+      "era": "incident"
+    },
+    {
+      "year": 2013,
+      "total": 179244,
+      "era": "incident"
+    },
+    {
+      "year": 2014,
+      "total": 178623,
+      "era": "incident"
+    },
+    {
+      "year": 2015,
+      "total": 176768,
+      "era": "incident"
+    },
+    {
+      "year": 2016,
+      "total": 161288,
+      "era": "incident"
+    },
+    {
+      "year": 2017,
+      "total": 158982,
+      "era": "incident"
+    },
+    {
+      "year": 2018,
+      "total": 154589,
+      "era": "incident"
+    },
+    {
+      "year": 2019,
+      "total": 161448,
+      "era": "incident"
+    },
+    {
+      "year": 2020,
+      "total": 134411,
+      "era": "incident"
+    },
+    {
+      "year": 2021,
+      "total": 134383,
+      "era": "incident"
+    },
+    {
+      "year": 2022,
+      "total": 151208,
+      "era": "incident"
+    },
+    {
+      "year": 2023,
+      "total": 169023,
+      "era": "incident"
+    },
+    {
+      "year": 2024,
+      "total": 160389,
+      "era": "incident"
+    },
+    {
+      "year": 2025,
+      "total": 152563,
+      "era": "incident"
+    }
+  ]
+}
