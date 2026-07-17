@@ -1,0 +1,82 @@
+{
+  "_rubric": "score = data + representation + narrative + technical (25 each). 100 required to publish. Evidence-only increments; defects drop score + add blocker.",
+  "grand-rapids-mi": {
+    "score": 88,
+    "axes": { "data": 24, "representation": 22, "narrative": 20, "technical": 22 },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged",
+      "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial ledger entry after V6 encode verification (+ref-line fix)" }]
+  },
+  "chicago-il": {
+    "score": 90,
+    "axes": { "data": 25, "representation": 23, "narrative": 21, "technical": 21 },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "seam-label/punchline overlap fix rendered? (fix landed post-render — verify or re-render)",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial entry; corrective ref-line re-render verified" }]
+  },
+  "seattle-wa": {
+    "score": 90,
+    "axes": { "data": 25, "representation": 23, "narrative": 21, "technical": 21 },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "seam-label/punchline overlap fix rendered? (verify or re-render)",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial entry; corrective ref-line re-render verified" }]
+  },
+  "washington-dc": {
+    "score": 91,
+    "axes": { "data": 25, "representation": 23, "narrative": 21, "technical": 22 },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "society=0 counter row reads oddly — consider hiding structurally-empty categories",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial entry after five-city encode verification" }]
+  },
+  "san-francisco-ca": {
+    "score": 90,
+    "axes": { "data": 24, "representation": 23, "narrative": 21, "technical": 22 },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "5.4% unmapped rows — confirm on-screen coverage line wording lands",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial entry; peak-month figure recomputed by producer before configs" }]
+  },
+  "boston-ma": {
+    "score": 89,
+    "axes": { "data": 24, "representation": 23, "narrative": 20, "technical": 22 },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "58% service/non-crime share — verify the crime-only framing is unmissable in the map chapter",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial entry; sexual-assault exclusion disclosed on-screen" }]
+  },
+  "philadelphia-pa": {
+    "score": 90,
+    "axes": { "data": 25, "representation": 23, "narrative": 21, "technical": 21 },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "district renumbering artifacts — confirm no annotation touches merged districts",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial entry; citywide punchline rebuilt after retired-district bias catch" }]
+  },
+  "minneapolis-mn": {
+    "score": 91,
+    "axes": { "data": 25, "representation": 23, "narrative": 21, "technical": 22 },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [{ "date": "2026-07-12", "change": "initial entry; Shots-Fired trend artifact excluded + disclosed" }]
+  }
+}
