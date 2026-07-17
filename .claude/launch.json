@@ -12,6 +12,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8000"],
       "port": 8000
+    },
+    {
+      "name": "studio",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["pipeline/dashboard/server.mjs"],
+      "port": 4400
     }
   ]
 }
