@@ -1,0 +1,45 @@
+{
+  "slug": "denver-co",
+  "title": "Denver · CO",
+  "source": {
+    "records": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_CRIME_OFFENSES_P/FeatureServer/324",
+    "beats": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_ADMN_NEIGHBORHOOD_A/FeatureServer/13/query?where=1=1&outFields=*&f=geojson",
+    "hub": "https://www.arcgis.com/home/item.html?id=1e080d3ce2ae4e2698745a0d02345d4a"
+  },
+  "fetchedAt": "2026-07-17T23:50:55.731Z",
+  "dateMin": "2021-01-01",
+  "dateMax": "2026-06-30",
+  "months": 66,
+  "totalRecords": 344726,
+  "placedRecords": 344388,
+  "unplacedRecords": 338,
+  "coveragePct": 99.9,
+  "unplacedBeats": {
+    "no-neighborhood": 338
+  },
+  "catTotals": {
+    "persons": 30034,
+    "property": 214009,
+    "society": 67337,
+    "other": 33346
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "All-other-crimes (mixed, context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 78
+}

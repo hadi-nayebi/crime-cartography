@@ -1,0 +1,830 @@
+{
+  "source": "Current City of Detroit Neighborhoods (official)",
+  "sourceUrl": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/Current_City_of_Detroit_Neighborhoods/FeatureServer/0/query?where=1=1&outFields=*&f=geojson",
+  "hub": "https://data.detroitmi.gov/",
+  "fetchedAt": "2026-07-17T23:49:23.509Z",
+  "license": "Not stated on the item — City of Detroit Open Data Portal; attributed to the City of Detroit",
+  "method": "identity — DPD crime records carry the official neighborhood name (nhood_name) verbatim; all 205 incident values match all 205 polygon names exactly; no spatial join or approximation is involved",
+  "map": {
+    "West End": {
+      "name": "West End",
+      "approx": false
+    },
+    "Chandler Park": {
+      "name": "Chandler Park",
+      "approx": false
+    },
+    "Riverbend": {
+      "name": "Riverbend",
+      "approx": false
+    },
+    "Jefferson Chalmers": {
+      "name": "Jefferson Chalmers",
+      "approx": false
+    },
+    "Riverdale": {
+      "name": "Riverdale",
+      "approx": false
+    },
+    "Morningside": {
+      "name": "Morningside",
+      "approx": false
+    },
+    "Cornerstone Village": {
+      "name": "Cornerstone Village",
+      "approx": false
+    },
+    "Regent Park": {
+      "name": "Regent Park",
+      "approx": false
+    },
+    "North Rosedale Park": {
+      "name": "North Rosedale Park",
+      "approx": false
+    },
+    "Berg-Lahser": {
+      "name": "Berg-Lahser",
+      "approx": false
+    },
+    "Five Points": {
+      "name": "Five Points",
+      "approx": false
+    },
+    "The Eye": {
+      "name": "The Eye",
+      "approx": false
+    },
+    "Old Redford": {
+      "name": "Old Redford",
+      "approx": false
+    },
+    "Grandmont": {
+      "name": "Grandmont",
+      "approx": false
+    },
+    "Grandmont #1": {
+      "name": "Grandmont #1",
+      "approx": false
+    },
+    "Rosedale Park": {
+      "name": "Rosedale Park",
+      "approx": false
+    },
+    "Minock Park": {
+      "name": "Minock Park",
+      "approx": false
+    },
+    "Westwood Park": {
+      "name": "Westwood Park",
+      "approx": false
+    },
+    "Warrendale": {
+      "name": "Warrendale",
+      "approx": false
+    },
+    "Garden View": {
+      "name": "Garden View",
+      "approx": false
+    },
+    "Warren Ave Community": {
+      "name": "Warren Ave Community",
+      "approx": false
+    },
+    "Far West Detroit": {
+      "name": "Far West Detroit",
+      "approx": false
+    },
+    "Marina District": {
+      "name": "Marina District",
+      "approx": false
+    },
+    "Arden Park": {
+      "name": "Arden Park",
+      "approx": false
+    },
+    "Joseph Berry Sub": {
+      "name": "Joseph Berry Sub",
+      "approx": false
+    },
+    "Indian Village": {
+      "name": "Indian Village",
+      "approx": false
+    },
+    "Rivertown": {
+      "name": "Rivertown",
+      "approx": false
+    },
+    "West Village": {
+      "name": "West Village",
+      "approx": false
+    },
+    "Conner Creek Industrial": {
+      "name": "Conner Creek Industrial",
+      "approx": false
+    },
+    "Belmont": {
+      "name": "Belmont",
+      "approx": false
+    },
+    "Corktown": {
+      "name": "Corktown",
+      "approx": false
+    },
+    "Boynton": {
+      "name": "Boynton",
+      "approx": false
+    },
+    "Oakwood Heights": {
+      "name": "Oakwood Heights",
+      "approx": false
+    },
+    "Blackstone Park": {
+      "name": "Blackstone Park",
+      "approx": false
+    },
+    "Delray": {
+      "name": "Delray",
+      "approx": false
+    },
+    "Claytown": {
+      "name": "Claytown",
+      "approx": false
+    },
+    "Aviation Sub": {
+      "name": "Aviation Sub",
+      "approx": false
+    },
+    "Barton-McFarland": {
+      "name": "Barton-McFarland",
+      "approx": false
+    },
+    "Medical Center": {
+      "name": "Medical Center",
+      "approx": false
+    },
+    "Bagley": {
+      "name": "Bagley",
+      "approx": false
+    },
+    "Green Acres": {
+      "name": "Green Acres",
+      "approx": false
+    },
+    "State Fair": {
+      "name": "State Fair",
+      "approx": false
+    },
+    "Palmer Woods": {
+      "name": "Palmer Woods",
+      "approx": false
+    },
+    "Sherwood Forest": {
+      "name": "Sherwood Forest",
+      "approx": false
+    },
+    "University District": {
+      "name": "University District",
+      "approx": false
+    },
+    "Islandview": {
+      "name": "Islandview",
+      "approx": false
+    },
+    "Springwells": {
+      "name": "Springwells",
+      "approx": false
+    },
+    "Franklin Park": {
+      "name": "Franklin Park",
+      "approx": false
+    },
+    "Weatherby": {
+      "name": "Weatherby",
+      "approx": false
+    },
+    "Castle Rouge": {
+      "name": "Castle Rouge",
+      "approx": false
+    },
+    "Eliza Howell": {
+      "name": "Eliza Howell",
+      "approx": false
+    },
+    "Detroit Golf": {
+      "name": "Detroit Golf",
+      "approx": false
+    },
+    "Brightmoor": {
+      "name": "Brightmoor",
+      "approx": false
+    },
+    "Chadsey Condon": {
+      "name": "Chadsey Condon",
+      "approx": false
+    },
+    "Woodbridge": {
+      "name": "Woodbridge",
+      "approx": false
+    },
+    "Greenfield": {
+      "name": "Greenfield",
+      "approx": false
+    },
+    "Oakman Blvd Community": {
+      "name": "Oakman Blvd Community",
+      "approx": false
+    },
+    "Nardin Park": {
+      "name": "Nardin Park",
+      "approx": false
+    },
+    "Petoskey-Otsego": {
+      "name": "Petoskey-Otsego",
+      "approx": false
+    },
+    "Boston Edison": {
+      "name": "Boston Edison",
+      "approx": false
+    },
+    "Campau/Banglatown": {
+      "name": "Campau/Banglatown",
+      "approx": false
+    },
+    "Conant Gardens": {
+      "name": "Conant Gardens",
+      "approx": false
+    },
+    "Krainz Woods": {
+      "name": "Krainz Woods",
+      "approx": false
+    },
+    "LaSalle College Park": {
+      "name": "LaSalle College Park",
+      "approx": false
+    },
+    "Elmwood Park": {
+      "name": "Elmwood Park",
+      "approx": false
+    },
+    "McDougall-Hunt": {
+      "name": "McDougall-Hunt",
+      "approx": false
+    },
+    "North Corktown": {
+      "name": "North Corktown",
+      "approx": false
+    },
+    "Cultural Center": {
+      "name": "Cultural Center",
+      "approx": false
+    },
+    "Carbon Works": {
+      "name": "Carbon Works",
+      "approx": false
+    },
+    "Michigan-Martin": {
+      "name": "Michigan-Martin",
+      "approx": false
+    },
+    "Pingree Park": {
+      "name": "Pingree Park",
+      "approx": false
+    },
+    "Martin Park": {
+      "name": "Martin Park",
+      "approx": false
+    },
+    "East Village": {
+      "name": "East Village",
+      "approx": false
+    },
+    "Hubbard Farms": {
+      "name": "Hubbard Farms",
+      "approx": false
+    },
+    "Russell Woods": {
+      "name": "Russell Woods",
+      "approx": false
+    },
+    "Gold Coast": {
+      "name": "Gold Coast",
+      "approx": false
+    },
+    "Mohican Regent": {
+      "name": "Mohican Regent",
+      "approx": false
+    },
+    "Jeffries": {
+      "name": "Jeffries",
+      "approx": false
+    },
+    "Brewster Homes": {
+      "name": "Brewster Homes",
+      "approx": false
+    },
+    "Pulaski": {
+      "name": "Pulaski",
+      "approx": false
+    },
+    "Central Southwest": {
+      "name": "Central Southwest",
+      "approx": false
+    },
+    "Hubbard Richard": {
+      "name": "Hubbard Richard",
+      "approx": false
+    },
+    "NW Goldberg": {
+      "name": "NW Goldberg",
+      "approx": false
+    },
+    "Douglass": {
+      "name": "Douglass",
+      "approx": false
+    },
+    "Forest Park": {
+      "name": "Forest Park",
+      "approx": false
+    },
+    "Lafayette Park": {
+      "name": "Lafayette Park",
+      "approx": false
+    },
+    "Eastern Market": {
+      "name": "Eastern Market",
+      "approx": false
+    },
+    "Brush Park": {
+      "name": "Brush Park",
+      "approx": false
+    },
+    "Gratiot Town/Kettering": {
+      "name": "Gratiot Town/Kettering",
+      "approx": false
+    },
+    "Airport Sub": {
+      "name": "Airport Sub",
+      "approx": false
+    },
+    "Hawthorne Park": {
+      "name": "Hawthorne Park",
+      "approx": false
+    },
+    "Poletown East": {
+      "name": "Poletown East",
+      "approx": false
+    },
+    "Grixdale Farms": {
+      "name": "Grixdale Farms",
+      "approx": false
+    },
+    "Palmer Park": {
+      "name": "Palmer Park",
+      "approx": false
+    },
+    "New Center Commons": {
+      "name": "New Center Commons",
+      "approx": false
+    },
+    "Piety Hill": {
+      "name": "Piety Hill",
+      "approx": false
+    },
+    "Northeast Central District": {
+      "name": "Northeast Central District",
+      "approx": false
+    },
+    "East English Village": {
+      "name": "East English Village",
+      "approx": false
+    },
+    "Core City": {
+      "name": "Core City",
+      "approx": false
+    },
+    "Virginia Park": {
+      "name": "Virginia Park",
+      "approx": false
+    },
+    "Plymouth-Hubbell": {
+      "name": "Plymouth-Hubbell",
+      "approx": false
+    },
+    "Joy-Schaefer": {
+      "name": "Joy-Schaefer",
+      "approx": false
+    },
+    "North Campau": {
+      "name": "North Campau",
+      "approx": false
+    },
+    "Pilgrim Village": {
+      "name": "Pilgrim Village",
+      "approx": false
+    },
+    "Fitzgerald/Marygrove": {
+      "name": "Fitzgerald/Marygrove",
+      "approx": false
+    },
+    "Penrose": {
+      "name": "Penrose",
+      "approx": false
+    },
+    "Schulze": {
+      "name": "Schulze",
+      "approx": false
+    },
+    "Greenwich": {
+      "name": "Greenwich",
+      "approx": false
+    },
+    "Jamison": {
+      "name": "Jamison",
+      "approx": false
+    },
+    "Schaefer 7/8 Lodge": {
+      "name": "Schaefer 7/8 Lodge",
+      "approx": false
+    },
+    "Tri-Point": {
+      "name": "Tri-Point",
+      "approx": false
+    },
+    "College Park": {
+      "name": "College Park",
+      "approx": false
+    },
+    "Winship": {
+      "name": "Winship",
+      "approx": false
+    },
+    "Nortown": {
+      "name": "Nortown",
+      "approx": false
+    },
+    "Von Steuben": {
+      "name": "Von Steuben",
+      "approx": false
+    },
+    "Buffalo Charles": {
+      "name": "Buffalo Charles",
+      "approx": false
+    },
+    "West Outer Drive": {
+      "name": "West Outer Drive",
+      "approx": false
+    },
+    "Joy Community": {
+      "name": "Joy Community",
+      "approx": false
+    },
+    "Southfield Plymouth": {
+      "name": "Southfield Plymouth",
+      "approx": false
+    },
+    "Paveway": {
+      "name": "Paveway",
+      "approx": false
+    },
+    "Pride Area Community": {
+      "name": "Pride Area Community",
+      "approx": false
+    },
+    "Happy Homes": {
+      "name": "Happy Homes",
+      "approx": false
+    },
+    "Northwest Community": {
+      "name": "Northwest Community",
+      "approx": false
+    },
+    "Littlefield Community": {
+      "name": "Littlefield Community",
+      "approx": false
+    },
+    "We Care Community": {
+      "name": "We Care Community",
+      "approx": false
+    },
+    "Fiskhorn": {
+      "name": "Fiskhorn",
+      "approx": false
+    },
+    "Midwest": {
+      "name": "Midwest",
+      "approx": false
+    },
+    "LaSalle Gardens": {
+      "name": "LaSalle Gardens",
+      "approx": false
+    },
+    "Wildemere Park": {
+      "name": "Wildemere Park",
+      "approx": false
+    },
+    "Tech Town": {
+      "name": "Tech Town",
+      "approx": false
+    },
+    "Medbury Park": {
+      "name": "Medbury Park",
+      "approx": false
+    },
+    "Russell Industrial": {
+      "name": "Russell Industrial",
+      "approx": false
+    },
+    "Milwaukee Junction": {
+      "name": "Milwaukee Junction",
+      "approx": false
+    },
+    "Yorkshire Woods": {
+      "name": "Yorkshire Woods",
+      "approx": false
+    },
+    "New Center": {
+      "name": "New Center",
+      "approx": false
+    },
+    "Downtown": {
+      "name": "Downtown",
+      "approx": false
+    },
+    "Denby": {
+      "name": "Denby",
+      "approx": false
+    },
+    "Midtown": {
+      "name": "Midtown",
+      "approx": false
+    },
+    "Wayne State": {
+      "name": "Wayne State",
+      "approx": false
+    },
+    "Historic Atkinson": {
+      "name": "Historic Atkinson",
+      "approx": false
+    },
+    "North End": {
+      "name": "North End",
+      "approx": false
+    },
+    "Elijah McCoy": {
+      "name": "Elijah McCoy",
+      "approx": false
+    },
+    "Dexter-Linwood": {
+      "name": "Dexter-Linwood",
+      "approx": false
+    },
+    "Davison": {
+      "name": "Davison",
+      "approx": false
+    },
+    "Farwell": {
+      "name": "Farwell",
+      "approx": false
+    },
+    "West Side Industrial": {
+      "name": "West Side Industrial",
+      "approx": false
+    },
+    "Belle Isle": {
+      "name": "Belle Isle",
+      "approx": false
+    },
+    "Gratiot Woods": {
+      "name": "Gratiot Woods",
+      "approx": false
+    },
+    "Grand River-I96": {
+      "name": "Grand River-I96",
+      "approx": false
+    },
+    "Davison-Schoolcraft": {
+      "name": "Davison-Schoolcraft",
+      "approx": false
+    },
+    "Dexter-Fenkell": {
+      "name": "Dexter-Fenkell",
+      "approx": false
+    },
+    "Rouge Park": {
+      "name": "Rouge Park",
+      "approx": false
+    },
+    "Plymouth-I96": {
+      "name": "Plymouth-I96",
+      "approx": false
+    },
+    "Gateway Community": {
+      "name": "Gateway Community",
+      "approx": false
+    },
+    "Waterworks Park": {
+      "name": "Waterworks Park",
+      "approx": false
+    },
+    "Grant": {
+      "name": "Grant",
+      "approx": false
+    },
+    "Greenfield Park": {
+      "name": "Greenfield Park",
+      "approx": false
+    },
+    "Garden Homes": {
+      "name": "Garden Homes",
+      "approx": false
+    },
+    "Mapleridge": {
+      "name": "Mapleridge",
+      "approx": false
+    },
+    "East Canfield": {
+      "name": "East Canfield",
+      "approx": false
+    },
+    "Eden Gardens": {
+      "name": "Eden Gardens",
+      "approx": false
+    },
+    "Wade": {
+      "name": "Wade",
+      "approx": false
+    },
+    "Ravendale": {
+      "name": "Ravendale",
+      "approx": false
+    },
+    "Gratiot-Findlay": {
+      "name": "Gratiot-Findlay",
+      "approx": false
+    },
+    "Outer Drive-Hayes": {
+      "name": "Outer Drive-Hayes",
+      "approx": false
+    },
+    "Moross-Morang": {
+      "name": "Moross-Morang",
+      "approx": false
+    },
+    "Gratiot-Grand": {
+      "name": "Gratiot-Grand",
+      "approx": false
+    },
+    "Chandler Park-Chalmers": {
+      "name": "Chandler Park-Chalmers",
+      "approx": false
+    },
+    "Mexicantown": {
+      "name": "Mexicantown",
+      "approx": false
+    },
+    "South of Six": {
+      "name": "South of Six",
+      "approx": false
+    },
+    "McNichols Evergreen": {
+      "name": "McNichols Evergreen",
+      "approx": false
+    },
+    "Melvern Hill": {
+      "name": "Melvern Hill",
+      "approx": false
+    },
+    "Evergreen Lahser 7/8": {
+      "name": "Evergreen Lahser 7/8",
+      "approx": false
+    },
+    "O'Hair Park": {
+      "name": "O'Hair Park",
+      "approx": false
+    },
+    "Crary/St Marys": {
+      "name": "Crary/St Marys",
+      "approx": false
+    },
+    "Greenfield-Grand River": {
+      "name": "Greenfield-Grand River",
+      "approx": false
+    },
+    "Cadillac Community": {
+      "name": "Cadillac Community",
+      "approx": false
+    },
+    "Seven Mile-Rouge": {
+      "name": "Seven Mile-Rouge",
+      "approx": false
+    },
+    "Evergreen-Outer Drive": {
+      "name": "Evergreen-Outer Drive",
+      "approx": false
+    },
+    "Holcomb Community": {
+      "name": "Holcomb Community",
+      "approx": false
+    },
+    "Hubbell-Puritan": {
+      "name": "Hubbell-Puritan",
+      "approx": false
+    },
+    "Hubbell-Lyndon": {
+      "name": "Hubbell-Lyndon",
+      "approx": false
+    },
+    "Grand River-St Marys": {
+      "name": "Grand River-St Marys",
+      "approx": false
+    },
+    "Mount Olivet": {
+      "name": "Mount Olivet",
+      "approx": false
+    },
+    "Miller Grove": {
+      "name": "Miller Grove",
+      "approx": false
+    },
+    "Schoolcraft Southfield": {
+      "name": "Schoolcraft Southfield",
+      "approx": false
+    },
+    "Greektown": {
+      "name": "Greektown",
+      "approx": false
+    },
+    "Cadillac Heights": {
+      "name": "Cadillac Heights",
+      "approx": false
+    },
+    "Butler": {
+      "name": "Butler",
+      "approx": false
+    },
+    "Pershing": {
+      "name": "Pershing",
+      "approx": false
+    },
+    "Franklin": {
+      "name": "Franklin",
+      "approx": false
+    },
+    "Conner Creek": {
+      "name": "Conner Creek",
+      "approx": false
+    },
+    "Nolan": {
+      "name": "Nolan",
+      "approx": false
+    },
+    "Sherwood": {
+      "name": "Sherwood",
+      "approx": false
+    },
+    "Chalfonte": {
+      "name": "Chalfonte",
+      "approx": false
+    },
+    "San Bernardo": {
+      "name": "San Bernardo",
+      "approx": false
+    },
+    "Seven Mile Lodge": {
+      "name": "Seven Mile Lodge",
+      "approx": false
+    },
+    "McDowell": {
+      "name": "McDowell",
+      "approx": false
+    },
+    "Pembroke": {
+      "name": "Pembroke",
+      "approx": false
+    },
+    "Harmony Village": {
+      "name": "Harmony Village",
+      "approx": false
+    },
+    "Bethune Community": {
+      "name": "Bethune Community",
+      "approx": false
+    },
+    "Fox Creek": {
+      "name": "Fox Creek",
+      "approx": false
+    },
+    "Virginia Park Community": {
+      "name": "Virginia Park Community",
+      "approx": false
+    },
+    "Oak Grove District 1": {
+      "name": "Oak Grove District 1",
+      "approx": false
+    },
+    "Oak Grove District 2": {
+      "name": "Oak Grove District 2",
+      "approx": false
+    }
+  }
+}

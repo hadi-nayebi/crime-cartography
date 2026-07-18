@@ -1,0 +1,51 @@
+{
+  "slug": "detroit-mi",
+  "title": "Detroit · MI",
+  "source": {
+    "records": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents/FeatureServer/0",
+    "beats": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/Current_City_of_Detroit_Neighborhoods/FeatureServer/0",
+    "hub": "https://data.detroitmi.gov/"
+  },
+  "fetchedAt": "2026-07-17T23:49:23.509Z",
+  "dateMin": "2017-01-01",
+  "dateMax": "2026-06-30",
+  "months": 114,
+  "totalRecords": 733923,
+  "placedRecords": 727483,
+  "unplacedRecords": 6440,
+  "coveragePct": 99.1,
+  "unplacedBeats": {
+    "no-neighborhood": 6440
+  },
+  "dedupe": {
+    "method": "report_number",
+    "offenseRows": 799080,
+    "incidents": 733923,
+    "note": "source rows are offense-level; incidents are distinct report_numbers (server COUNT DISTINCT == client dedupe, verified per month)"
+  },
+  "catTotals": {
+    "persons": 228961,
+    "property": 427788,
+    "society": 66854,
+    "other": 10320
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Other / non-criminal (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 205
+}

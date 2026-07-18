@@ -1,0 +1,60 @@
+{
+  "slug": "buffalo-ny",
+  "title": "Buffalo · NY",
+  "source": {
+    "records": "https://data.buffalony.gov/resource/d6g9-xbgu.json",
+    "beats": "https://gis.buffalony.gov/server/rest/services/BaseFiles/Neighborhood_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=NbhdName,NbhdNum,Sector&outSR=4326&geometryPrecision=6&f=geojson",
+    "hub": "https://data.buffalony.gov/d/d6g9-xbgu"
+  },
+  "fetchedAt": "2026-07-17T23:48:04.879Z",
+  "dateMin": "2006-01-01",
+  "dateMax": "2026-05-31",
+  "months": 245,
+  "totalRecords": 333672,
+  "placedRecords": 326828,
+  "unplacedRecords": 6844,
+  "coveragePct": 97.9,
+  "unplacedBeats": {
+    "no-neighborhood": 6844
+  },
+  "excludedOutsideWindow": {
+    "junk-dated-pre-2006": 633,
+    "partial-2026-06": 456
+  },
+  "sourceGaps": [
+    {
+      "span": "2006-02 … 2006-04",
+      "note": "thin ramp-in months (335–1,053 rows vs ~1,500–2,000 typical) — source starts filling in early 2006"
+    },
+    {
+      "span": "2008-01 … 2008-05",
+      "note": "near-empty months (17–262 rows) — gap in the source records system; shown honestly as a dip, never interpolated"
+    }
+  ],
+  "scopeNote": "BPD publishes only 10 major-crime incident types (homicide, assault, sexual offenses, robbery, burglary, theft, vehicle theft) — no drug/weapon/vice offenses, so Crimes Against Society is structurally zero.",
+  "catTotals": {
+    "persons": 73652,
+    "property": 260020,
+    "society": 0,
+    "other": 0
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society (not published by BPD)",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Other (none in source)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 35
+}

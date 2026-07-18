@@ -1,0 +1,46 @@
+{
+  "slug": "atlanta-ga",
+  "title": "Atlanta · GA",
+  "source": {
+    "records": "https://services3.arcgis.com/Et5Qfajgiyosiw4d/ArcGIS/rest/services/OpenDataWebsite_Crime_view/FeatureServer/0",
+    "beats": "https://services3.arcgis.com/Et5Qfajgiyosiw4d/ArcGIS/rest/services/neighborhood/FeatureServer/0",
+    "hub": "https://atlantapd.hub.arcgis.com/"
+  },
+  "fetchedAt": "2026-07-17T23:49:42.723Z",
+  "dateMin": "2021-01-01",
+  "dateMax": "2026-06-30",
+  "months": 66,
+  "totalRecords": 295360,
+  "placedRecords": 268210,
+  "unplacedRecords": 27150,
+  "coveragePct": 90.8,
+  "unplacedBeats": {
+    "no-neighborhood": 23762,
+    "unmatched-name": 3388
+  },
+  "catTotals": {
+    "persons": 42383,
+    "property": 161813,
+    "society": 53907,
+    "other": 37257
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Non-NIBRS / administrative (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 242
+}

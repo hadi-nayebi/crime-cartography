@@ -1,0 +1,322 @@
+{
+  "source": "Denver official statistical neighborhoods (City and County of Denver)",
+  "sourceUrl": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_ADMN_NEIGHBORHOOD_A/FeatureServer/13/query?where=1=1&outFields=*&f=geojson",
+  "hub": "https://opendata-geospatialdenver.hub.arcgis.com/",
+  "fetchedAt": "2026-07-17T23:50:55.731Z",
+  "license": "City and County of Denver open data use constraints (same publisher/terms as the crime dataset — see PROVENANCE)",
+  "method": "slugify join — DPD crime records carry NEIGHBORHOOD_ID slugs of the official statistical neighborhoods; slugify(NBHD_NAME) from the official polygon layer matches all 78 both directions (only nulls unmatched); no spatial approximation involved",
+  "map": {
+    "marston": {
+      "name": "Marston",
+      "approx": false
+    },
+    "fort-logan": {
+      "name": "Fort Logan",
+      "approx": false
+    },
+    "bear-valley": {
+      "name": "Bear Valley",
+      "approx": false
+    },
+    "harvey-park-south": {
+      "name": "Harvey Park South",
+      "approx": false
+    },
+    "southmoor-park": {
+      "name": "Southmoor Park",
+      "approx": false
+    },
+    "hampden-south": {
+      "name": "Hampden South",
+      "approx": false
+    },
+    "indian-creek": {
+      "name": "Indian Creek",
+      "approx": false
+    },
+    "goldsmith": {
+      "name": "Goldsmith",
+      "approx": false
+    },
+    "gateway-green-valley-ranch": {
+      "name": "Gateway - Green Valley Ranch",
+      "approx": false
+    },
+    "dia": {
+      "name": "DIA",
+      "approx": false
+    },
+    "university-hills": {
+      "name": "University Hills",
+      "approx": false
+    },
+    "harvey-park": {
+      "name": "Harvey Park",
+      "approx": false
+    },
+    "mar-lee": {
+      "name": "Mar Lee",
+      "approx": false
+    },
+    "westwood": {
+      "name": "Westwood",
+      "approx": false
+    },
+    "barnum": {
+      "name": "Barnum",
+      "approx": false
+    },
+    "barnum-west": {
+      "name": "Barnum West",
+      "approx": false
+    },
+    "villa-park": {
+      "name": "Villa Park",
+      "approx": false
+    },
+    "west-colfax": {
+      "name": "West Colfax",
+      "approx": false
+    },
+    "west-highland": {
+      "name": "West Highland",
+      "approx": false
+    },
+    "sloan-lake": {
+      "name": "Sloan Lake",
+      "approx": false
+    },
+    "berkeley": {
+      "name": "Berkeley",
+      "approx": false
+    },
+    "regis": {
+      "name": "Regis",
+      "approx": false
+    },
+    "chaffee-park": {
+      "name": "Chaffee Park",
+      "approx": false
+    },
+    "sunnyside": {
+      "name": "Sunnyside",
+      "approx": false
+    },
+    "highland": {
+      "name": "Highland",
+      "approx": false
+    },
+    "globeville": {
+      "name": "Globeville",
+      "approx": false
+    },
+    "jefferson-park": {
+      "name": "Jefferson Park",
+      "approx": false
+    },
+    "sun-valley": {
+      "name": "Sun Valley",
+      "approx": false
+    },
+    "valverde": {
+      "name": "Valverde",
+      "approx": false
+    },
+    "athmar-park": {
+      "name": "Athmar Park",
+      "approx": false
+    },
+    "windsor": {
+      "name": "Windsor",
+      "approx": false
+    },
+    "east-colfax": {
+      "name": "East Colfax",
+      "approx": false
+    },
+    "northeast-park-hill": {
+      "name": "Northeast Park Hill",
+      "approx": false
+    },
+    "elyria-swansea": {
+      "name": "Elyria Swansea",
+      "approx": false
+    },
+    "wellshire": {
+      "name": "Wellshire",
+      "approx": false
+    },
+    "university": {
+      "name": "University",
+      "approx": false
+    },
+    "rosedale": {
+      "name": "Rosedale",
+      "approx": false
+    },
+    "cheesman-park": {
+      "name": "Cheesman Park",
+      "approx": false
+    },
+    "hilltop": {
+      "name": "Hilltop",
+      "approx": false
+    },
+    "montclair": {
+      "name": "Montclair",
+      "approx": false
+    },
+    "hale": {
+      "name": "Hale",
+      "approx": false
+    },
+    "north-park-hill": {
+      "name": "North Park Hill",
+      "approx": false
+    },
+    "south-park-hill": {
+      "name": "South Park Hill",
+      "approx": false
+    },
+    "university-park": {
+      "name": "University Park",
+      "approx": false
+    },
+    "platt-park": {
+      "name": "Platt Park",
+      "approx": false
+    },
+    "college-view-south-platte": {
+      "name": "College View - South Platte",
+      "approx": false
+    },
+    "overland": {
+      "name": "Overland",
+      "approx": false
+    },
+    "ruby-hill": {
+      "name": "Ruby Hill",
+      "approx": false
+    },
+    "kennedy": {
+      "name": "Kennedy",
+      "approx": false
+    },
+    "hampden": {
+      "name": "Hampden",
+      "approx": false
+    },
+    "baker": {
+      "name": "Baker",
+      "approx": false
+    },
+    "lincoln-park": {
+      "name": "Lincoln Park",
+      "approx": false
+    },
+    "auraria": {
+      "name": "Auraria",
+      "approx": false
+    },
+    "cory-merrill": {
+      "name": "Cory - Merrill",
+      "approx": false
+    },
+    "belcaro": {
+      "name": "Belcaro",
+      "approx": false
+    },
+    "washington-park": {
+      "name": "Washington Park",
+      "approx": false
+    },
+    "washington-park-west": {
+      "name": "Washington Park West",
+      "approx": false
+    },
+    "speer": {
+      "name": "Speer",
+      "approx": false
+    },
+    "cherry-creek": {
+      "name": "Cherry Creek",
+      "approx": false
+    },
+    "country-club": {
+      "name": "Country Club",
+      "approx": false
+    },
+    "congress-park": {
+      "name": "Congress Park",
+      "approx": false
+    },
+    "city-park": {
+      "name": "City Park",
+      "approx": false
+    },
+    "clayton": {
+      "name": "Clayton",
+      "approx": false
+    },
+    "skyland": {
+      "name": "Skyland",
+      "approx": false
+    },
+    "cole": {
+      "name": "Cole",
+      "approx": false
+    },
+    "city-park-west": {
+      "name": "City Park West",
+      "approx": false
+    },
+    "whittier": {
+      "name": "Whittier",
+      "approx": false
+    },
+    "capitol-hill": {
+      "name": "Capitol Hill",
+      "approx": false
+    },
+    "north-capitol-hill": {
+      "name": "North Capitol Hill",
+      "approx": false
+    },
+    "civic-center": {
+      "name": "Civic Center",
+      "approx": false
+    },
+    "cbd": {
+      "name": "CBD",
+      "approx": false
+    },
+    "union-station": {
+      "name": "Union Station",
+      "approx": false
+    },
+    "five-points": {
+      "name": "Five Points",
+      "approx": false
+    },
+    "central-park": {
+      "name": "Central Park",
+      "approx": false
+    },
+    "montbello": {
+      "name": "Montbello",
+      "approx": false
+    },
+    "lowry-field": {
+      "name": "Lowry Field",
+      "approx": false
+    },
+    "virginia-village": {
+      "name": "Virginia Village",
+      "approx": false
+    },
+    "washington-virginia-vale": {
+      "name": "Washington Virginia Vale",
+      "approx": false
+    }
+  }
+}

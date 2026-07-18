@@ -1,0 +1,150 @@
+{
+  "source": "City of Buffalo official planning Neighborhood Boundaries (35)",
+  "sourceUrl": "https://gis.buffalony.gov/server/rest/services/BaseFiles/Neighborhood_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=NbhdName,NbhdNum,Sector&outSR=4326&geometryPrecision=6&f=geojson",
+  "hub": "https://data.buffalony.gov/",
+  "fetchedAt": "2026-07-17T23:48:04.879Z",
+  "license": "Public data — City of Buffalo GIS server (attribution City of Buffalo)",
+  "method": "identity — BPD crime records carry the official City of Buffalo neighborhood name verbatim (all 35 polygon NbhdName values match the crime data's neighborhood values exactly); no spatial join or approximation is involved",
+  "map": {
+    "West Hertel": {
+      "name": "West Hertel",
+      "approx": false
+    },
+    "North Park": {
+      "name": "North Park",
+      "approx": false
+    },
+    "Central Park": {
+      "name": "Central Park",
+      "approx": false
+    },
+    "University Heights": {
+      "name": "University Heights",
+      "approx": false
+    },
+    "Schiller Park": {
+      "name": "Schiller Park",
+      "approx": false
+    },
+    "Kensington-Bailey": {
+      "name": "Kensington-Bailey",
+      "approx": false
+    },
+    "Kenfield": {
+      "name": "Kenfield",
+      "approx": false
+    },
+    "Parkside": {
+      "name": "Parkside",
+      "approx": false
+    },
+    "Black Rock": {
+      "name": "Black Rock",
+      "approx": false
+    },
+    "Grant-Amherst": {
+      "name": "Grant-Amherst",
+      "approx": false
+    },
+    "Riverside": {
+      "name": "Riverside",
+      "approx": false
+    },
+    "Kaisertown": {
+      "name": "Kaisertown",
+      "approx": false
+    },
+    "South Park": {
+      "name": "South Park",
+      "approx": false
+    },
+    "Hopkins-Tifft": {
+      "name": "Hopkins-Tifft",
+      "approx": false
+    },
+    "Upper West Side": {
+      "name": "Upper West Side",
+      "approx": false
+    },
+    "Elmwood Bidwell": {
+      "name": "Elmwood Bidwell",
+      "approx": false
+    },
+    "Hamlin Park": {
+      "name": "Hamlin Park",
+      "approx": false
+    },
+    "Delavan Grider": {
+      "name": "Delavan Grider",
+      "approx": false
+    },
+    "Masten Park": {
+      "name": "Masten Park",
+      "approx": false
+    },
+    "MLK Park": {
+      "name": "MLK Park",
+      "approx": false
+    },
+    "West Side": {
+      "name": "West Side",
+      "approx": false
+    },
+    "Elmwood Bryant": {
+      "name": "Elmwood Bryant",
+      "approx": false
+    },
+    "Lower West Side": {
+      "name": "Lower West Side",
+      "approx": false
+    },
+    "Allentown": {
+      "name": "Allentown",
+      "approx": false
+    },
+    "Fruit Belt": {
+      "name": "Fruit Belt",
+      "approx": false
+    },
+    "Central": {
+      "name": "Central",
+      "approx": false
+    },
+    "Pratt-Willert": {
+      "name": "Pratt-Willert",
+      "approx": false
+    },
+    "First Ward": {
+      "name": "First Ward",
+      "approx": false
+    },
+    "Ellicott": {
+      "name": "Ellicott",
+      "approx": false
+    },
+    "Seneca-Cazenovia": {
+      "name": "Seneca-Cazenovia",
+      "approx": false
+    },
+    "Genesee-Moselle": {
+      "name": "Genesee-Moselle",
+      "approx": false
+    },
+    "Broadway Fillmore": {
+      "name": "Broadway Fillmore",
+      "approx": false
+    },
+    "Seneca Babcock": {
+      "name": "Seneca Babcock",
+      "approx": false
+    },
+    "Lovejoy": {
+      "name": "Lovejoy",
+      "approx": false
+    },
+    "Fillmore-Leroy": {
+      "name": "Fillmore-Leroy",
+      "approx": false
+    }
+  }
+}

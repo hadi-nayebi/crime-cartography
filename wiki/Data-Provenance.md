@@ -328,6 +328,188 @@ a reliable, citable source link.**
 | *(none published)* | `society` (structurally zero — disclosed) |
 | anything unrecognized | `other` (logged; 0 in current fetch unless noted in PROVENANCE) |
 
+## Buffalo, NY (`buffalo-ny`)
+
+- **Primary source:** Crime Incidents (Socrata `d6g9-xbgu`, https://data.buffalony.gov/d/d6g9-xbgu) —
+  **Public Domain U.S. Government** (`USGOV_WORKS`), attribution "Buffalo
+  Police Department". Preliminary report data; updated daily, ~1-month lag.
+- **Spatial unit:** the **35 official City of Buffalo planning neighborhoods**
+  — the crime data's `neighborhood` field matches the city GIS polygon layer
+  (`Neighborhood_Boundaries/FeatureServer/0`, field `NbhdName`) verbatim,
+  35 of 35 (identity join, no approximation).
+- **Deep-history source (1985–2005):** FBI Crime Data Explorer (CDE) —
+  Buffalo PD, **ORI NY0140100** (verified) — real annual Violent + Property counts,
+  21 full years (12 reported months each, verified). UCR taxonomy kept
+  distinct from the incident data; eras bridge at 2006.
+- **Span:** 1985–2005 (FBI UCR annual) + 2006-01-01 → 2026-05-31 (BPD
+  incidents with neighborhood detail, 245 months; last FULL month measured
+  — June 2026 is partial at the source and excluded).
+- **Records:** 333,672 in-window · 326,828 placed in an official
+  neighborhood (**97.9% coverage**) · 6,844 unplaced
+  (blank/"UNKNOWN" neighborhood), kept in totals and disclosed. 633 junk-dated
+  pre-2006 rows (back to 1910) excluded + disclosed.
+- **Source gaps disclosed:** 2006-02…04 thin ramp-in; 2008-01…05 near-empty
+  (records-system gap) — shown as-is, never interpolated; baselines avoid them.
+- **Real dots:** BPD publishes **3-decimal (~block-level, ~80–110 m) coords**
+  for ~97.7% of rows — DISCLOSED; dots are a deterministic ≤100/month sample of
+  real block locations; no-coordinate records are counted but not plotted.
+- **Scope limit (disclosed):** only 10 major-crime types published (no
+  drug/weapon/vice offenses) → Crimes Against Society is structurally zero.
+- **License:** Public Domain U.S. Government (`USGOV_WORKS`); polygons from
+  the City of Buffalo's own GIS server (attribution City of Buffalo).
+- **Detail:** [`data/buffalo-ny/PROVENANCE.md`](../data/buffalo-ny/PROVENANCE.md)
+
+### Category mapping (parent_incident_type → cat)
+
+| Source value | cat |
+|--------------|-----|
+| Assault · Homicide · Sexual Assault · Sexual Offense · Other Sexual Offense · SODOMY | `persons` |
+| Theft · Breaking & Entering · Theft of Vehicle · Robbery | `property` (robbery = crime against property per NIBRS) |
+| — | `society` structurally 0 — BPD publishes no society-type offenses |
+
+## Atlanta, GA (`atlanta-ga`)
+
+- **Primary source:** OpenDataWebsite_Crime view — APD NIBRS crime data,
+  2021-present (ArcGIS `OpenDataWebsite_Crime_view/FeatureServer/0`,
+  https://www.arcgis.com/home/item.html?id=774475034b694ce68b6d2e887aa96544) — **no explicit license stated**
+  (AGOL `licenseInfo` blank, verified; flagged in PROVENANCE). Attribution
+  "Atlanta Police Department (APD) via APD Open Data" (https://atlantapd.hub.arcgis.com/).
+- **Timezone:** `OccurredFromDate` epochs are true UTC instants of
+  America/New_York wall-clock times (verified against the layer's own
+  `Day_of_the_week`); month binning is NY-local, DST-aware.
+- **Spatial unit:** the 242 official **City of Atlanta neighborhoods**
+  (NhoodName, with NPU letters) — the crime data's `NhoodName` matches the
+  polygon layer verbatim (identity join). 9 APD name variants without a
+  polygon (3,388 rows) are disclosed as unmatched-name unplaced.
+- **Legacy layers probed, not used:** `2009_2020CrimeData` +
+  `Crime_Data_1997_2008` are Part-1-only (7 offense types) with junk string
+  dates — splicing them onto the full-NIBRS 2021+ layer would fabricate a 2021
+  jump, so the granular era honestly starts 2021 (reasons in PROVENANCE).
+- **Deep-history source (1985–2018):** FBI Crime Data Explorer (CDE) —
+  Atlanta PD, **ORI GAAPD0000** (verified live; the scouted guess GA0600100 is
+  College Park PD) — real annual Violent + Property counts, 34 full years
+  (12 reported months each, verified). **2019–2020 are a disclosed gap**: APD's
+  FBI submissions are partial (NIBRS transition) and the open-data layer starts
+  2021 — never interpolated.
+- **Span:** 1985–2018 (FBI UCR annual) + 2021-01-01 → 2026-06-30 (APD NIBRS
+  with neighborhood detail, 66 months; partial 2026-07 dropped and disclosed).
+- **Records:** 295,360 total ·
+  268,210 placed in an official neighborhood
+  (**90.8% coverage**) · 27,150 unplaced
+  (23,762 null NhoodName + 3,388 unmatched-name), kept in totals and disclosed.
+- **Real dots:** APD publishes per-record `Latitude`/`Longitude` (100%
+  populated); a handful fall outside the city box and are counted but not
+  plotted — dots are a deterministic even-stride ≤100/month sample of **real**
+  locations.
+- **Row grain:** offense-level rows (~2.6% multi-offense inflation, measured);
+  we count records and disclose the grain.
+- **License:** not stated by APD — attribution given, absence flagged.
+- **Detail:** [`data/atlanta-ga/PROVENANCE.md`](../data/atlanta-ga/PROVENANCE.md)
+
+### Category mapping (Crime_Against → cat)
+
+| Source value | cat |
+|--------------|-----|
+| Person | `persons` |
+| Property | `property` |
+| Society | `society` |
+| *(null — NibrsUcrCode `NOT_APPL`)* | `other` (non-NIBRS/administrative, context only — never counted as NIBRS crime) |
+
+## Denver, CO (`denver-co`)
+
+- **Primary source:** Crime — DPD offense records, **rolling window** ("previous
+  five calendar years plus the current year to date" = 2021-01 → current at
+  fetch) (ArcGIS `ODC_CRIME_OFFENSES_P/FeatureServer/324`, https://www.arcgis.com/home/item.html?id=1e080d3ce2ae4e2698745a0d02345d4a) —
+  custom City and County of Denver use constraints, quoted verbatim in
+  PROVENANCE. Attribution "Denver Police Department via Denver Open Data
+  Catalog". Updated Mon–Fri; records are dynamic.
+- **Grain/dedupe:** source is offense-level; **deduped by `INCIDENT_ID`**
+  (344,726 in-window incidents; representative offense =
+  persons > property > society > other, tie lowest `OFFENSE_ID`). Both grains
+  reconciled exactly against server-side grouped and COUNT(DISTINCT) queries,
+  per month.
+- **Sex crimes absent:** the source publishes **no sexual-assault category**
+  (sex-related crimes exist only as a separate aggregated dataset) — persons
+  totals undercount citywide reality; disclosed prominently.
+- **Date field:** `FIRST_OCCURRENCE_DATE` (when the offense first happened),
+  not `REPORTED_DATE`.
+- **Spatial unit:** the 78 official **Denver statistical neighborhoods** — crime
+  `NEIGHBORHOOD_ID` slugs join `slugify(NBHD_NAME)` of the official polygon
+  layer `ODC_ADMN_NEIGHBORHOOD_A/FeatureServer/13` exactly 78/78 both
+  directions (only nulls unmatched); display names verbatim from polygons.
+- **Deep-history source (1985–2020):** FBI Crime Data Explorer (CDE) —
+  Denver Police Department, **ORI CODPD0000** (not CO0160000 = Sheriff's Office,
+  empty series) — real annual Violent + Property counts, 36 full years
+  (12 reported months each, verified). UCR taxonomy kept distinct; eras bridge
+  at 2021.
+- **Span:** 1985–2020 (FBI UCR annual) + 2021-01-01 → 2026-06-30 (DPD
+  offenses with neighborhood detail, 66 months; partial 2026-07 dropped and
+  disclosed).
+- **Records:** 344,726 in-window incidents ·
+  344,388 placed in an official neighborhood
+  (**99.9% coverage**) · 338 unplaced (null
+  neighborhood), kept in totals and disclosed.
+- **Real dots:** DPD publishes per-record `GEO_LAT`/`GEO_LON` (block-level
+  addresses); dots are a deterministic even-stride ≤100/month sample of
+  **real** locations; incidents without usable coords are counted but not
+  plotted.
+- **License:** custom Denver use constraints (verbatim in PROVENANCE) — "AS IS",
+  liability waiver, "NOT FOR ENGINEERING PURPOSES".
+- **Detail:** [`data/denver-co/PROVENANCE.md`](../data/denver-co/PROVENANCE.md)
+
+### Category mapping (OFFENSE_CATEGORY_ID → cat; 13 source values, exhaustive)
+
+| Source categories | cat |
+|-------------------|-----|
+| murder, aggravated-assault, other-crimes-against-persons | `persons` |
+| robbery (NIBRS: crime against property), burglary, larceny, theft-from-motor-vehicle, auto-theft, arson, white-collar-crime | `property` |
+| drug-alcohol, public-disorder (closest crimes-against-society bucket; contains some persons-adjacent types — category-grain mapping disclosed) | `society` |
+| all-other-crimes | `other` (mixed catch-all — context only, never counted as persons/property/society) |
+
+## Detroit, MI (`detroit-mi`)
+
+- **Primary source:** RMS Crime Incidents — DPD offense-level records, 2017-present
+  (ArcGIS `RMS_Crime_Incidents/FeatureServer/0`, https://data.detroitmi.gov/datasets/rms-crime-incidents) —
+  license **not stated** on the item; attributed "Detroit Police Department (DPD)
+  via City of Detroit Open Data Portal". Refreshed daily.
+- **Dedupe:** the layer is offense-level — deduplicated by `report_number` to
+  **incidents** (799,080 rows → 733,923 incidents).
+  Independent server-side `COUNT(DISTINCT report_number)` equals the client
+  dedupe for every month and globally (validated in-script).
+- **Time:** `incident_occurred_at` is a true UTC instant (verified against the
+  source's local `incident_time`); all binning is Detroit local time with
+  DST-aware month boundaries.
+- **Spatial unit:** the 205 official **Current City of Detroit Neighborhoods** —
+  the crime data's `neighborhood` field matches the polygon layer's
+  `nhood_name` exactly (identity join, 205/205 verbatim; only nulls unmatched).
+- **Deep-history source (1985–2016):** FBI Crime Data Explorer (CDE) —
+  Detroit PD, **ORI MI8234900** — real annual Violent + Property counts,
+  32 full years (12 reported months each, verified; the CDE's "Offenses"
+  series, never "Clearances"). UCR taxonomy kept distinct from DPD RMS
+  categories; eras bridge at 2017.
+- **Span:** 1985–2016 (FBI UCR annual) + 2017-01-01 → 2026-06-30 (DPD RMS
+  with neighborhood detail, 114 months; junk pre-2017 straggler dates and
+  partial 2026-07 dropped and disclosed).
+- **Records:** 733,923 incidents ·
+  727,483 placed in an official neighborhood
+  (**99.1% coverage**) · 6,440 unplaced
+  (null neighborhood), kept in totals and disclosed.
+- **Real dots:** DPD publishes per-record `latitude`/`longitude` at the
+  nearest-intersection grain; ~0.1% of incidents have no usable coordinates —
+  dots are a deterministic even-stride ≤100/month sample of **real** locations;
+  unlocatable incidents are counted but not plotted.
+- **License:** not stated (open-data portal publication) — flagged; attribute DPD.
+- **Detail:** [`data/detroit-mi/PROVENANCE.md`](../data/detroit-mi/PROVENANCE.md)
+
+### Category mapping (offense_category → cat, NIBRS crimes-against convention)
+
+| cat | offense_category values |
+|-----|------------------------|
+| `persons` | ASSAULT, AGGRAVATED ASSAULT, HOMICIDE, SEXUAL ASSAULT, SEX OFFENSES, KIDNAPPING |
+| `property` | ROBBERY (NIBRS: property), LARCENY, BURGLARY, STOLEN VEHICLE, STOLEN PROPERTY, DAMAGE TO PROPERTY, FRAUD, FORGERY, EXTORTION, ARSON |
+| `society` | WEAPONS OFFENSES, DANGEROUS DRUGS, OUIL, LIQUOR, GAMBLING, SOLICITATION, DISORDERLY CONDUCT, OBSTRUCTING THE POLICE, OBSTRUCTING JUDICIARY, HEALTH AND SAFETY, FAMILY OFFENSE, INVASION OF PRIVACY -OTHER |
+| `other` | RUNAWAY (status offense), MISCELLANEOUS, OTHER, JUSTIFIABLE HOMICIDE (not a crime in NIBRS) — context only, never counted as crime |
+
 ## Ranked source types (for new datasets)
 
 | tier | source | grain | coords? |

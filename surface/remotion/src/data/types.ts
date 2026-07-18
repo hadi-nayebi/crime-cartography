@@ -167,6 +167,7 @@ export interface HistoryNote {
 export interface CityCopy {
   cityName?: string; // "Grand Rapids"
   regionNoun?: string; // "police beat" | "community area" | "neighborhood"
+  seamExplain?: string; // why-the-jump card at the trend's measure seam
   chapter2Kicker?: string; // "CHAPTER 2 · 2023–2026 · GRPD NIBRS"
   chapter2Title?: string; // "The map comes alive — per police beat"
   chapter2Caption?: string; // one-line what-you're-seeing

@@ -17,6 +17,9 @@ interface Props {
   kicker?: string;
   /** verified net-change punchline shown once the reveal completes. */
   punchline?: { text: string; sub: string };
+  /** why-the-jump explainer shown while the sweep crosses the seam
+      (config copy.seamExplain overrides the engine default). */
+  seamExplain?: string;
 }
 
 const X0 = 300;
@@ -37,6 +40,7 @@ export const FullTrend: React.FC<Props> = ({
   accent = "#ffb020",
   kicker,
   punchline,
+  seamExplain,
 }) => {
   const years = trend.years;
   const n = years.length;
@@ -184,6 +188,46 @@ export const FullTrend: React.FC<Props> = ({
       >
         two different counting systems — compare the shape within each era, not across the dashed seam
       </div>
+
+      {/* WHY-THE-JUMP seam explainer — rides the sweep across the measure
+          change, answering "why did the value jump / did classification
+          change?" the moment a viewer would ask it. */}
+      {seamIdx > 0 && (() => {
+        const t = Math.min(
+          interpolate(yearFloat, [seamIdx - 0.3, seamIdx + 0.7], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+          interpolate(yearFloat, [seamIdx + 3.6, seamIdx + 4.6], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+        );
+        if (t <= 0.01) return null;
+        const seamX = X0 + seamIdx * slot;
+        const cardW = 480;
+        const left = seamX > (X0 + X1) / 2 ? seamX - cardW - 36 : seamX + 36;
+        const text =
+          seamExplain ??
+          `The ruler changes here — not the city. Until ${trend.seamYear - 1} the gray bars count only the FBI's classic “index” crimes (murder, robbery, assault, burglary, theft…). From ${trend.seamYear} the ${trend.eras[1].label.split("—")[0].trim()} figures count under a newer, broader incident-based system, so levels can jump. Compare shapes within one color, never across the line.`;
+        return (
+          <div
+            style={{
+              position: "absolute",
+              left,
+              top: 396,
+              width: cardW,
+              opacity: t,
+              transform: `translateY(${(1 - t) * 16}px)`,
+              background: "rgba(8,11,16,0.94)",
+              border: `1px solid ${COLORS.panelStroke}`,
+              borderLeft: `4px solid ${accent}`,
+              borderRadius: 12,
+              padding: "14px 18px",
+              boxShadow: "0 14px 44px rgba(0,0,0,0.5)",
+            }}
+          >
+            <div style={{ fontFamily: FONT_MONO, fontSize: 15, letterSpacing: 3, color: accent, marginBottom: 6 }}>
+              WHY THE JUMP?
+            </div>
+            <div style={{ fontSize: 19, lineHeight: 1.45, color: COLORS.ink, fontWeight: 500 }}>{text}</div>
+          </div>
+        );
+      })()}
 
       {/* Net-change punchline (verified, from config) */}
       {punchline && punchT > 0.01 && (

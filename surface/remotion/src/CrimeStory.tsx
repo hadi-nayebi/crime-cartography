@@ -304,6 +304,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           style={props.trendStyle}
           accent={CAT_COLORS.property}
           punchline={props.punchline}
+          seamExplain={copy?.seamExplain}
         />
       ) : history && historyOpacity > 0.001 ? (
         <HistoryEra history={history} yearFloat={yearFloat} opacity={historyOpacity} />

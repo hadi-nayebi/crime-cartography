@@ -1,0 +1,989 @@
+{
+  "source": "City of Atlanta official neighborhoods (APD AGOL 'neighborhood' layer, NhoodName + NPU)",
+  "sourceUrl": "https://services3.arcgis.com/Et5Qfajgiyosiw4d/ArcGIS/rest/services/neighborhood/FeatureServer/0/query?where=1=1&outFields=NhoodName,NPU&f=geojson",
+  "hub": "https://atlantapd.hub.arcgis.com/",
+  "fetchedAt": "2026-07-17T23:49:42.723Z",
+  "license": "Not stated on the AGOL item (licenseInfo blank, verified at fetch) — attributed to Atlanta Police Department / City of Atlanta",
+  "method": "identity — APD crime records carry the official neighborhood name (NhoodName) verbatim; no spatial join or approximation is involved. 9 incident-name variants absent from the polygon layer are disclosed as unmatched-name unplaced, never guessed onto the map.",
+  "unmatchedIncidentNames": {
+    "Historic Westin Heights/Bankhead": 2425,
+    "Baker Hills at Campbellton": 414,
+    "West Cascade": 214,
+    "Bonnybrook Estates": 103,
+    "Emory": 97,
+    "Continental Colony": 70,
+    "Peyton Heights": 36,
+    "Edmund Park": 19,
+    "South Oakes at Cascade": 10
+  },
+  "map": {
+    "Brandon": {
+      "name": "Brandon",
+      "approx": false
+    },
+    "Poncey-Highland": {
+      "name": "Poncey-Highland",
+      "approx": false
+    },
+    "Inman Park": {
+      "name": "Inman Park",
+      "approx": false
+    },
+    "Candler Park": {
+      "name": "Candler Park",
+      "approx": false
+    },
+    "Edgewood": {
+      "name": "Edgewood",
+      "approx": false
+    },
+    "East Lake": {
+      "name": "East Lake",
+      "approx": false
+    },
+    "Custer/McDonough/Guice": {
+      "name": "Custer/McDonough/Guice",
+      "approx": false
+    },
+    "Thomasville Heights": {
+      "name": "Thomasville Heights",
+      "approx": false
+    },
+    "Norwood Manor": {
+      "name": "Norwood Manor",
+      "approx": false
+    },
+    "South River Gardens": {
+      "name": "South River Gardens",
+      "approx": false
+    },
+    "Blair Villa/Poole Creek": {
+      "name": "Blair Villa/Poole Creek",
+      "approx": false
+    },
+    "Rosedale Heights": {
+      "name": "Rosedale Heights",
+      "approx": false
+    },
+    "Lakewood": {
+      "name": "Lakewood",
+      "approx": false
+    },
+    "Ridgedale Park": {
+      "name": "Ridgedale Park",
+      "approx": false
+    },
+    "Lindbergh/Morosgo": {
+      "name": "Lindbergh/Morosgo",
+      "approx": false
+    },
+    "East Chastain Park": {
+      "name": "East Chastain Park",
+      "approx": false
+    },
+    "South Tuxedo Park": {
+      "name": "South Tuxedo Park",
+      "approx": false
+    },
+    "Buckhead Village": {
+      "name": "Buckhead Village",
+      "approx": false
+    },
+    "Peachtree Heights East": {
+      "name": "Peachtree Heights East",
+      "approx": false
+    },
+    "Lindridge/Martin Manor": {
+      "name": "Lindridge/Martin Manor",
+      "approx": false
+    },
+    "Atkins Park": {
+      "name": "Atkins Park",
+      "approx": false
+    },
+    "Piedmont Heights": {
+      "name": "Piedmont Heights",
+      "approx": false
+    },
+    "Whitewater Creek": {
+      "name": "Whitewater Creek",
+      "approx": false
+    },
+    "West Paces Ferry/Northside": {
+      "name": "West Paces Ferry/Northside",
+      "approx": false
+    },
+    "Pleasant Hill": {
+      "name": "Pleasant Hill",
+      "approx": false
+    },
+    "Ridgewood Heights": {
+      "name": "Ridgewood Heights",
+      "approx": false
+    },
+    "Fernleaf": {
+      "name": "Fernleaf",
+      "approx": false
+    },
+    "Westminster/Milmar": {
+      "name": "Westminster/Milmar",
+      "approx": false
+    },
+    "Arden/Habersham": {
+      "name": "Arden/Habersham",
+      "approx": false
+    },
+    "Woodfield": {
+      "name": "Woodfield",
+      "approx": false
+    },
+    "Springlake": {
+      "name": "Springlake",
+      "approx": false
+    },
+    "Channing Valley": {
+      "name": "Channing Valley",
+      "approx": false
+    },
+    "Collier Hills": {
+      "name": "Collier Hills",
+      "approx": false
+    },
+    "Colonial Homes": {
+      "name": "Colonial Homes",
+      "approx": false
+    },
+    "Druid Hills": {
+      "name": "Druid Hills",
+      "approx": false
+    },
+    "Cabbagetown": {
+      "name": "Cabbagetown",
+      "approx": false
+    },
+    "Reynoldstown": {
+      "name": "Reynoldstown",
+      "approx": false
+    },
+    "The Villages at East Lake": {
+      "name": "The Villages at East Lake",
+      "approx": false
+    },
+    "Ormewood Park": {
+      "name": "Ormewood Park",
+      "approx": false
+    },
+    "Woodland Hills": {
+      "name": "Woodland Hills",
+      "approx": false
+    },
+    "Benteen Park": {
+      "name": "Benteen Park",
+      "approx": false
+    },
+    "Boulevard Heights": {
+      "name": "Boulevard Heights",
+      "approx": false
+    },
+    "Rebel Valley Forest": {
+      "name": "Rebel Valley Forest",
+      "approx": false
+    },
+    "Leila Valley": {
+      "name": "Leila Valley",
+      "approx": false
+    },
+    "Orchard Knob": {
+      "name": "Orchard Knob",
+      "approx": false
+    },
+    "Brookhaven": {
+      "name": "Brookhaven",
+      "approx": false
+    },
+    "Lenox": {
+      "name": "Lenox",
+      "approx": false
+    },
+    "Pine Hills": {
+      "name": "Pine Hills",
+      "approx": false
+    },
+    "Peachtree Park": {
+      "name": "Peachtree Park",
+      "approx": false
+    },
+    "North Buckhead": {
+      "name": "North Buckhead",
+      "approx": false
+    },
+    "Buckhead Forest": {
+      "name": "Buckhead Forest",
+      "approx": false
+    },
+    "Peachtree Heights West": {
+      "name": "Peachtree Heights West",
+      "approx": false
+    },
+    "Garden Hills": {
+      "name": "Garden Hills",
+      "approx": false
+    },
+    "Peachtree Hills": {
+      "name": "Peachtree Hills",
+      "approx": false
+    },
+    "Virginia Highland": {
+      "name": "Virginia Highland",
+      "approx": false
+    },
+    "Chastain Park": {
+      "name": "Chastain Park",
+      "approx": false
+    },
+    "Mt. Paran Parkway": {
+      "name": "Mt. Paran Parkway",
+      "approx": false
+    },
+    "Mt. Paran/Northside": {
+      "name": "Mt. Paran/Northside",
+      "approx": false
+    },
+    "Randall Mill": {
+      "name": "Randall Mill",
+      "approx": false
+    },
+    "Kingswood": {
+      "name": "Kingswood",
+      "approx": false
+    },
+    "Tuxedo Park": {
+      "name": "Tuxedo Park",
+      "approx": false
+    },
+    "Margaret Mitchell": {
+      "name": "Margaret Mitchell",
+      "approx": false
+    },
+    "Paces": {
+      "name": "Paces",
+      "approx": false
+    },
+    "Westover Plantation": {
+      "name": "Westover Plantation",
+      "approx": false
+    },
+    "Cross Creek": {
+      "name": "Cross Creek",
+      "approx": false
+    },
+    "Castlewood": {
+      "name": "Castlewood",
+      "approx": false
+    },
+    "Argonne Forest": {
+      "name": "Argonne Forest",
+      "approx": false
+    },
+    "Wyngate": {
+      "name": "Wyngate",
+      "approx": false
+    },
+    "Peachtree Battle Alliance": {
+      "name": "Peachtree Battle Alliance",
+      "approx": false
+    },
+    "Memorial Park": {
+      "name": "Memorial Park",
+      "approx": false
+    },
+    "Wildwood (NPU-C)": {
+      "name": "Wildwood (NPU-C)",
+      "approx": false
+    },
+    "Collier Hills North": {
+      "name": "Collier Hills North",
+      "approx": false
+    },
+    "Beecher Hills": {
+      "name": "Beecher Hills",
+      "approx": false
+    },
+    "Westwood Terrace": {
+      "name": "Westwood Terrace",
+      "approx": false
+    },
+    "Harris Chiles": {
+      "name": "Harris Chiles",
+      "approx": false
+    },
+    "Just Us": {
+      "name": "Just Us",
+      "approx": false
+    },
+    "The Villages at Castleberry Hill": {
+      "name": "The Villages at Castleberry Hill",
+      "approx": false
+    },
+    "Mozley Park": {
+      "name": "Mozley Park",
+      "approx": false
+    },
+    "Washington Park": {
+      "name": "Washington Park",
+      "approx": false
+    },
+    "Knight Park/Howell Station": {
+      "name": "Knight Park/Howell Station",
+      "approx": false
+    },
+    "Vine City": {
+      "name": "Vine City",
+      "approx": false
+    },
+    "Pittsburgh": {
+      "name": "Pittsburgh",
+      "approx": false
+    },
+    "Peoplestown": {
+      "name": "Peoplestown",
+      "approx": false
+    },
+    "Summerhill": {
+      "name": "Summerhill",
+      "approx": false
+    },
+    "Castleberry Hill": {
+      "name": "Castleberry Hill",
+      "approx": false
+    },
+    "Sweet Auburn": {
+      "name": "Sweet Auburn",
+      "approx": false
+    },
+    "Marietta Street Artery": {
+      "name": "Marietta Street Artery",
+      "approx": false
+    },
+    "Sherwood Forest": {
+      "name": "Sherwood Forest",
+      "approx": false
+    },
+    "Loring Heights": {
+      "name": "Loring Heights",
+      "approx": false
+    },
+    "Brookwood Hills": {
+      "name": "Brookwood Hills",
+      "approx": false
+    },
+    "Old Gordon": {
+      "name": "Old Gordon",
+      "approx": false
+    },
+    "Mays": {
+      "name": "Mays",
+      "approx": false
+    },
+    "Old Fairburn Village": {
+      "name": "Old Fairburn Village",
+      "approx": false
+    },
+    "Harvel Homes Community": {
+      "name": "Harvel Homes Community",
+      "approx": false
+    },
+    "Penelope Neighbors": {
+      "name": "Penelope Neighbors",
+      "approx": false
+    },
+    "Dixie Hills": {
+      "name": "Dixie Hills",
+      "approx": false
+    },
+    "Grove Park": {
+      "name": "Grove Park",
+      "approx": false
+    },
+    "Bankhead/Bolton": {
+      "name": "Bankhead/Bolton",
+      "approx": false
+    },
+    "Fairburn Heights": {
+      "name": "Fairburn Heights",
+      "approx": false
+    },
+    "Adamsville": {
+      "name": "Adamsville",
+      "approx": false
+    },
+    "Fairburn Road/Wisteria Lane": {
+      "name": "Fairburn Road/Wisteria Lane",
+      "approx": false
+    },
+    "Ridgecrest Forest": {
+      "name": "Ridgecrest Forest",
+      "approx": false
+    },
+    "Wildwood (NPU-H)": {
+      "name": "Wildwood (NPU-H)",
+      "approx": false
+    },
+    "Boulder Park": {
+      "name": "Boulder Park",
+      "approx": false
+    },
+    "Westhaven": {
+      "name": "Westhaven",
+      "approx": false
+    },
+    "Harland Terrace": {
+      "name": "Harland Terrace",
+      "approx": false
+    },
+    "Peyton Forest": {
+      "name": "Peyton Forest",
+      "approx": false
+    },
+    "East Ardley Road": {
+      "name": "East Ardley Road",
+      "approx": false
+    },
+    "West Manor": {
+      "name": "West Manor",
+      "approx": false
+    },
+    "Audobon Forest West": {
+      "name": "Audobon Forest West",
+      "approx": false
+    },
+    "Audobon Forest": {
+      "name": "Audobon Forest",
+      "approx": false
+    },
+    "Cascade Heights": {
+      "name": "Cascade Heights",
+      "approx": false
+    },
+    "Westview": {
+      "name": "Westview",
+      "approx": false
+    },
+    "West End": {
+      "name": "West End",
+      "approx": false
+    },
+    "Ashview Heights": {
+      "name": "Ashview Heights",
+      "approx": false
+    },
+    "Atlanta University Center": {
+      "name": "Atlanta University Center",
+      "approx": false
+    },
+    "Hunter Hills": {
+      "name": "Hunter Hills",
+      "approx": false
+    },
+    "Bankhead": {
+      "name": "Bankhead",
+      "approx": false
+    },
+    "English Avenue": {
+      "name": "English Avenue",
+      "approx": false
+    },
+    "Adair Park": {
+      "name": "Adair Park",
+      "approx": false
+    },
+    "Mechanicsville": {
+      "name": "Mechanicsville",
+      "approx": false
+    },
+    "Capitol Gateway": {
+      "name": "Capitol Gateway",
+      "approx": false
+    },
+    "Grant Park": {
+      "name": "Grant Park",
+      "approx": false
+    },
+    "Hammond Park": {
+      "name": "Hammond Park",
+      "approx": false
+    },
+    "Perkerson": {
+      "name": "Perkerson",
+      "approx": false
+    },
+    "Capitol View": {
+      "name": "Capitol View",
+      "approx": false
+    },
+    "High Point": {
+      "name": "High Point",
+      "approx": false
+    },
+    "Joyland": {
+      "name": "Joyland",
+      "approx": false
+    },
+    "Betmar LaVilla": {
+      "name": "Betmar LaVilla",
+      "approx": false
+    },
+    "The Villages at Carver": {
+      "name": "The Villages at Carver",
+      "approx": false
+    },
+    "Englewood Manor": {
+      "name": "Englewood Manor",
+      "approx": false
+    },
+    "Fort McPherson": {
+      "name": "Fort McPherson",
+      "approx": false
+    },
+    "Venetian Hills": {
+      "name": "Venetian Hills",
+      "approx": false
+    },
+    "Bush Mountain": {
+      "name": "Bush Mountain",
+      "approx": false
+    },
+    "Pomona Park": {
+      "name": "Pomona Park",
+      "approx": false
+    },
+    "Fort Valley": {
+      "name": "Fort Valley",
+      "approx": false
+    },
+    "Greenbriar": {
+      "name": "Greenbriar",
+      "approx": false
+    },
+    "Laurens Valley": {
+      "name": "Laurens Valley",
+      "approx": false
+    },
+    "Heritage Valley": {
+      "name": "Heritage Valley",
+      "approx": false
+    },
+    "Briar Glen": {
+      "name": "Briar Glen",
+      "approx": false
+    },
+    "Ben Hill Acres": {
+      "name": "Ben Hill Acres",
+      "approx": false
+    },
+    "Rue Royal": {
+      "name": "Rue Royal",
+      "approx": false
+    },
+    "Ben Hill Pines": {
+      "name": "Ben Hill Pines",
+      "approx": false
+    },
+    "Ben Hill Forest": {
+      "name": "Ben Hill Forest",
+      "approx": false
+    },
+    "Deerwood": {
+      "name": "Deerwood",
+      "approx": false
+    },
+    "Wildwood Forest": {
+      "name": "Wildwood Forest",
+      "approx": false
+    },
+    "Fairway Acres": {
+      "name": "Fairway Acres",
+      "approx": false
+    },
+    "Fairburn": {
+      "name": "Fairburn",
+      "approx": false
+    },
+    "Ben Hill Terrace": {
+      "name": "Ben Hill Terrace",
+      "approx": false
+    },
+    "Greenbriar Village": {
+      "name": "Greenbriar Village",
+      "approx": false
+    },
+    "Niskey Lake": {
+      "name": "Niskey Lake",
+      "approx": false
+    },
+    "Kings Forest": {
+      "name": "Kings Forest",
+      "approx": false
+    },
+    "Whittier Mill Village": {
+      "name": "Whittier Mill Village",
+      "approx": false
+    },
+    "Hills Park": {
+      "name": "Hills Park",
+      "approx": false
+    },
+    "Bolton Hills": {
+      "name": "Bolton Hills",
+      "approx": false
+    },
+    "Carver Hills": {
+      "name": "Carver Hills",
+      "approx": false
+    },
+    "Almond Park": {
+      "name": "Almond Park",
+      "approx": false
+    },
+    "Glenrose Heights": {
+      "name": "Glenrose Heights",
+      "approx": false
+    },
+    "Browns Mill Park": {
+      "name": "Browns Mill Park",
+      "approx": false
+    },
+    "Swallow Circle/Baywood": {
+      "name": "Swallow Circle/Baywood",
+      "approx": false
+    },
+    "Polar Rock": {
+      "name": "Polar Rock",
+      "approx": false
+    },
+    "Sylvan Hills": {
+      "name": "Sylvan Hills",
+      "approx": false
+    },
+    "Capitol View Manor": {
+      "name": "Capitol View Manor",
+      "approx": false
+    },
+    "Amal Heights": {
+      "name": "Amal Heights",
+      "approx": false
+    },
+    "West Lake": {
+      "name": "West Lake",
+      "approx": false
+    },
+    "Lakewood Heights": {
+      "name": "Lakewood Heights",
+      "approx": false
+    },
+    "South Atlanta": {
+      "name": "South Atlanta",
+      "approx": false
+    },
+    "Chosewood Park": {
+      "name": "Chosewood Park",
+      "approx": false
+    },
+    "Cascade Avenue/Road": {
+      "name": "Cascade Avenue/Road",
+      "approx": false
+    },
+    "Oakland City": {
+      "name": "Oakland City",
+      "approx": false
+    },
+    "Campbellton Road": {
+      "name": "Campbellton Road",
+      "approx": false
+    },
+    "Southwest": {
+      "name": "Southwest",
+      "approx": false
+    },
+    "Adams Park": {
+      "name": "Adams Park",
+      "approx": false
+    },
+    "Mt. Gilead Woods": {
+      "name": "Mt. Gilead Woods",
+      "approx": false
+    },
+    "Meadowbrook Forest": {
+      "name": "Meadowbrook Forest",
+      "approx": false
+    },
+    "Mellwood": {
+      "name": "Mellwood",
+      "approx": false
+    },
+    "Tampa Park": {
+      "name": "Tampa Park",
+      "approx": false
+    },
+    "Brentwood": {
+      "name": "Brentwood",
+      "approx": false
+    },
+    "Lake Estates": {
+      "name": "Lake Estates",
+      "approx": false
+    },
+    "Butner/Tell": {
+      "name": "Butner/Tell",
+      "approx": false
+    },
+    "Elmco Estates": {
+      "name": "Elmco Estates",
+      "approx": false
+    },
+    "Sandlewood Estates": {
+      "name": "Sandlewood Estates",
+      "approx": false
+    },
+    "Niskey Cove": {
+      "name": "Niskey Cove",
+      "approx": false
+    },
+    "Ashley Courts": {
+      "name": "Ashley Courts",
+      "approx": false
+    },
+    "Ben Hill": {
+      "name": "Ben Hill",
+      "approx": false
+    },
+    "Berkeley Park": {
+      "name": "Berkeley Park",
+      "approx": false
+    },
+    "Underwood Hills": {
+      "name": "Underwood Hills",
+      "approx": false
+    },
+    "Riverside": {
+      "name": "Riverside",
+      "approx": false
+    },
+    "Bolton": {
+      "name": "Bolton",
+      "approx": false
+    },
+    "Blandtown": {
+      "name": "Blandtown",
+      "approx": false
+    },
+    "Lincoln Homes": {
+      "name": "Lincoln Homes",
+      "approx": false
+    },
+    "Scotts Crossing": {
+      "name": "Scotts Crossing",
+      "approx": false
+    },
+    "West Highlands": {
+      "name": "West Highlands",
+      "approx": false
+    },
+    "Rockdale": {
+      "name": "Rockdale",
+      "approx": false
+    },
+    "Monroe Heights": {
+      "name": "Monroe Heights",
+      "approx": false
+    },
+    "Brookview Heights": {
+      "name": "Brookview Heights",
+      "approx": false
+    },
+    "Center Hill": {
+      "name": "Center Hill",
+      "approx": false
+    },
+    "Bankhead Courts": {
+      "name": "Bankhead Courts",
+      "approx": false
+    },
+    "Carroll Heights": {
+      "name": "Carroll Heights",
+      "approx": false
+    },
+    "Oakcliff": {
+      "name": "Oakcliff",
+      "approx": false
+    },
+    "Wisteria Gardens": {
+      "name": "Wisteria Gardens",
+      "approx": false
+    },
+    "Baker Hills": {
+      "name": "Baker Hills",
+      "approx": false
+    },
+    "Wilson Mill Meadows": {
+      "name": "Wilson Mill Meadows",
+      "approx": false
+    },
+    "Collier Heights": {
+      "name": "Collier Heights",
+      "approx": false
+    },
+    "Ivan Hill": {
+      "name": "Ivan Hill",
+      "approx": false
+    },
+    "Chalet Woods": {
+      "name": "Chalet Woods",
+      "approx": false
+    },
+    "Florida Heights": {
+      "name": "Florida Heights",
+      "approx": false
+    },
+    "Green Acres Valley": {
+      "name": "Green Acres Valley",
+      "approx": false
+    },
+    "Green Forest Acres": {
+      "name": "Green Forest Acres",
+      "approx": false
+    },
+    "Magnum Manor": {
+      "name": "Magnum Manor",
+      "approx": false
+    },
+    "Old Fourth Ward": {
+      "name": "Old Fourth Ward",
+      "approx": false
+    },
+    "Downtown": {
+      "name": "Downtown",
+      "approx": false
+    },
+    "Georgia Tech": {
+      "name": "Georgia Tech",
+      "approx": false
+    },
+    "Home Park": {
+      "name": "Home Park",
+      "approx": false
+    },
+    "Midtown": {
+      "name": "Midtown",
+      "approx": false
+    },
+    "Ansley Park": {
+      "name": "Ansley Park",
+      "approx": false
+    },
+    "Brookwood": {
+      "name": "Brookwood",
+      "approx": false
+    },
+    "Ardmore": {
+      "name": "Ardmore",
+      "approx": false
+    },
+    "Hanover West": {
+      "name": "Hanover West",
+      "approx": false
+    },
+    "Fairburn Mays": {
+      "name": "Fairburn Mays",
+      "approx": false
+    },
+    "Fairburn Tell": {
+      "name": "Fairburn Tell",
+      "approx": false
+    },
+    "Princeton Lakes": {
+      "name": "Princeton Lakes",
+      "approx": false
+    },
+    "Midwest Cascade": {
+      "name": "Midwest Cascade",
+      "approx": false
+    },
+    "Wesley Battle": {
+      "name": "Wesley Battle",
+      "approx": false
+    },
+    "Chattahoochee": {
+      "name": "Chattahoochee",
+      "approx": false
+    },
+    "English Park": {
+      "name": "English Park",
+      "approx": false
+    },
+    "Bakers Ferry": {
+      "name": "Bakers Ferry",
+      "approx": false
+    },
+    "Huntington": {
+      "name": "Huntington",
+      "approx": false
+    },
+    "Oakland": {
+      "name": "Oakland",
+      "approx": false
+    },
+    "Atlantic Station": {
+      "name": "Atlantic Station",
+      "approx": false
+    },
+    "Cascade Green": {
+      "name": "Cascade Green",
+      "approx": false
+    },
+    "Atlanta Industrial Park": {
+      "name": "Atlanta Industrial Park",
+      "approx": false
+    },
+    "Carey Park": {
+      "name": "Carey Park",
+      "approx": false
+    },
+    "Regency Trace": {
+      "name": "Regency Trace",
+      "approx": false
+    },
+    "Horseshoe Community": {
+      "name": "Horseshoe Community",
+      "approx": false
+    },
+    "State Facility": {
+      "name": "State Facility",
+      "approx": false
+    },
+    "Buckhead Heights": {
+      "name": "Buckhead Heights",
+      "approx": false
+    },
+    "Arlington Estates": {
+      "name": "Arlington Estates",
+      "approx": false
+    },
+    "Lake Claire": {
+      "name": "Lake Claire",
+      "approx": false
+    },
+    "Kirkwood": {
+      "name": "Kirkwood",
+      "approx": false
+    },
+    "East Atlanta": {
+      "name": "East Atlanta",
+      "approx": false
+    },
+    "Morningside/Lenox Park": {
+      "name": "Morningside/Lenox Park",
+      "approx": false
+    }
+  }
+}

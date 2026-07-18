@@ -1,0 +1,16 @@
+[
+  {
+    "at": "2026-07-18T01:49:35.659Z",
+    "kind": "comment",
+    "videoTime": 128.3,
+    "text": "can you add annotation on what each data set (gray and yellow are used to define crime, in some other cities this value",
+    "resolved": false
+  },
+  {
+    "at": "2026-07-18T01:50:49.256Z",
+    "kind": "comment",
+    "videoTime": 136.5,
+    "text": "the value jumps in some cities when data set source changes, and it would be to have a few word on how they can be different and does crime clasification has been updated?",
+    "resolved": false
+  }
+]
