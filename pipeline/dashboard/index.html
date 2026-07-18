@@ -36,6 +36,11 @@
 </style>
 <h1>Crime Cartography <span>· production studio</span></h1>
 <div class="sub" id="stats">loading…</div>
+
+<div class="panel" id="yt-panel" style="max-width:760px">
+  <h4>YouTube channel</h4>
+  <div id="yt-body">checking…</div>
+</div>
 <div class="grid" id="grid"></div>
 
 <div id="detail">
@@ -118,5 +123,51 @@ function seek(t){ $("player").currentTime=t; $("player").play(); }
 async function post(body){ await fetch(`/api/feedback/${CUR.slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}); $("comment").value=""; refreshFb(); }
 function sendComment(withTime){ const text=$("comment").value.trim(); if(!text) return; post({text, videoTime: withTime ? $("player").currentTime : null}); }
 function decision(d){ const note=$("comment").value.trim(); post({kind:"decision", text:`${d}${note ? " — " + note : ""}`}); }
+async function authUI() {
+  const s = await (await fetch("/api/auth/status")).json();
+  const el = $("yt-body");
+  if (s.channel) {
+    el.innerHTML = `<div class="row" style="margin:0">
+      ${s.channel.thumb ? `<img src="${esc(s.channel.thumb)}" style="width:34px;height:34px;border-radius:50%">` : ""}
+      <span style="color:var(--good);font-weight:600">Connected — ${esc(s.channel.title)}</span>
+      <span class="feat">uploads land private first · publishing fires at confidence 100</span>
+      <span style="flex:1"></span><button onclick="location.href='/oauth/start'">Re-authorize</button></div>`;
+  } else if (s.hasToken) {
+    el.innerHTML = `<span style="color:var(--warn)">Token saved, but the channel couldn't be read — try re-authorizing.</span>
+      <div class="row"><button class="primary" onclick="location.href='/oauth/start'">Re-authorize with Google</button></div>`;
+  } else if (s.hasSecret) {
+    el.innerHTML = `<div class="feat" style="margin-bottom:10px">Credentials saved. One click left — sign in with the channel's Google account and approve.</div>
+      <button class="primary" onclick="location.href='/oauth/start'">Authorize with Google</button>`;
+  } else {
+    el.innerHTML = `
+      <div class="feat" style="margin-bottom:10px">One-time setup (~2 min). Google requires the OAuth client to be created in your own Cloud Console:</div>
+      <ol style="font-size:13px;color:var(--dim);margin:0 0 10px 18px;line-height:1.7">
+        <li><a style="color:var(--accent)" target="_blank" href="https://console.cloud.google.com/apis/library/youtube.googleapis.com">Enable the YouTube Data API v3</a> (create a project if asked)</li>
+        <li><a style="color:var(--accent)" target="_blank" href="https://console.cloud.google.com/apis/credentials">Credentials</a> → Create credentials → <b>OAuth client ID</b> → type <b>Desktop app</b></li>
+        <li>Download the JSON, then paste its contents below (or pick the file)</li>
+      </ol>
+      <textarea id="secret-json" placeholder='{"installed":{"client_id":"…","client_secret":"…"}}' style="min-height:70px;font-family:ui-monospace,monospace;font-size:12px"></textarea>
+      <div class="row">
+        <input type="file" id="secret-file" accept=".json" style="color:var(--faint);font-size:12px">
+        <span style="flex:1"></span>
+        <button class="primary" onclick="saveSecret()">Save credentials</button>
+      </div>
+      <div class="feat" style="margin-top:8px">Stored at .secrets/ (gitignored) — never leaves this machine, never committed.</div>`;
+    $("secret-file").addEventListener("change", async (e) => {
+      const f = e.target.files[0];
+      if (f) $("secret-json").value = await f.text();
+    });
+  }
+}
+async function saveSecret() {
+  const txt = $("secret-json").value.trim();
+  if (!txt) return;
+  const r = await fetch("/api/auth/secret", { method: "POST", body: txt });
+  const j = await r.json();
+  if (j.error) { alert(j.error); return; }
+  authUI();
+}
+if (new URLSearchParams(location.search).get("connected")) history.replaceState(null, "", "/");
 load();
+authUI();
 </script>
