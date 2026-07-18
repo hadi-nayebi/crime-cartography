@@ -29,6 +29,28 @@ next; honesty invariants (see DESIGN.md) apply to every format forever.
    analytics and comments (audience-side) → ledger evidence → engine and
    format improvements → next batch. The channel is the experiment.
 
+## Endgame — the studio as a product (revenue-gated, set 2026-07-18)
+
+When the channel generates revenue: move production to a VPS and ship the
+studio as a standalone open-source app — multi-tenant, anyone connects THEIR
+YouTube channel via OAuth and produces data-honest city videos from this repo.
+Architecture rules adopted NOW so nothing blocks it later:
+- Studio stays a zero-dependency Node server; all state in plain repo files
+  (configs, ledgers, feedback) — no hidden local coupling.
+- Secrets strictly per-tenant-shaped (.secrets/ single-tenant today; the
+  boundary is already clean for a per-user vault).
+- Engine/config split stays absolute: a new operator = configs + data dirs,
+  never engine edits.
+- Known gates to clear at productization time: Google OAuth app verification
+  (mandatory for public use of youtube.upload scope, incl. possible security
+  assessment); YouTube API quota extension (default ≈6 uploads/day/project);
+  Stable Audio Open license terms re-review for a hosted multi-user service
+  (today's under-$1M/yr community license covers us, not necessarily tenants);
+  renders are CPU-only (fine for VPS) but music gen wants GPU or a CPU path.
+- Honest revenue framing: YPP eligibility first (1k subs + 4k watch hours);
+  the batch→measure→improve loop is the engine that gets there. No timeline
+  promises — the ledger and analytics decide.
+
 ## Current state coverage (toward the 5-city state comparatives)
 
 MI: Grand Rapids, Detroit · TN: Nashville, Memphis · CA: San Francisco ·
