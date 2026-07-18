@@ -4,13 +4,15 @@
     "kind": "comment",
     "videoTime": 128.3,
     "text": "can you add annotation on what each data set (gray and yellow are used to define crime, in some other cities this value",
-    "resolved": false
+    "resolved": false,
+    "producerNote": "Built engine-wide from this note: a 'WHY THE JUMP?' card now rides the trend sweep across the measure seam in every city, naming what each era's color counts and that the jump is the classification system changing (UCR -> incident-based), not the city. Still-verified on DC; flips to resolved when the re-rendered video is verified."
   },
   {
     "at": "2026-07-18T01:50:49.256Z",
     "kind": "comment",
     "videoTime": 136.5,
     "text": "the value jumps in some cities when data set source changes, and it would be to have a few word on how they can be different and does crime clasification has been updated?",
-    "resolved": false
+    "resolved": false,
+    "producerNote": "Built engine-wide from this note: a 'WHY THE JUMP?' card now rides the trend sweep across the measure seam in every city, naming what each era's color counts and that the jump is the classification system changing (UCR -> incident-based), not the city. Still-verified on DC; flips to resolved when the re-rendered video is verified."
   }
 ]
