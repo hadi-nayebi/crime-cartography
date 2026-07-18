@@ -116,7 +116,14 @@ export interface TrendFile {
   fetchedAt: string;
   seamYear: number;
   eras: TrendEra[];
-  years: Array<{ year: number; total: number; era: string }>;
+  years: Array<{
+    year: number;
+    total: number;
+    era: string;
+    /** optional composition (sums exactly to total): fbi era {violent,property};
+        incident era per-category counts. Drives the "stacked" trend style. */
+    parts?: Record<string, number>;
+  }>;
 }
 
 // Orientation basemap from OpenStreetMap (ODbL — attribution required):

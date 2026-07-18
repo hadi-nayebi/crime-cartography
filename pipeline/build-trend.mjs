@@ -52,10 +52,12 @@ function soda(base, params) {
     .join("&");
   return getJson(`${base}?${q}`);
 }
-// annual totals from timeline cells; groupAOnly restricts to persons+property+society
+// annual totals from timeline cells; groupAOnly restricts to persons+property+society.
+// Also accumulates per-category parts (for the "stacked" composition chart style).
 async function timelineAnnual(groupAOnly) {
   const t = JSON.parse(await readFile(join(NORM, "timeline.json")));
   const by = {};
+  const parts = {};
   t.months.forEach((m, i) => {
     const y = Number(m.slice(0, 4));
     for (const series of Object.values(t.cells)) {
@@ -64,12 +66,17 @@ async function timelineAnnual(groupAOnly) {
         ? c.persons + c.property + c.society
         : c.persons + c.property + c.society + c.other;
       by[y] = (by[y] ?? 0) + v;
+      const p = (parts[y] ??= { persons: 0, property: 0, society: 0, other: 0 });
+      p.persons += c.persons; p.property += c.property; p.society += c.society;
+      if (!groupAOnly) p.other += c.other;
     }
   });
   // completeness: only years with all 12 months present in the timeline
   const monthsPerYear = {};
   t.months.forEach((m) => { const y = Number(m.slice(0, 4)); monthsPerYear[y] = (monthsPerYear[y] ?? 0) + 1; });
-  for (const y of Object.keys(by)) if (monthsPerYear[y] !== 12) delete by[y];
+  for (const y of Object.keys(by)) if (monthsPerYear[y] !== 12) { delete by[y]; delete parts[y]; }
+  if (groupAOnly) for (const p of Object.values(parts)) delete p.other;
+  timelineAnnual.lastParts = parts; // side-channel for plans that want composition
   return by;
 }
 
@@ -142,8 +149,13 @@ function genericPlan(cfg) {
   return async () => {
     const h = JSON.parse(await readFile(join(NORM, "history.json")));
     const fbi = {};
-    for (const y of h.years) fbi[y.year] = y.total;
+    const parts = {};
+    for (const y of h.years) {
+      fbi[y.year] = y.total;
+      parts[y.year] = { violent: y.violent, property: y.property };
+    }
     const inc = await timelineAnnual(cfg.groupAOnly);
+    Object.assign(parts, timelineAnnual.lastParts ?? {});
     const incFrom = Math.min(...Object.keys(inc).map(Number));
     const incTo = Math.max(...Object.keys(inc).map(Number));
     return {
@@ -153,6 +165,7 @@ function genericPlan(cfg) {
       ],
       fbi,
       inc,
+      parts,
       note:
         `UCR index crimes (${h.yearMin}–${h.yearMax}) vs ${cfg.incidentLabel} (${incFrom}+) are ` +
         "different measures — compare shapes within an era, not across the seam. " +
@@ -241,18 +254,35 @@ PLANS["minneapolis-mn"] = genericPlan({
     "Non-NIBRS context records (e.g. Shots Fired Calls, published only from July 2020) are excluded from the trend.",
 });
 
+PLANS["denver-co"] = genericPlan({
+  groupAOnly: false, // Denver's 'other' = all-other-crimes: real criminal
+  // offenses (a consistent bucket across the whole rolling window) — included
+  incidentLabel: "DPD — recorded criminal offenses (incidents)",
+  extraNote:
+    "Incident era counts deduplicated incidents placed in an official neighborhood (99.9% of all; " +
+    "the ~0.1% with no neighborhood are excluded here but disclosed in PROVENANCE). The source " +
+    "omits sex-related crimes entirely, while UCR Violent includes rape — one more reason the " +
+    "eras are never compared across the seam.",
+});
+
 const plan = PLANS[slug];
 if (!plan) { console.error(`no trend plan for ${slug}`); process.exit(1); }
-const { eras, fbi, inc, note } = await plan();
+const { eras, fbi, inc, note, parts = {} } = await plan();
 
 const years = [];
 for (let y = eras[0].from; y <= eras[0].to; y++) {
   if (!(fbi[y] > 0)) throw new Error(`fbi year ${y} missing`);
-  years.push({ year: y, total: fbi[y], era: "fbi" });
+  years.push({ year: y, total: fbi[y], era: "fbi", ...(parts[y] ? { parts: parts[y] } : {}) });
 }
 for (let y = eras[1].from; y <= eras[1].to; y++) {
   if (!(inc[y] > 0)) throw new Error(`incident year ${y} missing`);
-  years.push({ year: y, total: inc[y], era: "incident" });
+  years.push({ year: y, total: inc[y], era: "incident", ...(parts[y] ? { parts: parts[y] } : {}) });
+}
+// parts (when present) must sum to the year total — composition is honest or absent
+for (const yr of years) {
+  if (!yr.parts) continue;
+  const s = Object.values(yr.parts).reduce((a, b) => a + b, 0);
+  if (s !== yr.total) throw new Error(`parts of ${yr.year} sum ${s} ≠ total ${yr.total}`);
 }
 // validate contiguity across the whole span
 for (let i = 1; i < years.length; i++) {

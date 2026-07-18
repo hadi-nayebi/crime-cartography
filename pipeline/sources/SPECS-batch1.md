@@ -12,6 +12,12 @@ month (2026-06 unless the source lags — note actual). Category mapping to
 persons/property/society/other documented in full. NEVER fabricate; disclose
 every gap.
 
+⚠ FBI CDE trap (found in the buffalo build): the summarized-agency response can
+contain BOTH an "… Offenses" and an "… Clearances" series for the agency. Match
+the agency key with /Offenses/ explicitly — the seattle template's looser
+"first non-United-States key" regex can silently pick Clearances. Verify your
+1985 annual total is plausible before writing history.json.
+
 ## atlanta-ga
 Main: ArcGIS `services3.arcgis.com/Et5Qfajgiyosiw4d/ArcGIS/rest/services/OpenDataWebsite_Crime_view/FeatureServer/0` (2021+, 100% coords, `NhoodName`+`NPU` on record, `NIBRS_Offense`/`NibrsUcrCode`/`Crime_Against` native). Sibling history layers: `2009_2020CrimeData` + `Crime_Data_1997_2008` (same org — probe; if usable, granular era 2009+; else 2021+). Sanity-bounds date filter (junk 1015/2124 dates measured). License "custom" — cite APD open-data portal terms. ORI GA0600100 (verify). Bbox ~33.62–33.90, −84.56–−84.28.
 

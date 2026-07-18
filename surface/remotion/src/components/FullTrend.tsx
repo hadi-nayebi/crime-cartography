@@ -2,9 +2,9 @@ import React from "react";
 import { interpolate, Easing } from "remotion";
 import type { TrendFile } from "../data/types";
 import { fmtInt } from "../data/derive";
-import { COLORS, FONT_MONO, FONT_SANS } from "../theme";
+import { CAT_COLORS, COLORS, FONT_MONO, FONT_SANS } from "../theme";
 
-export type TrendStyle = "bars" | "area" | "lollipop";
+export type TrendStyle = "bars" | "area" | "lollipop" | "steps" | "stacked";
 
 interface Props {
   trend: TrendFile;
@@ -92,6 +92,10 @@ export const FullTrend: React.FC<Props> = ({
         {/* series, revealed left→right */}
         {style === "area" ? (
           <AreaSeries years={years} yearFloat={yearFloat} yOf={yOf} slot={slot} colorOf={colorOf} seamIdx={seamIdx} />
+        ) : style === "steps" ? (
+          <StepSeries years={years} yearFloat={yearFloat} yOf={yOf} slot={slot} colorOf={colorOf} />
+        ) : style === "stacked" ? (
+          <StackedSeries years={years} yearFloat={yearFloat} maxTotal={maxTotal} slot={slot} colorOf={colorOf} curIdx={curIdx} />
         ) : (
           years.map((yr, i) => {
             const reveal = Math.max(0, Math.min(1, yearFloat - i + 0.5));
@@ -213,6 +217,105 @@ export const FullTrend: React.FC<Props> = ({
         </div>
       )}
     </div>
+  );
+};
+
+// Step-line rendering: horizontal treads + vertical risers, per era (seam = hard break).
+const StepSeries: React.FC<{
+  years: TrendFile["years"];
+  yearFloat: number;
+  yOf: (v: number) => number;
+  slot: number;
+  colorOf: (era: string) => string;
+}> = ({ years, yearFloat, yOf, slot, colorOf }) => {
+  const shown = Math.max(1, Math.min(years.length, yearFloat + 0.5));
+  const segs: Array<{ era: string; d: string; lastX: number; lastY: number }> = [];
+  for (let i = 0; i < shown; i++) {
+    const frac = Math.max(0, Math.min(1, shown - i));
+    const x0 = X0 + i * slot;
+    const x1 = x0 + slot * Math.min(1, frac);
+    const y = BASE_Y - (BASE_Y - yOf(years[i].total)) * Math.min(1, frac * 2);
+    const era = years[i].era;
+    let seg = segs[segs.length - 1];
+    if (!seg || seg.era !== era) {
+      seg = { era, d: `M${x0.toFixed(1)},${y.toFixed(1)}`, lastX: x0, lastY: y };
+      segs.push(seg);
+    } else {
+      seg.d += ` L${x0.toFixed(1)},${y.toFixed(1)}`; // riser
+    }
+    seg.d += ` L${x1.toFixed(1)},${y.toFixed(1)}`; // tread
+    seg.lastX = x1; seg.lastY = y;
+  }
+  return (
+    <>
+      {segs.map((s, si) => (
+        <g key={si}>
+          <path
+            d={`${s.d} L${s.lastX.toFixed(1)},${BASE_Y} L${s.d.slice(1).split(",")[0]},${BASE_Y} Z`}
+            fill={colorOf(s.era)}
+            fillOpacity={0.14}
+          />
+          <path d={s.d} fill="none" stroke={colorOf(s.era)} strokeWidth={3.5} strokeLinejoin="round" />
+        </g>
+      ))}
+      {years.map((yr, i) =>
+        yr.year % 5 === 0 || i === years.length - 1 ? (
+          <text key={yr.year} x={X0 + i * slot + slot / 2} y={BASE_Y + 24} fill={COLORS.inkFaint}
+            fontSize={17} fontFamily={FONT_MONO} textAnchor="middle" opacity={i < shown ? 1 : 0}>
+            {yr.year}
+          </text>
+        ) : null,
+      )}
+    </>
+  );
+};
+
+// Stacked composition bars — shows WHAT kind of crime changed. Uses yr.parts
+// (validated to sum exactly to the total). FBI era: violent over property in
+// two steels; incident era: per-category city colors. Falls back to solid bars
+// where parts are absent.
+const FBI_PART_COLORS: Record<string, string> = { violent: "#8b97ab", property: "#55677d" };
+const StackedSeries: React.FC<{
+  years: TrendFile["years"];
+  yearFloat: number;
+  maxTotal: number;
+  slot: number;
+  colorOf: (era: string) => string;
+  curIdx: number;
+}> = ({ years, yearFloat, maxTotal, slot, colorOf, curIdx }) => {
+  const order = ["property", "other", "society", "violent", "persons"]; // big buckets at the base
+  return (
+    <>
+      {years.map((yr, i) => {
+        const reveal = Math.max(0, Math.min(1, yearFloat - i + 0.5));
+        if (reveal <= 0) return null;
+        const cx = X0 + i * slot + slot / 2;
+        const w = slot * 0.62;
+        const scale = (v: number) => (v / maxTotal) * CHART_H * reveal;
+        let yCursor = BASE_Y;
+        const parts = yr.parts
+          ? order.filter((k) => yr.parts![k] > 0).map((k) => [k, yr.parts![k]] as const)
+          : [["total", yr.total] as const];
+        return (
+          <g key={yr.year} opacity={i === curIdx ? 1 : 0.8}>
+            {parts.map(([k, v]) => {
+              const h = scale(v);
+              yCursor -= h;
+              const fill =
+                k === "total" ? colorOf(yr.era)
+                : yr.era === "fbi" ? (FBI_PART_COLORS[k] ?? colorOf("fbi"))
+                : (CAT_COLORS[k] ?? colorOf(yr.era));
+              return <rect key={k} x={cx - w / 2} y={yCursor} width={w} height={h} fill={fill} fillOpacity={0.9} />;
+            })}
+            {(yr.year % 5 === 0 || i === years.length - 1) && (
+              <text x={cx} y={BASE_Y + 24} fill={COLORS.inkFaint} fontSize={17} fontFamily={FONT_MONO} textAnchor="middle">
+                {yr.year}
+              </text>
+            )}
+          </g>
+        );
+      })}
+    </>
   );
 };
 
