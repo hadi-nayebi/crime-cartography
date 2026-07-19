@@ -1,0 +1,206 @@
+{
+  "era": "history",
+  "taxonomy": "FBI UCR Summary (Violent + Property) — a different taxonomy than the DPD RMS/NIBRS categories used from 2015; the two eras bridge at 2015 and are never equated",
+  "agency": "Dallas Police Department",
+  "ori": "TXDPD0000",
+  "source": "FBI Crime Data Explorer (CDE) — summarized agency offense counts",
+  "sourceUrl": "https://api.usa.gov/crime/fbi/cde/summarized/agency/TXDPD0000/violent-crime",
+  "cdeUrl": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/explorer/crime/crime-trend",
+  "fetchedAt": "2026-07-18T11:54:51.914Z",
+  "presentation": "annual",
+  "note": "Annual totals are real UCR Summary counts fetched from the FBI CDE summarized agency endpoint for ORI TXDPD0000 (12 reported months verified per year; 1985 total sanity-checked at big-city scale — the scouted ORI TX0570200 was wrong, returning suburban Balch Springs PD, and was corrected via the CDE byStateAbbr agency lookup). UCR Summary (Violent/Property) and DPD RMS categories are different taxonomies and are presented as distinct eras; division-level detail exists only from 2015 (the DPD open dataset begins 2014-06-01), so the story bridges from citywide annual history to per-division monthly data at 2015. Note the modern era EXCLUDES sexual offenses and juvenile-involved cases (source filter), while UCR history includes rape in Violent — one more reason the eras are never numerically compared. Reproduce with pipeline/sources/dallas-tx.mjs (set FBI_API_KEY).",
+  "yearMin": 1985,
+  "yearMax": 2014,
+  "cats": {
+    "violent": {
+      "label": "UCR Violent (murder, rape, robbery, agg. assault)",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "UCR Property (burglary, larceny, MV theft)",
+      "color": "#ffc233"
+    }
+  },
+  "years": [
+    {
+      "year": 1985,
+      "violent": 14364,
+      "property": 115892,
+      "total": 130256
+    },
+    {
+      "year": 1986,
+      "violent": 19275,
+      "property": 135588,
+      "total": 154863
+    },
+    {
+      "year": 1987,
+      "violent": 20086,
+      "property": 145309,
+      "total": 165395
+    },
+    {
+      "year": 1988,
+      "violent": 21135,
+      "property": 150637,
+      "total": 171772
+    },
+    {
+      "year": 1989,
+      "violent": 21228,
+      "property": 146621,
+      "total": 167849
+    },
+    {
+      "year": 1990,
+      "violent": 24550,
+      "property": 133272,
+      "total": 157822
+    },
+    {
+      "year": 1991,
+      "violent": 26411,
+      "property": 130045,
+      "total": 156456
+    },
+    {
+      "year": 1992,
+      "violent": 21682,
+      "property": 109771,
+      "total": 131453
+    },
+    {
+      "year": 1993,
+      "violent": 18176,
+      "property": 93947,
+      "total": 112123
+    },
+    {
+      "year": 1994,
+      "violent": 16886,
+      "property": 85189,
+      "total": 102075
+    },
+    {
+      "year": 1995,
+      "violent": 15969,
+      "property": 84082,
+      "total": 100051
+    },
+    {
+      "year": 1996,
+      "violent": 16280,
+      "property": 85808,
+      "total": 102088
+    },
+    {
+      "year": 1997,
+      "violent": 14915,
+      "property": 87239,
+      "total": 102154
+    },
+    {
+      "year": 1998,
+      "violent": 15932,
+      "property": 86042,
+      "total": 101974
+    },
+    {
+      "year": 1999,
+      "violent": 15435,
+      "property": 90907,
+      "total": 106342
+    },
+    {
+      "year": 2000,
+      "violent": 16042,
+      "property": 90388,
+      "total": 106430
+    },
+    {
+      "year": 2001,
+      "violent": 17776,
+      "property": 94885,
+      "total": 112661
+    },
+    {
+      "year": 2002,
+      "violent": 17018,
+      "property": 96589,
+      "total": 113607
+    },
+    {
+      "year": 2003,
+      "violent": 16865,
+      "property": 99201,
+      "total": 116066
+    },
+    {
+      "year": 2004,
+      "violent": 16165,
+      "property": 95207,
+      "total": 111372
+    },
+    {
+      "year": 2005,
+      "violent": 15429,
+      "property": 89939,
+      "total": 105368
+    },
+    {
+      "year": 2006,
+      "violent": 15058,
+      "property": 86650,
+      "total": 101708
+    },
+    {
+      "year": 2007,
+      "violent": 13248,
+      "property": 84871,
+      "total": 98119
+    },
+    {
+      "year": 2008,
+      "violent": 11420,
+      "property": 76659,
+      "total": 88079
+    },
+    {
+      "year": 2009,
+      "violent": 10221,
+      "property": 72122,
+      "total": 82343
+    },
+    {
+      "year": 2010,
+      "violent": 9161,
+      "property": 64767,
+      "total": 73928
+    },
+    {
+      "year": 2011,
+      "violent": 8330,
+      "property": 62455,
+      "total": 70785
+    },
+    {
+      "year": 2012,
+      "violent": 8380,
+      "property": 54881,
+      "total": 63261
+    },
+    {
+      "year": 2013,
+      "violent": 8330,
+      "property": 52729,
+      "total": 61059
+    },
+    {
+      "year": 2014,
+      "violent": 8457,
+      "property": 46054,
+      "total": 54511
+    }
+  ]
+}

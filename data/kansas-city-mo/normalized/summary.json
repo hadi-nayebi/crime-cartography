@@ -1,0 +1,94 @@
+{
+  "slug": "kansas-city-mo",
+  "title": "Kansas City · MO",
+  "source": {
+    "records": "https://data.kcmo.org/resource/f7wj-ckmw.json",
+    "beats": "https://data.kcmo.org/resource/vq6h-tqrf.json?$select=nbhname,nbhid,the_geom&$order=objectid&$limit=300",
+    "hub": "https://data.kcmo.org/d/f7wj-ckmw"
+  },
+  "yearlyDatasets": {
+    "2015": "kbzx-7ehe",
+    "2016": "wbz8-pdv7",
+    "2017": "98is-shjt",
+    "2018": "dmjw-d28i",
+    "2019": "pxaa-ahcm",
+    "2020": "vsgj-uufz",
+    "2021": "w795-ffu6",
+    "2022": "x39y-7d3m",
+    "2023": "bfyq-5nh6",
+    "2024": "isbe-v4d8",
+    "2025": "dmnp-9ajg",
+    "2026": "f7wj-ckmw"
+  },
+  "fetchedAt": "2026-07-18T11:42:26.842Z",
+  "dateMin": "2015-01-01",
+  "dateMax": "2026-06-30",
+  "months": 138,
+  "totalRecords": 636430,
+  "placedRecords": 552567,
+  "unplacedRecords": 83863,
+  "coveragePct": 86.8,
+  "unplacedBeats": {
+    "no-coordinates": 58439,
+    "coords-outside-named-neighborhoods": 25424
+  },
+  "excludedOutsideWindow": {
+    "junk-dated-pre-2015": 72,
+    "partial-2026-07": 1799
+  },
+  "dedupe": {
+    "method": "report number (global across all 12 yearly datasets)",
+    "involvementRows": 1281836,
+    "incidents": 638301,
+    "windowIncidents": 636430,
+    "crossDatasetReports": 166,
+    "note": "source rows are per-involvement (VIC/SUS/ARR/…); incidents are distinct report numbers (server COUNT DISTINCT == client dedupe, verified per dataset and per month)"
+  },
+  "sourceGaps": [
+    {
+      "span": "2016-12-26 … 2016-12-31",
+      "note": "final days of December missing from the 2016 yearly snapshot (rows stop 2016-12-25)"
+    },
+    {
+      "span": "2018-12-31",
+      "note": "last day of 2018 missing from the 2018 yearly snapshot (rows stop 2018-12-30)"
+    },
+    {
+      "span": "2020-12-28 … 2020-12-31",
+      "note": "final days of December missing from the 2020 yearly snapshot (rows stop 2020-12-27)"
+    },
+    {
+      "span": "2021-12-27 … 2021-12-31",
+      "note": "final days of December missing from the 2021 yearly snapshot (rows stop 2021-12-26)"
+    },
+    {
+      "span": "2018 → 2019 boundary",
+      "note": "KCPD records-system change: involvement-row structure changes (~2.5× → ~1.8× rows/report), ibrs completeness drops (~0.7% → ~9–15% null through 2025), and 2019–2021 rows are ~18–24% missing coordinates — deduped incident counts are the comparable series; the 'other' category and unplaced share rise accordingly and are disclosed, never patched"
+    }
+  ],
+  "catTotals": {
+    "persons": 132585,
+    "property": 353983,
+    "society": 87048,
+    "other": 62814
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Unclassified / non-NIBRS (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 240
+}

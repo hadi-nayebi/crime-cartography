@@ -1,0 +1,58 @@
+{
+  "slug": "dallas-tx",
+  "title": "Dallas · TX",
+  "source": {
+    "records": "https://www.dallasopendata.com/resource/qv6i-rri7.json",
+    "beats": "https://services1.arcgis.com/In9TiV3Fv4nmmrag/arcgis/rest/services/Division/FeatureServer/0/query?where=1%3D1&outFields=DIVISION,DIVISION_NUM,DIVISION_ABBR&outSR=4326&geometryPrecision=6&f=geojson",
+    "hub": "https://www.dallasopendata.com/d/qv6i-rri7"
+  },
+  "fetchedAt": "2026-07-18T11:54:51.914Z",
+  "dateMin": "2015-01-01",
+  "dateMax": "2026-06-30",
+  "months": 138,
+  "totalRecords": 1200698,
+  "victimRows": 1437644,
+  "methodFootnote": "Victim/involvement-level source: DPD publishes one row per involved person (servnumid). Rows are deduplicated to incidents by incidentnum, keeping the source's first service-number row (1,437,644 rows → 1,200,698 incidents; verified per-month against server-side count(distinct incidentnum)). Categories: native nibrs_crimeagainst where present (2017+); documented ucr_offense mapping for the 175,201 pre-NIBRS rows (2015–2016); 3,420 rows with neither are counted as 'other'.",
+  "scopeNote": "DPD filters this public dataset before release: sexually oriented offenses and offenses where juveniles or children (under 17) are the victim or suspect are EXCLUDED by the source (also excluded: evidence property listings, Social Service Referral offenses, some vehicle identifying info). Sex crimes never appear here, and every total undercounts actual reported crime — this is disclosed on-screen.",
+  "placedRecords": 1199851,
+  "unplacedRecords": 847,
+  "coveragePct": 99.9,
+  "unplacedBeats": {
+    "no-division": 847
+  },
+  "excludedOutsideWindow": {
+    "rows-before-2015": 59203,
+    "rows-after-2026-06 (partial July)": 5450
+  },
+  "classificationBasis": {
+    "native": 704338,
+    "native-other": 317739,
+    "ucr-fallback": 175201,
+    "unclassified": 3420
+  },
+  "catTotals": {
+    "persons": 76856,
+    "property": 663172,
+    "society": 106470,
+    "other": 354200
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Mixed / non-criminal (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 8
+}

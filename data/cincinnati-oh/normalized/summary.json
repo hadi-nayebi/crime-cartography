@@ -1,0 +1,68 @@
+{
+  "slug": "cincinnati-oh",
+  "title": "Cincinnati · OH",
+  "source": {
+    "records": "https://data.cincinnati-oh.gov/resource/8xzn-kpn7.json",
+    "recordsCurrent": "https://data.cincinnati-oh.gov/resource/7aqy-xrv9.json",
+    "beats": "https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Open_Data/FeatureServer/15/query?where=1%3D1&outFields=SNA_NAME,SNA_NUMBER&outSR=4326&geometryPrecision=6&f=geojson",
+    "hub": "https://data.cincinnati-oh.gov/d/8xzn-kpn7",
+    "hubCurrent": "https://data.cincinnati-oh.gov/d/7aqy-xrv9"
+  },
+  "fetchedAt": "2026-07-18T11:43:05.286Z",
+  "dateMin": "2020-01-01",
+  "dateMax": "2026-05-31",
+  "months": 77,
+  "totalRecords": 154460,
+  "placedRecords": 146628,
+  "unplacedRecords": 7832,
+  "coveragePct": 94.9,
+  "unplacedBeats": {
+    "no-neighborhood": 7832
+  },
+  "excludedOutsideWindow": {
+    "legacy:junk-or-pre-2020-datefrom": 763,
+    "legacy:null-datefrom": 0,
+    "legacy:post-window": 0,
+    "current:junk-or-pre-2020-datefrom": 110,
+    "current:null-datefrom": 4,
+    "current:partial-2026-06": 1516
+  },
+  "dedupe": {
+    "fetchedRows": 160772,
+    "legacyRows": 109902,
+    "currentRows": 50870,
+    "crossPairIncidents": 14,
+    "crossPairDroppedRows": 15,
+    "withinSetCollapsedRows": 6297,
+    "noIdRows": 0,
+    "incidents": 154460
+  },
+  "methodFootnote": "Offense-level rows from the legacy/current STARS dataset pair are deduplicated to incidents on incident_no: incidents recorded in both systems during the Jun–Nov 2024 RMS transition count once (current system preferred), and multi-offense incidents count once at the highest STARS severity (Part 1 Violent > Part 1 Property > Part 2).",
+  "scopeNote": "CPD publishes the UCR-style STARS taxonomy, not NIBRS crimes-against: Part 1 Violent includes robbery (a property crime under NIBRS), and all non–Part 1 offenses are one 'Part 2' bucket.",
+  "licenseNote": "NO LICENSE SPECIFIED on either Socrata dataset — used under the city portal's public terms with attribution 'City of Cincinnati / Cincinnati Police Department (CPD)'.",
+  "catTotals": {
+    "persons": 12149,
+    "property": 76858,
+    "society": 65453,
+    "other": 0
+  },
+  "cats": {
+    "persons": {
+      "label": "Part 1 Violent (homicide, rape, robbery, agg. assault)",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Part 1 Property (burglary, theft, auto theft)",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Part 2 · All Other Offenses",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Other (none in source)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 50
+}

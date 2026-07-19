@@ -1,0 +1,53 @@
+{
+  "slug": "nashville-tn",
+  "title": "Nashville · TN",
+  "source": {
+    "records": "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Metro_Nashville_Police_Department_Incidents_view/FeatureServer/0",
+    "beats": "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Police_Precinct_Boundaries_view/FeatureServer/0",
+    "hub": "https://data.nashville.gov/",
+    "hubItem": "https://www.arcgis.com/home/item.html?id=d747436243e9439e968fce056545016a"
+  },
+  "fetchedAt": "2026-07-18T11:56:52.811Z",
+  "dateMin": "2019-01-01",
+  "dateMax": "2026-06-30",
+  "months": 90,
+  "totalRecords": 744956,
+  "offenseVictimRows": 906703,
+  "incidentsBeforeUnfoundedGate": 750423,
+  "unfoundedExcluded": 5467,
+  "methodFootnote": "Offense/victim-level source: MNPD publishes one row per offense×victim within an incident; rows are deduplicated to incidents by Incident_Number (906,703 rows → 750,423 incidents), classified by the incident's first-listed offense. 5,467 incidents whose offense is a NIBRS crime category but whose status is \"UNFOUNDED\" are excluded per FBI practice. Precincts assigned by point-in-polygon of MNPD-published coordinates (rounded to ~2–3 decimals by the source) into the 9 official precinct polygons.",
+  "placedRecords": 734327,
+  "unplacedRecords": 10629,
+  "coveragePct": 98.6,
+  "unplacedBeats": {
+    "no-coordinates": 9812,
+    "out-of-bbox": 21,
+    "outside-polygons": 796
+  },
+  "catTotals": {
+    "persons": 126492,
+    "property": 287691,
+    "society": 27463,
+    "other": 303310
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Non-NIBRS local / Group B (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 9,
+  "regionNote": "Only 9 precinct regions (the official MNPD spatial unit) — leaderboard topN stays 6; quiz unaffected."
+}

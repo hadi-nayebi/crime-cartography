@@ -1,0 +1,46 @@
+{
+  "source": "MPD Precinct Areas (official MPD precinct/station areas)",
+  "sourceUrl": "https://services2.arcgis.com/saWmpKJIUAjyyNVc/arcgis/rest/services/MPD_Station_Areas/FeatureServer/1/query?where=1=1&outFields=*&f=geojson",
+  "hub": "https://data.memphistn.gov/",
+  "fetchedAt": "2026-07-18T11:53:03.601Z",
+  "license": "Not stated on the item — City of Memphis ArcGIS org; attributed to the City of Memphis",
+  "method": "name join — MPD crime records carry the precinct STATION name in uppercase (e.g. MT MORIAH); polygon names are proper case (Mt. Moriah); joined by uppercase/punctuation-normalized name, all 9 match exactly; no spatial join or approximation is involved",
+  "map": {
+    "AUSTIN PEAY": {
+      "name": "Austin Peay",
+      "approx": false
+    },
+    "RAINES": {
+      "name": "Raines",
+      "approx": false
+    },
+    "MT MORIAH": {
+      "name": "Mt. Moriah",
+      "approx": false
+    },
+    "CRUMP": {
+      "name": "Crump",
+      "approx": false
+    },
+    "TILLMAN": {
+      "name": "Tillman",
+      "approx": false
+    },
+    "NORTH MAIN": {
+      "name": "North Main",
+      "approx": false
+    },
+    "AIRWAYS": {
+      "name": "Airways",
+      "approx": false
+    },
+    "APPLING FARMS": {
+      "name": "Appling Farms",
+      "approx": false
+    },
+    "RIDGEWAY": {
+      "name": "Ridgeway",
+      "approx": false
+    }
+  }
+}

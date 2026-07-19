@@ -1,0 +1,42 @@
+{
+  "source": "Dallas Police Divisions (official DPD Crime Analysis Unit layer, 8 divisions)",
+  "sourceUrl": "https://services1.arcgis.com/In9TiV3Fv4nmmrag/arcgis/rest/services/Division/FeatureServer/0/query?where=1%3D1&outFields=DIVISION,DIVISION_NUM,DIVISION_ABBR&outSR=4326&geometryPrecision=6&f=geojson",
+  "hub": "https://www.arcgis.com/home/item.html?id=3ce570ceaeaf470d974f0d8695271bcf",
+  "fetchedAt": "2026-07-18T11:54:51.914Z",
+  "license": "Public ArcGIS layer by DPD Crime Analysis Unit; disclaimer: graphical representation only, not survey-grade (State of Texas H.B. 1147)",
+  "method": "identity — DPD crime records carry the police division name; uppercased values match the official polygon layer's DIVISION field verbatim, 8 of 8 (≈550 mixed-case source variants normalize to the same 8; no spatial join or approximation)",
+  "map": {
+    "CENTRAL": {
+      "name": "Central",
+      "approx": false
+    },
+    "NORTHEAST": {
+      "name": "Northeast",
+      "approx": false
+    },
+    "SOUTHEAST": {
+      "name": "Southeast",
+      "approx": false
+    },
+    "SOUTHWEST": {
+      "name": "Southwest",
+      "approx": false
+    },
+    "NORTHWEST": {
+      "name": "Northwest",
+      "approx": false
+    },
+    "NORTH CENTRAL": {
+      "name": "North Central",
+      "approx": false
+    },
+    "SOUTH CENTRAL": {
+      "name": "South Central",
+      "approx": false
+    },
+    "CBD": {
+      "name": "Downtown (CBD)",
+      "approx": false
+    }
+  }
+}

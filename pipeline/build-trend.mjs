@@ -265,6 +265,23 @@ PLANS["denver-co"] = genericPlan({
     "eras are never compared across the seam.",
 });
 
+
+PLANS["atlanta-ga"] = genericPlan({ groupAOnly: false, incidentLabel: "APD — recorded offenses (NIBRS)" });
+PLANS["detroit-mi"] = genericPlan({ groupAOnly: false, incidentLabel: "DPD — recorded incidents (RMS)" });
+PLANS["buffalo-ny"] = genericPlan({ groupAOnly: false, incidentLabel: "BPD — reported crimes (10 major types)",
+  extraNote: "Buffalo publishes only ten major crime types — no drug/weapon/vice offenses; a narrower incident measure than most cities." });
+PLANS["baltimore-md"] = genericPlan({ groupAOnly: false, incidentLabel: "BPD — NIBRS Group A (victim-deduped)" });
+PLANS["cincinnati-oh"] = genericPlan({ groupAOnly: false, incidentLabel: "CPD — recorded incidents (STARS)" });
+PLANS["kansas-city-mo"] = genericPlan({ groupAOnly: false, incidentLabel: "KCPD — reported crimes (deduped)" });
+PLANS["milwaukee-wi"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — NIBRS Group A offenses",
+  extraNote: "Group B / other context records excluded from the trend." });
+PLANS["charlotte-nc"] = genericPlan({ groupAOnly: false, incidentLabel: "CMPD — criminal incidents (NIBRS)" });
+PLANS["nashville-tn"] = genericPlan({ groupAOnly: false, incidentLabel: "MNPD — reported incidents (NIBRS)" });
+PLANS["dallas-tx"] = genericPlan({ groupAOnly: false, incidentLabel: "DPD — recorded incidents (NIBRS)",
+  extraNote: "Source excludes sexual offenses and juvenile cases entirely — disclosed on screen and in provenance." });
+PLANS["memphis-tn"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — NIBRS Group A offenses",
+  extraNote: "Group B catch-all records excluded from the trend. Source omits sex crimes and juvenile-specific types." });
+
 const plan = PLANS[slug];
 if (!plan) { console.error(`no trend plan for ${slug}`); process.exit(1); }
 const { eras, fbi, inc, note, parts = {} } = await plan();

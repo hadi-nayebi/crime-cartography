@@ -1,0 +1,770 @@
+{
+  "source": "City of Milwaukee Neighborhoods (official polygon layer)",
+  "sourceUrl": "https://milwaukeemaps.milwaukee.gov/arcgis/rest/services/planning/special_districts/MapServer/4",
+  "hub": "https://data.milwaukee.gov/",
+  "fetchedAt": "2026-07-18T11:36:52.831Z",
+  "license": "CC-BY (Creative Commons Attribution) — City of Milwaukee",
+  "method": "spatial join — the crime file has no neighborhood field; every record with published coordinates is assigned by point-in-polygon of its REAL address-level coordinates into the 190 official City of Milwaukee neighborhood polygons (NEIGHBORHD). Records without usable coordinates are counted citywide and disclosed as unplaced, never guessed onto the map.",
+  "map": {
+    "NEW COELN": {
+      "name": "New Coeln",
+      "approx": false
+    },
+    "SOUTHPOINT": {
+      "name": "Southpoint",
+      "approx": false
+    },
+    "TOWN OF LAKE": {
+      "name": "Town Of Lake",
+      "approx": false
+    },
+    "TIPPECANOE": {
+      "name": "Tippecanoe",
+      "approx": false
+    },
+    "MORGANDALE": {
+      "name": "Morgandale",
+      "approx": false
+    },
+    "SOUTHGATE": {
+      "name": "Southgate",
+      "approx": false
+    },
+    "BAY VIEW": {
+      "name": "Bay View",
+      "approx": false
+    },
+    "WEDGEWOOD": {
+      "name": "Wedgewood",
+      "approx": false
+    },
+    "FAIRVIEW": {
+      "name": "Fairview",
+      "approx": false
+    },
+    "MENOMONEE RIVER VALLEY": {
+      "name": "Menomonee River Valley",
+      "approx": false
+    },
+    "MARQUETTE": {
+      "name": "Marquette",
+      "approx": false
+    },
+    "MARTIN DRIVE": {
+      "name": "Martin Drive",
+      "approx": false
+    },
+    "FAIR PARK": {
+      "name": "Fair Park",
+      "approx": false
+    },
+    "ZOO": {
+      "name": "Zoo",
+      "approx": false
+    },
+    "MIDTOWN": {
+      "name": "Midtown",
+      "approx": false
+    },
+    "TRIANGLE": {
+      "name": "Triangle",
+      "approx": false
+    },
+    "HILLSIDE": {
+      "name": "Hillside",
+      "approx": false
+    },
+    "UPTOWN": {
+      "name": "Uptown",
+      "approx": false
+    },
+    "HAVENWOODS": {
+      "name": "Havenwoods",
+      "approx": false
+    },
+    "MCGOVERN PARK": {
+      "name": "Mcgovern Park",
+      "approx": false
+    },
+    "HAMPTON HEIGHTS": {
+      "name": "Hampton Heights",
+      "approx": false
+    },
+    "NORTHPOINT": {
+      "name": "Northpoint",
+      "approx": false
+    },
+    "RIVERWEST": {
+      "name": "Riverwest",
+      "approx": false
+    },
+    "HARAMBEE": {
+      "name": "Harambee",
+      "approx": false
+    },
+    "WILLIAMSBURG": {
+      "name": "Williamsburg",
+      "approx": false
+    },
+    "VALHALLA": {
+      "name": "Valhalla",
+      "approx": false
+    },
+    "LAND BANK": {
+      "name": "Land Bank",
+      "approx": false
+    },
+    "BRYNWOOD": {
+      "name": "Brynwood",
+      "approx": false
+    },
+    "NORTH GRANVILLE": {
+      "name": "North Granville",
+      "approx": false
+    },
+    "NORTHRIDGE": {
+      "name": "Northridge",
+      "approx": false
+    },
+    "RIDGEVIEW": {
+      "name": "Ridgeview",
+      "approx": false
+    },
+    "GRACELAND": {
+      "name": "Graceland",
+      "approx": false
+    },
+    "FAIRFIELD": {
+      "name": "Fairfield",
+      "approx": false
+    },
+    "POLONIA": {
+      "name": "Polonia",
+      "approx": false
+    },
+    "FERNWOOD": {
+      "name": "Fernwood",
+      "approx": false
+    },
+    "CONCORDIA": {
+      "name": "Concordia",
+      "approx": false
+    },
+    "GRA-RAM": {
+      "name": "Gra-Ram",
+      "approx": false
+    },
+    "LYONS PARK": {
+      "name": "Lyons Park",
+      "approx": false
+    },
+    "VETERANS AFFAIRS": {
+      "name": "Veterans Affairs",
+      "approx": false
+    },
+    "ALVERNO": {
+      "name": "Alverno",
+      "approx": false
+    },
+    "SILVER SPRING": {
+      "name": "Silver Spring",
+      "approx": false
+    },
+    "SILVER SWAN": {
+      "name": "Silver Swan",
+      "approx": false
+    },
+    "WAHL PARK": {
+      "name": "Wahl Park",
+      "approx": false
+    },
+    "GRANTOSA": {
+      "name": "Grantosa",
+      "approx": false
+    },
+    "LINCOLN CREEK": {
+      "name": "Lincoln Creek",
+      "approx": false
+    },
+    "ST. AMELIAN'S": {
+      "name": "St. Amelian's",
+      "approx": false
+    },
+    "OLD NORTH MILWAUKEE": {
+      "name": "Old North Milwaukee",
+      "approx": false
+    },
+    "LINCOLN PARK": {
+      "name": "Lincoln Park",
+      "approx": false
+    },
+    "ESTABROOK PARK": {
+      "name": "Estabrook Park",
+      "approx": false
+    },
+    "RUFUS KING": {
+      "name": "Rufus King",
+      "approx": false
+    },
+    "GARDEN HOMES": {
+      "name": "Garden Homes",
+      "approx": false
+    },
+    "ARLINGTON HEIGHTS": {
+      "name": "Arlington Heights",
+      "approx": false
+    },
+    "BORCHERT FIELD": {
+      "name": "Borchert Field",
+      "approx": false
+    },
+    "FRANKLIN HEIGHTS": {
+      "name": "Franklin Heights",
+      "approx": false
+    },
+    "ROOSEVELT GROVE": {
+      "name": "Roosevelt Grove",
+      "approx": false
+    },
+    "GRASSLYN MANOR": {
+      "name": "Grasslyn Manor",
+      "approx": false
+    },
+    "DINEEN PARK": {
+      "name": "Dineen Park",
+      "approx": false
+    },
+    "SUNSET HEIGHTS": {
+      "name": "Sunset Heights",
+      "approx": false
+    },
+    "ENDERIS PARK": {
+      "name": "Enderis Park",
+      "approx": false
+    },
+    "SAINT JOSEPH": {
+      "name": "Saint Joseph",
+      "approx": false
+    },
+    "SHERMAN PARK": {
+      "name": "Sherman Park",
+      "approx": false
+    },
+    "AMANI": {
+      "name": "Amani",
+      "approx": false
+    },
+    "NORTH DIVISION": {
+      "name": "North Division",
+      "approx": false
+    },
+    "METCALFE PARK": {
+      "name": "Metcalfe Park",
+      "approx": false
+    },
+    "DOWNER WOODS": {
+      "name": "Downer Woods",
+      "approx": false
+    },
+    "UPPER EAST SIDE": {
+      "name": "Upper East Side",
+      "approx": false
+    },
+    "MURRAY HILL": {
+      "name": "Murray Hill",
+      "approx": false
+    },
+    "NASH PARK": {
+      "name": "Nash Park",
+      "approx": false
+    },
+    "KOPS PARK": {
+      "name": "Kops Park",
+      "approx": false
+    },
+    "MOUNT MARY": {
+      "name": "Mount Mary",
+      "approx": false
+    },
+    "COOPER PARK": {
+      "name": "Cooper Park",
+      "approx": false
+    },
+    "WASHINGTON HEIGHTS": {
+      "name": "Washington Heights",
+      "approx": false
+    },
+    "WASHINGTON PARK": {
+      "name": "Washington Park",
+      "approx": false
+    },
+    "HILLTOP PARISH": {
+      "name": "Hilltop Parish",
+      "approx": false
+    },
+    "WOODLANDS": {
+      "name": "Woodlands",
+      "approx": false
+    },
+    "NORTHRIDGE LAKES": {
+      "name": "Northridge Lakes",
+      "approx": false
+    },
+    "FREEDOM VILLAGE": {
+      "name": "Freedom Village",
+      "approx": false
+    },
+    "SERVITE WOODS": {
+      "name": "Servite Woods",
+      "approx": false
+    },
+    "GRANVILLE STATION": {
+      "name": "Granville Station",
+      "approx": false
+    },
+    "WHISPERING HILLS": {
+      "name": "Whispering Hills",
+      "approx": false
+    },
+    "GRANVILLE WOODS": {
+      "name": "Granville Woods",
+      "approx": false
+    },
+    "RIVERTON HEIGHTS": {
+      "name": "Riverton Heights",
+      "approx": false
+    },
+    "PHEASANT RUN": {
+      "name": "Pheasant Run",
+      "approx": false
+    },
+    "BRADLEY ESTATES": {
+      "name": "Bradley Estates",
+      "approx": false
+    },
+    "POLLBER HEIGHTS": {
+      "name": "Pollber Heights",
+      "approx": false
+    },
+    "BUCHEL PARK": {
+      "name": "Buchel Park",
+      "approx": false
+    },
+    "CALUMET FARMS": {
+      "name": "Calumet Farms",
+      "approx": false
+    },
+    "MELODY VIEW": {
+      "name": "Melody View",
+      "approx": false
+    },
+    "DRETZKA PARK": {
+      "name": "Dretzka Park",
+      "approx": false
+    },
+    "PARK PLACE": {
+      "name": "Park Place",
+      "approx": false
+    },
+    "BROWN DEER PARK": {
+      "name": "Brown Deer Park",
+      "approx": false
+    },
+    "TRIPOLI PARK": {
+      "name": "Tripoli Park",
+      "approx": false
+    },
+    "TOWN & COUNTRY MANOR": {
+      "name": "Town & Country Manor",
+      "approx": false
+    },
+    "WYRICK PARK": {
+      "name": "Wyrick Park",
+      "approx": false
+    },
+    "MENOMONEE RIVER HILLS EAST": {
+      "name": "Menomonee River Hills East",
+      "approx": false
+    },
+    "THURSTON WOODS": {
+      "name": "Thurston Woods",
+      "approx": false
+    },
+    "MENOMONEE RIVER HILLS": {
+      "name": "Menomonee River Hills",
+      "approx": false
+    },
+    "GOLDEN GATE": {
+      "name": "Golden Gate",
+      "approx": false
+    },
+    "PARKWAY HILLS": {
+      "name": "Parkway Hills",
+      "approx": false
+    },
+    "MAPLE TREE": {
+      "name": "Maple Tree",
+      "approx": false
+    },
+    "LITTLE MENOMONEE PARKWAY": {
+      "name": "Little Menomonee Parkway",
+      "approx": false
+    },
+    "MACK ACRES": {
+      "name": "Mack Acres",
+      "approx": false
+    },
+    "HERITAGE HEIGHTS": {
+      "name": "Heritage Heights",
+      "approx": false
+    },
+    "MILL VALLEY": {
+      "name": "Mill Valley",
+      "approx": false
+    },
+    "PARK KNOLL": {
+      "name": "Park Knoll",
+      "approx": false
+    },
+    "FLORIST HIGHLANDS": {
+      "name": "Florist Highlands",
+      "approx": false
+    },
+    "TIMMERMAN WEST": {
+      "name": "Timmerman West",
+      "approx": false
+    },
+    "TIMMERMAN AIRPORT": {
+      "name": "Timmerman Airport",
+      "approx": false
+    },
+    "VOGEL PARK": {
+      "name": "Vogel Park",
+      "approx": false
+    },
+    "LINDSAY PARK": {
+      "name": "Lindsay Park",
+      "approx": false
+    },
+    "LONG VIEW": {
+      "name": "Long View",
+      "approx": false
+    },
+    "COLUMBUS PARK": {
+      "name": "Columbus Park",
+      "approx": false
+    },
+    "ARLINGTON GARDENS": {
+      "name": "Arlington Gardens",
+      "approx": false
+    },
+    "CAPITOL HEIGHTS": {
+      "name": "Capitol Heights",
+      "approx": false
+    },
+    "MILWAUKEE RIVER PARKWAY": {
+      "name": "Milwaukee River Parkway",
+      "approx": false
+    },
+    "GROVER HEIGHTS": {
+      "name": "Grover Heights",
+      "approx": false
+    },
+    "CAMBRIDGE HEIGHTS": {
+      "name": "Cambridge Heights",
+      "approx": false
+    },
+    "RIVERSIDE PARK": {
+      "name": "Riverside Park",
+      "approx": false
+    },
+    "LENOX HEIGHTS": {
+      "name": "Lenox Heights",
+      "approx": false
+    },
+    "GOLDEN VALLEY": {
+      "name": "Golden Valley",
+      "approx": false
+    },
+    "WALNUT HILL": {
+      "name": "Walnut Hill",
+      "approx": false
+    },
+    "HAWTHORNE GLEN": {
+      "name": "Hawthorne Glen",
+      "approx": false
+    },
+    "VALLEY FORGE": {
+      "name": "Valley Forge",
+      "approx": false
+    },
+    "MILLER VALLEY": {
+      "name": "Miller Valley",
+      "approx": false
+    },
+    "AVENUES WEST": {
+      "name": "Avenues West",
+      "approx": false
+    },
+    "WICK FIELD": {
+      "name": "Wick Field",
+      "approx": false
+    },
+    "COLD SPRING PARK": {
+      "name": "Cold Spring Park",
+      "approx": false
+    },
+    "TRIANGLE NORTH": {
+      "name": "Triangle North",
+      "approx": false
+    },
+    "HALYARD PARK": {
+      "name": "Halyard Park",
+      "approx": false
+    },
+    "BREWER'S HILL": {
+      "name": "Brewer's Hill",
+      "approx": false
+    },
+    "SCHLITZ PARK": {
+      "name": "Schlitz Park",
+      "approx": false
+    },
+    "HAYMARKET": {
+      "name": "Haymarket",
+      "approx": false
+    },
+    "PARK VIEW": {
+      "name": "Park View",
+      "approx": false
+    },
+    "KING PARK": {
+      "name": "King Park",
+      "approx": false
+    },
+    "KILBOURN TOWN": {
+      "name": "Kilbourn Town",
+      "approx": false
+    },
+    "LOWER EAST SIDE": {
+      "name": "Lower East Side",
+      "approx": false
+    },
+    "YANKEE HILL": {
+      "name": "Yankee Hill",
+      "approx": false
+    },
+    "JUNEAU TOWN": {
+      "name": "Juneau Town",
+      "approx": false
+    },
+    "LAKE PARK": {
+      "name": "Lake Park",
+      "approx": false
+    },
+    "HISTORIC THIRD WARD": {
+      "name": "Historic Third Ward",
+      "approx": false
+    },
+    "WALKER'S POINT": {
+      "name": "Walker's Point",
+      "approx": false
+    },
+    "HARBOR VIEW": {
+      "name": "Harbor View",
+      "approx": false
+    },
+    "JONES' ISLAND": {
+      "name": "Jones' Island",
+      "approx": false
+    },
+    "MITCHELL PARK": {
+      "name": "Mitchell Park",
+      "approx": false
+    },
+    "CLARKE SQUARE": {
+      "name": "Clarke Square",
+      "approx": false
+    },
+    "NATIONAL PARK": {
+      "name": "National Park",
+      "approx": false
+    },
+    "SILVER CITY": {
+      "name": "Silver City",
+      "approx": false
+    },
+    "JOHNSON'S WOODS": {
+      "name": "Johnson's Woods",
+      "approx": false
+    },
+    "BLUEMOUND HEIGHTS": {
+      "name": "Bluemound Heights",
+      "approx": false
+    },
+    "MERRILL PARK": {
+      "name": "Merrill Park",
+      "approx": false
+    },
+    "STORY HILL": {
+      "name": "Story Hill",
+      "approx": false
+    },
+    "THE VALLEY/PIGSVILLE": {
+      "name": "The Valley/Pigsville",
+      "approx": false
+    },
+    "HONEY CREEK PARKWAY": {
+      "name": "Honey Creek Parkway",
+      "approx": false
+    },
+    "CANNON PARK": {
+      "name": "Cannon Park",
+      "approx": false
+    },
+    "BURNHAM PARK": {
+      "name": "Burnham Park",
+      "approx": false
+    },
+    "MUSKEGO WAY": {
+      "name": "Muskego Way",
+      "approx": false
+    },
+    "HISTORIC MITCHELL STREET": {
+      "name": "Historic Mitchell Street",
+      "approx": false
+    },
+    "CLOCK TOWER ACRES": {
+      "name": "Clock Tower Acres",
+      "approx": false
+    },
+    "BARAN PARK": {
+      "name": "Baran Park",
+      "approx": false
+    },
+    "LINCOLN VILLAGE": {
+      "name": "Lincoln Village",
+      "approx": false
+    },
+    "FOREST HOME HILLS": {
+      "name": "Forest Home Hills",
+      "approx": false
+    },
+    "LAYTON PARK": {
+      "name": "Layton Park",
+      "approx": false
+    },
+    "JACKSON PARK": {
+      "name": "Jackson Park",
+      "approx": false
+    },
+    "WHITE MANOR": {
+      "name": "White Manor",
+      "approx": false
+    },
+    "WEST VIEW": {
+      "name": "West View",
+      "approx": false
+    },
+    "EUCLID PARK": {
+      "name": "Euclid Park",
+      "approx": false
+    },
+    "HIGHWOOD ESTATES": {
+      "name": "Highwood Estates",
+      "approx": false
+    },
+    "RIVER BEND": {
+      "name": "River Bend",
+      "approx": false
+    },
+    "HAWLEY FARMS": {
+      "name": "Hawley Farms",
+      "approx": false
+    },
+    "ROOT CREEK": {
+      "name": "Root Creek",
+      "approx": false
+    },
+    "ALCOTT PARK": {
+      "name": "Alcott Park",
+      "approx": false
+    },
+    "MORGAN HEIGHTS": {
+      "name": "Morgan Heights",
+      "approx": false
+    },
+    "WOODLAND COURT": {
+      "name": "Woodland Court",
+      "approx": false
+    },
+    "GREEN MOOR": {
+      "name": "Green Moor",
+      "approx": false
+    },
+    "HONEY CREEK MANOR": {
+      "name": "Honey Creek Manor",
+      "approx": false
+    },
+    "ROLLING GREEN": {
+      "name": "Rolling Green",
+      "approx": false
+    },
+    "RED OAK HEIGHTS": {
+      "name": "Red Oak Heights",
+      "approx": false
+    },
+    "HARDER'S OAKS": {
+      "name": "Harder's Oaks",
+      "approx": false
+    },
+    "MOUNT OLIVET": {
+      "name": "Mount Olivet",
+      "approx": false
+    },
+    "WILSON PARK": {
+      "name": "Wilson Park",
+      "approx": false
+    },
+    "SAVELAND PARK": {
+      "name": "Saveland Park",
+      "approx": false
+    },
+    "CASTLE MANOR": {
+      "name": "Castle Manor",
+      "approx": false
+    },
+    "CLAYTON CREST": {
+      "name": "Clayton Crest",
+      "approx": false
+    },
+    "MITCHELL WEST": {
+      "name": "Mitchell West",
+      "approx": false
+    },
+    "HOLLER PARK": {
+      "name": "Holler Park",
+      "approx": false
+    },
+    "MITCHELL FIELD": {
+      "name": "Mitchell Field",
+      "approx": false
+    },
+    "COPERNICUS PARK": {
+      "name": "Copernicus Park",
+      "approx": false
+    },
+    "GOLDMAN PARK": {
+      "name": "Goldman Park",
+      "approx": false
+    },
+    "MAITLAND PARK": {
+      "name": "Maitland Park",
+      "approx": false
+    },
+    "COLLEGE HEIGHTS": {
+      "name": "College Heights",
+      "approx": false
+    }
+  }
+}

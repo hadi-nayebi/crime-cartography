@@ -1,0 +1,210 @@
+{
+  "source": "Cincinnati Statistical Neighborhood Approximations (2020) — CAGIS Open Data (50)",
+  "sourceUrl": "https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Open_Data/FeatureServer/15/query?where=1%3D1&outFields=SNA_NAME,SNA_NUMBER&outSR=4326&geometryPrecision=6&f=geojson",
+  "hub": "https://www.arcgis.com/home/item.html?id=6bb28a3fa5c64d41a4b2557d976b0127",
+  "fetchedAt": "2026-07-18T11:43:05.286Z",
+  "license": "Public open data from the CAGIS Open Data portal (as-is disclaimer; attribution CAGIS / City of Cincinnati)",
+  "method": "identity — CPD crime records carry the official SNA neighborhood name verbatim in sna_neighborhood (all 50 polygon SNA_NAME values match the crime data's values exactly, in both datasets of the pair); no spatial join or approximation is involved",
+  "map": {
+    "South Fairmount": {
+      "name": "South Fairmount",
+      "approx": false
+    },
+    "Roselawn": {
+      "name": "Roselawn",
+      "approx": false
+    },
+    "Mt. Lookout": {
+      "name": "Mt. Lookout",
+      "approx": false
+    },
+    "Westwood": {
+      "name": "Westwood",
+      "approx": false
+    },
+    "Mt. Adams": {
+      "name": "Mt. Adams",
+      "approx": false
+    },
+    "Millvale": {
+      "name": "Millvale",
+      "approx": false
+    },
+    "North Fairmount": {
+      "name": "North Fairmount",
+      "approx": false
+    },
+    "Sayler Park": {
+      "name": "Sayler Park",
+      "approx": false
+    },
+    "Carthage": {
+      "name": "Carthage",
+      "approx": false
+    },
+    "Pendleton": {
+      "name": "Pendleton",
+      "approx": false
+    },
+    "Columbia Tusculum": {
+      "name": "Columbia Tusculum",
+      "approx": false
+    },
+    "Northside": {
+      "name": "Northside",
+      "approx": false
+    },
+    "English Woods_North Fairmount": {
+      "name": "English Woods_North Fairmount",
+      "approx": false
+    },
+    "East Price Hill": {
+      "name": "East Price Hill",
+      "approx": false
+    },
+    "Oakley": {
+      "name": "Oakley",
+      "approx": false
+    },
+    "Kennedy Heights": {
+      "name": "Kennedy Heights",
+      "approx": false
+    },
+    "Riverside_Sedamsville": {
+      "name": "Riverside_Sedamsville",
+      "approx": false
+    },
+    "Downtown": {
+      "name": "Downtown",
+      "approx": false
+    },
+    "Clifton": {
+      "name": "Clifton",
+      "approx": false
+    },
+    "Mt. Washington": {
+      "name": "Mt. Washington",
+      "approx": false
+    },
+    "Over-the-Rhine": {
+      "name": "Over-the-Rhine",
+      "approx": false
+    },
+    "Mt. Auburn": {
+      "name": "Mt. Auburn",
+      "approx": false
+    },
+    "Mt. Airy": {
+      "name": "Mt. Airy",
+      "approx": false
+    },
+    "California": {
+      "name": "California",
+      "approx": false
+    },
+    "East Westwood": {
+      "name": "East Westwood",
+      "approx": false
+    },
+    "Linwood": {
+      "name": "Linwood",
+      "approx": false
+    },
+    "CUF": {
+      "name": "CUF",
+      "approx": false
+    },
+    "Hartwell": {
+      "name": "Hartwell",
+      "approx": false
+    },
+    "North Avondale": {
+      "name": "North Avondale",
+      "approx": false
+    },
+    "Camp Washington": {
+      "name": "Camp Washington",
+      "approx": false
+    },
+    "Madisonville": {
+      "name": "Madisonville",
+      "approx": false
+    },
+    "Walnut Hills": {
+      "name": "Walnut Hills",
+      "approx": false
+    },
+    "Avondale": {
+      "name": "Avondale",
+      "approx": false
+    },
+    "Bond Hill": {
+      "name": "Bond Hill",
+      "approx": false
+    },
+    "Pleasant Ridge": {
+      "name": "Pleasant Ridge",
+      "approx": false
+    },
+    "Winton Hills": {
+      "name": "Winton Hills",
+      "approx": false
+    },
+    "West Price Hill": {
+      "name": "West Price Hill",
+      "approx": false
+    },
+    "East End": {
+      "name": "East End",
+      "approx": false
+    },
+    "Hyde Park": {
+      "name": "Hyde Park",
+      "approx": false
+    },
+    "Evanston": {
+      "name": "Evanston",
+      "approx": false
+    },
+    "College Hill": {
+      "name": "College Hill",
+      "approx": false
+    },
+    "Spring Grove Village": {
+      "name": "Spring Grove Village",
+      "approx": false
+    },
+    "East Walnut Hills": {
+      "name": "East Walnut Hills",
+      "approx": false
+    },
+    "West End": {
+      "name": "West End",
+      "approx": false
+    },
+    "Corryville": {
+      "name": "Corryville",
+      "approx": false
+    },
+    "Riverside": {
+      "name": "Riverside",
+      "approx": false
+    },
+    "Lower Price Hill_Queensgate": {
+      "name": "Lower Price Hill_Queensgate",
+      "approx": false
+    },
+    "South Cumminsville": {
+      "name": "South Cumminsville",
+      "approx": false
+    },
+    "Roll Hill": {
+      "name": "Roll Hill",
+      "approx": false
+    },
+    "Paddock Hills": {
+      "name": "Paddock Hills",
+      "approx": false
+    }
+  }
+}

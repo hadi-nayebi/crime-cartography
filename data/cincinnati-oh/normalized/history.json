@@ -1,0 +1,161 @@
+{
+  "era": "history",
+  "taxonomy": "FBI UCR Summary (Violent + Property) — a different taxonomy than the CPD STARS categories used from 2020; the two eras bridge at 2020 and are never equated",
+  "agency": "Cincinnati Police Department",
+  "ori": "OHCIP0000",
+  "source": "FBI Crime Data Explorer (CDE) — summarized agency offense counts",
+  "sourceUrl": "https://api.usa.gov/crime/fbi/cde/summarized/agency/OHCIP0000/violent-crime",
+  "cdeUrl": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/explorer/crime/crime-trend",
+  "fetchedAt": "2026-07-18T11:43:05.286Z",
+  "presentation": "annual",
+  "note": "Annual totals are real UCR Summary counts fetched from the FBI CDE summarized agency endpoint for ORI OHCIP0000 (12 reported months verified per year; zero-filled non-reporting years rejected). The batch scout's ORI OH0310600 resolves to Cleves PD and was corrected via the CDE byStateAbbr agency lookup. 1997 (11 months, all zero) and 1998 (12 months, all zero) are non-reporting years the CDE publishes as zeros — dropped as artifacts, never shown as \"zero crime\"; the complete-but-noncontiguous 1985–1996 segment is dropped to keep one honest contiguous series (1999–2019) — all disclosed, never interpolated. UCR Summary (Violent/Property) and CPD STARS are different taxonomies presented as distinct eras; neighborhood-level detail exists only from 2020 (the open-data pair begins there), so the story bridges from citywide annual history to per-neighborhood monthly data at 2020. Reproduce with pipeline/sources/cincinnati-oh.mjs (set FBI_API_KEY to avoid DEMO_KEY rate limits).",
+  "yearMin": 1999,
+  "yearMax": 2019,
+  "droppedYears": [
+    1997
+  ],
+  "droppedZeroYears": [
+    1998
+  ],
+  "droppedSegments": [
+    "1985–1996"
+  ],
+  "cats": {
+    "violent": {
+      "label": "UCR Violent (murder, rape, robbery, agg. assault)",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "UCR Property (burglary, larceny, MV theft)",
+      "color": "#ffc233"
+    }
+  },
+  "years": [
+    {
+      "year": 1999,
+      "violent": 2491,
+      "property": 19236,
+      "total": 21727
+    },
+    {
+      "year": 2000,
+      "violent": 2783,
+      "property": 19837,
+      "total": 22620
+    },
+    {
+      "year": 2001,
+      "violent": 4007,
+      "property": 23953,
+      "total": 27960
+    },
+    {
+      "year": 2002,
+      "violent": 4250,
+      "property": 24553,
+      "total": 28803
+    },
+    {
+      "year": 2003,
+      "violent": 3656,
+      "property": 24485,
+      "total": 28141
+    },
+    {
+      "year": 2004,
+      "violent": 3668,
+      "property": 23045,
+      "total": 26713
+    },
+    {
+      "year": 2005,
+      "violent": 3738,
+      "property": 22732,
+      "total": 26470
+    },
+    {
+      "year": 2006,
+      "violent": 3777,
+      "property": 22471,
+      "total": 26248
+    },
+    {
+      "year": 2007,
+      "violent": 3595,
+      "property": 20827,
+      "total": 24422
+    },
+    {
+      "year": 2008,
+      "violent": 4214,
+      "property": 20546,
+      "total": 24760
+    },
+    {
+      "year": 2009,
+      "violent": 3983,
+      "property": 20638,
+      "total": 24621
+    },
+    {
+      "year": 2010,
+      "violent": 3615,
+      "property": 20799,
+      "total": 24414
+    },
+    {
+      "year": 2011,
+      "violent": 3076,
+      "property": 20877,
+      "total": 23953
+    },
+    {
+      "year": 2012,
+      "violent": 2903,
+      "property": 18669,
+      "total": 21572
+    },
+    {
+      "year": 2013,
+      "violent": 2858,
+      "property": 17548,
+      "total": 20406
+    },
+    {
+      "year": 2014,
+      "violent": 2719,
+      "property": 17033,
+      "total": 19752
+    },
+    {
+      "year": 2015,
+      "violent": 2788,
+      "property": 16974,
+      "total": 19762
+    },
+    {
+      "year": 2016,
+      "violent": 2803,
+      "property": 15913,
+      "total": 18716
+    },
+    {
+      "year": 2017,
+      "violent": 2865,
+      "property": 15170,
+      "total": 18035
+    },
+    {
+      "year": 2018,
+      "violent": 2587,
+      "property": 13796,
+      "total": 16383
+    },
+    {
+      "year": 2019,
+      "violent": 2614,
+      "property": 13104,
+      "total": 15718
+    }
+  ]
+}

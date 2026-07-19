@@ -1,0 +1,48 @@
+{
+  "slug": "milwaukee-wi",
+  "title": "Milwaukee · WI",
+  "source": {
+    "records": "https://data.milwaukee.gov/api/3/action/datastore_search_sql",
+    "beats": "https://milwaukeemaps.milwaukee.gov/arcgis/rest/services/planning/special_districts/MapServer/4/query?where=1%3D1&outFields=*&f=geojson&outSR=4326",
+    "hub": "https://data.milwaukee.gov/dataset/wibr",
+    "hubArchive": "https://data.milwaukee.gov/dataset/wibrarchive"
+  },
+  "fetchedAt": "2026-07-18T11:36:52.831Z",
+  "dateMin": "2005-02-01",
+  "dateMax": "2026-05-31",
+  "months": 256,
+  "totalRecords": 1189202,
+  "placedRecords": 1174365,
+  "unplacedRecords": 14837,
+  "coveragePct": 98.8,
+  "unplacedBeats": {
+    "no-coords": 10895,
+    "out-of-bbox": 521,
+    "pip-miss": 3421
+  },
+  "catTotals": {
+    "persons": 196082,
+    "property": 685975,
+    "society": 95200,
+    "other": 211945
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Group B / other offenses (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 190
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "charlotte-nc",
+  "title": "Charlotte · NC",
+  "source": {
+    "records": "https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDIncidents/MapServer/0",
+    "beats": "https://services.arcgis.com/9Nl857LBlQVyzq54/arcgis/rest/services/CMPD_Police_Divisions/FeatureServer/0",
+    "hub": "https://data.charlottenc.gov/"
+  },
+  "fetchedAt": "2026-07-18T11:53:58.146Z",
+  "dateMin": "2017-01-01",
+  "dateMax": "2026-06-30",
+  "months": 114,
+  "totalRecords": 701939,
+  "placedRecords": 697504,
+  "unplacedRecords": 4435,
+  "coveragePct": 99.4,
+  "unplacedBeats": {
+    "began-pre-2017": 3540,
+    "outside-cmpd-divisions": 895
+  },
+  "excluded": {
+    "note": "Excluded from every count and disclosed in PROVENANCE: CMPD non-criminal 800-series local report types and reports with clearance status 'Unfounded' (status as of fetch date).",
+    "non-criminal-800-series": 128848,
+    "unfounded-clearances-non-800": 21392,
+    "partial-month-2026-07": 2817
+  },
+  "catTotals": {
+    "persons": 133552,
+    "property": 421710,
+    "society": 46751,
+    "other": 96386
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Group B / local non-NIBRS (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 14
+}

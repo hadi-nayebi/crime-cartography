@@ -510,6 +510,380 @@ a reliable, citable source link.**
 | `society` | WEAPONS OFFENSES, DANGEROUS DRUGS, OUIL, LIQUOR, GAMBLING, SOLICITATION, DISORDERLY CONDUCT, OBSTRUCTING THE POLICE, OBSTRUCTING JUDICIARY, HEALTH AND SAFETY, FAMILY OFFENSE, INVASION OF PRIVACY -OTHER |
 | `other` | RUNAWAY (status offense), MISCELLANEOUS, OTHER, JUSTIFIABLE HOMICIDE (not a crime in NIBRS) — context only, never counted as crime |
 
+## Milwaukee, WI (`milwaukee-wi`)
+
+- **Primary source:** MPD WIBR NIBRS crime data on data.milwaukee.gov (CKAN) —
+  a two-resource pair: **wibrarchive** "NIBRS Crime Data (Historical)"
+  (2005-02 … 2023-12) + **wibr** "NIBRS Crime Data (Current)" (2024-01 → now),
+  clean seam, no overlap. **CC-BY**, attribution "City of Milwaukee / Milwaukee
+  Police Department". SQL **POSTed** to datastore_search_sql (WAF-safe).
+  Rows appear only after MPD supervisor + Records review (a few weeks' lag) —
+  the granular window therefore ends at the last *filled* month, 2026-05.
+- **Categories:** `Offense_All` is a **semicolon-separated** NIBRS code list;
+  the FIRST code classifies the incident (documented judgment call). Group A
+  codes map to persons/property/society per the FBI NIBRS list; **Group B
+  (90-series) and placeholder codes → `other`** ("Group B / other offenses
+  (context)"), never counted as Group A crime. Full code table with counts in
+  [`data/milwaukee-wi/PROVENANCE.md`](../data/milwaukee-wi/PROVENANCE.md).
+- **Spatial unit:** the **190 official City of Milwaukee neighborhoods**
+  (planning layer `special_districts/MapServer/4`, field `NEIGHBORHD`, CC-BY).
+  The crime file has no neighborhood field — placement is a **spatial join**:
+  point-in-polygon of MPD's real published address coordinates (~98.4% usable)
+  into the official polygons. Coordinate-less rows are counted citywide and
+  disclosed as unplaced, never guessed.
+- **Deep-history source (1985–2004):** FBI Crime Data Explorer (CDE) —
+  Milwaukee PD, **ORI WIMPD0000** (verified; the scouted `WI0410100` is Bayside PD
+  and was rejected) — real annual Violent + Property counts, 20 full years
+  (12 reported months each, verified; "Offenses" series matched explicitly).
+- **Span:** 1985–2004 (FBI UCR annual) + 2005-02-01 → 2026-05-31 (WIBR
+  with neighborhood detail, 256 months). 263 junk-dated pre-window rows and
+  the still-filling 2026-06/07 months are excluded and disclosed.
+- **Records:** 1,189,202 in window · 1,174,365 placed in a neighborhood
+  (**98.8% coverage**) · 14,837 unplaced (no coords / out-of-bbox /
+  outside all polygons), kept in totals and disclosed.
+- **License:** CC-BY (incidents and polygons; City of Milwaukee).
+- **Detail:** [`data/milwaukee-wi/PROVENANCE.md`](../data/milwaukee-wi/PROVENANCE.md)
+
+## Baltimore, MD (`baltimore-md`)
+
+- **Primary source:** NIBRS Group A Crime Data — live BPD feed, 2022-01-01+
+  (ArcGIS `NIBRS_GroupA_Crime_Data/FeatureServer/0`, https://www.arcgis.com/home/item.html?id=204beefe92a645d79fdf0969957bbdf8).
+  License not stated — attributed "Baltimore City Police Department via Open
+  Baltimore". The legacy Part 1 layer (frozen 2023-02) is **not** used.
+- **⚠ Victim-based rows, deduplicated to incidents:** BPD publishes one row per
+  victim; every count shown is incidents deduped by `CCNumber`
+  (259,819 victim rows → 224,602 incidents, ×1.16).
+  Representative row = lowest RowID (deterministic); multi-description and
+  cross-month incidents measured and disclosed in PROVENANCE.
+- **Spatial unit:** the 278 official **2010 neighborhood statistical areas**.
+  The in-data `Neighborhood` field is ~98.5% blank in 2022, so every incident
+  is placed by **point-in-polygon of BPD's own coordinates** (uniform method,
+  holes honored); where the in-data name exists it agrees 99.1% —
+  published as validation, not used as the join.
+- **Timestamps:** `CrimeDateTime` is a true UTC instant; months are binned in
+  **America/New_York local time**, and all 54 months are reconciled against
+  server-side row counts AND distinct-CCNumber counts at exact UTC boundaries.
+- **Deep-history source (1985–2020):** FBI Crime Data Explorer (CDE) —
+  Baltimore PD, **ORI MDBPD0000** (the scouted MD3010100 is empty — corrected via
+  the CDE agency roster) — real annual Violent + Property counts, 36 full
+  years (12 reported months each, verified; the `… Offenses` series matched
+  explicitly, never `… Clearances`). **2021 = disclosed gap year** (7/12
+  months, NIBRS transition) — the eras bridge 2020 → 2022.
+- **Span:** 1985–2020 (FBI UCR annual) + 2022-01-01 → 2026-06-30 (BPD NIBRS
+  incidents, 54 months; partial 2026-07 dropped and disclosed).
+- **Records:** 224,602 incidents · 224,310 placed in an official
+  neighborhood (**99.9% coverage**) · 292 unplaced
+  (no/bad coordinates or outside every polygon), kept in totals and disclosed.
+- **Real dots:** BPD publishes address-level `Latitude`/`Longitude` per row —
+  dots are a deterministic even-stride ≤100/month sample of **real** deduped
+  incident locations; unlocatable incidents are counted but not plotted.
+- **License:** not stated by the source — attribution "Baltimore City Police
+  Department"; polygons City of Baltimore.
+- **Detail:** [`data/baltimore-md/PROVENANCE.md`](../data/baltimore-md/PROVENANCE.md)
+
+### Category mapping (Description → cat, official NIBRS crimes-against)
+
+| Source values | cat |
+|--------------|-----|
+| COMMON ASSAULT · AGG. ASSAULT · HOMICIDE · RAPE · SEX OFFENSES · INTIMIDATION · KIDNAPPING · HUMAN TRAFFICKING | `persons` |
+| VANDALISM · AUTO THEFT · LARCENY (all variants) · SHOPLIFTING · BURGLARY · ROBBERY (all variants) · FRAUD · ARSON · STOLEN PROPERTY · EXTORTION | `property` |
+| WEAPON VIOLATIONS · DRUG/NARCOTIC VIOLATIONS (+ "DRUG VIOLOATION" typo) · PROSTITUTION · PORNOGRAPHY · ANIMAL CRUELTY | `society` |
+| — | `other` (empty for Baltimore — every offense maps to a NIBRS category) |
+
+## Cincinnati, OH (`cincinnati-oh`)
+
+- **Primary source — a PAIR:** Reported Crime (STARS Category Offenses)
+  **before 6/3/2024** (Socrata `8xzn-kpn7`, https://data.cincinnati-oh.gov/d/8xzn-kpn7) + **on or after
+  6/3/2024** (`7aqy-xrv9`, https://data.cincinnati-oh.gov/d/7aqy-xrv9) — the city split the feed at CPD's
+  2024-06-03 RMS cutover. **No license specified on either dataset**
+  (flagged); attribution "City of Cincinnati / CPD".
+- **Dedupe (disclosed):** both sets are offense-level and OVERLAP Jun–Nov 2024
+  — 160,772 rows → **154,460 incidents** on `incident_no`
+  (15 legacy rows for 14 incidents present in both sets dropped, current
+  system preferred; 6,297 multi-offense rows collapsed at highest STARS
+  severity). All counts are incident-level.
+- **Spatial unit:** the **50 official SNA neighborhoods** (CAGIS "Statistical
+  Neighborhood Approximations 2020" polygons, field `SNA_NAME`) — the crime
+  data's `sna_neighborhood` matches verbatim, 50 of 50 in both sets
+  (identity join, no approximation).
+- **Taxonomy (disclosed):** UCR-style **STARS** rollups, not NIBRS —
+  Part 1 Violent → `persons` slot (includes robbery, unlike NIBRS),
+  Part 1 Property → `property`, and the source's own **Part 2 "everything
+  else" bucket** → third slot labeled "Part 2 · All Other Offenses";
+  never presented as NIBRS Crimes Against Society.
+- **Deep-history source (1999–2019):** FBI CDE — Cincinnati PD,
+  **ORI OHCIP0000** (the scout's OH0310600 = Cleves PD; corrected via byStateAbbr
+  and verified) — real annual Violent + Property counts, 21 full years.
+  1997–1998 are non-reporting years the CDE publishes as zeros (dropped as
+  artifacts, never shown as "zero crime") and the complete 1985–1996 segment
+  is noncontiguous with the kept run — all dropped and disclosed.
+- **Span:** 1999–2019 (FBI UCR annual) + 2020-01-01 → 2026-05-31 (CPD
+  STARS incidents, 77 months; last FULL month measured — the current set
+  is loaded through 2026-06-23, so June 2026 is partial and excluded).
+- **Records:** 154,460 in-window incidents · 146,628 placed in an official
+  SNA (**94.9% coverage**) · 7,832 unplaced (blank neighborhood), kept
+  in totals and disclosed.
+- **Real dots:** CPD publishes 4-decimal (~11 m) coords against block-masked
+  addresses — block-level, DISCLOSED; the legacy set's lat/lng columns are
+  REVERSED at the source and are swapped back deterministically (disclosed).
+  Dots are a deterministic ≤100/month sample; no-coordinate incidents are
+  counted but not plotted.
+- **License:** none specified (crime pair — flagged prominently); SNA polygons
+  public open data from CAGIS with as-is disclaimer.
+- **Detail:** [`data/cincinnati-oh/PROVENANCE.md`](../data/cincinnati-oh/PROVENANCE.md)
+
+### Category mapping (STARS rollup → cat slot)
+
+| Source value | cat |
+|--------------|-----|
+| Part 1 Violent (homicide, rape, robbery, agg. assault, strangulation) | `persons` (UCR keeps robbery here — disclosed vs NIBRS) |
+| Part 1 Property (burglary/B&E, thefts, auto theft) | `property` |
+| Part 2 (all other offenses — drugs, vandalism, fraud, simple assault, …) | `society` slot, labeled "Part 2 · All Other Offenses" |
+| — | `other` structurally 0 (audited) |
+
+## Kansas City, MO (`kansas-city-mo`)
+
+- **Primary source:** **12 Socrata yearly datasets** "KCPD Crime Data 2015 …
+  2026" on data.kcmo.org (ids in `summary.yearlyDatasets`; discovered via
+  catalog search) — Public Domain on the 2018+ assets, no license field on
+  2015–2017 (disclosed); attribution "KCPD Information Technology". Schemas
+  drift by year (report/date/location field names) and are mapped per-year.
+- **Per-involvement rows, deduped:** one row per victim/suspect/arrestee per
+  report — 1,281,836 rows → **638,301 distinct reports**
+  (×2.01 inflation), deduped globally across the 12 datasets
+  (166 reports span datasets). Server `COUNT(DISTINCT report)`
+  == client dedupe per dataset **and per month**, validated in-script.
+- **Spatial unit:** the **240 named official Kansas City neighborhoods**
+  ("Kansas City Neighborhood Borders" `vq6h-tqrf`, parent of the official
+  boundaries map `q45j-ejyk`) — placement by **point-in-polygon spatial
+  join** of KCPD's block-level coordinates (holes honored; 6 unnamed filler
+  areas in the layer stay nameless and unplaced).
+- **Deep-history source (1985–2014):** FBI Crime Data Explorer (CDE) —
+  **ORI MOKPD0000** (verified via agency lookup; the scouted MO0460100 was
+  Mountain View PD — wrong) — real annual Violent + Property counts,
+  30 full years (12 reported months each, verified; "Offenses" series
+  matched explicitly, never "Clearances"). Eras bridge at 2015.
+- **Span:** 1985–2014 (FBI UCR annual) + 2015-01-01 → 2026-06-30 (KCPD
+  incidents, 138 months; 2026-07 is partial at the source and excluded).
+- **Records:** 636,430 in-window incidents · 552,567 placed in a named
+  neighborhood (**86.8% coverage**) · 83,863 unplaced
+  (58,439 without coordinates — concentrated in 2019–2021 — plus
+  25,424 outside every named polygon), kept in totals and disclosed.
+  72 junk-dated pre-2015 reports (back to 1923) excluded + disclosed.
+- **Source gaps disclosed:** final December days missing from the 2016 / 2018 /
+  2020 / 2021 snapshots; 2018→2019 records-system change (row structure, ibrs
+  completeness, coordinate coverage) — shown as-is, never interpolated.
+- **Real dots:** KCPD geocodes **block-level addresses** — dots are a
+  deterministic ≤100/month sample of real block locations; no-coordinate
+  incidents are counted but not plotted.
+- **License:** Public Domain (2018+ assets; earlier years unstated —
+  disclosed); polygons from the city's official layer (no license stated).
+- **Detail:** [`data/kansas-city-mo/PROVENANCE.md`](../data/kansas-city-mo/PROVENANCE.md)
+
+### Category mapping (`ibrs` NIBRS code → cat)
+
+| Source value | cat |
+|--------------|-----|
+| 09A/09B, 100, 11A–11D, 13A–13C, 36A/36B, 64A/64B | `persons` |
+| 120, 200, 210, 220, 23A–23H, 240, 250, 26A–26G, 270, 280, 290, 510 | `property` (robbery/arson/extortion/bribery = crimes against property per NIBRS) |
+| 35A/35B, 370, 39A–39D, 40A–40C, 520, 720, 90A–90Z | `society` (Group B offenses carry victim type Society in NIBRS) |
+| 09C (justifiable homicide — not a crime), 999 (local placeholder), null | `other` (context only — never counted as Group A) |
+
+## Dallas, TX (`dallas-tx`)
+
+- **Primary source:** Police Incidents (Socrata `qv6i-rri7`, https://www.dallasopendata.com/d/qv6i-rri7) —
+  **ODC-BY** (Open Data Commons Attribution), attribution "Dallas Police
+  Department". RMS incidents June 2014 → current; preliminary classifications;
+  published "for research purposes only".
+- **⚠ Source scope filter (disclosed prominently, on-screen too):** DPD
+  excludes **sexually oriented offenses** and **offenses where juveniles or
+  children (under 17) are the victim or suspect** (plus evidence property
+  lists, Social Service Referrals, some vehicle info) before publication —
+  sex crimes never appear and all totals undercount actual reported crime.
+- **Row grain:** victim/involvement-level (one row per person, `servnumid`);
+  deduplicated to incidents by `incidentnum` keeping the first service-number
+  row — 1,437,644 rows → 1,200,698 incidents, reconciled per month
+  against server-side `count(distinct incidentnum)` (exact, 138/138).
+- **Spatial unit:** the **8 official DPD divisions** (Central, Northeast,
+  Southeast, Southwest, Northwest, North Central, South Central, CBD) — the
+  crime data's `division` (uppercased) matches the official DPD Crime
+  Analysis Unit polygon layer field `DIVISION` verbatim, 8 of 8 (identity
+  join). Only 8 regions — leaderboard top-6 note as in Nashville/Memphis.
+- **Categories:** native `nibrs_crimeagainst` (2017+); for 2015–2016 the
+  source's NIBRS fields are blank, so categories derive from a **documented
+  complete 49-value `ucr_offense` mapping** (crimes-against convention);
+  DPD's mixed "PERSON, PROPERTY, OR SOCIETY" + "MISCELLANEOUS" buckets and
+  unclassified rows → `other` (context, never Group A). Seam disclosed.
+- **date1 is TEXT** — verified 0 null/0 malformed; lexicographic windowing;
+  month binning sanity-checked against the source's `year1`/`month1`.
+- **Deep-history source (1985–2014):** FBI CDE — Dallas PD **ORI TXDPD0000**
+  (the scouted TX0570200 was Balch Springs PD — corrected via byStateAbbr
+  lookup; 1985 total ≈130k asserted big-city-plausible). Annual Violent +
+  Property, 30 full years. UCR includes rape; the modern era excludes
+  sexual offenses — eras bridge at 2015 and are never numerically compared.
+- **Span:** 1985–2014 (FBI UCR annual) + 2015-01-01 → 2026-06-30 (DPD RMS
+  with division detail, 138 months; last FULL month measured).
+- **Records:** 1,200,698 incidents in-window · 1,199,851 placed in an
+  official division (**99.9% coverage**) · 847 unplaced
+  (blank division), kept in totals and disclosed.
+- **Real dots:** DPD-geocoded street addresses (`geocoded_column`, 99.8%
+  coverage) — deterministic ≤100/month sample of real locations; no-coordinate
+  incidents counted but not plotted.
+- **License:** ODC-BY (records); DPD CAU public ArcGIS layer (polygons,
+  graphical-representation disclaimer, Texas H.B. 1147).
+- **Detail:** [`data/dallas-tx/PROVENANCE.md`](../data/dallas-tx/PROVENANCE.md)
+
+### Category mapping (nibrs_crimeagainst → cat, native 2017+)
+
+| Source value | cat |
+|--------------|-----|
+| PERSON | `persons` |
+| PROPERTY | `property` |
+| SOCIETY | `society` |
+| PERSON, PROPERTY, OR SOCIETY · MISCELLANEOUS · (blank) | `other` (mixed / non-criminal / unclassified — context only) |
+
+2015–2016 rows (blank NIBRS fields) use the complete 49-value `ucr_offense`
+fallback table in `data/dallas-tx/PROVENANCE.md`.
+
+## Memphis, TN (`memphis-tn`)
+
+- **Primary source:** MPD Public Safety Incidents — offense-level records
+  (ArcGIS `MPD_Public_Safety_Incidents/FeatureServer/0`, https://www.arcgis.com/home/item.html?id=12b51ce4d5a14493ab6cc05d32e0c1ee) —
+  license **not stated** on the item; attributed "Memphis Police Department via
+  City of Memphis Open Data Hub" (https://data.memphistn.gov/). Updated each morning by 6:00 am.
+- **⚠ Source omissions (disclosed):** per the item description, **sex crimes
+  and juvenile-specific crime types are omitted** by MPD — no sex-offense UCR
+  category exists in the layer. Disclosed in PROVENANCE and
+  `summary.sourceOmissions` for on-screen use.
+- **Span:** 1985–2019 (FBI UCR annual) + 2020-01-01 → 2026-06-30 (MPD NIBRS
+  with precinct detail, 78 months). The layer starts exactly at 2020-01-01
+  local midnight (measured; the item blurb's "back to 2019" has no 2019 rows;
+  the old 2006+ dataset was retired). Partial 2026-07 dropped and disclosed.
+- **Dedupe:** the layer is offense-level — deduplicated by `Crime_ID` to
+  **incidents** (632,453 rows → 569,063 incidents).
+  Independent server-side `COUNT(DISTINCT Crime_ID)` equals the client dedupe
+  for every month and globally (validated in-script).
+- **Time:** `Offense_Datetime` is a true UTC instant (dataset starts exactly
+  2020-01-01T06:00Z = local midnight CST; hour histogram dips 4–5 AM local);
+  all binning is Memphis local time (America/Chicago) with DST-aware month
+  boundaries.
+- **Spatial unit:** the **9 official MPD precinct (station) areas** — polygon
+  layer `MPD_Station_Areas/FeatureServer/1` ("MPD Precinct Areas"), joined by
+  normalized station name (MT MORIAH ↔ Mt. Moriah, 9/9 exact). Only 9 regions
+  (like Nashville): leaderboard topN stays 6, quiz still works. Special-unit
+  values (OCU = Organized Crime Unit, etc.) are unplaced and disclosed.
+- **Records:** 569,063 incidents ·
+  562,385 placed in a precinct area
+  (**98.8% coverage**) · 6,678 unplaced
+  (special-unit/missing precinct), kept in totals and disclosed.
+- **Real dots:** MPD publishes per-record `Latitude`/`Longitude` at
+  **~3 decimal places (block-level)** — disclosed; dots mark blocks, not exact
+  addresses. Missing locations are 0,0 sentinels — counted, not plotted.
+- **Deep-history source (1985–2019):** FBI Crime Data Explorer (CDE) —
+  Memphis PD, **ORI TNMPD0000** — real annual Violent + Property counts,
+  35 full years (12 reported months each, verified; the CDE's "Offenses"
+  series, never "Clearances"). **The scouted ORI TN0790100 was Collierville PD
+  (1985 violent = 20, implausible) — rejected by the 1985 plausibility gate;**
+  TNMPD0000 found via `agency/byStateAbbr/TN`. UCR taxonomy kept distinct;
+  eras bridge at 2020 (and FBI-era violent totals include rape while the MPD
+  source omits sex crimes — eras never numerically compared).
+- **License:** not stated (open-data hub publication) — flagged; attribute MPD.
+- **Detail:** [`data/memphis-tn/PROVENANCE.md`](../data/memphis-tn/PROVENANCE.md)
+
+### Category mapping (native `NIBRS_Offense_Group` → cat; `UCR_Category` × `NIBRS_Group` table in PROVENANCE)
+
+| Source value (trimmed) | cat |
+|--------------|-----|
+| CRIMES AGAINST PERSONS / CRIMES AGAINST PERSON | `persons` |
+| CRIMES AGAINST PROPERTY | `property` |
+| CRIMES AGAINST SOCIETY | `society` |
+| "PERSON, PROPERTY, OR SOCIETY" (= ALL OTHER OFFENSES, NIBRS Group B catch-all) + 1 unclassified row | `other` (context only, never counted as NIBRS crime) |
+
+## Charlotte, NC (`charlotte-nc`)
+
+- **Primary source:** CMPD Incidents — all CMPD incident report types, 2017-present
+  (ArcGIS `CMPD/CMPDIncidents/MapServer/0` on gis.charlottenc.gov, refreshed daily;
+  item https://www.arcgis.com/home/item.html?id=d22200cd879248fcb2258e6840bd6726). License = City of Charlotte custom disclaimer (quoted verbatim
+  in PROVENANCE); attribution "Charlotte-Mecklenburg Police Department / City of
+  Charlotte".
+- **Exclusions (headline rule):** the layer mixes criminal and non-criminal
+  reports. **128,848 non-criminal 800-series rows** (missing persons, natural
+  deaths, vehicle recoveries, 899 "Other Unlisted Non-Criminal", …) and
+  **21,392 "Unfounded"-clearance rows** are excluded from every count —
+  both enumerated code-by-code / status-by-status with counts in PROVENANCE.
+  Clearance status is as-of-fetch (can change as investigations proceed).
+- **Categories:** `HIGHEST_NIBRS_CODE` (CMPD applies the FBI NIBRS national
+  hierarchy — one highest offense per report). Group A → persons/property/society
+  per the FBI list; **Group B (90-series), CMPD local codes 99Y/99Z, and 09C
+  justifiable homicide → `other`** ("Group B / local non-NIBRS (context)"), never counted
+  as Group A crime. Full code table in
+  [`data/charlotte-nc/PROVENANCE.md`](../data/charlotte-nc/PROVENANCE.md).
+- **Date field:** `DATE_INCIDENT_BEGAN` (when the incident began), not
+  `DATE_REPORTED` — 3,540 kept rows began pre-2017 (reported later;
+  incl. a few junk-dated) are counted and disclosed as "began-pre-2017" unplaced.
+- **Spatial unit:** the **14 official CMPD patrol divisions** — carried in-data
+  (`CMPD_PATROL_DIVISION`), identity-joined to the official "CMPD Police
+  Divisions" polygon layer (DNAME/DIVISION codes match exactly; no spatial join).
+  Only 14 regions — leaderboard/quiz sizing note as for Nashville/Memphis.
+  Rows tagged outside the 14 divisions (served towns, mutual aid):
+  895, unplaced and disclosed.
+- **Coords:** `LATITUDE_PUBLIC`/`LONGITUDE_PUBLIC` are **block-anonymized** by
+  CMPD (block-address grain) — real published positions, disclosed wherever dots
+  are shown; 100% populated.
+- **Deep-history source (1985–2016):** FBI Crime Data Explorer (CDE) —
+  Charlotte-Mecklenburg PD, **ORI NC0600100** (verified: "Offenses" series matched
+  explicitly, 1985 violent 4,575 passes the big-city plausibility gate) — real
+  annual Violent + Property counts, 32 full years (12 reported months each).
+- **Span:** 1985–2016 (FBI UCR annual) + 2017-01-01 → 2026-06-30 (CMPD NIBRS
+  with division detail, 114 months; partial 2026-07 dropped and disclosed).
+- **Records:** 701,939 kept in window · 697,504 placed in a division
+  (**99.4% coverage**) · 4,435 unplaced, kept in totals and disclosed.
+- **Detail:** [`data/charlotte-nc/PROVENANCE.md`](../data/charlotte-nc/PROVENANCE.md)
+
+## Nashville, TN (`nashville-tn`)
+
+- **Primary source:** Metro Nashville Police Department Incidents — hosted ArcGIS
+  view on Nashville Open Data (2019-01-01 → current). **License not stated**
+  (item licenseInfo empty) — attributed "Metro Nashville Police Department via
+  Nashville Open Data" per the item's accessInformation.
+- **Grain → dedupe:** the layer publishes one row per **offense × victim**
+  (`Primary_Key` = incident_offense/victim); 906,703 rows collapse to
+  750,423 incidents by `Incident_Number` (representative = the incident's
+  first-listed offense; documented judgment call).
+- **Unfounded excluded:** 5,467 NIBRS-category incidents with
+  status "U — UNFOUNDED" are excluded per FBI practice (disclosed; the `other`
+  context bucket keeps its routine-"U" administrative records).
+- **Categories:** `Offense_NIBRS` per TIBRS (Tennessee NIBRS): Group A →
+  persons/property/society; `13D` Stalking (TIBRS TN Group A) → persons;
+  Group B 90-series, `09C`, MNPD local 600/700/800 "matrix" codes (police
+  inquiry, lost/found property, deaths, overdose, …), and nulls → `other`
+  ("Non-NIBRS local / Group B (context)"), never counted as NIBRS crime. Full code
+  table in [`data/nashville-tn/PROVENANCE.md`](../data/nashville-tn/PROVENANCE.md).
+- **Report_Type:** enumerated (D/S/T/W/O/CIR/null — intake designations; T, O,
+  CIR have no source description); none is a non-incident record class → none
+  excluded; incident dedupe absorbs multi-report duplication.
+- **Spatial unit:** the **9 official MNPD Police Precinct Boundaries**
+  (`PrecinctName`; same org). Zone/RPA are numeric, ~61% null, unmapped — the
+  placement is a **spatial join**: point-in-polygon of MNPD's published
+  coordinates (source-rounded to ~2–3 decimals — block-ish grain, disclosed;
+  MADISON's interior ring handled). Only 9 regions — leaderboard topN stays 6.
+- **Dates:** `Incident_Occurred` true-UTC instants; **binning in
+  America/Chicago local time**, month boundaries reconciled against the source
+  as exact UTC instants (90 months × row + distinct-incident counts, exact).
+- **Deep-history source (1985–2018):** FBI Crime Data Explorer (CDE) —
+  Metropolitan Nashville Police Department, **ORI TN0190100** (verified; "Offenses" series matched explicitly,
+  1985 plausibility-gated) — real annual Violent + Property counts,
+  34 full years (12 reported months each, verified).
+- **Span:** 1985–2018 (FBI UCR annual) + 2019-01-01 → 2026-06-30 (MNPD
+  incidents with precinct detail, 90 months; partial 2026-07 dropped and
+  disclosed).
+- **Records:** 744,956 counted incidents ·
+  734,327 placed in a precinct (**98.6% coverage**) ·
+  10,629 unplaced (no coords / out-of-bbox / outside polygons),
+  kept in totals and disclosed.
+- **License:** not stated (both layers) — attributed to Metro Nashville PD.
+- **Detail:** [`data/nashville-tn/PROVENANCE.md`](../data/nashville-tn/PROVENANCE.md)
+
 ## Ranked source types (for new datasets)
 
 | tier | source | grain | coords? |

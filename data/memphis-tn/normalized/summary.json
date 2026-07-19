@@ -1,0 +1,52 @@
+{
+  "slug": "memphis-tn",
+  "title": "Memphis · TN",
+  "source": {
+    "records": "https://services2.arcgis.com/saWmpKJIUAjyyNVc/arcgis/rest/services/MPD_Public_Safety_Incidents/FeatureServer/0",
+    "beats": "https://services2.arcgis.com/saWmpKJIUAjyyNVc/arcgis/rest/services/MPD_Station_Areas/FeatureServer/1",
+    "hub": "https://data.memphistn.gov/"
+  },
+  "fetchedAt": "2026-07-18T11:53:03.601Z",
+  "dateMin": "2020-01-01",
+  "dateMax": "2026-06-30",
+  "months": 78,
+  "totalRecords": 569063,
+  "placedRecords": 562385,
+  "unplacedRecords": 6678,
+  "coveragePct": 98.8,
+  "unplacedBeats": {
+    "no-precinct-or-special-unit": 6678
+  },
+  "dedupe": {
+    "method": "Crime_ID",
+    "offenseRows": 632453,
+    "incidents": 569063,
+    "note": "source rows are offense-level; incidents are distinct Crime_IDs (server COUNT DISTINCT == client dedupe, verified per month)"
+  },
+  "sourceOmissions": "Per the source item description, sex crimes and juvenile-specific crime types are omitted from this dataset by MPD. Coordinates are published at ~3 decimal places (block-level).",
+  "catTotals": {
+    "persons": 163255,
+    "property": 364524,
+    "society": 38984,
+    "other": 2300
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Other / unclassified (context)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 9
+}

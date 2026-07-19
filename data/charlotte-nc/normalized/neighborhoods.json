@@ -1,0 +1,66 @@
+{
+  "source": "CMPD Police Divisions (official City of Charlotte polygon layer)",
+  "sourceUrl": "https://services.arcgis.com/9Nl857LBlQVyzq54/arcgis/rest/services/CMPD_Police_Divisions/FeatureServer/0",
+  "hub": "https://data.charlottenc.gov/",
+  "fetchedAt": "2026-07-18T11:53:58.146Z",
+  "license": "City of Charlotte custom disclaimer (no explicit open license; quoted verbatim in PROVENANCE) — attribute City of Charlotte / Charlotte-Mecklenburg Police Department",
+  "method": "identity — CMPD crime records carry the official patrol-division name (CMPD_PATROL_DIVISION) in-data; polygon DNAME minus the ' Division' suffix matches it exactly (verified), keyed by matching DIVISION code. No spatial join or approximation is involved.",
+  "map": {
+    "Airport": {
+      "name": "Airport",
+      "approx": false
+    },
+    "Central": {
+      "name": "Central",
+      "approx": false
+    },
+    "Eastway": {
+      "name": "Eastway",
+      "approx": false
+    },
+    "Freedom": {
+      "name": "Freedom",
+      "approx": false
+    },
+    "Hickory Grove": {
+      "name": "Hickory Grove",
+      "approx": false
+    },
+    "Independence": {
+      "name": "Independence",
+      "approx": false
+    },
+    "Metro": {
+      "name": "Metro",
+      "approx": false
+    },
+    "North": {
+      "name": "North",
+      "approx": false
+    },
+    "North Tryon": {
+      "name": "North Tryon",
+      "approx": false
+    },
+    "Providence": {
+      "name": "Providence",
+      "approx": false
+    },
+    "South": {
+      "name": "South",
+      "approx": false
+    },
+    "Steele Creek": {
+      "name": "Steele Creek",
+      "approx": false
+    },
+    "University City": {
+      "name": "University City",
+      "approx": false
+    },
+    "Westover": {
+      "name": "Westover",
+      "approx": false
+    }
+  }
+}

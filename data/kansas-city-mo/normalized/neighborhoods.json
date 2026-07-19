@@ -1,0 +1,970 @@
+{
+  "source": "Kansas City Neighborhood Borders (official, 240 named polygons)",
+  "sourceUrl": "https://data.kcmo.org/resource/vq6h-tqrf.json?$select=nbhname,nbhid,the_geom&$order=objectid&$limit=300",
+  "hub": "https://data.kcmo.org/d/q45j-ejyk",
+  "fetchedAt": "2026-07-18T11:42:26.842Z",
+  "license": "not stated on the asset (Socrata provenance 'official') — attribution City of Kansas City, Missouri",
+  "method": "spatial join — each incident's KCPD-published block-level coordinates are point-in-polygon tested (even-odd, holes honored) against the official neighborhood polygons; incidents without usable coordinates or outside every named polygon stay unplaced and are disclosed (6 unnamed filler areas in the source layer carry no neighborhood name)",
+  "map": {
+    "18th And Vine And Downtown East": {
+      "name": "18th And Vine And Downtown East",
+      "approx": false
+    },
+    "Antioch Acres": {
+      "name": "Antioch Acres",
+      "approx": false
+    },
+    "Armour Fields": {
+      "name": "Armour Fields",
+      "approx": false
+    },
+    "Armour Hills": {
+      "name": "Armour Hills",
+      "approx": false
+    },
+    "Ashland Ridge": {
+      "name": "Ashland Ridge",
+      "approx": false
+    },
+    "Bannister Acres": {
+      "name": "Bannister Acres",
+      "approx": false
+    },
+    "Barry Harbour": {
+      "name": "Barry Harbour",
+      "approx": false
+    },
+    "Beacon Hills": {
+      "name": "Beacon Hills",
+      "approx": false
+    },
+    "Birmingham Bottoms": {
+      "name": "Birmingham Bottoms",
+      "approx": false
+    },
+    "Blenheim Square Research Hospital": {
+      "name": "Blenheim Square Research Hospital",
+      "approx": false
+    },
+    "Blue Hills": {
+      "name": "Blue Hills",
+      "approx": false
+    },
+    "Blue Hills Estates": {
+      "name": "Blue Hills Estates",
+      "approx": false
+    },
+    "Blue Ridge Farms": {
+      "name": "Blue Ridge Farms",
+      "approx": false
+    },
+    "Blue Valley Industrial": {
+      "name": "Blue Valley Industrial",
+      "approx": false
+    },
+    "Blue Vue Hills": {
+      "name": "Blue Vue Hills",
+      "approx": false
+    },
+    "Boone Hills": {
+      "name": "Boone Hills",
+      "approx": false
+    },
+    "Boulevard Village": {
+      "name": "Boulevard Village",
+      "approx": false
+    },
+    "Breen Hills": {
+      "name": "Breen Hills",
+      "approx": false
+    },
+    "Briarcliff And Claymont": {
+      "name": "Briarcliff And Claymont",
+      "approx": false
+    },
+    "Briarcliff West": {
+      "name": "Briarcliff West",
+      "approx": false
+    },
+    "Bridlespur": {
+      "name": "Bridlespur",
+      "approx": false
+    },
+    "Broadway Gillham": {
+      "name": "Broadway Gillham",
+      "approx": false
+    },
+    "Brookside Park": {
+      "name": "Brookside Park",
+      "approx": false
+    },
+    "Brown Estates": {
+      "name": "Brown Estates",
+      "approx": false
+    },
+    "Calico Farms": {
+      "name": "Calico Farms",
+      "approx": false
+    },
+    "CBD Downtown": {
+      "name": "CBD Downtown",
+      "approx": false
+    },
+    "Center City": {
+      "name": "Center City",
+      "approx": false
+    },
+    "Central Blue Valley And Park Tower Gardens": {
+      "name": "Central Blue Valley And Park Tower Gardens",
+      "approx": false
+    },
+    "Central Hyde Park": {
+      "name": "Central Hyde Park",
+      "approx": false
+    },
+    "Chaumiere": {
+      "name": "Chaumiere",
+      "approx": false
+    },
+    "Chouteau Estates": {
+      "name": "Chouteau Estates",
+      "approx": false
+    },
+    "Citadel": {
+      "name": "Citadel",
+      "approx": false
+    },
+    "Clayton": {
+      "name": "Clayton",
+      "approx": false
+    },
+    "Coachlight Square": {
+      "name": "Coachlight Square",
+      "approx": false
+    },
+    "Coleman Highlands": {
+      "name": "Coleman Highlands",
+      "approx": false
+    },
+    "Colonial Square": {
+      "name": "Colonial Square",
+      "approx": false
+    },
+    "Columbus Park": {
+      "name": "Columbus Park",
+      "approx": false
+    },
+    "Columbus Park Industrial": {
+      "name": "Columbus Park Industrial",
+      "approx": false
+    },
+    "Cooley Highlands S": {
+      "name": "Cooley Highlands S",
+      "approx": false
+    },
+    "Country Club": {
+      "name": "Country Club",
+      "approx": false
+    },
+    "Country Club District": {
+      "name": "Country Club District",
+      "approx": false
+    },
+    "Country Club Estates And Big Shoal": {
+      "name": "Country Club Estates And Big Shoal",
+      "approx": false
+    },
+    "Country Club Plaza": {
+      "name": "Country Club Plaza",
+      "approx": false
+    },
+    "Country Lane Estates": {
+      "name": "Country Lane Estates",
+      "approx": false
+    },
+    "Country Valley-Hawthorn Square": {
+      "name": "Country Valley-Hawthorn Square",
+      "approx": false
+    },
+    "Countryside": {
+      "name": "Countryside",
+      "approx": false
+    },
+    "Coves North": {
+      "name": "Coves North",
+      "approx": false
+    },
+    "Crestview": {
+      "name": "Crestview",
+      "approx": false
+    },
+    "Crestwood": {
+      "name": "Crestwood",
+      "approx": false
+    },
+    "Crossgates": {
+      "name": "Crossgates",
+      "approx": false
+    },
+    "Crossroads": {
+      "name": "Crossroads",
+      "approx": false
+    },
+    "Crown Center": {
+      "name": "Crown Center",
+      "approx": false
+    },
+    "Cunningham Ridge": {
+      "name": "Cunningham Ridge",
+      "approx": false
+    },
+    "Davidson": {
+      "name": "Davidson",
+      "approx": false
+    },
+    "Dunbar": {
+      "name": "Dunbar",
+      "approx": false
+    },
+    "East Blue Valley": {
+      "name": "East Blue Valley",
+      "approx": false
+    },
+    "East Community Team North": {
+      "name": "East Community Team North",
+      "approx": false
+    },
+    "East Community Team South": {
+      "name": "East Community Team South",
+      "approx": false
+    },
+    "East Meyer 6": {
+      "name": "East Meyer 6",
+      "approx": false
+    },
+    "East Meyer 7": {
+      "name": "East Meyer 7",
+      "approx": false
+    },
+    "East Swope Highlands": {
+      "name": "East Swope Highlands",
+      "approx": false
+    },
+    "Eastern 49-63": {
+      "name": "Eastern 49-63",
+      "approx": false
+    },
+    "Eastwood Hills East": {
+      "name": "Eastwood Hills East",
+      "approx": false
+    },
+    "Eastwood Hills West": {
+      "name": "Eastwood Hills West",
+      "approx": false
+    },
+    "Fairlane": {
+      "name": "Fairlane",
+      "approx": false
+    },
+    "Fairway Hills": {
+      "name": "Fairway Hills",
+      "approx": false
+    },
+    "Fairwood And Robandee": {
+      "name": "Fairwood And Robandee",
+      "approx": false
+    },
+    "Forgotten Homes": {
+      "name": "Forgotten Homes",
+      "approx": false
+    },
+    "Foxcroft And Glen Arbor": {
+      "name": "Foxcroft And Glen Arbor",
+      "approx": false
+    },
+    "Foxtown East": {
+      "name": "Foxtown East",
+      "approx": false
+    },
+    "Foxwoods-Carriage Hills": {
+      "name": "Foxwoods-Carriage Hills",
+      "approx": false
+    },
+    "Gashland": {
+      "name": "Gashland",
+      "approx": false
+    },
+    "Glen Lake": {
+      "name": "Glen Lake",
+      "approx": false
+    },
+    "Glenhaven": {
+      "name": "Glenhaven",
+      "approx": false
+    },
+    "Gracemor-Randolph Corners": {
+      "name": "Gracemor-Randolph Corners",
+      "approx": false
+    },
+    "Greenway Fields": {
+      "name": "Greenway Fields",
+      "approx": false
+    },
+    "Hanover Place": {
+      "name": "Hanover Place",
+      "approx": false
+    },
+    "Harlem": {
+      "name": "Harlem",
+      "approx": false
+    },
+    "Hawthorne And Picture Hills": {
+      "name": "Hawthorne And Picture Hills",
+      "approx": false
+    },
+    "Hickman Mills": {
+      "name": "Hickman Mills",
+      "approx": false
+    },
+    "Hickman Mills South": {
+      "name": "Hickman Mills South",
+      "approx": false
+    },
+    "Hidden Valley": {
+      "name": "Hidden Valley",
+      "approx": false
+    },
+    "Highview Estates": {
+      "name": "Highview Estates",
+      "approx": false
+    },
+    "Hill Haven": {
+      "name": "Hill Haven",
+      "approx": false
+    },
+    "Hillcrest": {
+      "name": "Hillcrest",
+      "approx": false
+    },
+    "Holiday Hills": {
+      "name": "Holiday Hills",
+      "approx": false
+    },
+    "Holmes Park": {
+      "name": "Holmes Park",
+      "approx": false
+    },
+    "Hospital Hill": {
+      "name": "Hospital Hill",
+      "approx": false
+    },
+    "Independence Plaza": {
+      "name": "Independence Plaza",
+      "approx": false
+    },
+    "Ingleside": {
+      "name": "Ingleside",
+      "approx": false
+    },
+    "Ivanhoe Northeast": {
+      "name": "Ivanhoe Northeast",
+      "approx": false
+    },
+    "Ivanhoe Southeast": {
+      "name": "Ivanhoe Southeast",
+      "approx": false
+    },
+    "Ivanhoe Southwest": {
+      "name": "Ivanhoe Southwest",
+      "approx": false
+    },
+    "Jefferson Highlands": {
+      "name": "Jefferson Highlands",
+      "approx": false
+    },
+    "KCI & 2nd Creek": {
+      "name": "KCI & 2nd Creek",
+      "approx": false
+    },
+    "Key Coalition": {
+      "name": "Key Coalition",
+      "approx": false
+    },
+    "Kirkside": {
+      "name": "Kirkside",
+      "approx": false
+    },
+    "Knoches Park": {
+      "name": "Knoches Park",
+      "approx": false
+    },
+    "Lakeview Terrace": {
+      "name": "Lakeview Terrace",
+      "approx": false
+    },
+    "Lea Manor": {
+      "name": "Lea Manor",
+      "approx": false
+    },
+    "Leeds": {
+      "name": "Leeds",
+      "approx": false
+    },
+    "Legacy East": {
+      "name": "Legacy East",
+      "approx": false
+    },
+    "Lewis Heights": {
+      "name": "Lewis Heights",
+      "approx": false
+    },
+    "Linden Hills And Indian Heights": {
+      "name": "Linden Hills And Indian Heights",
+      "approx": false
+    },
+    "Linden Park": {
+      "name": "Linden Park",
+      "approx": false
+    },
+    "Line Creek And Northern Heights": {
+      "name": "Line Creek And Northern Heights",
+      "approx": false
+    },
+    "Linwood Homeowners-Ivanhoe": {
+      "name": "Linwood Homeowners-Ivanhoe",
+      "approx": false
+    },
+    "Little Blue": {
+      "name": "Little Blue",
+      "approx": false
+    },
+    "Loma Vista": {
+      "name": "Loma Vista",
+      "approx": false
+    },
+    "Longfellow": {
+      "name": "Longfellow",
+      "approx": false
+    },
+    "Longview": {
+      "name": "Longview",
+      "approx": false
+    },
+    "Lykins": {
+      "name": "Lykins",
+      "approx": false
+    },
+    "Manheim Park": {
+      "name": "Manheim Park",
+      "approx": false
+    },
+    "Maple Park": {
+      "name": "Maple Park",
+      "approx": false
+    },
+    "Maple Park West": {
+      "name": "Maple Park West",
+      "approx": false
+    },
+    "Marlborough East": {
+      "name": "Marlborough East",
+      "approx": false
+    },
+    "Marlborough Heights/Marlborough Pride": {
+      "name": "Marlborough Heights/Marlborough Pride",
+      "approx": false
+    },
+    "Martin City": {
+      "name": "Martin City",
+      "approx": false
+    },
+    "Meadowbrook Heights": {
+      "name": "Meadowbrook Heights",
+      "approx": false
+    },
+    "Minneville": {
+      "name": "Minneville",
+      "approx": false
+    },
+    "Mission Lake": {
+      "name": "Mission Lake",
+      "approx": false
+    },
+    "Morningside": {
+      "name": "Morningside",
+      "approx": false
+    },
+    "Mount Cleveland": {
+      "name": "Mount Cleveland",
+      "approx": false
+    },
+    "Mount Hope": {
+      "name": "Mount Hope",
+      "approx": false
+    },
+    "Nashua": {
+      "name": "Nashua",
+      "approx": false
+    },
+    "Neighbors United For Action": {
+      "name": "Neighbors United For Action",
+      "approx": false
+    },
+    "New Mark": {
+      "name": "New Mark",
+      "approx": false
+    },
+    "Noble And Gregory Ridge": {
+      "name": "Noble And Gregory Ridge",
+      "approx": false
+    },
+    "North Blue Ridge": {
+      "name": "North Blue Ridge",
+      "approx": false
+    },
+    "North Hyde Park": {
+      "name": "North Hyde Park",
+      "approx": false
+    },
+    "North Indian Mound": {
+      "name": "North Indian Mound",
+      "approx": false
+    },
+    "North Town Fork Creek": {
+      "name": "North Town Fork Creek",
+      "approx": false
+    },
+    "Northeast Industrial District": {
+      "name": "Northeast Industrial District",
+      "approx": false
+    },
+    "Oak Meyer Gardens": {
+      "name": "Oak Meyer Gardens",
+      "approx": false
+    },
+    "Oak Park Northwest": {
+      "name": "Oak Park Northwest",
+      "approx": false
+    },
+    "Oak Park Southeast": {
+      "name": "Oak Park Southeast",
+      "approx": false
+    },
+    "Oak Park Southwest": {
+      "name": "Oak Park Southwest",
+      "approx": false
+    },
+    "Oakwood": {
+      "name": "Oakwood",
+      "approx": false
+    },
+    "Old Westport": {
+      "name": "Old Westport",
+      "approx": false
+    },
+    "Oldham Farms": {
+      "name": "Oldham Farms",
+      "approx": false
+    },
+    "Outer Gashland-Nashua": {
+      "name": "Outer Gashland-Nashua",
+      "approx": false
+    },
+    "Palestine East": {
+      "name": "Palestine East",
+      "approx": false
+    },
+    "Palestine West And Oak Park Northeast": {
+      "name": "Palestine West And Oak Park Northeast",
+      "approx": false
+    },
+    "Park Central-Research Park": {
+      "name": "Park Central-Research Park",
+      "approx": false
+    },
+    "Park Farms": {
+      "name": "Park Farms",
+      "approx": false
+    },
+    "Park Forest": {
+      "name": "Park Forest",
+      "approx": false
+    },
+    "Park Plaza": {
+      "name": "Park Plaza",
+      "approx": false
+    },
+    "Parkdale And Walden": {
+      "name": "Parkdale And Walden",
+      "approx": false
+    },
+    "Parkview": {
+      "name": "Parkview",
+      "approx": false
+    },
+    "Paseo West": {
+      "name": "Paseo West",
+      "approx": false
+    },
+    "Pendleton Heights": {
+      "name": "Pendleton Heights",
+      "approx": false
+    },
+    "Platte Brook North": {
+      "name": "Platte Brook North",
+      "approx": false
+    },
+    "Platte Ridge": {
+      "name": "Platte Ridge",
+      "approx": false
+    },
+    "Plaza Westport": {
+      "name": "Plaza Westport",
+      "approx": false
+    },
+    "Prairie Point-Wildberry": {
+      "name": "Prairie Point-Wildberry",
+      "approx": false
+    },
+    "Quality Hill": {
+      "name": "Quality Hill",
+      "approx": false
+    },
+    "Ravenwood-Somerset": {
+      "name": "Ravenwood-Somerset",
+      "approx": false
+    },
+    "Red Bridge North": {
+      "name": "Red Bridge North",
+      "approx": false
+    },
+    "Red Bridge South": {
+      "name": "Red Bridge South",
+      "approx": false
+    },
+    "Richards Gebaur": {
+      "name": "Richards Gebaur",
+      "approx": false
+    },
+    "Ridgefield": {
+      "name": "Ridgefield",
+      "approx": false
+    },
+    "Riss Lake": {
+      "name": "Riss Lake",
+      "approx": false
+    },
+    "River Forest": {
+      "name": "River Forest",
+      "approx": false
+    },
+    "River Market": {
+      "name": "River Market",
+      "approx": false
+    },
+    "River View": {
+      "name": "River View",
+      "approx": false
+    },
+    "Roanoke": {
+      "name": "Roanoke",
+      "approx": false
+    },
+    "Robandee South": {
+      "name": "Robandee South",
+      "approx": false
+    },
+    "Rockhill": {
+      "name": "Rockhill",
+      "approx": false
+    },
+    "Rockhill Manor": {
+      "name": "Rockhill Manor",
+      "approx": false
+    },
+    "Rolling Meadows": {
+      "name": "Rolling Meadows",
+      "approx": false
+    },
+    "Romanelli West": {
+      "name": "Romanelli West",
+      "approx": false
+    },
+    "Royal Oaks": {
+      "name": "Royal Oaks",
+      "approx": false
+    },
+    "Royal Oaks North": {
+      "name": "Royal Oaks North",
+      "approx": false
+    },
+    "Ruskin Heights": {
+      "name": "Ruskin Heights",
+      "approx": false
+    },
+    "Ruskin Hills": {
+      "name": "Ruskin Hills",
+      "approx": false
+    },
+    "Santa Fe": {
+      "name": "Santa Fe",
+      "approx": false
+    },
+    "Santa Fe Hills": {
+      "name": "Santa Fe Hills",
+      "approx": false
+    },
+    "Scarritt Point": {
+      "name": "Scarritt Point",
+      "approx": false
+    },
+    "Sechrest": {
+      "name": "Sechrest",
+      "approx": false
+    },
+    "Self Help Neighborhood Council": {
+      "name": "Self Help Neighborhood Council",
+      "approx": false
+    },
+    "Sheffield": {
+      "name": "Sheffield",
+      "approx": false
+    },
+    "Sheraton Estates": {
+      "name": "Sheraton Estates",
+      "approx": false
+    },
+    "Sherrydale": {
+      "name": "Sherrydale",
+      "approx": false
+    },
+    "Sherwood Estates": {
+      "name": "Sherwood Estates",
+      "approx": false
+    },
+    "Shoal Creek": {
+      "name": "Shoal Creek",
+      "approx": false
+    },
+    "South Blue Valley": {
+      "name": "South Blue Valley",
+      "approx": false
+    },
+    "South Hyde Park": {
+      "name": "South Hyde Park",
+      "approx": false
+    },
+    "South Indian Mound": {
+      "name": "South Indian Mound",
+      "approx": false
+    },
+    "South Plaza": {
+      "name": "South Plaza",
+      "approx": false
+    },
+    "South Town Fork Creek": {
+      "name": "South Town Fork Creek",
+      "approx": false
+    },
+    "Southmoreland": {
+      "name": "Southmoreland",
+      "approx": false
+    },
+    "Squier Park": {
+      "name": "Squier Park",
+      "approx": false
+    },
+    "St Catherines Gardens": {
+      "name": "St Catherines Gardens",
+      "approx": false
+    },
+    "Stayton Meadows": {
+      "name": "Stayton Meadows",
+      "approx": false
+    },
+    "Sterling Acres": {
+      "name": "Sterling Acres",
+      "approx": false
+    },
+    "Sterling Gardens": {
+      "name": "Sterling Gardens",
+      "approx": false
+    },
+    "Stratford Estates": {
+      "name": "Stratford Estates",
+      "approx": false
+    },
+    "Stratford Gardens": {
+      "name": "Stratford Gardens",
+      "approx": false
+    },
+    "Strupwood": {
+      "name": "Strupwood",
+      "approx": false
+    },
+    "Sunset Hill": {
+      "name": "Sunset Hill",
+      "approx": false
+    },
+    "Sunset Hill West": {
+      "name": "Sunset Hill West",
+      "approx": false
+    },
+    "Swope Park Campus": {
+      "name": "Swope Park Campus",
+      "approx": false
+    },
+    "Swope Park Ridge-Winchester": {
+      "name": "Swope Park Ridge-Winchester",
+      "approx": false
+    },
+    "Swope Parkway-Elmwood": {
+      "name": "Swope Parkway-Elmwood",
+      "approx": false
+    },
+    "Tanglewood And Regency North": {
+      "name": "Tanglewood And Regency North",
+      "approx": false
+    },
+    "Terrace Lake Gardens": {
+      "name": "Terrace Lake Gardens",
+      "approx": false
+    },
+    "The Coves": {
+      "name": "The Coves",
+      "approx": false
+    },
+    "Timber Valley": {
+      "name": "Timber Valley",
+      "approx": false
+    },
+    "Tower Homes": {
+      "name": "Tower Homes",
+      "approx": false
+    },
+    "Union Hill": {
+      "name": "Union Hill",
+      "approx": false
+    },
+    "Unity Ridge": {
+      "name": "Unity Ridge",
+      "approx": false
+    },
+    "Valentine": {
+      "name": "Valentine",
+      "approx": false
+    },
+    "Verona Hills": {
+      "name": "Verona Hills",
+      "approx": false
+    },
+    "Vineyard": {
+      "name": "Vineyard",
+      "approx": false
+    },
+    "Vineyard Estates": {
+      "name": "Vineyard Estates",
+      "approx": false
+    },
+    "Vineyard Northwest": {
+      "name": "Vineyard Northwest",
+      "approx": false
+    },
+    "Volker": {
+      "name": "Volker",
+      "approx": false
+    },
+    "Waldo Homes": {
+      "name": "Waldo Homes",
+      "approx": false
+    },
+    "Ward Estates": {
+      "name": "Ward Estates",
+      "approx": false
+    },
+    "Ward Parkway": {
+      "name": "Ward Parkway",
+      "approx": false
+    },
+    "Ward Parkway Plaza": {
+      "name": "Ward Parkway Plaza",
+      "approx": false
+    },
+    "Washington Wheatley": {
+      "name": "Washington Wheatley",
+      "approx": false
+    },
+    "Wendell Phillips": {
+      "name": "Wendell Phillips",
+      "approx": false
+    },
+    "West Blue Valley": {
+      "name": "West Blue Valley",
+      "approx": false
+    },
+    "West Plaza": {
+      "name": "West Plaza",
+      "approx": false
+    },
+    "West Waldo": {
+      "name": "West Waldo",
+      "approx": false
+    },
+    "Western 49-63": {
+      "name": "Western 49-63",
+      "approx": false
+    },
+    "Western Blue Township": {
+      "name": "Western Blue Township",
+      "approx": false
+    },
+    "Western Hills": {
+      "name": "Western Hills",
+      "approx": false
+    },
+    "Westside North": {
+      "name": "Westside North",
+      "approx": false
+    },
+    "Westside South": {
+      "name": "Westside South",
+      "approx": false
+    },
+    "Westwood": {
+      "name": "Westwood",
+      "approx": false
+    },
+    "White Oak": {
+      "name": "White Oak",
+      "approx": false
+    },
+    "Willow Creek": {
+      "name": "Willow Creek",
+      "approx": false
+    },
+    "Winnetonka": {
+      "name": "Winnetonka",
+      "approx": false
+    },
+    "Winnwood": {
+      "name": "Winnwood",
+      "approx": false
+    },
+    "Winnwood Gardens": {
+      "name": "Winnwood Gardens",
+      "approx": false
+    },
+    "Woodbridge": {
+      "name": "Woodbridge",
+      "approx": false
+    },
+    "Woodson Estates": {
+      "name": "Woodson Estates",
+      "approx": false
+    },
+    "Wornall Homestead": {
+      "name": "Wornall Homestead",
+      "approx": false
+    }
+  }
+}

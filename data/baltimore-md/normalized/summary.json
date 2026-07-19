@@ -1,0 +1,49 @@
+{
+  "slug": "baltimore-md",
+  "title": "Baltimore · MD",
+  "source": {
+    "records": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/NIBRS_GroupA_Crime_Data/FeatureServer/0",
+    "beats": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/Neighborhoods_bndy/FeatureServer/0",
+    "hub": "https://data.baltimorecity.gov/"
+  },
+  "fetchedAt": "2026-07-18T11:37:47.932Z",
+  "dateMin": "2022-01-01",
+  "dateMax": "2026-06-30",
+  "months": 54,
+  "totalRecords": 224602,
+  "victimRows": 259819,
+  "methodFootnote": "Victim-based source: BPD publishes one row per victim; rows are deduplicated to incidents by CCNumber (259,819 victim rows → 224,602 incidents). Neighborhoods assigned by point-in-polygon of BPD-published coordinates into the official city polygons.",
+  "placedRecords": 224310,
+  "unplacedRecords": 292,
+  "coveragePct": 99.9,
+  "unplacedBeats": {
+    "no-coordinates": 236,
+    "out-of-bbox": 2,
+    "outside-polygons": 54
+  },
+  "catTotals": {
+    "persons": 65784,
+    "property": 158572,
+    "society": 246,
+    "other": 0
+  },
+  "cats": {
+    "persons": {
+      "label": "Crimes Against Persons",
+      "color": "#ff2e63"
+    },
+    "property": {
+      "label": "Crimes Against Property",
+      "color": "#ffc233"
+    },
+    "society": {
+      "label": "Crimes Against Society",
+      "color": "#34e0e0"
+    },
+    "other": {
+      "label": "Other (unused — every offense maps to a NIBRS category)",
+      "color": "#7486a0"
+    }
+  },
+  "beatCount": 278
+}

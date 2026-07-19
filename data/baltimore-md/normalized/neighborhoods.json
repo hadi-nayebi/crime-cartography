@@ -1,0 +1,1122 @@
+{
+  "source": "Baltimore official Neighborhoods (2010 statistical areas, City of Baltimore)",
+  "sourceUrl": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/Neighborhoods_bndy/FeatureServer/0/query?where=1=1&outFields=Name&f=geojson",
+  "hub": "https://www.arcgis.com/home/item.html?id=9a800dc1d0fc42b697bb79a4e63488b2",
+  "fetchedAt": "2026-07-18T11:37:47.932Z",
+  "license": "Not stated on the item — attributed to City of Baltimore (public open-data portal)",
+  "method": "point-in-polygon — each deduplicated incident is placed by ray-casting the BPD-published coordinates into the official neighborhood polygons (holes honored). The in-data `Neighborhood` field is ~98.5% blank in 2022, so it cannot serve as the join key; where it IS present and matches an official polygon name, the spatial join agrees with it 99.1% of the time (173,508 of 175,030; boundary geocoding differences account for the rest).",
+  "map": {
+    "Abell": {
+      "name": "Abell",
+      "approx": false
+    },
+    "Allendale": {
+      "name": "Allendale",
+      "approx": false
+    },
+    "Arcadia": {
+      "name": "Arcadia",
+      "approx": false
+    },
+    "Arlington": {
+      "name": "Arlington",
+      "approx": false
+    },
+    "Armistead Gardens": {
+      "name": "Armistead Gardens",
+      "approx": false
+    },
+    "Ashburton": {
+      "name": "Ashburton",
+      "approx": false
+    },
+    "Baltimore Highlands": {
+      "name": "Baltimore Highlands",
+      "approx": false
+    },
+    "Patterson Park Neighborhood": {
+      "name": "Patterson Park Neighborhood",
+      "approx": false
+    },
+    "Barclay": {
+      "name": "Barclay",
+      "approx": false
+    },
+    "Barre Circle": {
+      "name": "Barre Circle",
+      "approx": false
+    },
+    "Beechfield": {
+      "name": "Beechfield",
+      "approx": false
+    },
+    "Belair-Parkside": {
+      "name": "Belair-Parkside",
+      "approx": false
+    },
+    "Bellona-Gittings": {
+      "name": "Bellona-Gittings",
+      "approx": false
+    },
+    "Berea": {
+      "name": "Berea",
+      "approx": false
+    },
+    "Better Waverly": {
+      "name": "Better Waverly",
+      "approx": false
+    },
+    "Beverly Hills": {
+      "name": "Beverly Hills",
+      "approx": false
+    },
+    "Biddle Street": {
+      "name": "Biddle Street",
+      "approx": false
+    },
+    "Blythewood": {
+      "name": "Blythewood",
+      "approx": false
+    },
+    "Bolton Hill": {
+      "name": "Bolton Hill",
+      "approx": false
+    },
+    "Boyd-Booth": {
+      "name": "Boyd-Booth",
+      "approx": false
+    },
+    "Brewers Hill": {
+      "name": "Brewers Hill",
+      "approx": false
+    },
+    "Bridgeview/Greenlawn": {
+      "name": "Bridgeview/Greenlawn",
+      "approx": false
+    },
+    "Broadway East": {
+      "name": "Broadway East",
+      "approx": false
+    },
+    "Broening Manor": {
+      "name": "Broening Manor",
+      "approx": false
+    },
+    "Brooklyn": {
+      "name": "Brooklyn",
+      "approx": false
+    },
+    "Burleith-Leighton": {
+      "name": "Burleith-Leighton",
+      "approx": false
+    },
+    "Butcher's Hill": {
+      "name": "Butcher's Hill",
+      "approx": false
+    },
+    "Callaway-Garrison": {
+      "name": "Callaway-Garrison",
+      "approx": false
+    },
+    "Cameron Village": {
+      "name": "Cameron Village",
+      "approx": false
+    },
+    "Canton": {
+      "name": "Canton",
+      "approx": false
+    },
+    "Canton Industrial Area": {
+      "name": "Canton Industrial Area",
+      "approx": false
+    },
+    "Carroll - Camden Industrial Area": {
+      "name": "Carroll - Camden Industrial Area",
+      "approx": false
+    },
+    "Carroll Park": {
+      "name": "Carroll Park",
+      "approx": false
+    },
+    "Carroll-South Hilton": {
+      "name": "Carroll-South Hilton",
+      "approx": false
+    },
+    "Carrollton Ridge": {
+      "name": "Carrollton Ridge",
+      "approx": false
+    },
+    "Cedarcroft": {
+      "name": "Cedarcroft",
+      "approx": false
+    },
+    "Cedmont": {
+      "name": "Cedmont",
+      "approx": false
+    },
+    "Cedonia": {
+      "name": "Cedonia",
+      "approx": false
+    },
+    "Central Forest Park": {
+      "name": "Central Forest Park",
+      "approx": false
+    },
+    "Central Park Heights": {
+      "name": "Central Park Heights",
+      "approx": false
+    },
+    "Charles North": {
+      "name": "Charles North",
+      "approx": false
+    },
+    "Cherry Hill": {
+      "name": "Cherry Hill",
+      "approx": false
+    },
+    "Cheswolde": {
+      "name": "Cheswolde",
+      "approx": false
+    },
+    "Chinquapin Park": {
+      "name": "Chinquapin Park",
+      "approx": false
+    },
+    "Orchard Ridge": {
+      "name": "Orchard Ridge",
+      "approx": false
+    },
+    "Clifton Park": {
+      "name": "Clifton Park",
+      "approx": false
+    },
+    "Coldspring": {
+      "name": "Coldspring",
+      "approx": false
+    },
+    "Coldstream Homestead Montebello": {
+      "name": "Coldstream Homestead Montebello",
+      "approx": false
+    },
+    "Concerned Citizens Of Forest Park": {
+      "name": "Concerned Citizens Of Forest Park",
+      "approx": false
+    },
+    "Coppin Heights/Ash-Co-East": {
+      "name": "Coppin Heights/Ash-Co-East",
+      "approx": false
+    },
+    "Cross Country": {
+      "name": "Cross Country",
+      "approx": false
+    },
+    "Cross Keys": {
+      "name": "Cross Keys",
+      "approx": false
+    },
+    "Curtis Bay": {
+      "name": "Curtis Bay",
+      "approx": false
+    },
+    "Curtis Bay Industrial Area": {
+      "name": "Curtis Bay Industrial Area",
+      "approx": false
+    },
+    "Cylburn": {
+      "name": "Cylburn",
+      "approx": false
+    },
+    "Darley Park": {
+      "name": "Darley Park",
+      "approx": false
+    },
+    "Dickeyville": {
+      "name": "Dickeyville",
+      "approx": false
+    },
+    "Dolfield": {
+      "name": "Dolfield",
+      "approx": false
+    },
+    "Dorchester": {
+      "name": "Dorchester",
+      "approx": false
+    },
+    "Downtown": {
+      "name": "Downtown",
+      "approx": false
+    },
+    "Druid Heights": {
+      "name": "Druid Heights",
+      "approx": false
+    },
+    "Druid Hill Park": {
+      "name": "Druid Hill Park",
+      "approx": false
+    },
+    "Dunbar-Broadway": {
+      "name": "Dunbar-Broadway",
+      "approx": false
+    },
+    "Dundalk Marine Terminal": {
+      "name": "Dundalk Marine Terminal",
+      "approx": false
+    },
+    "East Arlington": {
+      "name": "East Arlington",
+      "approx": false
+    },
+    "East Baltimore Midway": {
+      "name": "East Baltimore Midway",
+      "approx": false
+    },
+    "Easterwood": {
+      "name": "Easterwood",
+      "approx": false
+    },
+    "Eastwood": {
+      "name": "Eastwood",
+      "approx": false
+    },
+    "Edmondson Village": {
+      "name": "Edmondson Village",
+      "approx": false
+    },
+    "Ednor Gardens-Lakeside": {
+      "name": "Ednor Gardens-Lakeside",
+      "approx": false
+    },
+    "Ellwood Park/Monument": {
+      "name": "Ellwood Park/Monument",
+      "approx": false
+    },
+    "Evergreen": {
+      "name": "Evergreen",
+      "approx": false
+    },
+    "Evergreen Lawn": {
+      "name": "Evergreen Lawn",
+      "approx": false
+    },
+    "Fairfield Area": {
+      "name": "Fairfield Area",
+      "approx": false
+    },
+    "Fairmont": {
+      "name": "Fairmont",
+      "approx": false
+    },
+    "Fallstaff": {
+      "name": "Fallstaff",
+      "approx": false
+    },
+    "Federal Hill": {
+      "name": "Federal Hill",
+      "approx": false
+    },
+    "Fells Point": {
+      "name": "Fells Point",
+      "approx": false
+    },
+    "Forest Park": {
+      "name": "Forest Park",
+      "approx": false
+    },
+    "Forest Park Golf Course": {
+      "name": "Forest Park Golf Course",
+      "approx": false
+    },
+    "Frankford": {
+      "name": "Frankford",
+      "approx": false
+    },
+    "Franklin Square": {
+      "name": "Franklin Square",
+      "approx": false
+    },
+    "Franklintown": {
+      "name": "Franklintown",
+      "approx": false
+    },
+    "Franklintown Road": {
+      "name": "Franklintown Road",
+      "approx": false
+    },
+    "Garwyn Oaks": {
+      "name": "Garwyn Oaks",
+      "approx": false
+    },
+    "Gay Street": {
+      "name": "Gay Street",
+      "approx": false
+    },
+    "Glen": {
+      "name": "Glen",
+      "approx": false
+    },
+    "Glen Oaks": {
+      "name": "Glen Oaks",
+      "approx": false
+    },
+    "Glenham-Belhar": {
+      "name": "Glenham-Belhar",
+      "approx": false
+    },
+    "Graceland Park": {
+      "name": "Graceland Park",
+      "approx": false
+    },
+    "Greektown": {
+      "name": "Greektown",
+      "approx": false
+    },
+    "Greenmount Cemetery": {
+      "name": "Greenmount Cemetery",
+      "approx": false
+    },
+    "Greenmount West": {
+      "name": "Greenmount West",
+      "approx": false
+    },
+    "Greenspring": {
+      "name": "Greenspring",
+      "approx": false
+    },
+    "Grove Park": {
+      "name": "Grove Park",
+      "approx": false
+    },
+    "Guilford": {
+      "name": "Guilford",
+      "approx": false
+    },
+    "Gwynns Falls": {
+      "name": "Gwynns Falls",
+      "approx": false
+    },
+    "Gwynns Falls/Leakin Park": {
+      "name": "Gwynns Falls/Leakin Park",
+      "approx": false
+    },
+    "Hampden": {
+      "name": "Hampden",
+      "approx": false
+    },
+    "Hanlon-Longwood": {
+      "name": "Hanlon-Longwood",
+      "approx": false
+    },
+    "Hamilton Hills": {
+      "name": "Hamilton Hills",
+      "approx": false
+    },
+    "Harlem Park": {
+      "name": "Harlem Park",
+      "approx": false
+    },
+    "Harwood": {
+      "name": "Harwood",
+      "approx": false
+    },
+    "Hawkins Point": {
+      "name": "Hawkins Point",
+      "approx": false
+    },
+    "Heritage Crossing": {
+      "name": "Heritage Crossing",
+      "approx": false
+    },
+    "Herring Run Park": {
+      "name": "Herring Run Park",
+      "approx": false
+    },
+    "Highlandtown": {
+      "name": "Highlandtown",
+      "approx": false
+    },
+    "Hillen": {
+      "name": "Hillen",
+      "approx": false
+    },
+    "Hoes Heights": {
+      "name": "Hoes Heights",
+      "approx": false
+    },
+    "Holabird Industrial Park": {
+      "name": "Holabird Industrial Park",
+      "approx": false
+    },
+    "Hollins Market": {
+      "name": "Hollins Market",
+      "approx": false
+    },
+    "Homeland": {
+      "name": "Homeland",
+      "approx": false
+    },
+    "Hopkins Bayview": {
+      "name": "Hopkins Bayview",
+      "approx": false
+    },
+    "Howard Park": {
+      "name": "Howard Park",
+      "approx": false
+    },
+    "Hunting Ridge": {
+      "name": "Hunting Ridge",
+      "approx": false
+    },
+    "Idlewood": {
+      "name": "Idlewood",
+      "approx": false
+    },
+    "Inner Harbor": {
+      "name": "Inner Harbor",
+      "approx": false
+    },
+    "Irvington": {
+      "name": "Irvington",
+      "approx": false
+    },
+    "Johns Hopkins Homewood": {
+      "name": "Johns Hopkins Homewood",
+      "approx": false
+    },
+    "Johnston Square": {
+      "name": "Johnston Square",
+      "approx": false
+    },
+    "Jones Falls Area": {
+      "name": "Jones Falls Area",
+      "approx": false
+    },
+    "Jonestown": {
+      "name": "Jonestown",
+      "approx": false
+    },
+    "Bayview": {
+      "name": "Bayview",
+      "approx": false
+    },
+    "Kenilworth Park": {
+      "name": "Kenilworth Park",
+      "approx": false
+    },
+    "Kernewood": {
+      "name": "Kernewood",
+      "approx": false
+    },
+    "Keswick": {
+      "name": "Keswick",
+      "approx": false
+    },
+    "Kresson": {
+      "name": "Kresson",
+      "approx": false
+    },
+    "Lake Evesham": {
+      "name": "Lake Evesham",
+      "approx": false
+    },
+    "Lake Walker": {
+      "name": "Lake Walker",
+      "approx": false
+    },
+    "Lakeland": {
+      "name": "Lakeland",
+      "approx": false
+    },
+    "Langston Hughes": {
+      "name": "Langston Hughes",
+      "approx": false
+    },
+    "Lauraville": {
+      "name": "Lauraville",
+      "approx": false
+    },
+    "Levindale": {
+      "name": "Levindale",
+      "approx": false
+    },
+    "Liberty Square": {
+      "name": "Liberty Square",
+      "approx": false
+    },
+    "Little Italy": {
+      "name": "Little Italy",
+      "approx": false
+    },
+    "Loch Raven": {
+      "name": "Loch Raven",
+      "approx": false
+    },
+    "Locust Point": {
+      "name": "Locust Point",
+      "approx": false
+    },
+    "Locust Point Industrial Area": {
+      "name": "Locust Point Industrial Area",
+      "approx": false
+    },
+    "Lower Herring Run Park": {
+      "name": "Lower Herring Run Park",
+      "approx": false
+    },
+    "Loyola/Notre Dame": {
+      "name": "Loyola/Notre Dame",
+      "approx": false
+    },
+    "Lucille Park": {
+      "name": "Lucille Park",
+      "approx": false
+    },
+    "Madison Park": {
+      "name": "Madison Park",
+      "approx": false
+    },
+    "Madison-Eastend": {
+      "name": "Madison-Eastend",
+      "approx": false
+    },
+    "Mayfield": {
+      "name": "Mayfield",
+      "approx": false
+    },
+    "McElderry Park": {
+      "name": "McElderry Park",
+      "approx": false
+    },
+    "Medfield": {
+      "name": "Medfield",
+      "approx": false
+    },
+    "Medford": {
+      "name": "Medford",
+      "approx": false
+    },
+    "Mid-Govans": {
+      "name": "Mid-Govans",
+      "approx": false
+    },
+    "Mid-Town Belvedere": {
+      "name": "Mid-Town Belvedere",
+      "approx": false
+    },
+    "Middle Branch/Reedbird Parks": {
+      "name": "Middle Branch/Reedbird Parks",
+      "approx": false
+    },
+    "Middle East": {
+      "name": "Middle East",
+      "approx": false
+    },
+    "Midtown-Edmondson": {
+      "name": "Midtown-Edmondson",
+      "approx": false
+    },
+    "Millhill": {
+      "name": "Millhill",
+      "approx": false
+    },
+    "Milton-Montford": {
+      "name": "Milton-Montford",
+      "approx": false
+    },
+    "Mondawmin": {
+      "name": "Mondawmin",
+      "approx": false
+    },
+    "Montebello": {
+      "name": "Montebello",
+      "approx": false
+    },
+    "Moravia-Walther": {
+      "name": "Moravia-Walther",
+      "approx": false
+    },
+    "Morgan Park": {
+      "name": "Morgan Park",
+      "approx": false
+    },
+    "Morgan State University": {
+      "name": "Morgan State University",
+      "approx": false
+    },
+    "Morrell Park": {
+      "name": "Morrell Park",
+      "approx": false
+    },
+    "Mosher": {
+      "name": "Mosher",
+      "approx": false
+    },
+    "New Southwest/Mount Clare": {
+      "name": "New Southwest/Mount Clare",
+      "approx": false
+    },
+    "Mount Holly": {
+      "name": "Mount Holly",
+      "approx": false
+    },
+    "Mount Vernon": {
+      "name": "Mount Vernon",
+      "approx": false
+    },
+    "Mount Washington": {
+      "name": "Mount Washington",
+      "approx": false
+    },
+    "Mount Winans": {
+      "name": "Mount Winans",
+      "approx": false
+    },
+    "Mt Pleasant Park": {
+      "name": "Mt Pleasant Park",
+      "approx": false
+    },
+    "New Northwood": {
+      "name": "New Northwood",
+      "approx": false
+    },
+    "North Harford Road": {
+      "name": "North Harford Road",
+      "approx": false
+    },
+    "North Roland Park/Poplar Hill": {
+      "name": "North Roland Park/Poplar Hill",
+      "approx": false
+    },
+    "Northwest Community Action": {
+      "name": "Northwest Community Action",
+      "approx": false
+    },
+    "O'Donnell Heights": {
+      "name": "O'Donnell Heights",
+      "approx": false
+    },
+    "Oakenshawe": {
+      "name": "Oakenshawe",
+      "approx": false
+    },
+    "Oaklee": {
+      "name": "Oaklee",
+      "approx": false
+    },
+    "Oldtown": {
+      "name": "Oldtown",
+      "approx": false
+    },
+    "Oliver": {
+      "name": "Oliver",
+      "approx": false
+    },
+    "Orangeville": {
+      "name": "Orangeville",
+      "approx": false
+    },
+    "Orangeville Industrial Area": {
+      "name": "Orangeville Industrial Area",
+      "approx": false
+    },
+    "Original Northwood": {
+      "name": "Original Northwood",
+      "approx": false
+    },
+    "Otterbein": {
+      "name": "Otterbein",
+      "approx": false
+    },
+    "Overlea": {
+      "name": "Overlea",
+      "approx": false
+    },
+    "Panway/Braddish Avenue": {
+      "name": "Panway/Braddish Avenue",
+      "approx": false
+    },
+    "Park Circle": {
+      "name": "Park Circle",
+      "approx": false
+    },
+    "Parklane": {
+      "name": "Parklane",
+      "approx": false
+    },
+    "Parkside": {
+      "name": "Parkside",
+      "approx": false
+    },
+    "Parkview/Woodbrook": {
+      "name": "Parkview/Woodbrook",
+      "approx": false
+    },
+    "Patterson Park": {
+      "name": "Patterson Park",
+      "approx": false
+    },
+    "Patterson Place": {
+      "name": "Patterson Place",
+      "approx": false
+    },
+    "Pen Lucy": {
+      "name": "Pen Lucy",
+      "approx": false
+    },
+    "Penn North": {
+      "name": "Penn North",
+      "approx": false
+    },
+    "Penn-Fallsway": {
+      "name": "Penn-Fallsway",
+      "approx": false
+    },
+    "Penrose/Fayette Street Outreach": {
+      "name": "Penrose/Fayette Street Outreach",
+      "approx": false
+    },
+    "Perkins Homes": {
+      "name": "Perkins Homes",
+      "approx": false
+    },
+    "Perring Loch": {
+      "name": "Perring Loch",
+      "approx": false
+    },
+    "Pimlico Good Neighbors": {
+      "name": "Pimlico Good Neighbors",
+      "approx": false
+    },
+    "Pleasant View Gardens": {
+      "name": "Pleasant View Gardens",
+      "approx": false
+    },
+    "Poppleton": {
+      "name": "Poppleton",
+      "approx": false
+    },
+    "Port Covington": {
+      "name": "Port Covington",
+      "approx": false
+    },
+    "Pulaski Industrial Area": {
+      "name": "Pulaski Industrial Area",
+      "approx": false
+    },
+    "Purnell": {
+      "name": "Purnell",
+      "approx": false
+    },
+    "Radnor-Winston": {
+      "name": "Radnor-Winston",
+      "approx": false
+    },
+    "Ramblewood": {
+      "name": "Ramblewood",
+      "approx": false
+    },
+    "Reisterstown Station": {
+      "name": "Reisterstown Station",
+      "approx": false
+    },
+    "Remington": {
+      "name": "Remington",
+      "approx": false
+    },
+    "Reservoir Hill": {
+      "name": "Reservoir Hill",
+      "approx": false
+    },
+    "Richnor Springs": {
+      "name": "Richnor Springs",
+      "approx": false
+    },
+    "Ridgely's Delight": {
+      "name": "Ridgely's Delight",
+      "approx": false
+    },
+    "Riverside": {
+      "name": "Riverside",
+      "approx": false
+    },
+    "Rognel Heights": {
+      "name": "Rognel Heights",
+      "approx": false
+    },
+    "Roland Park": {
+      "name": "Roland Park",
+      "approx": false
+    },
+    "Rosebank": {
+      "name": "Rosebank",
+      "approx": false
+    },
+    "Rosemont": {
+      "name": "Rosemont",
+      "approx": false
+    },
+    "Rosemont East": {
+      "name": "Rosemont East",
+      "approx": false
+    },
+    "Rosemont Homeowners/Tenants": {
+      "name": "Rosemont Homeowners/Tenants",
+      "approx": false
+    },
+    "Sabina-Mattfeldt": {
+      "name": "Sabina-Mattfeldt",
+      "approx": false
+    },
+    "Saint Agnes": {
+      "name": "Saint Agnes",
+      "approx": false
+    },
+    "Saint Helena": {
+      "name": "Saint Helena",
+      "approx": false
+    },
+    "Saint Josephs": {
+      "name": "Saint Josephs",
+      "approx": false
+    },
+    "Saint Paul": {
+      "name": "Saint Paul",
+      "approx": false
+    },
+    "Sandtown-Winchester": {
+      "name": "Sandtown-Winchester",
+      "approx": false
+    },
+    "South Baltimore": {
+      "name": "South Baltimore",
+      "approx": false
+    },
+    "Seton Business Park": {
+      "name": "Seton Business Park",
+      "approx": false
+    },
+    "Seton Hill": {
+      "name": "Seton Hill",
+      "approx": false
+    },
+    "Sharp-Leadenhall": {
+      "name": "Sharp-Leadenhall",
+      "approx": false
+    },
+    "Shipley Hill": {
+      "name": "Shipley Hill",
+      "approx": false
+    },
+    "South Clifton Park": {
+      "name": "South Clifton Park",
+      "approx": false
+    },
+    "Spring Garden Industrial Area": {
+      "name": "Spring Garden Industrial Area",
+      "approx": false
+    },
+    "Stadium Area": {
+      "name": "Stadium Area",
+      "approx": false
+    },
+    "Stonewood-Pentwood-Winston": {
+      "name": "Stonewood-Pentwood-Winston",
+      "approx": false
+    },
+    "Taylor Heights": {
+      "name": "Taylor Heights",
+      "approx": false
+    },
+    "Ten Hills": {
+      "name": "Ten Hills",
+      "approx": false
+    },
+    "The Orchards": {
+      "name": "The Orchards",
+      "approx": false
+    },
+    "Towanda-Grantley": {
+      "name": "Towanda-Grantley",
+      "approx": false
+    },
+    "Tremont": {
+      "name": "Tremont",
+      "approx": false
+    },
+    "Tuscany-Canterbury": {
+      "name": "Tuscany-Canterbury",
+      "approx": false
+    },
+    "Union Square": {
+      "name": "Union Square",
+      "approx": false
+    },
+    "University Of Maryland": {
+      "name": "University Of Maryland",
+      "approx": false
+    },
+    "Uplands": {
+      "name": "Uplands",
+      "approx": false
+    },
+    "Upper Fells Point": {
+      "name": "Upper Fells Point",
+      "approx": false
+    },
+    "Upton": {
+      "name": "Upton",
+      "approx": false
+    },
+    "Villages Of Homeland": {
+      "name": "Villages Of Homeland",
+      "approx": false
+    },
+    "Violetville": {
+      "name": "Violetville",
+      "approx": false
+    },
+    "Wakefield": {
+      "name": "Wakefield",
+      "approx": false
+    },
+    "Walbrook": {
+      "name": "Walbrook",
+      "approx": false
+    },
+    "Waltherson": {
+      "name": "Waltherson",
+      "approx": false
+    },
+    "Washington Hill": {
+      "name": "Washington Hill",
+      "approx": false
+    },
+    "Washington Village/Pigtown": {
+      "name": "Washington Village/Pigtown",
+      "approx": false
+    },
+    "Waverly": {
+      "name": "Waverly",
+      "approx": false
+    },
+    "West Arlington": {
+      "name": "West Arlington",
+      "approx": false
+    },
+    "West Forest Park": {
+      "name": "West Forest Park",
+      "approx": false
+    },
+    "West Hills": {
+      "name": "West Hills",
+      "approx": false
+    },
+    "Westfield": {
+      "name": "Westfield",
+      "approx": false
+    },
+    "Westgate": {
+      "name": "Westgate",
+      "approx": false
+    },
+    "Westport": {
+      "name": "Westport",
+      "approx": false
+    },
+    "Wilson Park": {
+      "name": "Wilson Park",
+      "approx": false
+    },
+    "Winchester": {
+      "name": "Winchester",
+      "approx": false
+    },
+    "Windsor Hills": {
+      "name": "Windsor Hills",
+      "approx": false
+    },
+    "Winston-Govans": {
+      "name": "Winston-Govans",
+      "approx": false
+    },
+    "Woodberry": {
+      "name": "Woodberry",
+      "approx": false
+    },
+    "Woodbourne Heights": {
+      "name": "Woodbourne Heights",
+      "approx": false
+    },
+    "Woodbourne-McCabe": {
+      "name": "Woodbourne-McCabe",
+      "approx": false
+    },
+    "Woodmere": {
+      "name": "Woodmere",
+      "approx": false
+    },
+    "Wyman Park": {
+      "name": "Wyman Park",
+      "approx": false
+    },
+    "Wyndhurst": {
+      "name": "Wyndhurst",
+      "approx": false
+    },
+    "Yale Heights": {
+      "name": "Yale Heights",
+      "approx": false
+    },
+    "Lower Edmondson Village": {
+      "name": "Lower Edmondson Village",
+      "approx": false
+    },
+    "Wilhelm Park": {
+      "name": "Wilhelm Park",
+      "approx": false
+    },
+    "Edgewood": {
+      "name": "Edgewood",
+      "approx": false
+    },
+    "Evesham Park": {
+      "name": "Evesham Park",
+      "approx": false
+    },
+    "Belvedere": {
+      "name": "Belvedere",
+      "approx": false
+    },
+    "Wrenlane": {
+      "name": "Wrenlane",
+      "approx": false
+    },
+    "York-Homeland": {
+      "name": "York-Homeland",
+      "approx": false
+    },
+    "CARE": {
+      "name": "CARE",
+      "approx": false
+    },
+    "Downtown West": {
+      "name": "Downtown West",
+      "approx": false
+    },
+    "Belair-Edison": {
+      "name": "Belair-Edison",
+      "approx": false
+    },
+    "Four By Four": {
+      "name": "Four By Four",
+      "approx": false
+    },
+    "Charles Village": {
+      "name": "Charles Village",
+      "approx": false
+    },
+    "Old Goucher": {
+      "name": "Old Goucher",
+      "approx": false
+    }
+  }
+}

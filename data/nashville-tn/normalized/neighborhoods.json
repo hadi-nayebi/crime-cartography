@@ -1,0 +1,46 @@
+{
+  "source": "MNPD Police Precinct Boundaries (official polygon layer, 9 precincts)",
+  "sourceUrl": "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Police_Precinct_Boundaries_view/FeatureServer/0",
+  "hub": "https://data.nashville.gov/",
+  "fetchedAt": "2026-07-18T11:56:52.811Z",
+  "license": "not stated on the item — attributed to Metro Nashville Police Department / Nashville Open Data",
+  "method": "spatial join — the crime file names no precinct (Zone/RPA are numeric and ~61% null); every deduplicated incident with published coordinates is assigned by point-in-polygon of MNPD's REAL published coordinates (rounded to ~2–3 decimals by the source — block-ish grain, disclosed) into the 9 official Police Precinct Boundaries polygons (interior rings handled). Incidents without usable coordinates are counted citywide and disclosed as unplaced, never guessed onto the map.",
+  "map": {
+    "EAST": {
+      "name": "East",
+      "approx": false
+    },
+    "MADISON": {
+      "name": "Madison",
+      "approx": false
+    },
+    "NORTH": {
+      "name": "North",
+      "approx": false
+    },
+    "WEST": {
+      "name": "West",
+      "approx": false
+    },
+    "SOUTHEAST": {
+      "name": "Southeast",
+      "approx": false
+    },
+    "MIDTOWN HILLS": {
+      "name": "Midtown Hills",
+      "approx": false
+    },
+    "SOUTH": {
+      "name": "South",
+      "approx": false
+    },
+    "HERMITAGE": {
+      "name": "Hermitage",
+      "approx": false
+    },
+    "CENTRAL": {
+      "name": "Central",
+      "approx": false
+    }
+  }
+}
