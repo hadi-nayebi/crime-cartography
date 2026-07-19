@@ -60,6 +60,12 @@
   .badge.good{ color:var(--good); border-color:rgba(54,224,122,.4);} .badge.bad{ color:var(--bad); border-color:rgba(255,77,94,.4);} .badge.warn{ color:var(--warn); border-color:rgba(255,159,67,.4);} .badge.acc{ color:var(--accent); border-color:rgba(255,194,51,.4);}
   .sw { display:inline-flex; gap:1px; padding:1px; border-radius:3px; }
   .sw i { width:5px; height:5px; border-radius:1px; display:inline-block; }
+  /* published card — a different animal: performance, not production */
+  .card.pubcard { border-color:rgba(255,194,51,.4); background:linear-gradient(180deg, rgba(255,194,51,.05), var(--panel) 55%); padding-top:0; overflow:hidden; }
+  .pubthumb { width:calc(100% + 30px); margin:0 -15px 10px; display:block; border-bottom:1px solid var(--stroke); aspect-ratio:16/9; object-fit:cover; background:#000; }
+  .pubstats { display:flex; gap:18px; margin:8px 0 4px; }
+  .pubstats span { font-size:12px; color:var(--faint); }
+  .pubstats b { display:block; font:700 19px ui-monospace,monospace; color:var(--ink); }
   /* attention priority */
   .card.attn { border-left:3px solid var(--warn); }
   .card.attn.hot { border-left-color:var(--bad); }
@@ -149,6 +155,7 @@ let CAT = [], CUR = null, FILTER = "all", SORT = "priority";
 const $ = (id) => document.getElementById(id);
 const esc = (s) => (s ?? "").toString().replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtT = (s) => s==null ? "" : `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+const fmtN = (n) => n>=1e6 ? (n/1e6).toFixed(1)+"M" : n>=1e3 ? (n/1e3).toFixed(1)+"K" : String(n??0);
 const ago = (iso) => { if(!iso) return "never"; const m=(Date.now()-new Date(iso))/60000; return m<60?`${m|0}m ago`:m<1440?`${(m/60)|0}h ago`:`${(m/1440)|0}d ago`; };
 
 function stageStrip(st, big){ return STAGES.map(k=>`<div class="st ${st[k] ? (k==="published"?"pub":"on") : ""}" title="${k}"></div>`).join(""); }
@@ -204,8 +211,20 @@ function renderBoard(){
     [["priority","attention first"],["stage","production stage"],["name","name"]]
       .map(([k,l])=>`<button class="tab chip ${SORT===k?"on":""}" onclick="setSort('${k}')">${l}</button>`).join("")}</div>`;
   $("board").innerHTML = sortCtl + `<div class="board-grid">` + (list.map(c=>{
+    // PUBLISHED cards flip to performance mode: thumbnail + live stats.
+    if (c.stages.published) {
+      const st = c.youtube.stats;
+      return `<div class="card pubcard" onclick="show('${c.slug}')">
+        <img class="pubthumb" src="/thumb/${c.slug}/thumbnail.jpg" onerror="this.style.display='none'" alt="">
+        <div class="row" style="justify-content:space-between"><h3>${esc(c.title)}</h3><span class="score s-pub">LIVE</span></div>
+        <div class="pubstats">${st
+          ? `<span><b>${fmtN(st.views)}</b>views</span><span><b>${fmtN(st.likes)}</b>likes</span><span><b>${fmtN(st.comments)}</b>comments</span>`
+          : `<span class="feat">stats loading…</span>`}</div>
+        <div class="sm">published ${esc((c.youtube.uploadedAt||"").slice(0,10))}${c.youtube.playlistTitle?` · ▸ ${esc(c.youtube.playlistTitle)}`:""} ·
+          <a href="${esc(c.youtube.url)}" target="_blank" onclick="event.stopPropagation()">watch ▶</a></div></div>`;
+    }
     const sc=c.confidence?.score;
-    const badge = c.stages.published ? `<span class="score s-pub">PUBLISHED</span>`
+    const badge = c.stages.verified ? `<span class="score s-hi">✓ APPROVED</span>`
       : sc!=null ? `<span class="score ${sc>=90?"s-hi":"s-mid"}">conf ${sc}</span>`
       : `<span class="score s-none">stage ${c.stageIndex}/8</span>`;
     const hot = c.priority >= 100, attn = c.priority >= 30;
@@ -302,7 +321,9 @@ async function show(slug){
     <div class="feat" style="margin-top:8px;padding-top:6px;border-top:1px solid var(--stroke)">stage: ${CUR.stageIndex}/8 (${STAGES.filter(s=>CUR.stages[s]).join(" → ") || "none"})</div>
     ${CUR.dataMeta?`<div class="feat" style="margin-top:5px">data: ${Number(CUR.dataMeta.records).toLocaleString()} records · ${CUR.dataMeta.areas} areas · ${esc(CUR.dataMeta.span)} · ${CUR.dataMeta.coverage ?? "?"}% placed</div>`:""}
     ${CUR.render?`<div class="feat" style="margin-top:5px">render: ${esc(CUR.render.commit)} · ${CUR.render.durationSec}s · ${esc((CUR.render.renderedAt||"").slice(0,16))}</div>`:""}
-    <div class="feat" style="margin-top:5px">youtube: ${CUR.youtube.url?`<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>`:esc(CUR.youtube.status)}</div>`;
+    <div class="feat" style="margin-top:5px">youtube: ${CUR.youtube.url?`<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>`:esc(CUR.youtube.status)}</div>
+    ${CUR.youtube.stats?`<div class="feat" style="margin-top:5px">stats: ${fmtN(CUR.youtube.stats.views)} views · ${fmtN(CUR.youtube.stats.likes)} likes · ${fmtN(CUR.youtube.stats.comments)} comments</div>`:""}
+    ${CUR.approval?`<div class="feat" style="margin-top:5px">your approval: ${esc((CUR.approval.at||"").slice(0,16).replace("T"," "))}${CUR.approval.fresh?' · <span style="color:var(--good)">counts — verified</span>':' · <span style="color:var(--warn)">stale (re-rendered since) — re-approve</span>'}</div>`:""}`;
   refreshFb();
 }
 async function refreshFb(){

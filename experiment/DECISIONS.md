@@ -75,3 +75,19 @@ flagged, not done, pending your call.
 - **Duration:** all three at 330s standard. The 270s tight-cut level (design D6)
   will be assigned during matrix construction to specific near-twins, not chosen
   ad hoc here.
+
+## D5 (2026-07-19, studio session) — Cohort publish vs YouTube quota: staged waves needed
+**The math:** one upload ≈ 1,600 quota units; the default daily quota is 10,000
+units/project → **max ~6 uploads/day** (thumbnails.set + playlistItems.insert add
+~100/video; stats/catalog reads are negligible). "Publish all 20 at once" is not
+possible on default quota.
+**Options:** (a) **staged waves — ~5-6 videos/day over 4 days** (recommended:
+also better for the experiment — daily waves let early retention data inform
+nothing mid-cohort since all are pre-made, but avoids a 20-video same-hour flood
+that YouTube's recommender may treat as spam); (b) request a quota increase in
+Google Cloud Console (audit form, takes days-weeks — worth filing NOW in
+parallel either way); (c) publish over a week, 3/day, matching a viewer-facing
+release cadence ("new city every day" is itself a subscribable promise).
+**My recommendation:** (c)-flavored (a): announceable daily cadence, ~4-5/day
+over 4-5 days, ordered to alternate near-twin pairs so A/B comparisons get
+similar-age cohorts. Decide the order rule when the cohort gates green.

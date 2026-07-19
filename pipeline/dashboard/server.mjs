@@ -81,6 +81,10 @@ async function cityRow(slug) {
 
   const mp4Name = lock?.output ? join(v, lock.output) : join(v, `out/${slug}.mp4`);
   const hasRender = exists(mp4Name);
+  // The operator's latest studio decision is the human sign-off: an APPROVE
+  // made on the CURRENT render (not one predating a re-render) flips verified.
+  const lastDecision = [...fb].reverse().find((f) => f.kind === "decision");
+  const approvedAt = lastDecision && /^APPROVE/.test(lastDecision.text ?? "") ? lastDecision.at : null;
   const stages = {
     data: Boolean(summary),
     trend: exists(join(d, "normalized/trend.json")),
@@ -89,7 +93,7 @@ async function cityRow(slug) {
     music: exists(join(ROOT, "surface/remotion/public/audio", `${slug}-music-sao.wav`)) ||
            exists(join(ROOT, "surface/remotion/public/audio", `${slug.replace(/-\w\w$/, "")}-music-sao.wav`)),
     render: hasRender,
-    verified: false, // set from ledger (score>=95 & no blockers touching render)
+    verified: false, // human approve (below) OR ledger (score>=95 & no blockers)
     published: Boolean(yt.url),
   };
   let mp4 = null;
@@ -97,7 +101,10 @@ async function cityRow(slug) {
     const s = await stat(mp4Name);
     mp4 = { bytes: s.size, mtime: s.mtime };
   }
+  const approveFresh = Boolean(approvedAt && mp4 && new Date(approvedAt) >= mp4.mtime);
+  stages.verified = approveFresh;
   return {
+    approval: approvedAt ? { at: approvedAt, fresh: approveFresh } : null,
     slug,
     title: cfg?.title ?? summary?.title ?? slug,
     subtitle: cfg?.subtitle ?? (summary ? `${summary.dateMin?.slice(0,4)}–${summary.dateMax?.slice(0,4)} · ${summary.beatCount} areas · ${(summary.totalRecords ?? 0).toLocaleString()} records` : "no data yet"),
@@ -111,7 +118,7 @@ async function cityRow(slug) {
     stages,
     stageIndex: STAGES.filter((s) => stages[s]).length,
     confidence: conf,
-    youtube: { status: yt.status ?? "draft", url: yt.url || null },
+    youtube: { status: yt.status ?? "draft", url: yt.url || null, videoId: yt.videoId || null, uploadedAt: yt.uploadedAt ?? null, playlistTitle: yt.playlistTitle ?? null },
     render: lock ? { renderedAt: lock.renderedAt, durationSec: lock.durationSec, commit: (lock.commit || "").slice(0, 7) } : null,
     mp4,
     feedbackCount: fb.length,
@@ -125,7 +132,9 @@ async function cityRow(slug) {
 function priorityOf(r) {
   const reasons = [];
   let score = 0;
+  if (r.stages.verified && !r.stages.published) { score += 110; reasons.push("approved — ready to publish"); }
   if (r.openFeedback) { score += 100 + r.openFeedback * 5; reasons.push(`${r.openFeedback} open note${r.openFeedback > 1 ? "s" : ""}`); }
+  if (r.approval && !r.approval.fresh && r.stages.render && !r.stages.published) { score += 55; reasons.push("re-approve — render is newer than your approval"); }
   if (r.stages.render && !r.stages.published && !r.stages.verified) { score += 60; reasons.push("ready to review"); }
   if (r.qa?.status === "fail") { score += 55; reasons.push(`note placement flagged (${r.qa.issues.length || "?"})`); }
   if (r.stages.data && !r.stages.config) { score += 45; reasons.push("needs config"); }
@@ -152,18 +161,42 @@ async function catalog() {
     const row = await cityRow(slug);
     row.confidence = ledger[slug] ?? null;
     row.features = matrix[slug] ?? null;
-    if (row.confidence) {
-      row.stages.verified =
-        row.stages.render && row.confidence.score >= 95 && (row.confidence.blockers ?? []).length === 0;
-      row.stageIndex = STAGES.filter((s) => row.stages[s]).length;
-    }
+    // verified = human approve on the current render (from cityRow) OR ledger pass
+    if (row.confidence)
+      row.stages.verified = row.stages.verified ||
+        (row.stages.render && row.confidence.score >= 95 && (row.confidence.blockers ?? []).length === 0);
+    row.stageIndex = STAGES.filter((s) => row.stages[s]).length;
     const pr = priorityOf(row); // computed AFTER verified/confidence merge
     row.priority = pr.score;
     row.attention = pr.reason;
     row.attentionAll = pr.reasons;
     rows.push(row);
   }
+  // live stats for published cards (one batched videos.list, cached)
+  const ids = rows.filter((r) => r.youtube.videoId).map((r) => r.youtube.videoId);
+  const stats = await ytStats(ids);
+  for (const r of rows) if (r.youtube.videoId) r.youtube.stats = stats[r.youtube.videoId] ?? null;
   return rows;
+}
+
+// videos.list statistics for all published ids — 1 quota unit, cached 10 min.
+let statsCache = { at: 0, map: {} };
+async function ytStats(ids) {
+  if (!ids.length) return {};
+  if (Date.now() - statsCache.at < 10 * 60 * 1000) return statsCache.map;
+  try {
+    const at = await accessToken();
+    if (!at) return statsCache.map;
+    const r = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${ids.join(",")}`, { headers: { Authorization: `Bearer ${at}` } });
+    const j = await r.json();
+    if (r.ok) {
+      const map = {};
+      for (const it of j.items ?? [])
+        map[it.id] = { views: Number(it.statistics?.viewCount ?? 0), likes: Number(it.statistics?.likeCount ?? 0), comments: Number(it.statistics?.commentCount ?? 0) };
+      statsCache = { at: Date.now(), map };
+    }
+  } catch {}
+  return statsCache.map;
 }
 
 // ---- project pulse ---------------------------------------------------------
@@ -294,12 +327,13 @@ async function ensureThumbs(slug, force = false) {
 // including "verified" (confidence ≥95, zero blockers). Same rule the board
 // shows; enforced server-side so no UI path can skip it.
 async function gateOf(slug) {
-  const row = await cityRow(slug);
+  const row = await cityRow(slug); // verified may already be true via fresh human approve
   const ledger = (await readJson(join(ROOT, "experiment/confidence.json"))) ?? {};
   const conf = ledger[slug] ?? null;
-  if (conf) row.stages.verified = row.stages.render && conf.score >= 95 && (conf.blockers ?? []).length === 0;
+  if (conf) row.stages.verified = row.stages.verified ||
+    (row.stages.render && conf.score >= 95 && (conf.blockers ?? []).length === 0);
   const missing = STAGES.slice(0, 7).filter((s) => !row.stages[s]);
-  return { ready: missing.length === 0, missing, confidence: conf?.score ?? null, blockers: conf?.blockers ?? [] };
+  return { ready: missing.length === 0, missing, confidence: conf?.score ?? null, blockers: conf?.blockers ?? [], approval: row.approval };
 }
 
 async function publishPreview(slug) {
