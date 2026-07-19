@@ -22,7 +22,7 @@
   .tabs { display:flex; gap:8px; margin:6px 0 12px; flex-wrap:wrap;}
   .tab { cursor:pointer; }
   .tab.on { border-color:var(--accent); color:var(--accent);}
-  .board { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:12px;}
+  .board-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:12px;}
   .card { background:var(--panel); border:1px solid var(--stroke); border-radius:12px; padding:13px 15px; cursor:pointer; transition:border-color .12s;}
   .card:hover { border-color:var(--accent);}
   .card h3 { font-size:15.5px; margin-bottom:1px;}
@@ -53,6 +53,24 @@
   .fb .t { color:var(--accent); font-family:ui-monospace,monospace; cursor:pointer; margin-right:6px;}
   .fb .k { color:var(--faint); font-size:11px; margin-left:6px;}
   .feat { font:12px ui-monospace,monospace; color:var(--dim);}
+  /* card metadata badge band — icon always, label reveals on hover */
+  .badges { display:flex; gap:6px; flex-wrap:wrap; margin-top:9px; padding-top:9px; border-top:1px solid var(--stroke); }
+  .badge { display:inline-flex; align-items:center; border:1px solid var(--stroke); border-radius:999px; padding:2px 6px; font:11px ui-monospace,monospace; color:var(--dim); cursor:default; background:rgba(125,145,175,.05); }
+  .badge .ic { display:inline-flex; align-items:center; font-size:12px; line-height:1; }
+  .badge b { max-width:0; overflow:hidden; white-space:nowrap; font-weight:600; transition:max-width .18s ease, margin .18s ease; }
+  .badge:hover b { max-width:170px; margin-left:5px; }
+  .badge.good{ color:var(--good); border-color:rgba(54,224,122,.4);} .badge.bad{ color:var(--bad); border-color:rgba(255,77,94,.4);} .badge.warn{ color:var(--warn); border-color:rgba(255,159,67,.4);} .badge.acc{ color:var(--accent); border-color:rgba(255,194,51,.4);}
+  .sw { display:inline-flex; gap:2px; padding:2px; border-radius:3px; }
+  .sw i { width:7px; height:7px; border-radius:2px; display:inline-block; }
+  /* attention priority */
+  .card.attn { border-left:3px solid var(--warn); }
+  .card.attn.hot { border-left-color:var(--bad); }
+  .reason { font:11px ui-monospace,monospace; color:var(--warn); margin:2px 0 0; display:flex; align-items:center; gap:5px; }
+  .reason.hot { color:var(--bad); }
+  .sort { display:flex; gap:6px; align-items:center; margin:0 0 10px; font:12px ui-monospace,monospace; color:var(--faint); }
+  .sort b { color:var(--dim); font-weight:600; }
+  .phasebar { font:11px ui-monospace,monospace; color:var(--faint); margin-bottom:7px; }
+  .phasebar .now { color:var(--accent); }
 </style>
 
 <h1>Crime Cartography <span>· production studio</span></h1>
@@ -80,23 +98,13 @@
   <span class="back" onclick="showHome()">← all cities</span>
   <h1 id="d-title"></h1>
   <div class="sub" id="d-sub"></div>
+  <div class="phasebar" id="d-phasebar"></div>
   <div class="stages" id="d-stages" style="max-width:640px"></div>
   <div class="stlabels" style="max-width:640px" id="d-stlabels"></div>
   <div class="cols" style="margin-top:14px">
     <div>
       <div id="d-player-wrap"><video id="player" controls preload="metadata"></video></div>
-      <div class="panel" style="margin-top:12px">
-        <h4>Leave feedback</h4>
-        <textarea id="comment" placeholder="Your note — lands in the repo; the note-watcher picks it up within 5 minutes."></textarea>
-        <div class="row" style="margin-top:6px">
-          <button class="primary" onclick="sendComment(true)">Comment @ current time</button>
-          <button onclick="sendComment(false)">General comment</button>
-          <span style="flex:1"></span>
-          <button class="good" onclick="decision('APPROVE')">Approve</button>
-          <button class="warn" onclick="decision('HOLD')">Hold</button>
-          <button class="bad" onclick="decision('REQUEST CHANGES')">Request changes</button>
-        </div>
-      </div>
+      <div class="panel" id="fbpanel" style="margin-top:12px"></div>
     </div>
     <div>
       <div class="panel" id="d-conf"></div>
@@ -108,13 +116,43 @@
 
 <script>
 const STAGES = ["data","trend","basemap","config","music","render","verified","published"];
-let CAT = [], CUR = null, FILTER = "all";
+const SCOPE_ICON = { city:"🏙️", county:"🗺️", state:"🏛️", country:"🌐" };
+let CAT = [], CUR = null, FILTER = "all", SORT = "priority";
 const $ = (id) => document.getElementById(id);
 const esc = (s) => (s ?? "").toString().replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtT = (s) => s==null ? "" : `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
 const ago = (iso) => { if(!iso) return "never"; const m=(Date.now()-new Date(iso))/60000; return m<60?`${m|0}m ago`:m<1440?`${(m/60)|0}h ago`:`${(m/1440)|0}d ago`; };
 
 function stageStrip(st, big){ return STAGES.map(k=>`<div class="st ${st[k] ? (k==="published"?"pub":"on") : ""}" title="${k}"></div>`).join(""); }
+
+// icon-only badge; the <b> label expands on hover
+function badge(ic, label, cls){ return `<span class="badge ${cls||""}" title="${esc(label)}"><span class="ic">${ic}</span><b>${esc(label)}</b></span>`; }
+function themeBadge(t){
+  if(!t) return "";
+  const dots = (t.swatch||[]).map(c=>`<i style="background:${esc(c)}"></i>`).join("");
+  const swatch = `<span class="sw" style="background:${esc(t.bg||"#000")}">${dots}</span>`;
+  const label = `theme: ${t.name ? t.name : (t.mode||"custom")}${t.bg?` · ${t.bg}`:""}`;
+  return `<span class="badge" title="${esc(label)}"><span class="ic">${swatch}</span><b>${esc(t.name||t.mode||"theme")}</b></span>`;
+}
+function qaBadge(qa){
+  if(!qa) return badge("○","notes: unreviewed","");
+  if(qa.status==="pass") return badge("✅","notes: readable placement","good");
+  if(qa.status==="fail") return badge("⚠️",`notes: ${qa.issues.length||"?"} placement issue${qa.issues.length===1?"":"s"}`,"bad");
+  return badge("○","notes: review pending","");
+}
+function cardBadges(c){
+  return [
+    badge(SCOPE_ICON[c.scope]||"📍", `scope: ${c.scope}`),
+    themeBadge(c.theme),
+    c.trendStyle ? badge("📊", `chart: ${c.trendStyle}`) : "",
+    qaBadge(c.qa),
+    c.openFeedback ? badge("💬", `${c.openFeedback} open note${c.openFeedback>1?"s":""}`, "warn") : "",
+    c.youtube.url ? badge("▶", "published on YouTube", "acc") : "",
+  ].filter(Boolean).join("");
+}
+const cmp = { priority:(a,b)=> (b.priority-a.priority)||(a.stageIndex-b.stageIndex)||a.slug.localeCompare(b.slug),
+              stage:(a,b)=> (a.stageIndex-b.stageIndex)||a.slug.localeCompare(b.slug),
+              name:(a,b)=> a.slug.localeCompare(b.slug) };
 
 async function load() {
   CAT = await (await fetch("/api/catalog")).json();
@@ -125,6 +163,7 @@ async function load() {
   renderBoard();
 }
 function renderTabs(){ [...document.querySelectorAll(".tab")].forEach((el,i)=>{ el.classList.toggle("on", ["all","needs-config","needs-render","review","published"][i]===FILTER); }); }
+function setSort(s){ SORT = s; renderBoard(); }
 function renderBoard(){
   const list = CAT.filter(c=>{
     if(FILTER==="needs-config") return c.stages.data && !c.stages.config;
@@ -132,24 +171,25 @@ function renderBoard(){
     if(FILTER==="review") return c.stages.render && !c.stages.published;
     if(FILTER==="published") return c.stages.published;
     return true;
-  }).sort((a,b)=> a.stageIndex-b.stageIndex || a.slug.localeCompare(b.slug));
-  $("board").innerHTML = list.map(c=>{
+  }).sort(cmp[SORT] || cmp.priority);
+  const sortCtl = `<div class="sort"><b>sort</b>${
+    [["priority","attention first"],["stage","production stage"],["name","name"]]
+      .map(([k,l])=>`<button class="tab chip ${SORT===k?"on":""}" onclick="setSort('${k}')">${l}</button>`).join("")}</div>`;
+  $("board").innerHTML = sortCtl + `<div class="board-grid">` + (list.map(c=>{
     const sc=c.confidence?.score;
     const badge = c.stages.published ? `<span class="score s-pub">PUBLISHED</span>`
       : sc!=null ? `<span class="score ${sc>=90?"s-hi":"s-mid"}">conf ${sc}</span>`
       : `<span class="score s-none">stage ${c.stageIndex}/8</span>`;
-    return `<div class="card" onclick="show('${c.slug}')">
+    const hot = c.priority >= 100, attn = c.priority >= 30;
+    const reason = attn ? `<div class="reason ${hot?"hot":""}">▲ ${esc(c.attention)}</div>` : "";
+    return `<div class="card ${attn?"attn":""} ${hot?"hot":""}" onclick="show('${c.slug}')">
       <div class="row" style="justify-content:space-between"><h3>${esc(c.title)}</h3>${badge}</div>
       <div class="sm">${esc(c.subtitle)}</div>
+      ${reason}
       <div class="stages">${stageStrip(c.stages)}</div>
       <div class="stlabels">${STAGES.map(s=>`<span>${s.slice(0,4)}</span>`).join("")}</div>
-      <div class="row" style="margin-top:7px">
-        ${c.hook?`<span class="chip">hook ${esc(c.hook)}</span>`:""}
-        ${c.trendStyle?`<span class="chip">${esc(c.trendStyle)}</span>`:""}
-        ${c.openFeedback?`<span class="chip" style="color:var(--warn)">${c.openFeedback} open notes</span>`:""}
-        ${c.youtube.url?`<span class="chip" style="color:var(--accent)">on YouTube</span>`:""}
-      </div></div>`;
-  }).join("") || `<div class="feat">nothing in this stage</div>`;
+      <div class="badges">${cardBadges(c)}</div></div>`;
+  }).join("") || `<div class="feat">nothing in this stage</div>`) + `</div>`;
 }
 
 async function loadPulse(){
@@ -165,27 +205,70 @@ async function loadPulse(){
   $("gcount").textContent = `${gf.filter(f=>!f.resolved).length} open project notes`;
 }
 
+// pipeline phase drives which feedback controls make sense
+function phaseOf(c){
+  if(!c.stages.render) return "pre-render";
+  if(!c.stages.published) return "review";
+  return "published";
+}
+const PHASE_META = {
+  "pre-render": { label:"pre-render — data · story · config", hint:"Notes on data honesty, story arc, copy, annotations, or the color theme — before this renders. No timestamps yet." },
+  "review":     { label:"review — rendered, awaiting your call", hint:"Scrub the cut. Comment at a timestamp, or make a call. The note-watcher picks it up in ≤5 min." },
+  "published":  { label:"published — live on YouTube", hint:"Post-publish notes: title, thumbnail, description, engagement — or request a re-cut." },
+};
+function renderFbPanel(c){
+  const ph = phaseOf(c), m = PHASE_META[ph];
+  const tBtn = c.mp4 ? `<button class="primary" onclick="sendComment(true)">Comment @ current time</button>` : "";
+  const gBtn = `<button class="${c.mp4?'':'primary'}" onclick="sendComment(false)">${ph==="pre-render"?"Add note":"General comment"}</button>`;
+  let calls = "";
+  if(ph==="review")
+    calls = `<span style="flex:1"></span>
+      <button class="good" onclick="decision('APPROVE')">Approve</button>
+      <button class="warn" onclick="decision('HOLD')">Hold</button>
+      <button class="bad" onclick="decision('REQUEST CHANGES')">Request changes</button>`;
+  else if(ph==="published")
+    calls = `<span style="flex:1"></span><button class="bad" onclick="decision('REQUEST CHANGES')">Request re-cut</button>`;
+  else
+    calls = `<span style="flex:1"></span><button class="warn" onclick="decision('HOLD')">Flag blocker</button>`;
+  $("fbpanel").innerHTML = `<h4>Feedback · <span style="color:var(--accent)">${esc(ph)}</span></h4>
+    <div class="feat" style="margin-bottom:7px">${esc(m.hint)}</div>
+    <textarea id="comment" placeholder="Your note — lands in the repo; the note-watcher picks it up within 5 minutes."></textarea>
+    <div class="row" style="margin-top:6px">${tBtn}${gBtn}${calls}</div>`;
+}
 function showHome(){ $("detail").style.display="none"; $("home").style.display="grid"; $("stats").style.display="block"; try{$("player").pause();}catch{} }
 async function show(slug){
   CUR = CAT.find(c=>c.slug===slug);
   $("home").style.display="none"; $("stats").style.display="none"; $("detail").style.display="block";
   $("d-title").textContent = CUR.title;
   $("d-sub").textContent = CUR.subtitle ?? "";
+  $("d-phasebar").innerHTML = `phase: <span class="now">${esc(PHASE_META[phaseOf(CUR)].label)}</span>` +
+    (CUR.attention ? ` · attention: ${esc(CUR.attention)}` : "");
   $("d-stages").innerHTML = stageStrip(CUR.stages);
   $("d-stlabels").innerHTML = STAGES.map(s=>`<span>${s}</span>`).join("");
   $("d-player-wrap").style.display = CUR.mp4 ? "block" : "none";
   if (CUR.mp4) $("player").src = `/video/${slug}`;
+  renderFbPanel(CUR);
   const cf = CUR.confidence;
   $("d-conf").innerHTML = `<h4>Confidence ${cf ? cf.score + "/100" : "—"}</h4>` + (cf ? `
     <div class="axes">${Object.entries(cf.axes ?? {}).map(([k,v])=>`<div class="axis">${esc(k)} ${v}/25<div class="bar"><i style="width:${v*4}%"></i></div></div>`).join("")}</div>
     <div style="margin-top:9px">${(cf.blockers ?? []).map(b=>`<div class="blocker">◦ ${esc(b)}</div>`).join("") || '<span class="feat">no open blockers</span>'}</div>`
     : '<span class="feat">enters the ledger at config stage</span>');
-  $("d-meta").innerHTML = `<h4>Status</h4>
-    <div class="feat">stage: ${CUR.stageIndex}/8 (${STAGES.filter(s=>CUR.stages[s]).join(" → ") || "none"})</div>
+  const t = CUR.theme;
+  const qa = CUR.qa;
+  const qaLine = qa
+    ? (qa.status==="pass" ? `<span style="color:var(--good)">✅ readable placement</span>`
+      : qa.status==="fail" ? `<span style="color:var(--bad)">⚠️ ${qa.issues.length||"?"} issue(s)</span>${qa.issues.length?`<div class="feat" style="margin-top:3px">${qa.issues.map(i=>`◦ ${esc(i)}`).join("<br>")}</div>`:""}`
+      : `<span style="color:var(--faint)">review pending</span>`)
+    : `<span style="color:var(--faint)">unreviewed</span>`;
+  $("d-meta").innerHTML = `<h4>Meta · experiment point</h4>
+    <div class="feat">scope: ${SCOPE_ICON[CUR.scope]||""} ${esc(CUR.scope)}</div>
+    ${t?`<div class="feat" style="margin-top:5px">theme: ${esc(t.name||t.mode||"custom")}${t.bg?` · <span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${esc(t.bg)};border:1px solid var(--stroke);vertical-align:middle"></span> ${esc(t.bg)}`:""} ${(t.swatch||[]).map(c=>`<span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${esc(c)}"></span>`).join(" ")}</div>`:""}
+    <div class="feat" style="margin-top:5px">chart: ${esc(CUR.trendStyle||"—")}</div>
+    <div class="feat" style="margin-top:5px">note placement QA: ${qaLine}</div>
+    <div class="feat" style="margin-top:8px;padding-top:6px;border-top:1px solid var(--stroke)">stage: ${CUR.stageIndex}/8 (${STAGES.filter(s=>CUR.stages[s]).join(" → ") || "none"})</div>
     ${CUR.dataMeta?`<div class="feat" style="margin-top:5px">data: ${Number(CUR.dataMeta.records).toLocaleString()} records · ${CUR.dataMeta.areas} areas · ${esc(CUR.dataMeta.span)} · ${CUR.dataMeta.coverage ?? "?"}% placed</div>`:""}
     ${CUR.render?`<div class="feat" style="margin-top:5px">render: ${esc(CUR.render.commit)} · ${CUR.render.durationSec}s · ${esc((CUR.render.renderedAt||"").slice(0,16))}</div>`:""}
-    <div class="feat" style="margin-top:5px">youtube: ${CUR.youtube.url?`<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>`:esc(CUR.youtube.status)}</div>
-    ${CUR.features?`<div class="feat" style="margin-top:5px">${Object.entries(CUR.features).map(([k,v])=>`${esc(k)}=${esc(v)}`).join(" · ")}</div>`:""}`;
+    <div class="feat" style="margin-top:5px">youtube: ${CUR.youtube.url?`<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>`:esc(CUR.youtube.status)}</div>`;
   refreshFb();
 }
 async function refreshFb(){

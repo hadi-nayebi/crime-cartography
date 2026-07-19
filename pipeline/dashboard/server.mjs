@@ -40,6 +40,34 @@ const mtimeOf = (p) => { try { return statSync(p).mtime.toISOString(); } catch {
 // The single source of truth the user sees: where each city REALLY is.
 const STAGES = ["data", "trend", "basemap", "config", "music", "render", "verified", "published"];
 
+// Each video in the batch is an experiment point. Its color theme, geographic
+// scope, and note-placement QA result are metadata the operator scans at a
+// glance — surfaced as card badges (icon-only, label on hover).
+function relLuminance(hex) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
+  if (!m) return null;
+  const n = parseInt(m[1], 16);
+  return (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255;
+}
+function themeSummary(cfg) {
+  const t = cfg?.theme;
+  if (!t) return null;
+  const bg = t.colors?.bg ?? null;
+  const lum = bg ? relLuminance(bg) : null;
+  const cc = t.catColors ?? {};
+  return {
+    name: t.name ?? null,
+    bg,
+    mode: lum == null ? null : lum < 0.4 ? "dark" : "light",
+    swatch: [cc.persons, cc.property, cc.society].filter(Boolean),
+  };
+}
+// Scope: city | county | state | country. Explicit config.scope wins; default city.
+function deriveScope(cfg) {
+  const s = (cfg?.scope || "").toLowerCase();
+  return ["city", "county", "state", "country"].includes(s) ? s : "city";
+}
+
 async function cityRow(slug) {
   const d = join(ROOT, "data", slug);
   const v = join(ROOT, "videos", slug);
@@ -48,6 +76,7 @@ async function cityRow(slug) {
   const lock = await readJson(join(v, "render.lock.json"));
   const conf = null; // filled by caller from the shared ledger
   const fb = (await readJson(join(v, "feedback.json"))) ?? [];
+  const qa = await readJson(join(v, "qa.json")); // note-placement review result (or null)
   const summary = await readJson(join(d, "normalized/summary.json"));
 
   const mp4Name = lock?.output ? join(v, lock.output) : join(v, `out/${slug}.mp4`);
@@ -74,6 +103,11 @@ async function cityRow(slug) {
     subtitle: cfg?.subtitle ?? (summary ? `${summary.dateMin?.slice(0,4)}–${summary.dateMax?.slice(0,4)} · ${summary.beatCount} areas · ${(summary.totalRecords ?? 0).toLocaleString()} records` : "no data yet"),
     hook: cfg?.hook?.stat ?? null,
     trendStyle: cfg?.trendStyle ?? null,
+    theme: themeSummary(cfg),
+    scope: deriveScope(cfg),
+    qa: qa?.notePlacement
+      ? { status: qa.notePlacement.status ?? "pending", issues: qa.notePlacement.issues ?? [], reviewedAt: qa.notePlacement.reviewedAt ?? null }
+      : null,
     stages,
     stageIndex: STAGES.filter((s) => stages[s]).length,
     confidence: conf,
@@ -84,6 +118,23 @@ async function cityRow(slug) {
     openFeedback: fb.filter((f) => !f.resolved).length,
     dataMeta: summary ? { records: summary.totalRecords, areas: summary.beatCount, span: `${summary.dateMin ?? "?"} → ${summary.dateMax ?? "?"}`, coverage: summary.coveragePct } : null,
   };
+}
+
+// Attention priority: which video should the operator look at first?
+// Higher score sorts to the top; `reason` is the single headline driver.
+function priorityOf(r) {
+  const reasons = [];
+  let score = 0;
+  if (r.openFeedback) { score += 100 + r.openFeedback * 5; reasons.push(`${r.openFeedback} open note${r.openFeedback > 1 ? "s" : ""}`); }
+  if (r.stages.render && !r.stages.published && !r.stages.verified) { score += 60; reasons.push("ready to review"); }
+  if (r.qa?.status === "fail") { score += 55; reasons.push(`note placement flagged (${r.qa.issues.length || "?"})`); }
+  if (r.stages.data && !r.stages.config) { score += 45; reasons.push("needs config"); }
+  if (r.stages.config && !r.stages.render) { score += 30; reasons.push("needs music/render"); }
+  const blk = r.confidence?.blockers?.length ?? 0;
+  if (blk) { score += 20 + blk; reasons.push(`${blk} blocker${blk > 1 ? "s" : ""}`); }
+  if (r.stages.render && (!r.qa || r.qa.status === "pending")) { score += 12; reasons.push("note-placement QA unreviewed"); }
+  if (!reasons.length) reasons.push(r.stages.published ? "settled · published" : "no action needed");
+  return { score, reason: reasons[0], reasons };
 }
 
 async function catalog() {
@@ -106,6 +157,10 @@ async function catalog() {
         row.stages.render && row.confidence.score >= 95 && (row.confidence.blockers ?? []).length === 0;
       row.stageIndex = STAGES.filter((s) => row.stages[s]).length;
     }
+    const pr = priorityOf(row); // computed AFTER verified/confidence merge
+    row.priority = pr.score;
+    row.attention = pr.reason;
+    row.attentionAll = pr.reasons;
     rows.push(row);
   }
   return rows;

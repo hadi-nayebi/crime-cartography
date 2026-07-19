@@ -4,7 +4,28 @@ Non-blocking items the producer resolved with its best judgment, plus a few that
 genuinely want Hadi's taste/eye. Nothing here blocks production; these are logged
 so Hadi can override any call on a watch-through. Newest first.
 
-## 2026-07-19 — producer-work-session
+## 2026-07-19 — dashboard experiment-badge fields (note-watcher)
+
+Resolving the dashboard note added scope + theme + note-placement-QA badges to
+each video card (icon-only, label on hover) plus attention-first sorting and
+stage-fit feedback. Interpretations I made (confirm or correct via a project note):
+
+- **theme** badge reads each config's existing `theme.colors.bg` + `theme.catColors`
+  (swatch dots + a light/dark **mode** derived from bg luminance). Configs have
+  **no theme name**, so it shows "dark"/"light". Add `"theme": { "name": "ember", … }`
+  to a config for a named experiment label — the badge picks it up automatically.
+- **scope** badge = city | county | state | country, **defaults to city** (all
+  current videos). Add `"scope": "county"` (etc.) to a config to mark a
+  non-city cut; the badge + priority use it immediately.
+- **note-placement QA** badge reads `videos/<slug>/qa.json` and shows "unreviewed"
+  until a reviewer routine writes it — that routine is **requested in
+  `experiment/HARNESS.md`** (a subagent that watches the rendered mp4 for
+  annotations overlapping text / lacking a readable background shade).
+
+Open question: do you also want the render surface to switch between reusable
+named light/dark **theme presets** (engine-level, `surface/remotion/src/theme.ts`)
+instead of each config carrying a full color block? Larger engine change —
+flagged, not done, pending your call.
 
 ### DECISIONS NEEDED (Hadi's call — not blocking)
 
