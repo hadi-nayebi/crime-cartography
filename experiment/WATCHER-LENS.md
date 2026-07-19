@@ -10,3 +10,4 @@ producing layer (template/engine/pipeline/routine) and sweep every instance.
 ## categories solved (category | root cause | sweep breadth | lesson)
 
 ## open hypotheses (suspected systemic causes not yet confirmed)
+- routines-sweep-foreign-work | root cause: `git add -A` in every routine SKILL's commit step + GIT POLICY template | sweep: 7 SKILL files, 11 occurrences replaced with explicit-file adds | lesson: shared-repo automation must never blanket-stage; observed twice tonight (agent work swept into "note:" commits 72f6f1c, 0456d53/3270cb7)
