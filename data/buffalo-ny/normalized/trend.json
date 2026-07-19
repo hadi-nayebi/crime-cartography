@@ -1,6 +1,6 @@
 {
-  "note": "UCR index crimes (1985–2005) vs BPD — reported crimes (10 major types) (2006+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Buffalo publishes only ten major crime types — no drug/weapon/vice offenses; a narrower incident measure than most cities.",
-  "fetchedAt": "2026-07-19T00:19:39.868Z",
+  "note": "UCR index crimes (1985–2005) vs BPD — reported crimes (10 major types) (2006+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Incident-era totals are citywide from the source, including the ~2% of reports never mapped to a neighborhood. Buffalo publishes only ten major crime types — no drug/weapon/vice offenses; a narrower incident measure than most cities.",
+  "fetchedAt": "2026-07-19T23:31:18.566Z",
   "seamYear": 2006,
   "eras": [
     {
@@ -208,223 +208,103 @@
     },
     {
       "year": 2006,
-      "total": 19312,
-      "era": "incident",
-      "parts": {
-        "persons": 4215,
-        "property": 15097,
-        "society": 0,
-        "other": 0
-      }
+      "total": 19446,
+      "era": "incident"
     },
     {
       "year": 2007,
-      "total": 21804,
-      "era": "incident",
-      "parts": {
-        "persons": 4447,
-        "property": 17357,
-        "society": 0,
-        "other": 0
-      }
+      "total": 21958,
+      "era": "incident"
     },
     {
       "year": 2008,
-      "total": 13429,
-      "era": "incident",
-      "parts": {
-        "persons": 2934,
-        "property": 10495,
-        "society": 0,
-        "other": 0
-      }
+      "total": 13536,
+      "era": "incident"
     },
     {
       "year": 2009,
-      "total": 21684,
-      "era": "incident",
-      "parts": {
-        "persons": 5057,
-        "property": 16627,
-        "society": 0,
-        "other": 0
-      }
+      "total": 21834,
+      "era": "incident"
     },
     {
       "year": 2010,
-      "total": 21558,
-      "era": "incident",
-      "parts": {
-        "persons": 4714,
-        "property": 16844,
-        "society": 0,
-        "other": 0
-      }
+      "total": 21709,
+      "era": "incident"
     },
     {
       "year": 2011,
-      "total": 18955,
-      "era": "incident",
-      "parts": {
-        "persons": 3701,
-        "property": 15254,
-        "society": 0,
-        "other": 0
-      }
+      "total": 20472,
+      "era": "incident"
     },
     {
       "year": 2012,
-      "total": 20509,
-      "era": "incident",
-      "parts": {
-        "persons": 4567,
-        "property": 15942,
-        "society": 0,
-        "other": 0
-      }
+      "total": 20614,
+      "era": "incident"
     },
     {
       "year": 2013,
-      "total": 18541,
-      "era": "incident",
-      "parts": {
-        "persons": 4165,
-        "property": 14376,
-        "society": 0,
-        "other": 0
-      }
+      "total": 18652,
+      "era": "incident"
     },
     {
       "year": 2014,
-      "total": 17428,
-      "era": "incident",
-      "parts": {
-        "persons": 3643,
-        "property": 13785,
-        "society": 0,
-        "other": 0
-      }
+      "total": 17523,
+      "era": "incident"
     },
     {
       "year": 2015,
-      "total": 17207,
-      "era": "incident",
-      "parts": {
-        "persons": 4165,
-        "property": 13042,
-        "society": 0,
-        "other": 0
-      }
+      "total": 17269,
+      "era": "incident"
     },
     {
       "year": 2016,
-      "total": 16394,
-      "era": "incident",
-      "parts": {
-        "persons": 4088,
-        "property": 12306,
-        "society": 0,
-        "other": 0
-      }
+      "total": 16453,
+      "era": "incident"
     },
     {
       "year": 2017,
-      "total": 15352,
-      "era": "incident",
-      "parts": {
-        "persons": 3923,
-        "property": 11429,
-        "society": 0,
-        "other": 0
-      }
+      "total": 15405,
+      "era": "incident"
     },
     {
       "year": 2018,
-      "total": 15421,
-      "era": "incident",
-      "parts": {
-        "persons": 3966,
-        "property": 11455,
-        "society": 0,
-        "other": 0
-      }
+      "total": 15469,
+      "era": "incident"
     },
     {
       "year": 2019,
-      "total": 13622,
-      "era": "incident",
-      "parts": {
-        "persons": 3536,
-        "property": 10086,
-        "society": 0,
-        "other": 0
-      }
+      "total": 13672,
+      "era": "incident"
     },
     {
       "year": 2020,
-      "total": 11950,
-      "era": "incident",
-      "parts": {
-        "persons": 2584,
-        "property": 9366,
-        "society": 0,
-        "other": 0
-      }
+      "total": 12126,
+      "era": "incident"
     },
     {
       "year": 2021,
-      "total": 11070,
-      "era": "incident",
-      "parts": {
-        "persons": 2799,
-        "property": 8271,
-        "society": 0,
-        "other": 0
-      }
+      "total": 11770,
+      "era": "incident"
     },
     {
       "year": 2022,
-      "total": 9979,
-      "era": "incident",
-      "parts": {
-        "persons": 1836,
-        "property": 8143,
-        "society": 0,
-        "other": 0
-      }
+      "total": 10822,
+      "era": "incident"
     },
     {
       "year": 2023,
-      "total": 13303,
-      "era": "incident",
-      "parts": {
-        "persons": 2364,
-        "property": 10939,
-        "society": 0,
-        "other": 0
-      }
+      "total": 14319,
+      "era": "incident"
     },
     {
       "year": 2024,
-      "total": 13009,
-      "era": "incident",
-      "parts": {
-        "persons": 2583,
-        "property": 10426,
-        "society": 0,
-        "other": 0
-      }
+      "total": 14096,
+      "era": "incident"
     },
     {
       "year": 2025,
-      "total": 12145,
-      "era": "incident",
-      "parts": {
-        "persons": 2497,
-        "property": 9648,
-        "society": 0,
-        "other": 0
-      }
+      "total": 12352,
+      "era": "incident"
     }
   ]
 }

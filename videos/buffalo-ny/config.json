@@ -1,0 +1,74 @@
+{
+  "slug": "buffalo-ny",
+  "datasetDir": "data/buffalo-ny",
+  "title": "Buffalo · The Rebound",
+  "subtitle": "FBI UCR 1985–2005 + BPD reports 2006–2026 · 35 neighborhoods · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/buffalo-ny-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "steps",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "+32%",
+    "line": "Buffalo crime, up sharply off its 2022 low",
+    "sub": "BPD reports · a one-year jump, 2022→2023 — then the map, up close"
+  },
+  "punchline": {
+    "text": "2022: 10,822 → 2023: 14,319",
+    "sub": "+32% in one year under the same BPD measure · 2025: 12,352 — easing, still 44% below the 2007 peak"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#0a0808",
+      "beatFill": "#141011",
+      "beatStroke": "rgba(201,209,217,0.24)",
+      "panelStroke": "rgba(201,209,217,0.2)",
+      "grid": "rgba(201,209,217,0.12)",
+      "ink": "#f4eff0",
+      "inkDim": "#b5adb0",
+      "inkFaint": "#746c6f"
+    },
+    "catColors": {
+      "persons": "#e84855",
+      "property": "#c9d1d9",
+      "society": "#58a4b0",
+      "other": "#6e6a70"
+    }
+  },
+  "copy": {
+    "cityName": "Buffalo",
+    "regionNoun": "neighborhood",
+    "seamExplain": "The ruler changes here — not the city. Through 2005 the gray marks are the FBI's classic 'index' crimes. From 2006 the figures are BPD's own reported-crime records — Buffalo publishes only ten major crime types, a narrower net than most cities. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · BPD OPEN DATA",
+    "chapter2Title": "Now — up close, 35 neighborhoods",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 35 neighborhoods — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "BPD open data · public domain",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident's block — BPD rounds coordinates to roughly 100 m. 97.9% of records map to one of 35 neighborhoods — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2005) and BPD's ten major-crime types (2006+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Buffalo neighborhood reports the fewest major crimes?",
+    "sourceLine": "Data: Buffalo Police Department via data.buffalony.gov (public domain) · real block-level locations",
+    "coverageText": "97.9% of records mapped to a neighborhood",
+    "creditsSources": "Sources: Buffalo Police Department crime incidents (2006–present) via data.buffalony.gov (U.S. public domain works, attribution BPD) & FBI UCR (1985–2005) via the FBI Crime Data Explorer (ORI NY0140100). Neighborhoods: City of Buffalo official planning layer. BPD publishes only ten major crime types — no drug, weapon, or vice offenses — and rounds coordinates to the block (~3 decimals). Long-arc totals are citywide from the source; the map counts the 97.9% mapped to a neighborhood. A 2008 records-system gap appears as a real dip — disclosed, never patched. FBI UCR index crimes and BPD incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1992, "text": "1992: the FBI-era peak — 33,699 index crimes reported." },
+    { "atYear": 2008, "text": "2008: a false dip — five months sit near-empty in BPD's records system; shown as-is, never patched." },
+    { "atYear": 2022, "text": "2022: 10,822 — the lowest year on record, less than half the 2007 peak." },
+    { "atYear": 2023, "text": "2023: 14,319 — up 32% in a single year off the 2022 low." },
+    { "atYear": 2025, "text": "2025: 12,352 — easing again, but still 14% above the 2022 low." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — anonymized to the block by BPD open data." },
+    { "atMonth": "2023-06", "text": "June 2023 — the busiest month of the last five years: 1,431 mapped reports." },
+    { "atMonth": "2023-09", "text": "North Park — Buffalo's busiest neighborhood for reported crime over the last five years.", "beat": "North Park" },
+    { "atMonth": "2025-02", "text": "Central Park: mapped reports up 79% since 2022 — the steepest neighborhood rise on the map.", "beat": "Central Park" },
+    { "atMonth": "2026-03", "text": "The bounce, mapped: 9,979 (2022) → 13,303 (2023) — easing since, 12,145 in 2025." }
+  ]
+}

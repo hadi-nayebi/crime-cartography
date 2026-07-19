@@ -166,8 +166,27 @@ Dots are **real incident locations published by KCPD** — the source geocodes b
 
 UCR Summary (Violent/Property) is a **different taxonomy** than KCPD's NIBRS codes — the eras are presented as distinct and bridge at 2015; they are never equated. No monthly or neighborhood detail is implied for 1985–2014.
 
+## Long-arc trend (`trend.json`) — citywide incident-era annuals
+
+The incident-era annual totals in `trend.json` are **citywide, queried straight
+from the 12 yearly source datasets** — one row per report number with its
+earliest reporting date (server-side `$group` + `min()` per dataset, then a
+global cross-dataset dedupe map), binned 2015–2025 — NOT the sum of the
+timeline's placed cells. Reason (measured at the source, 2026-07-19): KCPD's
+published coordinates fail unevenly by year — **2017 has ~29% of reports
+geocoded outside the city box** (bad geocodes: out-of-state points, "UNKNOWN"
+addresses; e.g. only 37,555 of 52,554 distinct 2017 reports fall inside the
+city bbox) and **2019–2021 rows are ~18–24% missing coordinates** — so
+placed-only annuals draw **false craters** (2017: 36,471 placed vs 52,531
+citywide, a −31% artifact dip; 2019–2021 similarly depressed). Citywide, 2017
+sits level with its neighbors. The map/counter chapters still use the placed
+timeline (86.8% coverage, disclosed on screen; the placed share is stable
+~92–95% across the 2022–2025 window years, so in-window comparisons are fair).
+Rebuild: `node pipeline/build-trend.mjs kansas-city-mo`.
+
 ## Reproduce
 
 ```bash
 FBI_API_KEY=… node pipeline/sources/kansas-city-mo.mjs
+node pipeline/build-trend.mjs kansas-city-mo
 ```

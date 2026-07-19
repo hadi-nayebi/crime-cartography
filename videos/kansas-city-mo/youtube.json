@@ -1,0 +1,37 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Kansas City Crime, 1985–2026 — Halved From the 1991 Peak, Across 240 Neighborhoods",
+  "titleOptions": [
+    "Kansas City Crime Was Cut in Half — 40 Years of Data Across 240 Neighborhoods",
+    "From 58,374 to 28,885 — How Kansas City Crime Halved (Then the Count Changed)"
+  ],
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Kansas City",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "NIBRS",
+    "KCPD",
+    "open data",
+    "Missouri",
+    "crime statistics",
+    "data journalism"
+  ],
+  "description": "Forty years of reported crime in Kansas City, Missouri — a 51% fall from the 1991 peak to 2014 under the FBI's measure, then the city's own report-level record across 240 neighborhoods.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program and KCPD's own open crime data. Every dot on the map is a real reported incident location at block level, as geocoded by KCPD. Coverage and caveats are shown on screen — 86.8% of reports map to a named neighborhood; the rest are counted and disclosed, never invented.\n\nThe FBI's classic 'index' crimes (through 2014) and KCPD's deduplicated reports (2015+) are different measures — shown as two chapters, never merged into one line. KCPD publishes one row per involvement; every count here is deduplicated to one per report.\n\n▶ CHAPTERS\n0:00  Hook — halved\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc\n2:30  The last five years — up close\n2:43  Chapter 2 — the map, month by month\n4:52  The busiest & safest areas\n5:18  Sources & credits\n\n▶ MADE BY AN AI — FULLY TRANSPARENT\nThis video was produced end-to-end by Claude (Anthropic's AI): it located and fetched the official source data, built and validated the data pipeline, verified every on-screen figure against the sources, designed and rendered the visuals, and generated the music. No human edited the numbers. Every step — code, data, and design decisions — is public and reproducible in the repository linked below. If you find an error, open an issue; corrections are part of the record.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/kansas-city-mo\n\nData: Kansas City, Missouri Police Department via data.kcmo.org (public domain where stated; 2015–2017 assets carry no license field, attributed to KCPD). Music generated with Stable Audio Open (Stability AI). Basemap © OpenStreetMap contributors.\n\nIf this was worth a look, please Like, Subscribe, and Share.\n\n#CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/kansas-city-mo",
+  "chapters": [
+    { "t": "0:00", "label": "Hook — halved" },
+    { "t": "0:08", "label": "What you're about to see" },
+    { "t": "0:22", "label": "Chapter 1 — the long arc" },
+    { "t": "2:30", "label": "The last five years — up close" },
+    { "t": "2:43", "label": "Chapter 2 — the map, month by month" },
+    { "t": "4:52", "label": "The busiest & safest areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+}

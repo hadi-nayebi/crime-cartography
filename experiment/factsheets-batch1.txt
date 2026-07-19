@@ -511,3 +511,83 @@ WINDOW neighborhoods (Group A, 190 total):
   SAFEST bottom5: Mack Acres=13 | Buchel Park=4 | Jones' Island=2 | Zoo=1 | Brown Deer Park=0
   biggest DROP 2022->2025 (base>=100): Haymarket 158->64 -59.5% | Wilson Park 113->52 -54.0% | Cooper Park 104->49 -52.9%
   biggest RISE 2022->2025 (base>=100): Harbor View 166->240 44.6% | Menomonee River Hills East 224->304 35.7% | King Park 228->278 21.9%
+
+=== REGENERATED 2026-07-19 (citywide trend fix — supersedes earlier sections for these 3) ===
+
+================= buffalo-ny =================
+timeline FULL: 2006-01..2026-05 (245 mo) | WINDOW(60): 2021-06..2026-05 (60 mo)
+summary: totalRecords=333,672 placed=326,828 coveragePct=97.9 beats=35
+catTotals(all-time): persons=73,652 property=260,020 society=0 other=0
+
+TREND: 1985..2025 seam=2006
+  eras: fbi 1985-2005 | incident 2006-2025
+  FBI: first 1985=24,632 | peak 1992=33,699 | last(seam-1) 2005=21,036
+  INC: first(seam) 2006=19,446 | last 2025=12,352
+  FALL peak->last-fbi: 1992 33,699 -> 2005 21,036 = -37.6%
+  FALL first->last-fbi: 1985 24,632 -> 2005 21,036 = -14.6%
+  INC net first->last: 2006 19,446 -> 2025 12,352 = -36.5%
+  INC peak 2007=21,958 | INC low 2022=10,822
+  FBI violent peak: 1994=6,890 (property 24,613)
+  FBI-era year table: 1985:24632 1986:25547 1987:25611 1988:26037 1989:27379 1990:29864 1991:32146 1992:33699 1993:32305 1994:31503 1995:29319 1996:27197 1997:25766 1998:22720 1999:21104 2000:20600 2001:20338 2002:19425 2003:20621 2004:20359 2005:21036
+
+WINDOW citywide: busiest Group A month = 2023-06 (1,431)
+  full window years: 2022:9,979 2023:13,303 2024:13,009 2025:12,145
+  citywide window 2022->2025: 9,979 -> 12,145 = 21.7%
+
+WINDOW neighborhoods (Group A, 35 total): 
+  BUSIEST top5: North Park=3,873 | Broadway Fillmore=3,444 | Kensington-Bailey=2,986 | Central=2,718 | Elmwood Bryant=2,532
+  SAFEST bottom5: Kaisertown=825 | Grant-Amherst=805 | Hamlin Park=781 | Seneca Babcock=613 | First Ward=329
+  biggest DROP 2022->2025 (base>=100): Lovejoy 392->345 -12.0% | Schiller Park 373->330 -11.5% | Genesee-Moselle 419->376 -10.3%
+  biggest RISE 2022->2025 (base>=100): Central Park 126->226 79.4% | MLK Park 166->267 60.8% | South Park 237->381 60.8%
+
+================= cincinnati-oh =================
+timeline FULL: 2020-01..2026-05 (77 mo) | WINDOW(60): 2021-06..2026-05 (60 mo)
+summary: totalRecords=154,460 placed=146,628 coveragePct=94.9 beats=50
+catTotals(all-time): persons=12,149 property=76,858 society=65,453 other=0
+
+TREND: 1999..2025 seam=2020
+  eras: fbi 1999-2019 | incident 2020-2025
+  FBI: first 1999=21,727 | peak 2002=28,803 | last(seam-1) 2019=15,718
+  INC: first(seam) 2020=24,002 | last 2025=23,894
+  FALL peak->last-fbi: 2002 28,803 -> 2019 15,718 = -45.4%
+  FALL first->last-fbi: 1999 21,727 -> 2019 15,718 = -27.7%
+  INC net first->last: 2020 24,002 -> 2025 23,894 = -0.4%
+  INC peak 2023=26,238 | INC low 2021=22,407
+  FBI violent peak: 2002=4,250 (property 24,553)
+  FBI-era year table: 1999:21727 2000:22620 2001:27960 2002:28803 2003:28141 2004:26713 2005:26470 2006:26248 2007:24422 2008:24760 2009:24621 2010:24414 2011:23953 2012:21572 2013:20406 2014:19752 2015:19762 2016:18716 2017:18035 2018:16383 2019:15718
+
+WINDOW citywide: busiest Group A month = 2024-07 (2,365)
+  full window years: 2022:22,527 2023:24,291 2024:24,042 2025:23,788
+  citywide window 2022->2025: 22,527 -> 23,788 = 5.6%
+
+WINDOW neighborhoods (Group A, 50 total): 
+  BUSIEST top5: Westwood=12,755 | Avondale=6,687 | East Price Hill=6,606 | Over-the-Rhine=6,527 | Downtown=6,248
+  SAFEST bottom5: English Woods_North Fairmount=314 | Riverside=298 | Mt. Adams=236 | Columbia Tusculum=132 | California=80
+  biggest DROP 2022->2025 (base>=100): Hartwell 345->217 -37.1% | Mt. Lookout 103->70 -32.0% | Mt. Washington 341->241 -29.3%
+  biggest RISE 2022->2025 (base>=100): Downtown 1012->1682 66.2% | Corryville 455->722 58.7% | West End 756->1008 33.3%
+
+================= kansas-city-mo =================
+timeline FULL: 2015-01..2026-06 (138 mo) | WINDOW(60): 2021-07..2026-06 (60 mo)
+summary: totalRecords=636,430 placed=552,567 coveragePct=86.8 beats=240
+catTotals(all-time): persons=132,585 property=353,983 society=87,048 other=62,814
+
+TREND: 1985..2025 seam=2015
+  eras: fbi 1985-2014 | incident 2015-2025
+  FBI: first 1985=47,111 | peak 1991=58,374 | last(seam-1) 2014=28,885
+  INC: first(seam) 2015=50,338 | last 2025=56,880
+  FALL peak->last-fbi: 1991 58,374 -> 2014 28,885 = -50.5%
+  FALL first->last-fbi: 1985 47,111 -> 2014 28,885 = -38.7%
+  INC net first->last: 2015 50,338 -> 2025 56,880 = 13.0%
+  INC peak 2023=62,400 | INC low 2015=50,338
+  FBI violent peak: 1992=12,594 (property 42,947)
+  FBI-era year table: 1985:47111 1986:54932 1987:53330 1988:54075 1989:56505 1990:56817 1991:58374 1992:55541 1993:55692 1994:55620 1995:53054 1996:52726 1997:49953 1998:54265 1999:52137 2000:47594 2001:50452 2002:45420 2003:42098 2004:41971 2005:41753 2006:37969 2007:41870 2008:34845 2009:33295 2010:33186 2011:31571 2012:31948 2013:30738 2014:28885
+
+WINDOW citywide: busiest Group A month = 2023-07 (5,087)
+  full window years: 2022:46,038 2023:51,567 2024:50,114 2025:45,763
+  citywide window 2022->2025: 46,038 -> 45,763 = -0.6%
+
+WINDOW neighborhoods (Group A, 240 total): 
+  BUSIEST top5: CBD Downtown=9,240 | Shoal Creek=5,494 | Old Westport=4,988 | Coves North=4,596 | Crossroads=4,290
+  SAFEST bottom5: Crestwood=50 | Brookside Park=48 | Timber Valley=47 | Sunset Hill West=29 | Glen Lake=17
+  biggest DROP 2022->2025 (base>=100): Red Bridge North 104->40 -61.5% | Union Hill 199->111 -44.2% | Beacon Hills 226->128 -43.4%
+  biggest RISE 2022->2025 (base>=100): Hidden Valley 130->242 86.2% | Swope Park Campus 114->209 83.3% | West Blue Valley 162->266 64.2%

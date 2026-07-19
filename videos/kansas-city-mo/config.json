@@ -1,0 +1,74 @@
+{
+  "slug": "kansas-city-mo",
+  "datasetDir": "data/kansas-city-mo",
+  "title": "Kansas City · Halved",
+  "subtitle": "FBI UCR 1985–2014 + KCPD reports 2015–2026 · 240 neighborhoods · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/kansas-city-mo-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "bars",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−51%",
+    "line": "Kansas City crime, from the 1991 peak to 2014",
+    "sub": "FBI UCR · then the map, month by month, up close"
+  },
+  "punchline": {
+    "text": "1991: 58,374 → 2014: 28,885",
+    "sub": "−51% under the same FBI measure · KCPD's own broader count begins in 2015"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#080809",
+      "beatFill": "#101013",
+      "beatStroke": "rgba(78,205,196,0.22)",
+      "panelStroke": "rgba(78,205,196,0.2)",
+      "grid": "rgba(78,205,196,0.12)",
+      "ink": "#eef3f3",
+      "inkDim": "#a9b8b6",
+      "inkFaint": "#6a7877"
+    },
+    "catColors": {
+      "persons": "#ff5252",
+      "property": "#ff9f43",
+      "society": "#4ecdc4",
+      "other": "#67707c"
+    }
+  },
+  "copy": {
+    "cityName": "Kansas City",
+    "regionNoun": "neighborhood",
+    "seamExplain": "The ruler changes here — not the city. Through 2014 the gray bars are the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2015 the figures are KCPD's own reports — every offense type, deduplicated to one count per report — a broader net, so the level steps up. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · KCPD OPEN DATA",
+    "chapter2Title": "Now — up close, 240 neighborhoods",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 240 neighborhoods — every dot a real reported location at block level.",
+    "methodRecentTag": "KCPD open data",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident's block, as geocoded by KCPD. 86.8% of reports map to one of 240 named neighborhoods — the rest (mostly missing coordinates) counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2014) and KCPD's deduplicated reports (2015+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Kansas City neighborhood reports the fewest Group A crimes?",
+    "sourceLine": "Data: Kansas City, MO Police Department via data.kcmo.org · real block-level locations",
+    "coverageText": "86.8% of records mapped to a neighborhood",
+    "creditsSources": "Sources: KCPD crime data 2015–2026 (12 yearly datasets; public domain where stated, the 2015–2017 assets carry no license field — attributed to KCPD) via data.kcmo.org & FBI UCR (1985–2014) via the FBI Crime Data Explorer (ORI MOKPD0000). KCPD publishes one row per involvement — every count here is deduplicated to one per report. Categories follow the NIBRS crimes-against convention (robbery counts against property). Neighborhoods: City of Kansas City official boundaries, joined by KCPD's published coordinates. Long-arc totals are citywide; the map counts the 86.8% with usable coordinates inside a named neighborhood — the rest counted, disclosed, never invented. FBI UCR index crimes and KCPD reports are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1991, "text": "1991: the peak — 58,374 index crimes reported." },
+    { "atYear": 1992, "text": "1992: violent crime peaks at 12,594 reports." },
+    { "atYear": 2014, "text": "2014: 28,885 — down 51% from 1991; the last FBI year." },
+    { "atYear": 2023, "text": "2023: 62,400 — the high point of KCPD's own broader count." },
+    { "atYear": 2025, "text": "2025: 56,880 — down 9% from the 2023 peak." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — block-level addresses geocoded by KCPD." },
+    { "atMonth": "2023-07", "text": "July 2023 — the busiest Group A month of the last five years: 5,087 mapped reports." },
+    { "atMonth": "2023-09", "text": "CBD Downtown — Kansas City's busiest neighborhood for reported Group A crime.", "beat": "CBD Downtown" },
+    { "atMonth": "2025-02", "text": "Red Bridge North: down 62% since 2022 — the city's biggest neighborhood drop.", "beat": "Red Bridge North" },
+    { "atMonth": "2026-03", "text": "Reported Group A on the map has held roughly flat: 46,038 (2022) → 45,763 (2025)." }
+  ]
+}

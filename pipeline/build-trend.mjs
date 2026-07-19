@@ -52,6 +52,32 @@ function soda(base, params) {
     .join("&");
   return getJson(`${base}?${q}`);
 }
+// Paginated Socrata fetch of one row per incident/report id with its EARLIEST
+// date — server-side $group dedupes offense/involvement-level rows, min(date)
+// bins each incident at its earliest date (the same convention the normalize
+// scripts use). Used by citywide trend plans whose sources publish multiple
+// rows per incident. Returns Map(id -> earliest ISO date string).
+async function sodaGroupMinDate(base, idField, dateField, where) {
+  const out = new Map();
+  for (let off = 0; ; off += 50000) {
+    const rows = await soda(base, {
+      "$select": `${idField},min(${dateField}) AS d`,
+      "$where": where,
+      "$group": idField,
+      "$order": idField,
+      "$limit": "50000",
+      "$offset": String(off),
+    });
+    for (const r of rows) {
+      const id = r[idField];
+      if (id == null) continue; // no null ids measured in any source; guard anyway
+      const prev = out.get(id);
+      if (!prev || r.d < prev) out.set(id, r.d);
+    }
+    if (rows.length < 50000) break;
+  }
+  return out;
+}
 // annual totals from timeline cells; groupAOnly restricts to persons+property+society.
 // Also accumulates per-category parts (for the "stacked" composition chart style).
 async function timelineAnnual(groupAOnly) {
@@ -320,8 +346,41 @@ PLANS["atlanta-ga"] = genericPlan({
     "comparable citywide total exists for 2019–2020; those years are left blank rather than shown at a false low",
 });
 PLANS["detroit-mi"] = genericPlan({ groupAOnly: false, incidentLabel: "DPD — recorded incidents (RMS)" });
-PLANS["buffalo-ny"] = genericPlan({ groupAOnly: false, incidentLabel: "BPD — reported crimes (10 major types)",
-  extraNote: "Buffalo publishes only ten major crime types — no drug/weapon/vice offenses; a narrower incident measure than most cities." });
+// Buffalo: the trend must be CITYWIDE from the source — the timeline's placed
+// cells drop the no-neighborhood rows, whose share swings by year (measured at
+// the source 2026-07-19: ~0.3–0.8% in 2012–2019 but 6.0–7.7% in 2021–2024 vs
+// 1.7% in 2025), so placed-only annuals overstate the recent rebound
+// (2022→2025 = +21.7% placed-only vs +14.1% citywide). Rows are incident-level
+// (case_number verified unique in the builder) — count(*) is the incident count.
+PLANS["buffalo-ny"] = async () => {
+  const h = JSON.parse(await readFile(join(NORM, "history.json")));
+  const fbi = {};
+  const parts = {};
+  for (const y of h.years) {
+    fbi[y.year] = y.total;
+    parts[y.year] = { violent: y.violent, property: y.property };
+  }
+  const rows = await soda("https://data.buffalony.gov/resource/d6g9-xbgu.json", {
+    "$select": "date_extract_y(incident_datetime) AS y,count(*) AS n",
+    "$where": "incident_datetime between '2006-01-01T00:00:00' and '2025-12-31T23:59:59'",
+    "$group": "y", "$order": "y",
+  });
+  const inc = {};
+  for (const r of rows) inc[Number(r.y)] = Number(r.n);
+  return {
+    eras: [
+      { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+      { key: "incident", label: "BPD — reported crimes (10 major types)", from: 2006, to: 2025 },
+    ],
+    fbi, inc, parts,
+    note:
+      `UCR index crimes (${h.yearMin}–${h.yearMax}) vs BPD — reported crimes (10 major types) (2006+) are ` +
+      "different measures — compare shapes within an era, not across the seam. Partial current year excluded. " +
+      "Incident-era totals are citywide from the source, including the ~2% of reports never mapped to a " +
+      "neighborhood. Buffalo publishes only ten major crime types — no drug/weapon/vice offenses; a narrower " +
+      "incident measure than most cities.",
+  };
+};
 PLANS["baltimore-md"] = genericPlan({
   groupAOnly: false,
   incidentLabel: "BPD — NIBRS Group A (victim-deduped)",
@@ -336,8 +395,116 @@ PLANS["baltimore-md"] = genericPlan({
     "= 503 total, between 72,994 in 1998 and 66,397 in 2000) — an incomplete submission, not a real one-year " +
     "crime collapse; the year is omitted rather than drawn as a false crater",
 });
-PLANS["cincinnati-oh"] = genericPlan({ groupAOnly: false, incidentLabel: "CPD — recorded incidents (STARS)" });
-PLANS["kansas-city-mo"] = genericPlan({ groupAOnly: false, incidentLabel: "KCPD — reported crimes (deduped)" });
+// Cincinnati: the trend must be CITYWIDE from the source — the timeline's
+// placed cells drop the blank-neighborhood incidents, whose share collapses at
+// the 2024-06 RMS cutover (measured at the source 2026-07-19: ~7–8% of
+// incidents in 2020–2023 vs ~0.4% in 2025), so placed-only annuals tilt the
+// recent shape (2020→2025 = +6.4% placed-only vs ≈flat citywide). Incidents
+// are deduplicated across the legacy/current dataset pair by incident number
+// (union — the Jun–Nov 2024 cross-set overlap is counted once), binned at each
+// incident's earliest occurrence date (datefrom), matching the normalizer.
+PLANS["cincinnati-oh"] = async () => {
+  const h = JSON.parse(await readFile(join(NORM, "history.json")));
+  const fbi = {};
+  const parts = {};
+  for (const y of h.years) {
+    fbi[y.year] = y.total;
+    parts[y.year] = { violent: y.violent, property: y.property };
+  }
+  const ids = new Map(); // incident_no -> earliest datefrom across BOTH sets
+  for (const ds of ["8xzn-kpn7", "7aqy-xrv9"]) {
+    const m = await sodaGroupMinDate(
+      `https://data.cincinnati-oh.gov/resource/${ds}.json`,
+      "incident_no", "datefrom",
+      "datefrom between '2020-01-01T00:00:00' and '2025-12-31T23:59:59'",
+    );
+    for (const [id, d] of m) {
+      const prev = ids.get(id);
+      if (!prev || d < prev) ids.set(id, d);
+    }
+  }
+  const inc = {};
+  for (const d of ids.values()) {
+    const y = Number(d.slice(0, 4));
+    inc[y] = (inc[y] ?? 0) + 1;
+  }
+  return {
+    eras: [
+      { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+      { key: "incident", label: "CPD — recorded incidents (STARS)", from: 2020, to: 2025 },
+    ],
+    fbi, inc, parts,
+    note:
+      `UCR index crimes (${h.yearMin}–${h.yearMax}) vs CPD — recorded incidents (STARS) (2020+) are ` +
+      "different measures — compare shapes within an era, not across the seam. Partial current year excluded. " +
+      "Incident-era totals are citywide from the source pair, deduplicated by incident number and including " +
+      "the ~5% of incidents never mapped to a neighborhood.",
+  };
+};
+// Kansas City: the trend must be CITYWIDE from the source — the timeline's
+// placed cells depend on KCPD's published coordinates, whose quality swings
+// hard by year (measured at the source 2026-07-19: 2017 has ~29% of reports
+// geocoded outside the city box — bad geocodes like out-of-state points; and
+// 2019–2021 rows are ~18–24% missing coordinates per PROVENANCE), so
+// placed-only annuals draw false craters (2017: 36,471 placed vs 52,554
+// citywide reports — citywide 2017 was level with its neighbors). Reports are
+// deduplicated by report number within AND across the yearly involvement-level
+// datasets, binned at the earliest reporting date, matching the normalizer.
+PLANS["kansas-city-mo"] = async () => {
+  const h = JSON.parse(await readFile(join(NORM, "history.json")));
+  const fbi = {};
+  const parts = {};
+  for (const y of h.years) {
+    fbi[y.year] = y.total;
+    parts[y.year] = { violent: y.violent, property: y.property };
+  }
+  // Same per-year field drift the source builder measured (see
+  // pipeline/sources/kansas-city-mo.mjs YEARS): report-number and
+  // reporting-date field names vary by dataset.
+  const KC = [
+    { id: "kbzx-7ehe", rep: "report_no", date: "reported_date" }, // 2015
+    { id: "wbz8-pdv7", rep: "report_no", date: "reported_date" }, // 2016
+    { id: "98is-shjt", rep: "report_no", date: "reported_date" }, // 2017
+    { id: "dmjw-d28i", rep: "report_no", date: "reported_date" }, // 2018
+    { id: "pxaa-ahcm", rep: "report_no", date: "reported_date" }, // 2019
+    { id: "vsgj-uufz", rep: "report_no", date: "reported_date" }, // 2020
+    { id: "w795-ffu6", rep: "report_no", date: "report_date" },   // 2021
+    { id: "x39y-7d3m", rep: "report_no", date: "report_date" },   // 2022 (carries stragglers dated 2015–2021)
+    { id: "bfyq-5nh6", rep: "report", date: "report_date" },      // 2023
+    { id: "isbe-v4d8", rep: "report_no", date: "reported_date" }, // 2024
+    { id: "dmnp-9ajg", rep: "report", date: "report_date" },      // 2025
+    { id: "f7wj-ckmw", rep: "report", date: "report_date" },      // 2026 (any rows dated ≤2025 bin to their year)
+  ];
+  const ids = new Map(); // report number -> earliest reporting date across ALL datasets
+  for (const d of KC) {
+    const m = await sodaGroupMinDate(
+      `https://data.kcmo.org/resource/${d.id}.json`,
+      d.rep, d.date,
+      `${d.date} between '2015-01-01T00:00:00' and '2025-12-31T23:59:59'`,
+    );
+    for (const [id, dt] of m) {
+      const prev = ids.get(id);
+      if (!prev || dt < prev) ids.set(id, dt);
+    }
+  }
+  const inc = {};
+  for (const dt of ids.values()) {
+    const y = Number(dt.slice(0, 4));
+    inc[y] = (inc[y] ?? 0) + 1;
+  }
+  return {
+    eras: [
+      { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+      { key: "incident", label: "KCPD — reported crimes (deduped)", from: 2015, to: 2025 },
+    ],
+    fbi, inc, parts,
+    note:
+      `UCR index crimes (${h.yearMin}–${h.yearMax}) vs KCPD — reported crimes (deduped) (2015+) are ` +
+      "different measures — compare shapes within an era, not across the seam. Partial current year excluded. " +
+      "Incident-era totals are citywide from the source datasets, deduplicated by report number and including " +
+      "the ~13% of reports without usable map coordinates.",
+  };
+};
 PLANS["milwaukee-wi"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — NIBRS Group A offenses",
   // Milwaukee's open incident archive begins 2005-02 (no January 2005), so the
   // first COMPLETE incident year is 2006. FBI history stopped at 2004, leaving a

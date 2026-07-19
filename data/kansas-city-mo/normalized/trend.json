@@ -1,6 +1,6 @@
 {
-  "note": "UCR index crimes (1985–2014) vs KCPD — reported crimes (deduped) (2015+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded.",
-  "fetchedAt": "2026-07-19T00:48:17.557Z",
+  "note": "UCR index crimes (1985–2014) vs KCPD — reported crimes (deduped) (2015+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Incident-era totals are citywide from the source datasets, deduplicated by report number and including the ~13% of reports without usable map coordinates.",
+  "fetchedAt": "2026-07-19T23:32:02.646Z",
   "seamYear": 2015,
   "eras": [
     {
@@ -289,124 +289,58 @@
     },
     {
       "year": 2015,
-      "total": 47854,
-      "era": "incident",
-      "parts": {
-        "persons": 10341,
-        "property": 28344,
-        "society": 8762,
-        "other": 407
-      }
+      "total": 50338,
+      "era": "incident"
     },
     {
       "year": 2016,
-      "total": 48885,
-      "era": "incident",
-      "parts": {
-        "persons": 10908,
-        "property": 28668,
-        "society": 8985,
-        "other": 324
-      }
+      "total": 51424,
+      "era": "incident"
     },
     {
       "year": 2017,
-      "total": 36471,
-      "era": "incident",
-      "parts": {
-        "persons": 8233,
-        "property": 23233,
-        "society": 4743,
-        "other": 262
-      }
+      "total": 52531,
+      "era": "incident"
     },
     {
       "year": 2018,
-      "total": 48771,
-      "era": "incident",
-      "parts": {
-        "persons": 11545,
-        "property": 28496,
-        "society": 8377,
-        "other": 353
-      }
+      "total": 51351,
+      "era": "incident"
     },
     {
       "year": 2019,
-      "total": 42004,
-      "era": "incident",
-      "parts": {
-        "persons": 8371,
-        "property": 21116,
-        "society": 5166,
-        "other": 7351
-      }
+      "total": 57573,
+      "era": "incident"
     },
     {
       "year": 2020,
-      "total": 43716,
-      "era": "incident",
-      "parts": {
-        "persons": 9478,
-        "property": 24209,
-        "society": 4751,
-        "other": 5278
-      }
+      "total": 55584,
+      "era": "incident"
     },
     {
       "year": 2021,
-      "total": 39317,
-      "era": "incident",
-      "parts": {
-        "persons": 8248,
-        "property": 22584,
-        "society": 4228,
-        "other": 4257
-      }
+      "total": 53526,
+      "era": "incident"
     },
     {
       "year": 2022,
-      "total": 52579,
-      "era": "incident",
-      "parts": {
-        "persons": 10597,
-        "property": 29690,
-        "society": 5751,
-        "other": 6541
-      }
+      "total": 57190,
+      "era": "incident"
     },
     {
       "year": 2023,
-      "total": 59452,
-      "era": "incident",
-      "parts": {
-        "persons": 11525,
-        "property": 34025,
-        "society": 6017,
-        "other": 7885
-      }
+      "total": 62400,
+      "era": "incident"
     },
     {
       "year": 2024,
-      "total": 56903,
-      "era": "incident",
-      "parts": {
-        "persons": 11643,
-        "property": 32737,
-        "society": 5734,
-        "other": 6789
-      }
+      "total": 61809,
+      "era": "incident"
     },
     {
       "year": 2025,
-      "total": 52608,
-      "era": "incident",
-      "parts": {
-        "persons": 11836,
-        "property": 27348,
-        "society": 6579,
-        "other": 6845
-      }
+      "total": 56880,
+      "era": "incident"
     }
   ]
 }

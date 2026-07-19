@@ -49,19 +49,19 @@
   "cats": {
     "persons": {
       "label": "Part 1 Violent (homicide, rape, robbery, agg. assault)",
-      "color": "#ff2e63"
+      "color": "#e63946"
     },
     "property": {
       "label": "Part 1 Property (burglary, theft, auto theft)",
-      "color": "#ffc233"
+      "color": "#f4a261"
     },
     "society": {
       "label": "Part 2 · All Other Offenses",
-      "color": "#34e0e0"
+      "color": "#2a9d8f"
     },
     "other": {
       "label": "Other (none in source)",
-      "color": "#7486a0"
+      "color": "#6d6a63"
     }
   },
   "beatCount": 50

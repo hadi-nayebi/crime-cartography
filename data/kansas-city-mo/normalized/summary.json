@@ -75,19 +75,19 @@
   "cats": {
     "persons": {
       "label": "Crimes Against Persons",
-      "color": "#ff2e63"
+      "color": "#ff5252"
     },
     "property": {
       "label": "Crimes Against Property",
-      "color": "#ffc233"
+      "color": "#ff9f43"
     },
     "society": {
       "label": "Crimes Against Society",
-      "color": "#34e0e0"
+      "color": "#4ecdc4"
     },
     "other": {
       "label": "Unclassified / non-NIBRS (context)",
-      "color": "#7486a0"
+      "color": "#67707c"
     }
   },
   "beatCount": 240

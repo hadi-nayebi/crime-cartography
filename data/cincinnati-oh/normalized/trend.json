@@ -1,6 +1,6 @@
 {
-  "note": "UCR index crimes (1999–2019) vs CPD — recorded incidents (STARS) (2020+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded.",
-  "fetchedAt": "2026-07-19T00:33:24.495Z",
+  "note": "UCR index crimes (1999–2019) vs CPD — recorded incidents (STARS) (2020+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Incident-era totals are citywide from the source pair, deduplicated by incident number and including the ~5% of incidents never mapped to a neighborhood.",
+  "fetchedAt": "2026-07-19T23:31:21.422Z",
   "seamYear": 2020,
   "eras": [
     {
@@ -208,69 +208,33 @@
     },
     {
       "year": 2020,
-      "total": 22347,
-      "era": "incident",
-      "parts": {
-        "persons": 1727,
-        "property": 10778,
-        "society": 9842,
-        "other": 0
-      }
+      "total": 24002,
+      "era": "incident"
     },
     {
       "year": 2021,
-      "total": 20677,
-      "era": "incident",
-      "parts": {
-        "persons": 1589,
-        "property": 9615,
-        "society": 9473,
-        "other": 0
-      }
+      "total": 22407,
+      "era": "incident"
     },
     {
       "year": 2022,
-      "total": 22527,
-      "era": "incident",
-      "parts": {
-        "persons": 1565,
-        "property": 10961,
-        "society": 10001,
-        "other": 0
-      }
+      "total": 24238,
+      "era": "incident"
     },
     {
       "year": 2023,
-      "total": 24291,
-      "era": "incident",
-      "parts": {
-        "persons": 1618,
-        "property": 12672,
-        "society": 10001,
-        "other": 0
-      }
+      "total": 26238,
+      "era": "incident"
     },
     {
       "year": 2024,
-      "total": 24042,
-      "era": "incident",
-      "parts": {
-        "persons": 1990,
-        "property": 12303,
-        "society": 9749,
-        "other": 0
-      }
+      "total": 24695,
+      "era": "incident"
     },
     {
       "year": 2025,
-      "total": 23788,
-      "era": "incident",
-      "parts": {
-        "persons": 1933,
-        "property": 12265,
-        "society": 9590,
-        "other": 0
-      }
+      "total": 23894,
+      "era": "incident"
     }
   ]
 }

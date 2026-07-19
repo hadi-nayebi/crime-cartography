@@ -78,8 +78,21 @@ Coordinates in the source are TEXT and **rounded by BPD to 3 decimal places (~80
 
 UCR Summary (Violent/Property) is a **different taxonomy** than the BPD incident types — the eras are presented as distinct and bridge at 2006; they are never equated. No monthly or neighborhood detail is implied for 1985–2005.
 
+## Long-arc trend (`trend.json`) — citywide incident-era annuals
+
+The incident-era annual totals in `trend.json` are **citywide, queried straight
+from the source** (`count(*)` per incident year, 2006–2025; rows are
+incident-level, `case_number` verified unique) — NOT the sum of the timeline's
+placed cells. Measured at the source (2026-07-19): the share of reports never
+mapped to a neighborhood swings by year — ~0.3–0.8% in 2012–2019 but **6.0–7.7%
+in 2021–2024 vs 1.7% in 2025** — so placed-only annuals would overstate the
+recent rebound (2022→2025 = +21.7% placed-only vs **+14.1% citywide**). The
+map/counter chapters still use the placed timeline (97.9% coverage, disclosed
+on screen). Rebuild: `node pipeline/build-trend.mjs buffalo-ny`.
+
 ## Reproduce
 
 ```bash
 FBI_API_KEY=… node pipeline/sources/buffalo-ny.mjs
+node pipeline/build-trend.mjs buffalo-ny
 ```

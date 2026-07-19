@@ -127,8 +127,24 @@ UCR Summary (Violent/Property) is a **different taxonomy** than CPD STARS — th
 presented as distinct and bridge at 2020; they are never equated. No monthly or neighborhood
 detail is implied for 1999–2019.
 
+## Long-arc trend (`trend.json`) — citywide incident-era annuals
+
+The incident-era annual totals in `trend.json` are **citywide, queried straight
+from the source pair** — one row per `incident_no` with its earliest `datefrom`
+(server-side `$group` + `min()`, union across the legacy/current sets so the
+Jun–Nov 2024 cross-set overlap is counted once), binned 2020–2025 — NOT the sum
+of the timeline's placed cells. Measured at the source (2026-07-19): the share
+of incidents with a blank `sna_neighborhood` **collapses at the 2024-06 RMS
+cutover** (~7–8% of incidents in 2020–2023 vs ~0.4% in 2025), so placed-only
+annuals would tilt the recent shape (2020→2025 = +6.4% placed-only vs **≈flat
+citywide**: 24,002 → 23,894). The map/counter chapters still use the placed
+timeline (94.9% coverage, disclosed on screen — including an on-map note that
+later months look denser partly because coverage improved). Rebuild:
+`node pipeline/build-trend.mjs cincinnati-oh`.
+
 ## Reproduce
 
 ```bash
 FBI_API_KEY=… node pipeline/sources/cincinnati-oh.mjs
+node pipeline/build-trend.mjs cincinnati-oh
 ```
