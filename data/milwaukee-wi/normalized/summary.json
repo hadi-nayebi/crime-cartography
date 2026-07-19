@@ -29,19 +29,19 @@
   "cats": {
     "persons": {
       "label": "Crimes Against Persons",
-      "color": "#ff2e63"
+      "color": "#ef476f"
     },
     "property": {
       "label": "Crimes Against Property",
-      "color": "#ffc233"
+      "color": "#e8c07d"
     },
     "society": {
       "label": "Crimes Against Society",
-      "color": "#34e0e0"
+      "color": "#59a5d8"
     },
     "other": {
       "label": "Group B / other offenses (context)",
-      "color": "#7486a0"
+      "color": "#666b74"
     }
   },
   "beatCount": 190

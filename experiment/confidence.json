@@ -172,5 +172,68 @@
         "change": "initial entry; Shots-Fired trend artifact excluded + disclosed"
       }
     ]
+  },
+  "detroit-mi": {
+    "score": 64,
+    "axes": {
+      "data": 22,
+      "representation": 15,
+      "narrative": 17,
+      "technical": 10
+    },
+    "blockers": [
+      "not yet rendered (music generation holding the GPU this session) — no stills/encode verification",
+      "music track (audio/detroit-mi-music-sao.wav) — verify present + 0 audio gaps at render",
+      "full watch-through with audio not yet logged",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "config authored by producer; every on-screen number recomputed from normalized data (factsheet harness): hook -69% (1985 149,954 -> 2016 46,048), busiest month 2024-08=7,385, Downtown busiest, State Fair -55%; refs validated, palette patched, tsc clean, data synced. steps trendStyle, long-fall frame."
+      }
+    ]
+  },
+  "denver-co": {
+    "score": 64,
+    "axes": {
+      "data": 22,
+      "representation": 15,
+      "narrative": 17,
+      "technical": 10
+    },
+    "blockers": [
+      "not yet rendered (music generation holding the GPU this session) — no stills/encode verification",
+      "music track (audio/denver-co-music-sao.wav) — verify present + 0 audio gaps at render",
+      "full watch-through with audio not yet logged",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "config authored by producer; numbers recomputed from data: hook -20% (2022 70,227 -> 2025 55,942), FBI U-shape acknowledged (led on recent same-measure decline, not a misleading 40-yr line), Five Points busiest, University Park -53%, window -24%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle."
+      }
+    ]
+  },
+  "milwaukee-wi": {
+    "score": 64,
+    "axes": {
+      "data": 23,
+      "representation": 15,
+      "narrative": 17,
+      "technical": 9
+    },
+    "blockers": [
+      "not yet rendered (music generation holding the GPU this session) — no stills/encode verification",
+      "music track (audio/milwaukee-wi-music-sao.wav) — verify present + 0 audio gaps at render",
+      "full watch-through with audio not yet logged",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "TREND UNBLOCKED + config authored by producer. Seam gap resolved by extending FBI history to real 2005=39,404 (CDE WIMPD0000) so incident era starts 2006, contiguous 1985-2025. Numbers recomputed: hook -44% (2006 61,099 -> 2025 34,281), Old North Milwaukee busiest, Haymarket -60%, window -22%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle, long-fall frame."
+      }
+    ]
   }
 }

@@ -145,6 +145,20 @@ const PLANS = {
 // (ends at seam−1) and whose incident era comes fully from the timeline.
 // groupAOnly=true excludes the dataset's "other" bucket (e.g. service records)
 // from the incident-era annual totals — the era label must say so.
+// cfg options:
+//   groupAOnly      restrict incident-era annual totals to persons+property+society
+//   incidentLabel   era-2 legend label
+//   extraNote       appended to the honesty note
+//   extendFbi {ori,toYear}  fetch ADDITIONAL real FBI UCR years past history.json's
+//                   yearMax straight from CDE (SAME ORI/series as the builder used,
+//                   so magnitudes are identical) to close a one-year seam gap — used
+//                   only where the extra year is a genuine COMPLETE full-year value.
+//   allowSeamGap    the incident era starts >1 year after the FBI era ends and the
+//                   intervening year(s) have NO comparable full-year total (e.g. the
+//                   agency's FBI submissions were incomplete during its NIBRS
+//                   transition). The gap years are OMITTED (never interpolated) and
+//                   disclosed on-chart + in PROVENANCE. Set with `seamGapReason`.
+//   seamGapReason   verbatim disclosure of WHY the seam has a hole
 function genericPlan(cfg) {
   return async () => {
     const h = JSON.parse(await readFile(join(NORM, "history.json")));
@@ -154,22 +168,41 @@ function genericPlan(cfg) {
       fbi[y.year] = y.total;
       parts[y.year] = { violent: y.violent, property: y.property };
     }
+    let fbiTo = h.yearMax;
+    if (cfg.extendFbi) {
+      const { ori, toYear } = cfg.extendFbi;
+      const v = await cdeAnnual(ori, "violent-crime", `01-${h.yearMax + 1}`, `12-${toYear}`);
+      await sleep(3000);
+      const p = await cdeAnnual(ori, "property-crime", `01-${h.yearMax + 1}`, `12-${toYear}`);
+      for (let y = h.yearMax + 1; y <= toYear; y++) {
+        if (!(v[y] > 0) || !(p[y] > 0)) throw new Error(`${slug} extendFbi year ${y} incomplete (v=${v[y]} p=${p[y]})`);
+        fbi[y] = v[y] + p[y];
+        parts[y] = { violent: v[y], property: p[y] };
+      }
+      fbiTo = toYear;
+    }
     const inc = await timelineAnnual(cfg.groupAOnly);
     Object.assign(parts, timelineAnnual.lastParts ?? {});
     const incFrom = Math.min(...Object.keys(inc).map(Number));
     const incTo = Math.max(...Object.keys(inc).map(Number));
     return {
       eras: [
-        { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+        { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: fbiTo },
         { key: "incident", label: cfg.incidentLabel, from: incFrom, to: incTo },
       ],
       fbi,
       inc,
       parts,
+      allowSeamGap: !!cfg.allowSeamGap,
+      seamGapReason: cfg.seamGapReason,
       note:
-        `UCR index crimes (${h.yearMin}–${h.yearMax}) vs ${cfg.incidentLabel} (${incFrom}+) are ` +
+        `UCR index crimes (${h.yearMin}–${fbiTo}) vs ${cfg.incidentLabel} (${incFrom}+) are ` +
         "different measures — compare shapes within an era, not across the seam. " +
-        "Partial current year excluded." + (cfg.extraNote ? ` ${cfg.extraNote}` : ""),
+        "Partial current year excluded." +
+        (incFrom > fbiTo + 1
+          ? ` Years ${fbiTo + 1}–${incFrom - 1} are omitted: ${cfg.seamGapReason ?? "no comparable full-year total exists"}.`
+          : "") +
+        (cfg.extraNote ? ` ${cfg.extraNote}` : ""),
     };
   };
 }
@@ -266,15 +299,38 @@ PLANS["denver-co"] = genericPlan({
 });
 
 
-PLANS["atlanta-ga"] = genericPlan({ groupAOnly: false, incidentLabel: "APD — recorded offenses (NIBRS)" });
+PLANS["atlanta-ga"] = genericPlan({
+  groupAOnly: false,
+  incidentLabel: "APD — recorded offenses (NIBRS)",
+  allowSeamGap: true, // FBI UCR ends 2018; APD's open incident feed starts 2021.
+  seamGapReason:
+    "Atlanta PD's FBI submissions for 2019 and 2020 were incomplete during its transition to NIBRS " +
+    "(CDE returns only partial-year totals for those years — e.g. 2020 ≈ 7,300 vs 2018 ≈ 27,000), so no " +
+    "comparable citywide total exists for 2019–2020; those years are left blank rather than shown at a false low",
+});
 PLANS["detroit-mi"] = genericPlan({ groupAOnly: false, incidentLabel: "DPD — recorded incidents (RMS)" });
 PLANS["buffalo-ny"] = genericPlan({ groupAOnly: false, incidentLabel: "BPD — reported crimes (10 major types)",
   extraNote: "Buffalo publishes only ten major crime types — no drug/weapon/vice offenses; a narrower incident measure than most cities." });
-PLANS["baltimore-md"] = genericPlan({ groupAOnly: false, incidentLabel: "BPD — NIBRS Group A (victim-deduped)" });
+PLANS["baltimore-md"] = genericPlan({
+  groupAOnly: false,
+  incidentLabel: "BPD — NIBRS Group A (victim-deduped)",
+  allowSeamGap: true, // FBI UCR ends 2020; BPD's open NIBRS feed starts 2022.
+  seamGapReason:
+    "Baltimore PD has a documented FBI/NIBRS reporting gap in 2021 (CDE returns only a partial-year " +
+    "total ≈ 13,200 vs 2020 ≈ 28,000), and the city's open NIBRS incident feed begins 2022-01, so no " +
+    "comparable full-year total exists for 2021; that year is left blank rather than shown at a false low",
+});
 PLANS["cincinnati-oh"] = genericPlan({ groupAOnly: false, incidentLabel: "CPD — recorded incidents (STARS)" });
 PLANS["kansas-city-mo"] = genericPlan({ groupAOnly: false, incidentLabel: "KCPD — reported crimes (deduped)" });
 PLANS["milwaukee-wi"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — NIBRS Group A offenses",
-  extraNote: "Group B / other context records excluded from the trend." });
+  // Milwaukee's open incident archive begins 2005-02 (no January 2005), so the
+  // first COMPLETE incident year is 2006. FBI history stopped at 2004, leaving a
+  // one-year hole. 2005 is a genuine full FBI UCR year (CDE WIMPD0000: violent
+  // 6,027 + property 33,377 = 39,404, sitting cleanly between 2004=36,968 and
+  // 2006), so we close the seam by extending real FBI history to 2005 — nothing
+  // interpolated. Incident era then starts 2006 → fully contiguous.
+  extendFbi: { ori: "WIMPD0000", toYear: 2005 },
+  extraNote: "Group B / other context records excluded from the trend. FBI UCR history extended to 2005 (real CDE full year) because the city's incident archive begins February 2005." });
 PLANS["charlotte-nc"] = genericPlan({ groupAOnly: false, incidentLabel: "CMPD — criminal incidents (NIBRS)" });
 PLANS["nashville-tn"] = genericPlan({ groupAOnly: false, incidentLabel: "MNPD — reported incidents (NIBRS)" });
 PLANS["dallas-tx"] = genericPlan({ groupAOnly: false, incidentLabel: "DPD — recorded incidents (NIBRS)",
@@ -284,7 +340,7 @@ PLANS["memphis-tn"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — NI
 
 const plan = PLANS[slug];
 if (!plan) { console.error(`no trend plan for ${slug}`); process.exit(1); }
-const { eras, fbi, inc, note, parts = {} } = await plan();
+const { eras, fbi, inc, note, parts = {}, allowSeamGap = false, seamGapReason } = await plan();
 
 const years = [];
 for (let y = eras[0].from; y <= eras[0].to; y++) {
@@ -301,15 +357,27 @@ for (const yr of years) {
   const s = Object.values(yr.parts).reduce((a, b) => a + b, 0);
   if (s !== yr.total) throw new Error(`parts of ${yr.year} sum ${s} ≠ total ${yr.total}`);
 }
-// validate contiguity across the whole span
+// The intervening years between the two eras (the seam hole), if any.
+const seamGapYears = [];
+for (let y = eras[0].to + 1; y < eras[1].from; y++) seamGapYears.push(y);
+// Validate contiguity. Gaps WITHIN either era are always fatal. A single gap AT
+// the seam is permitted ONLY when the plan explicitly declared allowSeamGap
+// (the omitted years have no honest comparable total; they are disclosed, never
+// filled). This keeps genuine data holes from passing silently.
 for (let i = 1; i < years.length; i++) {
-  if (years[i].year !== years[i - 1].year + 1) throw new Error(`gap at ${years[i].year}`);
+  if (years[i].year === years[i - 1].year + 1) continue;
+  const atSeam = years[i - 1].era === "fbi" && years[i].era === "incident";
+  if (atSeam && allowSeamGap) continue;
+  throw new Error(`gap at ${years[i].year}`);
 }
+if (seamGapYears.length && !allowSeamGap) throw new Error(`undeclared seam gap ${seamGapYears.join(",")}`);
+if (allowSeamGap && !seamGapYears.length) throw new Error(`allowSeamGap set but eras are contiguous — remove it`);
 const out = {
   note,
   fetchedAt: new Date().toISOString(),
   seamYear: eras[1].from,
   eras,
+  ...(seamGapYears.length ? { seamGapYears, seamGapReason } : {}),
   years,
 };
 await writeFile(join(NORM, "trend.json"), JSON.stringify(out, null, 2));

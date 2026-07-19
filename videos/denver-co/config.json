@@ -1,0 +1,74 @@
+{
+  "slug": "denver-co",
+  "datasetDir": "data/denver-co",
+  "title": "Denver · The Recent Turn",
+  "subtitle": "FBI UCR 1985–2020 + DPD incidents 2021–2026 · 78 neighborhoods · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/denver-co-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "lollipop",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−20%",
+    "line": "Denver crime, down since the 2022 peak",
+    "sub": "DPD incidents · a real, recent decline — up close"
+  },
+  "punchline": {
+    "text": "2022: 70,227 → 2025: 55,942",
+    "sub": "−20% in three years · reported criminal offenses (DPD), the same measure"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#070a0e",
+      "beatFill": "#0e131a",
+      "beatStroke": "rgba(142,202,230,0.24)",
+      "panelStroke": "rgba(142,202,230,0.2)",
+      "grid": "rgba(142,202,230,0.12)",
+      "ink": "#eef3f8",
+      "inkDim": "#a9b6c4",
+      "inkFaint": "#6a7684"
+    },
+    "catColors": {
+      "persons": "#ff5a5f",
+      "property": "#f4a259",
+      "society": "#8ecae6",
+      "other": "#66707d"
+    }
+  },
+  "copy": {
+    "cityName": "Denver",
+    "regionNoun": "neighborhood",
+    "seamExplain": "The ruler changes here — not the city. Through 2020 the gray marks are the FBI's classic 'index' crimes. From 2021 the figures are DPD's own incident data, which counts a much broader set of offenses, so the level steps up. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · DPD OPEN DATA",
+    "chapter2Title": "Now — up close, 78 neighborhoods",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 78 neighborhoods — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "DPD open data",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location (block-level). 99.9% map to one of 78 neighborhoods — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2020) and DPD incident data (2021+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Denver neighborhood reports the fewest Group A crimes?",
+    "sourceLine": "Data: Denver Police Department via Denver Open Data Catalog · real block-level locations",
+    "coverageText": "99.9% of records mapped to a neighborhood",
+    "creditsSources": "Sources: Denver Police Department incident data (rolling 5 years + YTD) via the Denver Open Data Catalog & FBI UCR (1985–2020) via the FBI Crime Data Explorer (ORI CO0160000). Neighborhoods: City and County of Denver official statistical neighborhoods. DPD's source omits sex offenses; FBI UCR index crimes and DPD incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1986, "text": "1986: the FBI-era peak — 56,326 index crimes reported." },
+    { "atYear": 2008, "text": "2008: the low point — 22,856, less than half the 1980s peak." },
+    { "atYear": 2020, "text": "2020: back up to 40,949 — the last year of the FBI measure." },
+    { "atYear": 2022, "text": "2022: 70,227 — the recent high under DPD's broader incident count." },
+    { "atYear": 2025, "text": "2025: 55,942 — down 20% from that 2022 peak." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — anonymized to the block by DPD open data." },
+    { "atMonth": "2022-05", "text": "May 2022 — the busiest Group A month of the last five years: 5,789." },
+    { "atMonth": "2023-09", "text": "Five Points — Denver's busiest neighborhood for reported Group A crime.", "beat": "five-points" },
+    { "atMonth": "2025-02", "text": "University Park: down 53% since 2022 — the city's biggest neighborhood drop.", "beat": "university-park" },
+    { "atMonth": "2026-03", "text": "Reported Group A is down citywide: 64,868 (2022) → 49,428 (2025), −24%." }
+  ]
+}

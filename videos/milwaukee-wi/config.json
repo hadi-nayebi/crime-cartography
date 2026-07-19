@@ -1,0 +1,74 @@
+{
+  "slug": "milwaukee-wi",
+  "datasetDir": "data/milwaukee-wi",
+  "title": "Milwaukee · Nearly Halved",
+  "subtitle": "FBI UCR 1985–2005 + MPD NIBRS 2006–2026 · 190 neighborhoods · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/milwaukee-wi-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "lollipop",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−44%",
+    "line": "Milwaukee crime, down 44% since 2006",
+    "sub": "MPD reports · nearly halved in two decades — up close"
+  },
+  "punchline": {
+    "text": "2006: 61,099 → 2025: 34,281",
+    "sub": "−44% under the same MPD measure · Group A crime nearly halved"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#08070a",
+      "beatFill": "#100e13",
+      "beatStroke": "rgba(232,192,125,0.22)",
+      "panelStroke": "rgba(232,192,125,0.2)",
+      "grid": "rgba(232,192,125,0.12)",
+      "ink": "#f2eef2",
+      "inkDim": "#b8b0bb",
+      "inkFaint": "#77707c"
+    },
+    "catColors": {
+      "persons": "#ef476f",
+      "property": "#e8c07d",
+      "society": "#59a5d8",
+      "other": "#666b74"
+    }
+  },
+  "copy": {
+    "cityName": "Milwaukee",
+    "regionNoun": "neighborhood",
+    "seamExplain": "The ruler changes here — not the city. Through 2005 the gray marks are the FBI's classic 'index' crimes. From 2006 the figures are MPD's own NIBRS Group A records, a broader modern count, so the level steps up. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · MPD NIBRS",
+    "chapter2Title": "Now — up close, 190 neighborhoods",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 190 neighborhoods — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "MPD NIBRS · CC BY",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported offense location (block-level). 98.8% map to one of 190 neighborhoods — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2005) and MPD NIBRS Group A (2006+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Milwaukee neighborhood reports the fewest Group A crimes?",
+    "sourceLine": "Data: Milwaukee Police Department via data.milwaukee.gov (CC BY) · real block-level locations",
+    "coverageText": "98.8% of records mapped to a neighborhood",
+    "creditsSources": "Sources: Milwaukee Police Department incident data (WIBR/NIBRS, 2005–present) via data.milwaukee.gov (CC BY) & FBI UCR (1985–2005) via the FBI Crime Data Explorer (ORI WIMPD0000). The FBI history is extended to 2005 (a real full FBI year) because the city's incident archive begins February 2005; 2005 is never interpolated. Neighborhoods: City of Milwaukee (CC BY). Group B / context records are excluded from the trend. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1990, "text": "1990: the FBI-era peak — 58,802 index crimes reported." },
+    { "atYear": 1995, "text": "1995: violent crime peaks at 6,737 reports." },
+    { "atYear": 2005, "text": "2005: 39,404 — the last FBI year before the city's own record begins." },
+    { "atYear": 2006, "text": "2006: 61,099 — the first full year of MPD's NIBRS data." },
+    { "atYear": 2025, "text": "2025: 34,281 — down 44% across the MPD era." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported offense location — anonymized to the block by MPD open data." },
+    { "atMonth": "2021-07", "text": "July 2021 — the busiest Group A month of the last five years: 4,888." },
+    { "atMonth": "2023-09", "text": "Old North Milwaukee — the city's busiest neighborhood for reported Group A crime.", "beat": "OLD NORTH MILWAUKEE" },
+    { "atMonth": "2025-02", "text": "Haymarket: down 60% since 2022 — the city's steepest neighborhood drop.", "beat": "HAYMARKET" },
+    { "atMonth": "2026-03", "text": "The decline continues: reported Group A fell 43,836 (2022) → 34,281 (2025), −22%." }
+  ]
+}

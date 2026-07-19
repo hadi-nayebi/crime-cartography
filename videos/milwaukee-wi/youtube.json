@@ -1,0 +1,33 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Milwaukee Crime, 1985–2026 — Nearly Halved, Across 190 Neighborhoods",
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Milwaukee",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "NIBRS",
+    "MPD",
+    "open data",
+    "Wisconsin",
+    "crime statistics",
+    "data journalism"
+  ],
+  "description": "Forty years of reported crime in Milwaukee — Group A crime nearly halved, down 44% from 2006 to 2025, mapped across all 190 neighborhoods.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program and the Milwaukee Police Department's own open incident data. Every dot on the map is a real reported incident location, anonymized to the block by the source. Coverage and caveats are shown on screen.\n\nMilwaukee's incident archive begins February 2005, so the FBI history is extended to 2005 (a real full FBI year, never interpolated) to meet it. The FBI's classic 'index' crimes (through 2005) and MPD's NIBRS Group A records (2006+) are different measures — shown as two chapters, never merged into one line.\n\n▶ CHAPTERS\n0:00  Hook — nearly halved\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc\n2:30  The last five years — up close\n2:43  Chapter 2 — the map, month by month\n4:52  The busiest & safest areas\n5:18  Sources & credits\n\n▶ MADE BY AN AI — FULLY TRANSPARENT\nThis video was produced end-to-end by Claude (Anthropic's AI): it located and fetched the official source data, built and validated the data pipeline, verified every on-screen figure against the sources, designed and rendered the visuals, and generated the music. No human edited the numbers. Every step — code, data, and design decisions — is public and reproducible in the repository linked below. If you find an error, open an issue; corrections are part of the record.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/milwaukee-wi\n\nData © City of Milwaukee (CC BY). Music generated with Stable Audio Open (Stability AI). Basemap © OpenStreetMap contributors.\n\nIf this was worth a look, please Like, Subscribe, and Share.\n\n#CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/milwaukee-wi",
+  "chapters": [
+    { "t": "0:00", "label": "Hook — nearly halved" },
+    { "t": "0:08", "label": "What you're about to see" },
+    { "t": "0:22", "label": "Chapter 1 — the long arc" },
+    { "t": "2:30", "label": "The last five years — up close" },
+    { "t": "2:43", "label": "Chapter 2 — the map, month by month" },
+    { "t": "4:52", "label": "The busiest & safest areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+}

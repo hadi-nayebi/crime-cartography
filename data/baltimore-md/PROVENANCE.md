@@ -120,6 +120,10 @@ Dots are **real incident locations published by BPD** (`Latitude`/`Longitude`, a
 
 UCR Summary (Violent/Property) is a **different taxonomy** than BPD NIBRS categories — the eras are presented as distinct and bridge at 2022 across the disclosed 2021 gap; they are never equated. No monthly or neighborhood detail is implied for 1985–2020.
 
+### Trend seam decision (producer, 2026-07-19)
+
+The FBI UCR era ends **2020** and the BPD open NIBRS incident feed begins **2022-01**. Baltimore has a documented FBI/NIBRS reporting gap in **2021**: CDE returns only a partial-year total for `MDBPD0000` (≈ 13,200 vs 2020 ≈ 28,000), so no comparable full-year figure exists. Resolution (in `pipeline/build-trend.mjs`, `allowSeamGap`): **2021 is omitted** (recorded as `seamGapYears:[2021]` with a verbatim `seamGapReason`) rather than shown at a false low or interpolated. `trend.json` runs FBI 1985–2020 then incident 2022–2025, with the one-year hole disclosed on the chart's seam explainer and in the era legend. Nothing is invented; the gap is shown as a gap.
+
 ## Reproduce
 
 ```bash

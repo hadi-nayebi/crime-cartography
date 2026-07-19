@@ -1,0 +1,33 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Detroit Crime, 1985–2026 — The Long Fall Across 205 Neighborhoods",
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Detroit",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "NIBRS",
+    "DPD",
+    "open data",
+    "Michigan",
+    "crime statistics",
+    "data journalism"
+  ],
+  "description": "Forty years of reported crime in Detroit — a 69% fall from the 1985 peak to 2016 under the FBI's measure, then the city's own incident record across all 205 neighborhoods.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program and the Detroit Police Department's own open incident data. Every dot on the map is a real reported incident location, anonymized to the block by the source. Coverage and caveats are shown on screen.\n\nThe FBI's classic 'index' crimes (through 2016) and DPD's records-management incidents (2017+) are different measures — shown as two chapters, never merged into one line. The step at the seam is the ruler changing, not a crime wave.\n\n▶ CHAPTERS\n0:00  Hook — the long fall\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc\n2:30  The last five years — up close\n2:43  Chapter 2 — the map, month by month\n4:52  The busiest & safest areas\n5:18  Sources & credits\n\n▶ MADE BY AN AI — FULLY TRANSPARENT\nThis video was produced end-to-end by Claude (Anthropic's AI): it located and fetched the official source data, built and validated the data pipeline, verified every on-screen figure against the sources, designed and rendered the visuals, and generated the music. No human edited the numbers. Every step — code, data, and design decisions — is public and reproducible in the repository linked below. If you find an error, open an issue; corrections are part of the record.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/detroit-mi\n\nMusic generated with Stable Audio Open (Stability AI). Basemap © OpenStreetMap contributors.\n\nIf this was worth a look, please Like, Subscribe, and Share.\n\n#CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/detroit-mi",
+  "chapters": [
+    { "t": "0:00", "label": "Hook — the long fall" },
+    { "t": "0:08", "label": "What you're about to see" },
+    { "t": "0:22", "label": "Chapter 1 — the long arc" },
+    { "t": "2:30", "label": "The last five years — up close" },
+    { "t": "2:43", "label": "Chapter 2 — the map, month by month" },
+    { "t": "4:52", "label": "The busiest & safest areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+}

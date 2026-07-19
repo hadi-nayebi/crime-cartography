@@ -102,6 +102,10 @@ Dots are **real offense locations published by APD** in the `Latitude`/`Longitud
 
 UCR Summary (Violent/Property) is a **different taxonomy** than APD NIBRS categories — the eras are presented as distinct and are never equated. No monthly or neighborhood detail is implied for 1985–2018.
 
+### Trend seam decision (producer, 2026-07-19)
+
+The FBI UCR era ends **2018** (last full-year submission before APD's NIBRS transition) and the APD open incident feed begins **2021**. CDE *does* return 2019–2020 for `GAAPD0000`, but only as partial-year totals (2019 ≈ 19,600; **2020 ≈ 7,300** vs 2018 ≈ 27,000) — plotting them would fabricate a false cliff. Resolution (in `pipeline/build-trend.mjs`, `allowSeamGap`): **2019 and 2020 are omitted** (recorded as `seamGapYears:[2019,2020]` with a verbatim `seamGapReason`) rather than shown at a false low or interpolated. `trend.json` runs FBI 1985–2018 then incident 2021–2025, with the two-year hole disclosed on the chart's seam explainer and in the era legend. Nothing is invented; the gap is shown as a gap.
+
 ## Reproduce
 
 ```bash

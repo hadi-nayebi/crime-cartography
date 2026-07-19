@@ -1,0 +1,74 @@
+{
+  "slug": "detroit-mi",
+  "datasetDir": "data/detroit-mi",
+  "title": "Detroit · The Long Fall",
+  "subtitle": "FBI UCR 1985–2016 + DPD RMS 2017–2026 · 205 neighborhoods · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/detroit-mi-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "steps",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−69%",
+    "line": "Detroit crime, from the 1985 peak to 2016",
+    "sub": "FBI UCR · then the map, month by month, up close"
+  },
+  "punchline": {
+    "text": "1985: 149,954 → 2016: 46,048",
+    "sub": "−69% under the same FBI measure · a newer, broader count begins in 2017"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#060809",
+      "beatFill": "#0d1015",
+      "beatStroke": "rgba(157,180,208,0.24)",
+      "panelStroke": "rgba(157,180,208,0.2)",
+      "grid": "rgba(157,180,208,0.12)",
+      "ink": "#eef2f7",
+      "inkDim": "#aab6c6",
+      "inkFaint": "#6b7583"
+    },
+    "catColors": {
+      "persons": "#ff4d5e",
+      "property": "#9db4d0",
+      "society": "#ffd166",
+      "other": "#565f6b"
+    }
+  },
+  "copy": {
+    "cityName": "Detroit",
+    "regionNoun": "neighborhood",
+    "seamExplain": "The ruler changes here — not the city. Through 2016 the gray bars are the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2017 the figures are DPD's own records-management system, which logs every reported incident — a broader net, so the level steps up. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · DPD RMS",
+    "chapter2Title": "Now — up close, 205 neighborhoods",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 205 neighborhoods — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "DPD RMS · open data",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location (block-level). 99.1% map to one of 205 neighborhoods — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2016) and DPD RMS incidents (2017+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Detroit neighborhood reports the fewest Group A crimes?",
+    "sourceLine": "Data: Detroit Police Department (RMS) via the City of Detroit Open Data Portal · real block-level locations",
+    "coverageText": "99.1% of records mapped to a neighborhood",
+    "creditsSources": "Sources: Detroit Police Department incident data (2017–present) via the City of Detroit Open Data Portal & FBI UCR (1985–2016) via the FBI Crime Data Explorer (ORI MI8234900). Neighborhoods: City of Detroit official layer. FBI UCR index crimes and DPD's incident records are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1985, "text": "1985: the peak — 149,954 index crimes, at the depth of Detroit's crisis." },
+    { "atYear": 1991, "text": "1991: violent crime peaks at 28,262 reports." },
+    { "atYear": 2000, "text": "By 2000 the total is 97,776 — already a third below the peak." },
+    { "atYear": 2016, "text": "2016: 46,048 — down 69% from 1985; the DPD incident record begins next year." },
+    { "atYear": 2023, "text": "2023: 81,696 reported incidents — the high point of the newer, broader count." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — anonymized to the block by DPD open data." },
+    { "atMonth": "2023-09", "text": "Downtown — Detroit's busiest neighborhood for reported Group A crime over the last five years.", "beat": "Downtown" },
+    { "atMonth": "2024-08", "text": "August 2024 — the busiest Group A month of the last five years: 7,385." },
+    { "atMonth": "2025-02", "text": "State Fair: down 55% since 2022 — the city's biggest neighborhood drop.", "beat": "State Fair" },
+    { "atMonth": "2026-03", "text": "Reported Group A has held roughly flat: 75,248 (2022) → 73,634 (2025)." }
+  ]
+}

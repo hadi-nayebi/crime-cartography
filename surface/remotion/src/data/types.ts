@@ -218,7 +218,7 @@ export interface StoryConfig {
   theme?: ThemeOverride; // city-specific palette
   repoUrl?: string; // shown in credits
   /** chart style for the long-arc chapter — per-city A/B variation. */
-  trendStyle?: "bars" | "area" | "lollipop";
+  trendStyle?: "bars" | "area" | "lollipop" | "steps" | "stacked";
   /** cold-open hook: a verified shocking stat shown in the first seconds. */
   hook?: { stat: string; line: string; sub?: string };
   /** verified net-change punchline at the end of the long-arc chapter. */

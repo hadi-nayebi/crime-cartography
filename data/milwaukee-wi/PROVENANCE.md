@@ -155,6 +155,10 @@ Coordinates are TEXT in the source; ≈1.6% of window rows are blank/unusable an
 
 The CDE response carries both an "… Offenses" and an "… Clearances" series — the script matches the **Offenses** series explicitly and gates on a plausible 1985 violent-crime total. UCR Summary (Violent/Property) is a **different taxonomy** than MPD WIBR/NIBRS — the eras are presented as distinct and bridge at 2005; they are never equated. No monthly or neighborhood detail is implied for 1985–2004.
 
+### Trend seam decision (producer, 2026-07-19)
+
+The city's WIBR incident archive begins **2005-02** (there is no January 2005 in the source), so the first *complete* incident year is **2006**. FBI history stopped at 2004, which left a one-year hole at 2005 and blocked a contiguous long-arc trend. Resolution (in `pipeline/build-trend.mjs`, `extendFbi`): the FBI UCR era is extended by one **real full FBI year** — 2005 = violent **6,027** + property **33,377** = **39,404** (CDE `WIMPD0000`, same series/ORI as 1985–2004, so magnitudes are directly comparable; it sits naturally between 2004 = 36,968 and 2006 = 46,443). The incident era then runs **2006 → 2025**, fully contiguous with the FBI era. Nothing is interpolated; the added year is a sourced FBI count. `trend.json` span is 1985–2025, seam 2006.
+
 ## Reproduce
 
 ```bash
