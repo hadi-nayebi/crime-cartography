@@ -264,11 +264,11 @@ a reliable, citable source link.**
   series). UCR taxonomy kept distinct; eras bridge at 2003.
 - **Span:** 1985–2002 (FBI UCR annual) + 2003-01-01 → 2026-06-30
   (282 months, per-neighborhood monthly by category).
-- **Records:** 3,117,438 total · 3,013,369 placed in a
-  neighborhood (**96.7% coverage**) · 104,069 unplaced
-  (no-location 58,221 + overlap-dropped
-  43,733 + partial-2026-07
-  2,115), kept in totals and disclosed.
+- **Records:** 3,071,590 in-window · 3,013,369 placed in a
+  neighborhood (**98.1% coverage**) · 58,221 unplaced
+  (no usable location), kept in totals and disclosed. Outside the window and
+  excluded from the totals: overlap-dropped 43,733 + partial-2026-07 2,115,
+  disclosed separately (`excludedOutsideWindow`).
 - **Reconciliation:** placed + unplaced == citywide validated **exactly** per
   month × category for all 282 months against independent per-source counts.
 - **Real dots:** deterministic ≤100/month sample of real SFPD-published

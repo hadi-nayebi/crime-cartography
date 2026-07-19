@@ -968,10 +968,21 @@ async function main() {
     `wg3w partition: ${buckets.wg3wPre2018}+${wg3wWindow}+${buckets.wg3wPartial} != ${buckets.wg3wAll}`);
   assert(historic.stats.scanned === tmnfWindow, `tmnf scan ${historic.stats.scanned} != citywide ${tmnfWindow}`);
 
-  const totalRecords = buckets.tmnfAll + buckets.wg3wAll - buckets.tmnfPre2003 - buckets.wg3wPre2018;
-  const unplacedRecords = totalRecords - placedRecords;
-  assert(unplacedRecords === unplacedNoLoc + buckets.tmnfOverlap + buckets.wg3wPartial,
-    "unplaced buckets don't sum");
+  // Contract (schema.md; per buffalo-ny/cincinnati-oh): totalRecords counts
+  // IN-WINDOW records only, so Σ catTotals == totalRecords and
+  // placed + unplaced == total. The tmnf 2018 overlap tail and the partial
+  // 2026-07 month are outside the window — disclosed in excludedOutsideWindow,
+  // never mixed into totalRecords/unplacedBeats.
+  const totalRecords = windowCitywide;
+  const unplacedRecords = unplacedNoLoc;
+  assert(placedRecords + unplacedRecords === totalRecords, "placed+unplaced != total");
+  const excludedOutsideWindow = {
+    "tmnf-2018-overlap-dropped": buckets.tmnfOverlap,
+    "partial-2026-07": buckets.wg3wPartial,
+  };
+  assert(totalRecords + buckets.tmnfOverlap + buckets.wg3wPartial ===
+    buckets.tmnfAll + buckets.wg3wAll - buckets.tmnfPre2003 - buckets.wg3wPre2018,
+    "window + excluded != datasets minus pre-window");
   const coveragePct = Math.round((placedRecords / totalRecords) * 1000) / 10;
 
   const catTotals = { persons: 0, property: 0, society: 0, other: 0 };
@@ -1038,11 +1049,8 @@ async function main() {
     placedRecords,
     unplacedRecords,
     coveragePct,
-    unplacedBeats: {
-      "no-location": unplacedNoLoc,
-      "tmnf-2018-overlap-dropped": buckets.tmnfOverlap,
-      "partial-2026-07": buckets.wg3wPartial,
-    },
+    unplacedBeats: { "no-location": unplacedNoLoc },
+    excludedOutsideWindow,
     catTotals,
     cats: CATS,
     beatCount: 41,
@@ -1144,7 +1152,8 @@ async function main() {
 
   console.log(JSON.stringify({
     totalRecords, placedRecords, unplacedRecords, coveragePct,
-    unplacedBeats: summary.unplacedBeats, catTotals,
+    unplacedBeats: summary.unplacedBeats,
+    excludedOutsideWindow: summary.excludedOutsideWindow, catTotals,
     months: MONTHS.length, feedItems: feed.length, pointsShown: pointsRes.shown, sampleRate,
     spotCheck,
     fbi: { ori: fbi.ori, span: `${historyJson.yearMin}-${historyJson.yearMax}`,
@@ -1182,11 +1191,11 @@ Every figure rendered from this dataset traces to the public sources below. No v
 | APIs | ${SODA_NEW} · ${SODA_OLD} |
 | Fetched | ${fetchedAt} |
 | License | **ODC PDDL 1.0** (public-domain dedication) — attribution "San Francisco Police Department via DataSF" |
-| Records used | ${n(summary.totalRecords)} (tmnf 2003-01-01 → 2017-12-31 + wg3w 2018-01-01 → 2026-06-30) |
+| Records used | ${n(summary.totalRecords)} in-window (tmnf 2003-01-01 → 2017-12-31 + wg3w 2018-01-01 → 2026-06-30; window exclusions disclosed separately below) |
 
-### Cutover & windowing (disclosed exclusions)
-- **Cutover at 2018-01-01**: tmnf is used strictly through **2017-12-31**; its 2018-01-01 → 2018-05-15 tail (${n(buckets.tmnfOverlap)} rows) overlaps wg3w and is **dropped and disclosed** (\`unplacedBeats["tmnf-2018-overlap-dropped"]\`) to avoid double counting.
-- Rows after **2026-06-30** (${n(buckets.wg3wPartial)} rows, partial month at fetch time) are excluded and disclosed (\`unplacedBeats["partial-2026-07"]\`).
+### Cutover & windowing (disclosed exclusions — OUTSIDE the window, not in \`totalRecords\`)
+- **Cutover at 2018-01-01**: tmnf is used strictly through **2017-12-31**; its 2018-01-01 → 2018-05-15 tail (${n(buckets.tmnfOverlap)} rows) overlaps wg3w and is **dropped and disclosed** (\`excludedOutsideWindow["tmnf-2018-overlap-dropped"]\`) to avoid double counting.
+- Rows after **2026-06-30** (${n(buckets.wg3wPartial)} rows, partial month at fetch time) are excluded and disclosed (\`excludedOutsideWindow["partial-2026-07"]\`).
 - tmnf rows before 2003-01-01: ${n(buckets.tmnfPre2003)}. wg3w rows before 2018-01-01: ${n(buckets.wg3wPre2018)}.
 - Full-dataset identities validated in-script: tmnf pre-2003 + window + overlap == ${n(buckets.tmnfAll)} (dataset total); wg3w pre-2018 + window + partial == ${n(buckets.wg3wAll)} (dataset total).
 
@@ -1204,8 +1213,9 @@ Spatial unit: the **41 official DataSF Analysis Neighborhoods** (resident-known 
 - **Reconciliation:** \`placed + unplaced == citywide\` holds **exactly** per month × category for all 282 months, with citywide counts taken from independent aggregate queries per source.
 
 ### Coverage
-- Placed in one of the 41 neighborhoods: **${n(summary.placedRecords)}** (${summary.coveragePct}%)
-- Unplaced: ${n(summary.unplacedRecords)} = ${n(summary.unplacedBeats["no-location"])} no-location/outside-polygons + ${n(buckets.tmnfOverlap)} tmnf-2018-overlap-dropped + ${n(buckets.wg3wPartial)} partial-2026-07.
+- Placed in one of the 41 neighborhoods: **${n(summary.placedRecords)}** (${summary.coveragePct}% of the ${n(summary.totalRecords)} in-window records)
+- Unplaced (in-window, no usable location): ${n(summary.unplacedRecords)}.
+- Excluded outside the window (disclosed above, NOT in the totals): ${n(buckets.tmnfOverlap)} tmnf-2018-overlap-dropped + ${n(buckets.wg3wPartial)} partial-2026-07.
 
 ## Category mapping (NIBRS crimes-against convention)
 
@@ -1265,7 +1275,7 @@ function appendWiki({ summary, historyJson, fbi, spotCheck }) {
 - **Primary sources:** SFPD incident reports via DataSF — modern
   \`wg3w-h783\` (2018-01 →, updated daily) + historical \`tmnf-yvry\`
   (2003-01 → 2018-05); cutover at **2018-01-01**, tmnf's 2018 tail
-  (${n(summary.unplacedBeats["tmnf-2018-overlap-dropped"])} rows) dropped and disclosed to avoid double counting.
+  (${n(summary.excludedOutsideWindow["tmnf-2018-overlap-dropped"])} rows) dropped and disclosed to avoid double counting.
 - **Spatial unit:** the 41 official **Analysis Neighborhoods** (\`j2bu-swwd\`,
   \`nhood\`, verbatim join). 2018+ rows carry the name natively; 2003–2017 rows
   (no neighborhood field) are placed by **point-in-polygon of their real
@@ -1282,11 +1292,12 @@ function appendWiki({ summary, historyJson, fbi, spotCheck }) {
   series). UCR taxonomy kept distinct; eras bridge at 2003.
 - **Span:** ${historyJson.yearMin}–${historyJson.yearMax} (FBI UCR annual) + 2003-01-01 → 2026-06-30
   (${summary.months} months, per-neighborhood monthly by category).
-- **Records:** ${n(summary.totalRecords)} total · ${n(summary.placedRecords)} placed in a
+- **Records:** ${n(summary.totalRecords)} in-window · ${n(summary.placedRecords)} placed in a
   neighborhood (**${summary.coveragePct}% coverage**) · ${n(summary.unplacedRecords)} unplaced
-  (no-location ${n(summary.unplacedBeats["no-location"])} + overlap-dropped
-  ${n(summary.unplacedBeats["tmnf-2018-overlap-dropped"])} + partial-2026-07
-  ${n(summary.unplacedBeats["partial-2026-07"])}), kept in totals and disclosed.
+  (no usable location), kept in totals and disclosed. Outside the window and
+  excluded from the totals: overlap-dropped
+  ${n(summary.excludedOutsideWindow["tmnf-2018-overlap-dropped"])} + partial-2026-07
+  ${n(summary.excludedOutsideWindow["partial-2026-07"])}, disclosed separately.
 - **Reconciliation:** placed + unplaced == citywide validated **exactly** per
   month × category for all 282 months against independent per-source counts.
 - **Real dots:** deterministic ≤100/month sample of real SFPD-published
