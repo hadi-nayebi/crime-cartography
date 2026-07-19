@@ -110,11 +110,11 @@
     ]
   },
   "boston-ma": {
-    "score": 89,
+    "score": 90,
     "axes": {
       "data": 24,
       "representation": 23,
-      "narrative": 20,
+      "narrative": 21,
       "technical": 22
     },
     "blockers": [
@@ -131,6 +131,10 @@
       {
         "date": "2026-07-19",
         "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide \u2014 all cities inherit it on next render."
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard \u2014 evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
       }
     ]
   },

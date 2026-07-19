@@ -290,10 +290,25 @@ async function ensureThumbs(slug, force = false) {
   return out;
 }
 
+// Publish gate: every pre-publish light on the stage strip must be green —
+// including "verified" (confidence ≥95, zero blockers). Same rule the board
+// shows; enforced server-side so no UI path can skip it.
+async function gateOf(slug) {
+  const row = await cityRow(slug);
+  const ledger = (await readJson(join(ROOT, "experiment/confidence.json"))) ?? {};
+  const conf = ledger[slug] ?? null;
+  if (conf) row.stages.verified = row.stages.render && conf.score >= 95 && (conf.blockers ?? []).length === 0;
+  const missing = STAGES.slice(0, 7).filter((s) => !row.stages[s]);
+  return { ready: missing.length === 0, missing, confidence: conf?.score ?? null, blockers: conf?.blockers ?? [] };
+}
+
 async function publishPreview(slug) {
   const yt = await readJson(join(ROOT, "videos", slug, "youtube.json"));
   if (!yt) return { error: "no youtube.json — config/publish metadata not authored yet" };
   const auth = await authStatus();
+  const playlists = (await readJson(join(ROOT, "experiment/channel/playlists.json")))?.formats ?? {};
+  const cfg = await readJson(join(ROOT, "videos", slug, "config.json"));
+  const scope = deriveScope(cfg);
   return {
     slug,
     published: Boolean(yt.videoId),
@@ -306,8 +321,11 @@ async function publishPreview(slug) {
     hasRender: Boolean(await mp4Of(slug)),
     authOk: auth.hasSecret && auth.hasToken,
     channel: auth.channel,
+    gate: await gateOf(slug),
+    playlist: playlists[scope] ? { title: playlists[scope].title, url: playlists[scope].url } : null,
     thumbs: await ensureThumbs(slug),
-    chosenThumb: yt.thumbnailFile ? yt.thumbnailFile.replace(/^thumbs\//, "") : null,
+    composed: exists(join(ROOT, "videos", slug, "thumbnail.jpg")),
+    chosenThumb: yt.thumbnailFrame ?? null,
   };
 }
 
@@ -317,7 +335,17 @@ async function doPublish(slug, p) {
   if (!yt) return [400, { error: "no youtube.json" }];
   if (yt.videoId) return [409, { error: `already published: ${yt.url}` }];
   if (!(await mp4Of(slug))) return [400, { error: "no rendered mp4 yet" }];
+  const gate = await gateOf(slug);
+  if (!gate.ready)
+    return [412, { error: `not all lights green — missing: ${gate.missing.join(", ")}` +
+      (gate.missing.includes("verified") ? ` (confidence ${gate.confidence ?? "—"}/100, needs ≥95 with zero blockers${gate.blockers.length ? `; blockers: ${gate.blockers.join(" · ")}` : ""})` : "") }];
   if (!(await accessToken())) return [401, { error: "YouTube not connected — authorize the channel first" }];
+  // Nothing publishes outside a playlist (each format is a playlist) — check
+  // BEFORE the upload so we never strand a video without one.
+  const fmts = (await readJson(join(ROOT, "experiment/channel/playlists.json")))?.formats ?? {};
+  const vScope = deriveScope(await readJson(join(ROOT, "videos", slug, "config.json")));
+  if (!fmts[vScope]?.id)
+    return [412, { error: `no playlist configured for format "${vScope}" — run pipeline/publish/ensure-playlists.mjs first` }];
   // Persist the operator's choices into the per-video record BEFORE upload —
   // the canonical upload CLI reads youtube.json, so the record and the listing
   // can never diverge.
@@ -328,9 +356,16 @@ async function doPublish(slug, p) {
   if (p.thumb && safeName(p.thumb)) {
     // candidates (thumbs/) are regenerable and gitignored; the CHOSEN frame is
     // copied to thumbnail.jpg — the committed part of the per-video record.
-    await copyFile(join(ROOT, "videos", slug, "thumbs", p.thumb), join(ROOT, "videos", slug, "thumbnail.jpg"));
+    // p.thumb === "thumbnail.jpg" means the operator picked the COMPOSED
+    // thumbnail already sitting in the video dir (built from selected frames).
+    if (p.thumb === "thumbnail.jpg") {
+      if (!exists(join(ROOT, "videos", slug, "thumbnail.jpg"))) return [400, { error: "no composed thumbnail.jpg yet" }];
+      yt.thumbnailFrame = "composed";
+    } else {
+      await copyFile(join(ROOT, "videos", slug, "thumbs", p.thumb), join(ROOT, "videos", slug, "thumbnail.jpg"));
+      yt.thumbnailFrame = p.thumb;
+    }
     yt.thumbnailFile = "thumbnail.jpg";
-    yt.thumbnailFrame = p.thumb;
   }
   yt.publishedVia = "studio";
   await writeFile(ytPath, JSON.stringify(yt, null, 2));
@@ -348,17 +383,37 @@ async function doPublish(slug, p) {
   if (p.thumb && safeName(p.thumb) && done.videoId) {
     try {
       const at = await accessToken();
-      const buf = await readFile(join(ROOT, "videos", slug, "thumbs", p.thumb));
+      const buf = await readFile(join(ROOT, "videos", slug, "thumbnail.jpg"));
       const r = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${done.videoId}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${at}`, "Content-Type": "image/jpeg" },
         body: buf,
       });
       thumbnail = r.ok ? "set" : `failed (HTTP ${r.status}) — set it manually in YouTube Studio`;
-      if (r.ok) { done.thumbnailSetAt = new Date().toISOString(); await writeFile(ytPath, JSON.stringify(done, null, 2)); }
+      if (r.ok) done.thumbnailSetAt = new Date().toISOString();
     } catch { thumbnail = "failed — set it manually in YouTube Studio"; }
   }
-  return [200, { ok: true, url: done.url, videoId: done.videoId, status: done.status, thumbnail }];
+  // File the video into its FORMAT playlist ("each format is a playlist" —
+  // nothing publishes outside one). Best-effort: a failure never undoes the
+  // upload, but is reported loudly for the operator/channel-manager routine.
+  let playlist = "no playlist configured";
+  try {
+    const pls = (await readJson(join(ROOT, "experiment/channel/playlists.json")))?.formats ?? {};
+    const scope = deriveScope(await readJson(join(ROOT, "videos", slug, "config.json")));
+    const pl = pls[scope];
+    if (pl?.id && done.videoId) {
+      const at = await accessToken();
+      const r = await fetch("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${at}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ snippet: { playlistId: pl.id, resourceId: { kind: "youtube#video", videoId: done.videoId } } }),
+      });
+      if (r.ok) { playlist = pl.title; done.playlistId = pl.id; done.playlistTitle = pl.title; }
+      else playlist = `insert failed (HTTP ${r.status}) — add it in YouTube Studio`;
+    }
+  } catch { playlist = "insert failed — add it in YouTube Studio"; }
+  await writeFile(ytPath, JSON.stringify(done, null, 2));
+  return [200, { ok: true, url: done.url, videoId: done.videoId, status: done.status, thumbnail, playlist }];
 }
 
 function send(res, code, body, type = "application/json") {
@@ -442,7 +497,8 @@ const server = createServer(async (req, res) => {
     if (url.pathname.startsWith("/thumb/")) {
       const [, , slug, file] = url.pathname.split("/");
       if (!safeName(slug) || !safeName(file)) return send(res, 400, { error: "bad path" });
-      const f = join(ROOT, "videos", slug, "thumbs", file);
+      // "thumbnail.jpg" = the composed/chosen one in the video dir; others are candidates
+      const f = file === "thumbnail.jpg" ? join(ROOT, "videos", slug, file) : join(ROOT, "videos", slug, "thumbs", file);
       if (!exists(f)) return send(res, 404, { error: "not found" });
       res.writeHead(200, { "Content-Type": "image/jpeg", "Cache-Control": "no-store" });
       return createReadStream(f).pipe(res);

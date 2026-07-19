@@ -6,5 +6,19 @@
     "text": "i want you to add per video card a lower band with different icons such as theme name, (I want you to define different themes for color, light and dark, etc. so each video in this batch is an experiment point; -- and these and other badges we can add to make it easier to see each video meta data; for example, I want all videos to have a check for note placement quality where a subagent must review the video and where notes are added for story telling and approve their placement no being over text, and a different shade of color as the whole background, making it easier to read, videos must acquire this badge if this sub agent cannot flag any issues.) other icons can be other factors, but all in all I clike the current format for the dashboard and each vide card with on and off flags, but make them icon and words only on the hover, and add more some right now shpow the timeline of the production, but more tags for quality, and theme, and other features of the video like, city, vs county, vs state, vs country, etc. and also use a format to sort them by which one I should pay attention first, and when I open a video given the state it is the video page must have where I can input my feedback fit to the stage of the video. do you follow?",
     "resolved": true,
     "producerNote": "Dashboard rebuilt: card badge band (icon-only, label on hover) for scope (city/county/state/country), theme (bg+category swatch, light/dark mode), chart style, note-placement QA (reads videos/<slug>/qa.json; 'unreviewed' until reviewer routine runs — requested in HARNESS.md), open-notes, published; kept the production timeline strip. Added attention-first sort (Priority/Stage/Name) with per-card reason + accent, and stage-fit feedback on the video page (pre-render: Add note/Flag blocker; review: timestamped comment + Approve/Hold/Request changes; published: post-publish + re-cut). Verified live via curl + DOM (badges collapse to icons, priority sort, all 3 phase panels). theme.name/scope config-field interpretations logged in DECISIONS.md."
+  },
+  {
+    "at": "2026-07-19T22:42:35.721Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "when I am in a video page, the left and right and also the must be an arrow to move between videos,",
+    "resolved": false
+  },
+  {
+    "at": "2026-07-19T22:43:29.864Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "the publish button should appear only if all lights are green.\nand how verify light muts be flipped by me manually.",
+    "resolved": false
   }
 ]

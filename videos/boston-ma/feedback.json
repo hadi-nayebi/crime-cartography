@@ -6,5 +6,27 @@
     "text": "REQUEST CHANGES — can you add some context about what changed about the measure from 2016 and also the placement of the notes are not very effective, you have to place notes where it is empty and also make them easier to read, use a different shade for note background than the video background.",
     "resolved": true,
     "producerNote": "Added verified Boston seamExplain (2016 measure-change context: BPD's Aug-2015 new incident records system) + engine Annotation fix: notes now sit in a chapter-specific empty band on a raised slate panel (readable, no overlap). tsc clean, 3 stills verified; re-render blockered in confidence.json."
+  },
+  {
+    "at": "2026-07-19T22:22:22.473Z",
+    "kind": "decision",
+    "videoTime": null,
+    "text": "APPROVE",
+    "resolved": true,
+    "producerNote": "Recorded owner APPROVE as evidence in confidence.json (boston-ma +1 narrative 20->21, score 89->90). Publication still gated: the encoded mp4 is dated Jul 12, predating the Jul 19 seamExplain + annotation-placement fixes, so the re-render blocker is retained until a verified encode of the fixed cut exists."
+  },
+  {
+    "at": "2026-07-19T22:22:25.735Z",
+    "kind": "decision",
+    "videoTime": null,
+    "text": "APPROVE",
+    "resolved": false
+  },
+  {
+    "at": "2026-07-19T22:23:09.984Z",
+    "kind": "decision",
+    "videoTime": null,
+    "text": "APPROVE — if you cannot find any issues with the placement of the notes along the video, then we can push this for publication.",
+    "resolved": false
   }
 ]
