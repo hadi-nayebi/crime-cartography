@@ -41,6 +41,17 @@ flagged, not done, pending your call.
    **held Baltimore's config** until this is decided — its data is otherwise ready.
    Recommendation: (b) — a disclosed gap is the most honest, matching how we
    already handle the seam holes.
+   **Ruling (2026-07-19, implemented):** option (b) adopted. `build-trend.mjs`
+   gained a general `artifactYears`/`artifactReason` plan option: declared years
+   are omitted from the assembled series (never corrected/interpolated), recorded
+   in `trend.json` as `artifactYears` + `artifactReason`, appended to the honesty
+   note, and the contiguity check passes only holes whose every missing year is
+   declared — undeclared within-era gaps stay fatal. Applied to baltimore-md
+   (1999 omitted + disclosed; evidence 1997 77,982 · 1998 72,994 · **1999 503** ·
+   2000 66,397 · 2001 63,914). Detroit rebuilt as regression — semantically
+   unchanged. Baltimore's config is now unheld; both disclosures (1999 artifact +
+   2021 seam gap) are covered in its `seamExplain`. Full trail in
+   `data/baltimore-md/PROVENANCE.md`.
 
 2. **Atlanta / Baltimore seam GAP is disclosed in copy + era chips, not yet drawn
    as a visible break.** The trend chart plots years by index, so the omitted gap

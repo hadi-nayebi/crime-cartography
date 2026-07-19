@@ -159,6 +159,12 @@ const PLANS = {
 //                   transition). The gap years are OMITTED (never interpolated) and
 //                   disclosed on-chart + in PROVENANCE. Set with `seamGapReason`.
 //   seamGapReason   verbatim disclosure of WHY the seam has a hole
+//   artifactYears   sourced years WITHIN an era whose reported total is a known
+//                   reporting artifact (e.g. an incomplete UCR submission showing
+//                   a false near-zero). Listed years are OMITTED from the series
+//                   (never corrected or interpolated), recorded in trend.json and
+//                   disclosed on-chart + in PROVENANCE. Set with `artifactReason`.
+//   artifactReason  verbatim disclosure of WHY the artifact year(s) are excluded
 function genericPlan(cfg) {
   return async () => {
     const h = JSON.parse(await readFile(join(NORM, "history.json")));
@@ -195,12 +201,17 @@ function genericPlan(cfg) {
       parts,
       allowSeamGap: !!cfg.allowSeamGap,
       seamGapReason: cfg.seamGapReason,
+      artifactYears: cfg.artifactYears ?? [],
+      artifactReason: cfg.artifactReason,
       note:
         `UCR index crimes (${h.yearMin}–${fbiTo}) vs ${cfg.incidentLabel} (${incFrom}+) are ` +
         "different measures — compare shapes within an era, not across the seam. " +
         "Partial current year excluded." +
         (incFrom > fbiTo + 1
           ? ` Years ${fbiTo + 1}–${incFrom - 1} are omitted: ${cfg.seamGapReason ?? "no comparable full-year total exists"}.`
+          : "") +
+        (cfg.artifactYears?.length
+          ? ` Year${cfg.artifactYears.length > 1 ? "s" : ""} ${cfg.artifactYears.join(", ")} omitted as a disclosed reporting artifact: ${cfg.artifactReason}.`
           : "") +
         (cfg.extraNote ? ` ${cfg.extraNote}` : ""),
     };
@@ -319,6 +330,11 @@ PLANS["baltimore-md"] = genericPlan({
     "Baltimore PD has a documented FBI/NIBRS reporting gap in 2021 (CDE returns only a partial-year " +
     "total ≈ 13,200 vs 2020 ≈ 28,000), and the city's open NIBRS incident feed begins 2022-01, so no " +
     "comparable full-year total exists for 2021; that year is left blank rather than shown at a false low",
+  artifactYears: [1999], // CDE 1999 = 503 total (violent 0 + property 503) between 72,994 (1998) and 66,397 (2000)
+  artifactReason:
+    "Baltimore's 1999 FBI UCR submission is a broken reporting year (CDE returns violent 0 + property 503 " +
+    "= 503 total, between 72,994 in 1998 and 66,397 in 2000) — an incomplete submission, not a real one-year " +
+    "crime collapse; the year is omitted rather than drawn as a false crater",
 });
 PLANS["cincinnati-oh"] = genericPlan({ groupAOnly: false, incidentLabel: "CPD — recorded incidents (STARS)" });
 PLANS["kansas-city-mo"] = genericPlan({ groupAOnly: false, incidentLabel: "KCPD — reported crimes (deduped)" });
@@ -340,14 +356,24 @@ PLANS["memphis-tn"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — NI
 
 const plan = PLANS[slug];
 if (!plan) { console.error(`no trend plan for ${slug}`); process.exit(1); }
-const { eras, fbi, inc, note, parts = {}, allowSeamGap = false, seamGapReason } = await plan();
+const { eras, fbi, inc, note, parts = {}, allowSeamGap = false, seamGapReason, artifactYears = [], artifactReason } = await plan();
+
+// Declared artifact years must be real (inside an era) and must carry a reason —
+// they are OMITTED below, never corrected or interpolated.
+if (artifactYears.length && !artifactReason) throw new Error(`artifactYears set without artifactReason`);
+for (const y of artifactYears) {
+  const inEra = (y >= eras[0].from && y <= eras[0].to) || (y >= eras[1].from && y <= eras[1].to);
+  if (!inEra) throw new Error(`artifact year ${y} outside both eras — remove it`);
+}
 
 const years = [];
 for (let y = eras[0].from; y <= eras[0].to; y++) {
+  if (artifactYears.includes(y)) continue; // disclosed reporting artifact — omitted, never shown at a false value
   if (!(fbi[y] > 0)) throw new Error(`fbi year ${y} missing`);
   years.push({ year: y, total: fbi[y], era: "fbi", ...(parts[y] ? { parts: parts[y] } : {}) });
 }
 for (let y = eras[1].from; y <= eras[1].to; y++) {
+  if (artifactYears.includes(y)) continue;
   if (!(inc[y] > 0)) throw new Error(`incident year ${y} missing`);
   years.push({ year: y, total: inc[y], era: "incident", ...(parts[y] ? { parts: parts[y] } : {}) });
 }
@@ -360,14 +386,19 @@ for (const yr of years) {
 // The intervening years between the two eras (the seam hole), if any.
 const seamGapYears = [];
 for (let y = eras[0].to + 1; y < eras[1].from; y++) seamGapYears.push(y);
-// Validate contiguity. Gaps WITHIN either era are always fatal. A single gap AT
-// the seam is permitted ONLY when the plan explicitly declared allowSeamGap
-// (the omitted years have no honest comparable total; they are disclosed, never
-// filled). This keeps genuine data holes from passing silently.
+// Validate contiguity. Gaps WITHIN either era are always fatal, EXCEPT holes
+// consisting solely of DECLARED artifactYears (disclosed reporting artifacts —
+// omitted on purpose, above). A gap AT the seam is permitted ONLY when the plan
+// explicitly declared allowSeamGap (the omitted years have no honest comparable
+// total; they are disclosed, never filled). This keeps genuine data holes from
+// passing silently.
 for (let i = 1; i < years.length; i++) {
   if (years[i].year === years[i - 1].year + 1) continue;
   const atSeam = years[i - 1].era === "fbi" && years[i].era === "incident";
   if (atSeam && allowSeamGap) continue;
+  let declaredHole = true;
+  for (let y = years[i - 1].year + 1; y < years[i].year; y++) if (!artifactYears.includes(y)) declaredHole = false;
+  if (declaredHole) continue;
   throw new Error(`gap at ${years[i].year}`);
 }
 if (seamGapYears.length && !allowSeamGap) throw new Error(`undeclared seam gap ${seamGapYears.join(",")}`);
@@ -378,6 +409,7 @@ const out = {
   seamYear: eras[1].from,
   eras,
   ...(seamGapYears.length ? { seamGapYears, seamGapReason } : {}),
+  ...(artifactYears.length ? { artifactYears, artifactReason } : {}),
   years,
 };
 await writeFile(join(NORM, "trend.json"), JSON.stringify(out, null, 2));

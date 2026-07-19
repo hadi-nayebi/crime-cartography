@@ -13,6 +13,7 @@
   .chip { font:11px ui-monospace,monospace; border:1px solid var(--stroke); border-radius:12px; padding:2px 9px; color:var(--dim); white-space:nowrap;}
   button { background:var(--panel); color:var(--ink); border:1px solid var(--stroke); border-radius:8px; padding:7px 13px; cursor:pointer; font:13px inherit;}
   button:hover{ border-color:var(--accent);} button.primary{ background:var(--accent); color:#111; font-weight:700; border:none;}
+  button:disabled{ opacity:.35; cursor:default;} button:disabled:hover{ border-color:var(--stroke);}
   button.good{ border-color:var(--good); color:var(--good);} button.warn{ border-color:var(--warn); color:var(--warn);} button.bad{ border-color:var(--bad); color:var(--bad);}
   textarea { width:100%; background:#0a0f14; color:var(--ink); border:1px solid var(--stroke); border-radius:8px; padding:9px; font:14px inherit; resize:vertical; min-height:56px;}
   /* layout */
@@ -42,6 +43,9 @@
   /* detail */
   #detail { display:none; }
   .back { color:var(--dim); cursor:pointer; font-size:13px; margin-bottom:12px; display:inline-block;}
+  .dnav { display:flex; align-items:center; gap:8px; }
+  .dnav button { padding:6px 12px; font:13px inherit; }
+  .dnav .pos { font:11px ui-monospace,monospace; color:var(--faint); min-width:44px; text-align:center; }
   .cols { display:grid; grid-template-columns: minmax(0,2fr) minmax(300px,1fr); gap:20px; align-items:start;}
   @media(max-width:900px){ .cols{grid-template-columns:1fr;} }
   video { width:100%; border-radius:12px; border:1px solid var(--stroke); background:#000;}
@@ -129,7 +133,10 @@
 </div></div>
 
 <div id="detail">
-  <span class="back" onclick="showHome()">← all cities</span>
+  <div class="row" style="justify-content:space-between; margin-bottom:8px">
+    <span class="back" onclick="showHome()" style="margin:0">← all cities</span>
+    <span class="dnav" id="d-nav"></span>
+  </div>
   <h1 id="d-title"></h1>
   <div class="sub" id="d-sub"></div>
   <div class="phasebar" id="d-phasebar"></div>
@@ -199,14 +206,19 @@ async function load() {
 }
 function renderTabs(){ [...document.querySelectorAll(".tab")].forEach((el,i)=>{ el.classList.toggle("on", ["all","needs-config","needs-render","review","published"][i]===FILTER); }); }
 function setSort(s){ SORT = s; renderBoard(); }
-function renderBoard(){
-  const list = CAT.filter(c=>{
+// The board's current filter + sort order — shared with prev/next navigation
+// so arrows walk the same sequence the user is looking at.
+function orderedList(){
+  return CAT.filter(c=>{
     if(FILTER==="needs-config") return c.stages.data && !c.stages.config;
     if(FILTER==="needs-render") return c.stages.config && !c.stages.render;
     if(FILTER==="review") return c.stages.render && !c.stages.published;
     if(FILTER==="published") return c.stages.published;
     return true;
   }).sort(cmp[SORT] || cmp.priority);
+}
+function renderBoard(){
+  const list = orderedList();
   const sortCtl = `<div class="sort"><b>sort</b>${
     [["priority","attention first"],["stage","production stage"],["name","name"]]
       .map(([k,l])=>`<button class="tab chip ${SORT===k?"on":""}" onclick="setSort('${k}')">${l}</button>`).join("")}</div>`;
@@ -288,10 +300,32 @@ function renderFbPanel(c){
     <textarea id="comment" placeholder="Your note — lands in the repo; the note-watcher picks it up within 5 minutes."></textarea>
     <div class="row" style="margin-top:6px">${tBtn}${gBtn}${calls}</div>`;
 }
+// prev/next navigation — walks the board's current filter+sort order. If the
+// open video has fallen out of the active filter, fall back to the full sorted
+// catalog so the arrows never dead-end.
+function navList(){
+  const l = orderedList();
+  return l.some(c=>c.slug===CUR.slug) ? l : CAT.slice().sort(cmp[SORT] || cmp.priority);
+}
+function nav(dir){
+  const list = navList(), i = list.findIndex(c=>c.slug===CUR.slug), j = i + dir;
+  if(i<0 || j<0 || j>=list.length) return;
+  show(list[j].slug);
+}
+function renderNav(){
+  const list = navList(), i = list.findIndex(c=>c.slug===CUR.slug), n = list.length;
+  const prev = i>0 ? list[i-1] : null, next = i<n-1 ? list[i+1] : null;
+  $("d-nav").innerHTML =
+    `<button ${prev?`onclick="nav(-1)" title="${esc(prev.title)}"`:"disabled"}>‹ prev</button>`
+    + `<span class="pos">${i>=0?i+1:"–"} / ${n}</span>`
+    + `<button ${next?`onclick="nav(1)" title="${esc(next.title)}"`:"disabled"}>next ›</button>`;
+}
 function showHome(){ $("detail").style.display="none"; $("home").style.display="grid"; $("stats").style.display="block"; try{$("player").pause();}catch{} }
 async function show(slug){
   CUR = CAT.find(c=>c.slug===slug);
   $("home").style.display="none"; $("stats").style.display="none"; $("detail").style.display="block";
+  window.scrollTo(0,0);
+  renderNav();
   $("d-title").textContent = CUR.title;
   $("d-sub").textContent = CUR.subtitle ?? "";
   $("d-phasebar").innerHTML = `phase: <span class="now">${esc(PHASE_META[phaseOf(CUR)].label)}</span>` +
@@ -492,6 +526,16 @@ async function authUI(){
   else if (s.hasSecret) el.innerHTML = `<button class="primary" onclick="location.href='/oauth/start'">Authorize with Google</button>`;
   else el.innerHTML = `<span class="feat">no OAuth credentials — see earlier setup panel instructions in the repo README</span>`;
 }
+// keyboard: ←/→ move between videos on a detail page (Esc goes back). Skip when
+// typing in a field, or when the video player is focused (native seek wins there).
+document.addEventListener("keydown", (e)=>{
+  if($("detail").style.display==="none" || $("pubmodal").style.display==="block") return;
+  const t = e.target, tag = (t.tagName||"").toLowerCase();
+  if(tag==="textarea" || tag==="input" || tag==="video" || t.isContentEditable) return;
+  if(e.key==="ArrowLeft"){ e.preventDefault(); nav(-1); }
+  else if(e.key==="ArrowRight"){ e.preventDefault(); nav(1); }
+  else if(e.key==="Escape"){ showHome(); }
+});
 if (new URLSearchParams(location.search).get("connected")) history.replaceState(null, "", "/");
 load(); loadPulse(); authUI();
 setInterval(()=>{ if($("home").style.display!=="none"){ load(); loadPulse(); } }, 60000);

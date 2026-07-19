@@ -124,6 +124,10 @@ UCR Summary (Violent/Property) is a **different taxonomy** than BPD NIBRS catego
 
 The FBI UCR era ends **2020** and the BPD open NIBRS incident feed begins **2022-01**. Baltimore has a documented FBI/NIBRS reporting gap in **2021**: CDE returns only a partial-year total for `MDBPD0000` (≈ 13,200 vs 2020 ≈ 28,000), so no comparable full-year figure exists. Resolution (in `pipeline/build-trend.mjs`, `allowSeamGap`): **2021 is omitted** (recorded as `seamGapYears:[2021]` with a verbatim `seamGapReason`) rather than shown at a false low or interpolated. `trend.json` runs FBI 1985–2020 then incident 2022–2025, with the one-year hole disclosed on the chart's seam explainer and in the era legend. Nothing is invented; the gap is shown as a gap.
 
+### 1999 artifact-year decision (decided 2026-07-19, implemented same day)
+
+CDE's 1999 series for `MDBPD0000` is a **broken UCR reporting year**: violent 0 + property 503 = **503 total**, sitting between **77,982 (1997) · 72,994 (1998)** and **66,397 (2000) · 63,914 (2001)** — an incomplete FBI submission, not a real one-year crime collapse. Drawn as-is it would put a false crater in the long-arc chart. Ruling (option b from `experiment/DECISIONS.md`): treat 1999 as a **disclosed reporting artifact** — the same honesty pattern as the 2021 seam gap and Minneapolis's excluded data-availability artifacts. Implemented in `pipeline/build-trend.mjs` via `artifactYears:[1999]` + verbatim `artifactReason`: the year is **omitted from the assembled series** (never corrected or interpolated), recorded in `trend.json` as `artifactYears`/`artifactReason`, and appended to the on-chart honesty note. The contiguity validator passes a hole only when every missing year is declared this way; undeclared within-era gaps stay fatal. The 503 value remains untouched in `history.json` (source of record).
+
 ## Reproduce
 
 ```bash

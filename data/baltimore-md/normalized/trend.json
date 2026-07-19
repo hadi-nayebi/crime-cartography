@@ -1,6 +1,6 @@
 {
-  "note": "UCR index crimes (1985–2020) vs BPD — NIBRS Group A (victim-deduped) (2022+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Years 2021–2021 are omitted: Baltimore PD has a documented FBI/NIBRS reporting gap in 2021 (CDE returns only a partial-year total ≈ 13,200 vs 2020 ≈ 28,000), and the city's open NIBRS incident feed begins 2022-01, so no comparable full-year total exists for 2021; that year is left blank rather than shown at a false low.",
-  "fetchedAt": "2026-07-19T21:26:37.827Z",
+  "note": "UCR index crimes (1985–2020) vs BPD — NIBRS Group A (victim-deduped) (2022+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Years 2021–2021 are omitted: Baltimore PD has a documented FBI/NIBRS reporting gap in 2021 (CDE returns only a partial-year total ≈ 13,200 vs 2020 ≈ 28,000), and the city's open NIBRS incident feed begins 2022-01, so no comparable full-year total exists for 2021; that year is left blank rather than shown at a false low. Year 1999 omitted as a disclosed reporting artifact: Baltimore's 1999 FBI UCR submission is a broken reporting year (CDE returns violent 0 + property 503 = 503 total, between 72,994 in 1998 and 66,397 in 2000) — an incomplete submission, not a real one-year crime collapse; the year is omitted rather than drawn as a false crater.",
+  "fetchedAt": "2026-07-19T23:16:37.808Z",
   "seamYear": 2022,
   "eras": [
     {
@@ -20,6 +20,10 @@
     2021
   ],
   "seamGapReason": "Baltimore PD has a documented FBI/NIBRS reporting gap in 2021 (CDE returns only a partial-year total ≈ 13,200 vs 2020 ≈ 28,000), and the city's open NIBRS incident feed begins 2022-01, so no comparable full-year total exists for 2021; that year is left blank rather than shown at a false low",
+  "artifactYears": [
+    1999
+  ],
+  "artifactReason": "Baltimore's 1999 FBI UCR submission is a broken reporting year (CDE returns violent 0 + property 503 = 503 total, between 72,994 in 1998 and 66,397 in 2000) — an incomplete submission, not a real one-year crime collapse; the year is omitted rather than drawn as a false crater",
   "years": [
     {
       "year": 1985,
@@ -145,15 +149,6 @@
       "parts": {
         "violent": 16025,
         "property": 56969
-      }
-    },
-    {
-      "year": 1999,
-      "total": 503,
-      "era": "fbi",
-      "parts": {
-        "violent": 0,
-        "property": 503
       }
     },
     {

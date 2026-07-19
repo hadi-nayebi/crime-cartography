@@ -12,7 +12,8 @@
     "kind": "comment",
     "videoTime": null,
     "text": "when I am in a video page, the left and right and also the must be an arrow to move between videos,",
-    "resolved": false
+    "resolved": true,
+    "producerNote": "Added prev/next navigation on the video detail page: a ‹prev · N/total · next› bar top-right, plus keyboard ←/→ arrows (Esc = back). Arrows walk the board's current filter+sort order, disable at the ends, and are ignored while typing in a feedback field or when the video is focused (native scrub wins). Verified live in-browser: on-screen buttons and keyboard both switch videos, position/boundary/guard all correct."
   },
   {
     "at": "2026-07-19T22:43:29.864Z",
