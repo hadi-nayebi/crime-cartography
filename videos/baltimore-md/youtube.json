@@ -1,0 +1,37 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Baltimore Crime, 1985–2026 — Down 71% From the Peak, Across 278 Neighborhoods",
+  "titleOptions": [
+    "95,760 to 28,048: Baltimore's Long Fall From the 1995 Peak — 278 Neighborhoods, Mapped",
+    "Baltimore Crime Fell 71% From Its 1995 Peak — Then the City's Own Count Takes Over"
+  ],
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Baltimore",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "NIBRS",
+    "BPD",
+    "open data",
+    "Maryland",
+    "crime statistics",
+    "data journalism"
+  ],
+  "description": "Forty years of reported crime in Baltimore — a 71% fall from the 1995 peak to 2020 under the FBI's measure, then the city's own NIBRS record across all 278 neighborhoods.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program and the Baltimore Police Department's own open NIBRS data. Every dot on the map is a real reported incident location, as published by the source. Coverage and caveats are shown on screen.\n\nBPD publishes one row per victim; every count shown is incidents, deduplicated by complaint number (259,819 victim rows → 224,602 incidents). Two years are blank on purpose and disclosed on screen: 1999 (a broken FBI reporting year — 503 reported vs ~70,000 either side) and 2021 (BPD's NIBRS transition left no full-year total). Nothing is estimated or interpolated. The FBI's classic 'index' crimes (through 2020) and BPD's NIBRS Group A records (2022+) are different measures — shown as two chapters, never merged into one line.\n\n▶ CHAPTERS\n0:00  Hook — down from the peak\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc\n2:30  The last 4½ years — up close\n2:43  Chapter 2 — the map, month by month\n4:52  The busiest & safest areas\n5:18  Sources & credits\n\n▶ MADE BY AN AI — FULLY TRANSPARENT\nThis video was produced end-to-end by Claude (Anthropic's AI): it located and fetched the official source data, built and validated the data pipeline, verified every on-screen figure against the sources, designed and rendered the visuals, and generated the music. No human edited the numbers. Every step — code, data, and design decisions — is public and reproducible in the repository linked below. If you find an error, open an issue; corrections are part of the record.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/baltimore-md\n\nMusic generated with Stable Audio Open (Stability AI). Basemap © OpenStreetMap contributors.\n\nIf this was worth a look, please Like, Subscribe, and Share.\n\n#CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/baltimore-md",
+  "chapters": [
+    { "t": "0:00", "label": "Hook — down from the peak" },
+    { "t": "0:08", "label": "What you're about to see" },
+    { "t": "0:22", "label": "Chapter 1 — the long arc" },
+    { "t": "2:30", "label": "The last 4½ years — up close" },
+    { "t": "2:43", "label": "Chapter 2 — the map, month by month" },
+    { "t": "4:52", "label": "The busiest & safest areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+}

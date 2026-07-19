@@ -1,0 +1,74 @@
+{
+  "slug": "baltimore-md",
+  "datasetDir": "data/baltimore-md",
+  "title": "Baltimore · Down From the Peak",
+  "subtitle": "FBI UCR 1985–2020 + BPD NIBRS 2022–2026 · 278 neighborhoods · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/baltimore-md-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "bars",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−71%",
+    "line": "Baltimore crime, from the 1995 peak to 2020",
+    "sub": "FBI UCR · then the map, month by month, up close"
+  },
+  "punchline": {
+    "text": "1995: 95,760 → 2020: 28,048",
+    "sub": "−71% under the same FBI measure · the city's own count begins in 2022"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#0a0709",
+      "beatFill": "#130d0f",
+      "beatStroke": "rgba(240,147,43,0.22)",
+      "panelStroke": "rgba(240,147,43,0.2)",
+      "grid": "rgba(240,147,43,0.12)",
+      "ink": "#f5eff0",
+      "inkDim": "#b6abae",
+      "inkFaint": "#786e71"
+    },
+    "catColors": {
+      "persons": "#ff4757",
+      "property": "#f0932b",
+      "society": "#22a6b3",
+      "other": "#6b6560"
+    }
+  },
+  "copy": {
+    "cityName": "Baltimore",
+    "regionNoun": "neighborhood",
+    "seamExplain": "The ruler changes here — not the city. Through 2020 the gray bars are the FBI's classic 'index' crimes; from 2022 the figures are BPD's own NIBRS Group A records, deduplicated from victim rows to incidents — a broader count, so the level steps up. Two years are blank on purpose: 1999 (a broken FBI reporting year — 503 reported vs ~70,000 either side) and 2021 (BPD's NIBRS transition left no full-year total). Gaps stay gaps, nothing estimated. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · SINCE 2022 · BPD NIBRS",
+    "chapter2Title": "Now — up close, 278 neighborhoods",
+    "chapter2Caption": "Monthly incidents, 2022–2026. Every dot is a real reported incident location, as published by BPD, sampled.",
+    "transitionKicker": "THE LAST 4½ YEARS · 2022–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 278 neighborhoods — every dot a real reported location, straight from the source.",
+    "methodRecentTag": "BPD NIBRS · open data",
+    "methodRecentSub": "since 2022 · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location as published by BPD. 99.9% map to one of 278 neighborhoods — the rest counted, disclosed, never invented.",
+    "methodFootnote": "BPD publishes one row per victim; every count shown is incidents, deduplicated by complaint number (259,819 victim rows → 224,602 incidents). FBI UCR (through 2020) and BPD NIBRS (2022+) are different measures — shown as two chapters, not one line.",
+    "quizQuestion": "Which Baltimore neighborhood reports the fewest Group A crimes?",
+    "sourceLine": "Data: Baltimore Police Department (NIBRS Group A) via Open Baltimore · real reported locations",
+    "coverageText": "99.9% of incidents mapped to a neighborhood",
+    "creditsSources": "Sources: Baltimore Police Department NIBRS Group A victim-based data (2022–present) via Open Baltimore, deduplicated to incidents by CCNumber, & FBI UCR (1985–2020) via the FBI Crime Data Explorer (ORI MDBPD0000). Neighborhoods: City of Baltimore official 2010 statistical areas. Two years are omitted and disclosed, never interpolated: 1999 (broken FBI reporting year) and 2021 (BPD NIBRS-transition year, no full-year total). FBI UCR index crimes and BPD NIBRS incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1985, "text": "1985: 66,781 index crimes — where the FBI record begins." },
+    { "atYear": 1995, "text": "1995: the peak — 95,760 index crimes reported." },
+    { "atYear": 2000, "text": "2000: 66,397 — the fall is underway. (1999 is blank — a broken FBI reporting year, not a real drop.)" },
+    { "atYear": 2020, "text": "2020: 28,048 — down 71% from the 1995 peak; the last FBI year." },
+    { "atYear": 2023, "text": "2023: 57,833 — the high point of BPD's own victim-deduped count." }
+  ],
+  "annotations": [
+    { "atMonth": "2022-04", "text": "Every dot is a real reported incident location, as published by BPD open data." },
+    { "atMonth": "2023-07", "text": "July 2023 — the busiest Group A month since 2022: 5,743." },
+    { "atMonth": "2024-03", "text": "Downtown — Baltimore's busiest neighborhood for reported Group A crime since 2022.", "beat": "Downtown" },
+    { "atMonth": "2025-02", "text": "Mount Holly: down 44% since 2022 — the city's biggest neighborhood drop.", "beat": "Mount Holly" },
+    { "atMonth": "2026-03", "text": "Reported Group A is roughly flat citywide: 45,735 (2022) → 47,233 (2025), +3.3%." }
+  ]
+}

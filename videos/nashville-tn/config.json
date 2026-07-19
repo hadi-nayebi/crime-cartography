@@ -1,0 +1,74 @@
+{
+  "slug": "nashville-tn",
+  "datasetDir": "data/nashville-tn",
+  "title": "Nashville · The Long Slide",
+  "subtitle": "FBI UCR 1985–2018 + MNPD NIBRS 2019–2026 · 9 police precincts · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/nashville-tn-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "bars",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−40%",
+    "line": "Nashville crime, from the 1996 peak to 2018",
+    "sub": "FBI UCR · then the map, month by month, up close"
+  },
+  "punchline": {
+    "text": "1996: 59,467 → 2018: 35,624",
+    "sub": "−40% under the same FBI measure · a newer, broader count begins in 2019"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#0a070b",
+      "beatFill": "#120d14",
+      "beatStroke": "rgba(255,182,39,0.22)",
+      "panelStroke": "rgba(255,182,39,0.2)",
+      "grid": "rgba(255,182,39,0.12)",
+      "ink": "#f4eff4",
+      "inkDim": "#b6adba",
+      "inkFaint": "#78707d"
+    },
+    "catColors": {
+      "persons": "#ff4d6d",
+      "property": "#ffb627",
+      "society": "#6ee7b7",
+      "other": "#6f6876"
+    }
+  },
+  "copy": {
+    "cityName": "Nashville",
+    "regionNoun": "police precinct",
+    "seamExplain": "The ruler changes here — not the city. Through 2018 the gray bars are the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2019 the figures are MNPD's own NIBRS incident reports, which log a far broader set of offenses, so the level steps up. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · MNPD NIBRS",
+    "chapter2Title": "Now — up close, 9 police precincts",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, source-rounded, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 9 police precincts — every dot a real reported location, rounded by the source to block scale.",
+    "methodRecentTag": "MNPD NIBRS · open data",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location, published by MNPD and rounded by the source to block scale. 98.6% map to one of 9 precincts — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2018) and MNPD NIBRS incidents (2019+) are different measures — shown as two chapters, not one line. Offense rows are deduplicated to incidents; unfounded reports excluded.",
+    "quizQuestion": "Which Nashville police precinct reports the fewest Group A crimes?",
+    "sourceLine": "Data: Metro Nashville Police Department via the Nashville Open Data Portal · source-rounded locations",
+    "coverageText": "98.6% of records mapped to a police precinct",
+    "creditsSources": "Sources: Metro Nashville Police Department incident data (2019–present) via the Nashville Open Data Portal & FBI UCR (1985–2018) via the FBI Crime Data Explorer (ORI TN0190100). Precincts: official MNPD Police Precinct Boundaries (9). MNPD publishes one row per offense and victim — rows are deduplicated to incidents (906,703 → 750,423), and 5,467 reports cleared as unfounded are excluded per FBI practice. Coordinates are rounded by the source (~block scale). FBI UCR index crimes and MNPD NIBRS incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1996, "text": "1996: the peak — 59,467 index crimes; violent crime peaks the same year at 10,021." },
+    { "atYear": 2014, "text": "2014: 31,006 — the lowest year in the whole FBI record, below even 1985." },
+    { "atYear": 2018, "text": "2018: 35,624 — the last FBI year, down 40% from the 1996 peak; MNPD's own record begins next year." },
+    { "atYear": 2024, "text": "2024: 105,071 — the high point of MNPD's newer, broader count." },
+    { "atYear": 2025, "text": "2025: 95,298 — down 9% from 2024." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — published by MNPD, rounded by the source to block scale." },
+    { "atMonth": "2023-07", "text": "July 2023 — the busiest Group A month of the last five years: 5,817." },
+    { "atMonth": "2023-09", "text": "Southeast — Nashville's busiest precinct for reported Group A crime over the last five years.", "beat": "SOUTHEAST" },
+    { "atMonth": "2025-02", "text": "Midtown Hills: down 15% since 2022 — the city's steepest precinct drop.", "beat": "MIDTOWN HILLS" },
+    { "atMonth": "2026-03", "text": "Reported Group A is falling citywide: 58,352 (2022) → 54,809 (2025), −6%." }
+  ]
+}

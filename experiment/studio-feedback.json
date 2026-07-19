@@ -20,6 +20,7 @@
     "kind": "comment",
     "videoTime": null,
     "text": "the publish button should appear only if all lights are green.\nand how verify light muts be flipped by me manually.",
-    "resolved": false
+    "resolved": true,
+    "producerNote": "Made the verify light a MANUAL-only flip and gated Publish on it. Removed both auto-verify paths (confidence ≥95 & zero blockers) in server.mjs catalog() and gateOf() — verified now flips ONLY on the operator's fresh APPROVE; the confidence ledger is advisory (still shown, never flips the light). The card/review Publish button already required all 7 pre-publish lights green, so it now appears only after you approve; the server publish gate enforces the same (412 'verify is a manual light — Approve the current cut first' with no upload). UI: relabeled Approve → 'Approve → flip verify' (Hold/Request-changes 'keep it off'), review hint explains the manual flip, added a 'verify light (manual)' status line to the detail meta, and updated the publish-modal gate text. Verified live via curl: only boston-ma (manually approved) is verified/allGreen; washington-dc (conf 91, unapproved) is blocked; client JS parses; only boston-ma's card shows the Publish button."
   }
 ]

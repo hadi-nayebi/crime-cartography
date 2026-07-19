@@ -93,7 +93,7 @@ async function cityRow(slug) {
     music: exists(join(ROOT, "surface/remotion/public/audio", `${slug}-music-sao.wav`)) ||
            exists(join(ROOT, "surface/remotion/public/audio", `${slug.replace(/-\w\w$/, "")}-music-sao.wav`)),
     render: hasRender,
-    verified: false, // human approve (below) OR ledger (score>=95 & no blockers)
+    verified: false, // flips ONLY on the operator's own fresh APPROVE (below) — never auto
     published: Boolean(yt.url),
   };
   let mp4 = null;
@@ -161,10 +161,9 @@ async function catalog() {
     const row = await cityRow(slug);
     row.confidence = ledger[slug] ?? null;
     row.features = matrix[slug] ?? null;
-    // verified = human approve on the current render (from cityRow) OR ledger pass
-    if (row.confidence)
-      row.stages.verified = row.stages.verified ||
-        (row.stages.render && row.confidence.score >= 95 && (row.confidence.blockers ?? []).length === 0);
+    // verified is the operator's own light: it flips ONLY on a fresh human
+    // APPROVE (computed in cityRow). The confidence ledger is advisory — a high
+    // score is shown but NEVER flips verify on its own; the owner must do it.
     row.stageIndex = STAGES.filter((s) => row.stages[s]).length;
     const pr = priorityOf(row); // computed AFTER verified/confidence merge
     row.priority = pr.score;
@@ -324,14 +323,15 @@ async function ensureThumbs(slug, force = false) {
 }
 
 // Publish gate: every pre-publish light on the stage strip must be green —
-// including "verified" (confidence ≥95, zero blockers). Same rule the board
-// shows; enforced server-side so no UI path can skip it.
+// including "verified", which ONLY the operator flips (a fresh APPROVE). Same
+// rule the board shows; enforced server-side so no UI path can publish an
+// unapproved cut.
 async function gateOf(slug) {
-  const row = await cityRow(slug); // verified may already be true via fresh human approve
+  const row = await cityRow(slug); // verified is true ONLY via the operator's fresh human APPROVE
   const ledger = (await readJson(join(ROOT, "experiment/confidence.json"))) ?? {};
   const conf = ledger[slug] ?? null;
-  if (conf) row.stages.verified = row.stages.verified ||
-    (row.stages.render && conf.score >= 95 && (conf.blockers ?? []).length === 0);
+  // The confidence ledger is reported for context but NEVER flips verify — the
+  // owner's manual approve is the sole verify gate.
   const missing = STAGES.slice(0, 7).filter((s) => !row.stages[s]);
   return { ready: missing.length === 0, missing, confidence: conf?.score ?? null, blockers: conf?.blockers ?? [], approval: row.approval };
 }
@@ -372,7 +372,7 @@ async function doPublish(slug, p) {
   const gate = await gateOf(slug);
   if (!gate.ready)
     return [412, { error: `not all lights green — missing: ${gate.missing.join(", ")}` +
-      (gate.missing.includes("verified") ? ` (confidence ${gate.confidence ?? "—"}/100, needs ≥95 with zero blockers${gate.blockers.length ? `; blockers: ${gate.blockers.join(" · ")}` : ""})` : "") }];
+      (gate.missing.includes("verified") ? ` (verify is a manual light — Approve the current cut on its review page first)` : "") }];
   if (!(await accessToken())) return [401, { error: "YouTube not connected — authorize the channel first" }];
   // Nothing publishes outside a playlist (each format is a playlist) — check
   // BEFORE the upload so we never strand a video without one.

@@ -1,0 +1,74 @@
+{
+  "slug": "charlotte-nc",
+  "datasetDir": "data/charlotte-nc",
+  "title": "Charlotte · The Flat Line",
+  "subtitle": "FBI UCR 1985–2016 + CMPD NIBRS 2017–2026 · 14 police divisions · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/charlotte-nc-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "area",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "±0%",
+    "line": "Charlotte crime, flat for eight years",
+    "sub": "CMPD incidents · the citywide line is flat — the map underneath is not"
+  },
+  "punchline": {
+    "text": "2017: 75,042 → 2025: 75,179",
+    "sub": "+0.2% in eight years · reported criminal incidents (CMPD), the same measure"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#06090b",
+      "beatFill": "#0c1014",
+      "beatStroke": "rgba(212,175,55,0.22)",
+      "panelStroke": "rgba(212,175,55,0.2)",
+      "grid": "rgba(212,175,55,0.12)",
+      "ink": "#eff3f6",
+      "inkDim": "#a9b4bf",
+      "inkFaint": "#6a7480"
+    },
+    "catColors": {
+      "persons": "#ff5d73",
+      "property": "#d4af37",
+      "society": "#69d1c5",
+      "other": "#64707c"
+    }
+  },
+  "copy": {
+    "cityName": "Charlotte",
+    "regionNoun": "police division",
+    "seamExplain": "The ruler changes here — not the city. Through 2016 the gray area is the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2017 the figures are CMPD's own NIBRS incident reports — a broader net, so the level steps up. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · CMPD NIBRS",
+    "chapter2Title": "Now — up close, 14 police divisions",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 14 police divisions — every dot a real reported location, anonymized to the block.",
+    "methodRecentTag": "CMPD NIBRS · open data",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location, block-anonymized by CMPD. 99.9% map to one of 14 police divisions — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2016) and CMPD NIBRS incidents (2017+) are different measures — shown as two chapters, not one line. Non-criminal 800-series and unfounded reports are excluded and disclosed.",
+    "quizQuestion": "Which Charlotte police division reports the fewest Group A crimes?",
+    "sourceLine": "Data: Charlotte-Mecklenburg Police Department via the City of Charlotte Open Data Portal · block-anonymized locations",
+    "coverageText": "99.9% of records mapped to a police division · 800-series & unfounded reports excluded",
+    "creditsSources": "Sources: Charlotte-Mecklenburg Police Department incident data (2017–present) via the City of Charlotte Open Data Portal & FBI UCR (1985–2016) via the FBI Crime Data Explorer (ORI NC0600100). Police divisions: CMPD official boundaries. Excluded and disclosed: 128,848 non-criminal 800-series local reports and 21,392 reports cleared as unfounded. Locations are block-anonymized by the source. FBI UCR index crimes and CMPD NIBRS incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1993, "text": "1993: violent crime peaks at 9,725 reports." },
+    { "atYear": 2007, "text": "2007: the FBI-era peak — 58,900 index crimes reported." },
+    { "atYear": 2014, "text": "2014: 35,784 — the lowest count since 1986; then the line turns back up." },
+    { "atYear": 2016, "text": "2016: 43,512 — the last FBI year, already climbing; CMPD's own record begins next year." },
+    { "atYear": 2025, "text": "2025: 75,179 — within 0.2% of where CMPD's count started in 2017." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — anonymized to the block by CMPD open data." },
+    { "atMonth": "2023-07", "text": "July 2023 — the busiest Group A month of the last five years: 6,097." },
+    { "atMonth": "2023-09", "text": "University City — Charlotte's busiest division for reported Group A crime, and its fastest riser: +17% since 2022.", "beat": "University City" },
+    { "atMonth": "2025-02", "text": "Airport: down 33% since 2022 — the city's biggest division drop.", "beat": "Airport" },
+    { "atMonth": "2026-03", "text": "Reported Group A is up slightly citywide: 62,613 (2022) → 64,625 (2025), +3%." }
+  ]
+}

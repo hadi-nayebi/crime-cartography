@@ -275,7 +275,7 @@ function phaseOf(c){
 }
 const PHASE_META = {
   "pre-render": { label:"pre-render — data · story · config", hint:"Notes on data honesty, story arc, copy, annotations, or the color theme — before this renders. No timestamps yet." },
-  "review":     { label:"review — rendered, awaiting your call", hint:"Scrub the cut. Comment at a timestamp, or make a call. The note-watcher picks it up in ≤5 min." },
+  "review":     { label:"review — rendered, awaiting your call", hint:"Scrub the cut, then flip the verify light yourself: Approve turns it green (Hold / Request changes keep it off). The Publish button appears only once every light — including verify — is green." },
   "published":  { label:"published — live on YouTube", hint:"Post-publish notes: title, thumbnail, description, engagement — or request a re-cut." },
 };
 function renderFbPanel(c){
@@ -286,9 +286,9 @@ function renderFbPanel(c){
   if(ph==="review"){
     const allGreen = STAGES.slice(0,7).every(s=>c.stages[s]);
     calls = `<span style="flex:1"></span>
-      <button class="good" onclick="decision('APPROVE')">Approve</button>
-      <button class="warn" onclick="decision('HOLD')">Hold</button>
-      <button class="bad" onclick="decision('REQUEST CHANGES')">Request changes</button>
+      <button class="good" onclick="decision('APPROVE')" title="flips the verify light green">${c.stages.verified?"✓ Verified — re-approve":"Approve → flip verify"}</button>
+      <button class="warn" onclick="decision('HOLD')" title="keeps the verify light off">Hold</button>
+      <button class="bad" onclick="decision('REQUEST CHANGES')" title="keeps the verify light off">Request changes</button>
       ${allGreen ? `<button class="primary" onclick="openPublish(CUR.slug)">⤴ Publish…</button>` : ""}`;
   }
   else if(ph==="published")
@@ -357,6 +357,7 @@ async function show(slug){
     ${CUR.render?`<div class="feat" style="margin-top:5px">render: ${esc(CUR.render.commit)} · ${CUR.render.durationSec}s · ${esc((CUR.render.renderedAt||"").slice(0,16))}</div>`:""}
     <div class="feat" style="margin-top:5px">youtube: ${CUR.youtube.url?`<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>`:esc(CUR.youtube.status)}</div>
     ${CUR.youtube.stats?`<div class="feat" style="margin-top:5px">stats: ${fmtN(CUR.youtube.stats.views)} views · ${fmtN(CUR.youtube.stats.likes)} likes · ${fmtN(CUR.youtube.stats.comments)} comments</div>`:""}
+    <div class="feat" style="margin-top:5px">verify light (manual): ${CUR.stages.verified?'<span style="color:var(--good)">✓ green — you approved this cut</span>':'<span style="color:var(--faint)">off — only you flip it, by Approving on this page</span>'}</div>
     ${CUR.approval?`<div class="feat" style="margin-top:5px">your approval: ${esc((CUR.approval.at||"").slice(0,16).replace("T"," "))}${CUR.approval.fresh?' · <span style="color:var(--good)">counts — verified</span>':' · <span style="color:var(--warn)">stale (re-rendered since) — re-approve</span>'}</div>`:""}`;
   refreshFb();
 }
@@ -406,7 +407,7 @@ function thumbCard(t, label){
 function renderPub(){
   const p = PUB.data;
   const gateWarn = p.gate && !p.gate.ready
-    ? `<div class="feat" style="color:var(--bad)">⚠ not all lights green — missing: ${p.gate.missing.map(esc).join(", ")}${p.gate.missing.includes("verified")?` (confidence ${p.gate.confidence??"—"}/100, needs ≥95 + zero blockers)`:""}. Publish is locked.</div>` : "";
+    ? `<div class="feat" style="color:var(--bad)">⚠ not all lights green — missing: ${p.gate.missing.map(esc).join(", ")}${p.gate.missing.includes("verified")?` (verify is yours to flip — Approve the cut first)`:""}. Publish is locked.</div>` : "";
   const warn = !p.hasRender ? `<div class="feat" style="color:var(--warn)">⚠ no rendered mp4 — publish disabled</div>`
     : !p.authOk ? `<div class="feat" style="color:var(--warn)">⚠ YouTube not connected — authorize on the home panel first</div>`
     : !p.playlist ? `<div class="feat" style="color:var(--warn)">⚠ no playlist for this format — nothing publishes outside a playlist</div>` : "";
