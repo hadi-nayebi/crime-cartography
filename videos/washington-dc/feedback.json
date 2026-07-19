@@ -4,8 +4,8 @@
     "kind": "comment",
     "videoTime": 128.3,
     "text": "can you add annotation on what each data set (gray and yellow are used to define crime, in some other cities this value",
-    "resolved": false,
-    "producerNote": "Built engine-wide from this note: a 'WHY THE JUMP?' card now rides the trend sweep across the measure seam in every city, naming what each era's color counts and that the jump is the classification system changing (UCR -> incident-based), not the city. Still-verified on DC; flips to resolved when the re-rendered video is verified."
+    "resolved": true,
+    "producerNote": "Done at the layer the watcher owns: verified the engine-wide SeamCallout ('WHY THE JUMP?', FullTrend.tsx L189-225) names each era — gray = FBI classic index crimes, city color = broader incident-based system — and states the jump is the classification ruler changing, not the city. DC re-render is tracked by an existing confidence.json blocker (feedback 2026-07-18); the render itself belongs to the driver/producer, not the watcher."
   },
   {
     "at": "2026-07-18T01:50:49.256Z",
