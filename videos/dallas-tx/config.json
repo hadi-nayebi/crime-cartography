@@ -1,0 +1,74 @@
+{
+  "slug": "dallas-tx",
+  "datasetDir": "data/dallas-tx",
+  "title": "Dallas · Two-Thirds Down",
+  "subtitle": "FBI UCR 1985–2014 + DPD incidents 2015–2026 · 8 police divisions · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/dallas-tx-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "lollipop",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−68%",
+    "line": "Dallas crime, from the 1988 peak to 2014",
+    "sub": "FBI UCR · then the map, month by month, up close"
+  },
+  "punchline": {
+    "text": "1988: 171,772 → 2014: 54,511",
+    "sub": "−68% under the same FBI measure · a newer, broader count begins in 2015"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#070a0d",
+      "beatFill": "#0d1218",
+      "beatStroke": "rgba(122,184,245,0.22)",
+      "panelStroke": "rgba(122,184,245,0.2)",
+      "grid": "rgba(122,184,245,0.12)",
+      "ink": "#eef3f8",
+      "inkDim": "#a9b5c2",
+      "inkFaint": "#6a7683"
+    },
+    "catColors": {
+      "persons": "#ff3f56",
+      "property": "#e0a458",
+      "society": "#7ab8f5",
+      "other": "#5f6a76"
+    }
+  },
+  "copy": {
+    "cityName": "Dallas",
+    "regionNoun": "police division",
+    "seamExplain": "The ruler changes here — not the city. Through 2014 the gray marks are the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2015 the figures are DPD's own incident records — a broader count, so the level steps up. One more caveat, disclosed: DPD's public dataset excludes sex offenses and juvenile cases entirely. Compare the shape within one color, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · DPD OPEN DATA",
+    "chapter2Title": "Now — up close, 8 police divisions",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, geocoded by DPD, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 8 police divisions — every dot a real reported location, geocoded and published by DPD.",
+    "methodRecentTag": "DPD open data · ODC-BY",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real incident location, geocoded and published by DPD. 99.9% map to one of 8 police divisions — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2014) and DPD incidents (2015+) are different measures — shown as two chapters, not one line. DPD's public dataset omits sex offenses and juvenile cases entirely.",
+    "quizQuestion": "Which Dallas police division reports the fewest Group A crimes?",
+    "sourceLine": "Data: Dallas Police Department via the Dallas Open Data portal (ODC-BY) · sex offenses & juvenile cases excluded by the source",
+    "coverageText": "99.9% of records mapped to a police division · source omits sex offenses & juvenile cases",
+    "creditsSources": "Sources: Dallas Police Department incident data (2015–present) via the Dallas Open Data portal, licensed ODC-BY (attribution: Dallas Police Department), & FBI UCR (1985–2014) via the FBI Crime Data Explorer (ORI TXDPD0000). Police divisions: official DPD boundaries (8). DPD filters this dataset before release: sexually oriented offenses and juvenile-involved cases never appear, so every total undercounts actual reported crime — disclosed on screen. FBI UCR index crimes and DPD incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1988, "text": "1988: the peak — 171,772 index crimes reported in a single year." },
+    { "atYear": 1991, "text": "1991: violent crime peaks at 26,411 reports." },
+    { "atYear": 2014, "text": "2014: 54,511 — the last FBI year, down 68% from 1988; DPD's own record begins next year." },
+    { "atYear": 2021, "text": "2021: 114,352 — the high point of DPD's newer, broader count." },
+    { "atYear": 2025, "text": "2025: 104,289 — down 9% from 2021." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — geocoded and published by DPD open data." },
+    { "atMonth": "2023-07", "text": "July 2023 — the busiest Group A month of the last five years: 7,460." },
+    { "atMonth": "2023-09", "text": "Northeast — Dallas's busiest division for reported Group A crime over the last five years.", "beat": "NORTHEAST" },
+    { "atMonth": "2025-02", "text": "North Central: down 25% since 2022 — the city's steepest division drop.", "beat": "NORTH CENTRAL" },
+    { "atMonth": "2026-03", "text": "Reported Group A is falling citywide: 78,779 (2022) → 67,314 (2025), −15%." }
+  ]
+}

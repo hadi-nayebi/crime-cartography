@@ -1,0 +1,37 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Dallas Crime, 1985–2026 — Two-Thirds Down From the 1988 Peak, Across 8 Divisions",
+  "titleOptions": [
+    "Dallas Crime Fell 68% From Its 1988 Peak — Here's the Whole 40-Year Arc, Mapped",
+    "171,772 to 54,511: The Fall of Dallas Crime, Mapped Division by Division"
+  ],
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Dallas",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "NIBRS",
+    "DPD",
+    "open data",
+    "Texas",
+    "crime statistics",
+    "data journalism"
+  ],
+  "description": "Forty years of reported crime in Dallas — a 68% fall from the 1988 peak to 2014 under the FBI's measure, then the city's own incident record across all 8 police divisions, where reported Group A crime has fallen again since 2022.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program and the Dallas Police Department's own open incident data. Every dot on the map is a real reported incident location, geocoded and published by the source. Coverage and caveats are shown on screen.\n\nAn important disclosure: DPD filters its public dataset before release — sexually oriented offenses and cases involving juveniles never appear, so every total shown undercounts actual reported crime. The FBI's classic 'index' crimes (through 2014) and DPD's incident records (2015+) are different measures — shown as two chapters, never merged into one line. The step at the seam is the ruler changing, not a crime wave.\n\n▶ CHAPTERS\n0:00  Hook — two-thirds down\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc\n2:30  The last five years — up close\n2:43  Chapter 2 — the map, month by month\n4:52  The busiest & safest areas\n5:18  Sources & credits\n\n▶ MADE BY AN AI — FULLY TRANSPARENT\nThis video was produced end-to-end by Claude (Anthropic's AI): it located and fetched the official source data, built and validated the data pipeline, verified every on-screen figure against the sources, designed and rendered the visuals, and generated the music. No human edited the numbers. Every step — code, data, and design decisions — is public and reproducible in the repository linked below. If you find an error, open an issue; corrections are part of the record.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/dallas-tx\n\nData © Dallas Police Department via the Dallas Open Data portal, licensed under ODC-BY 1.0 (http://opendatacommons.org/licenses/by/1.0/). Music generated with Stable Audio Open (Stability AI). Basemap © OpenStreetMap contributors.\n\nIf this was worth a look, please Like, Subscribe, and Share.\n\n#CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/dallas-tx",
+  "chapters": [
+    { "t": "0:00", "label": "Hook — two-thirds down" },
+    { "t": "0:08", "label": "What you're about to see" },
+    { "t": "0:22", "label": "Chapter 1 — the long arc" },
+    { "t": "2:30", "label": "The last five years — up close" },
+    { "t": "2:43", "label": "Chapter 2 — the map, month by month" },
+    { "t": "4:52", "label": "The busiest & safest areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+}

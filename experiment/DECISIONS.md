@@ -4,6 +4,41 @@ Non-blocking items the producer resolved with its best judgment, plus a few that
 genuinely want Hadi's taste/eye. Nothing here blocks production; these are logged
 so Hadi can override any call on a watch-through. Newest first.
 
+## 2026-07-19 — batch-1 story frames: charlotte-nc / nashville-tn / dallas-tx (producer)
+
+Same rules as the earlier trio (whole-percent hooks, exact endpoints in the
+punchline, same-measure comparisons only). Frames chosen from the data:
+
+- *Charlotte* → **"The Flat Line"** (±0%: 75,042 → 75,179, +0.2% across CMPD's own
+  2017–2025 measure; hook adds the honest twist "the map underneath is not" —
+  divisions diverge, University City +17% vs Airport −33% since 2022). The FBI
+  arc is the misleading shape here (climb to 2007, fall to a 2014 low, then a
+  rebound into the seam), so per the Denver "recent turn" precedent the lead is
+  the clean same-measure recent line. Alts rejected: "−26% from the 2007 peak
+  to 2016" (stale, and hides that the FBI era *ends on a two-year climb*,
+  35,784 → 43,512); "−4% from the 2023 incident peak" (weak, cherry-picks a peak).
+- *Nashville* → **"The Long Slide"** (−40%: 59,467 (1996) → 35,624 (2018), one FBI
+  ruler; violent crime peaked the same year, 10,021 — a clean rise-then-fall arc,
+  Detroit-style). Alts rejected: incident-era "−9% since 2024" (too short a base,
+  105,071 is a single-year high); window "−6% 2022→2025" (true, kept as an
+  annotation, but the 22-year slide is the stronger honest spine).
+- *Dallas* → **"Two-Thirds Down"** (−68%: 171,772 (1988) → 54,511 (2014), the
+  batch's steepest single-measure fall). The DPD era then *rose* 2015→2021
+  (84,996 → 114,352) before falling again — shown honestly in the notes
+  (2021 high) and window annotation (−15% 2022→2025), never hidden. Alt
+  rejected: leading on the recent "−15% since 2022" (Denver-style) — the FBI-era
+  fall is clean, not U-shaped, so the historic frame is both stronger and honest
+  (Detroit precedent).
+- Hook rounding: +0.18%→"±0%", −40.09%→"−40%", −68.27%→"−68%".
+- Disclosure calls: Charlotte's 800-series (128,848) + unfounded (21,392)
+  exclusions carried in coverageText, methodFootnote, creditsSources, listing +
+  README; Dallas's source-level sex-offense/juvenile exclusion carried in
+  sourceLine, coverageText, seamExplain, methodFootnote, creditsSources, listing +
+  README, with ODC-BY attribution; Nashville's offense→incident dedup
+  (906,703→750,423) + 5,467 unfounded exclusions in creditsSources, listing +
+  README, and its ~2–3-decimal source-rounded coordinates disclosed wherever
+  dots are described (never called "block-anonymized").
+
 ## 2026-07-19 — dashboard experiment-badge fields (note-watcher)
 
 Resolving the dashboard note added scope + theme + note-placement-QA badges to

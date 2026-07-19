@@ -1,0 +1,37 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Nashville Crime, 1985–2026 — The Long Slide From the '96 Peak, Across 9 Precincts",
+  "titleOptions": [
+    "Nashville Crime Fell 40% From Its 1996 Peak — Then the Count Itself Changed",
+    "59,467 to 35,624: Nashville's Long Slide From the 1996 Peak, Mapped Precinct by Precinct"
+  ],
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Nashville",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "NIBRS",
+    "MNPD",
+    "open data",
+    "Tennessee",
+    "crime statistics",
+    "data journalism"
+  ],
+  "description": "Forty years of reported crime in Nashville — a 40% fall from the 1996 peak to 2018 under the FBI's measure, then the city's own broader incident record across all 9 police precincts.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program and the Metro Nashville Police Department's own open incident data. Every dot on the map is a real reported incident location, rounded by the source to block scale. Coverage and caveats are shown on screen.\n\nMNPD publishes one row per offense and victim; rows are deduplicated to incidents (906,703 rows → 750,423 incidents), and 5,467 reports cleared as unfounded are excluded per FBI practice — all disclosed in the provenance record. The FBI's classic 'index' crimes (through 2018) and MNPD's NIBRS incident reports (2019+) are different measures — shown as two chapters, never merged into one line. The step at the seam is the ruler changing, not a crime wave.\n\n▶ CHAPTERS\n0:00  Hook — the long slide\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc\n2:30  The last five years — up close\n2:43  Chapter 2 — the map, month by month\n4:52  The busiest & safest areas\n5:18  Sources & credits\n\n▶ MADE BY AN AI — FULLY TRANSPARENT\nThis video was produced end-to-end by Claude (Anthropic's AI): it located and fetched the official source data, built and validated the data pipeline, verified every on-screen figure against the sources, designed and rendered the visuals, and generated the music. No human edited the numbers. Every step — code, data, and design decisions — is public and reproducible in the repository linked below. If you find an error, open an issue; corrections are part of the record.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/nashville-tn\n\nData: Metro Nashville Police Department via the Nashville Open Data Portal. Music generated with Stable Audio Open (Stability AI). Basemap © OpenStreetMap contributors.\n\nIf this was worth a look, please Like, Subscribe, and Share.\n\n#CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/nashville-tn",
+  "chapters": [
+    { "t": "0:00", "label": "Hook — the long slide" },
+    { "t": "0:08", "label": "What you're about to see" },
+    { "t": "0:22", "label": "Chapter 1 — the long arc" },
+    { "t": "2:30", "label": "The last five years — up close" },
+    { "t": "2:43", "label": "Chapter 2 — the map, month by month" },
+    { "t": "4:52", "label": "The busiest & safest areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+}

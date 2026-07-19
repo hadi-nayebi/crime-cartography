@@ -33,19 +33,19 @@
   "cats": {
     "persons": {
       "label": "Crimes Against Persons",
-      "color": "#ff2e63"
+      "color": "#ff4d6d"
     },
     "property": {
       "label": "Crimes Against Property",
-      "color": "#ffc233"
+      "color": "#ffb627"
     },
     "society": {
       "label": "Crimes Against Society",
-      "color": "#34e0e0"
+      "color": "#6ee7b7"
     },
     "other": {
       "label": "Non-NIBRS local / Group B (context)",
-      "color": "#7486a0"
+      "color": "#6f6876"
     }
   },
   "beatCount": 9,
