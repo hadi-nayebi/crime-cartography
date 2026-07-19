@@ -110,10 +110,10 @@
     ]
   },
   "boston-ma": {
-    "score": 90,
+    "score": 91,
     "axes": {
       "data": 24,
-      "representation": 23,
+      "representation": 24,
       "narrative": 21,
       "technical": 22
     },
@@ -121,7 +121,7 @@
       "full watch-through with audio not yet logged",
       "58% service/non-crime share \u2014 verify the crime-only framing is unmissable in the map chapter",
       "experiment matrix feature vector not yet assigned",
-      "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) \u2014 user feedback 2026-07-19; still-verified, awaiting re-render"
+      "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) + un-pin the 2023-05 South End note from beat D4 to the granular band so it no longer occludes the 'Boston University' landmark label (note 2026-07-19T22:23) \u2014 user feedback 2026-07-19; still-verified via 5 annotation stills (all notes on distinct slate panels in empty bands, no text overlap), awaiting re-render"
     ],
     "history": [
       {
@@ -135,6 +135,10 @@
       {
         "date": "2026-07-19",
         "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard \u2014 evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-19T22:23 (conditional APPROVE: 'if you cannot find any issues with note placement, push to publication'): ran the note-placement QA. Reviewed all 5 annotations via deterministic stills at their mid-fade frames (f5153/6378/7346/8249/8571). Found ONE issue: the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label. FIXED by un-pinning it (dropped config beat:D4) so it renders in the proven-clean granular band; leaderboard shows South End #1 at that moment so spatial context is kept; re-rendered still confirms the label is legible and the note clears the timeline title. All 5 now place cleanly -> videos/boston-ma/qa.json notePlacement=pass. +1 representation (23->24), the clarity axis this defect sat on. Publication NOT greenlit: an issue WAS found (owner's condition unmet) and, independently, the exported mp4 predates the fix, so the re-render blocker is RETAINED. No narrative bump (this conditional approve is the same 22:22 sign-off, already counted; not double-inflated)."
       }
     ]
   },

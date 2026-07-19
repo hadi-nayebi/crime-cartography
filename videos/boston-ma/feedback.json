@@ -28,6 +28,7 @@
     "kind": "decision",
     "videoTime": null,
     "text": "APPROVE — if you cannot find any issues with the placement of the notes along the video, then we can push this for publication.",
-    "resolved": false
+    "resolved": true,
+    "producerNote": "Ran the note-placement QA on all 5 annotations via deterministic stills (mid-fade frames f5153/6378/7346/8249/8571). Found ONE issue — the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label — and fixed it by un-pinning it to the proven-clean granular band (leaderboard still shows South End #1 at that moment). Re-rendered still confirms the label is legible and the note clears the timeline title; all 5 now sit on distinct slate panels in empty bands with no text overlap → videos/boston-ma/qa.json notePlacement=pass (+1 representation). Because an issue WAS found (your condition), and independently the exported mp4 still predates these fixes, I did NOT push to publication: the re-render blocker is retained in experiment/confidence.json so the production chain re-renders the fixed cut before any publish."
   }
 ]

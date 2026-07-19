@@ -1,0 +1,11 @@
+{
+  "notePlacement": {
+    "status": "pass",
+    "issues": [],
+    "reviewedAt": "2026-07-19T23:01:44Z",
+    "method": "Deterministic-still review at each annotation's mid-fade frame (fps=30): 2021-10 f5153, 2023-05 f6378, 2024-08 f7346, 2025-10 f8249, 2026-03 f8571. All 5 notes sit on the raised slate panel (rgba(24,31,43,0.96), distinct from the #07090c bg), in a chapter-empty band, over no other text.",
+    "fixApplied": "Found one issue: the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label. Un-pinned it (dropped config beat:D4) so it renders in the proven-clean granular band; leaderboard highlights South End #1 at the same moment, so spatial context is kept. Re-rendered still f6378 confirms the label is fully legible and the note clears the timeline title.",
+    "appliesToRender": "pending",
+    "note": "Pass is on the current cut CONFIG verified via the deterministic renderer (Remotion frames == the pending final render). The exported mp4 predates this fix; re-render blocker retained in experiment/confidence.json."
+  }
+}
