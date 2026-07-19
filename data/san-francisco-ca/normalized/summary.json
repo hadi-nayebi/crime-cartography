@@ -1,6 +1,6 @@
 {
   "slug": "san-francisco-ca",
-  "title": "San Francisco \u00b7 CA",
+  "title": "San Francisco · CA",
   "source": {
     "records": "https://data.sfgov.org/resource/wg3w-h783.json",
     "recordsHistorical": "https://data.sfgov.org/resource/tmnf-yvry.json",
@@ -12,12 +12,14 @@
   "dateMin": "2003-01-01",
   "dateMax": "2026-06-30",
   "months": 282,
-  "totalRecords": 3117438,
+  "totalRecords": 3071590,
   "placedRecords": 3013369,
-  "unplacedRecords": 104069,
-  "coveragePct": 96.7,
+  "unplacedRecords": 58221,
+  "coveragePct": 98.1,
   "unplacedBeats": {
-    "no-location": 58221,
+    "no-location": 58221
+  },
+  "excludedOutsideWindow": {
     "tmnf-2018-overlap-dropped": 43733,
     "partial-2026-07": 2115
   },

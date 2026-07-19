@@ -1,59 +1,94 @@
 <title>Crime Cartography · Studio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  :root { --bg:#07090d; --panel:#0d1218; --stroke:rgba(125,145,175,.22); --ink:#e7eef7; --dim:#9fb0c4; --faint:#65788f; --accent:#ffc233; --good:#36e07a; --warn:#ff9f43; --bad:#ff4d5e; }
+  :root { --bg:#07090d; --panel:#0d1218; --stroke:rgba(125,145,175,.22); --ink:#e7eef7; --dim:#9fb0c4; --faint:#65788f; --accent:#ffc233; --good:#36e07a; --warn:#ff9f43; --bad:#ff4d5e; --blue:#38bdf8; }
   * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--ink); font:15px/1.5 'Inter',system-ui,sans-serif; padding:28px clamp(16px,4vw,48px); }
-  h1 { font-size:22px; letter-spacing:.5px; } h1 span{ color:var(--faint); font-weight:400; }
-  .sub { color:var(--faint); font-size:13px; margin:4px 0 24px; font-family:ui-monospace,monospace;}
-  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
-  .card { background:var(--panel); border:1px solid var(--stroke); border-radius:12px; padding:16px; cursor:pointer; transition:border-color .15s; }
-  .card:hover { border-color:var(--accent); }
-  .card h3 { font-size:16px; margin-bottom:2px; } .card .sm{ color:var(--faint); font-size:12px; }
-  .row { display:flex; gap:8px; align-items:center; margin-top:10px; flex-wrap:wrap;}
-  .chip { font:11px ui-monospace,monospace; border:1px solid var(--stroke); border-radius:12px; padding:2px 9px; color:var(--dim);}
-  .score { font:700 15px ui-monospace,monospace; padding:2px 10px; border-radius:12px; }
-  .s-hi{ background:rgba(54,224,122,.15); color:var(--good);} .s-mid{ background:rgba(255,159,67,.15); color:var(--warn);} .s-pub{ background:rgba(255,194,51,.2); color:var(--accent);}
-  #detail { display:none; }
-  .back { color:var(--dim); cursor:pointer; font-size:13px; margin-bottom:14px; display:inline-block;}
-  .cols { display:grid; grid-template-columns: minmax(0,2fr) minmax(300px,1fr); gap:22px; align-items:start;}
-  @media(max-width:900px){ .cols{grid-template-columns:1fr;} }
-  video { width:100%; border-radius:12px; border:1px solid var(--stroke); background:#000; }
-  .panel { background:var(--panel); border:1px solid var(--stroke); border-radius:12px; padding:16px; margin-bottom:14px;}
+  body { background:var(--bg); color:var(--ink); font:15px/1.5 'Inter',system-ui,sans-serif; padding:24px clamp(14px,3vw,44px); }
+  a { color:var(--accent); }
+  h1 { font-size:21px; } h1 span{ color:var(--faint); font-weight:400; }
+  .sub { color:var(--faint); font-size:13px; margin:3px 0 16px; font-family:ui-monospace,monospace;}
+  .panel { background:var(--panel); border:1px solid var(--stroke); border-radius:12px; padding:14px 16px; margin-bottom:14px;}
   .panel h4 { font:12px ui-monospace,monospace; letter-spacing:2px; color:var(--faint); margin-bottom:10px; text-transform:uppercase;}
-  .axes { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .axis { font-size:12px; color:var(--dim);} .bar{ height:6px; background:rgba(125,145,175,.15); border-radius:3px; margin-top:3px;} .bar i{ display:block; height:100%; border-radius:3px; background:var(--accent);}
-  .blocker { font-size:13px; color:var(--dim); padding:6px 0; border-bottom:1px dashed var(--stroke);}
-  .blocker:last-child{border:none;}
-  textarea { width:100%; background:#0a0f14; color:var(--ink); border:1px solid var(--stroke); border-radius:8px; padding:10px; font:14px inherit; resize:vertical; min-height:64px;}
-  button { background:var(--panel); color:var(--ink); border:1px solid var(--stroke); border-radius:8px; padding:8px 14px; cursor:pointer; font:13px inherit;}
+  .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .chip { font:11px ui-monospace,monospace; border:1px solid var(--stroke); border-radius:12px; padding:2px 9px; color:var(--dim); white-space:nowrap;}
+  button { background:var(--panel); color:var(--ink); border:1px solid var(--stroke); border-radius:8px; padding:7px 13px; cursor:pointer; font:13px inherit;}
   button:hover{ border-color:var(--accent);} button.primary{ background:var(--accent); color:#111; font-weight:700; border:none;}
   button.good{ border-color:var(--good); color:var(--good);} button.warn{ border-color:var(--warn); color:var(--warn);} button.bad{ border-color:var(--bad); color:var(--bad);}
-  .fb { border-bottom:1px solid var(--stroke); padding:9px 0; font-size:13px;}
+  textarea { width:100%; background:#0a0f14; color:var(--ink); border:1px solid var(--stroke); border-radius:8px; padding:9px; font:14px inherit; resize:vertical; min-height:56px;}
+  /* layout */
+  .top { display:grid; grid-template-columns: minmax(0,1fr) 360px; gap:16px; align-items:start;}
+  @media(max-width:1100px){ .top{grid-template-columns:1fr;} }
+  /* stage board */
+  .tabs { display:flex; gap:8px; margin:6px 0 12px; flex-wrap:wrap;}
+  .tab { cursor:pointer; }
+  .tab.on { border-color:var(--accent); color:var(--accent);}
+  .board { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:12px;}
+  .card { background:var(--panel); border:1px solid var(--stroke); border-radius:12px; padding:13px 15px; cursor:pointer; transition:border-color .12s;}
+  .card:hover { border-color:var(--accent);}
+  .card h3 { font-size:15.5px; margin-bottom:1px;}
+  .card .sm{ color:var(--faint); font-size:12px;}
+  .stages { display:flex; gap:4px; margin:9px 0 7px;}
+  .st { flex:1; height:9px; border-radius:3px; background:rgba(125,145,175,.14); position:relative;}
+  .st.on { background:var(--good);}
+  .st.pub { background:var(--accent);}
+  .stlabels { display:flex; gap:4px; font:9px ui-monospace,monospace; color:var(--faint);}
+  .stlabels span{ flex:1; text-align:center; overflow:hidden;}
+  .score { font:700 13px ui-monospace,monospace; padding:1px 9px; border-radius:11px;}
+  .s-hi{ background:rgba(54,224,122,.15); color:var(--good);} .s-mid{ background:rgba(255,159,67,.15); color:var(--warn);} .s-pub{ background:rgba(255,194,51,.2); color:var(--accent);} .s-none{ color:var(--faint); border:1px solid var(--stroke);}
+  /* pulse */
+  .health { display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:12.5px; color:var(--dim);}
+  .dot { display:inline-block; width:8px; height:8px; border-radius:4px; margin-right:5px;}
+  pre.brief { white-space:pre-wrap; font:12px ui-monospace,monospace; color:var(--dim); max-height:300px; overflow:auto; }
+  /* detail */
+  #detail { display:none; }
+  .back { color:var(--dim); cursor:pointer; font-size:13px; margin-bottom:12px; display:inline-block;}
+  .cols { display:grid; grid-template-columns: minmax(0,2fr) minmax(300px,1fr); gap:20px; align-items:start;}
+  @media(max-width:900px){ .cols{grid-template-columns:1fr;} }
+  video { width:100%; border-radius:12px; border:1px solid var(--stroke); background:#000;}
+  .axes { display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  .axis { font-size:12px; color:var(--dim);} .bar{ height:6px; background:rgba(125,145,175,.15); border-radius:3px; margin-top:3px;} .bar i{ display:block; height:100%; border-radius:3px; background:var(--accent);}
+  .blocker { font-size:13px; color:var(--dim); padding:5px 0; border-bottom:1px dashed var(--stroke);}
+  .blocker:last-child{border:none;}
+  .fb { border-bottom:1px solid var(--stroke); padding:8px 0; font-size:13px;}
   .fb .t { color:var(--accent); font-family:ui-monospace,monospace; cursor:pointer; margin-right:6px;}
   .fb .k { color:var(--faint); font-size:11px; margin-left:6px;}
   .feat { font:12px ui-monospace,monospace; color:var(--dim);}
 </style>
+
 <h1>Crime Cartography <span>· production studio</span></h1>
 <div class="sub" id="stats">loading…</div>
 
-<div class="panel" id="yt-panel" style="max-width:760px">
-  <h4>YouTube channel</h4>
-  <div id="yt-body">checking…</div>
+<div class="top" id="home">
+  <div>
+    <div class="panel" id="yt-panel"><h4>YouTube channel</h4><div id="yt-body">checking…</div></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="board" id="board"></div>
+  </div>
+  <div>
+    <div class="panel"><h4>Project notes → producer</h4>
+      <textarea id="gnote" placeholder="Anything about the dashboard, production, priorities… A watcher picks up unresolved notes every 5 minutes."></textarea>
+      <div class="row" style="margin-top:6px"><button class="primary" onclick="sendGlobal()">Send note</button><span class="feat" id="gcount"></span></div>
+    </div>
+    <div class="panel"><h4>Routine health</h4><div class="health" id="health">…</div></div>
+    <div class="panel"><h4>Decisions needed</h4><pre class="brief" id="decisions">none</pre></div>
+    <div class="panel"><h4>Latest briefing</h4><pre class="brief" id="briefing">…</pre></div>
+    <div class="panel"><h4>Recent commits</h4><pre class="brief" id="commits">…</pre></div>
+  </div>
 </div>
-<div class="grid" id="grid"></div>
 
 <div id="detail">
-  <span class="back" onclick="showGrid()">← all videos</span>
+  <span class="back" onclick="showHome()">← all cities</span>
   <h1 id="d-title"></h1>
   <div class="sub" id="d-sub"></div>
-  <div class="cols">
+  <div class="stages" id="d-stages" style="max-width:640px"></div>
+  <div class="stlabels" style="max-width:640px" id="d-stlabels"></div>
+  <div class="cols" style="margin-top:14px">
     <div>
-      <video id="player" controls preload="metadata"></video>
-      <div class="panel" style="margin-top:14px">
+      <div id="d-player-wrap"><video id="player" controls preload="metadata"></video></div>
+      <div class="panel" style="margin-top:12px">
         <h4>Leave feedback</h4>
-        <textarea id="comment" placeholder="Your note… (comments land in videos/<slug>/feedback.json for the producer to act on)"></textarea>
-        <div class="row">
+        <textarea id="comment" placeholder="Your note — lands in the repo; the note-watcher picks it up within 5 minutes."></textarea>
+        <div class="row" style="margin-top:6px">
           <button class="primary" onclick="sendComment(true)">Comment @ current time</button>
           <button onclick="sendComment(false)">General comment</button>
           <span style="flex:1"></span>
@@ -72,102 +107,109 @@
 </div>
 
 <script>
-let CAT = [], CUR = null;
+const STAGES = ["data","trend","basemap","config","music","render","verified","published"];
+let CAT = [], CUR = null, FILTER = "all";
 const $ = (id) => document.getElementById(id);
 const esc = (s) => (s ?? "").toString().replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtT = (s) => s==null ? "" : `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+const ago = (iso) => { if(!iso) return "never"; const m=(Date.now()-new Date(iso))/60000; return m<60?`${m|0}m ago`:m<1440?`${(m/60)|0}h ago`:`${(m/1440)|0}d ago`; };
+
+function stageStrip(st, big){ return STAGES.map(k=>`<div class="st ${st[k] ? (k==="published"?"pub":"on") : ""}" title="${k}"></div>`).join(""); }
 
 async function load() {
   CAT = await (await fetch("/api/catalog")).json();
-  const pub = CAT.filter(c=>c.youtube.url).length;
-  $("stats").textContent = `${CAT.length} videos · ${pub} published · ${CAT.filter(c=>c.mp4).length} rendered · feedback written to the repo, producer acts on it`;
-  $("grid").innerHTML = CAT.map(c => {
-    const sc = c.confidence?.score ?? "—";
-    const cls = c.youtube.url ? "s-pub" : (sc >= 90 ? "s-hi" : "s-mid");
-    return `<div class="card" onclick="show('${c.slug}')">
-      <h3>${esc(c.title)}</h3><div class="sm">${esc(c.slug)}${c.render ? " · rendered " + esc((c.render.renderedAt||"").slice(0,10)) : " · not rendered"}</div>
-      <div class="row">
-        <span class="score ${cls}">${c.youtube.url ? "PUBLISHED" : "conf " + sc}</span>
-        ${c.hook ? `<span class="chip">hook ${esc(c.hook)}</span>` : ""}
-        <span class="chip">${esc(c.trendStyle)}</span>
-        ${c.openFeedback ? `<span class="chip" style="color:var(--warn)">${c.openFeedback} open notes</span>` : ""}
-      </div></div>`;
-  }).join("");
+  const done=(k)=>CAT.filter(c=>c.stages[k]).length;
+  $("stats").textContent = `${CAT.length} cities · data ${done("data")} · trend ${done("trend")} · basemap ${done("basemap")} · config ${done("config")} · music ${done("music")} · render ${done("render")} · verified ${done("verified")} · published ${done("published")}`;
+  const tabs=[["all","All"],["needs-config","Needs config"],["needs-render","Needs music/render"],["review","Ready to review"],["published","Published"]];
+  $("tabs").innerHTML = tabs.map(([k,l])=>`<button class="tab chip ${FILTER===k?"on":""}" onclick="FILTER='${k}';renderBoard();renderTabs()">${l}</button>`).join("");
+  renderBoard();
 }
-function showGrid(){ $("detail").style.display="none"; $("grid").style.display="grid"; $("stats").style.display="block"; $("player").pause(); }
-async function show(slug) {
+function renderTabs(){ [...document.querySelectorAll(".tab")].forEach((el,i)=>{ el.classList.toggle("on", ["all","needs-config","needs-render","review","published"][i]===FILTER); }); }
+function renderBoard(){
+  const list = CAT.filter(c=>{
+    if(FILTER==="needs-config") return c.stages.data && !c.stages.config;
+    if(FILTER==="needs-render") return c.stages.config && !c.stages.render;
+    if(FILTER==="review") return c.stages.render && !c.stages.published;
+    if(FILTER==="published") return c.stages.published;
+    return true;
+  }).sort((a,b)=> a.stageIndex-b.stageIndex || a.slug.localeCompare(b.slug));
+  $("board").innerHTML = list.map(c=>{
+    const sc=c.confidence?.score;
+    const badge = c.stages.published ? `<span class="score s-pub">PUBLISHED</span>`
+      : sc!=null ? `<span class="score ${sc>=90?"s-hi":"s-mid"}">conf ${sc}</span>`
+      : `<span class="score s-none">stage ${c.stageIndex}/8</span>`;
+    return `<div class="card" onclick="show('${c.slug}')">
+      <div class="row" style="justify-content:space-between"><h3>${esc(c.title)}</h3>${badge}</div>
+      <div class="sm">${esc(c.subtitle)}</div>
+      <div class="stages">${stageStrip(c.stages)}</div>
+      <div class="stlabels">${STAGES.map(s=>`<span>${s.slice(0,4)}</span>`).join("")}</div>
+      <div class="row" style="margin-top:7px">
+        ${c.hook?`<span class="chip">hook ${esc(c.hook)}</span>`:""}
+        ${c.trendStyle?`<span class="chip">${esc(c.trendStyle)}</span>`:""}
+        ${c.openFeedback?`<span class="chip" style="color:var(--warn)">${c.openFeedback} open notes</span>`:""}
+        ${c.youtube.url?`<span class="chip" style="color:var(--accent)">on YouTube</span>`:""}
+      </div></div>`;
+  }).join("") || `<div class="feat">nothing in this stage</div>`;
+}
+
+async function loadPulse(){
+  const p = await (await fetch("/api/pulse")).json();
+  $("health").innerHTML = Object.entries(p.health).map(([k,v])=>{
+    const fresh = v.last && (Date.now()-new Date(v.last)) < 12*3600*1000;
+    return `<div><span class="dot" style="background:${v.last?(fresh?"var(--good)":"var(--warn)"):"var(--bad)"}"></span>${k}: ${ago(v.last)}</div>`;
+  }).join("");
+  $("decisions").textContent = (p.decisions ?? "none").slice(0, 3000);
+  $("briefing").textContent = p.briefing ? p.briefing.text.slice(0, 3000) : "no briefings yet";
+  $("commits").textContent = p.commits.map(c=>`${c.hash} ${ago(c.when).padEnd(7)} ${c.msg}`).join("\n");
+  const gf = await (await fetch("/api/feedback/_project")).json();
+  $("gcount").textContent = `${gf.filter(f=>!f.resolved).length} open project notes`;
+}
+
+function showHome(){ $("detail").style.display="none"; $("home").style.display="grid"; $("stats").style.display="block"; try{$("player").pause();}catch{} }
+async function show(slug){
   CUR = CAT.find(c=>c.slug===slug);
-  $("grid").style.display="none"; $("stats").style.display="none"; $("detail").style.display="block";
+  $("home").style.display="none"; $("stats").style.display="none"; $("detail").style.display="block";
   $("d-title").textContent = CUR.title;
   $("d-sub").textContent = CUR.subtitle ?? "";
-  $("player").src = CUR.mp4 ? `/video/${slug}` : "";
+  $("d-stages").innerHTML = stageStrip(CUR.stages);
+  $("d-stlabels").innerHTML = STAGES.map(s=>`<span>${s}</span>`).join("");
+  $("d-player-wrap").style.display = CUR.mp4 ? "block" : "none";
+  if (CUR.mp4) $("player").src = `/video/${slug}`;
   const cf = CUR.confidence;
   $("d-conf").innerHTML = `<h4>Confidence ${cf ? cf.score + "/100" : "—"}</h4>` + (cf ? `
-    <div class="axes">${Object.entries(cf.axes ?? {}).map(([k,v]) =>
-      `<div class="axis">${esc(k)} ${v}/25<div class="bar"><i style="width:${v*4}%"></i></div></div>`).join("")}</div>
-    <div style="margin-top:10px">${(cf.blockers ?? []).map(b=>`<div class="blocker">◦ ${esc(b)}</div>`).join("") || '<span class="feat">no open blockers</span>'}</div>` : '<span class="feat">not in ledger yet</span>');
+    <div class="axes">${Object.entries(cf.axes ?? {}).map(([k,v])=>`<div class="axis">${esc(k)} ${v}/25<div class="bar"><i style="width:${v*4}%"></i></div></div>`).join("")}</div>
+    <div style="margin-top:9px">${(cf.blockers ?? []).map(b=>`<div class="blocker">◦ ${esc(b)}</div>`).join("") || '<span class="feat">no open blockers</span>'}</div>`
+    : '<span class="feat">enters the ledger at config stage</span>');
   $("d-meta").innerHTML = `<h4>Status</h4>
-    <div class="feat">youtube: ${CUR.youtube.url ? `<a style="color:var(--accent)" href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>` : esc(CUR.youtube.status)}</div>
-    ${CUR.render ? `<div class="feat">render: ${esc(CUR.render.commit)} · ${CUR.render.durationSec}s</div>` : ""}
-    ${CUR.features ? `<div class="feat" style="margin-top:6px">${Object.entries(CUR.features).map(([k,v])=>`${esc(k)}=${esc(v)}`).join(" · ")}</div>` : ""}`;
+    <div class="feat">stage: ${CUR.stageIndex}/8 (${STAGES.filter(s=>CUR.stages[s]).join(" → ") || "none"})</div>
+    ${CUR.dataMeta?`<div class="feat" style="margin-top:5px">data: ${Number(CUR.dataMeta.records).toLocaleString()} records · ${CUR.dataMeta.areas} areas · ${esc(CUR.dataMeta.span)} · ${CUR.dataMeta.coverage ?? "?"}% placed</div>`:""}
+    ${CUR.render?`<div class="feat" style="margin-top:5px">render: ${esc(CUR.render.commit)} · ${CUR.render.durationSec}s · ${esc((CUR.render.renderedAt||"").slice(0,16))}</div>`:""}
+    <div class="feat" style="margin-top:5px">youtube: ${CUR.youtube.url?`<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>`:esc(CUR.youtube.status)}</div>
+    ${CUR.features?`<div class="feat" style="margin-top:5px">${Object.entries(CUR.features).map(([k,v])=>`${esc(k)}=${esc(v)}`).join(" · ")}</div>`:""}`;
   refreshFb();
 }
-async function refreshFb() {
+async function refreshFb(){
   const fb = await (await fetch(`/api/feedback/${CUR.slug}`)).json();
-  $("d-fb").innerHTML = fb.length ? fb.slice().reverse().map(f => `
-    <div class="fb">${f.videoTime!=null ? `<span class="t" onclick="seek(${f.videoTime})">[${fmtT(f.videoTime)}]</span>` : ""}${esc(f.text)}
-    <span class="k">${esc(f.kind)} · ${esc((f.at||"").slice(0,16).replace("T"," "))}${f.resolved ? " · resolved" : ""}</span></div>`).join("")
-    : '<span class="feat">none yet — your notes drive the next iteration</span>';
+  $("d-fb").innerHTML = fb.length ? fb.slice().reverse().map(f=>`
+    <div class="fb">${f.videoTime!=null?`<span class="t" onclick="seek(${f.videoTime})">[${fmtT(f.videoTime)}]</span>`:""}${esc(f.text)}
+    <span class="k">${esc(f.kind)} · ${esc((f.at||"").slice(0,16).replace("T"," "))}${f.resolved?" · ✓ resolved":""}</span>
+    ${f.producerNote?`<div class="k" style="margin-top:3px">↳ ${esc(f.producerNote)}</div>`:""}</div>`).join("")
+    : '<span class="feat">none yet</span>';
 }
 function seek(t){ $("player").currentTime=t; $("player").play(); }
-async function post(body){ await fetch(`/api/feedback/${CUR.slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}); $("comment").value=""; refreshFb(); }
-function sendComment(withTime){ const text=$("comment").value.trim(); if(!text) return; post({text, videoTime: withTime ? $("player").currentTime : null}); }
-function decision(d){ const note=$("comment").value.trim(); post({kind:"decision", text:`${d}${note ? " — " + note : ""}`}); }
-async function authUI() {
+async function post(slug, body){ await fetch(`/api/feedback/${slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}); }
+async function sendComment(withTime){ const text=$("comment").value.trim(); if(!text) return; await post(CUR.slug,{text, videoTime: withTime&&CUR.mp4 ? $("player").currentTime : null}); $("comment").value=""; refreshFb(); }
+async function decision(d){ const note=$("comment").value.trim(); await post(CUR.slug,{kind:"decision", text:`${d}${note?" — "+note:""}`}); $("comment").value=""; refreshFb(); }
+async function sendGlobal(){ const text=$("gnote").value.trim(); if(!text) return; await post("_project",{text}); $("gnote").value=""; loadPulse(); }
+
+async function authUI(){
   const s = await (await fetch("/api/auth/status")).json();
   const el = $("yt-body");
-  if (s.channel) {
-    el.innerHTML = `<div class="row" style="margin:0">
-      ${s.channel.thumb ? `<img src="${esc(s.channel.thumb)}" style="width:34px;height:34px;border-radius:50%">` : ""}
-      <span style="color:var(--good);font-weight:600">Connected — ${esc(s.channel.title)}</span>
-      <span class="feat">uploads land private first · publishing fires at confidence 100</span>
-      <span style="flex:1"></span><button onclick="location.href='/oauth/start'">Re-authorize</button></div>`;
-  } else if (s.hasToken) {
-    el.innerHTML = `<span style="color:var(--warn)">Token saved, but the channel couldn't be read — try re-authorizing.</span>
-      <div class="row"><button class="primary" onclick="location.href='/oauth/start'">Re-authorize with Google</button></div>`;
-  } else if (s.hasSecret) {
-    el.innerHTML = `<div class="feat" style="margin-bottom:10px">Credentials saved. One click left — sign in with the channel's Google account and approve.</div>
-      <button class="primary" onclick="location.href='/oauth/start'">Authorize with Google</button>`;
-  } else {
-    el.innerHTML = `
-      <div class="feat" style="margin-bottom:10px">One-time setup (~2 min). Google requires the OAuth client to be created in your own Cloud Console:</div>
-      <ol style="font-size:13px;color:var(--dim);margin:0 0 10px 18px;line-height:1.7">
-        <li><a style="color:var(--accent)" target="_blank" href="https://console.cloud.google.com/apis/library/youtube.googleapis.com">Enable the YouTube Data API v3</a> (create a project if asked)</li>
-        <li><a style="color:var(--accent)" target="_blank" href="https://console.cloud.google.com/apis/credentials">Credentials</a> → Create credentials → <b>OAuth client ID</b> → type <b>Desktop app</b></li>
-        <li>Download the JSON, then paste its contents below (or pick the file)</li>
-      </ol>
-      <textarea id="secret-json" placeholder='{"installed":{"client_id":"…","client_secret":"…"}}' style="min-height:70px;font-family:ui-monospace,monospace;font-size:12px"></textarea>
-      <div class="row">
-        <input type="file" id="secret-file" accept=".json" style="color:var(--faint);font-size:12px">
-        <span style="flex:1"></span>
-        <button class="primary" onclick="saveSecret()">Save credentials</button>
-      </div>
-      <div class="feat" style="margin-top:8px">Stored at .secrets/ (gitignored) — never leaves this machine, never committed.</div>`;
-    $("secret-file").addEventListener("change", async (e) => {
-      const f = e.target.files[0];
-      if (f) $("secret-json").value = await f.text();
-    });
-  }
-}
-async function saveSecret() {
-  const txt = $("secret-json").value.trim();
-  if (!txt) return;
-  const r = await fetch("/api/auth/secret", { method: "POST", body: txt });
-  const j = await r.json();
-  if (j.error) { alert(j.error); return; }
-  authUI();
+  if (s.channel) el.innerHTML = `<div class="row" style="margin:0">${s.channel.thumb?`<img src="${esc(s.channel.thumb)}" style="width:30px;height:30px;border-radius:50%">`:""}<span style="color:var(--good);font-weight:600">Connected — ${esc(s.channel.title)}</span><span style="flex:1"></span><button onclick="location.href='/oauth/start'">Re-authorize</button></div>`;
+  else if (s.hasSecret) el.innerHTML = `<button class="primary" onclick="location.href='/oauth/start'">Authorize with Google</button>`;
+  else el.innerHTML = `<span class="feat">no OAuth credentials — see earlier setup panel instructions in the repo README</span>`;
 }
 if (new URLSearchParams(location.search).get("connected")) history.replaceState(null, "", "/");
-load();
-authUI();
+load(); loadPulse(); authUI();
+setInterval(()=>{ if($("home").style.display!=="none"){ load(); loadPulse(); } }, 60000);
 </script>

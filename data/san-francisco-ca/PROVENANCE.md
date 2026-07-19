@@ -13,11 +13,11 @@ Every figure rendered from this dataset traces to the public sources below. No v
 | APIs | https://data.sfgov.org/resource/wg3w-h783.json · https://data.sfgov.org/resource/tmnf-yvry.json |
 | Fetched | 2026-07-12T07:10:56.058Z |
 | License | **ODC PDDL 1.0** (public-domain dedication) — attribution "San Francisco Police Department via DataSF" |
-| Records used | 3,117,438 (tmnf 2003-01-01 → 2017-12-31 + wg3w 2018-01-01 → 2026-06-30) |
+| Records used | 3,071,590 in-window (tmnf 2003-01-01 → 2017-12-31 + wg3w 2018-01-01 → 2026-06-30; window exclusions disclosed separately below) |
 
-### Cutover & windowing (disclosed exclusions)
-- **Cutover at 2018-01-01**: tmnf is used strictly through **2017-12-31**; its 2018-01-01 → 2018-05-15 tail (43,733 rows) overlaps wg3w and is **dropped and disclosed** (`unplacedBeats["tmnf-2018-overlap-dropped"]`) to avoid double counting.
-- Rows after **2026-06-30** (2,115 rows, partial month at fetch time) are excluded and disclosed (`unplacedBeats["partial-2026-07"]`).
+### Cutover & windowing (disclosed exclusions — OUTSIDE the window, not in `totalRecords`)
+- **Cutover at 2018-01-01**: tmnf is used strictly through **2017-12-31**; its 2018-01-01 → 2018-05-15 tail (43,733 rows) overlaps wg3w and is **dropped and disclosed** (`excludedOutsideWindow["tmnf-2018-overlap-dropped"]`) to avoid double counting.
+- Rows after **2026-06-30** (2,115 rows, partial month at fetch time) are excluded and disclosed (`excludedOutsideWindow["partial-2026-07"]`).
 - tmnf rows before 2003-01-01: 0. wg3w rows before 2018-01-01: 0.
 - Full-dataset identities validated in-script: tmnf pre-2003 + window + overlap == 2,071,736 (dataset total); wg3w pre-2018 + window + partial == 1,045,702 (dataset total).
 
@@ -35,8 +35,11 @@ Spatial unit: the **41 official DataSF Analysis Neighborhoods** (resident-known 
 - **Reconciliation:** `placed + unplaced == citywide` holds **exactly** per month × category for all 282 months, with citywide counts taken from independent aggregate queries per source.
 
 ### Coverage
-- Placed in one of the 41 neighborhoods: **3,013,369** (96.7%)
-- Unplaced: 104,069 = 58,221 no-location/outside-polygons + 43,733 tmnf-2018-overlap-dropped + 2,115 partial-2026-07.
+- Placed in one of the 41 neighborhoods: **3,013,369** (98.1% of the 3,071,590 in-window records)
+- Unplaced (in-window, no usable location): 58,221.
+- Excluded outside the window (disclosed above, NOT in the totals): 43,733 tmnf-2018-overlap-dropped + 2,115 partial-2026-07.
+
+*Accounting note (2026-07-19): this bundle originally counted the two window-exclusion buckets inside `totalRecords`/`unplacedBeats` (total 3,117,438, coverage 96.7%). They were re-bucketed to `excludedOutsideWindow` per the `pipeline/schema.md` contract — pure re-bucketing of the same 2026-07-12 fetch, no counts changed.*
 
 ## Category mapping (NIBRS crimes-against convention)
 
