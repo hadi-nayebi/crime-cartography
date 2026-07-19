@@ -33,13 +33,13 @@ Whatever the source returns, untouched, plus `_fetch_meta.json`:
 [ { "date":"YYYY-MM-DD", "title", "place"/*block address, verbatim*/, "beat":"<KEY>", "cat" } ]
 ```
 
-**`summary.json`** — totals, span, **coverage %**, per-beat unplaced counts, category totals, source links.
+**`summary.json`** — totals, span, **coverage %**, per-beat unplaced counts, category totals, source links. `totalRecords` counts **in-window** records only, so Σ `catTotals` == `totalRecords` and `placed + unplaced == total`; rows dropped by windowing (partial tail months, cross-dataset overlap, junk-dated) go in a separate **`excludedOutsideWindow`** map — disclosed, never mixed into `totalRecords`/`unplacedBeats`.
 
 ## Category keys
 `persons` (Crimes Against Person) · `property` (Crimes Against Property) · `society` (Crimes Against Society) · `other` (Local / Local-DL / All Other — kept visible, honestly labeled). Mapping is per-source in its `sources/<src>.mjs` + recorded in `PROVENANCE.md`.
 
 ## Honesty invariants (`validate.mjs`, all must hold)
-1. category totals sum == total records · 2. placed + unplaced == total · 3. Σ timeline cells == placed records · 4. every timeline beat is a real polygon · 5. cell arrays length == months · 6. months count matches summary · 7. every centroid inside the city bbox · 8. feed dates/beats/cats valid · 9. coverage ≥ 90% (else representativeness is questionable) · 10. provenance links present.
+1. category totals sum == total records · 2. placed + unplaced == total · 3. Σ timeline cells == placed records · 4. every timeline beat is a real polygon · 5. cell arrays length == months · 6. months count matches summary · 7. every centroid inside its own beat polygon's bbox + plausible US range · 8. feed dates/beats/cats valid · 9. coverage ≥ 90% (else representativeness is questionable) · 10. provenance links present.
 
 A render is only built from a dataset that **passes validate**.
 
