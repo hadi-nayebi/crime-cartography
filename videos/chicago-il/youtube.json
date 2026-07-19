@@ -50,5 +50,9 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload script (P3) reads this; url/videoId written back after upload. Chicago terms REQUIRE the verbatim disclaimer paragraph in the description — keep it. Chapters mirror theme.ts PHASES."
+  "_note": "Draft publish metadata. Upload script (P3) reads this; url/videoId written back after upload. Chicago terms REQUIRE the verbatim disclaimer paragraph in the description — keep it. Chapters mirror theme.ts PHASES.",
+  "titleOptions": [
+    "Chicago Crime Fell 51% Since 2001 — Watch All 77 Community Areas, Month by Month",
+    "40 Years of Chicago Crime in 5 Minutes — Every Community Area, Mapped"
+  ]
 }

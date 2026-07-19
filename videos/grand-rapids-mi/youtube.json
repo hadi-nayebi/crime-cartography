@@ -49,5 +49,9 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata for videos/grand-rapids-mi. The upload script (P3) will read this to create the YouTube listing; url/videoId get written back after upload. Chapter timestamps mirror theme.ts PHASES; update both together."
+  "_note": "Draft publish metadata for videos/grand-rapids-mi. The upload script (P3) will read this to create the YouTube listing; url/videoId get written back after upload. Chapter timestamps mirror theme.ts PHASES; update both together.",
+  "titleOptions": [
+    "Grand Rapids Crime Fell 51% Since 1985 — Watch It Move, Beat by Beat",
+    "40 Years of Grand Rapids Crime in 5 Minutes — Every Number Sourced"
+  ]
 }

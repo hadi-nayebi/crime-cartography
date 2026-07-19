@@ -49,5 +49,9 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload.",
+  "titleOptions": [
+    "San Francisco Crime Fell 32% Since 2003 — Every Neighborhood, Every Month, Mapped",
+    "40 Years of San Francisco Crime in 5 Minutes — Fully Sourced, Every Neighborhood"
+  ]
 }

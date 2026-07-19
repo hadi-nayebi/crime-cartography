@@ -49,5 +49,9 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload.",
+  "titleOptions": [
+    "Boston Crime Fell 71% From Its 1989 Peak — 40 Years, Mapped District by District",
+    "70,003 to 20,110: Boston's Crime Collapse, Mapped (1985–2026)"
+  ]
 }

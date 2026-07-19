@@ -12,6 +12,11 @@ videos/**/out/
 *.webm
 !videos/**/*sample*.mp4
 
+# Thumbnail CANDIDATES are regenerable frames extracted from the mp4 (studio
+# publish flow). The chosen one is copied to videos/<slug>/thumbnail.jpg, which
+# IS committed as part of the per-video publish record.
+videos/**/thumbs/
+
 # Raw source pulls are reproducible via pipeline/sources/*.mjs — keep them out of
 # git (can be large), but DO keep the provenance sidecar that records each fetch.
 data/**/raw/*

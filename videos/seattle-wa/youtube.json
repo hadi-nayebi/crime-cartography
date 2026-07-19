@@ -50,5 +50,9 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload script (P3) reads this; url/videoId written back after upload. Chapters mirror theme.ts PHASES."
+  "_note": "Draft publish metadata. Upload script (P3) reads this; url/videoId written back after upload. Chapters mirror theme.ts PHASES.",
+  "titleOptions": [
+    "Seattle Crime Fell 48% From Its 1987 Peak — but the Last 5 Years Tell a Different Story",
+    "73,369 to 37,810: Seattle's Long Crime Decline, Mapped Neighborhood by Neighborhood"
+  ]
 }

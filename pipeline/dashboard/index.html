@@ -69,6 +69,25 @@
   .sort b { color:var(--dim); font-weight:600; }
   .phasebar { font:11px ui-monospace,monospace; color:var(--faint); margin-bottom:7px; }
   .phasebar .now { color:var(--accent); }
+  /* publish modal */
+  #pubmodal { position:fixed; inset:0; background:rgba(3,5,9,.86); display:none; z-index:50; overflow:auto; padding:3vh 3vw; }
+  #pubmodal .box { max-width:1180px; margin:0 auto; background:var(--panel); border:1px solid var(--stroke); border-radius:14px; padding:18px 22px 22px; }
+  .pubcols { display:grid; grid-template-columns:minmax(0,3fr) minmax(320px,2fr); gap:20px; align-items:start; margin-top:10px; }
+  @media(max-width:980px){ .pubcols{grid-template-columns:1fr;} }
+  .thumbgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:9px; margin-top:8px; }
+  .thumbgrid img { width:100%; border-radius:8px; border:2px solid var(--stroke); cursor:pointer; display:block; opacity:.85; transition:all .1s; }
+  .thumbgrid img:hover { opacity:1; }
+  .thumbgrid img.sel { border-color:var(--accent); opacity:1; box-shadow:0 0 0 1px var(--accent); }
+  .opt { display:block; padding:8px 10px; border:1px solid var(--stroke); border-radius:8px; cursor:pointer; margin-bottom:6px; font-size:13.5px; line-height:1.35; }
+  .opt:hover { border-color:var(--dim); }
+  .opt.sel { border-color:var(--accent); background:rgba(255,194,51,.07); }
+  .opt .k { display:block; font:10px ui-monospace,monospace; color:var(--faint); letter-spacing:1px; margin-bottom:2px; }
+  input[type=text] { width:100%; background:#0a0f14; color:var(--ink); border:1px solid var(--stroke); border-radius:8px; padding:8px 10px; font:14px inherit; }
+  .privbtn { flex:1; }
+  .privbtn.sel { border-color:var(--accent); color:var(--accent); font-weight:700; }
+  .pubbtn { font:12px inherit; padding:4px 11px; border-color:rgba(255,194,51,.5); color:var(--accent); }
+  .charcount { font:11px ui-monospace,monospace; color:var(--faint); }
+  .charcount.over { color:var(--bad); font-weight:700; }
 </style>
 
 <h1>Crime Cartography <span>· production studio</span></h1>
@@ -91,6 +110,14 @@
     <div class="panel"><h4>Recent commits</h4><pre class="brief" id="commits">…</pre></div>
   </div>
 </div>
+
+<div id="pubmodal" onclick="if(event.target===this)closePublish()"><div class="box">
+  <div class="row" style="justify-content:space-between">
+    <h1 id="pub-h">Publish</h1>
+    <button onclick="closePublish()">✕ close</button>
+  </div>
+  <div id="pub-body"><div class="feat">loading…</div></div>
+</div></div>
 
 <div id="detail">
   <span class="back" onclick="showHome()">← all cities</span>
@@ -180,8 +207,10 @@ function renderBoard(){
       : `<span class="score s-none">stage ${c.stageIndex}/8</span>`;
     const hot = c.priority >= 100, attn = c.priority >= 30;
     const reason = attn ? `<div class="reason ${hot?"hot":""}">▲ ${esc(c.attention)}</div>` : "";
+    const pub = c.mp4 && !c.youtube.url
+      ? `<button class="pubbtn" onclick="event.stopPropagation();openPublish('${c.slug}')">⤴ Publish</button>` : "";
     return `<div class="card ${attn?"attn":""} ${hot?"hot":""}" onclick="show('${c.slug}')">
-      <div class="row" style="justify-content:space-between"><h3>${esc(c.title)}</h3>${badge}</div>
+      <div class="row" style="justify-content:space-between"><h3>${esc(c.title)}</h3><span class="row" style="gap:6px">${pub}${badge}</span></div>
       <div class="sm">${esc(c.subtitle)}</div>
       ${reason}
       <div class="stages">${stageStrip(c.stages)}</div>
@@ -223,7 +252,8 @@ function renderFbPanel(c){
     calls = `<span style="flex:1"></span>
       <button class="good" onclick="decision('APPROVE')">Approve</button>
       <button class="warn" onclick="decision('HOLD')">Hold</button>
-      <button class="bad" onclick="decision('REQUEST CHANGES')">Request changes</button>`;
+      <button class="bad" onclick="decision('REQUEST CHANGES')">Request changes</button>
+      <button class="primary" onclick="openPublish(CUR.slug)">⤴ Publish…</button>`;
   else if(ph==="published")
     calls = `<span style="flex:1"></span><button class="bad" onclick="decision('REQUEST CHANGES')">Request re-cut</button>`;
   else
@@ -282,6 +312,109 @@ async function post(slug, body){ await fetch(`/api/feedback/${slug}`,{method:"PO
 async function sendComment(withTime){ const text=$("comment").value.trim(); if(!text) return; await post(CUR.slug,{text, videoTime: withTime&&CUR.mp4 ? $("player").currentTime : null}); $("comment").value=""; refreshFb(); }
 async function decision(d){ const note=$("comment").value.trim(); await post(CUR.slug,{kind:"decision", text:`${d}${note?" — "+note:""}`}); $("comment").value=""; refreshFb(); }
 async function sendGlobal(){ const text=$("gnote").value.trim(); if(!text) return; await post("_project",{text}); $("gnote").value=""; loadPulse(); }
+
+// ---- publish modal ---------------------------------------------------------
+let PUB = null; // { slug, data, titles, thumb, titleIdx, privacy }
+async function openPublish(slug){
+  $("pubmodal").style.display = "block";
+  $("pub-h").textContent = `Publish · ${slug}`;
+  $("pub-body").innerHTML = `<div class="feat">extracting thumbnail candidates from the render…</div>`;
+  const p = await (await fetch(`/api/publish/${slug}`)).json();
+  if (p.error) { $("pub-body").innerHTML = `<div class="feat">⚠ ${esc(p.error)}</div>`; return; }
+  const titles = [p.title, ...(p.titleOptions||[]).filter(t=>t!==p.title)];
+  PUB = { slug, data:p, titles,
+          thumb: p.chosenThumb && p.thumbs.includes(p.chosenThumb) ? p.chosenThumb : (p.thumbs[0] ?? null),
+          titleIdx: 0, privacy: "public" };
+  if (p.published) {
+    $("pub-body").innerHTML = `<div class="panel" style="margin:0">
+      <h4>Already published</h4>
+      <div style="font-size:15px">▶ <a href="${esc(p.url)}" target="_blank">${esc(p.url)}</a> · status: ${esc(p.status)}</div>
+      <div class="feat" style="margin-top:6px">Title, description and thumbnail changes now happen in YouTube Studio (or leave a note — the channel manager routine applies metadata updates).</div></div>`;
+    return;
+  }
+  renderPub();
+}
+function closePublish(){ $("pubmodal").style.display="none"; PUB=null; try{ const v=$("pub-video"); if(v) v.pause(); }catch{} }
+function renderPub(){
+  const p = PUB.data;
+  const warn = !p.hasRender ? `<div class="feat" style="color:var(--warn)">⚠ no rendered mp4 — publish disabled</div>`
+    : !p.authOk ? `<div class="feat" style="color:var(--warn)">⚠ YouTube not connected — authorize on the home panel first</div>` : "";
+  $("pub-body").innerHTML = `
+    ${warn}
+    <div class="pubcols">
+      <div>
+        <video id="pub-video" src="/video/${PUB.slug}" controls preload="metadata" style="width:100%;border-radius:10px;border:1px solid var(--stroke);background:#000"></video>
+        <h4 style="margin:14px 0 0" class="row">THUMBNAIL — PICK A FRAME
+          <button class="chip tab" onclick="regenThumbs()">↻ re-extract</button>
+          <span class="feat">real frames from this render — the thumbnail never over-promises</span></h4>
+        <div class="thumbgrid" id="pub-thumbs">${p.thumbs.map(t=>
+          `<img src="/thumb/${PUB.slug}/${t}" data-t="${t}" class="${PUB.thumb===t?"sel":""}" title="${t}" onclick="pickThumb('${t}')">`).join("")
+          || '<span class="feat">no frames — render missing</span>'}</div>
+      </div>
+      <div>
+        <h4>TITLE — PICK OR EDIT <span class="charcount" id="pub-tcount"></span></h4>
+        <div id="pub-titles">${PUB.titles.map((t,i)=>
+          `<span class="opt ${i===PUB.titleIdx?"sel":""}" data-i="${i}" onclick="pickTitle(${i})"><span class="k">OPTION ${i+1}${i===0?" · producer default":""}</span>${esc(t)}</span>`).join("")}</div>
+        <input type="text" id="pub-title" value="${esc(PUB.titles[PUB.titleIdx])}" oninput="titleEdited()" maxlength="120">
+        <h4 style="margin-top:16px">FULL DESCRIPTION <span class="feat">(editable — saved back to youtube.json on publish)</span></h4>
+        <textarea id="pub-desc" style="min-height:230px;font-size:13px">${esc(p.description)}</textarea>
+        <div class="feat" style="margin-top:7px">tags: ${p.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join(" ")}</div>
+        <h4 style="margin-top:16px">VISIBILITY</h4>
+        <div class="row">
+          <button class="privbtn ${PUB.privacy==="public"?"sel":""}" onclick="PUB.privacy='public';renderPrivacy()">Public — live for everyone</button>
+          <button class="privbtn ${PUB.privacy==="private"?"sel":""}" onclick="PUB.privacy='private';renderPrivacy()">Private — upload only</button>
+        </div>
+        <div class="row" style="margin-top:16px">
+          <button class="primary" id="pub-go" style="flex:1;padding:12px" onclick="firePublish()" ${p.hasRender&&p.authOk?"":"disabled"}>⤴ PUBLISH TO YOUTUBE</button>
+        </div>
+        <div class="feat" style="margin-top:6px" id="pub-status">${p.channel?`channel: ${esc(p.channel.title)}`:""}</div>
+      </div>
+    </div>`;
+  titleEdited();
+}
+function pickThumb(t){ PUB.thumb=t; [...document.querySelectorAll("#pub-thumbs img")].forEach(el=>el.classList.toggle("sel", el.dataset.t===t)); }
+function pickTitle(i){ PUB.titleIdx=i; $("pub-title").value=PUB.titles[i]; [...document.querySelectorAll("#pub-titles .opt")].forEach(el=>el.classList.toggle("sel", Number(el.dataset.i)===i)); titleEdited(); }
+function titleEdited(){
+  const v = $("pub-title").value, n = v.length;
+  const c = $("pub-tcount"); c.textContent = `${n}/100`; c.classList.toggle("over", n>100);
+  [...document.querySelectorAll("#pub-titles .opt")].forEach(el=>el.classList.toggle("sel", PUB.titles[Number(el.dataset.i)]===v));
+}
+function renderPrivacy(){ [...document.querySelectorAll(".privbtn")].forEach((el,i)=>el.classList.toggle("sel", (i===0)===(PUB.privacy==="public"))); }
+async function regenThumbs(){
+  $("pub-thumbs").innerHTML = '<span class="feat">re-extracting frames…</span>';
+  const r = await (await fetch(`/api/publish/${PUB.slug}/thumbs`,{method:"POST"})).json();
+  PUB.data.thumbs = r.thumbs ?? [];
+  if (!PUB.data.thumbs.includes(PUB.thumb)) PUB.thumb = PUB.data.thumbs[0] ?? null;
+  $("pub-thumbs").innerHTML = PUB.data.thumbs.map(t=>
+    `<img src="/thumb/${PUB.slug}/${t}?r=${Date.now()}" data-t="${t}" class="${PUB.thumb===t?"sel":""}" title="${t}" onclick="pickThumb('${t}')">`).join("");
+}
+async function firePublish(){
+  const title = $("pub-title").value.trim();
+  if (!title) return alert("title required");
+  if (title.length > 100) return alert("YouTube titles max 100 characters");
+  if (!confirm(`Upload "${title}"\nas ${PUB.privacy.toUpperCase()}${PUB.thumb?` with thumbnail ${PUB.thumb}`:""}?`)) return;
+  const go = $("pub-go"); go.disabled = true; go.textContent = "uploading… (this takes a minute)";
+  $("pub-status").textContent = "uploading to YouTube — leave this tab open…";
+  try {
+    const r = await fetch(`/api/publish/${PUB.slug}`, { method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ title, description: $("pub-desc").value, thumb: PUB.thumb, privacy: PUB.privacy }) });
+    const j = await r.json();
+    if (j.ok) {
+      $("pub-body").innerHTML = `<div class="panel" style="margin:0">
+        <h4 style="color:var(--good)">✓ PUBLISHED</h4>
+        <div style="font-size:16px;margin:6px 0">▶ <a href="${esc(j.url)}" target="_blank">${esc(j.url)}</a></div>
+        <div class="feat">status: ${esc(j.status)} · thumbnail: ${esc(j.thumbnail)}</div>
+        <div class="feat" style="margin-top:6px">youtube.json updated — the next routine run commits the record.</div></div>`;
+      load();
+    } else {
+      go.disabled = false; go.textContent = "⤴ PUBLISH TO YOUTUBE";
+      $("pub-status").innerHTML = `<span style="color:var(--bad)">✗ ${esc(j.error || "publish failed")}</span>`;
+    }
+  } catch (e) {
+    go.disabled = false; go.textContent = "⤴ PUBLISH TO YOUTUBE";
+    $("pub-status").innerHTML = `<span style="color:var(--bad)">✗ ${esc(String(e))}</span>`;
+  }
+}
 
 async function authUI(){
   const s = await (await fetch("/api/auth/status")).json();

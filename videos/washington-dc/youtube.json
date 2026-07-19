@@ -48,5 +48,9 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload.",
+  "titleOptions": [
+    "DC Crime Fell 48% From Its 1993 Peak — and Kept Falling. 40 Years, Mapped",
+    "68,146 to 35,706: Washington DC's Crime Decline, Mapped Cluster by Cluster"
+  ]
 }

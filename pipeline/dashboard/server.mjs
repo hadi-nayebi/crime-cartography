@@ -12,7 +12,7 @@
  * repo files; a 5-minute note-watcher routine picks up unresolved notes.
  */
 import { createServer } from "node:http";
-import { readFile, readdir, stat, writeFile, mkdir } from "node:fs/promises";
+import { readFile, readdir, stat, writeFile, mkdir, copyFile } from "node:fs/promises";
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { join, dirname } from "node:path";
@@ -257,6 +257,110 @@ async function authStatus() {
   return { hasSecret, hasToken, channel, redirect: REDIRECT };
 }
 
+// ---- publish flow ----------------------------------------------------------
+// Thumbnail candidates are REAL frames from the rendered video (honesty: the
+// thumbnail can never promise something the video doesn't show). Times span
+// the phase layout: hook, method, trend arc, punchline, map, reveal.
+const THUMB_TIMES = [4, 45, 110, 155, 210, 290];
+const safeName = (s) => typeof s === "string" && /^[\w.-]+$/.test(s) && !s.includes("..");
+const PUBLISHING = new Set();
+
+async function mp4Of(slug) {
+  const lock = await readJson(join(ROOT, "videos", slug, "render.lock.json"));
+  const file = lock?.output ? join(ROOT, "videos", slug, lock.output) : join(ROOT, "videos", slug, `out/${slug}.mp4`);
+  return exists(file) ? file : null;
+}
+
+async function ensureThumbs(slug, force = false) {
+  const mp4 = await mp4Of(slug);
+  if (!mp4) return [];
+  const dir = join(ROOT, "videos", slug, "thumbs");
+  await mkdir(dir, { recursive: true });
+  const out = [];
+  for (const t of THUMB_TIMES) {
+    const name = `t${String(t).padStart(3, "0")}.jpg`;
+    const f = join(dir, name);
+    if (force || !exists(f)) {
+      try {
+        await pexec("ffmpeg", ["-ss", String(t), "-i", mp4, "-frames:v", "1", "-vf", "scale=1280:720", "-q:v", "3", "-y", f]);
+      } catch {}
+    }
+    if (exists(f)) out.push(name);
+  }
+  return out;
+}
+
+async function publishPreview(slug) {
+  const yt = await readJson(join(ROOT, "videos", slug, "youtube.json"));
+  if (!yt) return { error: "no youtube.json — config/publish metadata not authored yet" };
+  const auth = await authStatus();
+  return {
+    slug,
+    published: Boolean(yt.videoId),
+    url: yt.url || null,
+    status: yt.status ?? "draft",
+    title: yt.title ?? slug,
+    titleOptions: Array.isArray(yt.titleOptions) ? yt.titleOptions : [],
+    description: yt.description ?? "",
+    tags: yt.tags ?? [],
+    hasRender: Boolean(await mp4Of(slug)),
+    authOk: auth.hasSecret && auth.hasToken,
+    channel: auth.channel,
+    thumbs: await ensureThumbs(slug),
+    chosenThumb: yt.thumbnailFile ? yt.thumbnailFile.replace(/^thumbs\//, "") : null,
+  };
+}
+
+async function doPublish(slug, p) {
+  const ytPath = join(ROOT, "videos", slug, "youtube.json");
+  const yt = await readJson(ytPath);
+  if (!yt) return [400, { error: "no youtube.json" }];
+  if (yt.videoId) return [409, { error: `already published: ${yt.url}` }];
+  if (!(await mp4Of(slug))) return [400, { error: "no rendered mp4 yet" }];
+  if (!(await accessToken())) return [401, { error: "YouTube not connected — authorize the channel first" }];
+  // Persist the operator's choices into the per-video record BEFORE upload —
+  // the canonical upload CLI reads youtube.json, so the record and the listing
+  // can never diverge.
+  if (p.title) yt.title = String(p.title).slice(0, 100);
+  if (p.description) yt.description = String(p.description).slice(0, 5000);
+  const privacy = p.privacy === "public" ? "public" : "private";
+  yt.privacyStatus = privacy;
+  if (p.thumb && safeName(p.thumb)) {
+    // candidates (thumbs/) are regenerable and gitignored; the CHOSEN frame is
+    // copied to thumbnail.jpg — the committed part of the per-video record.
+    await copyFile(join(ROOT, "videos", slug, "thumbs", p.thumb), join(ROOT, "videos", slug, "thumbnail.jpg"));
+    yt.thumbnailFile = "thumbnail.jpg";
+    yt.thumbnailFrame = p.thumb;
+  }
+  yt.publishedVia = "studio";
+  await writeFile(ytPath, JSON.stringify(yt, null, 2));
+  const args = [join(ROOT, "pipeline/publish/upload-youtube.mjs"), slug];
+  if (privacy === "public") args.push("--public");
+  try {
+    await pexec("node", args, { cwd: ROOT, maxBuffer: 16 * 1024 * 1024 });
+  } catch (e) {
+    return [500, { error: `upload failed: ${String(e.stderr || e.message || e).slice(0, 600)}` }];
+  }
+  const done = (await readJson(ytPath)) ?? {};
+  // Chosen thumbnail → YouTube (best-effort: custom thumbnails need a
+  // phone-verified channel; a failure here never fails the publish).
+  let thumbnail = "none chosen";
+  if (p.thumb && safeName(p.thumb) && done.videoId) {
+    try {
+      const at = await accessToken();
+      const buf = await readFile(join(ROOT, "videos", slug, "thumbs", p.thumb));
+      const r = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${done.videoId}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${at}`, "Content-Type": "image/jpeg" },
+        body: buf,
+      });
+      thumbnail = r.ok ? "set" : `failed (HTTP ${r.status}) — set it manually in YouTube Studio`;
+      if (r.ok) { done.thumbnailSetAt = new Date().toISOString(); await writeFile(ytPath, JSON.stringify(done, null, 2)); }
+    } catch { thumbnail = "failed — set it manually in YouTube Studio"; }
+  }
+  return [200, { ok: true, url: done.url, videoId: done.videoId, status: done.status, thumbnail }];
+}
+
 function send(res, code, body, type = "application/json") {
   const data = type === "application/json" ? JSON.stringify(body) : body;
   res.writeHead(code, { "Content-Type": type, "Cache-Control": "no-store" });
@@ -315,6 +419,33 @@ const server = createServer(async (req, res) => {
       await writeFile(TOKEN_PATH, JSON.stringify(tok, null, 2));
       res.writeHead(302, { Location: "/?connected=1" });
       return res.end();
+    }
+    // publish flow
+    if (url.pathname.startsWith("/api/publish/")) {
+      const parts = url.pathname.split("/");
+      const slug = parts[3];
+      if (!safeName(slug)) return send(res, 400, { error: "bad slug" });
+      if (parts[4] === "thumbs" && req.method === "POST")
+        return send(res, 200, { thumbs: await ensureThumbs(slug, true) });
+      if (req.method === "GET") return send(res, 200, await publishPreview(slug));
+      if (req.method === "POST") {
+        if (PUBLISHING.has(slug)) return send(res, 409, { error: "publish already in progress" });
+        PUBLISHING.add(slug);
+        try {
+          let body = ""; for await (const c of req) body += c;
+          let parsed; try { parsed = JSON.parse(body || "{}"); } catch { return send(res, 400, { error: "not valid JSON" }); }
+          const [code, out] = await doPublish(slug, parsed);
+          return send(res, code, out);
+        } finally { PUBLISHING.delete(slug); }
+      }
+    }
+    if (url.pathname.startsWith("/thumb/")) {
+      const [, , slug, file] = url.pathname.split("/");
+      if (!safeName(slug) || !safeName(file)) return send(res, 400, { error: "bad path" });
+      const f = join(ROOT, "videos", slug, "thumbs", file);
+      if (!exists(f)) return send(res, 404, { error: "not found" });
+      res.writeHead(200, { "Content-Type": "image/jpeg", "Cache-Control": "no-store" });
+      return createReadStream(f).pipe(res);
     }
     // per-video feedback
     if (url.pathname.startsWith("/api/feedback/")) {

@@ -50,5 +50,9 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload.",
+  "titleOptions": [
+    "Minneapolis Crime Halved After 1991 — Then Came the Plateau. 87 Neighborhoods, Mapped",
+    "42,115 to 20,221: The Fall of Minneapolis Crime — and What Happened Next"
+  ]
 }
