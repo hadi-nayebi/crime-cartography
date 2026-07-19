@@ -12,7 +12,7 @@ Every figure rendered from this dataset traces to the public sources below. No v
 | API | https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDIncidents/MapServer/0 |
 | Fetched | 2026-07-18T11:53:58.146Z |
 | License | Custom City of Charlotte disclaimer (quoted verbatim below); no explicit open license — attribution "Charlotte-Mecklenburg Police Department / City of Charlotte" |
-| Records kept | 701,939 (of 854,996 layer rows; exclusions enumerated below) |
+| Records kept | 698,399 in-window (of 854,996 layer rows; exclusions and window accounting enumerated below) |
 | Source caveat | "For official crime statistics, please visit CMPD's Crime Statistics page." The layer "includes all CMPD incident report types, both criminal and non-criminal … Each incident is classified based on FBI NIBRS standards by applying a national crime hierarchy to choose the highest offense assigned to each report." Classifications and clearance statuses can change as investigations proceed. |
 
 ### License (verbatim, from the ArcGIS item registry — applies to both the incidents and divisions items)
@@ -76,14 +76,18 @@ The layer publishes `DATE_REPORTED`, `DATE_INCIDENT_BEGAN`, and `DATE_INCIDENT_E
 All values are date-only (EXTRACT(HOUR)=0 across all 854,996 rows, verified live), so server-side
 month grouping and client epoch conversion agree exactly. Consequence: 3,540 kept rows *began*
 before 2017 (reported 2017+); 67 of them carry junk dates before 1990 (back to year
-0200 — obvious data-entry errors on real reports). They are counted in `totalRecords` and disclosed
-as `unplacedBeats["began-pre-2017"]` — never silently dropped, never mapped.
+0200 — obvious data-entry errors on real reports). They fall outside the 2017-01 → 2026-06 window, so
+they are **excluded from `totalRecords`** and disclosed as `excludedOutsideWindow["began-pre-2017"]`
+— never silently dropped, never mapped, never mixed into the category totals.
 
-### Windowing (disclosed exclusions)
+### Windowing (disclosed exclusions — OUTSIDE the window, not in `totalRecords`)
 
+- Rows (kept universe) with DATE_INCIDENT_BEGAN before **2017-01-01**: **3,540** excluded and
+  disclosed (`excludedOutsideWindow["began-pre-2017"]` — see the date-field section above).
 - Rows (kept universe) with DATE_INCIDENT_BEGAN on/after **2026-07-01** (partial month at fetch):
-  **2,817** excluded → the granular window ends at the last FULL month, **2026-06**.
-- 704,756 kept = 701,939 window + 2,817 partial-month.
+  **2,817** excluded and disclosed (`excludedOutsideWindow["partial-month-2026-07"]`) →
+  the granular window ends at the last FULL month, **2026-06**.
+- 704,756 kept = 698,399 window + 3,540 began-pre-2017 + 2,817 partial-month.
 
 ### Fields used
 
@@ -188,8 +192,9 @@ towns / mutual-aid codes) are **counted citywide and disclosed as unplaced**:
 | "Davidson" | 10 |
 | "Unknown" | 1 |
 
-- Placed: **697,504** (99.4%)
-- Unplaced: 4,435 = 3,540 began-pre-2017 + 895 outside the 14 divisions.
+- Placed: **697,504** (99.9% of the 698,399 in-window records)
+- Unplaced (in-window): 895 outside the 14 divisions.
+- Excluded outside the window (disclosed above, NOT in the totals): 3,540 began-pre-2017 + 2,817 partial-2026-07.
 - Identity `placed + unplaced == citywide` validated per month × category in-script against an
   independent citywide grouped query (698,399 in-span rows), **plus** one full month
   (2023-05) re-verified row-by-row against a paged raw pull (dates, filters, categories, divisions,
