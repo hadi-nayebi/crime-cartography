@@ -29,7 +29,8 @@
 //                division detail (DATE_REPORTED starts 2017-01-01; rows whose
 //                DATE_INCIDENT_BEGAN predates 2017 — old occurrences reported
 //                2017+ plus a handful of junk dates back to year 0200 — are
-//                counted and disclosed as "began-pre-2017" unplaced).
+//                outside the window: excluded from totalRecords and disclosed
+//                as excludedOutsideWindow["began-pre-2017"]).
 //
 // Date field: DATE_INCIDENT_BEGAN (when the incident began), NOT DATE_REPORTED —
 // the map animates when crime occurred; the choice is recorded in PROVENANCE.
@@ -320,7 +321,6 @@ const monthWhere = (ym) => {
   );
 };
 const SPAN_WHERE = `DATE_INCIDENT_BEGAN >= TIMESTAMP '${SPAN_START}' AND DATE_INCIDENT_BEGAN < TIMESTAMP '${SPAN_END}'`;
-const WINDOW_WHERE = `DATE_INCIDENT_BEGAN < TIMESTAMP '${SPAN_END}'`; // totals window
 
 function titleCase(s) {
   return String(s)
@@ -496,8 +496,13 @@ async function main() {
   );
 
   // ---- 3. Window accounting -------------------------------------------------
+  // Contract (per buffalo-ny/cincinnati-oh/san-francisco-ca): totalRecords
+  // counts IN-WINDOW records only, so Σ catTotals == totalRecords and
+  // placed + unplaced == total. Rows that began before 2017 and the partial
+  // fetch month are OUTSIDE the window — disclosed in excludedOutsideWindow,
+  // never mixed into totalRecords/unplacedBeats.
   console.log("── Window accounting (DATE_INCIDENT_BEGAN)");
-  const totalRecords = await arcCount(`${INCLUDE_WHERE} AND ${WINDOW_WHERE}`, "window total");
+  const totalRecords = await arcCount(`${INCLUDE_WHERE} AND ${SPAN_WHERE}`, "window total");
   const pre2017 = await arcCount(
     `${INCLUDE_WHERE} AND DATE_INCIDENT_BEGAN < TIMESTAMP '${SPAN_START}'`,
     "began-pre-2017",
@@ -511,12 +516,12 @@ async function main() {
     "partial 2026-07",
   );
   assert(
-    totalRecords + partialJuly === includeUniverse,
-    `window ${totalRecords} + partial ${partialJuly} != include ${includeUniverse}`,
+    pre2017 + totalRecords + partialJuly === includeUniverse,
+    `pre-2017 ${pre2017} + window ${totalRecords} + partial ${partialJuly} != include ${includeUniverse}`,
   );
   console.log(
-    `  kept universe ${includeUniverse} = window ${totalRecords} (incl. ${pre2017} began-pre-2017,` +
-      ` of which ${junkPre1990} junk-dated <1990) + partial 2026-07 ${partialJuly}`,
+    `  kept universe ${includeUniverse} = window ${totalRecords} + began-pre-2017 ${pre2017}` +
+      ` (of which ${junkPre1990} junk-dated <1990) + partial 2026-07 ${partialJuly}`,
   );
 
   // ---- 4. Timeline cells: per-cat × division × month ------------------------
@@ -605,8 +610,8 @@ async function main() {
     0,
   );
   assert(
-    pre2017 + citywideSpanTotal === totalRecords,
-    `pre2017 ${pre2017} + span ${citywideSpanTotal} != window total ${totalRecords}`,
+    citywideSpanTotal === totalRecords,
+    `span ${citywideSpanTotal} != window total ${totalRecords}`,
   );
   console.log(
     `  placed + unplaced == citywide for all ${MONTHS.length} months × 4 cats ✓ (span total ${citywideSpanTotal})`,
@@ -932,7 +937,7 @@ async function main() {
   for (const k of HOODS)
     for (const cc of cells[k]) placedRecords += cc.persons + cc.property + cc.society + cc.other;
   const outsideDivisions = CAT_KEYS.reduce((s, c) => s + junkByCatMonth[c].reduce((a, b) => a + b, 0), 0);
-  const unplacedRecords = pre2017 + outsideDivisions;
+  const unplacedRecords = outsideDivisions;
   assert(placedRecords + unplacedRecords === totalRecords, "placed+unplaced != total");
   const coveragePct = Math.round((placedRecords / totalRecords) * 1000) / 10;
 
@@ -950,14 +955,14 @@ async function main() {
     placedRecords,
     unplacedRecords,
     coveragePct,
-    unplacedBeats: { "began-pre-2017": pre2017, "outside-cmpd-divisions": outsideDivisions },
+    unplacedBeats: { "outside-cmpd-divisions": outsideDivisions },
+    excludedOutsideWindow: { "began-pre-2017": pre2017, "partial-month-2026-07": partialJuly },
     excluded: {
       note:
         "Excluded from every count and disclosed in PROVENANCE: CMPD non-criminal 800-series local report " +
         "types and reports with clearance status 'Unfounded' (status as of fetch date).",
       "non-criminal-800-series": excl800,
       "unfounded-clearances-non-800": exclUnfNon800,
-      "partial-month-2026-07": partialJuly,
     },
     catTotals,
     cats: CATS,
@@ -1233,7 +1238,7 @@ Every figure rendered from this dataset traces to the public sources below. No v
 | API | ${ARC_LAYER} |
 | Fetched | ${fetchedAt} |
 | License | Custom City of Charlotte disclaimer (quoted verbatim below); no explicit open license — attribution "Charlotte-Mecklenburg Police Department / City of Charlotte" |
-| Records kept | ${n(summary.totalRecords)} (of ${n(grand)} layer rows; exclusions enumerated below) |
+| Records kept | ${n(summary.totalRecords)} in-window (of ${n(grand)} layer rows; exclusions and window accounting enumerated below) |
 | Source caveat | "For official crime statistics, please visit CMPD's Crime Statistics page." The layer "includes all CMPD incident report types, both criminal and non-criminal … Each incident is classified based on FBI NIBRS standards by applying a national crime hierarchy to choose the highest offense assigned to each report." Classifications and clearance statuses can change as investigations proceed. |
 
 ### License (verbatim, from the ArcGIS item registry — applies to both the incidents and divisions items)
@@ -1283,14 +1288,18 @@ The layer publishes \`DATE_REPORTED\`, \`DATE_INCIDENT_BEGAN\`, and \`DATE_INCID
 All values are date-only (EXTRACT(HOUR)=0 across all ${n(grand)} rows, verified live), so server-side
 month grouping and client epoch conversion agree exactly. Consequence: ${n(pre2017)} kept rows *began*
 before 2017 (reported 2017+); ${n(junkPre1990)} of them carry junk dates before 1990 (back to year
-0200 — obvious data-entry errors on real reports). They are counted in \`totalRecords\` and disclosed
-as \`unplacedBeats["began-pre-2017"]\` — never silently dropped, never mapped.
+0200 — obvious data-entry errors on real reports). They fall outside the 2017-01 → 2026-06 window, so
+they are **excluded from \`totalRecords\`** and disclosed as \`excludedOutsideWindow["began-pre-2017"]\`
+— never silently dropped, never mapped, never mixed into the category totals.
 
-### Windowing (disclosed exclusions)
+### Windowing (disclosed exclusions — OUTSIDE the window, not in \`totalRecords\`)
 
+- Rows (kept universe) with DATE_INCIDENT_BEGAN before **2017-01-01**: **${n(pre2017)}** excluded and
+  disclosed (\`excludedOutsideWindow["began-pre-2017"]\` — see the date-field section above).
 - Rows (kept universe) with DATE_INCIDENT_BEGAN on/after **2026-07-01** (partial month at fetch):
-  **${n(partialJuly)}** excluded → the granular window ends at the last FULL month, **2026-06**.
-- ${n(includeUniverse)} kept = ${n(summary.totalRecords)} window + ${n(partialJuly)} partial-month.
+  **${n(partialJuly)}** excluded and disclosed (\`excludedOutsideWindow["partial-month-2026-07"]\`) →
+  the granular window ends at the last FULL month, **2026-06**.
+- ${n(includeUniverse)} kept = ${n(summary.totalRecords)} window + ${n(pre2017)} began-pre-2017 + ${n(partialJuly)} partial-month.
 
 ### Fields used
 
@@ -1331,8 +1340,9 @@ towns / mutual-aid codes) are **counted citywide and disclosed as unplaced**:
 |----------------------------------|-----:|
 ${junkDivRows}
 
-- Placed: **${n(summary.placedRecords)}** (${summary.coveragePct}%)
-- Unplaced: ${n(summary.unplacedRecords)} = ${n(pre2017)} began-pre-2017 + ${n(outsideDivisions)} outside the 14 divisions.
+- Placed: **${n(summary.placedRecords)}** (${summary.coveragePct}% of the ${n(summary.totalRecords)} in-window records)
+- Unplaced (in-window): ${n(summary.unplacedRecords)} outside the 14 divisions.
+- Excluded outside the window (disclosed above, NOT in the totals): ${n(pre2017)} began-pre-2017 + ${n(partialJuly)} partial-2026-07.
 - Identity \`placed + unplaced == citywide\` validated per month × category in-script against an
   independent citywide grouped query (${n(citywideSpanTotal)} in-span rows), **plus** one full month
   (2023-05) re-verified row-by-row against a paged raw pull (dates, filters, categories, divisions,
@@ -1431,8 +1441,9 @@ function appendWiki({ summary, history, excl800, exclUnfNon800 }) {
   as Group A crime. Full code table in
   [\`data/charlotte-nc/PROVENANCE.md\`](../data/charlotte-nc/PROVENANCE.md).
 - **Date field:** \`DATE_INCIDENT_BEGAN\` (when the incident began), not
-  \`DATE_REPORTED\` — ${n(summary.unplacedBeats["began-pre-2017"])} kept rows began pre-2017 (reported later;
-  incl. a few junk-dated) are counted and disclosed as "began-pre-2017" unplaced.
+  \`DATE_REPORTED\` — ${n(summary.excludedOutsideWindow["began-pre-2017"])} kept rows began pre-2017 (reported later;
+  incl. a few junk-dated): outside the window, excluded from the totals and
+  disclosed as "began-pre-2017" in \`excludedOutsideWindow\`.
 - **Spatial unit:** the **14 official CMPD patrol divisions** — carried in-data
   (\`CMPD_PATROL_DIVISION\`), identity-joined to the official "CMPD Police
   Divisions" polygon layer (DNAME/DIVISION codes match exactly; no spatial join).
@@ -1448,8 +1459,10 @@ function appendWiki({ summary, history, excl800, exclUnfNon800 }) {
   annual Violent + Property counts, ${history.years.length} full years (12 reported months each).
 - **Span:** ${history.yearMin}–${history.yearMax} (FBI UCR annual) + 2017-01-01 → 2026-06-30 (CMPD NIBRS
   with division detail, ${summary.months} months; partial 2026-07 dropped and disclosed).
-- **Records:** ${n(summary.totalRecords)} kept in window · ${n(summary.placedRecords)} placed in a division
-  (**${summary.coveragePct}% coverage**) · ${n(summary.unplacedRecords)} unplaced, kept in totals and disclosed.
+- **Records:** ${n(summary.totalRecords)} in-window · ${n(summary.placedRecords)} placed in a division
+  (**${summary.coveragePct}% coverage**) · ${n(summary.unplacedRecords)} unplaced, kept in totals and
+  disclosed. Outside the window and excluded from the totals (disclosed
+  separately): ${n(summary.excludedOutsideWindow["began-pre-2017"])} began-pre-2017 + ${n(summary.excludedOutsideWindow["partial-month-2026-07"])} partial-2026-07.
 - **Detail:** [\`data/charlotte-nc/PROVENANCE.md\`](../data/charlotte-nc/PROVENANCE.md)
 `;
   const marker = "## Ranked source types";

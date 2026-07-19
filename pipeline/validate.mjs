@@ -46,12 +46,24 @@ for (const [bk, arr] of Object.entries(timeline.cells))
 // 6. months contiguous + count matches summary
 check(timeline.months.length === summary.months, `months length mismatch`);
 
-// 7. every beat centroid sits inside Grand Rapids bbox (honest geometry sanity)
-const BBOX = { minLng: -85.78, maxLng: -85.55, minLat: 42.86, maxLat: 43.05 };
+// 7. geometry sanity (city-agnostic): every centroid lies in plausible US
+//    lng/lat range AND inside its own beat polygon's bbox — catches swapped,
+//    zeroed, or degenerate coordinates without a per-city bbox table
 for (const b of Object.values(beats.beats)) {
   const [lng, lat] = b.centroid;
-  check(lng > BBOX.minLng && lng < BBOX.maxLng && lat > BBOX.minLat && lat < BBOX.maxLat,
-    `beat ${b.key} centroid out of GR bbox: ${b.centroid}`);
+  check(lng > -180 && lng < -60 && lat > 17 && lat < 72,
+    `beat ${b.key} centroid outside US lng/lat range: ${b.centroid}`);
+  let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity, pts = 0;
+  (function walk(o) {
+    if (Array.isArray(o) && o.length === 2 && typeof o[0] === "number" && typeof o[1] === "number") {
+      pts++;
+      if (o[0] < x0) x0 = o[0]; if (o[0] > x1) x1 = o[0];
+      if (o[1] < y0) y0 = o[1]; if (o[1] > y1) y1 = o[1];
+    } else if (Array.isArray(o)) o.forEach(walk);
+  })(b.polygon ?? []);
+  check(pts > 0, `beat ${b.key} has no polygon coordinates`);
+  check(pts === 0 || (lng >= x0 && lng <= x1 && lat >= y0 && lat <= y1),
+    `beat ${b.key} centroid outside its own polygon bbox: ${b.centroid}`);
 }
 
 // 8. feed integrity: valid date, beat, cat

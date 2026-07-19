@@ -820,7 +820,8 @@ fallback table in `data/dallas-tx/PROVENANCE.md`.
   [`data/charlotte-nc/PROVENANCE.md`](../data/charlotte-nc/PROVENANCE.md).
 - **Date field:** `DATE_INCIDENT_BEGAN` (when the incident began), not
   `DATE_REPORTED` — 3,540 kept rows began pre-2017 (reported later;
-  incl. a few junk-dated) are counted and disclosed as "began-pre-2017" unplaced.
+  incl. a few junk-dated): outside the window, excluded from the totals and
+  disclosed as "began-pre-2017" in `excludedOutsideWindow`.
 - **Spatial unit:** the **14 official CMPD patrol divisions** — carried in-data
   (`CMPD_PATROL_DIVISION`), identity-joined to the official "CMPD Police
   Divisions" polygon layer (DNAME/DIVISION codes match exactly; no spatial join).
@@ -836,8 +837,10 @@ fallback table in `data/dallas-tx/PROVENANCE.md`.
   annual Violent + Property counts, 32 full years (12 reported months each).
 - **Span:** 1985–2016 (FBI UCR annual) + 2017-01-01 → 2026-06-30 (CMPD NIBRS
   with division detail, 114 months; partial 2026-07 dropped and disclosed).
-- **Records:** 701,939 kept in window · 697,504 placed in a division
-  (**99.4% coverage**) · 4,435 unplaced, kept in totals and disclosed.
+- **Records:** 698,399 in-window · 697,504 placed in a division
+  (**99.9% coverage**) · 895 unplaced, kept in totals and disclosed. Outside
+  the window and excluded from the totals (disclosed separately): 3,540
+  began-pre-2017 + 2,817 partial-2026-07.
 - **Detail:** [`data/charlotte-nc/PROVENANCE.md`](../data/charlotte-nc/PROVENANCE.md)
 
 ## Nashville, TN (`nashville-tn`)
