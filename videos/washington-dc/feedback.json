@@ -14,5 +14,13 @@
     "text": "the value jumps in some cities when data set source changes, and it would be to have a few word on how they can be different and does crime clasification has been updated?",
     "resolved": true,
     "producerNote": "Answered at DC's config layer: added a verified DC-specific seamExplain to the 'WHY THE JUMP?' card — through 2007 = DC's yearly UCR figures reported to the FBI (classic index crimes); from 2008 = MPD's own incident feed (different source/taxonomy, logged case by case, still major Part-I offenses), so the jump is the measuring system changing, not a re-classification of crime. This corrects the generic card's 'broader' overstatement for DC (MPD publishes only major offenses). Config-only change; re-render is tracked by the confidence.json blocker — GPU belongs to the producer."
+  },
+  {
+    "at": "2026-07-19T23:56:36Z",
+    "kind": "comment",
+    "videoTime": 297,
+    "text": "RE-RENDER ITEM (engine zero-count 'safest' fix): the shipped washington-dc.mp4 reveal/quiz answers 'Observatory Circle: 0' — a no-data polygon (US Naval Observatory; MPD publishes no incidents there), not a safe neighborhood. The engine now excludes zero-record polygons from the safest ranking (derive.ts hoodRanking allTotal>0 filter + disclosed caveat), so the next re-render answers 'Rock Creek Park: 15' and the quiz options change accordingly. No data or config change needed for DC — engine-only. Queue this with the already-pending DC re-render (seamExplain blocker); re-renders are HELD until the citywide-trend audit reports.",
+    "resolved": false,
+    "by": "producer"
   }
 ]
