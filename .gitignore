@@ -36,3 +36,8 @@ data/**/raw/*
 .hn/
 # OAuth secrets for the publish pipeline — NEVER commit
 .secrets/
+
+# Fleet coordination lockfiles — transient, never committed
+experiment/.driver.lock
+experiment/.notes.lock
+experiment/.critic.lock
