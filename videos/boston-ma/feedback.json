@@ -20,7 +20,8 @@
     "kind": "decision",
     "videoTime": null,
     "text": "APPROVE",
-    "resolved": false
+    "resolved": true,
+    "producerNote": "Duplicate APPROVE logged 3s after the 22:22:22 APPROVE already recorded as evidence in confidence.json (double-submit). Not counted again — a second +1 would dishonestly inflate the narrative axis. State unchanged: score 90, re-render blocker retained (encoded mp4 still dated Jul 12, predates the Jul-19 seamExplain + annotation-placement fixes)."
   },
   {
     "at": "2026-07-19T22:23:09.984Z",
