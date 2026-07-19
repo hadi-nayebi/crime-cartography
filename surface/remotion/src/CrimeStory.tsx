@@ -354,7 +354,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           {anchor ? (
             <MapAnnotation x={anchor[0]} y={anchor[1]} text={a.text} accent={accentFor(a.text)} durationInFrames={durFrames} />
           ) : (
-            <Annotation text={a.text} durationInFrames={durFrames} accent={accentFor(a.text)} />
+            <Annotation text={a.text} durationInFrames={durFrames} accent={accentFor(a.text)} region="granular" />
           )}
         </Sequence>
       ))}
@@ -362,7 +362,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       {/* History notes (lower third) */}
       {histSeqs.map(({ h, startFrame, durFrames }, idx) => (
         <Sequence key={`h${idx}`} from={startFrame} durationInFrames={durFrames} layout="none">
-          <Annotation text={h.text} durationInFrames={durFrames} accent={accentFor(h.text)} />
+          <Annotation text={h.text} durationInFrames={durFrames} accent={accentFor(h.text)} region="history" />
         </Sequence>
       ))}
 

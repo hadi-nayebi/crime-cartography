@@ -52,6 +52,7 @@
     "methodDotsSub": "Every dot is a real reported incident location. 99.4% map to a district. BPD's file mixes crime and service records — the trend counts crime only.",
     "methodFootnote": "FBI UCR (through 2015) and BPD records (2015+) differ; BPD's public file excludes sexual-assault records — disclosed, not zero.",
     "quizQuestion": "Which Boston district is the safest?",
+    "seamExplain": "The ruler changes here — not the city. Through 2015 the gray bars are the FBI's yearly tally of Boston's classic “index” crimes — murder, robbery, assault, burglary, theft. In August 2015 BPD switched to a new incident records system, so 2016 begins a different, case-by-case count under a broader taxonomy — a change of source and measure, not a real jump in crime. Compare the shape within one color, never across the dashed line.",
     "sourceLine": "Data: Boston Police Department via Analyze Boston (public domain) · sexual-assault records excluded by BPD",
     "coverageText": "99.4% of records mapped to a district",
     "creditsSources": "Sources: BPD incident reports (2015–present, ODC-PDDL public domain) via Analyze Boston & FBI UCR (1985–2015) via the FBI Crime Data Explorer. District names per boston.gov. BPD's public file excludes sexual-assault records for privacy — a gap, not zero. Basemap: © OpenStreetMap contributors (ODbL)."

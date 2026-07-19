@@ -120,12 +120,17 @@
     "blockers": [
       "full watch-through with audio not yet logged",
       "58% service/non-crime share \u2014 verify the crime-only framing is unmissable in the map chapter",
-      "experiment matrix feature vector not yet assigned"
+      "experiment matrix feature vector not yet assigned",
+      "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) \u2014 user feedback 2026-07-19; still-verified, awaiting re-render"
     ],
     "history": [
       {
         "date": "2026-07-12",
         "change": "initial entry; sexual-assault exclusion disclosed on-screen"
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide \u2014 all cities inherit it on next render."
       }
     ]
   },

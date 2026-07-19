@@ -4,6 +4,7 @@
     "kind": "decision",
     "videoTime": null,
     "text": "REQUEST CHANGES — can you add some context about what changed about the measure from 2016 and also the placement of the notes are not very effective, you have to place notes where it is empty and also make them easier to read, use a different shade for note background than the video background.",
-    "resolved": false
+    "resolved": true,
+    "producerNote": "Added verified Boston seamExplain (2016 measure-change context: BPD's Aug-2015 new incident records system) + engine Annotation fix: notes now sit in a chapter-specific empty band on a raised slate panel (readable, no overlap). tsc clean, 3 stills verified; re-render blockered in confidence.json."
   }
 ]
