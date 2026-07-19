@@ -51,6 +51,7 @@
     "methodDotsHeadline": "Real dots, real places",
     "methodDotsSub": "Every dot is a real reported incident location (block-level). 99.2% map to a neighborhood cluster — the rest counted, disclosed, never invented.",
     "methodFootnote": "FBI UCR (through 2007) and MPD incident data (2008+) are different systems — shown as two chapters, not one line.",
+    "seamExplain": "The ruler changes here — not the city. Through 2007 the gray bars are DC's figures reported to the FBI's UCR program — yearly totals of classic “index” crimes. From 2008 the numbers come from MPD's own incident feed: a different source and taxonomy, logged case by case, but still major Part-I-style offenses — so the jump is the measuring system changing, not a re-classification of crime. Compare the shape within one color, never across the dashed line.",
     "quizQuestion": "Which DC neighborhood is the safest?",
     "sourceLine": "Data: Metropolitan Police Department via Open Data DC (CC BY 4.0) · block-level locations",
     "coverageText": "99.2% of records mapped to a neighborhood cluster",

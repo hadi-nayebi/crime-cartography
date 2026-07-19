@@ -72,7 +72,7 @@
       "full watch-through with audio not yet logged",
       "society=0 counter row reads oddly \u2014 consider hiding structurally-empty categories",
       "experiment matrix feature vector not yet assigned",
-      "re-render with seam 'WHY THE JUMP?' explainer (user feedback 2026-07-18) + verify encode"
+      "re-render to pick up seam 'WHY THE JUMP?' explainer + DC-specific seamExplain copy (user feedback 2026-07-18) + verify encode"
     ],
     "history": [
       {
@@ -82,6 +82,10 @@
       {
         "date": "2026-07-18",
         "change": "user feedback: seam needs on-chart explanation -> SeamCallout built engine-wide, still-verified; awaiting re-render"
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-18T01:50: added verified DC-specific seamExplain (FBI UCR yearly totals 1985-2007 vs MPD incident feed 2008+, same Part-I tier, source/measure change not re-classification); corrects generic card's 'broader' overstatement. Awaiting re-render."
       }
     ]
   },
