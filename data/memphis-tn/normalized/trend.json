@@ -1,0 +1,396 @@
+{
+  "note": "UCR index crimes (1985–2019) vs MPD — NIBRS Group A offenses (2020+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Group B catch-all records excluded from the trend. Source omits sex crimes and juvenile-specific types.",
+  "fetchedAt": "2026-07-19T00:37:30.913Z",
+  "seamYear": 2020,
+  "eras": [
+    {
+      "key": "fbi",
+      "label": "FBI UCR — Violent + Property",
+      "from": 1985,
+      "to": 2019
+    },
+    {
+      "key": "incident",
+      "label": "MPD — NIBRS Group A offenses",
+      "from": 2020,
+      "to": 2025
+    }
+  ],
+  "years": [
+    {
+      "year": 1985,
+      "total": 60673,
+      "era": "fbi",
+      "parts": {
+        "violent": 9738,
+        "property": 50935
+      }
+    },
+    {
+      "year": 1986,
+      "total": 65651,
+      "era": "fbi",
+      "parts": {
+        "violent": 10477,
+        "property": 55174
+      }
+    },
+    {
+      "year": 1987,
+      "total": 64555,
+      "era": "fbi",
+      "parts": {
+        "violent": 8833,
+        "property": 55722
+      }
+    },
+    {
+      "year": 1988,
+      "total": 61823,
+      "era": "fbi",
+      "parts": {
+        "violent": 8914,
+        "property": 52909
+      }
+    },
+    {
+      "year": 1989,
+      "total": 58464,
+      "era": "fbi",
+      "parts": {
+        "violent": 8030,
+        "property": 50434
+      }
+    },
+    {
+      "year": 1990,
+      "total": 61014,
+      "era": "fbi",
+      "parts": {
+        "violent": 9082,
+        "property": 51932
+      }
+    },
+    {
+      "year": 1991,
+      "total": 63835,
+      "era": "fbi",
+      "parts": {
+        "violent": 8818,
+        "property": 55017
+      }
+    },
+    {
+      "year": 1992,
+      "total": 62683,
+      "era": "fbi",
+      "parts": {
+        "violent": 9764,
+        "property": 52919
+      }
+    },
+    {
+      "year": 1993,
+      "total": 62735,
+      "era": "fbi",
+      "parts": {
+        "violent": 10113,
+        "property": 52622
+      }
+    },
+    {
+      "year": 1994,
+      "total": 62036,
+      "era": "fbi",
+      "parts": {
+        "violent": 9855,
+        "property": 52181
+      }
+    },
+    {
+      "year": 1995,
+      "total": 66308,
+      "era": "fbi",
+      "parts": {
+        "violent": 11039,
+        "property": 55269
+      }
+    },
+    {
+      "year": 1996,
+      "total": 70901,
+      "era": "fbi",
+      "parts": {
+        "violent": 12535,
+        "property": 58366
+      }
+    },
+    {
+      "year": 1997,
+      "total": 64668,
+      "era": "fbi",
+      "parts": {
+        "violent": 11836,
+        "property": 52832
+      }
+    },
+    {
+      "year": 1998,
+      "total": 53768,
+      "era": "fbi",
+      "parts": {
+        "violent": 9057,
+        "property": 44711
+      }
+    },
+    {
+      "year": 1999,
+      "total": 51548,
+      "era": "fbi",
+      "parts": {
+        "violent": 8602,
+        "property": 42946
+      }
+    },
+    {
+      "year": 2000,
+      "total": 60097,
+      "era": "fbi",
+      "parts": {
+        "violent": 9616,
+        "property": 50481
+      }
+    },
+    {
+      "year": 2001,
+      "total": 65960,
+      "era": "fbi",
+      "parts": {
+        "violent": 10906,
+        "property": 55054
+      }
+    },
+    {
+      "year": 2002,
+      "total": 66172,
+      "era": "fbi",
+      "parts": {
+        "violent": 10416,
+        "property": 55756
+      }
+    },
+    {
+      "year": 2003,
+      "total": 66140,
+      "era": "fbi",
+      "parts": {
+        "violent": 10312,
+        "property": 55828
+      }
+    },
+    {
+      "year": 2004,
+      "total": 64575,
+      "era": "fbi",
+      "parts": {
+        "violent": 10093,
+        "property": 54482
+      }
+    },
+    {
+      "year": 2005,
+      "total": 69704,
+      "era": "fbi",
+      "parts": {
+        "violent": 12637,
+        "property": 57067
+      }
+    },
+    {
+      "year": 2006,
+      "total": 70777,
+      "era": "fbi",
+      "parts": {
+        "violent": 13557,
+        "property": 57220
+      }
+    },
+    {
+      "year": 2007,
+      "total": 67222,
+      "era": "fbi",
+      "parts": {
+        "violent": 13065,
+        "property": 54157
+      }
+    },
+    {
+      "year": 2008,
+      "total": 66999,
+      "era": "fbi",
+      "parts": {
+        "violent": 12939,
+        "property": 54060
+      }
+    },
+    {
+      "year": 2009,
+      "total": 59661,
+      "era": "fbi",
+      "parts": {
+        "violent": 12072,
+        "property": 47589
+      }
+    },
+    {
+      "year": 2010,
+      "total": 52907,
+      "era": "fbi",
+      "parts": {
+        "violent": 10401,
+        "property": 42506
+      }
+    },
+    {
+      "year": 2011,
+      "total": 53058,
+      "era": "fbi",
+      "parts": {
+        "violent": 10338,
+        "property": 42720
+      }
+    },
+    {
+      "year": 2012,
+      "total": 53382,
+      "era": "fbi",
+      "parts": {
+        "violent": 11417,
+        "property": 41965
+      }
+    },
+    {
+      "year": 2013,
+      "total": 51132,
+      "era": "fbi",
+      "parts": {
+        "violent": 10890,
+        "property": 40242
+      }
+    },
+    {
+      "year": 2014,
+      "total": 51033,
+      "era": "fbi",
+      "parts": {
+        "violent": 11420,
+        "property": 39613
+      }
+    },
+    {
+      "year": 2015,
+      "total": 48887,
+      "era": "fbi",
+      "parts": {
+        "violent": 11474,
+        "property": 37413
+      }
+    },
+    {
+      "year": 2016,
+      "total": 49399,
+      "era": "fbi",
+      "parts": {
+        "violent": 11989,
+        "property": 37410
+      }
+    },
+    {
+      "year": 2017,
+      "total": 54732,
+      "era": "fbi",
+      "parts": {
+        "violent": 13147,
+        "property": 41585
+      }
+    },
+    {
+      "year": 2018,
+      "total": 54983,
+      "era": "fbi",
+      "parts": {
+        "violent": 12779,
+        "property": 42204
+      }
+    },
+    {
+      "year": 2019,
+      "total": 53104,
+      "era": "fbi",
+      "parts": {
+        "violent": 12513,
+        "property": 40591
+      }
+    },
+    {
+      "year": 2020,
+      "total": 83394,
+      "era": "incident",
+      "parts": {
+        "persons": 25392,
+        "property": 52890,
+        "society": 5112
+      }
+    },
+    {
+      "year": 2021,
+      "total": 81081,
+      "era": "incident",
+      "parts": {
+        "persons": 25683,
+        "property": 50754,
+        "society": 4644
+      }
+    },
+    {
+      "year": 2022,
+      "total": 95112,
+      "era": "incident",
+      "parts": {
+        "persons": 25041,
+        "property": 65446,
+        "society": 4625
+      }
+    },
+    {
+      "year": 2023,
+      "total": 106788,
+      "era": "incident",
+      "parts": {
+        "persons": 26575,
+        "property": 75930,
+        "society": 4283
+      }
+    },
+    {
+      "year": 2024,
+      "total": 91020,
+      "era": "incident",
+      "parts": {
+        "persons": 25349,
+        "property": 60026,
+        "society": 5645
+      }
+    },
+    {
+      "year": 2025,
+      "total": 72843,
+      "era": "incident",
+      "parts": {
+        "persons": 23617,
+        "property": 43383,
+        "society": 5843
+      }
+    }
+  ]
+}
