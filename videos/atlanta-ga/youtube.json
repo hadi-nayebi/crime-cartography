@@ -1,0 +1,37 @@
+{
+  "status": "draft",
+  "url": "",
+  "videoId": "",
+  "title": "Atlanta Crime Fell 70% From Its 1989 Peak — Then the Data Changed. 242 Neighborhoods, Mapped",
+  "titleOptions": [
+    "88,536 to 26,995: Atlanta's Long Crime Fall — and the Two Years With No Data",
+    "40 Years of Atlanta Crime in 5 Minutes — Every Number Sourced, Every Gap Disclosed"
+  ],
+  "categoryId": "27",
+  "privacyStatus": "private",
+  "tags": [
+    "Atlanta",
+    "crime data",
+    "crime map",
+    "data visualization",
+    "FBI UCR",
+    "NIBRS",
+    "APD",
+    "open data",
+    "Georgia",
+    "crime statistics",
+    "data journalism"
+  ],
+  "description": "Forty years of reported crime in Atlanta — a 70% fall from the 1989 peak (88,536 index crimes) to 2018 (26,995) under the FBI's measure, two transition years with no comparable data (2019–2020, shown as a gap, never interpolated), then APD's own NIBRS record across all 242 official neighborhoods.\n\nThis is a fully sourced, reproducible data visualization. Every figure comes straight from the FBI Uniform Crime Reporting program and the Atlanta Police Department's open NIBRS data. Every dot on the map is a real recorded offense location at block-level addresses. Coverage and caveats are shown on screen — including the November 2024 one-month tripling of 'crimes against society', flagged on screen as a recording-pattern change rather than a street-level wave.\n\nThe FBI's classic 'index' crimes (through 2018) and APD's NIBRS records (2021+) are different measures — shown as two chapters, never merged into one line. The step at the seam is the ruler changing, not a crime wave, and the 2019–2020 hole is disclosed, not papered over.\n\n▶ CHAPTERS\n0:00  Hook — the interrupted fall\n0:08  What you're about to see\n0:22  Chapter 1 — the long arc\n2:30  The last five years — up close\n2:43  Chapter 2 — the map, month by month\n4:52  The busiest & safest areas\n5:18  Sources & credits\n\n▶ MADE BY AN AI — FULLY TRANSPARENT\nThis video was produced end-to-end by Claude (Anthropic's AI): it located and fetched the official source data, built and validated the data pipeline, verified every on-screen figure against the sources, designed and rendered the visuals, and generated the music. No human edited the numbers. Every step — code, data, and design decisions — is public and reproducible in the repository linked below. If you find an error, open an issue; corrections are part of the record.\n\n▶ CODE, DATA & FULL SOURCES (reproduce every number)\nhttps://github.com/hadi-nayebi/crime-cartography/tree/main/videos/atlanta-ga\n\nMusic generated with Stable Audio Open (Stability AI). Basemap © OpenStreetMap contributors.\n\nIf this was worth a look, please Like, Subscribe, and Share.\n\n#CrimeData #DataVisualization #OpenData",
+  "githubPage": "https://github.com/hadi-nayebi/crime-cartography/tree/main/videos/atlanta-ga",
+  "chapters": [
+    { "t": "0:00", "label": "Hook — the interrupted fall" },
+    { "t": "0:08", "label": "What you're about to see" },
+    { "t": "0:22", "label": "Chapter 1 — the long arc" },
+    { "t": "2:30", "label": "The last five years — up close" },
+    { "t": "2:43", "label": "Chapter 2 — the map, month by month" },
+    { "t": "4:52", "label": "The busiest & safest areas" },
+    { "t": "5:18", "label": "Sources & credits" }
+  ],
+  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload."
+}

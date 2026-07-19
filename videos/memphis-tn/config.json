@@ -1,0 +1,74 @@
+{
+  "slug": "memphis-tn",
+  "datasetDir": "data/memphis-tn",
+  "title": "Memphis · The Wave That Broke",
+  "subtitle": "FBI UCR 1985–2019 + MPD NIBRS 2020–2026 · 9 police precincts · real locations",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/memphis-tn-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "stacked",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−32%",
+    "line": "Memphis crime, down a third from the 2023 peak",
+    "sub": "MPD reports · a property-crime wave rose and broke — up close"
+  },
+  "punchline": {
+    "text": "2023: 106,788 → 2025: 72,843",
+    "sub": "−32% in two years, same MPD measure · the wave was property crime — 96% of the fall"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#0a0709",
+      "beatFill": "#151013",
+      "beatStroke": "rgba(255,165,82,0.22)",
+      "panelStroke": "rgba(255,165,82,0.2)",
+      "grid": "rgba(255,165,82,0.12)",
+      "ink": "#f4efec",
+      "inkDim": "#b3a8a4",
+      "inkFaint": "#746a67"
+    },
+    "catColors": {
+      "persons": "#ff4365",
+      "property": "#ffa552",
+      "society": "#00b4d8",
+      "other": "#6e6266"
+    }
+  },
+  "copy": {
+    "cityName": "Memphis",
+    "regionNoun": "police precinct",
+    "seamExplain": "The ruler changes here — not the city. Through 2019 the steel-blue bars are the FBI's classic 'index' crimes (dark: property, light: violent). From 2020 each bar splits into MPD's own NIBRS Group A categories — a broader modern count (though MPD's source omits sex crimes), so the level steps up. Compare the shape within one era, never across the dashed line.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · MPD NIBRS",
+    "chapter2Title": "Now — up close, 9 police precincts",
+    "chapter2Caption": "Monthly reports, 2021–2026. Every dot is a real reported incident location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 9 police precincts — every dot a real reported location, published by MPD at block-level precision.",
+    "methodRecentTag": "MPD NIBRS · open data",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real reported incident location, published by MPD at ~3-decimal (block-level) precision. 98.8% map to one of 9 police precincts — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2019) and MPD NIBRS Group A (2020+) are different measures — shown as two chapters, not one line. MPD's source omits sex crimes and juvenile-specific types.",
+    "quizQuestion": "Which Memphis police precinct reports the fewest Group A crimes?",
+    "sourceLine": "Data: Memphis Police Department via City of Memphis Open Data Hub · real block-level locations",
+    "coverageText": "98.8% of records mapped to a police precinct",
+    "creditsSources": "Sources: Memphis Police Department Public Safety Incidents (2020–present) via the City of Memphis Open Data Hub & FBI UCR (1985–2019) via the FBI Crime Data Explorer (ORI TNMPD0000). Precincts: MPD official station areas (9 polygons). MPD's dataset omits sex crimes and juvenile-specific types (an MPD publishing decision) and publishes coordinates at block-level (~3-decimal) precision. FBI UCR index crimes and MPD's NIBRS Group A records are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1985, "text": "1985: the record begins — 60,673 index crimes under the FBI measure." },
+    { "atYear": 1996, "text": "1996: the FBI-era peak — 70,901 index crimes reported." },
+    { "atYear": 2019, "text": "2019: 53,104 — down 25% from the 1996 peak; the last year under the FBI measure." },
+    { "atYear": 2023, "text": "2023: the MPD-era peak — 106,788 reports, 71% of them property crimes: the wave's crest." },
+    { "atYear": 2025, "text": "2025: 72,843 — the era's low. Property fell 43% from the crest; crimes against persons stayed in their narrow range." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real MPD-reported incident location — published at block level (~3-decimal coordinates), never invented." },
+    { "atMonth": "2022-08", "text": "The wave is property crime: 5,996 property reports this month, while crimes against persons hold near 2,300." },
+    { "atMonth": "2023-05", "text": "May 2023 — the busiest Group A month of the last five years: 9,932 reports, 7,067 of them property crimes." },
+    { "atMonth": "2025-02", "text": "Appling Farms — the busiest precinct of the last five years, and the steepest fall: down 36% since 2022.", "beat": "APPLING FARMS" },
+    { "atMonth": "2026-03", "text": "All nine precincts reported less in 2025 than in 2022 — Group A fell 95,112 → 72,843, −23%." }
+  ]
+}

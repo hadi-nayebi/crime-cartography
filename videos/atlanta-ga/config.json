@@ -1,0 +1,74 @@
+{
+  "slug": "atlanta-ga",
+  "datasetDir": "data/atlanta-ga",
+  "title": "Atlanta · The Interrupted Fall",
+  "subtitle": "FBI UCR 1985–2018 · 2019–2020 gap disclosed · APD NIBRS 2021–2026 · 242 neighborhoods",
+  "durationSec": 330,
+  "fps": 30,
+  "emphasizeGroupA": true,
+  "audioSrc": "audio/atlanta-ga-music-sao.wav",
+  "repoUrl": "github.com/hadi-nayebi/crime-cartography",
+  "trendStyle": "stacked",
+  "mapWindowMonths": 60,
+  "hook": {
+    "stat": "−70%",
+    "line": "Atlanta crime, from the 1989 peak to 2018",
+    "sub": "FBI UCR · then two missing years, and a new count — up close"
+  },
+  "punchline": {
+    "text": "1989: 88,536 → 2018: 26,995",
+    "sub": "−70% under the same FBI measure · 2019–2020: no comparable data · APD's own count begins 2021"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#080a08",
+      "beatFill": "#0e130f",
+      "beatStroke": "rgba(125,211,160,0.22)",
+      "panelStroke": "rgba(125,211,160,0.2)",
+      "grid": "rgba(125,211,160,0.12)",
+      "ink": "#eef4ef",
+      "inkDim": "#a8b5ab",
+      "inkFaint": "#69766c"
+    },
+    "catColors": {
+      "persons": "#ff4444",
+      "property": "#ffb774",
+      "society": "#7dd3a0",
+      "other": "#5f6b63"
+    }
+  },
+  "copy": {
+    "cityName": "Atlanta",
+    "regionNoun": "neighborhood",
+    "seamExplain": "The ruler changes here — and two years are missing. Through 2018 the steel-blue bars are the FBI's classic 'index' crimes (dark: property, light: violent). APD's FBI submissions during its 2019–2020 NIBRS transition were incomplete, so those years are left blank — never guessed, never interpolated. From 2021 each bar splits into APD's own NIBRS categories, a broader count. Compare shapes within one era — never across the gap.",
+    "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · APD NIBRS",
+    "chapter2Title": "Now — up close, 242 neighborhoods",
+    "chapter2Caption": "Monthly recorded offenses, 2021–2026. Every dot is a real recorded offense location, block-level, sampled.",
+    "transitionKicker": "THE LAST FIVE YEARS · 2021–2026",
+    "transitionTitle": "Now — up close",
+    "transitionDesc": "The chart counted per year. From here the map counts per month across 242 official neighborhoods — every dot a real recorded offense location, at block-level addresses.",
+    "methodRecentTag": "APD NIBRS · open data",
+    "methodRecentSub": "the last five years · month by month · real locations",
+    "methodDotsHeadline": "Real dots, real places",
+    "methodDotsSub": "Every dot is a real recorded offense location published by APD (block-level addresses). 90.8% map to one of 242 official neighborhoods — the rest counted, disclosed, never invented.",
+    "methodFootnote": "FBI UCR (through 2018) and APD NIBRS records (2021+) are different measures, with no comparable data for 2019–2020 — shown as two chapters and a disclosed gap, never one line.",
+    "quizQuestion": "Which Atlanta neighborhood records the fewest offenses?",
+    "sourceLine": "Data: Atlanta Police Department via APD Open Data · real block-level locations",
+    "coverageText": "90.8% of records mapped to a neighborhood",
+    "creditsSources": "Sources: Atlanta Police Department NIBRS crime data (2021–present) via APD Open Data (atlantapd.hub.arcgis.com) & FBI UCR (1985–2018) via the FBI Crime Data Explorer (ORI GAAPD0000). Neighborhoods: City of Atlanta official layer (242 polygons). APD's 2019–2020 FBI submissions were incomplete (NIBRS transition) — those years are shown as a gap, never interpolated. A few APD neighborhood names (e.g. 'Historic Westin Heights/Bankhead') have no official polygon — those records are counted but never guessed onto the map, so Bankhead, Englewood Manor and Midwest Cascade show zero mapped offenses. FBI UCR index crimes and APD NIBRS records are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
+  },
+  "historyNotes": [
+    { "atYear": 1989, "text": "1989: the peak — 88,536 index crimes; violent crime peaks the same year at 16,852." },
+    { "atYear": 2004, "text": "2004: 41,313 — less than half the 1989 peak, and still falling." },
+    { "atYear": 2018, "text": "2018: 26,995 — the last full FBI year, down 70% from the peak. The NIBRS transition leaves 2019–2020 with no comparable total." },
+    { "atYear": 2021, "text": "2021: 45,237 — APD's own NIBRS count begins. A broader measure: never compare it across the gap." },
+    { "atYear": 2025, "text": "2025: 58,478 — the era's high. But property sits below 2021; the growth is 'society' offenses, which tripled in one month (Nov 2024) — a recording-pattern change, not evidence of a street-level wave." }
+  ],
+  "annotations": [
+    { "atMonth": "2021-08", "text": "Every dot is a real APD-recorded offense location — block-level addresses; 90.8% map to one of 242 neighborhoods." },
+    { "atMonth": "2023-09", "text": "Downtown — Atlanta's busiest neighborhood for recorded offenses: 21,248 over the last five years.", "beat": "Downtown" },
+    { "atMonth": "2024-11", "text": "November 2024: 'crimes against society' triple in one month — 411 in October, 1,270 in November — and stay there. A step like this signals a recording change." },
+    { "atMonth": "2025-05", "text": "May 2025 — the busiest month of the last five years: 4,631 mapped NIBRS reports." },
+    { "atMonth": "2026-03", "text": "2022 → 2025 mapped reports: 41,357 → 49,585 (+20%). But property crime fell — the society-category step is more than the whole net rise." }
+  ]
+}
