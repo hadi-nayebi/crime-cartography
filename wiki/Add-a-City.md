@@ -15,23 +15,31 @@ you will cite it on screen and in provenance.
   (beat/precinct/tract/county) and show it as such. **Never invent dot
   positions.**
 
-## 2. Write a fetch adapter
+## 2. Write a city builder
 
-Add `pipeline/sources/<source>.mjs` that pulls raw records + the matching area
-polygons into `data/<slug>/raw/` (gitignored) and writes a `_fetch_meta.json`
-sidecar (endpoint, fetch date, record count). Scripts, not manual downloads.
+Add `pipeline/sources/<slug>.mjs` that pulls raw records + the matching area
+polygons into `data/<slug>/raw/` (gitignored) with a `_fetch_meta.json`
+sidecar, normalizes to the canonical bundle, and carries its own
+source-specific validation (per-month reconciliation against the source,
+dedupe/exclusion accounting). Scripts, not manual downloads. Existing builders
+(e.g. `buffalo-ny.mjs`) are the pattern to copy.
 
-## 3. Normalize + validate
+## 3. The normalized bundle + repo-level validation
 
-`pipeline/normalize.mjs` maps source fields to the canonical schema and emits the
-bundle into `data/<slug>/normalized/`:
+The builder emits the bundle into `data/<slug>/normalized/`:
 
 ```
 beats.json  timeline.json  feed.json  summary.json
+history.json  neighborhoods.json  points.json*
 ```
 
-Then gate on the validator — it enforces the honesty invariants (totals
-reconcile, every area key is real, coverage is disclosed, etc.):
+\* `points.json` only when the source publishes real incident coordinates —
+aggregate-only cities honestly omit it (never invent positions).
+
+Then gate on the repo-level validator. It is city-agnostic — it checks the
+shared bundle contract (totals reconcile, months contiguous, every area key is
+real geometry, points inside the bbox derived from the city's own polygons,
+coverage disclosed, no NaN):
 
 ```bash
 node pipeline/validate.mjs <slug>
