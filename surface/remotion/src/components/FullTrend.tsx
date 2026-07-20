@@ -136,7 +136,10 @@ export const FullTrend: React.FC<Props> = ({
           <g
             opacity={
               interpolate(yearFloat, [seamIdx - 2, seamIdx], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) *
-              (1 - punchT * 0.85) /* yield to the punchline card */
+              (1 - punchT) /* fully yield to the punchline card — a taller 2-line
+                 punchline (e.g. Seattle) otherwise catches the seam label bleeding
+                 through the translucent card; the seam is long-established by the
+                 net-change punchline, so hide it entirely under the focal card */
             }
           >
             <line
