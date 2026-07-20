@@ -74,6 +74,7 @@ export interface HoodStat {
   beatKeys: string[]; // member beats whose centroid falls in this neighborhood
   series: CatCounts[]; // summed per-month counts across member beats
   groupATotalAll: number;
+  allTotal: number; // every category over the whole period — 0 means true no-data
 }
 
 export interface Stats {
@@ -181,6 +182,7 @@ export function deriveStats(
         beatKeys: [],
         series: months.map(() => zeroCounts()),
         groupATotalAll: 0,
+        allTotal: 0,
       };
       byName.set(name, h);
     }
@@ -189,11 +191,19 @@ export function deriveStats(
       h.series[i] = addCounts(h.series[i], b.series[i]);
     }
     h.groupATotalAll += b.groupATotalAll;
+    h.allTotal += b.allTotal;
   }
   const hoods = [...byName.values()];
-  const hoodRanking = [...hoods].sort(
-    (a, b) => b.groupATotalAll - a.groupATotalAll,
-  );
+  // Ranking used for the "busiest / safest" reveal + quiz. Exclude TRUE no-data
+  // areas (allTotal === 0): a hood with zero incidents in EVERY category across
+  // every month is a spatial-join artifact (nothing landed there), not a safe
+  // place — crowning it "safest" would be factually misleading. A hood with any
+  // real data (allTotal > 0) stays eligible even at groupATotalAll === 0, since
+  // that is a genuinely low Group-A area, honest to show. `hoods` (unfiltered)
+  // still feeds the busiest leaderboard.
+  const hoodRanking = [...hoods]
+    .filter((h) => h.allTotal > 0)
+    .sort((a, b) => b.groupATotalAll - a.groupATotalAll);
 
   const grandTotalGroupA = beats.reduce((s, b) => s + b.groupATotalAll, 0);
   const grandTotalAll = beats.reduce((s, b) => s + b.allTotal, 0);

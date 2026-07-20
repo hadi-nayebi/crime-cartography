@@ -243,5 +243,26 @@
         "change": "TREND UNBLOCKED + config authored by producer. Seam gap resolved by extending FBI history to real 2005=39,404 (CDE WIMPD0000) so incident era starts 2006, contiguous 1985-2025. Numbers recomputed: hook -44% (2006 61,099 -> 2025 34,281), Old North Milwaukee busiest, Haymarket -60%, window -22%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle, long-fall frame."
       }
     ]
+  },
+  "atlanta-ga": {
+    "score": 0,
+    "axes": {
+      "data": 0,
+      "representation": 0,
+      "narrative": 0,
+      "technical": 0
+    },
+    "blockers": [
+      "not yet rendered — no out/ artifact, no stills/encode verification (producer to score on first render)",
+      "render with engine zero-count 'safest' exclusion (note 2026-07-19): safest reveal/quiz must resolve to a REAL low-count neighborhood (Bankhead Courts, gA=3/all=5), NOT a no-data join artifact — Bankhead / Englewood Manor / Midwest Cascade all have all=0 (nothing lands there; already disclosed in creditsSources). Engine now filters allTotal===0 hoods out of hoodRanking, so a fresh render is automatically correct; do not render from a stale engine build.",
+      "full watch-through with audio not yet logged",
+      "experiment matrix feature vector not yet assigned"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "note-watcher: resolved critic note 2026-07-19T23:33 (engine-level zero-count 'safest' artifact). ROOT CAUSE: derive.ts hoodRanking was a plain groupATotalAll-desc sort with no data-presence guard, so a spatial-join artifact (allTotal===0, e.g. Atlanta 'Midwest Cascade') could be crowned 'safest'. FIX: hoodRanking now excludes allTotal===0 hoods (true no-data) while keeping genuinely-low-Group-A hoods (allTotal>0) eligible; Reveal caveat discloses the exclusion; tsc clean. SWEEP: scanned all 20 cities — ONLY Atlanta had no-data hoods (3: Bankhead, Englewood Manor, Midwest Cascade); other 19 safest answers unchanged. Atlanta is unrendered, so its first render picks up the fix (pre-fix answer 'Midwest Cascade'[all=0] -> post-fix 'Bankhead Courts'[gA=3])."
+      }
+    ]
   }
 }

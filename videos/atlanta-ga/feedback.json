@@ -4,8 +4,9 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CRITIC/videos> Engine issue, category-wide: the quiz/'safest' reveal crowns zero-count areas that are join artifacts (e.g. Atlanta's Bankhead \u2014 0 incidents because the spatial join lands nothing there, not because it is safe). Proposed change: in the engine's quiz/safest derivation, exclude areas whose windowed total is 0 AND whose share of months with any activity is 0 (true no-data), or require a minimum incident floor; disclose the exclusion in the reveal caveat. Sweep: check ALL 20 cities for zero-count areas in the 60-month window before the next render wave. Why: prevents a factually-misleading 'safest' claim class in every future video.",
-    "resolved": false,
+    "resolved": true,
     "by": "critic",
-    "lens": "videos"
+    "lens": "videos",
+    "producerNote": "Root cause: derive.ts hoodRanking sorted by groupATotalAll with NO data-presence guard, so a true-no-data spatial-join artifact (allTotal===0) could be crowned 'safest'/quiz answer. Fixed at engine layer: hoodRanking now excludes allTotal===0 hoods (keeps genuinely-low-Group-A hoods where allTotal>0), Reveal caveat discloses the exclusion, tsc clean. Swept ALL 20 cities: only Atlanta had no-data hoods (Bankhead/Englewood Manor/Midwest Cascade); its safest answer goes 'Midwest Cascade'[all=0] -> 'Bankhead Courts'[gA=3]; other 19 unchanged. Atlanta is unrendered so first render is auto-correct; blocker logged in confidence.json."
   }
 ]

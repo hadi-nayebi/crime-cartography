@@ -130,7 +130,8 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
           </div>
           <div style={{ fontSize: 18, color: COLORS.inkFaint, marginTop: 16, lineHeight: 1.45 }}>
             "Safest" = fewest reported Group A incidents. Report counts only — not
-            adjusted for population or area.
+            adjusted for population or area. Areas with no reported data in the
+            period are excluded (not counted as safe).
           </div>
         </div>
       </div>

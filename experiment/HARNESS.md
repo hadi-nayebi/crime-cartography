@@ -5,6 +5,21 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### derived-superlative no-data guard  (from critic note 2026-07-19, resolved by note-watcher)
+Any engine feature that reports a SUPERLATIVE over sparse spatial units — "safest /
+fewest / least / lowest / best" (the min tail of a ranking) — must exclude
+true-no-data units (a unit with zero incidents in EVERY category across EVERY
+month, i.e. `allTotal===0`), because absence of data reads identically to a real
+zero and would crown a spatial-join artifact. Done for `hoodRanking` in
+`surface/remotion/src/data/derive.ts` (filter `allTotal>0`) + Reveal disclosure.
+GUARD FOR FUTURE FEATURES: when the producer/driver adds a new "least/fewest"
+overlay (e.g. beat-level safest, per-category safest, county rollups), apply the
+same `allTotal>0` filter and keep genuinely-low-but-present units eligible — do
+not use a blanket minimum-incident floor, which would hide real low-crime areas.
+Producer config note: cities with disclosed zero-mapped neighborhoods (Atlanta's
+Bankhead/Englewood Manor/Midwest Cascade) are handled by the engine now; no
+per-config action needed, but re-verify after any change to the ranking logic.
+
 ### note-placement QA reviewer routine  (from dashboard note 2026-07-19)
 The studio dashboard now shows a **note-placement QA badge** per video card
 (icon `○` unreviewed · `✅` readable · `⚠️` flagged) and a QA line on the video
