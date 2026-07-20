@@ -118,7 +118,8 @@ async function cityRow(slug) {
     stages,
     stageIndex: STAGES.filter((s) => stages[s]).length,
     confidence: conf,
-    youtube: { status: yt.status ?? "draft", url: yt.url || null, videoId: yt.videoId || null, uploadedAt: yt.uploadedAt ?? null, playlistTitle: yt.playlistTitle ?? null },
+    youtube: { status: yt.status ?? "draft", url: yt.url || null, videoId: yt.videoId || null, uploadedAt: yt.uploadedAt ?? null, playlistTitle: yt.playlistTitle ?? null, privacyStatus: yt.privacyStatus ?? null },
+    composedThumb: exists(join(v, "thumbnail.jpg")),
     render: lock ? { renderedAt: lock.renderedAt, durationSec: lock.durationSec, commit: (lock.commit || "").slice(0, 7) } : null,
     mp4,
     feedbackCount: fb.length,
@@ -171,27 +172,52 @@ async function catalog() {
     row.attentionAll = pr.reasons;
     rows.push(row);
   }
-  // live stats for published cards (one batched videos.list, cached)
+  // live state for published cards (one batched videos.list, cached): stats +
+  // the REAL thumbnail/title/privacy from YouTube, so published videos render
+  // from live truth, not the local youtube.json or our composed thumbnail.
   const ids = rows.filter((r) => r.youtube.videoId).map((r) => r.youtube.videoId);
   const stats = await ytStats(ids);
-  for (const r of rows) if (r.youtube.videoId) r.youtube.stats = stats[r.youtube.videoId] ?? null;
+  for (const r of rows) {
+    if (!r.youtube.videoId) continue;
+    const s = stats[r.youtube.videoId];
+    if (!s) continue;
+    r.youtube.stats = { views: s.views, likes: s.likes, comments: s.comments };
+    r.youtube.live = { title: s.title, thumb: s.thumb, privacyStatus: s.privacyStatus, publishedAt: s.publishedAt };
+  }
   return rows;
 }
 
-// videos.list statistics for all published ids — 1 quota unit, cached 10 min.
+// videos.list snippet+statistics+status for all published ids — the LIVE
+// truth: the real thumbnail the operator actually chose on YouTube (often NOT
+// our composed one), the live title, and the CURRENT privacy. Published cards
+// render from THIS, not the local youtube.json, so a video flipped to public on
+// YouTube stops showing here as "private". videos.list is 1 quota unit
+// regardless of parts; cached 10 min.
 let statsCache = { at: 0, map: {} };
+function bestThumb(thumbs) {
+  const t = thumbs ?? {};
+  return (t.maxres || t.standard || t.high || t.medium || t.default || {}).url ?? null;
+}
 async function ytStats(ids) {
   if (!ids.length) return {};
   if (Date.now() - statsCache.at < 10 * 60 * 1000) return statsCache.map;
   try {
     const at = await accessToken();
     if (!at) return statsCache.map;
-    const r = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${ids.join(",")}`, { headers: { Authorization: `Bearer ${at}` } });
+    const r = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,status&id=${ids.join(",")}`, { headers: { Authorization: `Bearer ${at}` } });
     const j = await r.json();
     if (r.ok) {
       const map = {};
       for (const it of j.items ?? [])
-        map[it.id] = { views: Number(it.statistics?.viewCount ?? 0), likes: Number(it.statistics?.likeCount ?? 0), comments: Number(it.statistics?.commentCount ?? 0) };
+        map[it.id] = {
+          views: Number(it.statistics?.viewCount ?? 0),
+          likes: Number(it.statistics?.likeCount ?? 0),
+          comments: Number(it.statistics?.commentCount ?? 0),
+          title: it.snippet?.title ?? null,
+          thumb: bestThumb(it.snippet?.thumbnails),
+          privacyStatus: it.status?.privacyStatus ?? null,
+          publishedAt: it.snippet?.publishedAt ?? null,
+        };
       statsCache = { at: Date.now(), map };
     }
   } catch {}

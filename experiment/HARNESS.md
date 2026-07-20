@@ -5,6 +5,18 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### state-sync must reconcile local `youtube.json` privacy/thumbnail from the LIVE YouTube API  (from owner boston note 2026-07-20T16:30, resolved by note-watcher 2026-07-20)
+The dashboard now renders published videos from the live YouTube state (server.mjs `videos.list`
+part=snippet,statistics,status → `youtube.live`), which fixed the UI: a video the owner flips to
+public / re-thumbnails on YouTube no longer shows here as stale "private" with our composed
+thumbnail. But the *local* `videos/<slug>/youtube.json` still drifts — boston + DC both read
+`status:uploaded-private` / `privacyStatus:private` locally while they are actually **public** on
+YouTube. The channel-manager / state-sync routine should, on each run, pull `videos.list` for every
+`videoId` and write back the real `privacyStatus` (and `status`) into youtube.json, so the committed
+record matches reality even when the dashboard is offline / the API is unreachable. Honesty note:
+never invent a status — only write what the API returns. Root category: *published-state read from
+local pre-publish artifacts instead of live truth* — the same class as the dashboard fix.
+
 ### config-authoring must emit a verified `copy.countTerm` per city  (from critic videos note 2026-07-19T23:45, resolved by note-watcher 2026-07-20)
 The engine no longer hardcodes the NIBRS term "Group A" — the on-screen counted-category
 label (reveal/quiz/timeline) is now routed through `config.copy.countTerm`, with a NEUTRAL

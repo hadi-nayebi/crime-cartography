@@ -190,6 +190,14 @@
     border-radius:5px; padding:2px 8px;
   }
   .livetag::before { content:"●"; color:var(--red); margin-right:5px; font-size:8px; vertical-align:1px; }
+  /* not-public (private / unlisted) — the video is up but not live for everyone */
+  .livetag.hold { color:var(--amber); border-color:rgba(226,147,61,.5); }
+  .livetag.hold::before { content:"◌"; color:var(--amber); }
+  /* live-vs-designed thumbnail compare (published detail) */
+  .thumbcompare { display:flex; gap:var(--s-2); margin-top:4px; }
+  .thumbcompare figure { flex:1; min-width:0; margin:0; }
+  .thumbcompare img { width:100%; border-radius:6px; border:1px solid var(--line2); display:block; }
+  .thumbcompare figcaption { margin-top:3px; text-align:center; }
   .pc-body { padding:var(--s-3) var(--s-4) 0; }
   .pubstats { display:flex; gap:var(--s-5); margin:var(--s-3) 0 var(--s-2); }
   .pubstats span { font:9.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
@@ -433,6 +441,25 @@ const fmtT = (s) => s==null ? "" : `${Math.floor(s/60)}:${String(Math.floor(s%60
 const fmtN = (n) => n>=1e6 ? (n/1e6).toFixed(1)+"M" : n>=1e3 ? (n/1e3).toFixed(1)+"K" : String(n??0);
 const ago = (iso) => { if(!iso) return "never"; const m=(Date.now()-new Date(iso))/60000; return m<60?`${m|0}m ago`:m<1440?`${(m/60)|0}h ago`:`${(m/1440)|0}d ago`; };
 
+// A published video is shown from its LIVE YouTube state (c.youtube.live) when
+// the API is reachable: the real thumbnail the operator chose there, the live
+// title, and the current privacy — not the local render/config. Everything
+// falls back to the local artifact so a card never goes blank when offline.
+function livePrivacy(c){ return (c.youtube.live && c.youtube.live.privacyStatus) || c.youtube.privacyStatus || null; }
+function liveThumb(c){ return (c.youtube.live && c.youtube.live.thumb) || `/thumb/${c.slug}/thumbnail.jpg`; }
+function pubTag(c){
+  const p = livePrivacy(c);
+  if(p==="private")  return `<span class="livetag hold" title="private on YouTube — only you can see it">PRIVATE</span>`;
+  if(p==="unlisted") return `<span class="livetag hold" title="unlisted — anyone with the link">UNLISTED</span>`;
+  return `<span class="livetag" title="public — live for everyone">LIVE</span>`; // public, or unknown → assume live
+}
+function privacyLabel(c){
+  const p = livePrivacy(c) || "?";
+  const m = { public:["public — live for everyone","var(--green)"], private:["private — only you can see it","var(--amber)"],
+              unlisted:["unlisted — anyone with the link","var(--amber)"] }[p] || [p,"var(--dim)"];
+  return `<span style="color:${m[1]}">${esc(m[0])}</span>`;
+}
+
 // stage light rack — lit green, published gold, unlit hollow; labels under each
 function rack(st, lg){
   return `<div class="rack ${lg?"lg":""}">` + STAGES.map(k=>{
@@ -526,15 +553,15 @@ function renderBoard(){
   $("board").innerHTML = `<div class="board-grid">` + (list.map(c=>{
     // PUBLISHED cards flip to performance mode: thumbnail + live stats.
     if (c.stages.published) {
-      const st = c.youtube.stats;
+      const st = c.youtube.stats, lv = c.youtube.live || {};
       return `<div class="card pubcard" onclick="show('${c.slug}')">
-        <div class="ptwrap"><img class="pubthumb" src="/thumb/${c.slug}/thumbnail.jpg" onerror="this.parentNode.style.display='none';this.closest('.pubcard').querySelector('.score').style.display=''" alt=""><span class="livetag">LIVE</span></div>
+        <div class="ptwrap"><img class="pubthumb" src="${liveThumb(c)}" onerror="this.onerror=null;this.src='/thumb/${c.slug}/thumbnail.jpg'" alt="">${pubTag(c)}</div>
         <div class="pc-body">
-          <div class="row" style="justify-content:space-between"><h3>${esc(c.title)}</h3><span class="score s-pub" style="display:none">LIVE</span></div>
+          <div class="row" style="justify-content:space-between"><h3>${esc(lv.title || c.title)}</h3></div>
           <div class="pubstats">${st
             ? `<span><b>${fmtN(st.views)}</b>views</span><span><b>${fmtN(st.likes)}</b>likes</span><span><b>${fmtN(st.comments)}</b>comments</span>`
             : `<span style="text-transform:none;letter-spacing:0">stats loading…</span>`}</div>
-          <div class="sm">published ${esc((c.youtube.uploadedAt||"").slice(0,10))}${c.youtube.playlistTitle?` · ▸ ${esc(c.youtube.playlistTitle)}`:""} ·
+          <div class="sm">published ${esc((lv.publishedAt||c.youtube.uploadedAt||"").slice(0,10))}${c.youtube.playlistTitle?` · ▸ ${esc(c.youtube.playlistTitle)}`:""} ·
             <a href="${esc(c.youtube.url)}" target="_blank" onclick="event.stopPropagation()">watch ▶</a></div>
         </div></div>`;
     }
@@ -637,8 +664,15 @@ function renderGuide(c){
 
   let kind = "", step = "", now = "", what = "", cta = "";
   if (idx === -1) {                                        // fully published
-    kind = "live"; step = "Complete"; now = "Published — this video is live 🎉";
-    what = `Nothing left to do. Post-publish notes — a sharper title, a new thumbnail, engagement, or a <b>re-cut request</b> — go in the feedback box below; the channel routine applies them.`;
+    const priv = livePrivacy(c);
+    kind = "live"; step = "Complete";
+    now = priv==="private" ? "Uploaded — private on YouTube 🔒"
+        : priv==="unlisted" ? "Published — unlisted (link-only) 🎉"
+        : "Published — this video is live 🎉";
+    what = `This page now mirrors the <b>live YouTube state</b> — the real thumbnail you chose there and its current visibility, not the local render. `
+      + (priv==="private" ? `It's still <b>private</b>, so only you can see it — flip it to Public in YouTube Studio when you're ready for viewers. ` : ``)
+      + `Post-publish notes — a sharper title, a new thumbnail, engagement, or a <b>re-cut request</b> — go in the feedback box below; the channel routine applies them.`
+      + (c.composedThumb ? ` Your <b>designed thumbnail</b> stays in the repo (shown at right), ready to load as an A/B-test variant once YouTube thumbnail testing is enabled.` : ``);
     cta = c.youtube.url ? `<a href="${esc(c.youtube.url)}" target="_blank"><button class="good">▶ Watch on YouTube</button></a>` : "";
   } else if (idx === 7) {                                  // all pre-publish lights green
     kind = "you"; step = "Step 8 of 8 — your move"; now = "Ready to publish 🎉";
@@ -735,7 +769,13 @@ async function show(slug){
     + (CUR.dataMeta ? kv("data", `${Number(CUR.dataMeta.records).toLocaleString()} records · ${CUR.dataMeta.areas} areas · ${esc(CUR.dataMeta.span)} · ${CUR.dataMeta.coverage ?? "?"}% placed`) : "")
     + (CUR.render ? kv("render", `${esc(CUR.render.commit)} · ${CUR.render.durationSec}s · ${esc((CUR.render.renderedAt||"").slice(0,16))}`) : "")
     + kv("youtube", CUR.youtube.url ? `<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>` : esc(CUR.youtube.status))
+    + (CUR.youtube.url ? kv("visibility", privacyLabel(CUR)) : "")
     + (CUR.youtube.stats ? kv("stats", `${fmtN(CUR.youtube.stats.views)} views · ${fmtN(CUR.youtube.stats.likes)} likes · ${fmtN(CUR.youtube.stats.comments)} comments`) : "")
+    + (CUR.stages.published ? kv("thumbnail",
+        `<div class="thumbcompare">`
+        + ((CUR.youtube.live && CUR.youtube.live.thumb) ? `<figure><img src="${esc(CUR.youtube.live.thumb)}" alt="live thumbnail"><figcaption class="feat">live on YouTube</figcaption></figure>` : "")
+        + (CUR.composedThumb ? `<figure><img src="/thumb/${CUR.slug}/thumbnail.jpg?r=${Date.now()}" alt="designed thumbnail"><figcaption class="feat">your design · A/B ready</figcaption></figure>` : "")
+        + `</div>`) : "")
     + (CUR.approval ? kv("approval", `${esc((CUR.approval.at||"").slice(0,16).replace("T"," "))}${CUR.approval.fresh?' · <span style="color:var(--green)">counts — verified</span>':' · <span style="color:var(--amber)">stale (re-rendered since) — re-approve</span>'}`) : "");
   refreshFb();
 }
