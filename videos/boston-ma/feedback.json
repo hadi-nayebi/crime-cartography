@@ -46,5 +46,20 @@
     "text": "what can you do to reach to 100 score, make final polish, and also still don't know what review is about? how can I turn on the verify green light, and how can I publish it. the UX is very confusing and not clear.",
     "resolved": true,
     "producerNote": "Same root cause + same categorical fix as the 14:25 note (one engine-level change to index.html resolves both). The new per-page 'Next step' guide answers each question directly and inline: 'still don't know what review is' → the review-stage guide defines it (watch the cut, sanity-check numbers/story/annotation placement); 'turn on the verify green light' → the ✓Approve button is relabeled 'Approve — turn on Verify' with the explicit rule 'Verify only ever flips when you approve — no score or routine flips it for you'; 'how can I publish' → Step 8 surfaces the ⤴Publish CTA the moment all lights are green; 'reach 100 score' → the guide frames Confidence as an ADVISORY quality score (you don't need 100 to publish — you need the Verify light) and lists the open blockers as the exact to-do that lifts it. index.html only; verified live in-browser on this page (boston-ma, showing the Re-approve branch since its render predates the seamExplain/annotation fixes)."
+  },
+  {
+    "at": "2026-07-20T15:17:28.375Z",
+    "kind": "decision",
+    "videoTime": null,
+    "text": "APPROVE",
+    "resolved": true,
+    "producerNote": "Owner RE-APPROVAL recorded as evidence in confidence.json. This APPROVE lands AFTER the 2026-07-20 00:47 re-render and is exactly the re-approval the producer gated on — so it covers the ENCODED cut (current mp4 dated Jul 20 00:47 contains seamExplain + empty-band annotation placement + South-End D4 un-pin, encode-verified), not just design intent. Reconciled the drift the operations critic flagged: cleared the now-satisfied 're-render...' blocker (artifact condition met + gating re-approval landed) → Boston's only remaining advisory blocker is the manual audio watch-through. Verify light legitimately owner-on for the current cut. Score held at 91 (design gains already counted on the 22:22/22:23 approves; no double-inflation). Did NOT publish. Root cause of a lingering blocker after an approve = confidence.json blockers are hand-maintained free text with no code path to strip them on approve (the open operations-critic note); swept only Boston's own re-render blocker here since it was causally the gate on THIS re-approval."
+  },
+  {
+    "at": "2026-07-20T15:18:36.666Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "THUMBNAIL REQUEST — compose videos/boston-ma/thumbnail.jpg from frames: t004.jpg, t290.jpg — guidance: let the thumbnail be the big key stats, and the city map, so viewer know it will learn about stats and also on the map. (honesty rule: only real render frames/figures; then note it here as resolved)",
+    "resolved": false
   }
 ]

@@ -155,8 +155,7 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) + un-pin the 2023-05 South End note from beat D4 to the granular band so it no longer occludes the 'Boston University' landmark label (note 2026-07-19T22:23) — user feedback 2026-07-19; still-verified via 5 annotation stills (all notes on distinct slate panels in empty bands, no text overlap), awaiting re-render"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -182,6 +181,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:47): crime-only framing UNMISSABLE — service/non-crime shown as dimmed '(context) 47,570' separate from Group A (persons+property+society); Boston University landmark label CLEAR/un-occluded at t190 (South-End-note re-pin fix present); annotations on distinct empty-band slate panels. Service-framing blocker RESOLVED. NOTE: mp4 re-rendered AFTER owner's 22:23 approve → approval STALE by design → verify light owner-gated pending re-approval. Score unchanged. [blockers cleared: 1]"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note 2026-07-20T15:17 (APPROVE): owner RE-APPROVED Boston on the review page after the 2026-07-20 00:47 re-render — the exact re-approval the producer gated on ('verify light owner-gated pending re-approval'). The current mp4 (dated 2026-07-20 00:47, encode-verified in the entry above) contains the seamExplain + empty-band annotation placement + South-End D4 un-pin, so this sign-off now covers the ENCODED cut, not just design intent. RECONCILED the drift the operations critic flagged (an APPROVE that satisfies a blocker must strip it): cleared the stale 're-render to pick up seamExplain + annotation fix + South-End un-pin' blocker — its artifact condition is met AND the gating re-approval has landed. Verify light legitimately owner-on for the current cut. Score held at 91 — the design gains (seamExplain=+narrative, South-End=+representation) were already counted on the 22:22/22:23 approves; this re-approval confirms the encode matches, so no new axis gain and no double-inflation. Remaining advisory blocker: full watch-through with audio not yet logged (separate manual gate; NOT auto-cleared by an approve — that broader reconciliation is the open operations-critic note)."
    }
   ]
  },
