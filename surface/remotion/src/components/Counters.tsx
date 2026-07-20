@@ -11,6 +11,9 @@ interface Props {
   sinceYear?: string;
   /** label for the dimmed non-Group-A context row (dataset-specific). */
   otherLabel?: string;
+  /** counted-category label (config.copy.countTerm); neutral fallback "reported".
+   *  Non-NIBRS cities are NOT "Group A" — never assert that taxonomy on screen. */
+  countTerm?: string;
 }
 
 // Top-right counters. Headline is GROUP A cumulative (persons + property +
@@ -18,7 +21,8 @@ interface Props {
 // since 2023 so it is NOT confused with the per-month averages of the history
 // era. Local/ordinance counts are shown separately and dimmed as context, so the
 // jump from UCR (Violent+Property) to NIBRS doesn't read as "crime exploded".
-export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, otherLabel }) => {
+export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, otherLabel, countTerm }) => {
+  const term = countTerm ?? "reported";
   const cum = cumulativeAtMonth(cityMonthly, monthFloat);
   const groupA = groupATotal(cum);
   return (
@@ -33,7 +37,7 @@ export const Counters: React.FC<Props> = ({ cityMonthly, monthFloat, sinceYear, 
       }}
     >
       <div style={{ fontSize: 18, letterSpacing: 3, color: COLORS.inkFaint, marginBottom: 6 }}>
-        GROUP A · TOTAL SINCE {sinceYear ?? "START"}
+        {term.toUpperCase()} · TOTAL SINCE {sinceYear ?? "START"}
       </div>
       <div
         style={{

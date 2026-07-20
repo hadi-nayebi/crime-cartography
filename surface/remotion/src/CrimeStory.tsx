@@ -326,6 +326,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           monthFloat={gFloat}
           sinceYear={startYear}
           otherLabel={otherLabel}
+          countTerm={copy?.countTerm}
         />
         <Feed feed={winBundle.feed} months={stats.months} monthFloat={gFloat} />
         <Legend
@@ -347,7 +348,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           countTerm={copy?.countTerm}
         />
       </div>
-      <Leaderboard stats={stats} gFloat={gFloat} opacity={granHud} />
+      <Leaderboard stats={stats} gFloat={gFloat} opacity={granHud} countTerm={copy?.countTerm} />
 
       {/* Granular annotations */}
       {annoSeqs.map(({ a, startFrame, durFrames, anchor }, idx) => (

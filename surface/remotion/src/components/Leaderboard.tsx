@@ -10,6 +10,9 @@ interface Props {
   gFloat: number;
   opacity: number;
   topN?: number;
+  /** counted-category label (config.copy.countTerm); neutral fallback "reported".
+   *  Non-NIBRS cities are NOT "Group A" — never assert that taxonomy on screen. */
+  countTerm?: string;
 }
 
 const X = 1426;
@@ -20,8 +23,9 @@ const ROW_H = 48;
 // Live leaderboard — ranks NEIGHBORHOODS by cumulative Group A so far, by their
 // resident-known names (not the opaque beat codes). Appears in the granular era
 // ("as we get more data"), updating as the sweep progresses.
-export const Leaderboard: React.FC<Props> = ({ stats, gFloat, opacity, topN = 6 }) => {
+export const Leaderboard: React.FC<Props> = ({ stats, gFloat, opacity, topN = 6, countTerm }) => {
   if (opacity <= 0.001) return null;
+  const term = countTerm ?? "reported";
 
   const ranked = stats.hoods
     .map((h) => ({
@@ -36,7 +40,7 @@ export const Leaderboard: React.FC<Props> = ({ stats, gFloat, opacity, topN = 6 
   return (
     <div style={{ position: "absolute", left: X, top: TOP, width: W, opacity, fontFamily: FONT_MONO }}>
       <div style={{ fontSize: 18, letterSpacing: 1, whiteSpace: "nowrap", color: COLORS.inkFaint, marginBottom: 12 }}>
-        BUSIEST NEIGHBORHOODS · GROUP A TO DATE
+        BUSIEST NEIGHBORHOODS · {term.toUpperCase()} TO DATE
       </div>
       <div style={{ position: "relative", height: topN * ROW_H }}>
         {top.map((h, rank) => {

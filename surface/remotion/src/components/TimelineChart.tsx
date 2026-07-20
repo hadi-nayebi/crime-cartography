@@ -72,7 +72,7 @@ export const TimelineChart: React.FC<Props> = ({
     >
       {/* title + units */}
       <text x={X0} y={Y_TOP - 16} fill={COLORS.ink} fontSize={20} fontFamily={FONT_MONO} fontWeight={700}>
-        GROUP A INCIDENTS PER MONTH
+        {term.toUpperCase()} INCIDENTS PER MONTH
       </text>
       <text x={X0 + 370} y={Y_TOP - 16} fill={COLORS.inkFaint} fontSize={19} fontFamily={FONT_MONO}>
         — monthly rate · rises &amp; falls with the real trend (not a running total)
