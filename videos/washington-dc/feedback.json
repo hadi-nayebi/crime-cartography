@@ -20,7 +20,8 @@
     "kind": "comment",
     "videoTime": 297,
     "text": "RE-RENDER ITEM (engine zero-count 'safest' fix): the shipped washington-dc.mp4 reveal/quiz answers 'Observatory Circle: 0' — a no-data polygon (US Naval Observatory; MPD publishes no incidents there), not a safe neighborhood. The engine now excludes zero-record polygons from the safest ranking (derive.ts hoodRanking allTotal>0 filter + disclosed caveat), so the next re-render answers 'Rock Creek Park: 15' and the quiz options change accordingly. No data or config change needed for DC — engine-only. Queue this with the already-pending DC re-render (seamExplain blocker); re-renders are HELD until the citywide-trend audit reports.",
-    "resolved": false,
-    "by": "producer"
+    "resolved": true,
+    "by": "producer",
+    "producerNote": "Root cause: engine, not DC — derive.ts hoodRanking ranked no-data window polygons as 'safest'; fixed engine-wide via merged PR #4 (allTotal>0 filter + hoodNoDataCount caveat). Independently re-verified DC on the render's exact 60-month window slice (2021-07..2026-06): pre-fix answer = Observatory Circle[all=0] (no-data US Naval Observatory), post-fix = Rock Creek Park[gA=15] — exactly as noted. The DC entry's existing re-render blocker now carries this fix (confidence.json), so the held re-render picks it up with seamExplain; watcher never renders. Window-aware sweep of all 20 cities confirms only ATL/MKE/DC affected — DC is the only SHIPPED artifact; MKE/ATL are unrendered so their first render is auto-correct."
   }
 ]
