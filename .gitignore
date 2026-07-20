@@ -32,6 +32,11 @@ data/**/raw/*
 # job memory is transient working state — not a published artifact.
 .claude/.tmp/
 .claude/memory/
+# Local, machine-specific Claude settings (permission allowlists, PIDs) — NEVER
+# tracked. Previously protected only by the machine's global git ignore; pinned
+# here so a fresh clone / contributor / CI can't accidentally commit them. Covers
+# settings.local.json and its .PROPOSED variant.
+.claude/settings.local*.json
 /tmp/
 .hn/
 # OAuth secrets for the publish pipeline — NEVER commit

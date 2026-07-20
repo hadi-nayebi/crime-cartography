@@ -12,12 +12,61 @@ are ambiguous public/private calls awaiting Hadi's ruling. Answer inline (edit
 this section) or via a studio project-note; the routine then applies the change
 and generalizes the ruling into `experiment/PUBLIC-POLICY.md`.
 
-**Secret-scan status (2026-07-20): CLEAN.** No credential shapes, OAuth
-client_id/secret literals, tokens, `.env`/`.pem`/key files, or high-entropy
-strings in tracked files. `.secrets/` is gitignored and untracked; every code
-path reads credentials from `.secrets/` at runtime and embeds none;
-`pipeline/audio/README.md` uses a `hf_YOUR_READ_TOKEN` placeholder. No phone
-numbers or street addresses. Nothing needs `git rm --cached`.
+**Secret-scan status (2026-07-20, re-verified 12:0x run): CLEAN.** Second scan of
+the day (post-batch of ~24 changed files incl. new `experiment/channel/*`
+snapshots, `pipeline/status.mjs`, CRITIC/WATCHER lens docs, `boston-ma/thumbnail.jpg`).
+No credential shapes, OAuth client_id/secret literals, tokens, `.env`/`.pem`/key
+files, or high-entropy strings in tracked files. `.secrets/` is gitignored and
+untracked; every code path reads credentials from `.secrets/` at runtime and
+embeds none; `pipeline/audio/README.md` uses a `hf_YOUR_READ_TOKEN` placeholder.
+No phone numbers or street addresses. Channel snapshots carry only PUBLIC YouTube
+channel/playlist IDs (`UC…`/`PL…`), not tokens. New personal-email hits are only
+the critic *quoting* the H1 issue (CRITIC.md, studio-feedback.json) — same
+address, no new vector. Nothing needs `git rm --cached`.
+
+### H5 — `.claude/settings.local*.json` repo-gitignore gap — SELF-APPLIED (clear-cut)
+
+`settings.local.json` is already NEVER-tracked policy, but on 2026-07-20 it was
+protected only by the *machine's global* git ignore (`~/.config/git/ignore`), not
+the repo's own `.gitignore` — so a fresh clone / contributor / CI would not have
+that protection. Worse, an untracked `.claude/settings.local.PROPOSED.json`
+(5.6 KB of local permission allowlists + PIDs + systemctl commands; no
+credentials) sat protected by *nothing*, one `git add -A` from being committed.
+**Applied this run:** added `.claude/settings.local*.json` to the repo `.gitignore`
+(covers both `settings.local.json` and the `.PROPOSED` variant). Nothing was
+tracked, so no `git rm --cached` / history exposure. This implements the existing
+NEVER-tracked category, not a new taste call → self-applied, logged to
+PUBLIC-POLICY.md Rulings log.
+
+### Re-surface (2026-07-20, run 2) — H1–H4 still UNRULED; critic escalated the same gap
+
+H1–H4 (filed 10:29 run) have **no ruling yet**. Independently, the critic
+(infrastructure lens, note 15:xx in `studio-feedback.json` + `CRITIC.md:34`)
+flagged the exact contradiction: PUBLIC-POLICY.md lists **5 PRIVATE-candidate
+classes** (`experiment/briefings/`, `experiment/channel/`, `HARNESS.md`,
+`DECISIONS.md`, `videos/*/feedback.json`) whose gray-zone rule says "keep OUT
+until ruled," yet `git ls-files` shows **all 5 already tracked** while the Rulings
+log is **empty** — so routines commit them on gut, not on a decision. The critic
+asks the hygiene reviewer to, at minimum, `git rm --cached experiment/briefings/`.
+
+**I did NOT remove anything.** Reasons, so Hadi can rule cleanly: (1) my charter
+forbids acting on ambiguous items until ruled; (2) removal is a substantive
+brand decision, not hygiene — my own H1/H2 recommendations lean **KEEP PUBLIC**
+(radical process transparency is the channel's differentiator; the lone PII is a
+personal-domain email already assessed LOW-harm under H1(a) and identical to the
+deliberately-hardcoded notify addresses); (3) `experiment/briefings/`,
+`experiment/channel/`, `studio-feedback.json` are actively written by concurrent
+routines — a mid-flight `git rm --cached` would race their in-flight commits. The
+correct resolution of a policy-vs-practice gap where practice has been public and
+low-risk is **ratify-or-remove per class**, not a retroactive strip.
+
+**One decision, five classes — please pick per class (default in brackets):**
+`experiment/briefings/` [KEEP], `experiment/channel/` [KEEP], `HARNESS.md` [KEEP],
+`DECISIONS.md` [KEEP], `videos/*/feedback.json` [KEEP]. Answer inline or via a
+project-note; I'll apply + log each into PUBLIC-POLICY.md's Rulings log and stop
+re-surfacing. If you want zero personal PII regardless, the narrowest move is to
+read the notify sender/recipient from `.secrets/notify.json` (H1(a) alt) — say
+the word.
 
 ### H1 — Personal emails in tracked files (seed open item) — NOT YET RULED
 
