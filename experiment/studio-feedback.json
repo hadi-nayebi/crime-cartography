@@ -58,9 +58,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CRITIC/studio> The attention-first sort ignores confidence SCORE. priorityOf (server.mjs:132-146) reads only r.confidence.blockers.length (line 142), never r.confidence.score, so denver-co / detroit-mi / milwaukee-wi at score 64/100 (4 blockers each) sort identically to a hypothetical 90/100 + 4-blocker city -- the sort can't distinguish 'far from ready' from 'nearly ready with paperwork'. The owner explicitly asked to 'sort them by which one I should pay attention first' (studio note 2026-07-19T21:18). Proposed change: add a priority term for a low ledger score (e.g. weight scaled by (publishBar - score) once stage >= config, and surface reason like 'confidence 64/100 -- below bar'). Why: makes the exact feature the owner requested reflect the strongest quality signal we already compute.",
-    "resolved": false,
+    "resolved": true,
     "by": "critic",
-    "lens": "studio"
+    "lens": "studio",
+    "producerNote": "root cause: priorityOf (pipeline/dashboard/server.mjs) weighted only confidence.blockers.length and never read the confidence.score axis it already has, so equal-blocker cities sorted identically no matter how far below the publish bar they sat (the cited 64/100-vs-90/100 tie). ROOT FIX at the single sort authority — priorityOf feeds row.priority -> every hero/card/detail sort in index.html, so one change sweeps all 20 + all future cities: added PUBLISH_BAR=100 (from confidence.json _rubric 'score is out of 100, 100 required to publish') and a score-gap term `score += (100 - confidence.score)` with reason 'confidence N/100 — below bar', gated to config'd + ledgered + NOT-published cities (published=settled; a no-ledger city is already handled by the 'awaiting first review' term; guarded typeof+gap>0). SWEEP: grep-confirmed priorityOf is the ONLY sort scorer, so the engine change IS the whole cohort. Verified live via /api/catalog after crime-studio.service restart: at equal blockers the lower-score city now outranks (87s above 88s at blk=2; 88s above 90s at blk=1), the two published cities (boston-ma/washington-dc) carry NO below-bar term, and the reason shows in the attention tooltip. No numbers touched, no re-render, no upstream authoring gap."
   },
   {
     "at": "2026-07-20T00:01:57Z",

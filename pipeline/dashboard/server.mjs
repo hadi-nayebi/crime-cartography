@@ -39,6 +39,10 @@ const mtimeOf = (p) => { try { return statSync(p).mtime.toISOString(); } catch {
 // ---- stage model -----------------------------------------------------------
 // The single source of truth the user sees: where each city REALLY is.
 const STAGES = ["data", "trend", "basemap", "config", "music", "render", "verified", "published"];
+// Confidence rubric (experiment/confidence.json _rubric): score is out of 100,
+// and 100 is required to publish. Used as the attention-sort's "how far from
+// ready" reference so a low ledger score raises a city's priority.
+const PUBLISH_BAR = 100;
 
 // Each video in the batch is an experiment point. Its color theme, geographic
 // scope, and note-placement QA result are metadata the operator scans at a
@@ -146,6 +150,16 @@ function priorityOf(r) {
   if (r.stages.config && !r.confidence) { score += 40; reasons.push("awaiting first review — no confidence score yet"); }
   const blk = r.confidence?.blockers?.length ?? 0;
   if (blk) { score += 20 + blk; reasons.push(`${blk} blocker${blk > 1 ? "s" : ""}`); }
+  // Confidence SCORE, not just blocker COUNT: a city further below the publish
+  // bar needs more attention. Weight scales 1:1 with the gap so a 64/100 city
+  // (gap 36) clearly outranks an 88/100 city (gap 12) even at equal blockers —
+  // the two used to sort identically because only blocker count was read. Gated
+  // to config'd, ledgered, not-yet-published cities (a published video is
+  // settled; a no-ledger city is handled by the "awaiting first review" term).
+  if (r.stages.config && !r.stages.published && typeof r.confidence?.score === "number") {
+    const gap = PUBLISH_BAR - r.confidence.score;
+    if (gap > 0) { score += gap; reasons.push(`confidence ${r.confidence.score}/${PUBLISH_BAR} — below bar`); }
+  }
   if (r.stages.render && (!r.qa || r.qa.status === "pending")) { score += 12; reasons.push("note-placement QA unreviewed"); }
   if (!reasons.length) reasons.push(r.stages.published ? "settled · published" : "no action needed");
   return { score, reason: reasons[0], reasons };
