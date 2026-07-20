@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "reported",
     "cityName": "Washington DC",
     "regionNoun": "neighborhood cluster",
     "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · MPD OPEN DATA",

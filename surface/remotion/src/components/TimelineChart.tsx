@@ -10,6 +10,8 @@ interface Props {
   /** optional reference rate (e.g. the last UCR-era monthly level) + label. */
   refRate?: number;
   refLabel?: string;
+  /** counted-category label (config.copy.countTerm); neutral fallback "reported". */
+  countTerm?: string;
 }
 
 const X0 = 430;
@@ -29,7 +31,9 @@ export const TimelineChart: React.FC<Props> = ({
   monthFloat,
   refRate,
   refLabel,
+  countTerm,
 }) => {
+  const term = countTerm ?? "reported";
   const W = X1 - X0;
   const n = months.length;
   const rates = cityMonthly.map((c) => groupATotal(c)); // Group A per month
@@ -126,7 +130,7 @@ export const TimelineChart: React.FC<Props> = ({
               {Math.round(curRate)}
             </text>
             <text x={0} y={22} fill={COLORS.inkDim} fontSize={17} fontFamily={FONT_MONO}>
-              Group A this month
+              {term} crimes this month
             </text>
           </g>
         </>

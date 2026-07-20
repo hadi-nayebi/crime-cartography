@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "reported",
     "cityName": "Denver",
     "regionNoun": "neighborhood",
     "seamExplain": "The ruler changes here — not the city. Through 2020 the gray marks are the FBI's classic 'index' crimes. From 2021 the figures are DPD's own incident data, which counts a much broader set of offenses, so the level steps up. Compare the shape within one color, never across the dashed line.",
@@ -52,7 +53,7 @@
     "methodDotsHeadline": "Real dots, real places",
     "methodDotsSub": "Every dot is a real reported incident location (block-level). 99.9% map to one of 78 neighborhoods — the rest counted, disclosed, never invented.",
     "methodFootnote": "FBI UCR (through 2020) and DPD incident data (2021+) are different measures — shown as two chapters, not one line.",
-    "quizQuestion": "Which Denver neighborhood reports the fewest Group A crimes?",
+    "quizQuestion": "Which Denver neighborhood reports the fewest crimes?",
     "sourceLine": "Data: Denver Police Department via Denver Open Data Catalog · real block-level locations",
     "coverageText": "99.9% of records mapped to a neighborhood",
     "creditsSources": "Sources: Denver Police Department incident data (rolling 5 years + YTD) via the Denver Open Data Catalog & FBI UCR (1985–2020) via the FBI Crime Data Explorer (ORI CO0160000). Neighborhoods: City and County of Denver official statistical neighborhoods. DPD's source omits sex offenses; FBI UCR index crimes and DPD incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
@@ -66,9 +67,9 @@
   ],
   "annotations": [
     { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — anonymized to the block by DPD open data." },
-    { "atMonth": "2022-05", "text": "May 2022 — the busiest Group A month of the last five years: 5,789." },
-    { "atMonth": "2023-09", "text": "Five Points — Denver's busiest neighborhood for reported Group A crime.", "beat": "five-points" },
+    { "atMonth": "2022-05", "text": "May 2022 — the busiest month for reported crime in the last five years: 5,789." },
+    { "atMonth": "2023-09", "text": "Five Points — Denver's busiest neighborhood for reported crime.", "beat": "five-points" },
     { "atMonth": "2025-02", "text": "University Park: down 53% since 2022 — the city's biggest neighborhood drop.", "beat": "university-park" },
-    { "atMonth": "2026-03", "text": "Reported Group A is down citywide: 64,868 (2022) → 49,428 (2025), −24%." }
+    { "atMonth": "2026-03", "text": "Reported crime is down citywide: 64,868 (2022) → 49,428 (2025), −24%." }
   ]
 }

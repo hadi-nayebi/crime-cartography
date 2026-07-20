@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "major",
     "cityName": "Buffalo",
     "regionNoun": "neighborhood",
     "seamExplain": "The ruler changes here — not the city. Through 2005 the gray marks are the FBI's classic 'index' crimes. From 2006 the figures are BPD's own reported-crime records — Buffalo publishes only ten major crime types, a narrower net than most cities. Compare the shape within one color, never across the dashed line.",

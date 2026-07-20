@@ -5,6 +5,22 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### config-authoring must emit a verified `copy.countTerm` per city  (from critic videos note 2026-07-19T23:45, resolved by note-watcher 2026-07-20)
+The engine no longer hardcodes the NIBRS term "Group A" — the on-screen counted-category
+label (reveal/quiz/timeline) is now routed through `config.copy.countTerm`, with a NEUTRAL
+engine default of `"reported"` so a config that omits the field can never assert a taxonomy
+the source doesn't use. But the RIGHT term is per-source and honesty-critical, so the
+authoring step must SET it explicitly for every new city, verified against that source's real
+taxonomy — the reliable signal is the city's own `trend.json` recent-era label + `PROVENANCE.md`
+(does it carry a native `nibrs_crimeagainst`/crimes-against field?). Rule applied this sweep:
+`"Group A"` ONLY for genuine native-NIBRS-Group-A sources; `"major"` for Buffalo's ten
+major-crime types; `"reported"` (neutral, always-true) for any source that merely maps its own
+categories into persons/property/society via the NIBRS convention (STARS, RMS, "all recorded
+incidents", etc.). ALSO: authored annotation/quiz text must use the SAME term — never write
+"Group A" into a non-NIBRS city's annotations (that reintroduces the bug the config field fixed).
+Cheap check: flag any config where `copy.countTerm` is absent, OR where an annotation/quizQuestion
+string contains "Group A" while `copy.countTerm != "Group A"`.
+
 ### producer/driver must (re)compose the designed thumbnail when a render lands  (from boston owner note 2026-07-20T15:36 + critic growth 2026-07-20T15:24, resolved by note-watcher)
 The thumbnail STANDARD now exists: `pipeline/publish/compose-thumbnail.py` builds
 `videos/<slug>/thumbnail.jpg` ("theme 1: map + stats") from the real rendered map frame +

@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Minneapolis",
     "regionNoun": "neighborhood",
     "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · MPD NIBRS / CC0",

@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Baltimore",
     "regionNoun": "neighborhood",
     "seamExplain": "The ruler changes here — not the city. Through 2020 the gray bars are the FBI's classic 'index' crimes; from 2022 the figures are BPD's own NIBRS Group A records, deduplicated from victim rows to incidents — a broader count, so the level steps up. Two years are blank on purpose: 1999 (a broken FBI reporting year — 503 reported vs ~70,000 either side) and 2021 (BPD's NIBRS transition left no full-year total). Gaps stay gaps, nothing estimated. Compare the shape within one color, never across the dashed line.",

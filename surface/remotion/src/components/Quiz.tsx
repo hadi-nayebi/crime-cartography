@@ -10,12 +10,17 @@ interface Props {
   question?: string;
   /** e.g. "2023–2026" — derived from the dataset span. */
   spanLabel?: string;
+  /** counted-category label (config.copy.countTerm); never assert a taxonomy
+   * the source doesn't use. Neutral fallback "reported". */
+  countTerm?: string;
 }
 
 // Engagement hook posed DURING the history era: ask the viewer to guess which
-// neighborhood is "safest" (fewest reported Group A crimes), answered from real
+// neighborhood is "safest" (fewest reported crimes, per config.countTerm),
+// answered from real
 // data at the reveal. Sits on the right, clear of the history bar chart.
-export const Quiz: React.FC<Props> = ({ options, durationInFrames, question, spanLabel }) => {
+export const Quiz: React.FC<Props> = ({ options, durationInFrames, question, spanLabel, countTerm }) => {
+  const term = countTerm ?? "reported";
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pop = spring({ frame, fps, config: { damping: 18, mass: 0.8 } });
@@ -50,7 +55,7 @@ export const Quiz: React.FC<Props> = ({ options, durationInFrames, question, spa
         {question ?? "Which neighborhood is the safest?"}
       </div>
       <div style={{ fontSize: 18, fontWeight: 500, color: COLORS.inkDim, marginBottom: 14 }}>
-        i.e. the fewest reported Group A crimes{spanLabel ? `, ${spanLabel}` : ""}. Take a guess:
+        i.e. the fewest {term} crimes{spanLabel ? `, ${spanLabel}` : ""}. Take a guess:
       </div>
       {options.map((opt, i) => {
         const rowReveal = interpolate(frame, [12 + i * 7, 26 + i * 7], [0, 1], {

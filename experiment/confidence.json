@@ -11,7 +11,8 @@
   "blockers": [
    "full end-to-end watch-through with audio not yet logged",
    "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -25,6 +26,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -38,7 +43,8 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -56,6 +62,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -70,7 +80,8 @@
   "blockers": [
    "full watch-through with audio not yet logged",
    "seam-label/punchline overlap STILL PRESENT in re-rendered mp4 (producer-verified t146): the net-change punchline card ('1987: 73,369 → 2007: 37,810 · −48% ... the plateau that followed is the next chapter') sits over the seam label '2008 · the measure changes', which bleeds faintly through the translucent card. Layout-dependent (seattle's longer 2-line punchline sub makes the card taller than chicago's, pushing it into the seam label). Needs engine fix (hide/dim seam label when punchline card overlaps, or lower the card) + re-render. NOT owner-gated — engine/driver.",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -92,6 +103,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -105,7 +120,8 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "society=0 counter row reads oddly — consider hiding structurally-empty categories"
+   "society=0 counter row reads oddly — consider hiding structurally-empty categories",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -131,6 +147,10 @@
    {
     "date": "2026-07-20",
     "change": "OWNER APPROVE (2026-07-20T15:28:13, washington-dc/feedback.json) recorded as verify-light evidence — verify is a manual light and flips on this fresh Approve. RECONCILED blocker drift: the 00:43 re-render satisfied BOTH the zero-count AND the seamExplain re-render blockers, but the producer's hand-clear removed only the zero-count, leaving the seamExplain blocker stale. Independently verified the seam fix is LIVE in the current mp4 — extracted still @96s shows the 'WHY THE JUMP?' card rendering the DC-specific seamExplain copy (FBI UCR gray 1985-2007 vs MPD gold 2008+, dashed 2008 seam, 'the measuring system changing, not a re-classification of crime'). Stale 're-render to pick up seamExplain' blocker CLEARED [blockers cleared: 1]. Remaining: full watch-through with audio (separate manual gate, NOT auto-cleared by an approve — boston precedent) + society=0 counter (genuine honesty item, producer decision). Score held at 91 — the seam design gain was already counted on the 07-18/07-19 entries; a re-approve of an already-counted gain must not double-inflate."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -144,7 +164,8 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -166,6 +187,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -178,7 +203,8 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -208,6 +234,10 @@
    {
     "date": "2026-07-20",
     "change": "note 2026-07-20T15:17 (APPROVE): owner RE-APPROVED Boston on the review page after the 2026-07-20 00:47 re-render — the exact re-approval the producer gated on ('verify light owner-gated pending re-approval'). The current mp4 (dated 2026-07-20 00:47, encode-verified in the entry above) contains the seamExplain + empty-band annotation placement + South-End D4 un-pin, so this sign-off now covers the ENCODED cut, not just design intent. RECONCILED the drift the operations critic flagged (an APPROVE that satisfies a blocker must strip it): cleared the stale 're-render to pick up seamExplain + annotation fix + South-End un-pin' blocker — its artifact condition is met AND the gating re-approval has landed. Verify light legitimately owner-on for the current cut. Score held at 91 — the design gains (seamExplain=+narrative, South-End=+representation) were already counted on the 22:22/22:23 approves; this re-approval confirms the encode matches, so no new axis gain and no double-inflation. Remaining advisory blocker: full watch-through with audio not yet logged (separate manual gate; NOT auto-cleared by an approve — that broader reconciliation is the open operations-critic note)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -221,7 +251,8 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -239,6 +270,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -252,7 +287,8 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -266,6 +302,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -278,7 +318,8 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -292,6 +333,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −69% (1985 149,954→2016 46,048) steps · busiest Downtown 11,467 / fewest Belle Isle 27 · refLine 2016≈3837/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -304,7 +349,8 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -318,6 +364,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −20% (2022 70,227→2025 55,942) lollipop · busiest Five Points 17,930 / fewest Wellshire 249 · refLine 2020≈3412/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -330,7 +380,8 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -344,6 +395,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −44% (2006 61,099→2025 34,281) lollipop · busiest Old North Milwaukee 7,083 / fewest Zoo 1 (1 no-data area excluded) · refLine 2005≈3284/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -356,7 +411,8 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -378,6 +434,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −70% (1989 88,536→2018 26,995) stacked · busiest Downtown 21,248 / fewest Bankhead Courts 3 (ZERO-COUNT 'safest' FIX CONFIRMED — 3 no-data areas excluded, 'no data isn't no crime', not an artifact) · refLine 2018≈2250/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -390,7 +450,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"major\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -400,6 +461,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook +32% (2022 10,822→2023 14,319; sub discloses 2025 eased to 12,352, 44% below 2007 peak 21,958=−43.7%) steps · busiest North Park 3,873 / fewest First Ward 329 · refLine 2005≈1753/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"major\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -412,7 +477,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -422,6 +488,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −45% (2002 28,803→2019 15,718) steps · busiest Westwood 12,755 / fewest California 80 · refLine 2019≈1310/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -434,7 +504,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -444,6 +515,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −51% (1991 58,374→2014 28,885) bars · busiest CBD Downtown 9,240 / fewest Glen Lake 17 · refLine 2014≈2407/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -456,7 +531,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -466,6 +542,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook ±0% (2017 75,042→2025 75,179, +0.2%/8yr) area · busiest University City 41,058 / fewest Airport 4,039 (division) · refLine 2016≈3626/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -478,7 +558,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -488,6 +569,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −40% (1996 59,467→2018 35,624) bars · busiest Southeast 39,647 / fewest West 25,932 (precinct) · refLine 2018≈2969/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -500,7 +585,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -510,6 +596,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −68% (1988 171,772→2014 54,511) lollipop · busiest Northeast 60,688 / fewest Downtown-CBD 14,706 (division) · ODC-BY + sex/juvenile exclusions disclosed; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -522,7 +612,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -532,6 +623,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −32% (2023 106,788→2025 72,843) stacked · 'the wave was property crime — 96% of the fall' verified 95.9% on screen · busiest Appling Farms 58,174 / fewest North Main 34,724 (precinct); source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  },
@@ -544,7 +639,8 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
+   "full end-to-end watch-through with audio not yet logged",
+   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
   ],
   "history": [
    {
@@ -554,6 +650,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −71% (1995 95,760→2020 28,048) bars · busiest Downtown 8,483 / fewest Dundalk Marine Terminal 2 · 1999 broken-FBI-year + 2021 NIBRS-transition gaps VISIBLY LABELED 'Gaps stay gaps, nothing estimated'; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
    }
   ]
  }

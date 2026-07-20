@@ -167,6 +167,13 @@ export interface HistoryNote {
 export interface CityCopy {
   cityName?: string; // "Grand Rapids"
   regionNoun?: string; // "police beat" | "community area" | "neighborhood"
+  /** On-screen label for the counted category, used as a modifier before
+   * "crime(s)" (Quiz / TimelineChart / Reveal). MUST match what the source
+   * actually publishes — NEVER assert a taxonomy the agency doesn't use.
+   * "Group A" only for genuine NIBRS Group A sources; "major" for Buffalo's
+   * ten major-offense types; the neutral default "reported" is true for any
+   * incident-based source. Engine falls back to "reported" when absent. */
+  countTerm?: string;
   seamExplain?: string; // why-the-jump card at the trend's measure seam
   chapter2Kicker?: string; // "CHAPTER 2 · 2023–2026 · GRPD NIBRS"
   chapter2Title?: string; // "The map comes alive — per police beat"

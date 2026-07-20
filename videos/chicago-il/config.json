@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "reported",
     "cityName": "Chicago",
     "regionNoun": "community area",
     "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · CPD INCIDENT DATA",
@@ -90,7 +91,7 @@
     },
     {
       "atMonth": "2024-03",
-      "text": "Austin is still Chicago's busiest community area for Group A crime — but Near North Side is closing the gap.",
+      "text": "Austin is still Chicago's busiest community area for reported crime — but Near North Side is closing the gap.",
       "beat": "AUSTIN"
     },
     {
@@ -99,7 +100,7 @@
     },
     {
       "atMonth": "2025-12",
-      "text": "Edison Park — fewest reported Group A crimes of all 77 areas over these five years.",
+      "text": "Edison Park — fewest reported crimes of all 77 areas over these five years.",
       "beat": "EDISON PARK"
     }
   ]

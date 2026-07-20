@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "reported",
     "cityName": "Boston",
     "regionNoun": "district",
     "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · BPD / ANALYZE BOSTON",
@@ -86,7 +87,7 @@
     },
     {
       "atMonth": "2023-05",
-      "text": "South End (District D-4) — Boston's busiest for Group A crime, and rising: +33% since 2022."
+      "text": "South End (District D-4) — Boston's busiest for reported crime, and rising: +33% since 2022."
     },
     {
       "atMonth": "2024-08",

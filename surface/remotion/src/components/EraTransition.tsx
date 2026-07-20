@@ -116,9 +116,9 @@ export const EraTransition: React.FC<Props> = ({
           <span style={{ color: COLORS.ink }}>{Math.round(ucrAnnual / 100) * 100}/year</span>{" "}
           Violent + Property — roughly{" "}
           <span style={{ color: COLORS.ink }}>{Math.round(ucrMonthly)}/month</span>.
-          From here we count <span style={{ color: COLORS.ink }}>per month</span>. NIBRS
-          Group A also includes <i>Crimes Against Society</i> and more offense types,
-          so it runs about{" "}
+          From here we count <span style={{ color: COLORS.ink }}>per month</span>. This
+          newer incident-based count also includes <i>Crimes Against Society</i> and more
+          offense types, so it runs about{" "}
           <span style={{ color: COLORS.ink }}>{Math.round(nibrsMonthly)}/month</span> —
           the step up is mostly{" "}
           <span style={{ color: COLORS.ink }}>what gets counted</span>, not a sudden

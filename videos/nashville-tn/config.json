@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Nashville",
     "regionNoun": "police precinct",
     "seamExplain": "The ruler changes here — not the city. Through 2018 the gray bars are the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2019 the figures are MNPD's own NIBRS incident reports, which log a far broader set of offenses, so the level steps up. Compare the shape within one color, never across the dashed line.",

@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "reported",
     "cityName": "Philadelphia",
     "regionNoun": "police district",
     "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · PPD / OPENDATAPHILLY",
@@ -90,7 +91,7 @@
     },
     {
       "atMonth": "2024-02",
-      "text": "The 15th District — Frankford & Mayfair — Philadelphia's busiest for Group A crime.",
+      "text": "The 15th District — Frankford & Mayfair — Philadelphia's busiest for reported crime.",
       "beat": "15"
     },
     {

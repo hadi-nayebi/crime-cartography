@@ -344,6 +344,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
               ? `${lastHistYear} UCR Violent+Property ≈ ${Math.round(lastFbiTotal / 12)}/mo (narrower count)`
               : undefined
           }
+          countTerm={copy?.countTerm}
         />
       </div>
       <Leaderboard stats={stats} gFloat={gFloat} opacity={granHud} />
@@ -406,6 +407,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
             durationInFrames={quizDur}
             question={copy?.quizQuestion}
             spanLabel={`${startYear}–${endYear}`}
+            countTerm={copy?.countTerm}
           />
         </Sequence>
       )}
@@ -426,7 +428,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
 
       {/* Reveal */}
       <Sequence from={Math.round(PHASES.granularEnd * fps)} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} layout="none">
-        <Reveal stats={stats} summary={winBundle.summary} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} />
+        <Reveal stats={stats} summary={winBundle.summary} durationInFrames={Math.round((PHASES.revealEnd - PHASES.granularEnd) * fps)} countTerm={copy?.countTerm} />
       </Sequence>
 
       {/* Close */}

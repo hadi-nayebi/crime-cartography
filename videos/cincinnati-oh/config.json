@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "reported",
     "cityName": "Cincinnati",
     "regionNoun": "neighborhood",
     "seamExplain": "The ruler changes here — not the city. Through 2019 the gray marks are the FBI's classic 'index' crimes. From 2020 the figures are CPD's own STARS incident records, which add the 'Part 2' offenses — a broader net, so the level steps up. Compare the shape within one color, never across the dashed line.",

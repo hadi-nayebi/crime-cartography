@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Charlotte",
     "regionNoun": "police division",
     "seamExplain": "The ruler changes here — not the city. Through 2016 the gray area is the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2017 the figures are CMPD's own NIBRS incident reports — a broader net, so the level steps up. Compare the shape within one color, never across the dashed line.",

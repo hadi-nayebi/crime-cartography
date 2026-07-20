@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Memphis",
     "regionNoun": "police precinct",
     "seamExplain": "The ruler changes here — not the city. Through 2019 the steel-blue bars are the FBI's classic 'index' crimes (dark: property, light: violent). From 2020 each bar splits into MPD's own NIBRS Group A categories — a broader modern count (though MPD's source omits sex crimes), so the level steps up. Compare the shape within one era, never across the dashed line.",

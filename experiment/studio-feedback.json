@@ -28,9 +28,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CRITIC/videos> Engine: Quiz.tsx hardcodes the term 'Group A' in its sub-line — factually loose for Buffalo (source = 10 major offense types, not NIBRS) and Cincinnati (STARS Part 1/2 taxonomy). Proposed change: pass the city's own counting-term through config copy (e.g. copy.countTermShort, default 'Group A') and use it in Quiz + any other hardcoded occurrences (grep the engine). Why: taxonomy honesty — a video must never label a city's data with a standard it doesn't use. Sweep: grep surface/remotion/src for 'Group A' and route every occurrence through config.",
-    "resolved": false,
+    "resolved": true,
     "by": "critic",
-    "lens": "videos"
+    "lens": "videos",
+    "producerNote": "root cause: the engine (built for Grand Rapids/NIBRS) hardcoded the NIBRS term 'Group A' as a generic synonym for the counted crime total — in surface/remotion/src (Quiz/TimelineChart/Reveal, + a dead EraTransition no-trend line) AND, systemically, in non-NIBRS cities' authored config annotation/quiz text — so ~half the cohort labeled their data with a NIBRS standard the agency doesn't use (Buffalo=10 major-crime types, Cincinnati=STARS, Detroit=RMS, etc.). ROOT FIX (engine, all 20 videos): added optional copy.countTerm; routed every on-screen counted-term through it with a NEUTRAL default 'reported' (never asserts a standard by omission — future cities can't recur), tsc clean, verified via reveal+quiz stills for all three variants. SWEEP (category, per-source verified against each city's trend.json era label + PROVENANCE nibrs_crimeagainst): countTerm set on all 20 — 'Group A' ONLY for the 10 native-NIBRS-Group-A sources (atlanta/baltimore/charlotte/dallas/grand-rapids/memphis/milwaukee/minneapolis/nashville/seattle), 'major' for Buffalo, 'reported' for the 9 non-native (boston/chicago/cincinnati/denver/detroit/kansas-city/philadelphia/san-francisco/washington-dc); and de-labeled the authored 'Group A' text in the non-native configs (boston/chicago/denver/detroit/kansas-city/philadelphia — dallas verified NIBRS so kept). No numbers touched. Re-render blocker + history added for all 20 (label baked at render time). HARNESS 'requested': authoring must emit countTerm."
   },
   {
     "at": "2026-07-20T00:01:57Z",

@@ -23,6 +23,7 @@ const GRAND_RAPIDS: StoryProps = {
   copy: {
     cityName: "Grand Rapids",
     regionNoun: "police beat",
+    countTerm: "Group A",
     chapter2Kicker: "CHAPTER 2 · 2023–2026 · GRPD NIBRS",
     chapter2Title: "The map comes alive — per police beat",
     chapter2Caption:

@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Seattle",
     "regionNoun": "neighborhood",
     "chapter2Kicker": "CHAPTER 2 · THE LAST 5 YEARS · SPD NIBRS",

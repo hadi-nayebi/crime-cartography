@@ -9,6 +9,9 @@ interface Props {
   stats: Stats;
   summary: Summary;
   durationInFrames: number;
+  /** counted-category label (config.copy.countTerm); neutral fallback "reported".
+   * Never assert a taxonomy (e.g. NIBRS "Group A") the source doesn't use. */
+  countTerm?: string;
 }
 
 const SAFE = "#36e07a";
@@ -18,7 +21,8 @@ const BUSY = "#ff2e63";
 // payoff — the beats with the FEWEST reported Group A crimes ("safest"), called
 // out honestly as report counts, not per-capita. Every figure is a real
 // period total.
-export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) => {
+export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames, countTerm }) => {
+  const term = countTerm ?? "reported";
   const frame = useCurrentFrame();
   const fadeIn = interpolate(frame, [0, 20], [0, 1], {
     extrapolateLeft: "clamp",
@@ -55,15 +59,15 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
       }}
     >
       <div style={{ fontFamily: FONT_MONO, fontSize: 20, letterSpacing: 5, color: COLORS.inkFaint, marginBottom: 18 }}>
-        {summary.dateMin} → {summary.dateMax} · {fmtInt(stats.grandTotalGroupA)} Group A
-        (persons + property + society) incidents over {summary.months} months
+        {summary.dateMin} → {summary.dateMax} · {fmtInt(stats.grandTotalGroupA)} {term} crimes
+        (persons + property + society) over {summary.months} months
       </div>
 
       <div style={{ display: "flex", gap: 56 }}>
         {/* LEFT — busiest */}
         <div style={{ flex: 1.25 }}>
           <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 18, color: BUSY }}>
-            Busiest neighborhoods — most Group A crime
+            Busiest neighborhoods — most {term} crime
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
             {busiest.map((b, i) => {
@@ -95,7 +99,7 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
             QUIZ ANSWER
           </div>
           <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 4, color: SAFE }}>
-            Fewest reported Group A
+            Fewest {term} crimes
           </div>
           {answer && (
             <div
@@ -131,7 +135,7 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
             })}
           </div>
           <div style={{ fontSize: 18, color: COLORS.inkFaint, marginTop: 16, lineHeight: 1.45 }}>
-            "Safest" = fewest reported Group A incidents. Report counts only — not
+            "Safest" = fewest {term} crimes. Report counts only — not
             adjusted for population or area.
             {stats.hoodNoDataCount > 0 &&
               ` ${stats.hoodNoDataCount} area${stats.hoodNoDataCount === 1 ? "" : "s"} with no mapped records excluded — no data isn't "no crime".`}

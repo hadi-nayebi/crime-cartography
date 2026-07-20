@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Atlanta",
     "regionNoun": "neighborhood",
     "seamExplain": "The ruler changes here — and two years are missing. Through 2018 the steel-blue bars are the FBI's classic 'index' crimes (dark: property, light: violent). APD's FBI submissions during its 2019–2020 NIBRS transition were incomplete, so those years are left blank — never guessed, never interpolated. From 2021 each bar splits into APD's own NIBRS categories, a broader count. Compare shapes within one era — never across the gap.",

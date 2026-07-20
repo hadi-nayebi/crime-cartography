@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "Group A",
     "cityName": "Dallas",
     "regionNoun": "police division",
     "seamExplain": "The ruler changes here — not the city. Through 2014 the gray marks are the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2015 the figures are DPD's own incident records — a broader count, so the level steps up. One more caveat, disclosed: DPD's public dataset excludes sex offenses and juvenile cases entirely. Compare the shape within one color, never across the dashed line.",

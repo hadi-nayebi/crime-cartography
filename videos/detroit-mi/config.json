@@ -38,6 +38,7 @@
     }
   },
   "copy": {
+    "countTerm": "reported",
     "cityName": "Detroit",
     "regionNoun": "neighborhood",
     "seamExplain": "The ruler changes here — not the city. Through 2016 the gray bars are the FBI's classic 'index' crimes (murder, robbery, assault, burglary, theft). From 2017 the figures are DPD's own records-management system, which logs every reported incident — a broader net, so the level steps up. Compare the shape within one color, never across the dashed line.",
@@ -52,7 +53,7 @@
     "methodDotsHeadline": "Real dots, real places",
     "methodDotsSub": "Every dot is a real reported incident location (block-level). 99.1% map to one of 205 neighborhoods — the rest counted, disclosed, never invented.",
     "methodFootnote": "FBI UCR (through 2016) and DPD RMS incidents (2017+) are different measures — shown as two chapters, not one line.",
-    "quizQuestion": "Which Detroit neighborhood reports the fewest Group A crimes?",
+    "quizQuestion": "Which Detroit neighborhood reports the fewest crimes?",
     "sourceLine": "Data: Detroit Police Department (RMS) via the City of Detroit Open Data Portal · real block-level locations",
     "coverageText": "99.1% of records mapped to a neighborhood",
     "creditsSources": "Sources: Detroit Police Department incident data (2017–present) via the City of Detroit Open Data Portal & FBI UCR (1985–2016) via the FBI Crime Data Explorer (ORI MI8234900). Neighborhoods: City of Detroit official layer. FBI UCR index crimes and DPD's incident records are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
@@ -66,9 +67,9 @@
   ],
   "annotations": [
     { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — anonymized to the block by DPD open data." },
-    { "atMonth": "2023-09", "text": "Downtown — Detroit's busiest neighborhood for reported Group A crime over the last five years.", "beat": "Downtown" },
-    { "atMonth": "2024-08", "text": "August 2024 — the busiest Group A month of the last five years: 7,385." },
+    { "atMonth": "2023-09", "text": "Downtown — Detroit's busiest neighborhood for reported crime over the last five years.", "beat": "Downtown" },
+    { "atMonth": "2024-08", "text": "August 2024 — the busiest month for reported crime in the last five years: 7,385." },
     { "atMonth": "2025-02", "text": "State Fair: down 55% since 2022 — the city's biggest neighborhood drop.", "beat": "State Fair" },
-    { "atMonth": "2026-03", "text": "Reported Group A has held roughly flat: 75,248 (2022) → 73,634 (2025)." }
+    { "atMonth": "2026-03", "text": "Reported crime has held roughly flat: 75,248 (2022) → 73,634 (2025)." }
   ]
 }
