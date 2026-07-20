@@ -389,3 +389,29 @@ flow again. Hadi is the only publisher (studio modal — his thumbnail/title
 choices). Shorts/vertical derivatives: RULED OUT. Implemented: experiment/
 FLEET.md team charter; producer flow-SLO + alarm; harness starvation duty;
 briefing flow scoreboard; studio server enforces ≤6/24h as a hard MAX (HTTP 429).
+
+## DECISION D6 (note-watcher, 2026-07-20) — dashboard now shows LIVE YouTube stats; deeper Analytics API needs owner re-auth
+Owner note (videos/boston-ma/feedback.json 2026-07-20T22:43): "are the stats
+live … how can you make this dashboard display the live data and stat about the
+videos all youtube api lets you access … your manager roles and routines must be
+able to access to stats they need."
+**Done (dashboard engine, all published videos current+future):** the studio
+already pulls stats LIVE from the YouTube Data API (videos.list, 1 quota unit,
+cached ≤10min) but (a) rendered them with no freshness signal and (b) extracted
+only 3 of the ~15 fields the SAME call returns. Fixed: ytStats() now reads
+part=snippet,statistics,status,contentDetails and keeps views/likes/comments/
+favorites + duration/definition/captions + privacy/embeddable/license/
+madeForKids/uploadStatus; the board card + detail show a green "● live · updated
+Nm ago" freshness badge and a live format line; and a new **GET /api/stats**
+(+ ?fresh=1 to force a pull) gives the manager roles/routines a machine-readable
+per-slug feed instead of scraping the HTML board.
+**LIMIT — needs the owner (cannot be done headless):** watch-time, average view
+duration, CTR, impressions, traffic sources, and subscriber gains are NOT in the
+Data API — they live in the youtubeAnalytics API, which requires the
+`yt-analytics.readonly` scope. Our OAUTH_SCOPE requests only `youtube.upload
+youtube`, so that data 403s today. To unlock: add
+`https://www.googleapis.com/auth/yt-analytics.readonly` to OAUTH_SCOPE
+(server.mjs:28-29) and re-run the OAuth consent (/oauth/start) so a new
+refresh_token carries the scope. Deferred to the owner — a scheduled watcher run
+cannot trigger the consent flow, and it would return near-empty until our videos
+accrue analytics history anyway. Not half-built (no faked/empty metrics shipped).

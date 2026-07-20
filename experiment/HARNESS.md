@@ -5,6 +5,19 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### owner must re-authorize YouTube with the `yt-analytics.readonly` scope to unlock deep stats  (from owner boston note 2026-07-20T22:43, resolved by note-watcher 2026-07-20)
+The dashboard now shows every LIVE stat the current Data-API grant exposes
+(views/likes/comments + duration/quality/captions/privacy/uploadStatus) with a
+freshness badge, plus a machine-readable GET /api/stats for routines. But
+watch-time, avg view duration, CTR, impressions, traffic sources and subscriber
+gains need the youtubeAnalytics API + the `yt-analytics.readonly` scope, which is
+NOT in OAUTH_SCOPE (server.mjs:28-29 = `youtube.upload youtube`). A scheduled
+run can't trigger OAuth consent. Harness ask: when the owner is next
+interactive, add `https://www.googleapis.com/auth/yt-analytics.readonly` to
+OAUTH_SCOPE and re-run /oauth/start so the refresh_token carries it; then a
+follow-up can wire youtubeAnalytics.reports.query into /api/stats. See
+experiment/DECISIONS.md D6.
+
 ### producer/driver must SEED a baseline `experiment/confidence.json` entry when it lands a new config  (from critic studio note 2026-07-20T00:01:57Z, resolved by note-watcher 2026-07-20)
 8 of 20 configs (baltimore-md, buffalo-ny, charlotte-nc, cincinnati-oh, dallas-tx,
 kansas-city-mo, memphis-tn, nashville-tn) had NO `confidence.json` entry — the

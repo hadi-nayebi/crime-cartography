@@ -439,6 +439,9 @@ const $ = (id) => document.getElementById(id);
 const esc = (s) => (s ?? "").toString().replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtT = (s) => s==null ? "" : `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
 const fmtN = (n) => n>=1e6 ? (n/1e6).toFixed(1)+"M" : n>=1e3 ? (n/1e3).toFixed(1)+"K" : String(n??0);
+// freshness of the live YouTube stats (server pulls them from the Data API and
+// caches ≤10min) — tells the owner the numbers ARE live, not a stale snapshot.
+const fmtAgo = (ts) => { if(!ts) return ""; const m=Math.round((Date.now()-ts)/60000); return m<=0?"just now":m<60?`${m}m ago`:`${Math.round(m/60)}h ago`; };
 const ago = (iso) => { if(!iso) return "never"; const m=(Date.now()-new Date(iso))/60000; return m<60?`${m|0}m ago`:m<1440?`${(m/60)|0}h ago`:`${(m/1440)|0}d ago`; };
 
 // A published video is shown from its LIVE YouTube state (c.youtube.live) when
@@ -561,7 +564,7 @@ function renderBoard(){
           <div class="pubstats">${st
             ? `<span><b>${fmtN(st.views)}</b>views</span><span><b>${fmtN(st.likes)}</b>likes</span><span><b>${fmtN(st.comments)}</b>comments</span>`
             : `<span style="text-transform:none;letter-spacing:0">stats loading…</span>`}</div>
-          <div class="sm">published ${esc((lv.publishedAt||c.youtube.uploadedAt||"").slice(0,10))}${c.youtube.playlistTitle?` · ▸ ${esc(c.youtube.playlistTitle)}`:""} ·
+          <div class="sm">${st?`<span style="color:var(--green)">● live</span> · updated ${fmtAgo(c.youtube.statsFetchedAt)} · `:""}published ${esc((lv.publishedAt||c.youtube.uploadedAt||"").slice(0,10))}${c.youtube.playlistTitle?` · ▸ ${esc(c.youtube.playlistTitle)}`:""} ·
             <a href="${esc(c.youtube.url)}" target="_blank" onclick="event.stopPropagation()">watch ▶</a></div>
         </div></div>`;
     }
@@ -774,7 +777,8 @@ async function show(slug){
     + (CUR.render ? kv("render", `${esc(CUR.render.commit)} · ${CUR.render.durationSec}s · ${esc((CUR.render.renderedAt||"").slice(0,16))}`) : "")
     + kv("youtube", CUR.youtube.url ? `<a href="${esc(CUR.youtube.url)}" target="_blank">${esc(CUR.youtube.url)}</a>` : esc(CUR.youtube.status))
     + (CUR.youtube.url ? kv("visibility", privacyLabel(CUR)) : "")
-    + (CUR.youtube.stats ? kv("stats", `${fmtN(CUR.youtube.stats.views)} views · ${fmtN(CUR.youtube.stats.likes)} likes · ${fmtN(CUR.youtube.stats.comments)} comments`) : "")
+    + (CUR.youtube.stats ? kv("stats", `${fmtN(CUR.youtube.stats.views)} views · ${fmtN(CUR.youtube.stats.likes)} likes · ${fmtN(CUR.youtube.stats.comments)} comments <span class="feat" style="color:var(--green)">● live · updated ${fmtAgo(CUR.youtube.statsFetchedAt)}</span>`) : "")
+    + ((CUR.youtube.live && CUR.youtube.live.durationSec) ? kv("format", `${fmtT(CUR.youtube.live.durationSec)} · ${esc((CUR.youtube.live.definition||"").toUpperCase())} · ${CUR.youtube.live.caption?"captions":"no captions"}${CUR.youtube.live.uploadStatus?` · ${esc(CUR.youtube.live.uploadStatus)}`:""}`) : "")
     + (CUR.stages.published ? kv("thumbnail",
         `<div class="thumbcompare">`
         + ((CUR.youtube.live && CUR.youtube.live.thumb) ? `<figure><img src="${esc(CUR.youtube.live.thumb)}" alt="live thumbnail"><figcaption class="feat">live on YouTube</figcaption></figure>` : "")
