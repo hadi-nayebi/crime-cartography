@@ -199,8 +199,13 @@ async function catalog() {
     if (!r.youtube.videoId) continue;
     const s = stats[r.youtube.videoId];
     if (!s) continue;
-    r.youtube.stats = { views: s.views, likes: s.likes, comments: s.comments };
-    r.youtube.live = { title: s.title, thumb: s.thumb, privacyStatus: s.privacyStatus, publishedAt: s.publishedAt };
+    r.youtube.stats = { views: s.views, likes: s.likes, comments: s.comments, favorites: s.favorites };
+    r.youtube.live = {
+      title: s.title, thumb: s.thumb, privacyStatus: s.privacyStatus, publishedAt: s.publishedAt,
+      durationSec: s.durationSec, definition: s.definition, caption: s.caption, embeddable: s.embeddable,
+      license: s.license, madeForKids: s.madeForKids, uploadStatus: s.uploadStatus, categoryId: s.categoryId, tagCount: s.tagCount,
+    };
+    r.youtube.statsFetchedAt = statsCache.at || null; // so the board can show "live · updated Nm ago"
   }
   return rows;
 }
@@ -216,13 +221,25 @@ function bestThumb(thumbs) {
   const t = thumbs ?? {};
   return (t.maxres || t.standard || t.high || t.medium || t.default || {}).url ?? null;
 }
-async function ytStats(ids) {
+// ISO-8601 video duration ("PT5M30S") -> seconds, so we can show the real
+// on-YouTube length and confirm the upload matches our render.
+function iso8601ToSec(d) {
+  const m = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/.exec(d || "");
+  return m ? Number(m[1] || 0) * 3600 + Number(m[2] || 0) * 60 + Number(m[3] || 0) : null;
+}
+// One videos.list call (1 quota unit REGARDLESS of parts) returns far more than
+// the 3 counters we used to keep — pull every field the Data-API grant exposes:
+// full statistics, the real content details (length/quality/captions), and the
+// live status flags. Deeper watch-time/CTR/impressions/traffic metrics live in a
+// SEPARATE API (youtubeAnalytics) needing the yt-analytics.readonly scope, which
+// our OAUTH_SCOPE does not request — surfaced honestly, not faked.
+async function ytStats(ids, force = false) {
   if (!ids.length) return {};
-  if (Date.now() - statsCache.at < 10 * 60 * 1000) return statsCache.map;
+  if (!force && Date.now() - statsCache.at < 10 * 60 * 1000) return statsCache.map;
   try {
     const at = await accessToken();
     if (!at) return statsCache.map;
-    const r = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,status&id=${ids.join(",")}`, { headers: { Authorization: `Bearer ${at}` } });
+    const r = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,status,contentDetails&id=${ids.join(",")}`, { headers: { Authorization: `Bearer ${at}` } });
     const j = await r.json();
     if (r.ok) {
       const map = {};
@@ -231,15 +248,54 @@ async function ytStats(ids) {
           views: Number(it.statistics?.viewCount ?? 0),
           likes: Number(it.statistics?.likeCount ?? 0),
           comments: Number(it.statistics?.commentCount ?? 0),
+          favorites: Number(it.statistics?.favoriteCount ?? 0),
           title: it.snippet?.title ?? null,
           thumb: bestThumb(it.snippet?.thumbnails),
           privacyStatus: it.status?.privacyStatus ?? null,
           publishedAt: it.snippet?.publishedAt ?? null,
+          // richer live truth from the SAME 1-unit call
+          durationSec: iso8601ToSec(it.contentDetails?.duration),
+          definition: it.contentDetails?.definition ?? null, // "hd" | "sd"
+          caption: it.contentDetails?.caption === "true",
+          embeddable: it.status?.embeddable ?? null,
+          license: it.status?.license ?? null, // "youtube" | "creativeCommon"
+          madeForKids: it.status?.madeForKids ?? null,
+          uploadStatus: it.status?.uploadStatus ?? null, // "processed" | "uploaded" | "failed"
+          categoryId: it.snippet?.categoryId ?? null,
+          tagCount: (it.snippet?.tags ?? []).length,
         };
       statsCache = { at: Date.now(), map };
     }
   } catch {}
   return statsCache.map;
+}
+
+// Machine-readable live stats for the manager roles/routines — every field the
+// authorized YouTube Data API exposes for our published videos, keyed by slug.
+// Served at GET /api/stats (add ?fresh=1 to bypass the 10-min cache). Routines
+// read THIS instead of scraping the HTML board or re-implementing the OAuth pull.
+async function liveStats(force = false) {
+  const byId = {};
+  const map = {};
+  let slugs = [];
+  try {
+    slugs = (await readdir(join(ROOT, "videos"), { withFileTypes: true }))
+      .filter((e) => e.isDirectory() && !e.name.startsWith(".")).map((e) => e.name);
+  } catch {}
+  for (const slug of slugs.sort()) {
+    const yt = (await readJson(join(ROOT, "videos", slug, "youtube.json"))) ?? {};
+    if (yt.videoId) { byId[yt.videoId] = slug; map[slug] = { videoId: yt.videoId, url: yt.url || `https://youtu.be/${yt.videoId}` }; }
+  }
+  const s = await ytStats(Object.keys(byId), force);
+  for (const [id, slug] of Object.entries(byId)) if (s[id]) map[slug] = { ...map[slug], ...s[id] };
+  return {
+    fetchedAt: statsCache.at ? new Date(statsCache.at).toISOString() : null,
+    ageSec: statsCache.at ? Math.round((Date.now() - statsCache.at) / 1000) : null,
+    cacheTtlSec: 600,
+    source: "YouTube Data API v3 videos.list(part=snippet,statistics,status,contentDetails) — 1 quota unit/call, cached 10min; ?fresh=1 forces a pull",
+    deeperMetrics: "watch-time, avg view duration, CTR, impressions, traffic sources & subscriber gains need the youtubeAnalytics API + yt-analytics.readonly scope — NOT in the current grant (see experiment/DECISIONS.md 2026-07-20). Re-authorize to unlock.",
+    videos: map,
+  };
 }
 
 // ---- project pulse ---------------------------------------------------------
@@ -352,11 +408,14 @@ async function ensureThumbs(slug, force = false) {
   if (!mp4) return [];
   const dir = join(ROOT, "videos", slug, "thumbs");
   await mkdir(dir, { recursive: true });
+  const mp4Time = statSync(mp4).mtimeMs;
   const out = [];
   for (const t of THUMB_TIMES) {
     const name = `t${String(t).padStart(3, "0")}.jpg`;
     const f = join(dir, name);
-    if (force || !exists(f)) {
+    // stale candidates (older than the current render) silently re-extract —
+    // a re-rendered video must never offer frames of its previous cut
+    if (force || !exists(f) || statSync(f).mtimeMs < mp4Time) {
       try {
         await pexec("ffmpeg", ["-ss", String(t), "-i", mp4, "-frames:v", "1", "-vf", "scale=1280:720", "-q:v", "3", "-y", f]);
       } catch {}
@@ -582,6 +641,7 @@ const server = createServer(async (req, res) => {
     if (url.pathname === "/" || url.pathname === "/index.html")
       return send(res, 200, await readFile(join(ROOT, "pipeline/dashboard/index.html"), "utf8"), "text/html; charset=utf-8");
     if (url.pathname === "/api/catalog") return send(res, 200, await catalog());
+    if (url.pathname === "/api/stats") return send(res, 200, await liveStats(url.searchParams.get("fresh") === "1"));
     if (url.pathname === "/api/pulse") return send(res, 200, await pulse());
     if (url.pathname === "/api/auth/status") return send(res, 200, await authStatus());
     if (url.pathname === "/api/auth/secret" && req.method === "POST") {
