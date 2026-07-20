@@ -267,6 +267,43 @@
   .fb .t:hover { text-decoration:underline; }
   .fb .k { color:var(--faint); font:var(--f-xs) var(--mono); margin-left:6px; }
 
+  /* ── next-step guide (wayfinding: what do I do on this page?) ───────────── */
+  .guide {
+    background:var(--raise); border:1px solid var(--line2); border-radius:var(--r-md);
+    padding:var(--s-4) var(--s-4) var(--s-3); margin:var(--s-3) 0 var(--s-4);
+  }
+  .guide.you {
+    border-color:rgba(240,180,62,.5); box-shadow:inset 3px 0 0 var(--gold);
+    background:linear-gradient(180deg, rgba(240,180,62,.06), var(--raise) 62%);
+  }
+  .guide.live { border-color:rgba(64,209,131,.4); box-shadow:inset 3px 0 0 var(--green); }
+  .guide-head { display:flex; align-items:baseline; gap:var(--s-3); flex-wrap:wrap; }
+  .guide-step { font:700 var(--f-xs) var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--faint); }
+  .guide.you .guide-step { color:var(--gold); }
+  .guide.live .guide-step { color:var(--green); }
+  .guide-now { font:650 var(--f-lg) var(--sans); color:var(--ink); }
+  .guide-what { color:var(--dim); font-size:var(--f-sm); line-height:1.62; margin:var(--s-2) 0 0; }
+  .guide-what b { color:var(--ink); font-weight:650; }
+  .guide-cta { margin-top:var(--s-3); display:flex; gap:var(--s-2); align-items:center; flex-wrap:wrap; }
+  .guide-todo { margin-top:var(--s-3); border-top:1px solid var(--line); padding-top:var(--s-3); }
+  .guide-todo .lbl { display:block; font:500 var(--f-xs) var(--mono); color:var(--faint); margin-bottom:3px; line-height:1.5; }
+  .guide-todo .item { font-size:var(--f-sm); color:var(--dim); padding:2px 0; }
+  .guide-todo .item.feat { color:var(--faint); font-size:var(--f-xs); }
+  /* plain-language journey checklist */
+  ol.steps { list-style:none; margin:var(--s-3) 0 0; padding:0; display:grid; gap:1px; }
+  ol.steps li { display:flex; align-items:center; gap:var(--s-2); font-size:var(--f-sm); color:var(--faint); padding:3px 0; }
+  ol.steps .mk {
+    flex:none; width:19px; height:19px; border-radius:50%; border:1px solid var(--line2);
+    display:inline-flex; align-items:center; justify-content:center; font:700 10px var(--mono); color:var(--faint);
+  }
+  ol.steps li.done { color:var(--dim); }
+  ol.steps li.done .mk { background:var(--green); border-color:var(--green); color:#04140b; }
+  ol.steps li.cur { color:var(--ink); font-weight:600; }
+  ol.steps li.cur .mk { border-color:var(--gold); color:var(--gold); box-shadow:0 0 0 3px rgba(240,180,62,.12); }
+  ol.steps li .who { margin-left:auto; font:9.5px var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--faint); }
+  ol.steps li.cur .who { color:var(--gold); }
+  ol.steps li.done.you-step .mk { background:var(--gold); border-color:var(--gold); color:#181104; }
+
   /* ── publish modal ─────────────────────────────────────────────────────── */
   #pubmodal { position:fixed; inset:0; background:rgba(4,6,10,.85); backdrop-filter:blur(3px); display:none; z-index:50; overflow:auto; padding:3vh 3vw; }
   #pubmodal .box {
@@ -367,6 +404,7 @@
   <div class="dsub" id="d-sub"></div>
   <div class="phasebar" id="d-phasebar"></div>
   <div id="d-stages" style="max-width:640px"></div>
+  <div class="guide" id="d-guide"></div>
   <div class="cols" style="margin-top:var(--s-4)">
     <div>
       <div id="d-player-wrap"><video id="player" controls preload="metadata"></video></div>
@@ -555,7 +593,7 @@ function renderFbPanel(c){
   if(ph==="review"){
     const allGreen = STAGES.slice(0,7).every(s=>c.stages[s]);
     calls = `<span style="flex:1"></span>
-      <button class="good" onclick="decision('APPROVE')">Approve</button>
+      <button class="good" onclick="decision('APPROVE')" title="Turns on the Verify light — the last gate before publishing">✓ Approve — turn on Verify</button>
       <button class="warn" onclick="decision('HOLD')">Hold</button>
       <button class="bad" onclick="decision('REQUEST CHANGES')">Request changes</button>
       ${allGreen ? `<button class="primary" onclick="openPublish(CUR.slug)">⤴ Publish…</button>` : ""}`;
@@ -568,6 +606,76 @@ function renderFbPanel(c){
     <div class="feat" style="margin-bottom:var(--s-2)">${esc(m.hint)}</div>
     <textarea id="comment" placeholder="Your note — lands in the repo; the note-watcher picks it up within 5 minutes."></textarea>
     <div class="row" style="margin-top:var(--s-2)">${tBtn}${gBtn}${calls}</div>`;
+}
+
+// ---- "what do I do here?" wayfinding ---------------------------------------
+// Every video page opens on the SAME confusion: 8 cryptic lights and no answer
+// to "what's my next move?". This turns the stage the video is really at into a
+// single plain-language instruction + the whole journey as a checklist, so the
+// operator always knows where it is, what to do, and how it reaches publish.
+const STAGE_GUIDE = {
+  data:     { label:"Source the data",    who:"fleet",    doing:"Fetching and normalizing this city's crime data from its official open-data source — every figure sourced, no invented points." },
+  trend:    { label:"Build the trend",    who:"fleet",    doing:"Computing the over-time trend the video animates through." },
+  basemap:  { label:"Prepare the map",    who:"fleet",    doing:"Preparing the basemap and area boundaries the heat and points sit on." },
+  config:   { label:"Write the story",    who:"producer", doing:"Authoring the story — the hook, on-screen copy, annotation notes, and the colour theme." },
+  music:    { label:"Score the music",    who:"producer", doing:"Generating the royalty-free music bed for the cut." },
+  render:   { label:"Render the video",   who:"driver",   doing:"Rendering the final mp4 on the GPU — this is the cut you'll watch and approve." },
+  verified: { label:"Review & approve",   who:"you",      doing:"" },
+  published:{ label:"Publish to YouTube", who:"you",      doing:"" },
+};
+const WHO_LABEL = { fleet:"pipeline", producer:"producer", driver:"driver", you:"you" };
+function renderGuide(c){
+  const el = $("d-guide");
+  const idx = STAGES.findIndex(s => !c.stages[s]);        // first light that isn't green
+  const cf = c.confidence, blockers = cf?.blockers ?? [];
+  const checklist = `<ol class="steps">` + STAGES.map((s,i)=>{
+    const g = STAGE_GUIDE[s], done = c.stages[s], cur = (i===idx);
+    return `<li class="${done?"done":cur?"cur":""} ${g.who==="you"?"you-step":""}">
+      <span class="mk">${done?"✓":i+1}</span><span>${g.label}</span>
+      <span class="who">${g.who==="you"?"you":WHO_LABEL[g.who]}</span></li>`;
+  }).join("") + `</ol>`;
+
+  let kind = "", step = "", now = "", what = "", cta = "";
+  if (idx === -1) {                                        // fully published
+    kind = "live"; step = "Complete"; now = "Published — this video is live 🎉";
+    what = `Nothing left to do. Post-publish notes — a sharper title, a new thumbnail, engagement, or a <b>re-cut request</b> — go in the feedback box below; the channel routine applies them.`;
+    cta = c.youtube.url ? `<a href="${esc(c.youtube.url)}" target="_blank"><button class="good">▶ Watch on YouTube</button></a>` : "";
+  } else if (idx === 7) {                                  // all pre-publish lights green
+    kind = "you"; step = "Step 8 of 8 — your move"; now = "Ready to publish 🎉";
+    what = `Every light is green, including <b>Verify</b> (your approval). Click <b>Publish</b> to upload to YouTube — the next screen lets you pick the thumbnail, edit the title and description, and choose visibility. Publishing is the only step that goes public, so nothing ships until you click it.`;
+    cta = `<button class="primary" onclick="openPublish(CUR.slug)">⤴ Publish to YouTube…</button>`;
+  } else if (idx === 6) {                                  // rendered, awaiting your call
+    kind = "you"; step = "Step 7 of 8 — your move";
+    const stale = c.approval && !c.approval.fresh;
+    now = stale ? "Re-approve — the cut changed since you last approved" : "Your turn — review this cut, then approve it";
+    what = `<b>“Review” means:</b> watch the rendered video below — scrub it, sanity-check the numbers, the story arc, and where the annotation notes sit. `
+      + (stale
+          ? `You approved an earlier cut, but it has been re-rendered since, so the <b>Verify</b> light switched back off. Re-watch and approve again to turn it back on. `
+          : `If it holds up, click <b>Approve</b> — that switches on the <b>Verify</b> light, the last gate before publishing. `)
+      + `If something's off, click <b>Request changes</b> (or drop a note at a timestamp) and the producer fixes it, then it returns here for another look. <b>Verify only ever flips when you approve</b> — no score or routine can flip it for you.`;
+    cta = `<button class="good" onclick="decision('APPROVE')">✓ Approve — turn on Verify</button>`
+        + `<button class="bad" onclick="decision('REQUEST CHANGES')">Request changes</button>`
+        + `<span class="feat">or use the buttons under the video ↓</span>`;
+  } else {                                                 // an automated / producer / driver stage
+    const g = STAGE_GUIDE[STAGES[idx]];
+    step = `Step ${idx+1} of 8`; now = `In progress — ${g.label.toLowerCase()}`;
+    what = `${g.doing} <b>This step runs automatically — you don't need to do anything.</b> To steer the story or flag a problem, leave a note below and the producer picks it up within 5 minutes. It comes back here for your review once it renders.`;
+  }
+  // Answers "how do I reach 100 / turn the score green?": the score is advisory,
+  // and the open blockers ARE the to-do list that lifts it.
+  let extra = "";
+  if (cf && idx !== -1) {
+    extra = `<div class="guide-todo"><span class="lbl">Confidence ${cf.score}/100 — an advisory quality score. You don't need 100 to publish; you need the <b style="color:var(--gold)">Verify</b> light (your Approve).</span>`
+      + (blockers.length
+          ? blockers.map(b=>`<div class="item">◦ ${esc(b)}</div>`).join("") + `<div class="item feat">Closing these open items is what lifts the score.</div>`
+          : `<div class="item feat">No open blockers — the producer's polish is what nudges the score up from here.</div>`)
+      + `</div>`;
+  }
+  el.className = `guide ${kind}`;
+  el.innerHTML = `<div class="guide-head"><span class="guide-step">${step}</span><span class="guide-now">${now}</span></div>`
+    + `<p class="guide-what">${what}</p>`
+    + (cta ? `<div class="guide-cta">${cta}</div>` : "")
+    + checklist + extra;
 }
 
 // prev/next navigation — walks the board's current filter+sort order. If the
@@ -601,6 +709,7 @@ async function show(slug){
   $("d-phasebar").innerHTML = `phase: <span class="now">${esc(PHASE_META[phaseOf(CUR)].label)}</span>` +
     (CUR.attention ? ` · attention: ${esc(CUR.attention)}` : "");
   $("d-stages").innerHTML = rack(CUR.stages, true);
+  renderGuide(CUR);
   $("d-player-wrap").style.display = CUR.mp4 ? "block" : "none";
   $("d-noplayer").style.display = CUR.mp4 ? "none" : "flex";
   if (CUR.mp4) $("player").src = `/video/${slug}`;
@@ -641,7 +750,15 @@ async function refreshFb(){
 function seek(t){ $("player").currentTime=t; $("player").play(); }
 async function post(slug, body){ await fetch(`/api/feedback/${slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}); }
 async function sendComment(withTime){ const text=$("comment").value.trim(); if(!text) return; await post(CUR.slug,{text, videoTime: withTime&&CUR.mp4 ? $("player").currentTime : null}); $("comment").value=""; refreshFb(); }
-async function decision(d){ const note=$("comment").value.trim(); await post(CUR.slug,{kind:"decision", text:`${d}${note?" — "+note:""}`}); $("comment").value=""; refreshFb(); }
+async function decision(d){
+  const c=$("comment"); const note=c?c.value.trim():"";
+  await post(CUR.slug,{kind:"decision", text:`${d}${note?" — "+note:""}`});
+  if(c) c.value="";
+  // A decision can change the stage (APPROVE flips the Verify light) — reload the
+  // catalog and re-render the page so the guide, lights and Publish button update.
+  await load();
+  if(CAT.find(x=>x.slug===CUR.slug)) show(CUR.slug); else { refreshFb(); }
+}
 async function sendGlobal(){ const text=$("gnote").value.trim(); if(!text) return; await post("_project",{text}); $("gnote").value=""; loadPulse(); }
 
 // ---- publish modal ---------------------------------------------------------

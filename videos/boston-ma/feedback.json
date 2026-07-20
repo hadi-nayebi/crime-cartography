@@ -30,5 +30,21 @@
     "text": "APPROVE — if you cannot find any issues with the placement of the notes along the video, then we can push this for publication.",
     "resolved": true,
     "producerNote": "Ran the note-placement QA on all 5 annotations via deterministic stills (mid-fade frames f5153/6378/7346/8249/8571). Found ONE issue — the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label — and fixed it by un-pinning it to the proven-clean granular band (leaderboard still shows South End #1 at that moment). Re-rendered still confirms the label is legible and the note clears the timeline title; all 5 now sit on distinct slate panels in empty bands with no text overlap → videos/boston-ma/qa.json notePlacement=pass (+1 representation). Because an issue WAS found (your condition), and independently the exported mp4 still predates these fixes, I did NOT push to publication: the re-render blocker is retained in experiment/confidence.json so the production chain re-renders the fixed cut before any publish."
+  },
+  {
+    "at": "2026-07-20T14:25:16.371Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "how I am supposed to verify this video, and publish it, your UI and UX lacks clear guidance when I enter the page for a video, I don;t know what is needed. you have to really upgrade the dashbaord so the full flow from city or video idea to publishing -- right now I am in this page and have no idea how to complete the video and publish it. Do you have any idea about proper UX and UI designs? or are we building it randomly without any basic best practices? this comment applies to all videos, If I choose a video and not knwo what I need to do at every stage of it, the UX is not effective.",
+    "resolved": true,
+    "producerNote": "root cause: the video detail page had NO stage-aware wayfinding — 8 cryptic lights (data/trnd/base/cnfg/musc/rndr/vrfd/live) + a confidence panel, but nothing answering 'what's my next move on THIS page?'; the flow rules (Verify is a manual light, Publish needs all-green, confidence is advisory) lived only in server code + producerNotes, never on screen. Fixed at the ENGINE layer (pipeline/dashboard/index.html renderGuide) so ONE change sweeps ALL 20 video pages: a plain-language 'Next step' guide on every video page — Step N/8 + a one-line next action + a short explanation + the whole journey as a checklist (Source data → … → Review & approve → Publish, each tagged who does it: pipeline/producer/driver/you), stage-branched (automated stages say 'runs automatically — leave a note'; review explains what 'review' means and the ✓Approve→Verify flip; all-green shows the ⤴Publish CTA; published shows ▶Watch). Verified live in-browser + DOM across all 8 stage branches; index.html is read per-request so no restart needed."
+  },
+  {
+    "at": "2026-07-20T14:47:03.760Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "what can you do to reach to 100 score, make final polish, and also still don't know what review is about? how can I turn on the verify green light, and how can I publish it. the UX is very confusing and not clear.",
+    "resolved": true,
+    "producerNote": "Same root cause + same categorical fix as the 14:25 note (one engine-level change to index.html resolves both). The new per-page 'Next step' guide answers each question directly and inline: 'still don't know what review is' → the review-stage guide defines it (watch the cut, sanity-check numbers/story/annotation placement); 'turn on the verify green light' → the ✓Approve button is relabeled 'Approve — turn on Verify' with the explicit rule 'Verify only ever flips when you approve — no score or routine flips it for you'; 'how can I publish' → Step 8 surfaces the ⤴Publish CTA the moment all lights are green; 'reach 100 score' → the guide frames Confidence as an ADVISORY quality score (you don't need 100 to publish — you need the Verify light) and lists the open blockers as the exact to-do that lifts it. index.html only; verified live in-browser on this page (boston-ma, showing the Re-approve branch since its render predates the seamExplain/annotation fixes)."
   }
 ]
