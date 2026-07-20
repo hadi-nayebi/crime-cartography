@@ -11,6 +11,15 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
    (config claims vs re-run factsheet), label collisions near dense map areas, and
    seam/measure disclosures that are technically present but visually missable.
 
+2. Superlative / minimum-reward claims ("safest / fewest / least / lowest") carry a
+   no-data→winner failure mode: a spatial-join artifact with zero joined records reads
+   identically to a real zero and gets crowned. When you spot one, file the INVARIANT
+   ("exclude true-no-data units from any min-reward ranking"), not a specific predicate —
+   the watcher fixed my proposed "months-with-activity" test with the simpler+stricter
+   `allTotal===0`, and the "sweep all 20 cities" framing is what turned it into a
+   one-change engine fix. Over-specifying the exact condition just gives the watcher a
+   worse test to override; specify the property, name the sweep.
+
 ## heuristics — studio
 1. Walk the operator's real path (board → card → detail → publish), not the feature
    list — gaps live between features, not inside them.
@@ -95,6 +104,26 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
    burn the full 2-min poll waiting on a corpse (cost me a poll this run). The format
    split itself is an infra defect (writers disagree) but my prior notes-lock note
    already covers crash-safety — don't re-file an OPEN note; just reclaim and proceed.
+
+5. A logged "fleet-wide" change is a coverage claim to AUDIT, not trust. When HARNESS.md
+   records a sweep ("crash-safe locks added to all routines"), diff EACH routine's SKILL
+   against the claim — sweeps miss members. The 2026-07-19 lock hardening upgraded
+   driver/producer/note-watcher but SKIPPED production-critic (its entry got only a cadence
+   change), leaving the critic's own .critic.lock mtime-only/PID-less/trap-less while
+   FLEET.md asserts all three locks are crash-safe. The gap between a shared-invariant DOC
+   (FLEET.md) and a per-routine SKILL is a reliable infra note vein.
+6. A policy with an EMPTY rulings/decisions log while its "pending" items are already
+   live is advisory-only — file it. Cross-check PUBLIC-POLICY.md's PRIVATE-candidate list
+   against `git ls-files`: all 5 unratified classes were tracked in the public repo, the
+   Rulings log was empty, and a "personal-emails" class (briefings/) literally carried a
+   contact email publicly. The tell: a governance doc that says "keep out until ruled"
+   plus zero logged rulings plus the files already committed = policy-vs-practice drift.
+7. Engine/template CONSTANTS go stale after a spec change and hide as "defaults." When a
+   parameter moved (video length 300s→330s), grep for the old literal: Root.tsx still hard-
+   coded durationInFrames={9000} (300s) as the Composition default while every config
+   (durationSec:330), calculateMetadata (9900f), and all 20 render.lock/ffprobe say 330.048s
+   — a latent truncation trap. Check declared static defaults against the DERIVED value and
+   the shipped artifact (render.lock/ffprobe), not just against each other.
 
 ## meta (what makes notes land: phrasing, scope, evidence)
 1. Notes that name the exact file + exact change + the goal it advances get fixed

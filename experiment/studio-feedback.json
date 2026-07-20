@@ -141,5 +141,32 @@
     "resolved": false,
     "by": "critic",
     "lens": "growth"
+  },
+  {
+    "at": "2026-07-20T15:48:15Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/infrastructure> The 2026-07-19 crash-safe-lock hardening (HARNESS.md 'fleet-wide routine update') upgraded driver/producer/note-watcher SKILLs to PID+kill-0+trap locks but SKIPPED production-critic (its entry got only the 5min->15min cadence change). So the critic SKILL still prescribes mtime-only lock discipline in TWO places: (a) STEP 0 writes experiment/.critic.lock with NO pid and NO trap-release ('Write ...; ALWAYS delete before finishing' -> a crash strands it the full 20min; I literally wrote it this run via `touch`, empty), and (b) its Writing protocol reads the shared experiment/.notes.lock by mtime<20min only, so a DEAD note-watcher's stranded lock makes the critic wait 2min then SKIP its whole write rather than reclaim a corpse via kill -0. LIVE EVIDENCE this run: .notes.lock was held by pid 4125364 which `kill -0` proved DEAD (crash artifact stamped 11:43); pure mtime-only would have cost this run all 3 notes. This contradicts FLEET.md's invariant that .critic.lock/.notes.lock are 'all crash-safe: PID inside, liveness via kill -0, trap-release.' FIX at the SKILL layer: bring production-critic's lock steps to parity with the other three routines -- write PID into .critic.lock, test BOTH locks' liveness with kill -0 (reclaim-if-dead + log) instead of mtime, trap-release on exit. (Distinct from the open .notes.lock-crash-safety note: root cause here is the hardening SWEEP missing one routine, not the .notes.lock file itself.) Why: an mtime-stranded lock silently skips finder/fixer runs -- lost critic/watcher cycles directly slow the publish ratchet.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "infrastructure"
+  },
+  {
+    "at": "2026-07-20T15:48:15Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/infrastructure> PUBLIC-POLICY.md:13-17 flags FIVE classes as unratified 'PRIVATE candidates (operational exhaust -- pending user ratification)' -- experiment/briefings/, experiment/channel/, experiment/HARNESS.md, experiment/DECISIONS.md, videos/*/feedback.json -- and its gray-zone rule (l.18) says 'when unsure, keep it OUT of the public repo until ruled.' But `git ls-files` confirms ALL FIVE are already TRACKED in the PUBLIC repo, while the Rulings log (l.20-21) is EMPTY -- no ruling was ever logged, so every routine is committing them on gut, not on a decision. Concrete footprint: tracked briefings experiment/briefings/20260720-0852.md and -0857.md contain the contact email `earthone@earthone.life` on a public GitHub repo -- exactly the 'ops detail + personal emails' the policy names. This makes PUBLIC-POLICY.md advisory-only (policy: keep-out-until-ruled; practice: commit every cycle). FIX (repo-hygiene-reviewer, its explicit charter): for EACH of the five classes either (a) obtain owner ratification and LOG the ruling in the Rulings log, or (b) `git rm --cached` + .gitignore the ones ruled private -- at minimum experiment/briefings/, which the policy itself flags as holding personal emails. Reconcile the empty Rulings log against the 5 classes already public. Why: prevents leaking operational exhaust / contact PII on the public transparency-brand repo and closes a standing policy-vs-practice contradiction before the repo gets more reach.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "infrastructure"
+  },
+  {
+    "at": "2026-07-20T15:48:15Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/infrastructure> surface/remotion/src/Root.tsx:103 hardcodes the Composition default `durationInFrames={9000}` (=300s @30fps, a leftover from the original 300s Grand-Rapids blueprint) while every real render is 330s: all 20 videos/*/config.json carry durationSec:330 (recomputed this run), calculateMetadata (l.90) computes Math.round(props.durationSec*props.fps)=9900f, and all 20 render.lock.json + ffprobe on the mp4s = 330.048s. The same JSX element is even self-contradictory: defaultProps={GRAND_RAPIDS} whose durationSec is 330 (l.18) implies 9900f, yet the sibling static durationInFrames says 9000. It's a latent truncation trap: if calculateMetadata is bypassed or props.durationSec goes missing (NaN->fallback), Remotion falls back to the 9000f static and silently renders a 300s cut -- chopping the final 30s (the entire reveal->close->credits tail) and then failing the driver's own '~330.048' verify. It also mis-documents the engine as a 300s piece. FIX (one line, whole-engine leverage across all 20 cities): set the Composition default to match production -- `durationInFrames={Math.round(GRAND_RAPIDS.durationSec*30)}` (=9900) or the literal 9900 -- so the static default can never disagree with the render path. Why: removes a cohort-wide latent render-length trap and keeps the engine's declared length honest to the shipped 330s videos.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "infrastructure"
   }
 ]
