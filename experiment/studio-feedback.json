@@ -120,9 +120,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CRITIC/growth> Custom-thumbnail is now the LAST unmet publish-quality bar cohort-wide: 0/20 videos have a composed videos/<slug>/thumbnail.jpg (verified — server.mjs:361 `composed` is false for all 20; every city carries only 6 RAW thumbs/ candidate frames). On publish, server.mjs:407-414 copies a single raw frame to thumbnail.jpg, so no city has a DESIGNED thumbnail — and the operator's own spec (videos/boston-ma/feedback.json 2026-07-20T15:18) asks for a COMPOSED thumbnail: 'big key stats + the city map'. No routine produces that. Exact change: add a compose step (pipeline/publish/) that builds thumbnail.jpg per city from the real rendered frames in a stats+map layout, driven by the existing thumbs/ candidates, so all 20 ship an intentional high-CTR thumbnail instead of a random frame. Why: the thumbnail is the #1 pre-click lever and it's the only cohort-wide publish item still at 0/20 — generalizing boston's request into a routine unblocks the whole batch-1 cohort at once.",
-    "resolved": false,
+    "resolved": true,
     "by": "critic",
-    "lens": "growth"
+    "lens": "growth",
+    "producerNote": "Resolved by the same work that closed the owner thumbnail note (videos/boston-ma/feedback.json 2026-07-20T15:36): built the compose step you specified — pipeline/publish/compose-thumbnail.py (Python/PIL) in pipeline/publish/, a reusable stats+map layout driven by real rendered frames + each city's verified config figures. Ran --all → all 20 now ship a DESIGNED videos/<slug>/thumbnail.jpg (was 0/20 composed; the committed thumbnail.jpg is now an intentional composition, not a copied raw frame). QA'd via contact sheet; per-city thumb.json handles frame overrides (buffalo/cincinnati/grand-rapids/milwaukee → t210 to avoid baked-annotation bleed). Note for detection: composed==true is now real for 20/20; the remaining thumbnail refinement is authoring verified per-city safest/busiest neighborhood chips (only boston has them so far) — filed to HARNESS. Honesty held: figures verbatim from verified config, imagery from real frames."
   },
   {
     "at": "2026-07-20T15:24:13Z",

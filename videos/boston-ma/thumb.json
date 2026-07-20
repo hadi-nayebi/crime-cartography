@@ -1,0 +1,10 @@
+{
+  "_note": "Thumbnail spec — VERIFIED figures only, traced to videos/boston-ma/config.json. busiest/safest from config.annotations (South End D-4 busiest for Group A; Charlestown the quietest district); yearRange/kicker from config.title 'Forty Years' + subtitle '12 districts · 1985–2026'. Consumed by pipeline/publish/compose-thumbnail.py.",
+  "frame": "t290",
+  "crop": [300, 88, 952, 548],
+  "kicker": "40 YEARS · 12 DISTRICTS",
+  "yearRange": "1985 – 2026",
+  "busiest": "South End",
+  "safest": "Charlestown",
+  "credit": "BPD · Analyze Boston · FBI UCR"
+}

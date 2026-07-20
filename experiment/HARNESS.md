@@ -5,6 +5,23 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### producer/driver must (re)compose the designed thumbnail when a render lands  (from boston owner note 2026-07-20T15:36 + critic growth 2026-07-20T15:24, resolved by note-watcher)
+The thumbnail STANDARD now exists: `pipeline/publish/compose-thumbnail.py` builds
+`videos/<slug>/thumbnail.jpg` ("theme 1: map + stats") from the real rendered map frame +
+each city's VERIFIED config figures (hook.stat, hook.line, copy.cityName) plus an optional
+per-city `videos/<slug>/thumb.json` (frame/crop override, verified yearRange/kicker/
+busiest/safest). This run generated all 20 by hand (`--all`), but nothing wires it into the
+production chain. FIX AT THE PRODUCING LAYER: (1) when the driver/producer lands or re-renders
+a city's mp4, it must run `python3 pipeline/publish/compose-thumbnail.py <slug>` so the
+committed thumbnail.jpg tracks the current cut (a render that changes the map must refresh the
+thumbnail's map hero); (2) the config/publish-authoring step should author a verified
+`thumb.json` per city carrying that city's safest/busiest neighborhood (from the render's own
+hoodRanking — mirror the render's window slice exactly, per WATCHER-LENS) so every thumbnail
+reaches Boston's richness, not just the guaranteed core. Honesty guard: neighborhood chips must
+NEVER render from a recomputed/uncertain figure — only from a verified thumb.json; the composer
+already omits them when absent. Cheap check: flag any slug with an out/<slug>.mp4 newer than its
+thumbnail.jpg, or a config whose reveal names a safest/busiest hood with no thumb.json chip.
+
 ### config-authoring must emit a verified seamExplain for any seamed trend  (from grand-rapids owner note 2026-07-20T15:30, resolved by note-watcher)
 Every city's `trend.json` joins FBI UCR to the city's own incident/NIBRS data at an
 explicit measure seam (all 20 cities have `seamInSpan=YES`), and the engine renders a

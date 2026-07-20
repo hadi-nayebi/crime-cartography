@@ -1,0 +1,4 @@
+{
+  "_note": "Thumbnail spec for Buffalo. frame=t210 chosen because the default t290 has a baked trend-annotation card bleeding into the map; t210's center map is clean. No figures overridden — city/stat/hook.line come verbatim from config.json (all verified).",
+  "frame": "t210"
+}
