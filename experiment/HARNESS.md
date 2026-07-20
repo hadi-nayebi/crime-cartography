@@ -210,3 +210,102 @@ verify/score pass: 8 cities sit at 88–91 held below 100 by re-render blockers 
 and 12 sit at 64 awaiting the full verify. Secondary risk: the note-watcher/critic feedback loop has
 been dark ~4h on session capacity — it slows note resolution but does not block renders; watch it
 next audit.
+
+## 2026-07-20 11:43 EDT — nightly audit (render queue DRAINED 12→20; +canonical FLOW tool)
+
+### Stage counts — `node pipeline/status.mjs --md`
+| city | data | trend | basemap | config | music | render | score | blk |
+|------|:--:|:--:|:--:|:--:|:--:|:--:|--:|--:|
+| (all 20) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 87–91 | 1–2 |
+
+STAGE COUNTS (/20): data 20 · trend 20 · basemap 20 · config 20 · music 20 · **render 20**.
+**Diff vs last audit (2026-07-19 23:34): render 12 → 20 (+8).** The driver's clear-the-queue
+doctrine drained the whole render backlog overnight (03:36–04:47 UTC batch + SF re-render 13:11
+UTC today). Every mechanical stage is now saturated at 20/20. **NO STAGNATION** — nothing sat
+unchanged-while-incomplete; the one stage that was incomplete last audit (render) completed.
+
+### FLOW SLO — `node pipeline/status.mjs --flow` (NEW canonical scoreboard, see Changes #1)
+```
+review-ready     18   (rendered · owner not yet approved — his queue)
+awaiting-publish  2   (APPROVED · one publish-click from live)  -> boston-ma, washington-dc
+published (24h)   0/6 (all-time published: 0)
+last cut landed  2.6h ago
+STARVATION       no — queue stocked / fresh cut within 24h
+```
+**NOT starving:** review queue is stocked (18) AND a fresh cut landed 2.6h ago (well inside 24h).
+**Key discovery the flow computation surfaced:** boston-ma AND washington-dc are **APPROVED and
+awaiting Hadi's publish click** — their studio `verified` light is GREEN (fresh owner APPROVE in
+feedback.json, 15:17Z & 15:28Z, both newer than their mp4s at 04:47Z/04:43Z). The confidence-ledger
+narrative ("0/20 at score 100 · certification wall") diverged from the studio's real verify lights:
+score/blockers are producer context, NOT the flow gate. The machine is fully caught up; the ONLY
+thing between "ready" and "live" is the owner's manual watch-through + publish clicks (correctly
+outside the machine). This is why the flow tool reads verify from feedback.json, not the ledger.
+
+### Scheduler truth (all 8 tasks — mandatory; audit at 15:43 UTC / 11:43 EDT)
+| task | enabled | cadence | lastRun (EDT) | verdict |
+|------|:--:|------|------|------|
+| earth-one-channel-briefing | Y | 8h | 08:54 | on-cadence (next 16:09); emails still DRAFT (no gmail token) |
+| batch1-production-driver | Y | 2h | 10:32 | on-cadence, queue drained — HEALTHY |
+| producer-work-session | Y | 4h | 09:17 | on-cadence — HEALTHY |
+| youtube-channel-manager | Y | daily | 10:55 | ran today — HEALTHY |
+| harness-improver | Y | 2x/day | 11:35 | this run |
+| **note-watcher** | Y | **5min** | **11:32** | **RECOVERED** (was STALLED ~4h last audit) |
+| repo-hygiene-reviewer | Y | daily | 10:26 | ran today — OK |
+| **production-critic** | Y | **15min** | **11:16** | **RECOVERED** (was STALLED ~4h last audit) |
+
+All 8 `enabled`; none silently disabled. The two sub-hourly tasks that were session-capacity-starved
+last audit (note-watcher, production-critic, dark ~4h at ~20:00 EDT) are firing again — the capacity
+window cleared. Nothing to re-enable. Observed but NOT acted on: `experiment/.critic.lock` is a
+0-byte file (no PID inside), but only 2 min old = an in-flight critic run, NOT a stale crash (delete
+rule is >3h + no process). If it's still 0-byte and stale next audit -> tighten the critic's lock
+discipline (PID-inside like the others).
+
+### Routine health verdicts
+- **driver — IMPROVING**: proved clear-the-queue at scale (render 12->20 in one overnight sweep, 0 gaps).
+- **producer — HEALTHY**: citywide-fidelity fixes, matrix, blocker restatements landed; scores steady 87–91.
+- **note-watcher / production-critic — RECOVERED**: both firing on cadence again (root cause was
+  external session capacity, not a config/path defect — correctly left untouched last audit).
+- **channel-manager — HEALTHY**: readiness QA + quota ledger current; thumbnail gap (12 cities) and
+  titleOptions gap (denver/detroit/milwaukee) both RESOLVED intraday -> 20/20 clear the readiness bar.
+- **briefing — DEGRADED (external)**: no gmail token -> drafts unsent; already capped at 15 lines.
+- **Token efficiency:** no fresh no-op/essay waste this window; the 07-19 fleet update's fixes hold.
+
+### Changes made this run
+1. **`pipeline/status.mjs --flow`** (committed) — NEW canonical FLOW SCOREBOARD subcommand +
+   `.flow` folded into `--json`. Computes, from the studio's OWN light semantics (mirrors
+   `pipeline/dashboard/server.mjs` cityRow/gateOf exactly): **verified** = a fresh owner APPROVE in
+   `videos/<slug>/feedback.json` (kind:"decision", /^APPROVE/, `at` >= mp4 mtime) — NOT confidence
+   blockers; **published** = `youtube.json` url set. Emits review-ready · awaiting-publish (named) ·
+   published-24h/6 · hours-since-last-cut · STARVATION verdict. Removes the recurring friction of
+   THREE routines (producer flow-alarm, briefing scoreboard, harness FLOW SLO) each hand-deriving
+   the same numbers and risking disagreement. Verified: correctly caught boston+DC as awaiting-publish
+   (the ledger view had missed it); all 4 modes run clean; default table unchanged.
+2. **PROMPT EDIT — producer-work-session/SKILL.md** (outside repo, applied verbatim). FLOW SLO line
+   now opens: *"FLOW SLO (read the canonical scoreboard FIRST — `node pipeline/status.mjs --flow`
+   prints review-ready / awaiting-publish / published-24h / hours-since-last-cut / STARVATION verdict
+   from the studio's own light semantics, so your alarm matches the board and you never re-derive it
+   by hand): … if that command shows fewer than 2 videos review-ready AND nothing new became ready
+   across your last two runs (or it prints STARVATION YES), that is a FLOW ALARM: …"*
+3. **PROMPT EDIT — earth-one-channel-briefing/SKILL.md** (outside repo, applied verbatim). Section
+   1 now: *"FLOW scoreboard FIRST — take it VERBATIM from `node pipeline/status.mjs --flow`
+   (review-ready N · awaiting-Hadi-publish N · published-last-24h N/6 max · hours-since-last-cut ·
+   STARVATION verdict, all from the studio's own verify/publish light semantics so the number you
+   email matches the board Hadi clicks in; if it prints STARVATION YES or nothing new became ready in
+   24h, say so in the subject line) then per-stage counts + confidence movement"*
+4. **PROMPT EDIT — harness-improver/SKILL.md** (this task, applied verbatim). Step 6 FLOW SLO now:
+   *"compute the flow state with `node pipeline/status.mjs --flow` — the canonical scoreboard …
+   computed from the studio's OWN verify/publish light semantics: verified = a fresh owner APPROVE in
+   videos/<slug>/feedback.json newer than the mp4 (NOT confidence-ledger blockers, which are producer
+   context and never a flow gate), published = youtube.json url set. Do NOT hand-derive these — the
+   tool is the single source of truth all three flow-reading routines share."*
+
+### Biggest remaining bottleneck
+**Owner publish throughput — and it is correctly outside the machine.** The production machine is
+fully caught up: 20/20 rendered, 18 review-ready, **2 approved-and-unpublished**. Zero published
+all-time. The gate from "ready" -> "live" is Hadi's watch-through + one publish click per video, which
+the fleet must never automate (FLEET.md: "the owner is the only publisher"). The highest-leverage
+lever left for the machine is therefore *surfacing* — making "2 videos are approved and awaiting your
+publish click" the loud top line of his window. That is now wired: the briefing takes its scoreboard
+verbatim from `--flow`, which names the awaiting-publish cities. If the awaiting-publish count keeps
+climbing without a publish across the next 2–3 briefings, that is a signal to escalate (is the studio
+publish button reachable / is Hadi blocked?), not a machine defect.
