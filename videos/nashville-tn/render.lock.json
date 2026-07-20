@@ -1,0 +1,11 @@
+{
+  "renderedAt": "2026-07-20T04:19:37Z",
+  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "datasetFetchedAt": "2026-07-18T11:56:52.811Z",
+  "durationSec": 330.048,
+  "fps": 30,
+  "audioSrc": "audio/nashville-tn-music-sao.wav",
+  "output": "out/nashville-tn.mp4",
+  "sha256": "1d27d4c8c5f1a73dcec214e56182eeb18e01668c1b915bf23342552497202b2e",
+  "remotion": "render CrimeStory --props=config.json"
+}

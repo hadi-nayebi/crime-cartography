@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-12T08:23:53Z",
-  "commit": "c699529c00a6217159ad7bd9672fa6d656e76cd9",
+  "renderedAt": "2026-07-20T04:47:51Z",
+  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
   "datasetFetchedAt": "2026-07-12T07:05:46.795Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/boston-ma-music-sao.wav",
   "output": "out/boston-ma.mp4",
-  "sha256": "3576b0faeed11ff295bf2a76875e295b905ec92d9dcf5bf15b1306d1e86555f1",
+  "sha256": "c31e5389ef28ccd2ebae6d694979f4fa60402755537bd773147413929e86047b",
   "remotion": "render CrimeStory --props=config.json"
 }

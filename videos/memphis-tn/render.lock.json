@@ -1,0 +1,11 @@
+{
+  "renderedAt": "2026-07-20T04:29:27Z",
+  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "datasetFetchedAt": "2026-07-18T11:53:03.601Z",
+  "durationSec": 330.048,
+  "fps": 30,
+  "audioSrc": "audio/memphis-tn-music-sao.wav",
+  "output": "out/memphis-tn.mp4",
+  "sha256": "b43e819a8fd47ec204270fd8d12e3291a51194c078f0e90c8d9e38ebb6b5e20d",
+  "remotion": "render CrimeStory --props=config.json"
+}

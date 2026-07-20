@@ -1,0 +1,11 @@
+{
+  "renderedAt": "2026-07-20T03:47:15Z",
+  "commit": "c4acd02f28e428863284fc04963c95e4e7272c70",
+  "datasetFetchedAt": "2026-07-18T11:36:52.831Z",
+  "durationSec": 330.048,
+  "fps": 30,
+  "audioSrc": "audio/milwaukee-wi-music-sao.wav",
+  "output": "out/milwaukee-wi.mp4",
+  "sha256": "8465c7df9cd8253df5b5520dd66f0623b1f18e3e67c020d1140725f2ce0752d9",
+  "remotion": "render CrimeStory --props=config.json"
+}

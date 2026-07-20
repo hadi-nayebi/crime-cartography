@@ -1,0 +1,11 @@
+{
+  "renderedAt": "2026-07-20T04:00:26Z",
+  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "datasetFetchedAt": "2026-07-17T23:48:04.879Z",
+  "durationSec": 330.048,
+  "fps": 30,
+  "audioSrc": "audio/buffalo-ny-music-sao.wav",
+  "output": "out/buffalo-ny.mp4",
+  "sha256": "7f49308ab9848e8ca03c7e762fbec1226ca7608a5ba041fd820741c2048b7dd3",
+  "remotion": "render CrimeStory --props=config.json"
+}

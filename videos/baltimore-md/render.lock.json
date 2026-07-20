@@ -1,0 +1,11 @@
+{
+  "renderedAt": "2026-07-20T03:53:50Z",
+  "commit": "c4acd02f28e428863284fc04963c95e4e7272c70",
+  "datasetFetchedAt": "2026-07-18T11:37:47.932Z",
+  "durationSec": 330.048,
+  "fps": 30,
+  "audioSrc": "audio/baltimore-md-music-sao.wav",
+  "output": "out/baltimore-md.mp4",
+  "sha256": "4974cf8ce7e8affde74e0ec484aa61ea883c76469e3d9b84c94a79640edba66d",
+  "remotion": "render CrimeStory --props=config.json"
+}
