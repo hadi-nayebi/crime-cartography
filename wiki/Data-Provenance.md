@@ -4,6 +4,33 @@ Every dataset records its source URL, fetch date, license, and field mapping in
 `data/<slug>/PROVENANCE.md`. This page indexes them. **No dataset ships without
 a reliable, citable source link.**
 
+All 20 batch-1 cities are indexed below — a summary section per city on this
+page (sources, spans, coverage, category mappings, caveats), with the full
+per-dataset record in its `PROVENANCE.md`:
+
+| slug | place | full record |
+|------|-------|-------------|
+| `atlanta-ga` | Atlanta, GA | [`data/atlanta-ga/PROVENANCE.md`](../data/atlanta-ga/PROVENANCE.md) |
+| `baltimore-md` | Baltimore, MD | [`data/baltimore-md/PROVENANCE.md`](../data/baltimore-md/PROVENANCE.md) |
+| `boston-ma` | Boston, MA | [`data/boston-ma/PROVENANCE.md`](../data/boston-ma/PROVENANCE.md) |
+| `buffalo-ny` | Buffalo, NY | [`data/buffalo-ny/PROVENANCE.md`](../data/buffalo-ny/PROVENANCE.md) |
+| `charlotte-nc` | Charlotte, NC | [`data/charlotte-nc/PROVENANCE.md`](../data/charlotte-nc/PROVENANCE.md) |
+| `chicago-il` | Chicago, IL | [`data/chicago-il/PROVENANCE.md`](../data/chicago-il/PROVENANCE.md) |
+| `cincinnati-oh` | Cincinnati, OH | [`data/cincinnati-oh/PROVENANCE.md`](../data/cincinnati-oh/PROVENANCE.md) |
+| `dallas-tx` | Dallas, TX | [`data/dallas-tx/PROVENANCE.md`](../data/dallas-tx/PROVENANCE.md) |
+| `denver-co` | Denver, CO | [`data/denver-co/PROVENANCE.md`](../data/denver-co/PROVENANCE.md) |
+| `detroit-mi` | Detroit, MI | [`data/detroit-mi/PROVENANCE.md`](../data/detroit-mi/PROVENANCE.md) |
+| `grand-rapids-mi` | Grand Rapids, MI | [`data/grand-rapids-mi/PROVENANCE.md`](../data/grand-rapids-mi/PROVENANCE.md) |
+| `kansas-city-mo` | Kansas City, MO | [`data/kansas-city-mo/PROVENANCE.md`](../data/kansas-city-mo/PROVENANCE.md) |
+| `memphis-tn` | Memphis, TN | [`data/memphis-tn/PROVENANCE.md`](../data/memphis-tn/PROVENANCE.md) |
+| `milwaukee-wi` | Milwaukee, WI | [`data/milwaukee-wi/PROVENANCE.md`](../data/milwaukee-wi/PROVENANCE.md) |
+| `minneapolis-mn` | Minneapolis, MN | [`data/minneapolis-mn/PROVENANCE.md`](../data/minneapolis-mn/PROVENANCE.md) |
+| `nashville-tn` | Nashville, TN | [`data/nashville-tn/PROVENANCE.md`](../data/nashville-tn/PROVENANCE.md) |
+| `philadelphia-pa` | Philadelphia, PA | [`data/philadelphia-pa/PROVENANCE.md`](../data/philadelphia-pa/PROVENANCE.md) |
+| `san-francisco-ca` | San Francisco, CA | [`data/san-francisco-ca/PROVENANCE.md`](../data/san-francisco-ca/PROVENANCE.md) |
+| `seattle-wa` | Seattle, WA | [`data/seattle-wa/PROVENANCE.md`](../data/seattle-wa/PROVENANCE.md) |
+| `washington-dc` | Washington, DC | [`data/washington-dc/PROVENANCE.md`](../data/washington-dc/PROVENANCE.md) |
+
 ## grand-rapids-mi — Grand Rapids, MI
 
 - **Records source:** GRPD Crime Data, City of Grand Rapids ArcGIS Hub
