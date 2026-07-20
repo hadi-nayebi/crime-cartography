@@ -5,6 +5,18 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### driver/producer should verify the custom thumbnail actually landed after a publish, and re-push if not  (from owner DC note 2026-07-20T16:45, resolved by note-watcher 2026-07-20)
+The publish engine now retries YouTube `thumbnails.set` through the fresh-upload "still processing"
+race and exposes a re-apply path (POST `/api/publish/<slug>/setthumb` + a "⤴ Push thumbnail" button
+on the publish result, the already-published modal, and the published-video detail page) — so the
+owner never has to set the thumbnail by hand in YouTube Studio. Remaining automation ask: whichever
+routine tracks a just-published videoId should, once the video finishes processing, confirm the live
+thumbnail matches the chosen `thumbnail.jpg` (via `videos.list part=snippet` — the same batched call
+the dashboard already makes) and, if it doesn't, POST `setthumb` once to re-apply it. Honesty note:
+only ever push the committed `thumbnail.jpg` built from real render frames; never invent an image.
+Root category: *an outward metadata write after a long async platform op (upload/transcode) must
+retry the processing race + carry a re-apply path* — never a fire-once silent side effect.
+
 ### state-sync must reconcile local `youtube.json` privacy/thumbnail from the LIVE YouTube API  (from owner boston note 2026-07-20T16:30, resolved by note-watcher 2026-07-20)
 The dashboard now renders published videos from the live YouTube state (server.mjs `videos.list`
 part=snippet,statistics,status → `youtube.live`), which fixed the UI: a video the owner flips to

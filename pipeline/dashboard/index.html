@@ -671,9 +671,10 @@ function renderGuide(c){
         : "Published — this video is live 🎉";
     what = `This page now mirrors the <b>live YouTube state</b> — the real thumbnail you chose there and its current visibility, not the local render. `
       + (priv==="private" ? `It's still <b>private</b>, so only you can see it — flip it to Public in YouTube Studio when you're ready for viewers. ` : ``)
-      + `Post-publish notes — a sharper title, a new thumbnail, engagement, or a <b>re-cut request</b> — go in the feedback box below; the channel routine applies them.`
-      + (c.composedThumb ? ` Your <b>designed thumbnail</b> stays in the repo (shown at right), ready to load as an A/B-test variant once YouTube thumbnail testing is enabled.` : ``);
-    cta = c.youtube.url ? `<a href="${esc(c.youtube.url)}" target="_blank"><button class="good">▶ Watch on YouTube</button></a>` : "";
+      + `Post-publish notes — a sharper title, engagement, or a <b>re-cut request</b> — go in the feedback box below; the channel routine applies them.`
+      + (c.composedThumb ? ` Your <b>designed thumbnail</b> is in the repo — push it straight to the live video with the button below if it didn't land on upload (the video was still processing); it also stays ready as an A/B-test variant once YouTube thumbnail testing is enabled.` : ``);
+    cta = (c.youtube.url ? `<a href="${esc(c.youtube.url)}" target="_blank"><button class="good">▶ Watch on YouTube</button></a>` : "")
+      + (c.composedThumb ? `<button class="primary" data-pushthumb="${c.slug}" onclick="pushThumb('${c.slug}')">⤴ Push your thumbnail to YouTube</button><span class="feat" id="pushthumb-status">applies your designed thumbnail to the live video — no YouTube Studio trip.</span>` : "");
   } else if (idx === 7) {                                  // all pre-publish lights green
     kind = "you"; step = "Step 8 of 8 — your move"; now = "Ready to publish 🎉";
     what = `Every light is green, including <b>Verify</b> (your approval). Click <b>Publish</b> to upload to YouTube — the next screen lets you pick the thumbnail, edit the title and description, and choose visibility. Publishing is the only step that goes public, so nothing ships until you click it.`;
@@ -821,7 +822,11 @@ async function openPublish(slug){
     $("pub-body").innerHTML = `<div class="panel" style="margin-top:var(--s-3)">
       <h4>Already published</h4>
       <div style="font-size:15px">▶ <a href="${esc(p.url)}" target="_blank">${esc(p.url)}</a> · status: ${esc(p.status)}</div>
-      <div class="feat" style="margin-top:var(--s-2)">Title, description and thumbnail changes now happen in YouTube Studio (or leave a note — the channel manager routine applies metadata updates).</div></div>`;
+      ${p.composed?`<div class="row" style="margin-top:var(--s-3);align-items:center">
+        <img src="/thumb/${slug}/thumbnail.jpg?r=${Date.now()}" style="width:200px;border-radius:8px;border:1px solid var(--line2)" alt="designed thumbnail">
+        <div><button class="primary" data-pushthumb="${slug}" onclick="pushThumb('${slug}')">⤴ Push this thumbnail to YouTube</button>
+        <div class="feat" id="pushthumb-status" style="margin-top:var(--s-2)">applies your designed thumbnail to the live video — use this if it didn't land on upload (the video was still processing). No YouTube Studio trip needed.</div></div></div>`:""}
+      <div class="feat" style="margin-top:var(--s-2)">Title &amp; description changes now happen in YouTube Studio (or leave a note — the channel manager routine applies metadata updates).</div></div>`;
     return;
   }
   renderPub();
@@ -917,6 +922,7 @@ async function regenThumbs(){
   selStat();
 }
 async function firePublish(){
+  const slug = PUB.slug;
   const title = $("pub-title").value.trim();
   if (!title) return alert("title required");
   if (title.length > 100) return alert("YouTube titles max 100 characters");
@@ -931,10 +937,14 @@ async function firePublish(){
       body: JSON.stringify({ title, description: $("pub-desc").value, thumb, privacy: PUB.privacy }) });
     const j = await r.json();
     if (j.ok) {
+      const thumbMissed = j.thumbnail && j.thumbnail!=="set" && j.thumbnail!=="none chosen";
       $("pub-body").innerHTML = `<div class="panel" style="margin-top:var(--s-3)">
         <h4 style="color:var(--green)">✓ Published</h4>
         <div style="font-size:16px;margin:var(--s-2) 0">▶ <a href="${esc(j.url)}" target="_blank">${esc(j.url)}</a></div>
-        <div class="feat">status: ${esc(j.status)} · thumbnail: ${esc(j.thumbnail)} · playlist: ${esc(j.playlist)}</div>
+        <div class="feat">status: ${esc(j.status)} · thumbnail: <b style="color:${j.thumbnailOk?"var(--green)":"var(--amber)"}">${esc(j.thumbnail)}</b> · playlist: ${esc(j.playlist)}</div>
+        ${thumbMissed?`<div class="row" style="margin-top:var(--s-3);align-items:center">
+          <button class="primary" data-pushthumb="${slug}" onclick="pushThumb('${slug}')">⤴ Push thumbnail to YouTube</button>
+          <span class="feat" id="pushthumb-status">the thumbnail didn't land yet — the video is likely still processing. Give it a minute, then push it here (no YouTube Studio trip needed).</span></div>`:""}
         <div class="feat" style="margin-top:var(--s-2)">youtube.json updated — the next routine run commits the record.</div></div>`;
       load();
     } else {
@@ -944,6 +954,26 @@ async function firePublish(){
   } catch (e) {
     go.disabled = false; go.textContent = "⤴ Publish to YouTube";
     $("pub-status").innerHTML = `<span style="color:var(--red)">✗ ${esc(String(e))}</span>`;
+  }
+}
+
+// Push the committed thumbnail.jpg to the live video — the studio-side recovery
+// for the upload processing-race, so the chosen thumbnail is always reachable
+// from the publish surface, never a manual YouTube Studio step.
+async function pushThumb(slug){
+  const btns = [...document.querySelectorAll(`[data-pushthumb="${slug}"]`)];
+  const st = $("pushthumb-status");
+  btns.forEach(b=>{ b.disabled=true; b.textContent="Pushing thumbnail…"; });
+  if(st) st.innerHTML = `<span class="feat">pushing to YouTube (retries while the video finishes processing)…</span>`;
+  try {
+    const j = await (await fetch(`/api/publish/${slug}/setthumb`,{method:"POST"})).json();
+    btns.forEach(b=>{ b.disabled=false; b.textContent = j.ok ? "✓ Thumbnail set" : "⤴ Push thumbnail again"; });
+    if(st) st.innerHTML = j.ok
+      ? `<span style="color:var(--green)">✓ thumbnail pushed to YouTube</span>`
+      : `<span style="color:var(--amber)">${esc(j.thumbnail || j.error || "not set")}</span>`;
+  } catch(e){
+    btns.forEach(b=>{ b.disabled=false; b.textContent="⤴ Push thumbnail again"; });
+    if(st) st.innerHTML = `<span style="color:var(--red)">✗ ${esc(String(e))}</span>`;
   }
 }
 

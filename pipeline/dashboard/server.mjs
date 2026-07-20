@@ -389,6 +389,56 @@ async function publishPreview(slug) {
   };
 }
 
+// Push a chosen thumbnail to a live video. The #1 real failure the owner hit
+// ("the thumbnail never landed") is a RACE: right after videos.insert the video
+// is still PROCESSING on YouTube's side, so thumbnails.set returns a transient
+// 404/409/429/5xx — a single silent best-effort call loses the thumbnail and the
+// only recovery was a manual trip to YouTube Studio. So retry with backoff.
+// 403 (channel not eligible for custom thumbnails) and 400 (bad image) are
+// PERMANENT — don't retry those. Never throws; returns a human status string the
+// publish surface shows so a miss is loud, not swallowed.
+async function applyThumbnail(videoId, jpgPath, { attempts = 3, gapMs = 6000 } = {}) {
+  if (!exists(jpgPath)) return { ok: false, status: "no thumbnail.jpg to push" };
+  let buf;
+  try { buf = await readFile(jpgPath); } catch { return { ok: false, status: "could not read thumbnail.jpg" }; }
+  let last = "unknown error";
+  for (let i = 0; i < attempts; i++) {
+    if (i) await new Promise((r) => setTimeout(r, gapMs * i)); // 0s, then gap, 2×gap…
+    try {
+      const at = await accessToken();
+      if (!at) return { ok: false, status: "YouTube not connected" };
+      const r = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${videoId}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${at}`, "Content-Type": "image/jpeg" },
+        body: buf,
+      });
+      if (r.ok) return { ok: true, status: "set" };
+      last = `HTTP ${r.status}`;
+      if (r.status === 403) return { ok: false, status: "channel not eligible for custom thumbnails — verify the channel in YouTube Studio, then push again" };
+      if (r.status === 400) return { ok: false, status: "YouTube rejected the image (HTTP 400)" };
+      // 404/409/429/5xx → video is still processing; fall through and retry
+    } catch (e) { last = String(e?.message ?? e).slice(0, 120); }
+  }
+  return { ok: false, status: `not set yet (${last}) — the video may still be processing; click “Push thumbnail” again in a minute` };
+}
+
+// Re-apply the committed thumbnail.jpg to an already-uploaded video — the
+// studio-side recovery for the processing race, so the owner can push the chosen
+// thumbnail straight from the publish surface AFTER upload instead of setting it
+// by hand in YouTube Studio. Idempotent; safe to click repeatedly.
+async function pushThumbnail(slug) {
+  const ytPath = join(ROOT, "videos", slug, "youtube.json");
+  const yt = await readJson(ytPath);
+  if (!yt) return [400, { error: "no youtube.json" }];
+  if (!yt.videoId) return [409, { error: "not uploaded yet — nothing to push a thumbnail to" }];
+  const jpg = join(ROOT, "videos", slug, "thumbnail.jpg");
+  if (!exists(jpg)) return [400, { error: "no thumbnail.jpg — pick or compose a thumbnail first" }];
+  if (!(await accessToken())) return [401, { error: "YouTube not connected — authorize the channel first" }];
+  const res = await applyThumbnail(yt.videoId, jpg, { attempts: 4, gapMs: 8000 });
+  if (res.ok) { yt.thumbnailSetAt = new Date().toISOString(); yt.thumbnailPushed = true; await writeFile(ytPath, JSON.stringify(yt, null, 2)); }
+  return [res.ok ? 200 : 502, { ok: res.ok, thumbnail: res.status, videoId: yt.videoId }];
+}
+
 async function doPublish(slug, p) {
   const ytPath = join(ROOT, "videos", slug, "youtube.json");
   const yt = await readJson(ytPath);
@@ -449,21 +499,17 @@ async function doPublish(slug, p) {
     return [500, { error: `upload failed: ${String(e.stderr || e.message || e).slice(0, 600)}` }];
   }
   const done = (await readJson(ytPath)) ?? {};
-  // Chosen thumbnail → YouTube (best-effort: custom thumbnails need a
-  // phone-verified channel; a failure here never fails the publish).
+  // Chosen thumbnail → YouTube. Retries the "still processing" race instead of
+  // one silent best-effort attempt (applyThumbnail). If it still misses, the
+  // publish result surfaces a "Push thumbnail" button so the owner re-applies it
+  // from the studio — never a manual trip to YouTube Studio.
   let thumbnail = "none chosen";
+  let thumbnailOk = true;
   if (p.thumb && safeName(p.thumb) && done.videoId) {
-    try {
-      const at = await accessToken();
-      const buf = await readFile(join(ROOT, "videos", slug, "thumbnail.jpg"));
-      const r = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${done.videoId}`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${at}`, "Content-Type": "image/jpeg" },
-        body: buf,
-      });
-      thumbnail = r.ok ? "set" : `failed (HTTP ${r.status}) — set it manually in YouTube Studio`;
-      if (r.ok) done.thumbnailSetAt = new Date().toISOString();
-    } catch { thumbnail = "failed — set it manually in YouTube Studio"; }
+    const res = await applyThumbnail(done.videoId, join(ROOT, "videos", slug, "thumbnail.jpg"));
+    thumbnail = res.status;
+    thumbnailOk = res.ok;
+    if (res.ok) { done.thumbnailSetAt = new Date().toISOString(); done.thumbnailPushed = true; }
   }
   // File the video into its FORMAT playlist ("each format is a playlist" —
   // nothing publishes outside one). Best-effort: a failure never undoes the
@@ -485,7 +531,7 @@ async function doPublish(slug, p) {
     }
   } catch { playlist = "insert failed — add it in YouTube Studio"; }
   await writeFile(ytPath, JSON.stringify(done, null, 2));
-  return [200, { ok: true, url: done.url, videoId: done.videoId, status: done.status, thumbnail, playlist }];
+  return [200, { ok: true, url: done.url, videoId: done.videoId, status: done.status, thumbnail, thumbnailOk, playlist }];
 }
 
 function send(res, code, body, type = "application/json") {
@@ -554,6 +600,12 @@ const server = createServer(async (req, res) => {
       if (!safeName(slug)) return send(res, 400, { error: "bad slug" });
       if (parts[4] === "thumbs" && req.method === "POST")
         return send(res, 200, { thumbs: await ensureThumbs(slug, true) });
+      // Re-apply the chosen thumbnail to an already-uploaded video (studio-side
+      // recovery for the processing race — no YouTube Studio trip needed).
+      if (parts[4] === "setthumb" && req.method === "POST") {
+        const [code, out] = await pushThumbnail(slug);
+        return send(res, code, out);
+      }
       if (req.method === "GET") return send(res, 200, await publishPreview(slug));
       if (req.method === "POST") {
         if (PUBLISHING.has(slug)) return send(res, 409, { error: "publish already in progress" });
