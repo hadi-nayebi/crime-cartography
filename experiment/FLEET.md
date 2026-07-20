@@ -32,6 +32,33 @@
 | harness-improver | 2×/day | The MANAGER LAYER: scheduler truth (enabled flags, lastRunAt), FLOW SLO check + starvation root-cause duty, token-efficiency, routine prompt tuning (logged verbatim). |
 | repo-hygiene-reviewer | daily | Public-repo trust: secrets never leak, the public/private lens grows via owner rulings. |
 
+## The STATE LAYER (the fleet's shared memory — owner ruling 2026-07-20)
+A fixed, documented set of files is the fleet's working memory. Every routine
+has FULL READ access to the repo; WRITE access is tiered by role:
+
+| State file | Purpose | Who writes |
+|---|---|---|
+| experiment/studio-feedback.json | project notes channel | owner + reviewers (critic/channel/hygiene file), watcher resolves |
+| videos/<slug>/feedback.json | per-video notes channel | owner + reviewers file, watcher resolves |
+| experiment/CRITIC.md + CRITIC-LENS.md | critic's ledger + detection playbook | critic only |
+| experiment/WATCHER-LENS.md | watcher's solutions playbook | watcher only |
+| experiment/HARNESS.md | meta log + requested changes | harness + any role's "requested" lines |
+| experiment/DECISIONS.md | taste calls + owner rulings | producer/orchestrator append; owner rules |
+| experiment/confidence.json | evidence ledger (scores/blockers) | FIXERS only (producer/watcher) — never reviewers |
+| experiment/channel/* | channel truth (state/quota/readiness) | channel-manager only |
+| experiment/FLEET.md | this charter | orchestrator/harness only |
+
+**REVIEWER tier** (critic, channel-manager QA, repo-hygiene): read anything,
+write ONLY their own state files + the notes channels. Reviewing is filing —
+never fixing, never touching configs/data/engine/ledger scores.
+**FIXER tier** (watcher, producer, driver, harness): read anything including
+all reviews; write their state files PLUS the artifacts their role owns
+(engine/configs/data/ledger per their SKILL limits). Fixers act on reviews in
+priority order: owner notes → blockers → critic/channel notes.
+This tiering is also the permission model: reviewer writes are narrow and
+safe-by-construction, so reviewer sessions should never need a permission
+prompt; fixer powers stay behind the owner-applied allowlist.
+
 ## Shared interfaces (don't reinvent)
 - Notes channel: videos/<slug>/feedback.json + experiment/studio-feedback.json
   — the SAME channel the owner uses; entries carry by/lens fields.
