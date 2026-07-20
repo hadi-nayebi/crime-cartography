@@ -1,695 +1,721 @@
 {
- "_rubric": "score = data + representation + narrative + technical (25 each). 100 required to publish. Evidence-only increments; defects drop score + add blocker.",
- "grand-rapids-mi": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "_rubric": "score = data + representation + narrative + technical (25 each). 100 required to publish. Evidence-only increments; defects drop score + add blocker.",
+  "grand-rapids-mi": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged",
+      "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial ledger entry after V6 encode verification (+ref-line fix)"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: re-rendered @0661c29 (driver wave) + producer frame-verified. seamExplain WHY-THE-JUMP card now PRESENT on the trend (t141: 'Through 2022 the gray bars are the FBI... From 2023 GRPD NIBRS Group A... the measure widened, not because crime jumped') -- was ABSENT (old 3826de8 render predated the 8df8b56 seam feature; GR now uses the unified FullTrend Chapter-1). Neon catColors applied on the map (t220: persons #ff2e63 / property #ffc233 / society #34e0e0, coherent, high-contrast). countTerm 'Group A' correct (native-NIBRS, no-op vs the pre-fix hardcoded default). Density-dot disclosures + '96.7% mapped to a police beat' intact; 2023=16,449 exact; 330.048s, 0 gaps. Score held at 88 (frame-verified the two blocked features, not a full watch-through; density-dot honesty ceiling stands). Gate: owner watch-through."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial ledger entry after V6 encode verification (+ref-line fix)"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "chicago-il": {
-  "score": 90,
-  "axes": {
-   "data": 25,
-   "representation": 23,
-   "narrative": 21,
-   "technical": 21
+  "chicago-il": {
+    "score": 90,
+    "axes": {
+      "data": 25,
+      "representation": 23,
+      "narrative": 21,
+      "technical": 21
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial entry; corrective ref-line re-render verified"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER encode-verified the 'seam-label/punchline overlap' concern on the current mp4 (frames t145/t148): seam label '2001 · the measure changes' is cleanly top-centered with no collision; the net-change punchline card ('2001 → 2025: −51%', '485,969 → 237,497 recorded incidents per year · CPD') pops in its own bordered box while the seam label hides — NO visible text overlap. Punchline numbers exact ((485,969−237,497)/485,969 = 51.1%). Resolved via verify (no re-render needed). Score unchanged (gate = owner watch-through). NOTE: chicago mp4 (2026-07-11) predates recent engine polish but shows no defect; not owed a re-render on staleness grounds."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha af9eb6173c8d. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial entry; corrective ref-line re-render verified"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER encode-verified the 'seam-label/punchline overlap' concern on the current mp4 (frames t145/t148): seam label '2001 · the measure changes' is cleanly top-centered with no collision; the net-change punchline card ('2001 → 2025: −51%', '485,969 → 237,497 recorded incidents per year · CPD') pops in its own bordered box while the seam label hides — NO visible text overlap. Punchline numbers exact ((485,969−237,497)/485,969 = 51.1%). Resolved via verify (no re-render needed). Score unchanged (gate = owner watch-through). NOTE: chicago mp4 (2026-07-11) predates recent engine polish but shows no defect; not owed a re-render on staleness grounds."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha af9eb6173c8d. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "seattle-wa": {
-  "score": 90,
-  "axes": {
-   "data": 25,
-   "representation": 23,
-   "narrative": 21,
-   "technical": 21
+  "seattle-wa": {
+    "score": 91,
+    "axes": {
+      "data": 25,
+      "representation": 23,
+      "narrative": 21,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial entry; corrective ref-line re-render verified"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:38): CITYWIDE trend fix PRESENT — trend chart y-axis peak 92,715 (all-recorded-offenses), lollipop, seam '2008 · the measure changes', honest 'compare within each era, not across the dashed seam' caption, source credit present. Citywide re-render blocker RESOLVED. (seam-label/punchline overlap: seam label clean at t140; punchline card not frame-captured — owner watch-through to confirm.) Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER verified the seam-overlap on the re-rendered mp4 (t146): punchline card DOES mildly overlap the '2008 · the measure changes' seam label (label bleeds through the translucent card) — unlike chicago where the seam label hides cleanly. Difference is layout (seattle's 2-line punchline sub → taller card). Blocker RETAINED + sharpened with the exact fix (engine: gate seam-label visibility under the punchline card, or reposition card; then re-render). Otherwise seattle encode is clean (citywide axis 92,715 fix confirmed, honest seam caption, source credit)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: ENGINE FIX 0661c29 (FullTrend seam group opacity (1-punchT*0.85)->(1-punchT) so the seam label fully yields to the punchline card) + re-rendered @0661c29 in the driver wave + producer frame-verified. OVERLAP RESOLVED (t147: punchline card '1987:73,369->2007:37,810 -48% under the same FBI measure' is clean, the '2008 the measure changes' seam label is fully hidden under it, no bleed-through). City-specific seamExplain PRESENT (t94: names Seattle/SPD/'eight index crimes'). Citywide axis peak 92,715 + 2025=77,889 exact; source credit data.seattle.gov Public Domain; 330.048s, 0 silence gaps. tech 21->22 (overlap rendering defect fixed + verified). Sole remaining gate: owner watch-through."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged",
-   "seam-label/punchline overlap STILL PRESENT in re-rendered mp4 (producer-verified t146): the net-change punchline card ('1987: 73,369 → 2007: 37,810 · −48% ... the plateau that followed is the next chapter') sits over the seam label '2008 · the measure changes', which bleeds faintly through the translucent card. Layout-dependent (seattle's longer 2-line punchline sub makes the card taller than chicago's, pushing it into the seam label). Needs engine fix (hide/dim seam label when punchline card overlaps, or lower the card) + re-render. NOT owner-gated — engine/driver.",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial entry; corrective ref-line re-render verified"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:38): CITYWIDE trend fix PRESENT — trend chart y-axis peak 92,715 (all-recorded-offenses), lollipop, seam '2008 · the measure changes', honest 'compare within each era, not across the dashed seam' caption, source credit present. Citywide re-render blocker RESOLVED. (seam-label/punchline overlap: seam label clean at t140; punchline card not frame-captured — owner watch-through to confirm.) Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER verified the seam-overlap on the re-rendered mp4 (t146): punchline card DOES mildly overlap the '2008 · the measure changes' seam label (label bleeds through the translucent card) — unlike chicago where the seam label hides cleanly. Difference is layout (seattle's 2-line punchline sub → taller card). Blocker RETAINED + sharpened with the exact fix (engine: gate seam-label visibility under the punchline card, or reposition card; then re-render). Otherwise seattle encode is clean (citywide axis 92,715 fix confirmed, honest seam caption, source credit)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "washington-dc": {
-  "score": 91,
-  "axes": {
-   "data": 25,
-   "representation": 23,
-   "narrative": 21,
-   "technical": 22
+  "washington-dc": {
+    "score": 91,
+    "axes": {
+      "data": 25,
+      "representation": 23,
+      "narrative": 21,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged",
+      "society=0 counter row reads oddly — consider hiding structurally-empty categories"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial entry after five-city encode verification"
+      },
+      {
+        "date": "2026-07-18",
+        "change": "user feedback: seam needs on-chart explanation -> SeamCallout built engine-wide, still-verified; awaiting re-render"
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-18T01:50: added verified DC-specific seamExplain (FBI UCR yearly totals 1985-2007 vs MPD incident feed 2008+, same Part-I tier, source/measure change not re-classification); corrects generic card's 'broader' overstatement. Awaiting re-render."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:43): zero-count 'safest' FIX PRESENT — reveal quiz answer 'Rock Creek Park' (15), then Arboretum/Anacostia River (31), Joint Base Anacostia-Bolling (104); disclosure '1 area with no mapped records excluded — no data isn't no crime'. NOT the old 'Observatory Circle 0' artifact. Zero-count re-render blocker RESOLVED. society=0 counter STILL shows bare '0' (label '(not in DC's published feed)' truncated in counter row) — society blocker STAYS (genuine: PROVENANCE confirms MPD publishes only 9 Part-I offenses; honest but reads oddly). Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "OWNER APPROVE (2026-07-20T15:28:13, washington-dc/feedback.json) recorded as verify-light evidence — verify is a manual light and flips on this fresh Approve. RECONCILED blocker drift: the 00:43 re-render satisfied BOTH the zero-count AND the seamExplain re-render blockers, but the producer's hand-clear removed only the zero-count, leaving the seamExplain blocker stale. Independently verified the seam fix is LIVE in the current mp4 — extracted still @96s shows the 'WHY THE JUMP?' card rendering the DC-specific seamExplain copy (FBI UCR gray 1985-2007 vs MPD gold 2008+, dashed 2008 seam, 'the measuring system changing, not a re-classification of crime'). Stale 're-render to pick up seamExplain' blocker CLEARED [blockers cleared: 1]. Remaining: full watch-through with audio (separate manual gate, NOT auto-cleared by an approve — boston precedent) + society=0 counter (genuine honesty item, producer decision). Score held at 91 — the seam design gain was already counted on the 07-18/07-19 entries; a re-approve of an already-counted gain must not double-inflate."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 583ccd304a21. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "OWNER APPROVE #2 (2026-07-20T22:45:48, washington-dc/feedback.json) recorded as verify-light evidence for the CURRENT SHIPPED encode. Context: this is the re-approval that RE-GATES verify after a label-changing re-render — the d829e57 countTerm re-render (GROUP A -> REPORTED, rendered 20:19Z, published ~20:44Z) landed AFTER the 15:28 approve, and its producer history note omitted a verify-restale flag (label-only-re-render drift smell); the owner then watched the re-rendered+published cut and re-approved. Drift closed here by confirming the SHIPPED bytes' on-screen TEXT matches what was approved: mp4 sha256 == render.lock (583ccd304a21, commit d829e57); 3 stills off that exact encode — t=200 top-right 'REPORTED · TOTAL SINCE 2021' + 'BUSIEST NEIGHBORHOODS · REPORTED TO DATE' + 'REPORTED INCIDENTS PER MONTH' (ZERO 'GROUP A'), t=306 reveal 'Fewest reported crimes · Rock Creek Park 15' (Arboretum/Anacostia River 31, Joint Base Anacostia-Bolling 104; '1 area with no mapped records excluded — no data isn't no crime'; NOT Observatory Circle:0), t=90 honest seam '2008 · the measure changes' / '1985-2007 FBI UCR — Violent+Property' vs '2008-2025 MPD — reported crime incidents'. Blocker enumeration: NO stale re-render blocker to strip (zero-count / seamExplain / countTerm all cleared in prior runs) — RETAINED both remaining: full watch-through with audio (separate manual gate, boston precedent, not auto-cleared by an approve) + society=0 counter (genuine honesty item — MPD publishes only Part-I offenses). Score HELD 91 — re-approval of an already-counted honest cut; a label-baked-at-render honesty fix carries no design gain, so no double-inflation."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged",
-   "society=0 counter row reads oddly — consider hiding structurally-empty categories"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial entry after five-city encode verification"
-   },
-   {
-    "date": "2026-07-18",
-    "change": "user feedback: seam needs on-chart explanation -> SeamCallout built engine-wide, still-verified; awaiting re-render"
-   },
-   {
-    "date": "2026-07-19",
-    "change": "note 2026-07-18T01:50: added verified DC-specific seamExplain (FBI UCR yearly totals 1985-2007 vs MPD incident feed 2008+, same Part-I tier, source/measure change not re-classification); corrects generic card's 'broader' overstatement. Awaiting re-render."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:43): zero-count 'safest' FIX PRESENT — reveal quiz answer 'Rock Creek Park' (15), then Arboretum/Anacostia River (31), Joint Base Anacostia-Bolling (104); disclosure '1 area with no mapped records excluded — no data isn't no crime'. NOT the old 'Observatory Circle 0' artifact. Zero-count re-render blocker RESOLVED. society=0 counter STILL shows bare '0' (label '(not in DC's published feed)' truncated in counter row) — society blocker STAYS (genuine: PROVENANCE confirms MPD publishes only 9 Part-I offenses; honest but reads oddly). Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "OWNER APPROVE (2026-07-20T15:28:13, washington-dc/feedback.json) recorded as verify-light evidence — verify is a manual light and flips on this fresh Approve. RECONCILED blocker drift: the 00:43 re-render satisfied BOTH the zero-count AND the seamExplain re-render blockers, but the producer's hand-clear removed only the zero-count, leaving the seamExplain blocker stale. Independently verified the seam fix is LIVE in the current mp4 — extracted still @96s shows the 'WHY THE JUMP?' card rendering the DC-specific seamExplain copy (FBI UCR gray 1985-2007 vs MPD gold 2008+, dashed 2008 seam, 'the measuring system changing, not a re-classification of crime'). Stale 're-render to pick up seamExplain' blocker CLEARED [blockers cleared: 1]. Remaining: full watch-through with audio (separate manual gate, NOT auto-cleared by an approve — boston precedent) + society=0 counter (genuine honesty item, producer decision). Score held at 91 — the seam design gain was already counted on the 07-18/07-19 entries; a re-approve of an already-counted gain must not double-inflate."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 583ccd304a21. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "OWNER APPROVE #2 (2026-07-20T22:45:48, washington-dc/feedback.json) recorded as verify-light evidence for the CURRENT SHIPPED encode. Context: this is the re-approval that RE-GATES verify after a label-changing re-render — the d829e57 countTerm re-render (GROUP A -> REPORTED, rendered 20:19Z, published ~20:44Z) landed AFTER the 15:28 approve, and its producer history note omitted a verify-restale flag (label-only-re-render drift smell); the owner then watched the re-rendered+published cut and re-approved. Drift closed here by confirming the SHIPPED bytes' on-screen TEXT matches what was approved: mp4 sha256 == render.lock (583ccd304a21, commit d829e57); 3 stills off that exact encode — t=200 top-right 'REPORTED · TOTAL SINCE 2021' + 'BUSIEST NEIGHBORHOODS · REPORTED TO DATE' + 'REPORTED INCIDENTS PER MONTH' (ZERO 'GROUP A'), t=306 reveal 'Fewest reported crimes · Rock Creek Park 15' (Arboretum/Anacostia River 31, Joint Base Anacostia-Bolling 104; '1 area with no mapped records excluded — no data isn't no crime'; NOT Observatory Circle:0), t=90 honest seam '2008 · the measure changes' / '1985-2007 FBI UCR — Violent+Property' vs '2008-2025 MPD — reported crime incidents'. Blocker enumeration: NO stale re-render blocker to strip (zero-count / seamExplain / countTerm all cleared in prior runs) — RETAINED both remaining: full watch-through with audio (separate manual gate, boston precedent, not auto-cleared by an approve) + society=0 counter (genuine honesty item — MPD publishes only Part-I offenses). Score HELD 91 — re-approval of an already-counted honest cut; a label-baked-at-render honesty fix carries no design gain, so no double-inflation."
-   }
-  ]
- },
- "san-francisco-ca": {
-  "score": 90,
-  "axes": {
-   "data": 24,
-   "representation": 23,
-   "narrative": 21,
-   "technical": 22
+  "san-francisco-ca": {
+    "score": 90,
+    "axes": {
+      "data": 24,
+      "representation": 23,
+      "narrative": 21,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial entry; peak-month figure recomputed by producer before configs"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "DRIVER re-rendered stale mp4 to pick up the SF accounting fix (commit 7e7dda2, 2026-07-19): totalRecords 3,117,438→3,071,590 (window overlaps/partials moved to excludedOutsideWindow), coverage 96.7%→98.1%. Prior shipped mp4 (rendered 2026-07-12 @ commit c699529) showed the stale 96.7%/3.1M. New render verified: 330.048s, 0 audio gaps, method card 03 shows \"98.1% map to a neighborhood\"; on-screen category totals 260,146+1,508,006+264,153+1,039,285=3,071,590 reconcile exactly. render.lock.json updated (sha256 c4eb3d44). Score unchanged (producer's call); note the \"coverage line wording\" blocker's on-screen evidence is now satisfiable."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER encode-verified the coverage-line wording on the re-rendered mp4 (method card t16): card 03 'Real dots, real places' reads '98.1% map to a neighborhood — the rest counted, disclosed, never invented' (post-accounting-fix, was 96.7%); category totals 260,146+1,508,006+264,153+1,039,285 = 3,071,590 reconcile to corrected totalRecords; honest two-chapter seam note present. Coverage-line-wording blocker RESOLVED. Score unchanged (gate = owner watch-through)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha f07d764e2800. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial entry; peak-month figure recomputed by producer before configs"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "DRIVER re-rendered stale mp4 to pick up the SF accounting fix (commit 7e7dda2, 2026-07-19): totalRecords 3,117,438→3,071,590 (window overlaps/partials moved to excludedOutsideWindow), coverage 96.7%→98.1%. Prior shipped mp4 (rendered 2026-07-12 @ commit c699529) showed the stale 96.7%/3.1M. New render verified: 330.048s, 0 audio gaps, method card 03 shows \"98.1% map to a neighborhood\"; on-screen category totals 260,146+1,508,006+264,153+1,039,285=3,071,590 reconcile exactly. render.lock.json updated (sha256 c4eb3d44). Score unchanged (producer's call); note the \"coverage line wording\" blocker's on-screen evidence is now satisfiable."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER encode-verified the coverage-line wording on the re-rendered mp4 (method card t16): card 03 'Real dots, real places' reads '98.1% map to a neighborhood — the rest counted, disclosed, never invented' (post-accounting-fix, was 96.7%); category totals 260,146+1,508,006+264,153+1,039,285 = 3,071,590 reconcile to corrected totalRecords; honest two-chapter seam note present. Coverage-line-wording blocker RESOLVED. Score unchanged (gate = owner watch-through)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha f07d764e2800. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "boston-ma": {
-  "score": 91,
-  "axes": {
-   "data": 24,
-   "representation": 24,
-   "narrative": 21,
-   "technical": 22
+  "boston-ma": {
+    "score": 91,
+    "axes": {
+      "data": 24,
+      "representation": 24,
+      "narrative": 21,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial entry; sexual-assault exclusion disclosed on-screen"
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide — all cities inherit it on next render."
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard — evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
+      },
+      {
+        "date": "2026-07-19",
+        "change": "note 2026-07-19T22:23 (conditional APPROVE: 'if you cannot find any issues with note placement, push to publication'): ran the note-placement QA. Reviewed all 5 annotations via deterministic stills at their mid-fade frames (f5153/6378/7346/8249/8571). Found ONE issue: the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label. FIXED by un-pinning it (dropped config beat:D4) so it renders in the proven-clean granular band; leaderboard shows South End #1 at that moment so spatial context is kept; re-rendered still confirms the label is legible and the note clears the timeline title. All 5 now place cleanly -> videos/boston-ma/qa.json notePlacement=pass. +1 representation (23->24), the clarity axis this defect sat on. Publication NOT greenlit: an issue WAS found (owner's condition unmet) and, independently, the exported mp4 predates the fix, so the re-render blocker is RETAINED. No narrative bump (this conditional approve is the same 22:22 sign-off, already counted; not double-inflated)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:47): crime-only framing UNMISSABLE — service/non-crime shown as dimmed '(context) 47,570' separate from Group A (persons+property+society); Boston University landmark label CLEAR/un-occluded at t190 (South-End-note re-pin fix present); annotations on distinct empty-band slate panels. Service-framing blocker RESOLVED. NOTE: mp4 re-rendered AFTER owner's 22:23 approve → approval STALE by design → verify light owner-gated pending re-approval. Score unchanged. [blockers cleared: 1]"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note 2026-07-20T15:17 (APPROVE): owner RE-APPROVED Boston on the review page after the 2026-07-20 00:47 re-render — the exact re-approval the producer gated on ('verify light owner-gated pending re-approval'). The current mp4 (dated 2026-07-20 00:47, encode-verified in the entry above) contains the seamExplain + empty-band annotation placement + South-End D4 un-pin, so this sign-off now covers the ENCODED cut, not just design intent. RECONCILED the drift the operations critic flagged (an APPROVE that satisfies a blocker must strip it): cleared the stale 're-render to pick up seamExplain + annotation fix + South-End un-pin' blocker — its artifact condition is met AND the gating re-approval has landed. Verify light legitimately owner-on for the current cut. Score held at 91 — the design gains (seamExplain=+narrative, South-End=+representation) were already counted on the 22:22/22:23 approves; this re-approval confirms the encode matches, so no new axis gain and no double-inflation. Remaining advisory blocker: full watch-through with audio not yet logged (separate manual gate; NOT auto-cleared by an approve — that broader reconciliation is the open operations-critic note)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 2cc6682d9208. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note 2026-07-20T22:41 (APPROVE): owner APPROVED Boston again — recorded as evidence. This sign-off lands AFTER the d829e57 countTerm re-render (render.lock renderedAt 2026-07-20T20:30:20Z), so unlike the 15:17 re-approval (which covered the 00:47 cut that STILL showed the NIBRS term 'Group A' on a non-NIBRS Boston source), it validates the CURRENT encoded cut whose on-screen counted-term is the honest 'reported'. Drift-catch per playbook: extracted two stills from the shipped mp4 (out/boston-ma.mp4, render.lock commit d829e57, sha256 2cc6682d9208…) — t=200 top-right reads 'REPORTED · TOTAL SINCE 2021' + 'BUSIEST NEIGHBORHOODS · REPORTED TO DATE' + 'REPORTED INCIDENTS PER MONTH'; t=307 reveal reads '…reported crimes (persons + property + society) over 60 months', safest=Charlestown (2,240 — a real residential district, not a near-empty polygon), busiest=South End. ZERO 'GROUP A' anywhere → the encode matches what was approved. Verify light legitimately owner-on for the current countTerm cut; this re-approval closes the latent staleness where the label flipped Group A→reported after the 15:17 approve without a re-gate. Score held at 91 — countTerm is a label-baked-at-render honesty fix (no score change per convention) and the design gains (narrative/representation) were already counted on the 22:22/22:23/15:17 approves, so no new axis gain and no double-inflation. Remaining advisory blocker RETAINED: full watch-through with audio not yet logged (separate manual gate; NOT auto-cleared by an approve — that broader reconciliation is the open operations-critic note). Did NOT publish."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial entry; sexual-assault exclusion disclosed on-screen"
-   },
-   {
-    "date": "2026-07-19",
-    "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide — all cities inherit it on next render."
-   },
-   {
-    "date": "2026-07-19",
-    "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard — evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
-   },
-   {
-    "date": "2026-07-19",
-    "change": "note 2026-07-19T22:23 (conditional APPROVE: 'if you cannot find any issues with note placement, push to publication'): ran the note-placement QA. Reviewed all 5 annotations via deterministic stills at their mid-fade frames (f5153/6378/7346/8249/8571). Found ONE issue: the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label. FIXED by un-pinning it (dropped config beat:D4) so it renders in the proven-clean granular band; leaderboard shows South End #1 at that moment so spatial context is kept; re-rendered still confirms the label is legible and the note clears the timeline title. All 5 now place cleanly -> videos/boston-ma/qa.json notePlacement=pass. +1 representation (23->24), the clarity axis this defect sat on. Publication NOT greenlit: an issue WAS found (owner's condition unmet) and, independently, the exported mp4 predates the fix, so the re-render blocker is RETAINED. No narrative bump (this conditional approve is the same 22:22 sign-off, already counted; not double-inflated)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:47): crime-only framing UNMISSABLE — service/non-crime shown as dimmed '(context) 47,570' separate from Group A (persons+property+society); Boston University landmark label CLEAR/un-occluded at t190 (South-End-note re-pin fix present); annotations on distinct empty-band slate panels. Service-framing blocker RESOLVED. NOTE: mp4 re-rendered AFTER owner's 22:23 approve → approval STALE by design → verify light owner-gated pending re-approval. Score unchanged. [blockers cleared: 1]"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note 2026-07-20T15:17 (APPROVE): owner RE-APPROVED Boston on the review page after the 2026-07-20 00:47 re-render — the exact re-approval the producer gated on ('verify light owner-gated pending re-approval'). The current mp4 (dated 2026-07-20 00:47, encode-verified in the entry above) contains the seamExplain + empty-band annotation placement + South-End D4 un-pin, so this sign-off now covers the ENCODED cut, not just design intent. RECONCILED the drift the operations critic flagged (an APPROVE that satisfies a blocker must strip it): cleared the stale 're-render to pick up seamExplain + annotation fix + South-End un-pin' blocker — its artifact condition is met AND the gating re-approval has landed. Verify light legitimately owner-on for the current cut. Score held at 91 — the design gains (seamExplain=+narrative, South-End=+representation) were already counted on the 22:22/22:23 approves; this re-approval confirms the encode matches, so no new axis gain and no double-inflation. Remaining advisory blocker: full watch-through with audio not yet logged (separate manual gate; NOT auto-cleared by an approve — that broader reconciliation is the open operations-critic note)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 2cc6682d9208. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note 2026-07-20T22:41 (APPROVE): owner APPROVED Boston again — recorded as evidence. This sign-off lands AFTER the d829e57 countTerm re-render (render.lock renderedAt 2026-07-20T20:30:20Z), so unlike the 15:17 re-approval (which covered the 00:47 cut that STILL showed the NIBRS term 'Group A' on a non-NIBRS Boston source), it validates the CURRENT encoded cut whose on-screen counted-term is the honest 'reported'. Drift-catch per playbook: extracted two stills from the shipped mp4 (out/boston-ma.mp4, render.lock commit d829e57, sha256 2cc6682d9208…) — t=200 top-right reads 'REPORTED · TOTAL SINCE 2021' + 'BUSIEST NEIGHBORHOODS · REPORTED TO DATE' + 'REPORTED INCIDENTS PER MONTH'; t=307 reveal reads '…reported crimes (persons + property + society) over 60 months', safest=Charlestown (2,240 — a real residential district, not a near-empty polygon), busiest=South End. ZERO 'GROUP A' anywhere → the encode matches what was approved. Verify light legitimately owner-on for the current countTerm cut; this re-approval closes the latent staleness where the label flipped Group A→reported after the 15:17 approve without a re-gate. Score held at 91 — countTerm is a label-baked-at-render honesty fix (no score change per convention) and the design gains (narrative/representation) were already counted on the 22:22/22:23/15:17 approves, so no new axis gain and no double-inflation. Remaining advisory blocker RETAINED: full watch-through with audio not yet logged (separate manual gate; NOT auto-cleared by an approve — that broader reconciliation is the open operations-critic note). Did NOT publish."
-   }
-  ]
- },
- "philadelphia-pa": {
-  "score": 90,
-  "axes": {
-   "data": 25,
-   "representation": 23,
-   "narrative": 21,
-   "technical": 21
+  "philadelphia-pa": {
+    "score": 90,
+    "axes": {
+      "data": 25,
+      "representation": 23,
+      "narrative": 21,
+      "technical": 21
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial entry; citywide punchline rebuilt after retired-district bias catch"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER verified district-artifact honesty (config + reveal frame t300). Annotations cite ONLY current districts (15th Frankford busiest, 18th Cobbs Creek biggest fall); punchline citywide; historyNotes citywide FBI-era — NO merged/retired district (4th→3rd, 6th→9th, 23rd, code 92) cited anywhere. Reveal leaderboard shows only current districts (busiest 15th/22nd/9th/24th/19th/14th; safest 77th·Airport 4,435 — a real current low-crime district, not a retired artifact); on-screen 'retired districts disclosed · 94.3% mapped to a current district'. No merger artifact surfaces as a false extreme, and the '9th/3rd rise' caution is respected (no rise claim on either). Blocker RESOLVED. Score unchanged (gate = owner watch-through)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha b978d39bcc81. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial entry; citywide punchline rebuilt after retired-district bias catch"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER verified district-artifact honesty (config + reveal frame t300). Annotations cite ONLY current districts (15th Frankford busiest, 18th Cobbs Creek biggest fall); punchline citywide; historyNotes citywide FBI-era — NO merged/retired district (4th→3rd, 6th→9th, 23rd, code 92) cited anywhere. Reveal leaderboard shows only current districts (busiest 15th/22nd/9th/24th/19th/14th; safest 77th·Airport 4,435 — a real current low-crime district, not a retired artifact); on-screen 'retired districts disclosed · 94.3% mapped to a current district'. No merger artifact surfaces as a false extreme, and the '9th/3rd rise' caution is respected (no rise claim on either). Blocker RESOLVED. Score unchanged (gate = owner watch-through)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha b978d39bcc81. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "minneapolis-mn": {
-  "score": 91,
-  "axes": {
-   "data": 25,
-   "representation": 23,
-   "narrative": 21,
-   "technical": 22
+  "minneapolis-mn": {
+    "score": 91,
+    "axes": {
+      "data": 25,
+      "representation": 23,
+      "narrative": 21,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-12",
+        "change": "initial entry; Shots-Fired trend artifact excluded + disclosed"
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: re-rendered @0661c29 (driver wave) + producer frame-verified. seamExplain WHY-THE-JUMP card now PRESENT (t125, city-specific: Minneapolis/MPD NIBRS Group A/2018->2019 measure change) -- was ABSENT (c699529 render predated 8df8b56). 2019=41,473 + '2018: 20,221 -52% from the peak' annotation exact; countTerm 'Group A' correct (no-op); CC0 credit; 330.048s, 0 gaps. Score held at 91 (blocked re-render items resolved; gate = owner watch-through)."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-12",
-    "change": "initial entry; Shots-Fired trend artifact excluded + disclosed"
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "detroit-mi": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "detroit-mi": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "config authored by producer; every on-screen number recomputed from normalized data (factsheet harness): hook -69% (1985 149,954 -> 2016 46,048), busiest month 2024-08=7,385, Downtown busiest, State Fair -55%; refs validated, palette patched, tsc clean, data synced. steps trendStyle, long-fall frame."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −69% (1985 149,954→2016 46,048) steps · busiest Downtown 11,467 / fewest Belle Isle 27 · refLine 2016≈3837/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 2c1f560daed1. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-19",
-    "change": "config authored by producer; every on-screen number recomputed from normalized data (factsheet harness): hook -69% (1985 149,954 -> 2016 46,048), busiest month 2024-08=7,385, Downtown busiest, State Fair -55%; refs validated, palette patched, tsc clean, data synced. steps trendStyle, long-fall frame."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −69% (1985 149,954→2016 46,048) steps · busiest Downtown 11,467 / fewest Belle Isle 27 · refLine 2016≈3837/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 2c1f560daed1. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "denver-co": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "denver-co": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "config authored by producer; numbers recomputed from data: hook -20% (2022 70,227 -> 2025 55,942), FBI U-shape acknowledged (led on recent same-measure decline, not a misleading 40-yr line), Five Points busiest, University Park -53%, window -24%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −20% (2022 70,227→2025 55,942) lollipop · busiest Five Points 17,930 / fewest Wellshire 249 · refLine 2020≈3412/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 9c83a5ba8f60. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-19",
-    "change": "config authored by producer; numbers recomputed from data: hook -20% (2022 70,227 -> 2025 55,942), FBI U-shape acknowledged (led on recent same-measure decline, not a misleading 40-yr line), Five Points busiest, University Park -53%, window -24%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −20% (2022 70,227→2025 55,942) lollipop · busiest Five Points 17,930 / fewest Wellshire 249 · refLine 2020≈3412/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 9c83a5ba8f60. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "milwaukee-wi": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "milwaukee-wi": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "TREND UNBLOCKED + config authored by producer. Seam gap resolved by extending FBI history to real 2005=39,404 (CDE WIMPD0000) so incident era starts 2006, contiguous 1985-2025. Numbers recomputed: hook -44% (2006 61,099 -> 2025 34,281), Old North Milwaukee busiest, Haymarket -60%, window -22%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle, long-fall frame."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −44% (2006 61,099→2025 34,281) lollipop · busiest Old North Milwaukee 7,083 / fewest Zoo 1 (1 no-data area excluded) · refLine 2005≈3284/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: closed the countTerm re-render blocker as a VERIFIED NO-OP and confirmed this render is materially CURRENT (no re-render owed). (1) countTerm: native-NIBRS source, config.copy.countTerm='Group A' == the engine's pre-fix hardcoded default, so the current render already shows the honest term -- verified on a representative native-NIBRS render (atlanta t200: 'GROUP A · TOTAL SINCE', 'BUSIEST NEIGHBORHOODS · GROUP A TO DATE', 'GROUP A INCIDENTS PER MONTH'). (2) seamExplain: the verified city-specific copy.seamExplain (444aaba, 2026-07-19 19:33) is ALSO already baked in -- this render's commit postdates 444aaba; representative memphis t131 shows the full city-specific WHY-THE-JUMP card. (3) The only config change postdating the mp4 is theme.name (engine-ignored -- applyThemeOverrides reads colors/catColors only). Matches the driver's independent content-diff triage (commit 2fd5c83: 'other 7 mtime-stale cities changed only theme.name or countTerm no-op, not re-rendered'). Render is fully honest and current."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-19",
-    "change": "TREND UNBLOCKED + config authored by producer. Seam gap resolved by extending FBI history to real 2005=39,404 (CDE WIMPD0000) so incident era starts 2006, contiguous 1985-2025. Numbers recomputed: hook -44% (2006 61,099 -> 2025 34,281), Old North Milwaukee busiest, Haymarket -60%, window -22%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle, long-fall frame."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −44% (2006 61,099→2025 34,281) lollipop · busiest Old North Milwaukee 7,083 / fewest Zoo 1 (1 no-data area excluded) · refLine 2005≈3284/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "atlanta-ga": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "atlanta-ga": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-19",
+        "change": "note-watcher: resolved critic note 2026-07-19T23:33 (engine-level zero-count 'safest' artifact). ROOT CAUSE: derive.ts hoodRanking was a plain groupATotalAll-desc sort with no data-presence guard, so a spatial-join artifact (allTotal===0, e.g. Atlanta 'Midwest Cascade') could be crowned 'safest'. FIX: hoodRanking now excludes allTotal===0 hoods (true no-data) while keeping genuinely-low-Group-A hoods (allTotal>0) eligible; Reveal caveat discloses the exclusion; tsc clean. SWEEP: scanned all 20 cities — ONLY Atlanta had no-data hoods (3: Bankhead, Englewood Manor, Midwest Cascade); other 19 safest answers unchanged. Atlanta is unrendered, so its first render picks up the fix (pre-fix answer 'Midwest Cascade'[all=0] -> post-fix 'Bankhead Courts'[gA=3])."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer CORRECTION to the 2026-07-19 sweep claim: the full-timeline scan missed window-only zeros. Re-sweep mirroring the render's mapWindowMonths slice (merged PR #4, which supersedes the parallel local fix and adds hoodNoDataCount + conditional caveat): THREE cities affected — atlanta (answer Bankhead Courts:3, caveat '3 areas ... excluded'), milwaukee-wi (Brown Deer Park 0-in-window -> Zoo:1), washington-dc (Observatory Circle 0-in-window -> Rock Creek Park:15; SHIPPED mp4 shows the artifact — blocker added to its entry). Verified via reveal stills ATL/MKE/DET/DEN + ATL quiz still; validate.mjs PASS x5."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer scored to data-verified/unrendered tier (was stub 0/0-axes). Config numbers independently re-verified from data/atlanta-ga/normalized this session: hook -70% gap-safe; trend span 1985-2025 seam 2021 with declared seamGap 2019-2020 (disclosed) — hook cites FBI-era peak, unaffected by placement. data 23, representation 15, narrative 17, technical 9 = 64. Render + zero-count 'safest' fix + music + watch-through remain blockers."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −70% (1989 88,536→2018 26,995) stacked · busiest Downtown 21,248 / fewest Bankhead Courts 3 (ZERO-COUNT 'safest' FIX CONFIRMED — 3 no-data areas excluded, 'no data isn't no crime', not an artifact) · refLine 2018≈2250/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: closed the countTerm re-render blocker as a VERIFIED NO-OP and confirmed this render is materially CURRENT (no re-render owed). (1) countTerm: native-NIBRS source, config.copy.countTerm='Group A' == the engine's pre-fix hardcoded default, so the current render already shows the honest term -- verified on a representative native-NIBRS render (atlanta t200: 'GROUP A · TOTAL SINCE', 'BUSIEST NEIGHBORHOODS · GROUP A TO DATE', 'GROUP A INCIDENTS PER MONTH'). (2) seamExplain: the verified city-specific copy.seamExplain (444aaba, 2026-07-19 19:33) is ALSO already baked in -- this render's commit postdates 444aaba; representative memphis t131 shows the full city-specific WHY-THE-JUMP card. (3) The only config change postdating the mp4 is theme.name (engine-ignored -- applyThemeOverrides reads colors/catColors only). Matches the driver's independent content-diff triage (commit 2fd5c83: 'other 7 mtime-stale cities changed only theme.name or countTerm no-op, not re-rendered'). Render is fully honest and current."
+      }
+    ]
   },
-  "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-19",
-    "change": "note-watcher: resolved critic note 2026-07-19T23:33 (engine-level zero-count 'safest' artifact). ROOT CAUSE: derive.ts hoodRanking was a plain groupATotalAll-desc sort with no data-presence guard, so a spatial-join artifact (allTotal===0, e.g. Atlanta 'Midwest Cascade') could be crowned 'safest'. FIX: hoodRanking now excludes allTotal===0 hoods (true no-data) while keeping genuinely-low-Group-A hoods (allTotal>0) eligible; Reveal caveat discloses the exclusion; tsc clean. SWEEP: scanned all 20 cities — ONLY Atlanta had no-data hoods (3: Bankhead, Englewood Manor, Midwest Cascade); other 19 safest answers unchanged. Atlanta is unrendered, so its first render picks up the fix (pre-fix answer 'Midwest Cascade'[all=0] -> post-fix 'Bankhead Courts'[gA=3])."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "producer CORRECTION to the 2026-07-19 sweep claim: the full-timeline scan missed window-only zeros. Re-sweep mirroring the render's mapWindowMonths slice (merged PR #4, which supersedes the parallel local fix and adds hoodNoDataCount + conditional caveat): THREE cities affected — atlanta (answer Bankhead Courts:3, caveat '3 areas ... excluded'), milwaukee-wi (Brown Deer Park 0-in-window -> Zoo:1), washington-dc (Observatory Circle 0-in-window -> Rock Creek Park:15; SHIPPED mp4 shows the artifact — blocker added to its entry). Verified via reveal stills ATL/MKE/DET/DEN + ATL quiz still; validate.mjs PASS x5."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "producer scored to data-verified/unrendered tier (was stub 0/0-axes). Config numbers independently re-verified from data/atlanta-ga/normalized this session: hook -70% gap-safe; trend span 1985-2025 seam 2021 with declared seamGap 2019-2020 (disclosed) — hook cites FBI-era peak, unaffected by placement. data 23, representation 15, narrative 17, technical 9 = 64. Render + zero-count 'safest' fix + music + watch-through remain blockers."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −70% (1989 88,536→2018 26,995) stacked · busiest Downtown 21,248 / fewest Bankhead Courts 3 (ZERO-COUNT 'safest' FIX CONFIRMED — 3 no-data areas excluded, 'no data isn't no crime', not an artifact) · refLine 2018≈2250/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "buffalo-ny": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "buffalo-ny": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +32% rebound (2022 10,822 -> 2023 14,319) VERIFIED against trend.json; incident-era annuals are CITYWIDE (custom plan, ~2% unmapped disclosed) so the rebound is not a placed-share artifact. steps trendStyle, rebound-and-retreat frame, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook +32% (2022 10,822→2023 14,319; sub discloses 2025 eased to 12,352, 44% below 2007 peak 21,958=−43.7%) steps · busiest North Park 3,873 / fewest First Ward 329 · refLine 2005≈1753/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"major\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"major\" -> on-screen \"MAJOR\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 24c34d1ae713. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +32% rebound (2022 10,822 -> 2023 14,319) VERIFIED against trend.json; incident-era annuals are CITYWIDE (custom plan, ~2% unmapped disclosed) so the rebound is not a placed-share artifact. steps trendStyle, rebound-and-retreat frame, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook +32% (2022 10,822→2023 14,319; sub discloses 2025 eased to 12,352, 44% below 2007 peak 21,958=−43.7%) steps · busiest North Park 3,873 / fewest First Ward 329 · refLine 2005≈1753/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"major\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"major\" -> on-screen \"MAJOR\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 24c34d1ae713. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "cincinnati-oh": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "cincinnati-oh": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -45% (2002 28,803 -> 2019 15,718) VERIFIED; incident-era annuals CITYWIDE (sodaGroupMinDate dedupe plan). trendStyle area->steps this session (matrix D1 balance; unrendered). long-fall frame, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −45% (2002 28,803→2019 15,718) steps · busiest Westwood 12,755 / fewest California 80 · refLine 2019≈1310/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha fb13f8f7e8d3. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -45% (2002 28,803 -> 2019 15,718) VERIFIED; incident-era annuals CITYWIDE (sodaGroupMinDate dedupe plan). trendStyle area->steps this session (matrix D1 balance; unrendered). long-fall frame, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −45% (2002 28,803→2019 15,718) steps · busiest Westwood 12,755 / fewest California 80 · refLine 2019≈1310/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha fb13f8f7e8d3. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "kansas-city-mo": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
+  "kansas-city-mo": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -51% (1991 58,374 -> 2014 28,885) VERIFIED; FBI-era endpoints; incident-era annuals CITYWIDE (dedupe plan; the 2017 false-crater geocoding bug is fixed). bars, long-fall; anchors 3 clean near-twins (chicago/baltimore/nashville). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −51% (1991 58,374→2014 28,885) bars · busiest CBD Downtown 9,240 / fewest Glen Lake 17 · refLine 2014≈2407/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 4c1a2b89183b. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -51% (1991 58,374 -> 2014 28,885) VERIFIED; FBI-era endpoints; incident-era annuals CITYWIDE (dedupe plan; the 2017 false-crater geocoding bug is fixed). bars, long-fall; anchors 3 clean near-twins (chicago/baltimore/nashville). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −51% (1991 58,374→2014 28,885) bars · busiest CBD Downtown 9,240 / fewest Glen Lake 17 · refLine 2014≈2407/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 4c1a2b89183b. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
-   }
-  ]
- },
- "charlotte-nc": {
-  "score": 87,
-  "axes": {
-   "data": 24,
-   "representation": 21,
-   "narrative": 20,
-   "technical": 22
+  "charlotte-nc": {
+    "score": 87,
+    "axes": {
+      "data": 24,
+      "representation": 21,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +/-0% flat (2017 75,042 -> 2025 75,179) VERIFIED; BOTH endpoints are incident-era but placement is administrative (CMPD_PATROL_DIVISION identity join, 99.9%, PROVENANCE 'placed+unplaced==citywide' per month x cat) — drift-resistant; incident series is smooth (68.5k-77.9k band) with no placement cliff, so the flat line is real not an artifact. area, geography-shift, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook ±0% (2017 75,042→2025 75,179, +0.2%/8yr) area · busiest University City 41,058 / fewest Airport 4,039 (division) · refLine 2016≈3626/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: closed the countTerm re-render blocker as a VERIFIED NO-OP and confirmed this render is materially CURRENT (no re-render owed). (1) countTerm: native-NIBRS source, config.copy.countTerm='Group A' == the engine's pre-fix hardcoded default, so the current render already shows the honest term -- verified on a representative native-NIBRS render (atlanta t200: 'GROUP A · TOTAL SINCE', 'BUSIEST NEIGHBORHOODS · GROUP A TO DATE', 'GROUP A INCIDENTS PER MONTH'). (2) seamExplain: the verified city-specific copy.seamExplain (444aaba, 2026-07-19 19:33) is ALSO already baked in -- this render's commit postdates 444aaba; representative memphis t131 shows the full city-specific WHY-THE-JUMP card. (3) The only config change postdating the mp4 is theme.name (engine-ignored -- applyThemeOverrides reads colors/catColors only). Matches the driver's independent content-diff triage (commit 2fd5c83: 'other 7 mtime-stale cities changed only theme.name or countTerm no-op, not re-rendered'). Render is fully honest and current."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +/-0% flat (2017 75,042 -> 2025 75,179) VERIFIED; BOTH endpoints are incident-era but placement is administrative (CMPD_PATROL_DIVISION identity join, 99.9%, PROVENANCE 'placed+unplaced==citywide' per month x cat) — drift-resistant; incident series is smooth (68.5k-77.9k band) with no placement cliff, so the flat line is real not an artifact. area, geography-shift, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook ±0% (2017 75,042→2025 75,179, +0.2%/8yr) area · busiest University City 41,058 / fewest Airport 4,039 (division) · refLine 2016≈3626/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "nashville-tn": {
-  "score": 87,
-  "axes": {
-   "data": 24,
-   "representation": 21,
-   "narrative": 20,
-   "technical": 22
+  "nashville-tn": {
+    "score": 87,
+    "axes": {
+      "data": 24,
+      "representation": 21,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -40% (1996 59,467 -> 2018 35,624) VERIFIED; FBI-era endpoints (not placement-affected). bars, long-fall, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −40% (1996 59,467→2018 35,624) bars · busiest Southeast 39,647 / fewest West 25,932 (precinct) · refLine 2018≈2969/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: closed the countTerm re-render blocker as a VERIFIED NO-OP and confirmed this render is materially CURRENT (no re-render owed). (1) countTerm: native-NIBRS source, config.copy.countTerm='Group A' == the engine's pre-fix hardcoded default, so the current render already shows the honest term -- verified on a representative native-NIBRS render (atlanta t200: 'GROUP A · TOTAL SINCE', 'BUSIEST NEIGHBORHOODS · GROUP A TO DATE', 'GROUP A INCIDENTS PER MONTH'). (2) seamExplain: the verified city-specific copy.seamExplain (444aaba, 2026-07-19 19:33) is ALSO already baked in -- this render's commit postdates 444aaba; representative memphis t131 shows the full city-specific WHY-THE-JUMP card. (3) The only config change postdating the mp4 is theme.name (engine-ignored -- applyThemeOverrides reads colors/catColors only). Matches the driver's independent content-diff triage (commit 2fd5c83: 'other 7 mtime-stale cities changed only theme.name or countTerm no-op, not re-rendered'). Render is fully honest and current."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -40% (1996 59,467 -> 2018 35,624) VERIFIED; FBI-era endpoints (not placement-affected). bars, long-fall, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −40% (1996 59,467→2018 35,624) bars · busiest Southeast 39,647 / fewest West 25,932 (precinct) · refLine 2018≈2969/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "dallas-tx": {
-  "score": 87,
-  "axes": {
-   "data": 24,
-   "representation": 21,
-   "narrative": 20,
-   "technical": 22
+  "dallas-tx": {
+    "score": 87,
+    "axes": {
+      "data": 24,
+      "representation": 21,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -68% (1988 171,772 -> 2014 54,511) VERIFIED; FBI-era endpoints. lollipop, long-fall, zoom hook (target); incident-era rose-then-fell shown honestly in notes. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −68% (1988 171,772→2014 54,511) lollipop · busiest Northeast 60,688 / fewest Downtown-CBD 14,706 (division) · ODC-BY + sex/juvenile exclusions disclosed; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: closed the countTerm re-render blocker as a VERIFIED NO-OP and confirmed this render is materially CURRENT (no re-render owed). (1) countTerm: native-NIBRS source, config.copy.countTerm='Group A' == the engine's pre-fix hardcoded default, so the current render already shows the honest term -- verified on a representative native-NIBRS render (atlanta t200: 'GROUP A · TOTAL SINCE', 'BUSIEST NEIGHBORHOODS · GROUP A TO DATE', 'GROUP A INCIDENTS PER MONTH'). (2) seamExplain: the verified city-specific copy.seamExplain (444aaba, 2026-07-19 19:33) is ALSO already baked in -- this render's commit postdates 444aaba; representative memphis t131 shows the full city-specific WHY-THE-JUMP card. (3) The only config change postdating the mp4 is theme.name (engine-ignored -- applyThemeOverrides reads colors/catColors only). Matches the driver's independent content-diff triage (commit 2fd5c83: 'other 7 mtime-stale cities changed only theme.name or countTerm no-op, not re-rendered'). Render is fully honest and current."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -68% (1988 171,772 -> 2014 54,511) VERIFIED; FBI-era endpoints. lollipop, long-fall, zoom hook (target); incident-era rose-then-fell shown honestly in notes. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −68% (1988 171,772→2014 54,511) lollipop · busiest Northeast 60,688 / fewest Downtown-CBD 14,706 (division) · ODC-BY + sex/juvenile exclusions disclosed; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "memphis-tn": {
-  "score": 87,
-  "axes": {
-   "data": 24,
-   "representation": 21,
-   "narrative": 20,
-   "technical": 22
+  "memphis-tn": {
+    "score": 87,
+    "axes": {
+      "data": 24,
+      "representation": 21,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -32% (2023 106,788 -> 2025 72,843) VERIFIED; BOTH endpoints incident-era but placement is administrative (precinct station area, 98.8%, PROVENANCE identity-validated) — drift-resistant; the decline is smooth (-14.8%, -20.0%) with no placement cliff, so -32% is a real fall not an artifact. stacked, composition-shift (property/MV-theft wave), question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −32% (2023 106,788→2025 72,843) stacked · 'the wave was property crime — 96% of the fall' verified 95.9% on screen · busiest Appling Farms 58,174 / fewest North Main 34,724 (precinct); source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: closed the countTerm re-render blocker as a VERIFIED NO-OP and confirmed this render is materially CURRENT (no re-render owed). (1) countTerm: native-NIBRS source, config.copy.countTerm='Group A' == the engine's pre-fix hardcoded default, so the current render already shows the honest term -- verified on a representative native-NIBRS render (atlanta t200: 'GROUP A · TOTAL SINCE', 'BUSIEST NEIGHBORHOODS · GROUP A TO DATE', 'GROUP A INCIDENTS PER MONTH'). (2) seamExplain: the verified city-specific copy.seamExplain (444aaba, 2026-07-19 19:33) is ALSO already baked in -- this render's commit postdates 444aaba; representative memphis t131 shows the full city-specific WHY-THE-JUMP card. (3) The only config change postdating the mp4 is theme.name (engine-ignored -- applyThemeOverrides reads colors/catColors only). Matches the driver's independent content-diff triage (commit 2fd5c83: 'other 7 mtime-stale cities changed only theme.name or countTerm no-op, not re-rendered'). Render is fully honest and current."
+      }
+    ]
   },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -32% (2023 106,788 -> 2025 72,843) VERIFIED; BOTH endpoints incident-era but placement is administrative (precinct station area, 98.8%, PROVENANCE identity-validated) — drift-resistant; the decline is smooth (-14.8%, -20.0%) with no placement cliff, so -32% is a real fall not an artifact. stacked, composition-shift (property/MV-theft wave), question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −32% (2023 106,788→2025 72,843) stacked · 'the wave was property crime — 96% of the fall' verified 95.9% on screen · busiest Appling Farms 58,174 / fewest North Main 34,724 (precinct); source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- },
- "baltimore-md": {
-  "score": 88,
-  "axes": {
-   "data": 24,
-   "representation": 22,
-   "narrative": 20,
-   "technical": 22
-  },
-  "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"Group A\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
-  ],
-  "history": [
-   {
-    "date": "2026-07-20",
-    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -71% (1995 95,760 -> 2020 28,048) VERIFIED; FBI-era endpoints. 1999 reporting artifact OMITTED+disclosed and 2021 seam gap OMITTED+disclosed (both in seamExplain/PROVENANCE). bars (kept, preserves the clean baltimore<->kansas-city palette twin), long-fall. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −71% (1995 95,760→2020 28,048) bars · busiest Downtown 8,483 / fewest Dundalk Marine Terminal 2 · 1999 broken-FBI-year + 2021 NIBRS-transition gaps VISIBLY LABELED 'Gaps stay gaps, nothing estimated'; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
-   },
-   {
-    "date": "2026-07-20",
-    "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
-   }
-  ]
- }
+  "baltimore-md": {
+    "score": 88,
+    "axes": {
+      "data": 24,
+      "representation": 22,
+      "narrative": 20,
+      "technical": 22
+    },
+    "blockers": [
+      "full end-to-end watch-through with audio not yet logged"
+    ],
+    "history": [
+      {
+        "date": "2026-07-20",
+        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -71% (1995 95,760 -> 2020 28,048) VERIFIED; FBI-era endpoints. 1999 reporting artifact OMITTED+disclosed and 2021 seam gap OMITTED+disclosed (both in seamExplain/PROVENANCE). bars (kept, preserves the clean baltimore<->kansas-city palette twin), long-fall. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −71% (1995 95,760→2020 28,048) bars · busiest Downtown 8,483 / fewest Dundalk Marine Terminal 2 · 1999 broken-FBI-year + 2021 NIBRS-transition gaps VISIBLY LABELED 'Gaps stay gaps, nothing estimated'; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"Group A\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer: closed the countTerm re-render blocker as a VERIFIED NO-OP and confirmed this render is materially CURRENT (no re-render owed). (1) countTerm: native-NIBRS source, config.copy.countTerm='Group A' == the engine's pre-fix hardcoded default, so the current render already shows the honest term -- verified on a representative native-NIBRS render (atlanta t200: 'GROUP A · TOTAL SINCE', 'BUSIEST NEIGHBORHOODS · GROUP A TO DATE', 'GROUP A INCIDENTS PER MONTH'). (2) seamExplain: the verified city-specific copy.seamExplain (444aaba, 2026-07-19 19:33) is ALSO already baked in -- this render's commit postdates 444aaba; representative memphis t131 shows the full city-specific WHY-THE-JUMP card. (3) The only config change postdating the mp4 is theme.name (engine-ignored -- applyThemeOverrides reads colors/catColors only). Matches the driver's independent content-diff triage (commit 2fd5c83: 'other 7 mtime-stale cities changed only theme.name or countTerm no-op, not re-rendered'). Render is fully honest and current."
+      }
+    ]
+  }
 }
