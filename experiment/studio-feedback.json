@@ -200,5 +200,23 @@
     "by": "critic",
     "lens": "videos",
     "text": "<CRITIC/videos> The reveal busiest-list truncates the MOST-emphasized data point — the #1 busiest neighborhood name. Reveal.tsx:81 fixes the label column at `width:240` with `whiteSpace:nowrap;overflow:hidden;textOverflow:ellipsis`, so long friendly names clip. Confirmed ON-SCREEN at ~305s: washington-dc \"Union Station / St…\" (viewer cannot identify the #1 cluster), boston-ma \"Downtown & Beacon …\", philadelphia-pa \"15th · Frankford /…\", atlanta-ga \"Marietta Street Ar…\"; config data shows worse latent cases (san-francisco \"Financial District/South Beach\" 30ch, denver 26ch). The right/safest column is wider and rarely clips, so the asymmetry hides exactly the labels the red #1 bar highlights. Violates owner binding priorities \"every frame self-explanatory\" and \"resident-friendly names\" ([[video-review-priorities]]). Fix (engine, one place, all 20): widen/auto-fit the busiest label column, shrink the font, or two-line-wrap names > ~18ch. Moves goal: clarity/dashboard-satisfaction."
+  },
+  {
+    "at": "2026-07-20T23:10:56Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<SCIENTIST/growth> Re-authorize YouTube in the studio to unlock the analytics scope. Confirmed live this run: the stored refresh_token still grants only 'youtube.upload youtube' (no yt-analytics.readonly), so retention curves, average-view %, watch-time, CTR/impressions, and subscriber-gains all 403. That blocks the ENTIRE deep-learning half of the channel-scientist job -- with 3 videos now live and accruing views, I can read view/like/comment counters but NOT the retention shape or drop-off-vs-phase mapping that should steer batch-2. Code is already ready: OAUTH_SCOPE (pipeline/dashboard/server.mjs:28-29) and auth-youtube.mjs both already request yt-analytics.readonly -- the only missing step is a one-time human consent click a scheduled run can't do. Action: open the studio (localhost:4400) and re-run /oauth/start so a fresh token carries the scope. Consolidates the existing thread (DECISIONS.md D6 + HARNESS 'requested'); recorded in experiment/RESULTS.md as the scope-note of record so no routine re-files it.",
+    "resolved": false,
+    "by": "scientist",
+    "lens": "growth"
+  },
+  {
+    "at": "2026-07-20T23:10:57Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<SCIENTIST/brand> Live title-formula drift on ALL 3 published videos vs BRAND.md. The brand book's title formula is a VERIFIED-STAT HOOK ('City Crime Fell X% Since YYYY -- ..., Mapped', figure matching the on-screen claim). But the live titles (pulled via videos.list this run) are the descriptive no-stat form: boston-ma = 'Boston Crime, 1985-2026 -- Forty Years Mapped, District by District'; washington-dc = 'Washington DC Crime, 1985-2026 -- Forty Years Mapped, Cluster by Cluster'; grand-rapids-mi = 'Grand Rapids Crime, 1985-2026 -- How It Rose, Fell, and Moved | Data Map'. Notably each video's youtube.json titleOptions[0] ALREADY holds a brand-conformant stat-hook (Boston 'Fell 71% From Its 1989 Peak', DC 'Fell 48% From Its 1993 Peak', GR 'Fell 51% Since 1985'). GR was published (22:59Z) AFTER BRAND.md's stat-hook rule was written, so please reconcile which is intended: either move the live titles to the stat-hook form, or update BRAND.md to bless the descriptive style. Reviewer does not decide or touch live videos. NOTE: a formal title A/B to prove which converts is premature -- CTR is unmeasurable until the yt-analytics scope lands (see growth note) and there's no >=3-day baseline yet; this is a consistency flag, not a measurement claim.",
+    "resolved": false,
+    "by": "scientist",
+    "lens": "brand"
   }
 ]
