@@ -141,6 +141,19 @@ open blocker of the form `re-render to pick up …` for that city and confirm/cl
 each against the fresh mp4 (a cheap still per fix), never a running "cleared: 1".
 A `[blockers cleared: 1]` following a render that landed 2+ fixes is a drift smell.
 
+### a LABEL-changing re-render must re-gate verify (flag the prior approve stale), not just clear its blocker  (from boston-ma owner APPROVE 2026-07-20T22:41, resolved by note-watcher)
+When the producer/driver re-renders a city to change ON-SCREEN TEXT (e.g. the countTerm
+relabel Group A→reported), the shipped cut's visible wording diverges from what the owner
+last approved — so the verify light (owner-on from the prior approve) is silently stale.
+The 2026-07-20 00:47 DESIGN re-render correctly stamped 'verify light owner-gated pending
+re-approval'; the d829e57 countTerm re-render (a LABEL change) did NOT, so Boston's verify
+stayed green on a cut showing different text than the 15:17-approved one until the owner
+happened to re-approve at 22:41 (resynced by luck, not by the routine). FIX AT THE PRODUCING
+LAYER: any re-render that alters on-screen copy/labels must flag the prior approve stale
+(re-gate verify) in confidence.json, identically to a layout/design re-render — a label
+re-render whose history note clears the label blocker WITHOUT a verify-restale flag is a
+drift smell (sibling of the 'clear ALL blockers' entry above).
+
 ### title-authoring step must emit ≥2 titleOptions per config  (from channel note 2026-07-20, resolved by note-watcher)
 The producer's title/`youtube.json`-authoring step does not guarantee the
 `titleOptions` field, so 3 late configs (denver-co, detroit-mi, milwaukee-wi)
@@ -432,3 +445,11 @@ publish click" the loud top line of his window. That is now wired: the briefing 
 verbatim from `--flow`, which names the awaiting-publish cities. If the awaiting-publish count keeps
 climbing without a publish across the next 2–3 briefings, that is a signal to escalate (is the studio
 publish button reachable / is Hadi blocked?), not a machine defect.
+
+## 2026-07-20 ~17:00 — ratchet tuning (orchestrator, owner-directed "keep pushing surfacing + fixing")
+Evidence base: 24h telemetry (critic filed 17 commits vs watcher 17 but open-critic pinned at 12-14; 5 consecutive verbose skip-runs = measured waste; 19 review-ready; 2 published).
+- critic: backpressure skips now cost ~nothing (no log/commit/lock — lastRunAt is the record); notes-per-run becomes headroom-aware (target 3, cap 12−openCritic) so the queue fills toward the gate, never past it.
+- note-watcher: ONE ROOT CAUSE per run (was one note) — notes eliminated by the same fix resolve together with shared-fix producerNotes. Raises drain rate without quality loss.
+- harness-improver: new MANDATORY ratchet-health step — measures fill vs drain daily and is AUTHORIZED to retune critic cadence/caps via the scheduler MCP when fill outpaces drain 24h+.
+- channel-manager: uploads parked private >24h generate one owner nudge note (flow's last mile — boston/DC currently private).
+- driver: "stale render" finally defined (mp4 older than config/trend OR open 're-render' blocker) — re-render waves now self-trigger.
