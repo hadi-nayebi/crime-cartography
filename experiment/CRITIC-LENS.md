@@ -20,6 +20,27 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
    one-change engine fix. Over-specifying the exact condition just gives the watcher a
    worse test to override; specify the property, name the sweep.
 
+3. Min-reward exclusion is TIERED, and the watcher's first fix only clears tier 1.
+   The resolved superlative note got `allTotal>0` (excludes EXACT-zero). Re-auditing
+   found the residual: near-empty slivers (1-6 records / 60mo) and non-residential
+   polygons with real counts still get crowned "safest neighborhood" — milwaukee Zoo=1,
+   baltimore Dundalk Marine Terminal=2, atlanta Bankhead Courts=3, philly 77th·Airport=4435.
+   When you see a resolved threshold guard, probe the value JUST ABOVE it — the simplest
+   guard the watcher shipped (==0) leaves the whole near-zero tail. Tiers: exact-zero
+   (fixed) -> near-empty coverage sliver -> non-residential zone (zoo/airport/terminal/park).
+
+4. For any "fewest/safest/most" claim, EXTRACT THE REVEAL FRAME (~305s) and read the
+   crowned unit's NAME — it's a faster artifact-tell than recomputing. "Zoo",
+   "Marine Terminal", "Airport", "State Facility" = non-residential; a 1-2 count = coverage
+   gap. The rendered value (window-bundle groupATotalAll) is what actually ships, and
+   near-empty crowns only surface in the frame, not the config.
+
+5. VERIFY the friendly-name mapping is APPLIED (in the rendered frame) before filing an
+   "opaque codes" note. The raw cell key ("C11","15") is NOT what ships: boston maps
+   A1->"Downtown & Beacon Hill", philly maps 12->"12th · Kingsessing / Elmwood" via
+   neighborhoods.json .map[].name, and the video uses the friendly string. Measure/inspect
+   the DISPLAY string (frame or the .name field), never the data key, or you file a phantom.
+
 ## heuristics — studio
 1. Walk the operator's real path (board → card → detail → publish), not the feature
    list — gaps live between features, not inside them.
@@ -137,3 +158,11 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
    dashboard overhaul committed while I reviewed). Lead notes with function NAMES
    (themeBadge, priorityOf) + line as a hint, and re-grep the file after any
    overhaul/engine commit appears in /api/pulse before filing line-anchored notes.
+
+5. When the DATA looks wrong, the ENGINE often already handles it — extract the actual
+   frame + read the guard's real logic BEFORE filing. This run, two would-be notes died:
+   (a) DC window-zero "Cluster 42" is EXCLUDED + disclaimed by the engine (`allTotal>0`
+   catches it since DC other==0, so window all-cats==groupA==0); (b) boston/philly "opaque
+   codes" — the friendly-name map is applied in the render. Both looked filable from the
+   data alone; the frame/logic refuted them. Cost of over-eager filing = a phantom note the
+   watcher wastes a cycle deflecting. The frame is ground truth; the config/data is a hint.

@@ -172,5 +172,32 @@
     "resolved": false,
     "by": "critic",
     "lens": "infrastructure"
+  },
+  {
+    "at": "2026-07-20T20:52:17.967Z",
+    "kind": "comment",
+    "videoTime": null,
+    "resolved": false,
+    "by": "critic",
+    "lens": "videos",
+    "text": "<CRITIC/videos> The \"fewest/safest\" reveal crowns NEAR-EMPTY, non-residential polygons as \"the safest neighborhood\" — a coverage/land-use artifact reading as safety. derive.ts:205 filters `.filter(h=>h.allTotal>0)` (excludes ONLY exactly-zero units; the reveal even disclaims \"N areas with no mapped records excluded\"), but that floor is too low: units with 1-6 records over 60 months still get crowned. Confirmed ON-SCREEN at ~305s: milwaukee-wi \"Zoo\"=1 & \"Jones' Island\"=2 (a zoo + an industrial port island); baltimore-md \"Dundalk Marine Terminal\"=2 (a shipping pier — no exclusion-disclaimer shown since it has no exact-zero units); atlanta-ga \"Bankhead Courts\"=3 / \"State Facility\"=6; land-use variant with real counts: philadelphia-pa \"77th · Airport\"=4,435 & charlotte-nc \"Airport\". A viewer concludes \"Baltimore's safest neighborhood is the Dundalk Marine Terminal\" — an uninhabited pier. This EXTENDS the resolved allTotal>0 fix (necessary but insufficient): the exact-zero guard should carry a meaningful-sample floor OR exclude non-residential/near-empty polygons from any min-reward ranking (naming the property, not the exact predicate; watcher picks the mechanism). Sweep all 20 — recurs wherever the neighborhood layer includes zoos/airports/terminals/parks/industrial slivers. Moves goal: video honesty at confidence 100."
+  },
+  {
+    "at": "2026-07-20T20:52:17.967Z",
+    "kind": "comment",
+    "videoTime": null,
+    "resolved": false,
+    "by": "critic",
+    "lens": "videos",
+    "text": "<CRITIC/videos> Reveal + Counters hardcode the category breakdown \"(persons + property + society)\" even for cities whose source reports ZERO society crimes, implying a crime class the source never publishes. Reveal.tsx:62-63 renders `{term} crimes (persons + property + society) over {months} months`; Counters.tsx:54 renders `persons + property + society · cumulative`. society catTotal==0 for buffalo-ny (its config even states \"no drug, weapon, or vice offenses\") and washington-dc (recomputed from data/<slug>/normalized/summary.json this run: society=0 for both). The Counters panel already handles this correctly (shows \"Crimes Against Society 0\" + \"Other (none in source) (context)\") — but the Reveal parenthetical has no such disclosure, so a Buffalo viewer sees \"society\" listed as if counted. Same label-truth vein as the resolved Group-A hardcode. Fix: derive the enumerated categories from the city NON-ZERO catTotals (buffalo/washdc -> \"persons + property\"), or mirror Counters' \"(none in source)\" tag. Engine-level, one change, affects the 2 zero-society cities. Moves goal: honesty/label truth."
+  },
+  {
+    "at": "2026-07-20T20:52:17.967Z",
+    "kind": "comment",
+    "videoTime": null,
+    "resolved": false,
+    "by": "critic",
+    "lens": "videos",
+    "text": "<CRITIC/videos> The reveal busiest-list truncates the MOST-emphasized data point — the #1 busiest neighborhood name. Reveal.tsx:81 fixes the label column at `width:240` with `whiteSpace:nowrap;overflow:hidden;textOverflow:ellipsis`, so long friendly names clip. Confirmed ON-SCREEN at ~305s: washington-dc \"Union Station / St…\" (viewer cannot identify the #1 cluster), boston-ma \"Downtown & Beacon …\", philadelphia-pa \"15th · Frankford /…\", atlanta-ga \"Marietta Street Ar…\"; config data shows worse latent cases (san-francisco \"Financial District/South Beach\" 30ch, denver 26ch). The right/safest column is wider and rarely clips, so the asymmetry hides exactly the labels the red #1 bar highlights. Violates owner binding priorities \"every frame self-explanatory\" and \"resident-friendly names\" ([[video-review-priorities]]). Fix (engine, one place, all 20): widen/auto-fit the busiest label column, shrink the font, or two-line-wrap names > ~18ch. Moves goal: clarity/dashboard-satisfaction."
   }
 ]
