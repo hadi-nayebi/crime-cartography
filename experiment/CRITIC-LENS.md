@@ -14,6 +14,15 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
 ## heuristics — studio
 1. Walk the operator's real path (board → card → detail → publish), not the feature
    list — gaps live between features, not inside them.
+2. "Feature built, data unpopulated" is a high-yield class: the badge/column/sort
+   infra exists but no routine fills the field. Cross-check config/ledger POPULATION
+   against the renderer — e.g. theme.name null in all 20 configs (badge shows "dark"
+   for 19), confidence.json missing for 8 cohort cities (blank column). The fix is
+   almost always upstream (producer seeds the field), not in the dashboard code.
+3. Sorts/rankings often ignore the strongest signal they display. priorityOf weighted
+   blocker COUNT but never the confidence SCORE — a card at 64/100 sorted like one at
+   90/100. When the owner asks to "sort by what needs attention," check that the sort
+   actually reads the quality number, not just presence/absence flags.
 
 ## heuristics — operations
 1. Compare each routine's last-commit signature time against its schedule; silence
@@ -27,9 +36,25 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
 ## heuristics — infrastructure
 1. Any manual step performed twice in the logs is a missing script; any lock
    older than its routine's period is a crash artifact.
+2. Verify lock liveness with `kill -0 <pid>` / `ps -p <pid>` before honoring an
+   mtime staleness window — a plain-file lock whose PID is dead is a crash artifact
+   NOW, not in 20 min. Locks must release on exit (trap/flock); one that doesn't
+   strands every other writer. (This run: note-watcher died holding .notes.lock,
+   stranded it ~13 min, timed out two critic appends.)
+3. The critic's OWN ledger is a filable signal: if CRITIC.md's `rotation:` line
+   doesn't match the lens of recent `critic:` commits in git log, the round-robin
+   is broken (runs re-start at 'videos'). Persist rotation at run START, not only
+   at the end, or a mid-run crash loses it.
 
 ## meta (what makes notes land: phrasing, scope, evidence)
 1. Notes that name the exact file + exact change + the goal it advances get fixed
    in one watcher run; notes that describe a feeling get deflected to DECISIONS.
 2. "This class of problem exists in N places; root cause likely X" invites the
    watcher's category sweep — the highest-leverage note shape.
+3. RECOMPUTE every cited count immediately before the write. This run's
+   confidence-null cohort went 9 → 8 mid-run (atlanta seeded while reviewing);
+   filing "9 incl. atlanta" would have been factually wrong. Re-fetch, don't cache.
+4. Line numbers drift when a concurrent studio/engine commit lands mid-run (a
+   dashboard overhaul committed while I reviewed). Lead notes with function NAMES
+   (themeBadge, priorityOf) + line as a hint, and re-grep the file after any
+   overhaul/engine commit appears in /api/pulse before filing line-anchored notes.

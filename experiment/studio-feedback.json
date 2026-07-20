@@ -5,7 +5,7 @@
     "videoTime": null,
     "text": "i want you to add per video card a lower band with different icons such as theme name, (I want you to define different themes for color, light and dark, etc. so each video in this batch is an experiment point; -- and these and other badges we can add to make it easier to see each video meta data; for example, I want all videos to have a check for note placement quality where a subagent must review the video and where notes are added for story telling and approve their placement no being over text, and a different shade of color as the whole background, making it easier to read, videos must acquire this badge if this sub agent cannot flag any issues.) other icons can be other factors, but all in all I clike the current format for the dashboard and each vide card with on and off flags, but make them icon and words only on the hover, and add more some right now shpow the timeline of the production, but more tags for quality, and theme, and other features of the video like, city, vs county, vs state, vs country, etc. and also use a format to sort them by which one I should pay attention first, and when I open a video given the state it is the video page must have where I can input my feedback fit to the stage of the video. do you follow?",
     "resolved": true,
-    "producerNote": "Dashboard rebuilt: card badge band (icon-only, label on hover) for scope (city/county/state/country), theme (bg+category swatch, light/dark mode), chart style, note-placement QA (reads videos/<slug>/qa.json; 'unreviewed' until reviewer routine runs \u2014 requested in HARNESS.md), open-notes, published; kept the production timeline strip. Added attention-first sort (Priority/Stage/Name) with per-card reason + accent, and stage-fit feedback on the video page (pre-render: Add note/Flag blocker; review: timestamped comment + Approve/Hold/Request changes; published: post-publish + re-cut). Verified live via curl + DOM (badges collapse to icons, priority sort, all 3 phase panels). theme.name/scope config-field interpretations logged in DECISIONS.md."
+    "producerNote": "Dashboard rebuilt: card badge band (icon-only, label on hover) for scope (city/county/state/country), theme (bg+category swatch, light/dark mode), chart style, note-placement QA (reads videos/<slug>/qa.json; 'unreviewed' until reviewer routine runs — requested in HARNESS.md), open-notes, published; kept the production timeline strip. Added attention-first sort (Priority/Stage/Name) with per-card reason + accent, and stage-fit feedback on the video page (pre-render: Add note/Flag blocker; review: timestamped comment + Approve/Hold/Request changes; published: post-publish + re-cut). Verified live via curl + DOM (badges collapse to icons, priority sort, all 3 phase panels). theme.name/scope config-field interpretations logged in DECISIONS.md."
   },
   {
     "at": "2026-07-19T22:42:35.721Z",
@@ -13,7 +13,7 @@
     "videoTime": null,
     "text": "when I am in a video page, the left and right and also the must be an arrow to move between videos,",
     "resolved": true,
-    "producerNote": "Added prev/next navigation on the video detail page: a \u2039prev \u00b7 N/total \u00b7 next\u203a bar top-right, plus keyboard \u2190/\u2192 arrows (Esc = back). Arrows walk the board's current filter+sort order, disable at the ends, and are ignored while typing in a feedback field or when the video is focused (native scrub wins). Verified live in-browser: on-screen buttons and keyboard both switch videos, position/boundary/guard all correct."
+    "producerNote": "Added prev/next navigation on the video detail page: a ‹prev · N/total · next› bar top-right, plus keyboard ←/→ arrows (Esc = back). Arrows walk the board's current filter+sort order, disable at the ends, and are ignored while typing in a feedback field or when the video is focused (native scrub wins). Verified live in-browser: on-screen buttons and keyboard both switch videos, position/boundary/guard all correct."
   },
   {
     "at": "2026-07-19T22:43:29.864Z",
@@ -21,15 +21,51 @@
     "videoTime": null,
     "text": "the publish button should appear only if all lights are green.\nand how verify light muts be flipped by me manually.",
     "resolved": true,
-    "producerNote": "Made the verify light a MANUAL-only flip and gated Publish on it. Removed both auto-verify paths (confidence \u226595 & zero blockers) in server.mjs catalog() and gateOf() \u2014 verified now flips ONLY on the operator's fresh APPROVE; the confidence ledger is advisory (still shown, never flips the light). The card/review Publish button already required all 7 pre-publish lights green, so it now appears only after you approve; the server publish gate enforces the same (412 'verify is a manual light \u2014 Approve the current cut first' with no upload). UI: relabeled Approve \u2192 'Approve \u2192 flip verify' (Hold/Request-changes 'keep it off'), review hint explains the manual flip, added a 'verify light (manual)' status line to the detail meta, and updated the publish-modal gate text. Verified live via curl: only boston-ma (manually approved) is verified/allGreen; washington-dc (conf 91, unapproved) is blocked; client JS parses; only boston-ma's card shows the Publish button."
+    "producerNote": "Made the verify light a MANUAL-only flip and gated Publish on it. Removed both auto-verify paths (confidence ≥95 & zero blockers) in server.mjs catalog() and gateOf() — verified now flips ONLY on the operator's fresh APPROVE; the confidence ledger is advisory (still shown, never flips the light). The card/review Publish button already required all 7 pre-publish lights green, so it now appears only after you approve; the server publish gate enforces the same (412 'verify is a manual light — Approve the current cut first' with no upload). UI: relabeled Approve → 'Approve → flip verify' (Hold/Request-changes 'keep it off'), review hint explains the manual flip, added a 'verify light (manual)' status line to the detail meta, and updated the publish-modal gate text. Verified live via curl: only boston-ma (manually approved) is verified/allGreen; washington-dc (conf 91, unapproved) is blocked; client JS parses; only boston-ma's card shows the Publish button."
   },
   {
     "at": "2026-07-19T23:45:34Z",
     "kind": "comment",
     "videoTime": null,
-    "text": "<CRITIC/videos> Engine: Quiz.tsx hardcodes the term 'Group A' in its sub-line \u2014 factually loose for Buffalo (source = 10 major offense types, not NIBRS) and Cincinnati (STARS Part 1/2 taxonomy). Proposed change: pass the city's own counting-term through config copy (e.g. copy.countTermShort, default 'Group A') and use it in Quiz + any other hardcoded occurrences (grep the engine). Why: taxonomy honesty \u2014 a video must never label a city's data with a standard it doesn't use. Sweep: grep surface/remotion/src for 'Group A' and route every occurrence through config.",
+    "text": "<CRITIC/videos> Engine: Quiz.tsx hardcodes the term 'Group A' in its sub-line — factually loose for Buffalo (source = 10 major offense types, not NIBRS) and Cincinnati (STARS Part 1/2 taxonomy). Proposed change: pass the city's own counting-term through config copy (e.g. copy.countTermShort, default 'Group A') and use it in Quiz + any other hardcoded occurrences (grep the engine). Why: taxonomy honesty — a video must never label a city's data with a standard it doesn't use. Sweep: grep surface/remotion/src for 'Group A' and route every occurrence through config.",
     "resolved": false,
     "by": "critic",
     "lens": "videos"
+  },
+  {
+    "at": "2026-07-20T00:01:57Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/studio> theme.name is null in ALL 20 configs (0/20 set; grand-rapids-mi has no theme block at all), so the dashboard theme badge (themeBadge index.html:408-413, fed by themeSummary server.mjs:52-64) falls back to the derived mode: 19 of 20 cards show an identical 'dark' badge and grand-rapids shows none. DECISIONS.md:48-52 prescribes adding theme.name (e.g. 'ember'), and the owner asked (studio note 2026-07-19T21:18) for each video to be a distinct theme 'experiment point' -- currently indistinguishable, and the batch is 19 dark / 0 light / 1 unset so the light/dark axis the owner wanted to compare is untested. Proposed change: define a short theme-name vocabulary in DECISIONS.md and have the producer set theme.name (plus >=1 mode:light config per wave) when authoring a config; give grand-rapids a theme block for parity. Why: makes the batch legible as experiment points and completes the owner's dashboard request.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "studio"
+  },
+  {
+    "at": "2026-07-20T00:01:57Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/studio> 8 of 20 configs -- baltimore-md, buffalo-ny, charlotte-nc, cincinnati-oh, dallas-tx, kansas-city-mo, memphis-tn, nashville-tn -- have NO entry in experiment/confidence.json (atlanta-ga was just seeded by hand, evidence the gap is real and being back-filled ad hoc). catalog() (server.mjs:162, row.confidence = ledger[slug] ?? null) then reports confidence=null and the dashboard shows no score/blocker signal for these cohort cities; priorityOf (server.mjs:142) can only weight blocker COUNT, so they sort blind to readiness. Root cause: the producer routine lands config/trend/basemap but never seeds a confidence entry, so someone patches them in later one by one. Proposed change: producer seeds a baseline confidence.json entry (score + zeroed axes + an 'awaiting first review' blocker) when it commits a config, AND/OR the dashboard renders an explicit 'no ledger -- needs first review' chip instead of silent null. Why: batch-1 must publish within days and a blank confidence column hides which cohort cities are actually close.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "studio"
+  },
+  {
+    "at": "2026-07-20T00:01:57Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/studio> The attention-first sort ignores confidence SCORE. priorityOf (server.mjs:132-146) reads only r.confidence.blockers.length (line 142), never r.confidence.score, so denver-co / detroit-mi / milwaukee-wi at score 64/100 (4 blockers each) sort identically to a hypothetical 90/100 + 4-blocker city -- the sort can't distinguish 'far from ready' from 'nearly ready with paperwork'. The owner explicitly asked to 'sort them by which one I should pay attention first' (studio note 2026-07-19T21:18). Proposed change: add a priority term for a low ledger score (e.g. weight scaled by (publishBar - score) once stage >= config, and surface reason like 'confidence 64/100 -- below bar'). Why: makes the exact feature the owner requested reflect the strongest quality signal we already compute.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "studio"
+  },
+  {
+    "at": "2026-07-20T00:01:57Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/infrastructure> .notes.lock is not crash-safe AND is held too long. Observed: note-watcher pid=3495231 EXITED without releasing experiment/.notes.lock (process confirmed dead, lock stranded ~13 min); the lock is a plain file with a 20-min mtime-staleness override, so a crash strands ALL note writers for up to 20 min (a critic append timed out twice, 120s + 180s). It is also held across the watcher's entire multi-minute fix cycle, not just the append window. Separately, the critic's rotation ledger isn't persisted: experiment/CRITIC.md still reads 'rotation: lens=none' with an empty '## notes filed' despite 3+ critic notes committed in ~20 min (fd8177b, 65d3e72, 326c9b3), so runs re-start at 'videos' and the cross-run dedup fingerprint log is never written. Proposed change: (a) release .notes.lock on exit via trap/flock so crashes don't strand it; (b) narrow the lock hold to only the append; (c) write CRITIC.md rotation-advance + fingerprint at the START of each critic run or guard the finish on it. Why: unblocks concurrent note writers and restores round-robin lens coverage + cross-run dedup.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "infrastructure"
   }
 ]
