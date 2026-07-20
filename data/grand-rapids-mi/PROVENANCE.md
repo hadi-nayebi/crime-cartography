@@ -99,3 +99,14 @@ node pipeline/validate.mjs grand-rapids-mi    # invariants + provenance checks
 ~/.venvs/stableaudio/bin/python pipeline/audio/gen_stable_audio.py --steps 150  # → public/audio/grand-rapids-music-sao.wav
 ```
 Fetched: see `data/grand-rapids-mi/raw/_fetch_meta.json` (GRPD) and `raw/fbi_ucr.json` (FBI UCR) for run timestamps and counts.
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+The incident-era annuals (2023–2025) are sums of the timeline's placed cells.
+Audited against the raw snapshot (same fetch the timeline was built from),
+citywide Group A per year vs placed: 2023 = 16,925 vs 16,449 (97.19% placed),
+2024 = 15,894 vs 15,361 (96.65%), 2025 = 15,890 vs 15,265 (96.07%) — placed
+share drifts 1.1 pp across the era, under the ~2–3 pp materiality bar. Story
+check: 2023→2025 is −7.2% placed-only vs −6.1% citywide (same shape; 2024→2025
+is −0.6% placed vs −0.03% citywide — both read as flat on the chart). Certified
+immaterial; not rebuilt.

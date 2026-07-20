@@ -58,17 +58,49 @@
     "creditsSources": "Sources: Metro Nashville Police Department incident data (2019–present) via the Nashville Open Data Portal & FBI UCR (1985–2018) via the FBI Crime Data Explorer (ORI TN0190100). Precincts: official MNPD Police Precinct Boundaries (9). MNPD publishes one row per offense and victim — rows are deduplicated to incidents (906,703 → 750,423), and 5,467 reports cleared as unfounded are excluded per FBI practice. Coordinates are rounded by the source (~block scale). FBI UCR index crimes and MNPD NIBRS incidents are different measures, shown as two chapters and never equated. Basemap: © OpenStreetMap contributors (ODbL)."
   },
   "historyNotes": [
-    { "atYear": 1996, "text": "1996: the peak — 59,467 index crimes; violent crime peaks the same year at 10,021." },
-    { "atYear": 2014, "text": "2014: 31,006 — the lowest year in the whole FBI record, below even 1985." },
-    { "atYear": 2018, "text": "2018: 35,624 — the last FBI year, down 40% from the 1996 peak; MNPD's own record begins next year." },
-    { "atYear": 2024, "text": "2024: 105,071 — the high point of MNPD's newer, broader count." },
-    { "atYear": 2025, "text": "2025: 95,298 — down 9% from 2024." }
+    {
+      "atYear": 1996,
+      "text": "1996: the peak — 59,467 index crimes; violent crime peaks the same year at 10,021."
+    },
+    {
+      "atYear": 2014,
+      "text": "2014: 31,006 — the lowest year in the whole FBI record, below even 1985."
+    },
+    {
+      "atYear": 2018,
+      "text": "2018: 35,624 — the last FBI year, down 40% from the 1996 peak; MNPD's own record begins next year."
+    },
+    {
+      "atYear": 2023,
+      "text": "2023: 106,719 — the high point of MNPD's newer, broader count."
+    },
+    {
+      "atYear": 2025,
+      "text": "2025: 97,748 — down 8% from the 2023 peak."
+    }
   ],
   "annotations": [
-    { "atMonth": "2021-08", "text": "Every dot is a real reported incident location — published by MNPD, rounded by the source to block scale." },
-    { "atMonth": "2023-07", "text": "July 2023 — the busiest Group A month of the last five years: 5,817." },
-    { "atMonth": "2023-09", "text": "Southeast — Nashville's busiest precinct for reported Group A crime over the last five years.", "beat": "SOUTHEAST" },
-    { "atMonth": "2025-02", "text": "Midtown Hills: down 15% since 2022 — the city's steepest precinct drop.", "beat": "MIDTOWN HILLS" },
-    { "atMonth": "2026-03", "text": "Reported Group A is falling citywide: 58,352 (2022) → 54,809 (2025), −6%." }
+    {
+      "atMonth": "2021-08",
+      "text": "Every dot is a real reported incident location — published by MNPD, rounded by the source to block scale."
+    },
+    {
+      "atMonth": "2023-07",
+      "text": "July 2023 — the busiest Group A month of the last five years: 5,817."
+    },
+    {
+      "atMonth": "2023-09",
+      "text": "Southeast — Nashville's busiest precinct for reported Group A crime over the last five years.",
+      "beat": "SOUTHEAST"
+    },
+    {
+      "atMonth": "2025-02",
+      "text": "Midtown Hills: down 15% since 2022 — the city's steepest precinct drop.",
+      "beat": "MIDTOWN HILLS"
+    },
+    {
+      "atMonth": "2026-03",
+      "text": "Reported Group A on this map: 58,352 (2022) → 54,809 (2025), −6%."
+    }
   ]
 }

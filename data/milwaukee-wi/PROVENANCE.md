@@ -164,3 +164,13 @@ The city's WIBR incident archive begins **2005-02** (there is no January 2005 in
 ```bash
 FBI_API_KEY=… node pipeline/sources/milwaukee-wi.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2006–2025, Group A by first NIBRS code) are sums of the
+timeline's placed (PIP) cells. Re-derived from a full source scan (same first-
+code mapping, bbox and point-in-polygon): placed share 97.85% (2006) rising to
+98.7–99.8% from 2008 (early archive years carry more blank coordinates),
+drift 1.9 pp; replication exact (≤5-record revisions). Direction is
+conservative: 2006→2025 = −43.9% placed-only vs −44.7% citywide. Certified
+immaterial; not rebuilt.

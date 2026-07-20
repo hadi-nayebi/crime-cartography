@@ -1,6 +1,6 @@
 {
-  "note": "UCR index crimes (1985–2018) vs MNPD — reported incidents (NIBRS) (2019+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded.",
-  "fetchedAt": "2026-07-19T00:56:25.153Z",
+  "note": "UCR index crimes (1985–2018) vs MNPD — reported incidents (NIBRS) (2019+) are different measures — compare shapes within an era, not across the seam. Partial current year excluded. Incident-era totals are citywide from the source: distinct incident numbers per local-time year, minus reports recorded Unfounded on a NIBRS Group A code (FBI practice, same convention as the map chapters), including the ~1–3% of incidents without usable published coordinates.",
+  "fetchedAt": "2026-07-20T01:41:22.757Z",
   "seamYear": 2019,
   "eras": [
     {
@@ -325,80 +325,38 @@
     },
     {
       "year": 2019,
-      "total": 98049,
-      "era": "incident",
-      "parts": {
-        "persons": 15742,
-        "property": 39970,
-        "society": 5223,
-        "other": 37114
-      }
+      "total": 98825,
+      "era": "incident"
     },
     {
       "year": 2020,
-      "total": 96512,
-      "era": "incident",
-      "parts": {
-        "persons": 15782,
-        "property": 40469,
-        "society": 3275,
-        "other": 36986
-      }
+      "total": 96595,
+      "era": "incident"
     },
     {
       "year": 2021,
-      "total": 93519,
-      "era": "incident",
-      "parts": {
-        "persons": 16779,
-        "property": 36406,
-        "society": 2863,
-        "other": 37471
-      }
+      "total": 94105,
+      "era": "incident"
     },
     {
       "year": 2022,
-      "total": 96361,
-      "era": "incident",
-      "parts": {
-        "persons": 16689,
-        "property": 38510,
-        "society": 3153,
-        "other": 38009
-      }
+      "total": 97721,
+      "era": "incident"
     },
     {
       "year": 2023,
-      "total": 104905,
-      "era": "incident",
-      "parts": {
-        "persons": 17538,
-        "property": 42539,
-        "society": 3720,
-        "other": 41108
-      }
+      "total": 106719,
+      "era": "incident"
     },
     {
       "year": 2024,
-      "total": 105071,
-      "era": "incident",
-      "parts": {
-        "persons": 18014,
-        "property": 40495,
-        "society": 3334,
-        "other": 43228
-      }
+      "total": 106445,
+      "era": "incident"
     },
     {
       "year": 2025,
-      "total": 95298,
-      "era": "incident",
-      "parts": {
-        "persons": 17165,
-        "property": 34063,
-        "society": 3581,
-        "other": 40489
-      }
+      "total": 97748,
+      "era": "incident"
     }
   ]
 }

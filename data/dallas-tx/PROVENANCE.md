@@ -108,3 +108,11 @@ UCR Summary (Violent/Property) is a **different taxonomy** than the DPD RMS data
 ```bash
 FBI_API_KEY=… node pipeline/sources/dallas-tx.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2015–2025) are sums of the timeline's placed cells. The
+builder validates cells + junk == citywide deduped incidents per month; total
+unplaced (blank-division) incidents are 847 (~0.07%) across the window. Even if
+all 847 fell in one year the placed share would move ≤1.0 pp — under the
+materiality bar by construction. Certified immaterial; not rebuilt.

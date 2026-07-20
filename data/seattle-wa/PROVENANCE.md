@@ -63,8 +63,26 @@ Coordinates in the source are TEXT with sentinels: `REDACTED` (224,493), `-1.0` 
 
 UCR Summary (Violent/Property) is a **different taxonomy** than SPD NIBRS categories — the eras are presented as distinct and bridge at 2017; they are never equated. No monthly or neighborhood detail is implied for 1985–2016.
 
+## Long-arc trend (`trend.json`) — citywide incident-era annuals
+
+The incident-era annual totals in `trend.json` are **citywide, queried straight
+from the source** (`count(*)` offense rows per `offense_date` year, 2008–2025)
+— NOT the sum of the timeline's placed cells. The previous build joined
+citywide 2008–2016 annuals to **placed-only** 2017+ annuals inside one era, and
+the placed share is not stable: measured at the source (2026-07-19), the
+junk/blank-neighborhood rows ("-", UNKNOWN, OOJ, FK ERROR) are **3.28% of
+offenses in 2017–2018 but only 0.6–1.2% in 2019–2025**. The placed-only chart
+therefore showed 2016→2017 as −0.2% where the source says **+3.2%**,
+understated the 2018 peak (89,674 placed vs **92,715 citywide**) and the
+2017→2025 decline (−11.5% placed-only vs **−13.3% citywide**). Fixed
+2026-07-19: 2017–2025 now come from the same citywide `count(*)` series as
+2008–2016 (one measure across the whole era). The map/counter chapters still
+use the placed timeline (98.4% coverage of 2017+ rows, disclosed on screen).
+Rebuild: `node pipeline/build-trend.mjs seattle-wa`.
+
 ## Reproduce
 
 ```bash
 FBI_API_KEY=… node pipeline/sources/seattle-wa.mjs
+node pipeline/build-trend.mjs seattle-wa
 ```

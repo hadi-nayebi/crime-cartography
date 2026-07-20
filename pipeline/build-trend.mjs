@@ -78,6 +78,20 @@ async function sodaGroupMinDate(base, idField, dateField, where) {
   }
   return out;
 }
+// Server-side COUNT(DISTINCT field) on an ArcGIS FeatureServer layer —
+// returnDistinctValues+returnCountOnly returns the count of distinct outField
+// values matching `where`. Used by citywide trend plans whose sources publish
+// offense/victim-level rows (one incident spans several rows).
+async function arcDistinctCount(layerUrl, where, field) {
+  const qs = new URLSearchParams({
+    where, outFields: field, returnDistinctValues: "true",
+    returnCountOnly: "true", returnGeometry: "false", f: "json",
+  }).toString();
+  const j = await getJson(`${layerUrl}/query?${qs}`);
+  if (j.error || !Number.isFinite(j.count))
+    throw new Error(`arcDistinctCount: bad response ${JSON.stringify(j).slice(0, 200)}`);
+  return j.count;
+}
 // annual totals from timeline cells; groupAOnly restricts to persons+property+society.
 // Also accumulates per-category parts (for the "stacked" composition chart style).
 async function timelineAnnual(groupAOnly) {
@@ -145,24 +159,39 @@ const PLANS = {
       note: "UCR index crimes (1986–2000) vs all CPD-recorded incidents (2001+) are different measures — the step at the seam is the measure changing, not a crime wave. Partial current year excluded.",
     };
   },
+  // Seattle: the trend must be CITYWIDE from the source — the old plan joined
+  // citywide 2008–2016 annuals (count(*) at the source) to PLACED-ONLY 2017+
+  // annuals (timeline cells), a mixed measure inside one era. The timeline's
+  // placed cells drop the junk/blank-neighborhood rows ("-", UNKNOWN, OOJ,
+  // FK ERROR), whose share drifts across the era (measured at the source
+  // 2026-07-19: 3.28% of offenses in 2017–2018 vs 0.6–1.2% in 2019–2025), so
+  // the old chart showed 2016→2017 as −0.2% where the source says +3.2%,
+  // understated the 2018 peak (89,674 placed vs 92,715 citywide) and the
+  // 2017→2025 decline (−11.5% placed-only vs −13.3% citywide). Unit is offense
+  // rows (tazs-3rd5 publishes one row per offense) — count(*) per offense_date
+  // year is the citywide series, the same unit the old chart labeled.
   "seattle-wa": async () => {
     const h = JSON.parse(await readFile(join(NORM, "history.json")));
     const fbi = {};
     for (const y of h.years) if (y.year <= 2007) fbi[y.year] = y.total;
-    const extra = await soda("https://data.seattle.gov/resource/tazs-3rd5.json", {
+    const rows = await soda("https://data.seattle.gov/resource/tazs-3rd5.json", {
       "$select": "date_extract_y(offense_date) AS y,count(*) AS n",
-      "$where": "offense_date between '2008-01-01T00:00:00' and '2016-12-31T23:59:59'",
+      "$where": "offense_date >= '2008-01-01T00:00:00' AND offense_date < '2026-01-01T00:00:00'",
       "$group": "y", "$order": "y",
     });
-    const inc = await timelineAnnual(false); // all recorded offenses
-    for (const r of extra) inc[Number(r.y)] = Number(r.n);
+    const inc = {};
+    for (const r of rows) inc[Number(r.y)] = Number(r.n);
     return {
       eras: [
         { key: "fbi", label: "FBI UCR — Violent + Property", from: 1985, to: 2007 },
-        { key: "incident", label: "SPD — all recorded offenses", from: 2008, to: Math.max(...Object.keys(inc).map(Number)) },
+        { key: "incident", label: "SPD — all recorded offenses", from: 2008, to: 2025 },
       ],
       fbi, inc,
-      note: "UCR index crimes (1985–2007) vs all SPD-recorded offenses (2008+) are different measures — the step at the seam is the measure changing, not a crime wave. Partial current year excluded.",
+      note:
+        "UCR index crimes (1985–2007) vs all SPD-recorded offenses (2008+) are different measures — " +
+        "the step at the seam is the measure changing, not a crime wave. Partial current year excluded. " +
+        "Incident-era totals are citywide from the source, including the ~1–3% of 2017+ offenses never " +
+        "mapped to an MCPP neighborhood and all 2008–2016 offenses (the neighborhood field begins 2017).",
     };
   },
 };
@@ -515,7 +544,67 @@ PLANS["milwaukee-wi"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — 
   extendFbi: { ori: "WIMPD0000", toYear: 2005 },
   extraNote: "Group B / other context records excluded from the trend. FBI UCR history extended to 2005 (real CDE full year) because the city's incident archive begins February 2005." });
 PLANS["charlotte-nc"] = genericPlan({ groupAOnly: false, incidentLabel: "CMPD — criminal incidents (NIBRS)" });
-PLANS["nashville-tn"] = genericPlan({ groupAOnly: false, incidentLabel: "MNPD — reported incidents (NIBRS)" });
+// Nashville: the trend must be CITYWIDE from the source — the timeline's placed
+// cells depend on MNPD-published coordinates, whose missing share GROWS across
+// the era (measured at the source 2026-07-19: 0.0–0.8% of counted incidents in
+// 2019–2021 but 1.4–1.7% in 2022–2024 and 2.5% in 2025), so placed-only annuals
+// flip the era's peak (placed peaks 2024: 105,071 > 104,905; citywide peaks
+// 2023: 106,719 > 106,445) and overstate the 2024→2025 decline (−9.3% placed
+// vs −8.2% citywide). The source publishes offense×victim rows; the citywide
+// measure is COUNT(DISTINCT Incident_Number) per Nashville-local year, minus
+// incidents recorded Unfounded on a NIBRS Group A code — the same FBI
+// convention the granular timeline applies (measured 2026-07-19 to match the
+// timeline's placed+unplaced counted totals within 0.06% every year). Year
+// windows are UTC instants of local midnight (Jan 1 is always CST = UTC-6).
+PLANS["nashville-tn"] = async () => {
+  const h = JSON.parse(await readFile(join(NORM, "history.json")));
+  const fbi = {};
+  const parts = {};
+  for (const y of h.years) {
+    fbi[y.year] = y.total;
+    parts[y.year] = { violent: y.violent, property: y.property };
+  }
+  const ARC =
+    "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Metro_Nashville_Police_Department_Incidents_view/FeatureServer/0";
+  // NIBRS Group A codes = every code pipeline/sources/nashville-tn.mjs maps to
+  // persons/property/society (52 codes; everything else — Group B, local
+  // matrix codes, 09C — is `other` and takes no unfounded filter there either).
+  const GROUP_A =
+    "'100','120','200','210','220','240','250','270','280','290','370','510','520','720'," +
+    "'09A','09B','11A','11B','11C','11D','13A','13B','13C','13D','36A','36B','64A','64B'," +
+    "'23A','23B','23C','23D','23E','23F','23G','23H','26A','26B','26C','26D','26E','26F','26G'," +
+    "'35A','35B','39A','39B','39C','39D','40A','40B','40C'";
+  const inc = {};
+  for (let y = 2019; y <= 2025; y++) {
+    const yearWhere =
+      `Incident_Occurred >= TIMESTAMP '${y}-01-01 06:00:00' AND ` +
+      `Incident_Occurred < TIMESTAMP '${y + 1}-01-01 06:00:00'`;
+    const total = await arcDistinctCount(ARC, yearWhere, "Incident_Number");
+    await sleep(500);
+    const unfounded = await arcDistinctCount(
+      ARC,
+      `(${yearWhere}) AND Incident_Status_Code = 'U' AND Offense_NIBRS IN (${GROUP_A})`,
+      "Incident_Number",
+    );
+    await sleep(500);
+    if (!(total > 0) || !(unfounded >= 0) || unfounded >= total)
+      throw new Error(`nashville ${y}: implausible counts total=${total} unfounded=${unfounded}`);
+    inc[y] = total - unfounded;
+  }
+  return {
+    eras: [
+      { key: "fbi", label: "FBI UCR — Violent + Property", from: h.yearMin, to: h.yearMax },
+      { key: "incident", label: "MNPD — reported incidents (NIBRS)", from: 2019, to: 2025 },
+    ],
+    fbi, inc, parts,
+    note:
+      `UCR index crimes (${h.yearMin}–${h.yearMax}) vs MNPD — reported incidents (NIBRS) (2019+) are ` +
+      "different measures — compare shapes within an era, not across the seam. Partial current year excluded. " +
+      "Incident-era totals are citywide from the source: distinct incident numbers per local-time year, minus " +
+      "reports recorded Unfounded on a NIBRS Group A code (FBI practice, same convention as the map chapters), " +
+      "including the ~1–3% of incidents without usable published coordinates.",
+  };
+};
 PLANS["dallas-tx"] = genericPlan({ groupAOnly: false, incidentLabel: "DPD — recorded incidents (NIBRS)",
   extraNote: "Source excludes sexual offenses and juvenile cases entirely — disclosed on screen and in provenance." });
 PLANS["memphis-tn"] = genericPlan({ groupAOnly: true, incidentLabel: "MPD — NIBRS Group A offenses",

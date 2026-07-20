@@ -74,3 +74,13 @@ UCR Summary (Violent/Property) is a **different taxonomy** than MPD's published 
 ```bash
 FBI_API_KEY=… node pipeline/sources/washington-dc.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2008–2025) are sums of the timeline's placed (clustered)
+cells. Measured at the source per yearly layer: placed share is 98.38–98.91% in
+2008–2017 and 99.99–100% from 2018 (the no-cluster rows are concentrated in the
+early years, 407–546/yr); replication exact (placed = trend every year, one
+2024 record revised at the source since fetch). Drift 1.6 pp across the era —
+under the bar, and conservative: the chart's 2008→2025 decline is −28.5%
+placed-only vs −29.6% citywide. Certified immaterial; not rebuilt.

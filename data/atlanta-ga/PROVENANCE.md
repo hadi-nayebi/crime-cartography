@@ -111,3 +111,13 @@ The FBI UCR era ends **2018** (last full-year submission before APD's NIBRS tran
 ```bash
 FBI_API_KEY=… node pipeline/sources/atlanta-ga.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2021–2025) are sums of the timeline's placed
+(neighborhood-named) cells. Measured at the source (grouped by NhoodName per
+NY-local year): placed share 90.15–91.49% (null-name + unmatched-name rows),
+drift 1.34 pp; replication exact. Direction is conservative: 2021→2025 =
++29.3% placed-only vs +31.1% citywide, and every year-over-year step matches
+within 0.9 pp (2025's +19.8% placed vs +20.1% citywide). Certified immaterial;
+not rebuilt.

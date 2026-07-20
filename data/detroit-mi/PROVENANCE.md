@@ -121,3 +121,13 @@ Raw CDE responses are cached under `data/detroit-mi/raw/`. UCR Summary (Violent/
 ```bash
 FBI_API_KEY=… node pipeline/sources/detroit-mi.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2017–2025) are sums of the timeline's placed cells
+(deduped incidents with a neighborhood). Measured at the source with
+COUNT(DISTINCT report_number) per local year, total vs null-neighborhood:
+placed share 98.45–99.40% (low years: 2017 = 98.92%, 2024 = 98.80%, 2025 =
+98.45%), drift ≤0.95 pp; replication exact mod ≤16-record post-fetch revisions.
+Story check: 2017→2025 = −4.51% placed vs −4.05% citywide (same shape).
+Certified immaterial; not rebuilt.

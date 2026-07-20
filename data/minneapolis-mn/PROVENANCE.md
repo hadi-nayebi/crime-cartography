@@ -91,3 +91,11 @@ UCR Summary (Violent/Property) is a **different taxonomy** than MPD NIBRS catego
 ```bash
 FBI_API_KEY=… node pipeline/sources/minneapolis-mn.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2019–2025, NIBRS Group A) are sums of the timeline's
+placed (neighborhood) cells. Measured at the source (grouped by Crime_Against,
+null-neighborhood counted per year): placed share 99.12–99.41%, drift 0.29 pp;
+replication exact (≤2-record post-fetch revisions). Certified immaterial; not
+rebuilt.

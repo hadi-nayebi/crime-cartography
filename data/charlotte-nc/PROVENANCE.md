@@ -246,3 +246,11 @@ agency and its predecessor reporting under that ORI.
 ```bash
 FBI_API_KEY=… node pipeline/sources/charlotte-nc.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2017–2025) are sums of the timeline's placed cells. The
+builder validates placed + unplaced == citywide per month; total unplaced
+incidents (outside the CMPD division polygons) are 895 (~0.13%) across the
+window. Even if all 895 fell in one year the placed share would move ≤1.3 pp —
+under the materiality bar by construction. Certified immaterial; not rebuilt.

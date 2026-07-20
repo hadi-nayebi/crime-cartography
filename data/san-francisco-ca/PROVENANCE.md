@@ -169,3 +169,10 @@ UCR Summary (Violent/Property) is a **different taxonomy** than the SFPD inciden
 ```bash
 FBI_API_KEY=… node pipeline/sources/san-francisco-ca.mjs
 ```
+
+## Long-arc trend — audit note (verified 2026-07-19)
+
+Incident-era annuals in `trend.json` were already **citywide from the source**
+(SODA `count(*)` per year on both dataset generations, including the ~58k
+no-location rows that exist only in the 2018+ dataset) — not sums of the
+timeline's placed cells. Certified CITYWIDE; no placed-share bias applies.

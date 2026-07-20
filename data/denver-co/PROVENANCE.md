@@ -113,3 +113,11 @@ Raw responses are cached under `data/denver-co/raw/`. UCR Summary (Violent/Prope
 ```bash
 FBI_API_KEY=… node pipeline/sources/denver-co.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2021–2025) are sums of the timeline's placed cells. The
+builder validates placed + unplaced == citywide per month; total unplaced
+(no-neighborhood) incidents across the whole window are 338 (~0.1%). Even if
+all 338 fell in a single year the placed share would move ≤0.6 pp — under the
+materiality bar by construction. Certified immaterial; not rebuilt.

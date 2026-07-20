@@ -171,8 +171,26 @@ One dot per placed counted incident (representative row), coordinates exactly as
 
 The CDE response carries both an "… Offenses" and an "… Clearances" series — the script matches the **Offenses** series explicitly and gates on a plausible 1985 violent-crime total (fetched: 3,376). UCR Summary (Violent/Property) is a **different taxonomy** than MNPD NIBRS/TIBRS — the eras are presented as distinct and bridge at 2019; they are never equated. No monthly or precinct detail is implied for 1985–2018. Raw responses cached under `data/nashville-tn/raw/`.
 
+## Long-arc trend (`trend.json`) — citywide incident-era annuals
+
+The incident-era annual totals in `trend.json` are **citywide, queried straight
+from the source**: `COUNT(DISTINCT Incident_Number)` per Nashville-local year
+(2019–2025), minus incidents recorded Unfounded on a NIBRS Group A code (the
+same FBI convention the granular timeline applies) — NOT the sum of the
+timeline's placed cells. Measured at the source (2026-07-19): the share of
+counted incidents **without usable published coordinates grows across the era**
+— 0.0–0.8% in 2019–2021, 1.4–1.7% in 2022–2024, **2.5% in 2025** — so
+placed-only annuals flipped the era's peak (placed peaks 2024: 105,071 >
+104,905; **citywide peaks 2023: 106,719 > 106,445**) and overstated the
+2024→2025 decline (−9.3% placed-only vs **−8.2% citywide**). Fixed 2026-07-19
+with server-side distinct-incident counts (verified to match the timeline's
+placed+unplaced counted totals within 0.06% every year). The map/counter
+chapters still use the placed timeline (98.6% coverage, disclosed on screen).
+Rebuild: `node pipeline/build-trend.mjs nashville-tn`.
+
 ## Reproduce
 
 ```bash
 FBI_API_KEY=… node pipeline/sources/nashville-tn.mjs
+node pipeline/build-trend.mjs nashville-tn
 ```

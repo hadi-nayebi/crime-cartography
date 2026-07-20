@@ -133,3 +133,12 @@ CDE's 1999 series for `MDBPD0000` is a **broken UCR reporting year**: violent 0 
 ```bash
 node pipeline/sources/baltimore-md.mjs   # reads .secrets/fbi_api_key; FBI_API_KEY env overrides
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2022–2025) are sums of the timeline's placed cells. The
+builder validates placed + unplaced == citywide per month; total unplaced
+incidents (no/out-of-bbox/outside-polygon coordinates) are 292 (~0.13%) across
+the window. Even if all 292 fell in one year the placed share would move
+≤0.64 pp — under the materiality bar by construction. Certified immaterial;
+not rebuilt.

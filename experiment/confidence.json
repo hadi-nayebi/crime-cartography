@@ -10,7 +10,7 @@
     },
     "blockers": [
       "full end-to-end watch-through with audio not yet logged",
-      "density-dot mode (no real coords) \u2014 weakest map honesty grade of the batch; revisit copy emphasis",
+      "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis",
       "experiment matrix feature vector not yet assigned"
     ],
     "history": [
@@ -30,7 +30,7 @@
     },
     "blockers": [
       "full watch-through with audio not yet logged",
-      "seam-label/punchline overlap fix rendered? (fix landed post-render \u2014 verify or re-render)",
+      "seam-label/punchline overlap fix rendered? (fix landed post-render — verify or re-render)",
       "experiment matrix feature vector not yet assigned"
     ],
     "history": [
@@ -51,7 +51,8 @@
     "blockers": [
       "full watch-through with audio not yet logged",
       "seam-label/punchline overlap fix rendered? (verify or re-render)",
-      "experiment matrix feature vector not yet assigned"
+      "experiment matrix feature vector not yet assigned",
+      "re-render: trend rebuilt CITYWIDE (audit 2026-07-19 — era mixed citywide 2008-16 with placed-only 2017+; 2018 peak 92,715 was understated, 2017→25 decline is −13.3% not −11.5%) + config annotation/plateau-note text updated — shipped mp4 shows the old chart"
     ],
     "history": [
       {
@@ -70,7 +71,7 @@
     },
     "blockers": [
       "full watch-through with audio not yet logged",
-      "society=0 counter row reads oddly \u2014 consider hiding structurally-empty categories",
+      "society=0 counter row reads oddly — consider hiding structurally-empty categories",
       "experiment matrix feature vector not yet assigned",
       "re-render to pick up seam 'WHY THE JUMP?' explainer + DC-specific seamExplain copy (user feedback 2026-07-18) + verify encode",
       "re-render also picks up the engine zero-count 'safest' fix (PR #4, 2026-07-20): shipped mp4 answers 'Observatory Circle: 0' (no-data polygon — US Naval Observatory); post-fix answer 'Rock Creek Park: 15' + quiz options change; verify reveal frame on re-render (note in feedback.json)"
@@ -100,7 +101,7 @@
     },
     "blockers": [
       "full watch-through with audio not yet logged",
-      "5.4% unmapped rows \u2014 confirm on-screen coverage line wording lands",
+      "5.4% unmapped rows — confirm on-screen coverage line wording lands",
       "experiment matrix feature vector not yet assigned"
     ],
     "history": [
@@ -120,9 +121,9 @@
     },
     "blockers": [
       "full watch-through with audio not yet logged",
-      "58% service/non-crime share \u2014 verify the crime-only framing is unmissable in the map chapter",
+      "58% service/non-crime share — verify the crime-only framing is unmissable in the map chapter",
       "experiment matrix feature vector not yet assigned",
-      "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) + un-pin the 2023-05 South End note from beat D4 to the granular band so it no longer occludes the 'Boston University' landmark label (note 2026-07-19T22:23) \u2014 user feedback 2026-07-19; still-verified via 5 annotation stills (all notes on distinct slate panels in empty bands, no text overlap), awaiting re-render"
+      "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) + un-pin the 2023-05 South End note from beat D4 to the granular band so it no longer occludes the 'Boston University' landmark label (note 2026-07-19T22:23) — user feedback 2026-07-19; still-verified via 5 annotation stills (all notes on distinct slate panels in empty bands, no text overlap), awaiting re-render"
     ],
     "history": [
       {
@@ -131,11 +132,11 @@
       },
       {
         "date": "2026-07-19",
-        "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide \u2014 all cities inherit it on next render."
+        "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide — all cities inherit it on next render."
       },
       {
         "date": "2026-07-19",
-        "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard \u2014 evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
+        "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard — evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
       },
       {
         "date": "2026-07-19",
@@ -153,7 +154,7 @@
     },
     "blockers": [
       "full watch-through with audio not yet logged",
-      "district renumbering artifacts \u2014 confirm no annotation touches merged districts",
+      "district renumbering artifacts — confirm no annotation touches merged districts",
       "experiment matrix feature vector not yet assigned"
     ],
     "history": [

@@ -145,3 +145,14 @@ Raw CDE responses are cached under `data/memphis-tn/raw/`. UCR Summary (Violent/
 ```bash
 FBI_API_KEY=… node pipeline/sources/memphis-tn.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2020–2025, Group A) are sums of the timeline's placed
+(precinct) cells. Measured at the source with COUNT(DISTINCT Crime_ID) per
+local year (Group A filter, station-precinct validity): placed share 99.2–99.4%
+except a 2021–2022 dip to 97.8% (special-unit precinct values like OCU/MEM),
+drift 1.6 pp — under the bar. Story check: endpoint 2020→2025 = −12.62% placed
+vs −12.65% citywide; 2023 stays the era peak in both. The 2022→2023 rise reads
++12.3% placed vs +10.5% citywide (shape unchanged). Certified immaterial; not
+rebuilt.

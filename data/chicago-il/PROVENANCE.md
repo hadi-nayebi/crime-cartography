@@ -95,3 +95,12 @@ Raw pulls land in `data/chicago-il/raw/` (gitignored except
 `_fetch_meta.json`); normalized bundle in `data/chicago-il/normalized/`.
 The script validates everything listed above and exits nonzero on any
 mismatch ("VALIDATION PASS" printed on success).
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2003–2025 from the timeline; 2001–2002 citywide at build
+time) re-checked against a fresh citywide `count(*)` per year at the source:
+every year matches within 0.06% (largest gap 254 records in 2008 ≈ the 1,594
+in-span no-community-area rows plus post-fetch source revisions). Worst-case
+single-year bias bound: 1,594 ⁄ 209,679 ≈ 0.76 pp. Certified immaterial; not
+rebuilt.

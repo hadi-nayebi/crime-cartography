@@ -113,3 +113,10 @@ Raw pulls land in `data/philadelphia-pa/raw/` (gitignored except
 `_fetch_meta.json`); normalized bundle in `data/philadelphia-pa/normalized/`.
 The script validates everything listed above and exits nonzero on any
 mismatch ("VALIDATION PASS" printed on success).
+
+## Long-arc trend — audit note (verified 2026-07-19)
+
+Incident-era annuals in `trend.json` were already **citywide from the source**
+(carto SQL `count(*)` per dispatch year, including districts retired in later
+boundary mergers) — not sums of the timeline's placed cells. Certified
+CITYWIDE; no placed-share bias applies.

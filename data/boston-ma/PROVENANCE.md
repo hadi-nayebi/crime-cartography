@@ -415,3 +415,12 @@ UCR Summary (Violent/Property) is a **different taxonomy** than the BPD incident
 ```bash
 FBI_API_KEY=… node pipeline/sources/boston-ma.mjs
 ```
+
+## Long-arc trend — placed-share audit (verified 2026-07-19)
+
+Incident-era annuals (2016–2025, crime cats only) are sums of the timeline's
+placed (district) cells. Measured at the source (grouped by year × offense ×
+district, same RULES mapping): placed share ranges 98.43–99.70% (dips: 2019 =
+98.96%, 2021 = 98.43%), drift ≤1.3 pp; replication exact. Story check:
+2016→2025 = −36.03% placed vs −36.12% citywide; 2022 stays the era minimum in
+both series. Certified immaterial; not rebuilt.
