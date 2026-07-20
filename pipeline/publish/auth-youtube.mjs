@@ -19,7 +19,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const SECRETS = join(ROOT, ".secrets");
-const SCOPE = "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube";
+const SCOPE = "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly";
 const PORT = 8765;
 
 const cs = JSON.parse(await readFile(join(SECRETS, "youtube_client_secret.json"), "utf8"));

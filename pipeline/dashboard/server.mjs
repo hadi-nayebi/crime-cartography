@@ -26,7 +26,7 @@ const SECRET_PATH = join(SECRETS, "youtube_client_secret.json");
 const TOKEN_PATH = join(SECRETS, "youtube_token.json");
 const GLOBAL_FEEDBACK = join(ROOT, "experiment/studio-feedback.json");
 const OAUTH_SCOPE =
-  "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube";
+  "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly";
 const REDIRECT = `http://localhost:${PORT}/oauth/callback`;
 const pexec = promisify(execFile);
 

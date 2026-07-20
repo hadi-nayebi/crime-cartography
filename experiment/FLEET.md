@@ -31,6 +31,7 @@
 | earth-one-channel-briefing | 8h | The owner's window: flow scoreboard first (review-ready N · awaiting-publish N · published-24h N/6 · starvation status), then decisions needed. Email once gmail auth exists. |
 | harness-improver | 2×/day | The MANAGER LAYER: scheduler truth (enabled flags, lastRunAt), FLOW SLO check + starvation root-cause duty, token-efficiency, routine prompt tuning (logged verbatim). |
 | repo-hygiene-reviewer | daily | Public-repo trust: secrets never leak, the public/private lens grows via owner rulings. |
+| channel-scientist | daily | THE LEARNER: live-video stats + retention (Analytics API) vs the experiment matrix → RESULTS.md; sequential A/B PROPOSALS (owner decides; ≥3-day windows); brand-consistency audits vs BRAND.md. Reviewer tier — never touches live videos. |
 
 ## The STATE LAYER (the fleet's shared memory — owner ruling 2026-07-20)
 A fixed, documented set of files is the fleet's working memory. Every routine
