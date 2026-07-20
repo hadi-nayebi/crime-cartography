@@ -5,6 +5,24 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### title-authoring step must emit ≥2 titleOptions per config  (from channel note 2026-07-20, resolved by note-watcher)
+The producer's title/`youtube.json`-authoring step does not guarantee the
+`titleOptions` field, so 3 late configs (denver-co, detroit-mi, milwaukee-wi)
+shipped with it absent while the other 17 carried 2 — the studio publish modal's
+title picker then had no alternates to offer for those cities. Back-filled all 3
+by hand (2026-07-20): 2 verified alternates each, ≤100 chars, using only the
+city's own producer-verified hook/punchline figures and never crossing the
+FBI↔incident measurement seam. FIX AT THE PRODUCING LAYER so it can't recur: when
+the routine authors a city's `youtube.json`, it must also author (or assert the
+presence of) exactly 2 `titleOptions` — each ≤100 chars, each built only from
+that city's already-verified figures, matching the style of the primary title.
+A cheap guard: a pre-publish check that flags any `youtube.json` with
+`titleOptions.length !== 2` or any option >100 chars. Related but SEPARATE open
+critic note (2026-07-20T15:24, growth): 6 cities park their strong data-led hook
+in `titleOptions[0]` while the generic "Forty Years Mapped" string is the
+PRIMARY `title` — the same routine should default the headline stat/turn to the
+primary title, not options.
+
 ### derived-superlative no-data guard  (from critic note 2026-07-19, resolved by note-watcher)
 Any engine feature that reports a SUPERLATIVE over sparse spatial units — "safest /
 fewest / least / lowest / best" (the min tail of a ranking) — must exclude

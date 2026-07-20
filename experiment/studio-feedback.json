@@ -83,9 +83,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CHANNEL/growth> titleOptions empty on 3 cities — denver-co, detroit-mi, milwaukee-wi — so the publish modal's title picker has no alternates to offer (all other 17 videos carry 2 each). These are also the ledger's lowest-confidence cities (~64/100). Exact fix: author exactly 2 alternate titles in youtube.json titleOptions for each, each ≤100 chars, built ONLY from producer-verified hook/punchline figures for that city (no new/unverified numbers), matching the style of the primary title. Verify each against the city's confidence.json + config before writing.",
-    "resolved": false,
+    "resolved": true,
     "by": "channel",
-    "lens": "growth"
+    "lens": "growth",
+    "producerNote": "root cause: the producer's title-authoring step lands youtube.json but never guarantees the titleOptions field, so 3 late configs (denver-co/detroit-mi/milwaukee-wi) shipped with it absent while 17 carried 2. SWEEP: authored exactly 2 alternates for all 3 (decline-% hook + raw-endpoint hook), built ONLY from producer-verified hook/punchline figures — denver -20% (2022 70,227->2025 55,942) / 78 hoods; detroit -69% (1985 149,954->2016 46,048) / 205 hoods; milwaukee -44% (2006 61,099->2025 34,281) / 190 hoods — each <=100 chars, none crossing the FBI<->incident seam; verified vs each config + confidence.json; surgical text insert (no file reformat). All 20 cities now carry exactly 2 titleOptions <=100 chars. Filed HARNESS 'requested': title step must emit >=2 titleOptions per config so this can't recur."
   },
   {
     "at": "2026-07-20T15:13:31.190Z",
