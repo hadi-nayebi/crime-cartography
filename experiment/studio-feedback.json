@@ -113,5 +113,32 @@
     "lens": "studio",
     "resolved": false,
     "text": "<CRITIC/studio> (surfaced during operations publish-flow review) The publish modal's gatebar states a FALSE verify requirement that contradicts the server AND the server's own error string. index.html:679 tells the operator that a missing 'verified' light means '(confidence X/100, needs ≥95 + zero blockers)' — but server.mjs is explicit that the confidence ledger is 'reported for context but NEVER flips verify' (l.333-334); verified flips ONLY on a fresh manual Approve (l.96,105), and doPublish's OWN error correctly says 'verify is a manual light — Approve the current cut on its review page first' (l.375). So the modal instructs the owner to chase a ≥95 score + zero blockers that have nothing to do with turning the light green — the likely mechanical root of the owner's open Boston notes ('I don't know what is needed / how can I turn on the verify green light / the UX is confusing'). Fix: replace the gatebar's '(confidence …, needs ≥95 + zero blockers)' with the truthful, actionable string the server already uses — 'verify is a manual light — Approve the current cut on this video's review page' — so both publish-path strings agree and the owner has ONE clear action to unblock all 20."
+  },
+  {
+    "at": "2026-07-20T15:24:13Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/growth> Custom-thumbnail is now the LAST unmet publish-quality bar cohort-wide: 0/20 videos have a composed videos/<slug>/thumbnail.jpg (verified — server.mjs:361 `composed` is false for all 20; every city carries only 6 RAW thumbs/ candidate frames). On publish, server.mjs:407-414 copies a single raw frame to thumbnail.jpg, so no city has a DESIGNED thumbnail — and the operator's own spec (videos/boston-ma/feedback.json 2026-07-20T15:18) asks for a COMPOSED thumbnail: 'big key stats + the city map'. No routine produces that. Exact change: add a compose step (pipeline/publish/) that builds thumbnail.jpg per city from the real rendered frames in a stats+map layout, driven by the existing thumbs/ candidates, so all 20 ship an intentional high-CTR thumbnail instead of a random frame. Why: the thumbnail is the #1 pre-click lever and it's the only cohort-wide publish item still at 0/20 — generalizing boston's request into a routine unblocks the whole batch-1 cohort at once.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "growth"
+  },
+  {
+    "at": "2026-07-20T15:24:13Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/growth> The title-authoring step parked each city's strong data-led hook in titleOptions[0] but left a GENERIC 'Forty Years Mapped' string as the primary `title` (the field that actually publishes) for 6 cities: boston-ma, chicago-il, philadelphia-pa, san-francisco-ca, seattle-wa, washington-dc. Each already has its verified hook available as its own option — e.g. boston-ma primary='Boston Crime, 1985-2026 — Forty Years Mapped, District by District' while titleOptions[0]='Boston Crime Fell 71% From Its 1989 Peak…' (recomputed grounded: FBI peak 1989=70,003 -> 2015=20,110 = -71.3%). Every OTHER city already leads with its number; these 6 lead with a bare date range. Exact change: for these 6, promote the data-led titleOptions[0] to primary `title` and demote the generic phrasing into options; and fix the routine so the headline stat/turn is the DEFAULT primary, never parked in options. Why: after the thumbnail, the primary title is the biggest pre-click CTR lever — 6/20 currently bury the surprising number.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "growth"
+  },
+  {
+    "at": "2026-07-20T15:24:13Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CRITIC/growth> 17 of 20 descriptions forfeit the above-title hashtag slot: YouTube renders the FIRST 3 hashtags of a description as clickable links directly above the video title, but 17 cities' first hashtags are only the generic '#CrimeData #DataVisualization #OpenData' with NO city hashtag. Only chicago-il, grand-rapids-mi, seattle-wa prepend a #City. Exact change: in the description-authoring step, prepend #<City> (e.g. #Atlanta) as the first hashtag for all 20 — the city name is already tags[0] in each youtube.json, so zero new data and no honesty risk. Why: the above-title hashtag is a prime local-discovery slot and 'local + crime' is the core search intent for these videos; 17/20 currently waste it on generic terms.",
+    "resolved": false,
+    "by": "critic",
+    "lens": "growth"
   }
 ]

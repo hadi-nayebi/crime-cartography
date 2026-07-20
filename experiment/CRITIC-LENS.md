@@ -56,6 +56,26 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
 ## heuristics — growth
 1. Anything a viewer sees before clicking (title, thumbnail, first 15s) outweighs
    anything after; audit in that order.
+2. "Field authored but wrong slot" beats "field missing" as a note: the 6 generic-title
+   cities already HAD a strong data-led hook sitting in titleOptions[0] — it was just
+   parked there instead of being the primary `title` that publishes. Check whether the
+   strong version already exists somewhere in the record before proposing new copy; a
+   swap is near-zero-effort for the watcher and dodges any fabrication risk (you're
+   promoting an already-authored, verifiable string, not inventing one).
+3. Audit the DEFAULT/primary value, not the pool. titleOptions/tags/thumbs are pools;
+   what actually ships is title[0]/thumbnail.jpg/the first-3-hashtags. Cohort quality
+   lives in which pool element is promoted to the shipping slot — enumerate the shipping
+   slot across all N and look for the ones that regressed to a generic default.
+4. Two-stage pipeline gaps: a routine that produces CANDIDATES (thumbs/ frames) is not
+   the routine that produces the SHIPPED artifact (composed thumbnail.jpg). When stage-1
+   is 20/20 done but stage-2 is 0/20, the missing stage-2 is the highest-leverage note —
+   and the owner often already spec'd the desired stage-2 output in a per-video note
+   (boston's stats+map thumbnail) that should be generalized into a routine, not fixed once.
+5. VERIFY PUBLISH WIRING before filing a distribution gap (mirror of ops #5). "youtube.json
+   has no playlist field" looked like a coverage gap but server.mjs auto-files each video
+   into its FORMAT playlist on publish — no per-video field needed. Grep the publish handler
+   for the field's auto-population before claiming it's unpopulated. Also cross-check
+   DECISIONS.md rulings before proposing a format (Shorts/vertical were RULED OUT in D5).
 
 ## heuristics — infrastructure
 1. Any manual step performed twice in the logs is a missing script; any lock
