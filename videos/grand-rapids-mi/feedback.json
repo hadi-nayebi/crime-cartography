@@ -1,0 +1,10 @@
+[
+  {
+    "at": "2026-07-20T15:30:58.956Z",
+    "kind": "comment",
+    "videoTime": 141.8,
+    "text": "all multi-data charts must have the text box explaining the change as you did in boston video. this must apply to all videos, if the source and measure changes, it must be briefly explained so viewer can read it easily. I don't want to repeat this comment on other videos, fix all with diagrams that have different dataset and colors, do you follow?",
+    "resolved": true,
+    "producerNote": "Yes — swept the WHOLE category, not just grand-rapids. Root cause: the trend seam card (surface/remotion/src/components/FullTrend.tsx) already renders a 'why the jump?' explainer for every city (all 20 trend.json files have a real FBI-index -> city-incident measure seam), BUT its text field copy.seamExplain is OPTIONAL hand-authored copy — 14 cities had a verified city-specific one, 6 did NOT (chicago-il, grand-rapids-mi, minneapolis-mn, philadelphia-pa, san-francisco-ca, seattle-wa) and silently fell back to the generic engine default, which is honest but not city-tailored. SWEEP: authored a verified, city-specific seamExplain for all 6, each grounded ONLY in that city's committed data/<slug>/normalized/trend.json note (e.g. grand-rapids: FBI UCR index crimes through 2022 -> GRPD NIBRS Group A from 2023; the step is the measure widening, not a real jump) and matching Boston's style; surgical text insert after copy.quizQuestion (no JSON reflow), 424-447 chars each (within the proven-rendering range). All 20 cities now carry a verified seamExplain -> every multi-dataset/measure-change chart explains the change. copy is baked at render time, so I added a precise 're-render to pick up verified seamExplain' blocker + history to each of the 6 in experiment/confidence.json (GPU belongs to driver/producer; no score change, advisory). Upstream no-recur filed in experiment/HARNESS.md 'requested': config-authoring must emit a verified seamExplain for any seamed trend (+ pre-render guard)."
+  }
+]

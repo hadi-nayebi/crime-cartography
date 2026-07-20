@@ -52,6 +52,7 @@
     "methodDotsSub": "Every dot is a real reported incident location (block/intersection level). 98.1% map to a neighborhood — the rest counted, disclosed, never invented.",
     "methodFootnote": "FBI UCR (through 2002) and SFPD incident data (2003+) are different measures — shown as two chapters, not one line.",
     "quizQuestion": "Which San Francisco neighborhood is the safest?",
+    "seamExplain": "The ruler changes here — not the city. Through 2002 the gray bars are the FBI's yearly tally of San Francisco's classic “index” crimes — murder, robbery, assault, burglary, theft. From 2003 the figures are every incident SFPD records — a far broader net than the FBI's eight index crimes — so the level steps up because the measure widened, not because crime jumped. Compare the shape within one color, never across the dashed line.",
     "sourceLine": "Data: San Francisco Police Department via DataSF (public domain) · block-level locations",
     "coverageText": "98.1% of records mapped to a neighborhood",
     "creditsSources": "Sources: SFPD incident reports (2003–2018 & 2018–present, ODC-PDDL public domain) via DataSF & FBI UCR (1985–2002) via the FBI Crime Data Explorer. Neighborhoods: DataSF Analysis Neighborhoods; 2003–2017 incidents assigned by their real coordinates. Basemap: © OpenStreetMap contributors (ODbL)."

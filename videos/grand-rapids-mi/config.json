@@ -32,6 +32,7 @@
     "methodDotsSub": "96.7% mapped to 33 beats — the rest counted, disclosed, never invented",
     "methodFootnote": "FBI UCR (through 2022) and GRPD NIBRS (2023+) are different measures — shown as two chapters, not one line.",
     "quizQuestion": "Which neighborhood is Grand Rapids' safest?",
+    "seamExplain": "The ruler changes here — not the city. Through 2022 the gray bars are the FBI's yearly tally of Grand Rapids' classic “index” crimes — murder, robbery, assault, burglary, theft. From 2023 the figures switch to GRPD's NIBRS “Group A” offenses — an incident-based system covering a broader list of crimes — so the level steps up because the measure widened, not because crime jumped. Compare the shape within one color, never across the dashed line.",
     "sourceLine": "Data: GRPD · City of Grand Rapids ArcGIS Hub · aggregated per beat · no incidents plotted",
     "creditsSources": "Sources: Grand Rapids Police Department crime data (2023–) & FBI UCR (2000–2022) via the City of Grand Rapids ArcGIS Hub. Beat polygons: GRPD Service Area Map. Neighborhood names: City of Grand Rapids Neighborhood Areas. Used under the City of Grand Rapids GIS Data Access & Use Constraint Agreement (provided \"as is\"). Basemap (highways & landmarks): © OpenStreetMap contributors (ODbL)."
   },

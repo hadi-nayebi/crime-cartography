@@ -52,6 +52,7 @@
     "methodDotsSub": "Every dot is a real reported incident location (block-level). 94.3% map to a current district — retired districts counted, disclosed, never redistributed.",
     "methodFootnote": "FBI UCR (through 2005) and PPD incident data (2006+) are different measures — shown as two chapters, not one line.",
     "quizQuestion": "Which Philadelphia district is the safest?",
+    "seamExplain": "The ruler changes here — not the city. Through 2005 the gray bars are the FBI's yearly tally of Philadelphia's classic “index” crimes — murder, robbery, assault, burglary, theft. From 2006 the figures are every offense PPD records — a far broader net than the FBI's eight index crimes — so the level steps up because the measure widened, not because crime jumped. Compare the shape within one color, never across the dashed line.",
     "sourceLine": "Data: Philadelphia Police Department via OpenDataPhilly · block-level locations · provided as-is",
     "coverageText": "94.3% mapped to a current district · retired districts disclosed",
     "creditsSources": "Sources: PPD incident data (2006–present) via OpenDataPhilly (City of Philadelphia license, as-is) & FBI UCR (1985–2005) via the FBI Crime Data Explorer. District boundaries: City of Philadelphia; district neighborhood labels derived from real incident locations vs the City's neighborhood layer. Basemap: © OpenStreetMap contributors (ODbL)."

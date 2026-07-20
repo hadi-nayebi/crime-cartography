@@ -10,7 +10,8 @@
   },
   "blockers": [
    "full end-to-end watch-through with audio not yet logged",
-   "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis"
+   "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis",
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
   ],
   "history": [
    {
@@ -20,6 +21,10 @@
    {
     "date": "2026-07-20",
     "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
    }
   ]
  },
@@ -32,7 +37,8 @@
    "technical": 21
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
   ],
   "history": [
    {
@@ -46,6 +52,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER encode-verified the 'seam-label/punchline overlap' concern on the current mp4 (frames t145/t148): seam label '2001 · the measure changes' is cleanly top-centered with no collision; the net-change punchline card ('2001 → 2025: −51%', '485,969 → 237,497 recorded incidents per year · CPD') pops in its own bordered box while the seam label hides — NO visible text overlap. Punchline numbers exact ((485,969−237,497)/485,969 = 51.1%). Resolved via verify (no re-render needed). Score unchanged (gate = owner watch-through). NOTE: chicago mp4 (2026-07-11) predates recent engine polish but shows no defect; not owed a re-render on staleness grounds."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
    }
   ]
  },
@@ -59,7 +69,8 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "seam-label/punchline overlap STILL PRESENT in re-rendered mp4 (producer-verified t146): the net-change punchline card ('1987: 73,369 → 2007: 37,810 · −48% ... the plateau that followed is the next chapter') sits over the seam label '2008 · the measure changes', which bleeds faintly through the translucent card. Layout-dependent (seattle's longer 2-line punchline sub makes the card taller than chicago's, pushing it into the seam label). Needs engine fix (hide/dim seam label when punchline card overlaps, or lower the card) + re-render. NOT owner-gated — engine/driver."
+   "seam-label/punchline overlap STILL PRESENT in re-rendered mp4 (producer-verified t146): the net-change punchline card ('1987: 73,369 → 2007: 37,810 · −48% ... the plateau that followed is the next chapter') sits over the seam label '2008 · the measure changes', which bleeds faintly through the translucent card. Layout-dependent (seattle's longer 2-line punchline sub makes the card taller than chicago's, pushing it into the seam label). Needs engine fix (hide/dim seam label when punchline card overlaps, or lower the card) + re-render. NOT owner-gated — engine/driver.",
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
   ],
   "history": [
    {
@@ -77,6 +88,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER verified the seam-overlap on the re-rendered mp4 (t146): punchline card DOES mildly overlap the '2008 · the measure changes' seam label (label bleeds through the translucent card) — unlike chicago where the seam label hides cleanly. Difference is layout (seattle's 2-line punchline sub → taller card). Blocker RETAINED + sharpened with the exact fix (engine: gate seam-label visibility under the punchline card, or reposition card; then re-render). Otherwise seattle encode is clean (citywide axis 92,715 fix confirmed, honest seam caption, source credit)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
    }
   ]
  },
@@ -128,7 +143,8 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
   ],
   "history": [
    {
@@ -146,6 +162,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER encode-verified the coverage-line wording on the re-rendered mp4 (method card t16): card 03 'Real dots, real places' reads '98.1% map to a neighborhood — the rest counted, disclosed, never invented' (post-accounting-fix, was 96.7%); category totals 260,146+1,508,006+264,153+1,039,285 = 3,071,590 reconcile to corrected totalRecords; honest two-chapter seam note present. Coverage-line-wording blocker RESOLVED. Score unchanged (gate = owner watch-through)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
    }
   ]
  },
@@ -200,7 +220,8 @@
    "technical": 21
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
   ],
   "history": [
    {
@@ -214,6 +235,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER verified district-artifact honesty (config + reveal frame t300). Annotations cite ONLY current districts (15th Frankford busiest, 18th Cobbs Creek biggest fall); punchline citywide; historyNotes citywide FBI-era — NO merged/retired district (4th→3rd, 6th→9th, 23rd, code 92) cited anywhere. Reveal leaderboard shows only current districts (busiest 15th/22nd/9th/24th/19th/14th; safest 77th·Airport 4,435 — a real current low-crime district, not a retired artifact); on-screen 'retired districts disclosed · 94.3% mapped to a current district'. No merger artifact surfaces as a false extreme, and the '9th/3rd rise' caution is respected (no rise claim on either). Blocker RESOLVED. Score unchanged (gate = owner watch-through)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
    }
   ]
  },
@@ -226,7 +251,8 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged"
+   "full watch-through with audio not yet logged",
+   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)"
   ],
   "history": [
    {
@@ -236,6 +262,10 @@
    {
     "date": "2026-07-20",
     "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "note-watcher: authored verified city-specific copy.seamExplain (grounded in this city's trend.json note — FBI index → the city's own incident/NIBRS measure) so the trend seam card no longer falls back to the generic engine default. Re-render blocker added (copy is baked at render time). Part of the batch sweep resolving grand-rapids owner note 2026-07-20T15:30 across all 6 un-authored cities (chicago/grand-rapids/minneapolis/philadelphia/san-francisco/seattle). No score change — advisory until the re-render lands."
    }
   ]
  },

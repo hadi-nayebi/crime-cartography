@@ -52,6 +52,7 @@
     "methodDotsSub": "Every dot is a real reported offense location (block-level). 99.0% map to one of 87 neighborhoods — the rest counted, disclosed, never invented.",
     "methodFootnote": "FBI UCR (through 2018) and MPD NIBRS (2019+) are different measures — shown as two chapters, not one line.",
     "quizQuestion": "Which Minneapolis neighborhood is the safest?",
+    "seamExplain": "The ruler changes here — not the city. Through 2018 the gray bars are the FBI's yearly tally of Minneapolis's classic “index” crimes — murder, robbery, assault, burglary, theft. From 2019 the figures switch to MPD's NIBRS “Group A” offenses — an incident-based system covering a broader list of crimes — so the level steps up because the measure widened, not because crime jumped. Compare the shape within one color, never across the dashed line.",
     "sourceLine": "Data: Minneapolis Police Department via Open Data Minneapolis (CC0) · block-level locations",
     "coverageText": "99.0% of records mapped to a neighborhood",
     "creditsSources": "Sources: MPD NIBRS incident data (2019–present, CC0) via Open Data Minneapolis & FBI UCR (1991–2018) via the FBI Crime Data Explorer (1990 unreported by MPD; earlier years severed by that gap). Neighborhoods: City of Minneapolis. Non-NIBRS context feeds (e.g. Shots Fired Calls, published only from July 2020) are shown as context, never counted as crime. Basemap: © OpenStreetMap contributors (ODbL)."

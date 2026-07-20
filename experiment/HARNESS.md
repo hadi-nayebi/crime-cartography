@@ -5,6 +5,28 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### config-authoring must emit a verified seamExplain for any seamed trend  (from grand-rapids owner note 2026-07-20T15:30, resolved by note-watcher)
+Every city's `trend.json` joins FBI UCR to the city's own incident/NIBRS data at an
+explicit measure seam (all 20 cities have `seamInSpan=YES`), and the engine renders a
+"why the jump?" card at that seam. But `copy.seamExplain` is an OPTIONAL, hand-authored
+field: 14 cities had a verified city-specific string; 6 (chicago-il, grand-rapids-mi,
+minneapolis-mn, philadelphia-pa, san-francisco-ca, seattle-wa) shipped WITHOUT one, so
+`FullTrend.tsx` fell back to the generic engine default ("newer, broader incident-based
+system") — honest but not city-tailored, and slightly loose for the "all recorded
+incidents/offenses" cities that aren't strictly NIBRS. The owner (watching grand-rapids)
+asked that every multi-dataset/measure-change chart briefly explain the change, like
+Boston. Back-filled all 6 by hand (2026-07-20), each grounded in that city's committed
+`trend.json` note. FIX AT THE PRODUCING LAYER so it can't recur: when the config-authoring
+routine lands a city whose `trend.json` has a real seam (`seamYear` within the years span),
+it must also author (or assert the presence of) a verified `copy.seamExplain` — built ONLY
+from that city's provenance facts (the `trend.json` note + eras labels), matching Boston's
+style. Cheap guard: a pre-render check that flags any config whose bundle has a seam but no
+`copy.seamExplain`. SECONDARY (engine safety net, not done here — would need tsc+still and
+is out of scope for this note): the `FullTrend.tsx` generic default asserts "incident-based
+system" for ALL seams; harden it to a measure-neutral phrasing so a future un-authored city
+is never mislabeled — but authored per-city copy is the intended path, the default is only
+a fallback.
+
 ### re-render verify step must clear ALL blockers the render satisfies, not one  (from washington-dc owner APPROVE 2026-07-20, resolved by note-watcher)
 When the producer/driver re-renders a city and encode-verifies the mp4, it clears
 confidence.json blockers by hand — one at a time, from memory. But a SINGLE render
