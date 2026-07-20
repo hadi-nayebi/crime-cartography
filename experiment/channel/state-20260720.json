@@ -1,29 +1,38 @@
 {
   "date": "2026-07-20",
   "run": "youtube-channel-manager daily",
+  "runsToday": [
+    { "at": "10:29", "commit": "6975676", "note": "first run — readiness QA, filed thumbnail + titleOptions gaps" },
+    { "at": "10:45", "note": "scheduled run — live state re-verified (no drift); thumbnail gap resolved intraday (12 batch-1 cities gained candidates); titleOptions gap still open" }
+  ],
   "channel": {
     "id": "UCTsrF3UvpWzSGDXfbnZAWKA",
     "title": "Earth One",
     "subscriberCount": 1,
     "viewCount": 915,
     "videoCount": 6,
-    "note": "The 6 channel videos + 915 lifetime views belong to the pre-existing 'En Vocab as Categories' project, not crime-cartography. This project's cohort is entirely unpublished."
+    "note": "The 6 channel videos + 915 lifetime views belong to the pre-existing 'En Vocab as Categories' project, not crime-cartography. This project's cohort is entirely unpublished. Live GET this run matches the 10:29 snapshot exactly."
   },
   "playlists": [
-    { "id": "PLWw8s8_dq_Co", "title": "US Cities · Crime, Mapped", "itemCount": 0, "privacy": "public", "integrity": "ok" },
+    { "id": "PLWw8s8_dq_Co", "title": "US Cities · Crime, Mapped", "itemCount": 0, "integrity": "ok", "note": "verified live this run" },
     { "id": "PLpW7Sa73DuUxomt3c6w8Dfu3jiMA6KO8y", "title": "En Vocab as Categories", "itemCount": 6, "note": "foreign project; not managed here" }
   ],
   "project": {
     "videosTracked": 20,
     "published": 0,
     "uploadsLast24h": 0,
-    "quotaRemainingToday": 6
+    "quotaRemainingToday": 6,
+    "readiness": {
+      "clearsThumbnailBar": 20,
+      "clearsFullMetadataBar": 20,
+      "openGaps": ["titleOptions empty on denver-co, detroit-mi, milwaukee-wi"]
+    }
   },
   "perVideoState": {
     "_comment": "State-sync (videos.list part=status,statistics,snippet) runs per youtube.json with a videoId. All 20 have videoId=\"\" → nothing to sync this run. Populates once the first upload lands."
   },
   "drift": [],
   "analyticsDeltas": {
-    "_comment": "No prior state file and no published videos → no deltas this run. First real deltas appear after the first publish + a subsequent daily run."
+    "_comment": "No published videos → no deltas this run. First real deltas appear after the first publish + a subsequent daily run."
   }
 }

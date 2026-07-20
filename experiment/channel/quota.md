@@ -4,10 +4,10 @@ Cap model (DECISIONS.md D5): an upload costs ~1,600 units; default daily quota 1
 **~6 uploads/day MAX**. Per FLEET.md this 6/24h is a *ceiling the studio enforces, never a
 target* — publishable videos publish when the owner clicks.
 
-## 2026-07-20 (10:45 daily run)
+## 2026-07-20 (10:45 daily run; re-verifies the 10:29 first run)
 
 - Uploads in the last 24h (counted from `videos/*/youtube.json` `uploadedAt` stamps): **0**
-- Remaining under the ~6/day ceiling: **6**
+- Remaining under the ~6/day ceiling: **6** (unchanged — no publish has occurred)
 - Project videos published to date: **0 / 20** (no `videoId` on any youtube.json)
 - Channel-level: "Earth One" carries 6 pre-existing videos + 915 lifetime views, all from
   the unrelated "En Vocab as Categories" project — NOT crime-cartography. Our cohort is
