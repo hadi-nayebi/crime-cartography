@@ -72,7 +72,8 @@
       "full watch-through with audio not yet logged",
       "society=0 counter row reads oddly \u2014 consider hiding structurally-empty categories",
       "experiment matrix feature vector not yet assigned",
-      "re-render to pick up seam 'WHY THE JUMP?' explainer + DC-specific seamExplain copy (user feedback 2026-07-18) + verify encode"
+      "re-render to pick up seam 'WHY THE JUMP?' explainer + DC-specific seamExplain copy (user feedback 2026-07-18) + verify encode",
+      "re-render also picks up the engine zero-count 'safest' fix (PR #4, 2026-07-20): shipped mp4 answers 'Observatory Circle: 0' (no-data polygon — US Naval Observatory); post-fix answer 'Rock Creek Park: 15' + quiz options change; verify reveal frame on re-render (note in feedback.json)"
     ],
     "history": [
       {
@@ -262,6 +263,10 @@
       {
         "date": "2026-07-19",
         "change": "note-watcher: resolved critic note 2026-07-19T23:33 (engine-level zero-count 'safest' artifact). ROOT CAUSE: derive.ts hoodRanking was a plain groupATotalAll-desc sort with no data-presence guard, so a spatial-join artifact (allTotal===0, e.g. Atlanta 'Midwest Cascade') could be crowned 'safest'. FIX: hoodRanking now excludes allTotal===0 hoods (true no-data) while keeping genuinely-low-Group-A hoods (allTotal>0) eligible; Reveal caveat discloses the exclusion; tsc clean. SWEEP: scanned all 20 cities — ONLY Atlanta had no-data hoods (3: Bankhead, Englewood Manor, Midwest Cascade); other 19 safest answers unchanged. Atlanta is unrendered, so its first render picks up the fix (pre-fix answer 'Midwest Cascade'[all=0] -> post-fix 'Bankhead Courts'[gA=3])."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "producer CORRECTION to the 2026-07-19 sweep claim: the full-timeline scan missed window-only zeros. Re-sweep mirroring the render's mapWindowMonths slice (merged PR #4, which supersedes the parallel local fix and adds hoodNoDataCount + conditional caveat): THREE cities affected — atlanta (answer Bankhead Courts:3, caveat '3 areas ... excluded'), milwaukee-wi (Brown Deer Park 0-in-window -> Zoo:1), washington-dc (Observatory Circle 0-in-window -> Rock Creek Park:15; SHIPPED mp4 shows the artifact — blocker added to its entry). Verified via reveal stills ATL/MKE/DET/DEN + ATL quiz still; validate.mjs PASS x5."
       }
     ]
   }
