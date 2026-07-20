@@ -32,8 +32,7 @@
    "technical": 21
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "seam-label/punchline overlap fix rendered? (fix landed post-render — verify or re-render)"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -43,6 +42,10 @@
    {
     "date": "2026-07-20",
     "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER encode-verified the 'seam-label/punchline overlap' concern on the current mp4 (frames t145/t148): seam label '2001 · the measure changes' is cleanly top-centered with no collision; the net-change punchline card ('2001 → 2025: −51%', '485,969 → 237,497 recorded incidents per year · CPD') pops in its own bordered box while the seam label hides — NO visible text overlap. Punchline numbers exact ((485,969−237,497)/485,969 = 51.1%). Resolved via verify (no re-render needed). Score unchanged (gate = owner watch-through). NOTE: chicago mp4 (2026-07-11) predates recent engine polish but shows no defect; not owed a re-render on staleness grounds."
    }
   ]
  },
