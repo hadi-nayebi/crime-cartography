@@ -8,7 +8,7 @@
   "emphasizeGroupA": true,
   "audioSrc": "audio/cincinnati-oh-music-sao.wav",
   "repoUrl": "github.com/hadi-nayebi/crime-cartography",
-  "trendStyle": "area",
+  "trendStyle": "steps",
   "mapWindowMonths": 60,
   "hook": {
     "stat": "−45%",

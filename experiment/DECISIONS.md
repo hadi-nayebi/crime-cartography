@@ -4,6 +4,52 @@ Non-blocking items the producer resolved with its best judgment, plus a few that
 genuinely want Hadi's taste/eye. Nothing here blocks production; these are logged
 so Hadi can override any call on a watch-through. Newest first.
 
+## 2026-07-20 — experiment matrix assigned (producer)
+
+Built `experiment/matrix.json` — the 7-dimension feature vector for all 20 videos
+(DESIGN.md D1–D7), reconciled with the configs. Every on-screen hook/punchline
+NUMBER was independently re-verified from `data/<slug>/normalized/trend.json` first
+(all 20 exact endpoints check out; the two incident-era hooks that could have been
+distorted by the placed-cells bug — Charlotte's flat line and Memphis's −32% — were
+cleared: both cities place records by *administrative* tag, 99.9% / 98.8%, not by
+geocode, so placed-share doesn't drift, and both series are smooth with no placement
+cliff).
+
+Two calls worth your eye (override freely):
+
+1. **Two D3 story-frame cells sit at 2, not the design's ≥3 — on purpose.**
+   `geography-shift` (Seattle, Charlotte) and `composition-shift` (Memphis, Atlanta)
+   each have only two *honest* members. Batch-1's 20 US cities are genuinely
+   dominated by long-decline stories (the real post-1990s national trend); only two
+   cities each lead on a neighborhood-reshuffle arc or a category-mix arc. I did
+   **not** relabel a trend-led video's frame to fill the grid — honesty invariants
+   outrank the experiment grid (DESIGN.md). `stacked` (D1) also sits at 2 for the
+   same reason: the stacked chart only means something when composition is the
+   story, so `stacked == composition-shift == 2` by design. **Batch-2 action:**
+   deliberately source cities with dominant geography/composition arcs to reach ≥3.
+   Everything else hits ≥3 (D1 steps brought to 3, D2/D4/D5/D6/D7 all balanced).
+
+2. **cincinnati-oh trendStyle area → steps** (the only config field changed this
+   session; no numbers touched). Purely to bring D1 `steps` from 2 to 3. Cincinnati
+   is a "corner" city with no clean near-twin, so nothing breaks; steps reads well
+   on its clean −45% long fall; it's unrendered so there's no re-render cost. I kept
+   **baltimore on bars** (not steps) specifically to preserve the cleanest palette
+   A/B pair in the batch (baltimore ↔ kansas-city differ only in palette+music).
+   Revert to area if you prefer the identity-plan choice.
+
+Design highlights (for context, not decisions): the batch has two **1-dimension**
+near-twins — *boston ↔ milwaukee* isolates music family with everything else equal,
+and *grand-rapids ↔ washington-dc* isolates the story-frame (long-fall vs
+rebound-and-retreat) with everything else equal — plus eight clean 2-dim pairs, so
+each primary dimension is cleanly attributable once retention data lands. Four
+"corner anchor" cities (detroit, charlotte, buffalo, cincinnati) are deliberately
+multi-dimensionally unique but still share every level with ≥2 siblings.
+
+**Engine dependencies flagged in matrix.json:** D2 question/zoom hook variants, D6
+270s tight-cut (phases-from-config), and the D7 points/heat toggle are still OPEN
+engine dims. Cities assigned those levels fall back to the built default until the
+dim lands; all 20 re-render together with the MethodDiagram standing feature.
+
 ## 2026-07-19 — batch-1 story frames: charlotte-nc / nashville-tn / dallas-tx (producer)
 
 Same rules as the earlier trio (whole-percent hooks, exact endpoints in the

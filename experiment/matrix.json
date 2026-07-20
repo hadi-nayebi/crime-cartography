@@ -1,0 +1,78 @@
+{
+  "_doc": "Batch-1 designed-experiment feature matrix. One 7-dimension vector per video (see experiment/DESIGN.md). Built + reconciled with the per-city configs by the producer 2026-07-20. Every on-screen NUMBER was independently re-verified from data/<slug>/normalized before this assignment (hook/punchline endpoints checked against trend.json for all 20). This file is the experiment RECORD and the production SPEC for the remaining engine work + the batch-1 re-render wave.",
+  "builtBy": "producer",
+  "builtDate": "2026-07-20",
+  "dimensions": {
+    "D1_trendStyle": { "levels": ["bars", "area", "lollipop", "steps", "stacked"], "status": "LIVE — read from each config's trendStyle; engine FullTrend supports all five", "tests": "which chart form holds attention on the long arc" },
+    "D2_hookStyle": { "levels": ["stat", "question", "zoom"], "status": "TARGET — only 'stat' (HookOpen shock-number) is built today; 'question' + 'zoom' cold-open variants are an OPEN engine dim (see engineDependencies). Cities assigned question/zoom render 'stat' until that lands.", "tests": "first-8-seconds retention" },
+    "D3_storyFrame": { "levels": ["long-fall", "plateau", "rebound-and-retreat", "composition-shift", "geography-shift"], "status": "DESCRIPTIVE + HONEST — the arc the data actually shows and the video's hook/spine emphasizes; NOT a free knob (never relabel a video's frame to fill the grid). See honestyShortfalls.", "tests": "which narrative arc clicks" },
+    "D4_paletteFamily": { "levels": ["warm", "cool", "mono+accent", "dual-tone", "neon-dark"], "status": "DESCRIPTIVE — impressionistic family label over each config's city-true palette; the hue itself stays city-true (honesty note: palette never encodes data)", "tests": "visual identity family" },
+    "D5_musicFamily": { "levels": ["cinematic-strings", "electronic-pulse", "ambient-atmos", "jazz-tinged"], "status": "SPEC — groups the identity-plan per-city SAO vibe+seed into families. Drives music generation (12 batch-1 wavs NOT yet generated — see engineDependencies).", "tests": "score personality" },
+    "D6_durationSec": { "levels": [330, 270], "status": "TARGET — all 20 configs are 330 today. The 270 tight-cut needs the phases-from-config engine dim (OPEN). Cities marked 270 stay 330 until that lands.", "tests": "length tolerance" },
+    "D7_mapEmphasis": { "levels": ["points-forward", "heat-forward"], "status": "TARGET — the explicit points/heat toggle is an OPEN engine dim. Today each city renders a fixed default that already leans the assigned way per its data (e.g. no-coord Grand Rapids is heat-forward by construction). The toggle formalizes it.", "tests": "map readability preference" }
+  },
+  "vectors": {
+    "grand-rapids-mi":  { "D1_trendStyle": "bars",     "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "mono+accent", "D5_musicFamily": "cinematic-strings", "D6_durationSec": 330, "D7_mapEmphasis": "heat-forward",   "hookStat": "-51%", "nearTwin": "washington-dc (diff 1: D3)" },
+    "chicago-il":       { "D1_trendStyle": "area",     "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "warm",        "D5_musicFamily": "cinematic-strings", "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-51%", "nearTwin": "kansas-city-mo (diff 2: D1,D5)" },
+    "seattle-wa":       { "D1_trendStyle": "lollipop", "D2_hookStyle": "stat",     "D3_storyFrame": "geography-shift",     "D4_paletteFamily": "cool",        "D5_musicFamily": "ambient-atmos",     "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-48%", "nearTwin": "denver-co (diff 2: D3,D6)" },
+    "washington-dc":    { "D1_trendStyle": "bars",     "D2_hookStyle": "stat",     "D3_storyFrame": "rebound-and-retreat", "D4_paletteFamily": "mono+accent", "D5_musicFamily": "cinematic-strings", "D6_durationSec": 330, "D7_mapEmphasis": "heat-forward",   "hookStat": "-48%", "nearTwin": "grand-rapids-mi (diff 1: D3); minneapolis-mn (diff 2: D3,D5)" },
+    "san-francisco-ca": { "D1_trendStyle": "area",     "D2_hookStyle": "stat",     "D3_storyFrame": "plateau",             "D4_paletteFamily": "cool",        "D5_musicFamily": "ambient-atmos",     "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-32%", "nearTwin": "philadelphia-pa (diff 2: D4,D5)" },
+    "boston-ma":        { "D1_trendStyle": "lollipop", "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "neon-dark",   "D5_musicFamily": "cinematic-strings", "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-71%", "nearTwin": "milwaukee-wi (diff 1: D5); dallas-tx (diff 2: D2,D4)" },
+    "philadelphia-pa":  { "D1_trendStyle": "area",     "D2_hookStyle": "stat",     "D3_storyFrame": "plateau",             "D4_paletteFamily": "dual-tone",   "D5_musicFamily": "jazz-tinged",       "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-32%", "nearTwin": "san-francisco-ca (diff 2: D4,D5)" },
+    "minneapolis-mn":   { "D1_trendStyle": "bars",     "D2_hookStyle": "stat",     "D3_storyFrame": "plateau",             "D4_paletteFamily": "mono+accent", "D5_musicFamily": "electronic-pulse",  "D6_durationSec": 330, "D7_mapEmphasis": "heat-forward",   "hookStat": "-52%", "nearTwin": "washington-dc (diff 2: D3,D5)" },
+    "detroit-mi":       { "D1_trendStyle": "steps",    "D2_hookStyle": "zoom",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "dual-tone",   "D5_musicFamily": "electronic-pulse",  "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-69%", "nearTwin": "ANCHOR (steps+zoom long-fall corner; shares steps w/ buffalo/cincinnati, zoom w/ dallas/atlanta)" },
+    "denver-co":        { "D1_trendStyle": "lollipop", "D2_hookStyle": "stat",     "D3_storyFrame": "rebound-and-retreat", "D4_paletteFamily": "cool",        "D5_musicFamily": "ambient-atmos",     "D6_durationSec": 270, "D7_mapEmphasis": "points-forward", "hookStat": "-20%", "nearTwin": "seattle-wa (diff 2: D3,D6)" },
+    "milwaukee-wi":     { "D1_trendStyle": "lollipop", "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "neon-dark",   "D5_musicFamily": "electronic-pulse",  "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-44%", "nearTwin": "boston-ma (diff 1: D5)" },
+    "charlotte-nc":     { "D1_trendStyle": "area",     "D2_hookStyle": "question", "D3_storyFrame": "geography-shift",     "D4_paletteFamily": "neon-dark",   "D5_musicFamily": "electronic-pulse",  "D6_durationSec": 330, "D7_mapEmphasis": "heat-forward",   "hookStat": "±0%", "nearTwin": "ANCHOR (area+question+geography corner; shares geography-shift w/ seattle, question w/ memphis/buffalo)" },
+    "nashville-tn":     { "D1_trendStyle": "bars",     "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "warm",        "D5_musicFamily": "jazz-tinged",       "D6_durationSec": 270, "D7_mapEmphasis": "heat-forward",   "hookStat": "-40%", "nearTwin": "kansas-city-mo (diff 2: D6,D7)" },
+    "dallas-tx":        { "D1_trendStyle": "lollipop", "D2_hookStyle": "zoom",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "cool",        "D5_musicFamily": "cinematic-strings", "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-68%", "nearTwin": "boston-ma (diff 2: D2,D4)" },
+    "memphis-tn":       { "D1_trendStyle": "stacked",  "D2_hookStyle": "question", "D3_storyFrame": "composition-shift",   "D4_paletteFamily": "dual-tone",   "D5_musicFamily": "jazz-tinged",       "D6_durationSec": 330, "D7_mapEmphasis": "heat-forward",   "hookStat": "-32%", "nearTwin": "atlanta-ga (share D1 stacked + D3 composition-shift; diff 4 otherwise — the composition-shift pair)" },
+    "atlanta-ga":       { "D1_trendStyle": "stacked",  "D2_hookStyle": "zoom",     "D3_storyFrame": "composition-shift",   "D4_paletteFamily": "warm",        "D5_musicFamily": "electronic-pulse",  "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-70%", "nearTwin": "memphis-tn (share D1 stacked + D3 composition-shift; diff 4 otherwise)" },
+    "buffalo-ny":       { "D1_trendStyle": "steps",    "D2_hookStyle": "question", "D3_storyFrame": "rebound-and-retreat", "D4_paletteFamily": "dual-tone",   "D5_musicFamily": "ambient-atmos",     "D6_durationSec": 270, "D7_mapEmphasis": "heat-forward",   "hookStat": "+32%", "nearTwin": "ANCHOR (steps+question+rebound corner; shares rebound-and-retreat w/ denver/dc, steps w/ detroit/cincinnati, question w/ charlotte/memphis)" },
+    "baltimore-md":     { "D1_trendStyle": "bars",     "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "mono+accent", "D5_musicFamily": "jazz-tinged",       "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-71%", "nearTwin": "kansas-city-mo (diff 2: D4,D5)" },
+    "cincinnati-oh":    { "D1_trendStyle": "steps",    "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "neon-dark",   "D5_musicFamily": "jazz-tinged",       "D6_durationSec": 270, "D7_mapEmphasis": "points-forward", "hookStat": "-45%", "nearTwin": "ANCHOR (steps+270 long-fall corner; shares steps w/ detroit/buffalo, jazz w/ philly/baltimore/kc/memphis)" },
+    "kansas-city-mo":   { "D1_trendStyle": "bars",     "D2_hookStyle": "stat",     "D3_storyFrame": "long-fall",           "D4_paletteFamily": "warm",        "D5_musicFamily": "jazz-tinged",       "D6_durationSec": 330, "D7_mapEmphasis": "points-forward", "hookStat": "-51%", "nearTwin": "baltimore-md (diff 2: D4,D5); nashville-tn (diff 2: D6,D7); chicago-il (diff 2: D1,D5)" }
+  },
+  "levelCounts": {
+    "D1_trendStyle":   { "bars": 6, "area": 4, "lollipop": 5, "steps": 3, "stacked": 2 },
+    "D2_hookStyle":    { "stat": 14, "question": 3, "zoom": 3 },
+    "D3_storyFrame":   { "long-fall": 10, "plateau": 3, "rebound-and-retreat": 3, "geography-shift": 2, "composition-shift": 2 },
+    "D4_paletteFamily":{ "warm": 4, "cool": 4, "mono+accent": 4, "dual-tone": 4, "neon-dark": 4 },
+    "D5_musicFamily":  { "cinematic-strings": 5, "electronic-pulse": 5, "ambient-atmos": 4, "jazz-tinged": 6 },
+    "D6_durationSec":  { "330": 16, "270": 4 },
+    "D7_mapEmphasis":  { "points-forward": 13, "heat-forward": 7 }
+  },
+  "cleanNearTwinPairs": [
+    { "pair": ["boston-ma", "milwaukee-wi"], "diff": 1, "isolates": "D5 musicFamily (cinematic-strings vs electronic-pulse) — everything else identical: the cleanest music A/B in the batch" },
+    { "pair": ["grand-rapids-mi", "washington-dc"], "diff": 1, "isolates": "D3 storyFrame (long-fall vs rebound-and-retreat) — everything else identical: the cleanest narrative-arc A/B" },
+    { "pair": ["san-francisco-ca", "philadelphia-pa"], "diff": 2, "isolates": "D4+D5 within the plateau frame" },
+    { "pair": ["kansas-city-mo", "nashville-tn"], "diff": 2, "isolates": "D6 durationSec + D7 mapEmphasis on an otherwise-identical warm long-fall bars video" },
+    { "pair": ["kansas-city-mo", "baltimore-md"], "diff": 2, "isolates": "D4 paletteFamily + D5 musicFamily on long-fall bars" },
+    { "pair": ["chicago-il", "kansas-city-mo"], "diff": 2, "isolates": "D1 trendStyle + D5 musicFamily on a warm long-fall" },
+    { "pair": ["minneapolis-mn", "washington-dc"], "diff": 2, "isolates": "D3 + D5 on bars/mono+accent" },
+    { "pair": ["denver-co", "seattle-wa"], "diff": 2, "isolates": "D3 + D6 on cool lollipop" },
+    { "pair": ["dallas-tx", "boston-ma"], "diff": 2, "isolates": "D2 hookStyle (zoom vs stat) + D4 on lollipop long-fall" },
+    { "pair": ["atlanta-ga", "memphis-tn"], "diff": 4, "isolates": "the composition-shift pair — share the two DEFINING levels (D1 stacked, D3 composition-shift); vary D2/D4/D5/D7. Not a clean 1-2 twin, but the only two composition videos, so they anchor that cell together." }
+  ],
+  "cornerAnchors": {
+    "note": "These four have no full-vector twin at diff<=2 — they are deliberately multi-dimensionally unique to explore feature-space corners. Each still shares EVERY one of its levels with >=2 siblings, so every LEVEL remains attributable via the clean pairs above even though the whole-vector twin is >2.",
+    "cities": ["detroit-mi", "charlotte-nc", "buffalo-ny", "cincinnati-oh"]
+  },
+  "honestyShortfalls": {
+    "principle": "Honesty invariants override the experiment grid (DESIGN.md). D3 storyFrame is the arc the DATA shows and the video's hook/spine emphasizes; it is never relabeled to balance the grid. D1 'stacked' is semantically bound to composition stories (its bands only mean something when composition is the point).",
+    "D3_geography-shift": { "count": 2, "cities": ["seattle-wa", "charlotte-nc"], "reason": "Only two batch-1 cities genuinely lead on a neighborhood-reshuffle arc (Seattle: Capitol Hill overtook Downtown as #1; Charlotte: flat citywide but divisions diverge, University City +17% vs Airport -33%). The other 18 lead on a trend arc. Not backfilled to 3 — that would mean mislabeling a trend-led video's frame.", "batch2Action": "Deliberately source cities with a dominant geographic-divergence story to reach >=3." },
+    "D3_composition-shift": { "count": 2, "cities": ["memphis-tn", "atlanta-ga"], "reason": "Only Memphis (motor-vehicle-theft property wave) and Atlanta (society-category recording step, disclosed) genuinely lead on a category-composition arc. Same honesty rule as above.", "batch2Action": "Source cities with a clear category-mix shift to reach >=3." },
+    "D1_stacked": { "count": 2, "cities": ["atlanta-ga", "memphis-tn"], "reason": "The stacked chart exists to show WHAT category changed; it is only honest/legible when composition is the story. Exactly the two composition-shift cities use it, so stacked==composition-shift==2 by design, not by omission.", "batch2Action": "Rises with the composition-shift count." }
+  },
+  "engineDependencies": {
+    "note": "Dimensions marked TARGET above require these OPEN engine dims to LAND before the affected cities render; until then those cities fall back to the built default (documented per-city). All 20 re-render together once these + the MethodDiagram standing feature are in (the batch-1 re-render wave).",
+    "D2_hookStyle_variants": { "need": "HookOpen 'question' (quiz-first cold open) + 'zoom' (map-first cold open) variants", "affects": ["charlotte-nc", "memphis-tn", "buffalo-ny", "detroit-mi", "dallas-tx", "atlanta-ga"], "fallback": "stat cold open" },
+    "D6_270_tight_cut": { "need": "phases-from-config so a 270s cut re-times phases (not a squished 330 timeline)", "affects": ["denver-co", "nashville-tn", "buffalo-ny", "cincinnati-oh"], "fallback": "330s" },
+    "D7_mapEmphasis_toggle": { "need": "explicit points-forward/heat-forward layer-emphasis switch", "affects": "all (formalizes the current per-city default)", "fallback": "current fixed default" }
+  },
+  "configReconciliation": {
+    "note": "Only ONE config field was changed to satisfy the grid; every on-screen NUMBER is unchanged and re-verified.",
+    "cincinnati-oh": "trendStyle area -> steps (D1 steps 2->3; cincinnati is a corner anchor so no clean pair breaks; steps suits its clean -45% long fall; engine-supported; unrendered so no re-render cost). Logged in DECISIONS.md as a taste call.",
+    "unchanged": "All other 19 configs keep their identity-plan trendStyle. Baltimore kept 'bars' (not moved to steps) specifically to preserve the clean baltimore<->kansas-city palette/music near-twin."
+  }
+}
