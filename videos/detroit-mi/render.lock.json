@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-20T03:36:53Z",
-  "commit": "c4acd02f28e428863284fc04963c95e4e7272c70",
+  "renderedAt": "2026-07-20T18:02:28Z",
+  "commit": "d857341111cbe77c3394a9a91c5267dbd5776d5a",
   "datasetFetchedAt": "2026-07-17T23:49:23.509Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/detroit-mi-music-sao.wav",
   "output": "out/detroit-mi.mp4",
-  "sha256": "794f6b0d06420ceae55d9828c84c184eafa66199580b124e75229d083a37a3d2",
+  "sha256": "aae029011fd2219ee71a33c26e9abbdf8e204cf98575a539d79c9c5987efb88f",
   "remotion": "render CrimeStory --props=config.json"
 }

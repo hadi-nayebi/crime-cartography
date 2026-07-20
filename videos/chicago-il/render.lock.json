@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-11T15:46:31Z",
-  "commit": "3826de8def1643ccced6f90f8e4da273ad3b38ae",
+  "renderedAt": "2026-07-20T17:47:28Z",
+  "commit": "d857341111cbe77c3394a9a91c5267dbd5776d5a",
   "datasetFetchedAt": "2026-07-11T03:32:09.266Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/chicago-il-music-sao.wav",
   "output": "out/chicago-il.mp4",
-  "sha256": "969e8900973604f3d52e71954f5c39350f8a5cea1dfa40bffc8e13fecd4dbe49",
+  "sha256": "eece25538b3abd03c402167fa71531f4ca92dc7db4664d6623a09fd402e488ac",
   "remotion": "render CrimeStory --props=config.json"
 }

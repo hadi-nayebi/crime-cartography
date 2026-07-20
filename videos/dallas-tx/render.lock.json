@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-20T04:24:48Z",
-  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "renderedAt": "2026-07-20T18:50:15Z",
+  "commit": "d857341111cbe77c3394a9a91c5267dbd5776d5a",
   "datasetFetchedAt": "2026-07-18T11:54:51.914Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/dallas-tx-music-sao.wav",
   "output": "out/dallas-tx.mp4",
-  "sha256": "866e689866452c999c510e9aa016a91b74ed03e61283a700ccda9c3af3d06d58",
+  "sha256": "fee90f3c5c53c219ed1f1053f0b7451c3fc154db54a78f682f3653d927f384e5",
   "remotion": "render CrimeStory --props=config.json"
 }

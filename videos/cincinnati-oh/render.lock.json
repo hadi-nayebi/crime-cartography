@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-20T04:04:58Z",
-  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "renderedAt": "2026-07-20T17:52:14Z",
+  "commit": "d857341111cbe77c3394a9a91c5267dbd5776d5a",
   "datasetFetchedAt": "2026-07-18T11:43:05.286Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/cincinnati-oh-music-sao.wav",
   "output": "out/cincinnati-oh.mp4",
-  "sha256": "93d07d352718c1027ac3de13793fafcfb9ffdcdf26a71d296e750772e7c17260",
+  "sha256": "fffb7c387973ea3b629c62731ff3b853368923a80b9d3a1506ed9bca772756be",
   "remotion": "render CrimeStory --props=config.json"
 }

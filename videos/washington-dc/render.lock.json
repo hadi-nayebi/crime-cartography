@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-20T04:43:06Z",
-  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "renderedAt": "2026-07-20T18:57:02Z",
+  "commit": "f3479983f596a7dbf745f9925c2a0259175559b6",
   "datasetFetchedAt": "2026-07-12T07:11:49.150Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/washington-dc-music-sao.wav",
   "output": "out/washington-dc.mp4",
-  "sha256": "bdbcbf146444aa27a67ce29e19d9962109c7e5c8e167aff0e936f3eb312b3e3e",
+  "sha256": "8515b08acfc52e9020f351ebcd7a0e8d28890a9510e7d31c04029f353e0d095c",
   "remotion": "render CrimeStory --props=config.json"
 }

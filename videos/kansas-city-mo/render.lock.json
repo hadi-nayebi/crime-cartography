@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-20T04:09:56Z",
-  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "renderedAt": "2026-07-20T18:07:48Z",
+  "commit": "d857341111cbe77c3394a9a91c5267dbd5776d5a",
   "datasetFetchedAt": "2026-07-18T11:42:26.842Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/kansas-city-mo-music-sao.wav",
   "output": "out/kansas-city-mo.mp4",
-  "sha256": "d0abd147d0678bc6f4e00f9709ec2000c892aaaf097e571d99c0af9f206ae3e6",
+  "sha256": "cfe7cfd1847effe634b08cc80bde0d0d5b0f5298f13a37206f18218b844a1769",
   "remotion": "render CrimeStory --props=config.json"
 }

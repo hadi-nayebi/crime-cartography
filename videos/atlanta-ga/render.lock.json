@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-20T04:34:15Z",
-  "commit": "f6bb9ba1ea796bf97211d2defe100477ea7e16fb",
+  "renderedAt": "2026-07-20T18:29:43Z",
+  "commit": "d857341111cbe77c3394a9a91c5267dbd5776d5a",
   "datasetFetchedAt": "2026-07-17T23:49:42.723Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/atlanta-ga-music-sao.wav",
   "output": "out/atlanta-ga.mp4",
-  "sha256": "54080f76cd36a2bbfed599fabfcffc94150d36136e7f558e6c81bcac1e7980a0",
+  "sha256": "636ece60a714ded72eb5d2e8d2633589e61e4aee7c9cf0f54aef3bed60abde24",
   "remotion": "render CrimeStory --props=config.json"
 }
