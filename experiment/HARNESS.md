@@ -5,6 +5,28 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### producer/driver must SEED a baseline `experiment/confidence.json` entry when it lands a new config  (from critic studio note 2026-07-20T00:01:57Z, resolved by note-watcher 2026-07-20)
+8 of 20 configs (baltimore-md, buffalo-ny, charlotte-nc, cincinnati-oh, dallas-tx,
+kansas-city-mo, memphis-tn, nashville-tn) had NO `confidence.json` entry — the
+producer/driver lands config/trend/basemap but never seeds a ledger row, so entries
+got back-filled one city at a time (atlanta-ga was hand-seeded, confirming the ad-hoc
+pattern). While unseeded, `catalog()` reported `confidence:null` and `priorityOf`
+(weighting only blocker COUNT) sorted those cities blind to readiness — a blank
+column hid which cohort cities were actually close. All 20 now carry an entry (the
+back-fill completed), so the visible gap is closed, but the recurrence risk remains
+for the next wave (counties/states). Fixed the DEFENSIVE half this run in the
+dashboard engine (`server.mjs` + `index.html`, covers all current+future cities): a
+config'd city with no ledger now (a) surfaces an explicit "awaiting first review — no
+confidence score yet" attention reason with weight (priorityOf) so it can't sort
+blind, and (b) renders a "no ledger · review" card chip + "config authored — awaiting
+its first review" detail line instead of a silent stage badge. Remaining automation
+ask: **when the producer/driver commits a new config, it must also seed a baseline
+`confidence.json` entry** — score 0 (or a modest data-only baseline), zeroed axes
+`{data,representation,narrative,technical}`, and an `"awaiting first review"` blocker
+— so a new city enters the ledger at config-commit time and no one has to back-fill it
+one by one. (The dashboard defensive chip is a safety net, not a substitute for
+seeding — the ledger should still exist so the score/axes/blockers signal is real.)
+
 ### config-authoring must emit a `theme.name` per city + a future wave should include ≥1 light-mode city  (from critic studio note 2026-07-20T00:01:57Z, resolved by note-watcher 2026-07-20)
 `theme.name` was null on all 20 configs, so the dashboard theme badge collapsed to
 19 identical "dark" labels + grand-rapids showing none — the batch was illegible as

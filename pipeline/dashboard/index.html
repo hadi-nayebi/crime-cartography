@@ -568,6 +568,7 @@ function renderBoard(){
     const sc = c.confidence?.score;
     const badge = c.stages.verified ? `<span class="score s-hi">✓ approved</span>`
       : sc!=null ? `<span class="score ${sc>=90?"s-hi":"s-mid"}">conf ${sc}</span>`
+      : c.stages.config ? `<span class="score s-none" title="config authored but no confidence entry yet — needs its first review">no ledger · review</span>`
       : `<span class="score s-none">stage ${c.stageIndex}/8</span>`;
     const hot = c.priority >= 100, attn = c.priority >= 30;
     const reason = attn ? `<div class="reason ${hot?"hot":""}" title="${esc((c.attentionAll||[]).join(" · "))}">${esc(c.attention)}</div>` : "";
@@ -753,7 +754,9 @@ async function show(slug){
   $("d-conf").innerHTML = `<h4>Confidence ${cf ? cf.score + "/100" : "—"}</h4>` + (cf ? `
     <div class="axes">${Object.entries(cf.axes ?? {}).map(([k,v])=>`<div class="axis">${esc(k)} ${v}/25<div class="bar"><i style="width:${v*4}%"></i></div></div>`).join("")}</div>
     <div style="margin-top:var(--s-2)">${(cf.blockers ?? []).map(b=>`<div class="blocker">◦ ${esc(b)}</div>`).join("") || '<span class="feat">no open blockers</span>'}</div>`
-    : '<span class="feat">enters the ledger at config stage</span>');
+    : (CUR.stages.config
+        ? '<span class="feat">config authored — awaiting its first review (no confidence entry seeded yet)</span>'
+        : '<span class="feat">enters the ledger at config stage</span>'));
   const t = CUR.theme, qa = CUR.qa;
   const qaLine = qa
     ? (qa.status==="pass" ? `<span style="color:var(--green)">✓ readable placement</span>`

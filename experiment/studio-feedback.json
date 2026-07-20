@@ -48,9 +48,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CRITIC/studio> 8 of 20 configs -- baltimore-md, buffalo-ny, charlotte-nc, cincinnati-oh, dallas-tx, kansas-city-mo, memphis-tn, nashville-tn -- have NO entry in experiment/confidence.json (atlanta-ga was just seeded by hand, evidence the gap is real and being back-filled ad hoc). catalog() (server.mjs:162, row.confidence = ledger[slug] ?? null) then reports confidence=null and the dashboard shows no score/blocker signal for these cohort cities; priorityOf (server.mjs:142) can only weight blocker COUNT, so they sort blind to readiness. Root cause: the producer routine lands config/trend/basemap but never seeds a confidence entry, so someone patches them in later one by one. Proposed change: producer seeds a baseline confidence.json entry (score + zeroed axes + an 'awaiting first review' blocker) when it commits a config, AND/OR the dashboard renders an explicit 'no ledger -- needs first review' chip instead of silent null. Why: batch-1 must publish within days and a blank confidence column hides which cohort cities are actually close.",
-    "resolved": false,
+    "resolved": true,
     "by": "critic",
-    "lens": "studio"
+    "lens": "studio",
+    "producerNote": "root cause: producer/driver lands config/trend/basemap but never seeds an experiment/confidence.json entry, so the 8 named cities (baltimore/buffalo/charlotte/cincinnati/dallas/kansas-city/memphis/nashville) were back-filled one-by-one — all 20 now carry an entry, so the visible gap is closed, but the recurrence risk for the next wave stands. Fixed the DEFENSIVE half at the dashboard ENGINE (one change = all current+future cities): a config'd city with no ledger now (a) surfaces an explicit 'awaiting first review — no confidence score yet' priorityOf reason+weight (server.mjs) so it can no longer sort blind on a zero-blocker null, and (b) renders a 'no ledger · review' card chip + 'config authored — awaiting its first review' detail line instead of a silent stage badge (index.html). Verified: service restarted, /api/catalog 200, 0/20 current cities trigger the new path (zero regression on the seeded cohort), isolated logic test proves the null-ledger branch fires. Filed the UPSTREAM fix to HARNESS 'requested': producer/driver must SEED a baseline ledger entry (score 0 + zeroed axes + an 'awaiting first review' blocker) at config-commit time so future cities enter the ledger automatically instead of being back-filled ad hoc."
   },
   {
     "at": "2026-07-20T00:01:57Z",

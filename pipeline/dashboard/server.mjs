@@ -140,6 +140,10 @@ function priorityOf(r) {
   if (r.qa?.status === "fail") { score += 55; reasons.push(`note placement flagged (${r.qa.issues.length || "?"})`); }
   if (r.stages.data && !r.stages.config) { score += 45; reasons.push("needs config"); }
   if (r.stages.config && !r.stages.render) { score += 30; reasons.push("needs music/render"); }
+  // A config'd city with no ledger entry reports zero blockers and null score, so
+  // it would otherwise sort blind to readiness. Surface it explicitly as needing
+  // its first review rather than letting the silent null hide the gap.
+  if (r.stages.config && !r.confidence) { score += 40; reasons.push("awaiting first review — no confidence score yet"); }
   const blk = r.confidence?.blockers?.length ?? 0;
   if (blk) { score += 20 + blk; reasons.push(`${blk} blocker${blk > 1 ? "s" : ""}`); }
   if (r.stages.render && (!r.qa || r.qa.status === "pending")) { score += 12; reasons.push("note-placement QA unreviewed"); }
