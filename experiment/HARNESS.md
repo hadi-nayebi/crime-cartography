@@ -69,3 +69,100 @@ Evidence-based changes (SKILL.md prompts edited; every change verbatim in the fi
 - harness-improver: MANDATORY scheduler-truth check (enabled flags + lastRunAt vs cron for every task; silently-disabled production tasks get re-enabled + logged — the 07-19 driver incident); token-efficiency audit of routine outputs.
 - note-watcher: crash-safe PID-liveness lock (dead watcher stranded .notes.lock ~13 min on 07-19).
 - critic: cadence 5min→15min (measured over-provisioning: files 3+/run vs watcher's ~1 fix/run — most 5-min wakeups would exit on backpressure).
+
+---
+
+# Audit log — harness-improver (nightly meta-runs)
+
+## 2026-07-19 23:34 EDT — nightly audit (BASELINE stage table; first audit-log entry)
+
+### Stage counts — `node pipeline/status.mjs --md`
+| city | data | trend | basemap | config | music | render | score | blk |
+|------|:--:|:--:|:--:|:--:|:--:|:--:|--:|--:|
+| atlanta-ga | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 4 |
+| baltimore-md | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 64 | 3 |
+| boston-ma | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 91 | 3 |
+| buffalo-ny | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 3 |
+| charlotte-nc | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 3 |
+| chicago-il | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 90 | 2 |
+| cincinnati-oh | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 3 |
+| dallas-tx | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 3 |
+| denver-co | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 64 | 3 |
+| detroit-mi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 64 | 3 |
+| grand-rapids-mi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 88 | 2 |
+| kansas-city-mo | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 3 |
+| memphis-tn | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 3 |
+| milwaukee-wi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 64 | 3 |
+| minneapolis-mn | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 91 | 1 |
+| nashville-tn | ✅ | ✅ | ✅ | ✅ | ✅ | · | 64 | 3 |
+| philadelphia-pa | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 90 | 2 |
+| san-francisco-ca | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 90 | 2 |
+| seattle-wa | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 90 | 3 |
+| washington-dc | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 91 | 4 |
+| **20 cities** | 20 | 20 | 20 | 20 | 20 | **12** | 0@100 | – |
+
+STAGE COUNTS (/20): data 20 · trend 20 · basemap 20 · config 20 · music 20 · **render 12**.
+Upstream (data→music) is saturated at 20/20. Render = 12 and **actively draining tonight** —
+detroit 03:36→denver 03:41→milwaukee 03:47→baltimore 03:53 (UTC), buffalo-ny in flight at audit
+close: NOT stagnant, the driver's clear-the-queue doctrine is working. No prior audit table existed
+to diff against — this is the baseline the next audit's STAGE COUNTS line compares to.
+
+### Scheduler truth (all 8 tasks; audit at 03:34 UTC / 23:34 EDT)
+| task | enabled | cadence | lastRun (EDT) | verdict |
+|------|:--:|------|------|------|
+| earth-one-channel-briefing | ✓ | 8h | 16:09 | on-cadence; emails still go to DRAFT (no gmail token) |
+| batch1-production-driver | ✓ | 2h | 22:36 | on-cadence, rendering — HEALTHY (the 07-19 silent-disable is resolved) |
+| producer-work-session | ✓ | 4h | 21:23 | on-cadence — HEALTHY |
+| youtube-channel-manager | ✓ | daily | (never) | no lastRunAt; expected (0 published) — no action |
+| harness-improver | ✓ | 2×/day | 23:34 | this run |
+| repo-hygiene-reviewer | ✓ | daily | — | next 12:02 — OK |
+| **note-watcher** | ✓ | **5min** | **20:01** | **STALLED ~4h** |
+| **production-critic** | ✓ | **15min** | **19:59** | **STALLED ~4h** |
+
+STALL DIAGNOSIS (recorded, not fabricated-fixed): both sub-hourly tasks stopped at ~20:00 EDT and
+have not fired since (~4h). note-watcher's 23:51 scheduled fire was skipped and its nextRunAt kept
+slipping forward (03:51→04:01 UTC across two list calls) → the scheduler is repeatedly deferring
+them, a persistent stall not a transient. The 2h/4h/8h tasks fired normally in the same window
+(driver 22:36, producer 21:23) → host is NOT down. Both stopped at the tail of tonight's documented
+19:25 session-limit/529 window (same window that silently disabled the driver). Read: **session-
+capacity starvation of the highest-frequency tasks** — the API/session pool can't absorb 288+96
+runs/day on top of renders. All 8 tasks are `enabled`, so there is nothing to re-enable; not a
+config defect and **not harness-fixable tonight** (it's capacity, not a flag or a path). Left cadence
+UNCHANGED (owner just tuned it 22:15). If still stalled next audit → recommend note-watcher */5→*/10.
+
+### Routine health verdicts
+- **driver — IMPROVING**: clear-the-queue proven (5 renders in ~30 min; picked buffalo-ny next, matching `status.mjs --next`).
+- **producer — HEALTHY**: landed matrix.json (20 vectors) + confidence ledger + citywide-fidelity audit (seattle/nashville fixed) in the last 24h.
+- **note-watcher / production-critic — STALLED** (external: session capacity, see above).
+- **briefing — DEGRADED** (external: no gmail token → drafts unsent; already capped at 15 lines).
+- **channel-manager — IDLE by design** (nothing published yet).
+- **repo-hygiene-reviewer — OK**.
+- Token efficiency: no fresh no-op/essay-run waste this window — the 22:15 fleet update already fixed the driver essay-runs, briefing length, and critic over-provisioning. Nothing new to tighten.
+
+### Changes made this run
+1. **NEW `pipeline/status.mjs`** (committed) — canonical read-only status probe: stage×city grid
+   (data/trend/basemap/config/music/render) + score/blockers, with `--md` (paste-ready table),
+   `--json` (for routines), `--next` (driver's next render-ready city). Replaces the ad-hoc
+   ls/node one-liners each routine re-derived. Keys the music stage off each config's real
+   `audioSrc` (not a name convention) → fixed a would-be false gap (grand-rapids uses the legacy
+   filename `grand-rapids-music-sao.wav`; music is correctly 20/20, not 19/20). Verified: counts
+   match the filesystem; `--next`→buffalo-ny, which the driver then rendered.
+2. **PROMPT EDIT — batch1-production-driver/SKILL.md** (outside repo; applied directly, verbatim).
+   Into the READ-FIRST/stage-selection line, appended: *"For a fast one-shot picture of where all 20
+   cities stand, run `node pipeline/status.mjs` (read-only probe — stage×city grid
+   data/trend/basemap/config/music/render + score/blockers + STAGE COUNTS line); `node
+   pipeline/status.mjs --next` prints the next render-ready city (config+music present, no mp4,
+   fewest blockers first) so you don't re-derive the queue by hand."*
+3. **PROMPT EDIT — harness-improver/SKILL.md** (outside repo; applied directly, verbatim). Step 2
+   changed from *"compute per-stage counts … from the filesystem"* to: *"get per-stage counts
+   (data/trend/basemap/config/music/render across the 20 cities) from `node pipeline/status.mjs` —
+   the canonical status probe; use `node pipeline/status.mjs --md` for a paste-ready table for the
+   log. Compare its STAGE COUNTS line against the counts recorded in the last HARNESS.md entry."*
+
+### Biggest remaining bottleneck
+**The certification wall, not a broken routine.** 0/20 at score=100 with cohort publish targeted
+7/25 (6 days out). Render is draining well (12/20, climbing tonight), so the gate is the producer's
+verify/score pass: 8 cities sit at 88–91 held below 100 by re-render blockers that must be cleared,
+and 12 sit at 64 awaiting the full verify. Secondary risk: the note-watcher/critic feedback loop has
+been dark ~4h on session capacity — it slows note resolution but does not block renders; watch it
+next audit.
