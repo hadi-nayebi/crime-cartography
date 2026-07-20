@@ -166,6 +166,13 @@ LAYER: any re-render that alters on-screen copy/labels must flag the prior appro
 (re-gate verify) in confidence.json, identically to a layout/design re-render — a label
 re-render whose history note clears the label blocker WITHOUT a verify-restale flag is a
 drift smell (sibling of the 'clear ALL blockers' entry above).
+SECOND OCCURRENCE (2026-07-20, washington-dc APPROVE #2 @22:45): the SAME d829e57 countTerm
+re-render silently un-synced DC's 15:28 approve too — same "resynced only because the owner
+happened to re-approve" pattern. This has now hit BOTH boston + DC from ONE re-render, so it
+is NOT a one-off: it recurs by default whenever a countTerm/label re-render lands after an
+approve. Raise priority — the producer verify step needs the verify-restale flag as a HARD
+step, not advice. (Watcher re-verified DC's shipped bytes vs render.lock + 3 stills before
+signing, per the checkpoint; but the routine should not depend on the watcher catching it.)
 
 ### title-authoring step must emit ≥2 titleOptions per config  (from channel note 2026-07-20, resolved by note-watcher)
 The producer's title/`youtube.json`-authoring step does not guarantee the

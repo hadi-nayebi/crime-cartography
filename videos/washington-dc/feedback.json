@@ -45,7 +45,8 @@
     "kind": "decision",
     "videoTime": null,
     "text": "APPROVE",
-    "resolved": false
+    "resolved": true,
+    "producerNote": "Owner re-APPROVE recorded as verify-light evidence in confidence.json history. Root cause this checkpoint catches: the d829e57 countTerm re-render changed on-screen wording (GROUP A -> REPORTED) AFTER the 15:28 approve but its producer note omitted a verify-restale flag (label-only-re-render drift). Confirmed the SHIPPED bytes match the approve before signing: mp4 sha256 == render.lock (583ccd304a21 / commit d829e57), and 3 stills off that exact encode show REPORTED with zero 'GROUP A' (t=200), the Rock Creek Park 'fewest reported' reveal not Observatory Circle:0 (t=306), and the honest 2008 measure-change seam (t=90). No stale re-render blocker to strip (all cleared prior runs); retained watch-through (manual gate) + society=0 (genuine honesty item). Score held 91 (no double-inflation on a re-approved, already-counted honest cut). Grand-rapids owner APPROVE (22:54) is a separate cut needing its own still-verify + has an in-flight render.lock edit — left for next run, not batched."
   },
   {
     "at": "2026-07-20T22:56:17Z",
