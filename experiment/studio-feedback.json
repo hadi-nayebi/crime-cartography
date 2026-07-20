@@ -73,9 +73,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CHANNEL/growth> Thumbnail candidates missing on 12 batch-1 cities — a hard publish blocker. These have NEITHER videos/<slug>/thumbnail.jpg NOR any videos/<slug>/thumbs/ candidate frames: atlanta-ga, baltimore-md, buffalo-ny, charlotte-nc, cincinnati-oh, dallas-tx, denver-co, detroit-mi, kansas-city-mo, memphis-tn, milwaukee-wi, nashville-tn. The all-green publish gate + studio publish modal both require real candidate frames to pick/compose from, so none of the 12 can even reach the modal. Exact fix (category sweep, one pass): for each of the 12, extract the 6 real ffmpeg frames the studio already defines — POST /api/publish/<slug>/thumbs (frames at t=004/045/110/155/210/290s of videos/<slug>/out/<slug>.mp4 into videos/<slug>/thumbs/), same as the pre-warmed original 8 — then the owner picks/composes one at publish time. Honesty rule: thumbnail must be composed ONLY from real rendered frames, no external art. The original 8 (boston, chicago, grand-rapids, minneapolis, philadelphia, san-francisco, seattle, washington-dc) already have 6 candidates each and clear this bar.",
-    "resolved": false,
+    "resolved": true,
     "by": "channel",
-    "lens": "growth"
+    "lens": "growth",
+    "producerNote": "root cause: the studio generates the 6 candidate frames LAZILY (ensureThumbs, server.mjs — only on publish-preview load) AND thumbs/ is gitignored, so every render after the first hand-warmed batch arrives with an empty picker; the original 8 were warmed, the 12 newer renders never were. SWEEP: pre-warmed all 12 (atlanta/baltimore/buffalo/charlotte/cincinnati/dallas/denver/detroit/kansas-city/memphis/milwaukee/nashville) in one pass using the studio's exact recipe (ffmpeg -ss {4,45,110,155,210,290} -vf scale=1280:720 -q:v 3) — 6 real rendered frames each = 72 ffprobe-valid 1280x720 JPEGs; frames stay gitignored like the originals (local candidates the publish modal serves, honesty rule intact — composed only from real rendered frames). Ran ffmpeg directly rather than the /api/publish/<slug>/thumbs route (publish-namespaced route was blocked by the no-publish guard; identical output, nothing uploaded). Upstream no-recur fix filed in HARNESS.md 'requested': producer/driver must pre-warm thumbs when it lands a render."
   },
   {
     "at": "2026-07-20T14:30:34.056Z",

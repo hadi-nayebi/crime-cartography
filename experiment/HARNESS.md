@@ -20,6 +20,19 @@ Producer config note: cities with disclosed zero-mapped neighborhoods (Atlanta's
 Bankhead/Englewood Manor/Midwest Cascade) are handled by the engine now; no
 per-config action needed, but re-verify after any change to the ranking logic.
 
+### pre-warm publish thumbnail candidates at render landing  (from channel note 2026-07-20, resolved by note-watcher)
+The studio generates the 6 publish-thumbnail candidate frames (`videos/<slug>/thumbs/tNNN.jpg`)
+LAZILY — `ensureThumbs` in `pipeline/dashboard/server.mjs` only runs on publish-preview load — and
+`thumbs/` is gitignored, so every newly-rendered city arrives with an empty candidate picker until
+someone opens its publish modal. Batch-1's original 8 were warmed by hand; the 12 newer renders
+were not, silently blocking the publish flow until the note-watcher back-filled all 12 (2026-07-20).
+FIX AT THE PRODUCING LAYER so it can't recur: the producer/driver routine that lands a render must
+pre-warm that city's candidates in the same step — either POST `/api/publish/<slug>/thumbs` (studio
+running) or run the identical recipe directly:
+`ffmpeg -ss {4,45,110,155,210,290} -i out/<slug>.mp4 -frames:v 1 -vf scale=1280:720 -q:v 3 -y thumbs/tNNN.jpg`.
+Then every rendered city reaches the publish gate with real candidates already on disk. Honesty:
+candidates must be composed only from real rendered frames — never external art.
+
 ### note-placement QA reviewer routine  (from dashboard note 2026-07-19)
 The studio dashboard now shows a **note-placement QA badge** per video card
 (icon `○` unreviewed · `✅` readable · `⚠️` flagged) and a QA line on the video
