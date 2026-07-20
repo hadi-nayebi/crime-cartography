@@ -59,7 +59,7 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "seam-label/punchline overlap fix rendered? (verify or re-render)"
+   "seam-label/punchline overlap STILL PRESENT in re-rendered mp4 (producer-verified t146): the net-change punchline card ('1987: 73,369 → 2007: 37,810 · −48% ... the plateau that followed is the next chapter') sits over the seam label '2008 · the measure changes', which bleeds faintly through the translucent card. Layout-dependent (seattle's longer 2-line punchline sub makes the card taller than chicago's, pushing it into the seam label). Needs engine fix (hide/dim seam label when punchline card overlaps, or lower the card) + re-render. NOT owner-gated — engine/driver."
   ],
   "history": [
    {
@@ -73,6 +73,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:38): CITYWIDE trend fix PRESENT — trend chart y-axis peak 92,715 (all-recorded-offenses), lollipop, seam '2008 · the measure changes', honest 'compare within each era, not across the dashed seam' caption, source credit present. Citywide re-render blocker RESOLVED. (seam-label/punchline overlap: seam label clean at t140; punchline card not frame-captured — owner watch-through to confirm.) Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER verified the seam-overlap on the re-rendered mp4 (t146): punchline card DOES mildly overlap the '2008 · the measure changes' seam label (label bleeds through the translucent card) — unlike chicago where the seam label hides cleanly. Difference is layout (seattle's 2-line punchline sub → taller card). Blocker RETAINED + sharpened with the exact fix (engine: gate seam-label visibility under the punchline card, or reposition card; then re-render). Otherwise seattle encode is clean (citywide axis 92,715 fix confirmed, honest seam caption, source credit)."
    }
   ]
  },
@@ -121,8 +125,7 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "5.4% unmapped rows — confirm on-screen coverage line wording lands"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -136,6 +139,10 @@
    {
     "date": "2026-07-20",
     "change": "DRIVER re-rendered stale mp4 to pick up the SF accounting fix (commit 7e7dda2, 2026-07-19): totalRecords 3,117,438→3,071,590 (window overlaps/partials moved to excludedOutsideWindow), coverage 96.7%→98.1%. Prior shipped mp4 (rendered 2026-07-12 @ commit c699529) showed the stale 96.7%/3.1M. New render verified: 330.048s, 0 audio gaps, method card 03 shows \"98.1% map to a neighborhood\"; on-screen category totals 260,146+1,508,006+264,153+1,039,285=3,071,590 reconcile exactly. render.lock.json updated (sha256 c4eb3d44). Score unchanged (producer's call); note the \"coverage line wording\" blocker's on-screen evidence is now satisfiable."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER encode-verified the coverage-line wording on the re-rendered mp4 (method card t16): card 03 'Real dots, real places' reads '98.1% map to a neighborhood — the rest counted, disclosed, never invented' (post-accounting-fix, was 96.7%); category totals 260,146+1,508,006+264,153+1,039,285 = 3,071,590 reconcile to corrected totalRecords; honest two-chapter seam note present. Coverage-line-wording blocker RESOLVED. Score unchanged (gate = owner watch-through)."
    }
   ]
  },
