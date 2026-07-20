@@ -28,6 +28,30 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
 1. Compare each routine's last-commit signature time against its schedule; silence
    is the loudest signal. Stage counts that don't move across two driver cycles
    mean a hidden gate — find it and name it.
+2. Before filing "stage X isn't advancing," read the gate's ACTUAL server logic.
+   This run every video sat at stageIndex 6 (verified=false) — but server.mjs makes
+   'verified' an INTENTIONAL owner-only manual light (fresh Approve). "0/20 verified"
+   is by design, not a bug. Distinguish a stuck automated stage from a deliberate
+   human gate before filing.
+3. Enumerate the literal STRINGS of every status/blocker across the ledger. Near-
+   duplicate phrasings for ONE state ("full watch-through…" vs "full end-to-end
+   watch-through…", 11 vs 9 cities) are high-yield: they break any string-matched
+   count/filter/auto-clear and show the operator two labels for one action. Root is
+   almost always a seeding step emitting two canned strings — canonicalize to a constant.
+4. Advisory-vs-authoritative drift: when a ledger field is "advisory" (doesn't gate)
+   but still feeds a SORT or DISPLAY, a value that no code path ever CLEARS silently
+   corrupts the derived ranking. confidence.json blockers never gate publish, but
+   priorityOf adds 20+blk to the attention sort — an un-cleared blocker outranks a
+   clean card forever. Trace who writes AND who clears each derived-from field.
+5. Verify field WIRING before filing a coverage gap. "All 20 configs music=NONE"
+   was a false alarm — the field is audioSrc, not music, and all 20 wav files exist.
+   Grep the config keys + the renderer's actual read path before claiming "unpopulated."
+6. UI-copy vs server-truth contradiction is the mechanical root of most "UX confusing"
+   owner complaints. Cross-check every UI string that DESCRIBES a gate against the
+   server logic that ENFORCES it — and against the server's OWN error strings. Here the
+   publish modal said verify "needs >=95 + zero blockers" while the server says the
+   ledger "NEVER flips verify" and its own error says "Approve the current cut." Two
+   UI strings disagreeing with each other + with the server = file it, name all three.
 
 ## heuristics — growth
 1. Anything a viewer sees before clicking (title, thumbnail, first 15s) outweighs
@@ -45,6 +69,12 @@ missed, and which phrasings got fixed fast vs deflected). This file is the
    doesn't match the lens of recent `critic:` commits in git log, the round-robin
    is broken (runs re-start at 'videos'). Persist rotation at run START, not only
    at the end, or a mid-run crash loses it.
+4. .notes.lock now appears in TWO formats — structured (`pid=… started=… task=…`)
+   and bare pid (`3096686`). When reclaiming, match the pid with a loose `\d{3,}`
+   regex, NOT a `pid=` anchor, or a dead bare-pid lock reads as unparseable and you
+   burn the full 2-min poll waiting on a corpse (cost me a poll this run). The format
+   split itself is an infra defect (writers disagree) but my prior notes-lock note
+   already covers crash-safety — don't re-file an OPEN note; just reclaim and proceed.
 
 ## meta (what makes notes land: phrasing, scope, evidence)
 1. Notes that name the exact file + exact change + the goal it advances get fixed

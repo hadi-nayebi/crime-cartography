@@ -86,5 +86,32 @@
     "resolved": false,
     "by": "channel",
     "lens": "growth"
+  },
+  {
+    "at": "2026-07-20T15:13:31.190Z",
+    "kind": "comment",
+    "videoTime": null,
+    "by": "critic",
+    "lens": "operations",
+    "resolved": false,
+    "text": "<CRITIC/operations> The single publish gate — the manual watch-through — is written TWO ways in experiment/confidence.json: 'full watch-through with audio not yet logged' (11 cities: chicago-il, seattle-wa, washington-dc, san-francisco-ca, boston-ma, philadelphia-pa, minneapolis-mn, detroit-mi, denver-co, milwaukee-wi, atlanta-ga) vs 'full end-to-end watch-through with audio not yet logged' (9 cities: grand-rapids-mi, buffalo-ny, cincinnati-oh, kansas-city-mo, charlotte-nc, nashville-tn, dallas-tx, memphis-tn, baltimore-md). Same manual gate, two strings, because the producer/confidence-seeding step emits two canned phrasings. Impact: any 'N/20 still need watch-through' count, dashboard filter, or future auto-clear that string-matches the blocker undercounts by ~half; the operator sees two different gate labels for one identical action. Fix: define ONE canonical watch-through blocker constant in the seeding step and migrate the 9 to match, so 'ready to review' becomes a single filterable predicate across all 20 — the gate to every batch-1 publish."
+  },
+  {
+    "at": "2026-07-20T15:13:31.190Z",
+    "kind": "comment",
+    "videoTime": null,
+    "by": "critic",
+    "lens": "operations",
+    "resolved": false,
+    "text": "<CRITIC/operations> Approving a city never clears its advisory watch-through blocker, so experiment/confidence.json drifts from the real state. server.mjs cityRow (l.84-105) flips 'verified' from a fresh operator APPROVE feedback note, but confidence.json 'blockers' is hand-maintained free text and NO code path removes 'watch-through not logged' when that APPROVE lands. Result: a video the owner has watched + approved (verified green, publishable) still carries the watch-through blocker indefinitely — which keeps priorityOf inflating its attention rank (server.mjs l.142-143 adds 20+blk to the sort) and shows a stale blocker in the publish gatebar (index.html:679). Two sources of truth for one fact (approval evidence vs advisory blocker) with no reconciliation. Fix: on a detected fresh APPROVE, strip the watch-through blocker from confidence.json (note-watcher/producer), or treat verified===true as auto-satisfying that specific blocker in gateOf/priorityOf — so the ledger stops misreporting approved batch-1 videos as blocked and fighting the owner's attention-first sort."
+  },
+  {
+    "at": "2026-07-20T15:13:31.190Z",
+    "kind": "comment",
+    "videoTime": null,
+    "by": "critic",
+    "lens": "studio",
+    "resolved": false,
+    "text": "<CRITIC/studio> (surfaced during operations publish-flow review) The publish modal's gatebar states a FALSE verify requirement that contradicts the server AND the server's own error string. index.html:679 tells the operator that a missing 'verified' light means '(confidence X/100, needs ≥95 + zero blockers)' — but server.mjs is explicit that the confidence ledger is 'reported for context but NEVER flips verify' (l.333-334); verified flips ONLY on a fresh manual Approve (l.96,105), and doPublish's OWN error correctly says 'verify is a manual light — Approve the current cut on its review page first' (l.375). So the modal instructs the owner to chase a ≥95 score + zero blockers that have nothing to do with turning the light green — the likely mechanical root of the owner's open Boston notes ('I don't know what is needed / how can I turn on the verify green light / the UX is confusing'). Fix: replace the gatebar's '(confidence …, needs ≥95 + zero blockers)' with the truthful, actionable string the server already uses — 'verify is a manual light — Approve the current cut on this video's review page' — so both publish-path strings agree and the owner has ONE clear action to unblock all 20."
   }
 ]
