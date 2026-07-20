@@ -4,6 +4,78 @@ Non-blocking items the producer resolved with its best judgment, plus a few that
 genuinely want Hadi's taste/eye. Nothing here blocks production; these are logged
 so Hadi can override any call on a watch-through. Newest first.
 
+## Repo hygiene
+
+Proposals from the daily repo-hygiene-reviewer routine (public-vs-private lens).
+Nothing here is a secret leak — the secret scan is clean (see note below). These
+are ambiguous public/private calls awaiting Hadi's ruling. Answer inline (edit
+this section) or via a studio project-note; the routine then applies the change
+and generalizes the ruling into `experiment/PUBLIC-POLICY.md`.
+
+**Secret-scan status (2026-07-20): CLEAN.** No credential shapes, OAuth
+client_id/secret literals, tokens, `.env`/`.pem`/key files, or high-entropy
+strings in tracked files. `.secrets/` is gitignored and untracked; every code
+path reads credentials from `.secrets/` at runtime and embeds none;
+`pipeline/audio/README.md` uses a `hf_YOUR_READ_TOKEN` placeholder. No phone
+numbers or street addresses. Nothing needs `git rm --cached`.
+
+### H1 — Personal emails in tracked files (seed open item) — NOT YET RULED
+
+`hadinayebi@earthone.life` and `earthone@earthone.life` appear in tracked files.
+Three distinct sub-cases with different recommendations:
+
+- **(a) `pipeline/notify/*` — DELIBERATE auditable hard-coding.** `send-email.mjs`
+  and `auth-gmail.mjs` hard-code `SENDER = earthone@…` / `RECIPIENT = hadinayebi@…`
+  as the *sole allowed* identities, re-verified on every send — this is a
+  single-tenant safety guardrail (the mechanism that makes "briefings can only go
+  to Hadi" auditable), not a config value. Exposure risk: LOW — a personal-domain
+  address harvestable by scrapers (spam), no account-takeover value.
+  **Recommendation: STAYS PUBLIC.** The auditability is the point and the harm is
+  minimal. If you'd rather not publish the address, the alt is to read both from
+  `.secrets/notify.json` (or env) with the identity-lock assertion kept — small
+  change, weakens the "grep the code and see exactly who can be emailed" property.
+- **(b) `experiment/PLAN.md:32` + `experiment/briefings/*` + `experiment/HARNESS.md`
+  — incidental mentions** inside operational docs ("briefing to hadinayebi@… every
+  8h", "signed in as earthone@…"). These ride along with whatever ruling covers the
+  experiment/ operational-exhaust class (H2). If those go private, this resolves
+  itself; if they stay public, it's the same address as (a). **Recommendation:
+  fold into H2 — no separate action.**
+- **(c) `PoliceOpenData@minneapolismn.gov`** (PROVENANCE, source adapter, wiki) is
+  a **public government data-source contact**, part of the provenance/transparency
+  brand. **Recommendation: STAYS PUBLIC as a standing rule** — public-agency
+  provenance contacts are always fine; only *personal* PII is in scope.
+
+### H2 — New `experiment/` role, lens & ops files — uncategorized
+
+A family of internal "how the AI fleet runs" files has grown and isn't yet in the
+policy: `FLEET.md` (team charter), `CRITIC.md` + `CRITIC-LENS.md` +
+`WATCHER-LENS.md` (reviewer role/lens files), `studio-feedback.json` (critic
+notes). These are the same species as the already-listed PRIVATE-candidate
+`HARNESS.md`/`DECISIONS.md` — internal operational/taste process, no secrets, no
+third-party PII. This wants a single **class ruling** for all "AI-fleet ops &
+lens" docs rather than file-by-file calls. **Recommendation: KEEP PUBLIC** —
+radical transparency about the AI production process is itself the channel's
+brand differentiator, and none of these expose anything sensitive. (Counter-view,
+your call: they're inside-baseball ops noise that clutters the public repo and
+could go to a private `ops/` submodule.) Whichever way you rule, I'll generalize
+it to cover future `*-LENS.md` / role files automatically.
+
+### H3 — `experiment/matrix.json` + `experiment/factsheets-batch1.txt` — audit trail
+
+Experiment feature vectors (matrix) and the aggregate factsheets used to build
+configs. Same class as `confidence.json`, already ruled PUBLIC (audit trail).
+Content is aggregate stats only — no PII, no secrets. **Recommendation: PUBLIC
+(audit trail), same rule as confidence.json.**
+
+### H4 — `pipeline/dashboard/` (server.mjs + index.html) — production console
+
+The studio/production console. It *reads* `.secrets/youtube_client_secret.json` +
+`youtube_token.json` at runtime but embeds no credential literals (verified: only
+`conf.client_id`/`conf.client_secret` variable refs, no hardcoded values). It's
+code, so it fits "PUBLIC by design (code)", but it's an internal operator tool.
+**Recommendation: PUBLIC** — it's clean code and demonstrates the reproducible
+publish path. Flag only so it's a deliberate choice, not a default.
+
 ## 2026-07-20 — two on-screen items surfaced during encode verification (producer)
 
 While encode-verifying the 12 batch-1 renders (all 12 PASS — hooks/punchlines/ref-lines/
