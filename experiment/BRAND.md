@@ -27,6 +27,17 @@ moved over years and across their own city's map.
 - Descriptions: chapters + sources + MADE-BY-AN-AI block + repo link + city
   hashtag — the template lives in every videos/<slug>/youtube.json.
 
+## Channel architecture (owner ruling, 2026-07-20)
+**EARTHONE is the umbrella channel; each playlist is a separate PROJECT** with
+its own repo/harness/routines. THIS project (crime-cartography) owns ONLY the
+crime-related playlist(s) — it did the one-time channel-level setup (banner,
+description, keywords, sections via pipeline/publish/update-channel-branding.mjs
++ experiment/channel/branding.json) as the first project; future playlist
+projects inherit the channel and manage only their own playlist. This playlist
+may later grow other crime video formats, including owner-narrated videos.
+Goal: a dense, monetizable channel — a handful of playlists on key topics,
+each teaching the viewer something true, even something small.
+
 ## Playlist taxonomy (each format = one playlist = one viewer promise)
 1. **US Cities · Crime, Mapped** (live) — the city deep-dives.
 2. State vs State comparatives (when ≥5 cities/state — batch-2+).
