@@ -42,9 +42,7 @@
    "technical": 21
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -66,6 +64,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha af9eb6173c8d. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -120,8 +122,7 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "society=0 counter row reads oddly — consider hiding structurally-empty categories",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "society=0 counter row reads oddly — consider hiding structurally-empty categories"
   ],
   "history": [
    {
@@ -151,6 +152,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 583ccd304a21. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -163,9 +168,7 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -191,6 +194,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha f07d764e2800. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -203,8 +210,7 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -238,6 +244,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 2cc6682d9208. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -250,9 +260,7 @@
    "technical": 21
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up verified city-specific copy.seamExplain (measure-change explainer on the trend seam) — note 2026-07-20T15:30 (owner: every seamed/multi-dataset chart must briefly explain the source/measure change, like Boston)",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -274,6 +282,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha b978d39bcc81. countTerm honesty blocker CLOSED + seamExplain re-render blocker CLOSED — this render is a descendant of a79c21f; WHY-THE-JUMP card confirmed rendering on SF t=80 + chicago t=74 (city-specific measure-change explainer, config.copy.seamExplain present). No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -318,8 +330,7 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -337,6 +348,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 2c1f560daed1. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -349,8 +364,7 @@
    "technical": 22
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -368,6 +382,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 9c83a5ba8f60. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -450,8 +468,7 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"major\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full end-to-end watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -465,6 +482,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"major\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"major\" -> on-screen \"MAJOR\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 24c34d1ae713. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -477,8 +498,7 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full end-to-end watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -492,6 +512,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha fb13f8f7e8d3. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },
@@ -504,8 +528,7 @@
    "technical": 22
   },
   "blockers": [
-   "full end-to-end watch-through with audio not yet logged",
-   "re-render to pick up the counted-category term fix (config.copy.countTerm) — reveal/quiz/timeline counted-term now uses this source's own label (this city = \"reported\"; 'Group A' only for native-NIBRS Group A sources, 'major' for Buffalo's ten major-crime types, neutral 'reported' otherwise) instead of hardcoded 'Group A' — critic note 2026-07-19T23:45"
+   "full end-to-end watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -519,6 +542,10 @@
    {
     "date": "2026-07-20",
     "change": "note-watcher: resolved critic taxonomy-honesty note 2026-07-19T23:45 — engine (surface/remotion/src: Quiz/TimelineChart/Reveal/EraTransition) no longer hardcodes NIBRS 'Group A'; the on-screen counted-category label is routed through config.copy.countTerm (neutral default 'reported', never asserts a standard the source doesn't use). This city's term = \"reported\". Non-native-NIBRS cities' authored annotation/quiz text de-labeled to match. Re-render blocker added; no score change (label baked at render time)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER re-rendered at commit d829e57 to bake the COMPLETED countTerm engine fix — routed the 3 title strings the 1c6179b/note-watcher pass MISSED (Counters top-right total, Leaderboard subtitle, TimelineChart per-month title) through config.copy.countTerm; flagged by the 13:25 driver engine-gap note. This city term=\"reported\" -> on-screen \"REPORTED\". Uniform config-driven engine VERIFIED on two term variants: washington-dc (reported) t=200 + buffalo (major) t=200 both show top-right \"<TERM> · TOTAL SINCE\", \"BUSIEST NEIGHBORHOODS · <TERM> TO DATE\", \"<TERM> INCIDENTS PER MONTH\" — zero \"GROUP A\" on a non-NIBRS source. Mechanical re-verify (this city): ffprobe 330.048s, h264 1920×1080 + AAC, 0 silence gaps (silencedetect -50dB/0.3s); render.lock pinned d829e57, sha 4c1a2b89183b. countTerm honesty blocker CLOSED. No score change (label baked at render; score already reflected the intended honest state; note-watcher convention)."
    }
   ]
  },

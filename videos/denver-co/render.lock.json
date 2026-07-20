@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-20T17:57:05Z",
-  "commit": "d857341111cbe77c3394a9a91c5267dbd5776d5a",
+  "renderedAt": "2026-07-20T20:54:03Z",
+  "commit": "d829e577cab8cd3b253e7ab5f202875521f45baf",
   "datasetFetchedAt": "2026-07-17T23:50:55.731Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/denver-co-music-sao.wav",
   "output": "out/denver-co.mp4",
-  "sha256": "0fd0f9f6895387caabb051be23c9a3b58224938a56f53f9b02b0383791b2f959",
+  "sha256": "9c83a5ba8f6001638c864fb41951888ca43d4bd1e1a6197b2f6452a11b8644e0",
   "remotion": "render CrimeStory --props=config.json"
 }
