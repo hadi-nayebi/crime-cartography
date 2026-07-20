@@ -194,8 +194,7 @@
    "technical": 21
   },
   "blockers": [
-   "full watch-through with audio not yet logged",
-   "district renumbering artifacts — confirm no annotation touches merged districts"
+   "full watch-through with audio not yet logged"
   ],
   "history": [
    {
@@ -205,6 +204,10 @@
    {
     "date": "2026-07-20",
     "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER verified district-artifact honesty (config + reveal frame t300). Annotations cite ONLY current districts (15th Frankford busiest, 18th Cobbs Creek biggest fall); punchline citywide; historyNotes citywide FBI-era — NO merged/retired district (4th→3rd, 6th→9th, 23rd, code 92) cited anywhere. Reveal leaderboard shows only current districts (busiest 15th/22nd/9th/24th/19th/14th; safest 77th·Airport 4,435 — a real current low-crime district, not a retired artifact); on-screen 'retired districts disclosed · 94.3% mapped to a current district'. No merger artifact surfaces as a false extreme, and the '9th/3rd rise' caution is respected (no rise claim on either). Blocker RESOLVED. Score unchanged (gate = owner watch-through)."
    }
   ]
  },
