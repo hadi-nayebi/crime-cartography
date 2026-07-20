@@ -33,7 +33,9 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
 
   const busiest = stats.hoodRanking.slice(0, 6);
   const maxA = busiest[0]?.groupATotalAll || 1;
-  // fewest Group A → "safest". ranking is desc, so the tail; show fewest first.
+  // fewest Group A → "safest". Ranking already excludes no-data polygons
+  // (zero records joined — join artifacts, not safe places); desc, so the
+  // tail; show fewest first.
   const safest = stats.hoodRanking.slice(-3).reverse();
   const answer = safest[0];
 
@@ -130,8 +132,9 @@ export const Reveal: React.FC<Props> = ({ stats, summary, durationInFrames }) =>
           </div>
           <div style={{ fontSize: 18, color: COLORS.inkFaint, marginTop: 16, lineHeight: 1.45 }}>
             "Safest" = fewest reported Group A incidents. Report counts only — not
-            adjusted for population or area. Areas with no reported data in the
-            period are excluded (not counted as safe).
+            adjusted for population or area.
+            {stats.hoodNoDataCount > 0 &&
+              ` ${stats.hoodNoDataCount} area${stats.hoodNoDataCount === 1 ? "" : "s"} with no mapped records excluded — no data isn't "no crime".`}
           </div>
         </div>
       </div>

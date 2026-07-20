@@ -74,7 +74,7 @@ export interface HoodStat {
   beatKeys: string[]; // member beats whose centroid falls in this neighborhood
   series: CatCounts[]; // summed per-month counts across member beats
   groupATotalAll: number;
-  allTotal: number; // every category over the whole period — 0 means true no-data
+  allTotal: number; // every category over the whole period
 }
 
 export interface Stats {
@@ -82,7 +82,8 @@ export interface Stats {
   beats: BeatStat[];
   ranking: BeatStat[]; // by groupATotalAll desc
   hoods: HoodStat[];
-  hoodRanking: HoodStat[]; // neighborhoods by groupATotalAll desc
+  hoodRanking: HoodStat[]; // hoods WITH data, by groupATotalAll desc (see below)
+  hoodNoDataCount: number; // hoods excluded from hoodRanking (zero records joined)
   maxWindowMetric: number; // max trailing-window metric across beats — stable scale
   cityMonthly: CatCounts[]; // city-wide per-month counts (for the chart)
   cityCumulative: CatCounts[]; // city-wide cumulative per month
@@ -194,16 +195,16 @@ export function deriveStats(
     h.allTotal += b.allTotal;
   }
   const hoods = [...byName.values()];
-  // Ranking used for the "busiest / safest" reveal + quiz. Exclude TRUE no-data
-  // areas (allTotal === 0): a hood with zero incidents in EVERY category across
-  // every month is a spatial-join artifact (nothing landed there), not a safe
-  // place — crowning it "safest" would be factually misleading. A hood with any
-  // real data (allTotal > 0) stays eligible even at groupATotalAll === 0, since
-  // that is a genuinely low Group-A area, honest to show. `hoods` (unfiltered)
-  // still feeds the busiest leaderboard.
-  const hoodRanking = [...hoods]
+  // Ranking used for every "busiest"/"safest" claim (quiz + reveal). A polygon
+  // with ZERO records of ANY category across the window is a no-data region —
+  // typically a name-join artifact (source records use a variant name with no
+  // official polygon) — not a safe place. Ranking it "safest: 0" would be a
+  // fabricated claim, so no-data hoods are excluded here and the exclusion is
+  // disclosed in the Reveal caveat via hoodNoDataCount.
+  const hoodRanking = hoods
     .filter((h) => h.allTotal > 0)
     .sort((a, b) => b.groupATotalAll - a.groupATotalAll);
+  const hoodNoDataCount = hoods.length - hoodRanking.length;
 
   const grandTotalGroupA = beats.reduce((s, b) => s + b.groupATotalAll, 0);
   const grandTotalAll = beats.reduce((s, b) => s + b.allTotal, 0);
@@ -214,6 +215,7 @@ export function deriveStats(
     ranking,
     hoods,
     hoodRanking,
+    hoodNoDataCount,
     maxWindowMetric,
     cityMonthly,
     cityCumulative,
