@@ -59,3 +59,13 @@ stale (re-review). Honesty: do not write `pass` without an actual review.
 
 ## requested (2026-07-19 late, orchestrator)
 - harness-improver MUST check every scheduled task's `enabled` flag each audit: batch1-production-driver was found silently DISABLED tonight (last run 19:25, likely auto-disabled when a run died in the 529/session-limit window) — cost ~2h of idle GPU before the orchestrator caught it. Also verify lastRunAt vs schedule for every routine, not just commit signatures.
+
+## 2026-07-19 ~22:15 — fleet-wide routine update (orchestrator, user-directed: "update all routines so our project grows more effectively")
+Evidence-based changes (SKILL.md prompts edited; every change verbatim in the files):
+- driver: crash-safe PID-liveness lock; CLEAR-THE-QUEUE rule (process every ready item per run, not one — the one-item-then-idle pattern wasted GPU hours); steps 130→140 (aligned with proven chain); GPU zombie preflight (never kill a live holder); NO-OP RUNS ARE CHEAP (one line max, no reports — the 07-19 essay-runs were waste).
+- producer: SURGE DOCTRINE (queue >3 similar items → parallel agent fan-out + self re-verification; proven 07-19); crash-safe lock; richer templates (milwaukee/detroit/denver); D5-conditional staged-wave publishing (only on Hadi's ruling).
+- briefing: when email undeliverable (no gmail token) cap at ~15 lines — unsent essays are waste.
+- channel-manager: new task 0 PRE-PUBLISH READINESS (quota ledger vs ~6/day cap, playlist integrity, per-city metadata/thumbnail QA → readiness table + gap notes into the ratchet).
+- harness-improver: MANDATORY scheduler-truth check (enabled flags + lastRunAt vs cron for every task; silently-disabled production tasks get re-enabled + logged — the 07-19 driver incident); token-efficiency audit of routine outputs.
+- note-watcher: crash-safe PID-liveness lock (dead watcher stranded .notes.lock ~13 min on 07-19).
+- critic: cadence 5min→15min (measured over-provisioning: files 3+/run vs watcher's ~1 fix/run — most 5-min wakeups would exit on backpressure).
