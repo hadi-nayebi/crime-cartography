@@ -90,8 +90,7 @@
   },
   "blockers": [
    "full watch-through with audio not yet logged",
-   "society=0 counter row reads oddly — consider hiding structurally-empty categories",
-   "re-render to pick up seam 'WHY THE JUMP?' explainer + DC-specific seamExplain copy (user feedback 2026-07-18) + verify encode"
+   "society=0 counter row reads oddly — consider hiding structurally-empty categories"
   ],
   "history": [
    {
@@ -113,6 +112,10 @@
    {
     "date": "2026-07-20",
     "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:43): zero-count 'safest' FIX PRESENT — reveal quiz answer 'Rock Creek Park' (15), then Arboretum/Anacostia River (31), Joint Base Anacostia-Bolling (104); disclosure '1 area with no mapped records excluded — no data isn't no crime'. NOT the old 'Observatory Circle 0' artifact. Zero-count re-render blocker RESOLVED. society=0 counter STILL shows bare '0' (label '(not in DC's published feed)' truncated in counter row) — society blocker STAYS (genuine: PROVENANCE confirms MPD publishes only 9 Part-I offenses; honest but reads oddly). Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "OWNER APPROVE (2026-07-20T15:28:13, washington-dc/feedback.json) recorded as verify-light evidence — verify is a manual light and flips on this fresh Approve. RECONCILED blocker drift: the 00:43 re-render satisfied BOTH the zero-count AND the seamExplain re-render blockers, but the producer's hand-clear removed only the zero-count, leaving the seamExplain blocker stale. Independently verified the seam fix is LIVE in the current mp4 — extracted still @96s shows the 'WHY THE JUMP?' card rendering the DC-specific seamExplain copy (FBI UCR gray 1985-2007 vs MPD gold 2008+, dashed 2008 seam, 'the measuring system changing, not a re-classification of crime'). Stale 're-render to pick up seamExplain' blocker CLEARED [blockers cleared: 1]. Remaining: full watch-through with audio (separate manual gate, NOT auto-cleared by an approve — boston precedent) + society=0 counter (genuine honesty item, producer decision). Score held at 91 — the seam design gain was already counted on the 07-18/07-19 entries; a re-approve of an already-counted gain must not double-inflate."
    }
   ]
  },

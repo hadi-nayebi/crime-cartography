@@ -5,6 +5,19 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### re-render verify step must clear ALL blockers the render satisfies, not one  (from washington-dc owner APPROVE 2026-07-20, resolved by note-watcher)
+When the producer/driver re-renders a city and encode-verifies the mp4, it clears
+confidence.json blockers by hand — one at a time, from memory. But a SINGLE render
+routinely satisfies MULTIPLE `re-render to pick up X` blockers at once: DC's
+2026-07-20 00:43 render carried BOTH the zero-count 'safest' fix AND the seamExplain
+'WHY THE JUMP?' fix, yet the verify pass logged `[blockers cleared: 1]` and stripped
+only the zero-count — the seamExplain re-render blocker stayed stale (found + cleared
+by the watcher on the owner APPROVE, still @96s confirming the seam card renders).
+FIX AT THE PRODUCING LAYER: after a re-render, the verify step must enumerate EVERY
+open blocker of the form `re-render to pick up …` for that city and confirm/clear
+each against the fresh mp4 (a cheap still per fix), never a running "cleared: 1".
+A `[blockers cleared: 1]` following a render that landed 2+ fixes is a drift smell.
+
 ### title-authoring step must emit ≥2 titleOptions per config  (from channel note 2026-07-20, resolved by note-watcher)
 The producer's title/`youtube.json`-authoring step does not guarantee the
 `titleOptions` field, so 3 late configs (denver-co, detroit-mi, milwaukee-wi)

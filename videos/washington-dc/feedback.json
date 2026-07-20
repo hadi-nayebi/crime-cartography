@@ -23,5 +23,13 @@
     "resolved": true,
     "by": "producer",
     "producerNote": "Root cause: engine, not DC — derive.ts hoodRanking ranked no-data window polygons as 'safest'; fixed engine-wide via merged PR #4 (allTotal>0 filter + hoodNoDataCount caveat). Independently re-verified DC on the render's exact 60-month window slice (2021-07..2026-06): pre-fix answer = Observatory Circle[all=0] (no-data US Naval Observatory), post-fix = Rock Creek Park[gA=15] — exactly as noted. The DC entry's existing re-render blocker now carries this fix (confidence.json), so the held re-render picks it up with seamExplain; watcher never renders. Window-aware sweep of all 20 cities confirms only ATL/MKE/DC affected — DC is the only SHIPPED artifact; MKE/ATL are unrendered so their first render is auto-correct."
+  },
+  {
+    "at": "2026-07-20T15:28:13.461Z",
+    "kind": "decision",
+    "videoTime": null,
+    "text": "APPROVE",
+    "resolved": true,
+    "producerNote": "Owner APPROVE recorded as verify-light evidence in confidence.json history (verify is a manual light — flips on this Approve). Root cause of a stray open blocker found + fixed: the 00:43 re-render satisfied BOTH the zero-count AND the seamExplain re-render blockers, but the producer's hand-maintained clear removed only the zero-count — leaving the seamExplain re-render blocker stale (blocker-drift category). Independently verified the seam fix is LIVE (extracted still @96s of the current mp4: the 'WHY THE JUMP?' card renders the DC-specific seamExplain copy — FBI UCR gray 1985-2007 vs MPD gold 2008+, dashed 2008 seam) and cleared the stale blocker. Left untouched (not gated on this approve): full watch-through with audio (separate manual gate, boston precedent) + society=0 counter (genuine honesty item). Sweep: DC is the only open owner APPROVE this run; boston reconciled in a prior run."
   }
 ]
