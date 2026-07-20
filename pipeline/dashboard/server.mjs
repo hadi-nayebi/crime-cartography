@@ -380,6 +380,18 @@ async function doPublish(slug, p) {
   const vScope = deriveScope(await readJson(join(ROOT, "videos", slug, "config.json")));
   if (!fmts[vScope]?.id)
     return [412, { error: `no playlist configured for format "${vScope}" — run pipeline/publish/ensure-playlists.mjs first` }];
+  // Flow model (owner ruling 2026-07-20): publishable → published, owner-clicked;
+  // ≤6 uploads per rolling 24h is a quota MAX, never a schedule.
+  let recent = 0;
+  try {
+    for (const e of await readdir(join(ROOT, "videos"), { withFileTypes: true })) {
+      if (!e.isDirectory()) continue;
+      const y = await readJson(join(ROOT, "videos", e.name, "youtube.json"));
+      if (y?.uploadedAt && Date.now() - new Date(y.uploadedAt).getTime() < 24 * 3600 * 1000) recent++;
+    }
+  } catch {}
+  if (recent >= 6)
+    return [429, { error: `daily upload max reached (${recent}/6 in the last 24h — YouTube quota). A slot frees as the oldest upload ages past 24h.` }];
   // Persist the operator's choices into the per-video record BEFORE upload —
   // the canonical upload CLI reads youtube.json, so the record and the listing
   // can never diverge.

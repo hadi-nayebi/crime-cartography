@@ -211,3 +211,13 @@ release cadence ("new city every day" is itself a subscribable promise).
 **My recommendation:** (c)-flavored (a): announceable daily cadence, ~4-5/day
 over 4-5 days, ordered to alternate near-twin pairs so A/B comparisons get
 similar-age cohorts. Decide the order rule when the cohort gates green.
+
+## RULING D5 (Hadi, 2026-07-20) — publishing is a FLOW, not a schedule
+Verbatim intent: routines together produce PUBLISHABLE videos; when a video
+reaches publishable status it gets published — "we can have a max, but we
+cannot have a mean." Zero-ready days are a management event: they must trigger
+manager-level routine operations (harness diagnoses + improves) so ready videos
+flow again. Hadi is the only publisher (studio modal — his thumbnail/title
+choices). Shorts/vertical derivatives: RULED OUT. Implemented: experiment/
+FLEET.md team charter; producer flow-SLO + alarm; harness starvation duty;
+briefing flow scoreboard; studio server enforces ≤6/24h as a hard MAX (HTTP 429).
