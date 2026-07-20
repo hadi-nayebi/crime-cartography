@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-12T08:19:15Z",
-  "commit": "c699529c00a6217159ad7bd9672fa6d656e76cd9",
+  "renderedAt": "2026-07-20T13:13:24Z",
+  "commit": "2481238d548fa1ed8537b8f38bac4447dff5aace",
   "datasetFetchedAt": "2026-07-12T07:10:56.058Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/san-francisco-ca-music-sao.wav",
   "output": "out/san-francisco-ca.mp4",
-  "sha256": "48f2b28742e61c0d3b0dcdf86ccf334886408d163cece9be8f2bc55ef23c85d4",
+  "sha256": "c4eb3d4470ebd0aff6346fbd54e8cbde7eef1095542ad283a4259a788f3f05c8",
   "remotion": "render CrimeStory --props=config.json"
 }

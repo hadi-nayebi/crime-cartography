@@ -123,6 +123,10 @@
       {
         "date": "2026-07-20",
         "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "DRIVER re-rendered stale mp4 to pick up the SF accounting fix (commit 7e7dda2, 2026-07-19): totalRecords 3,117,438→3,071,590 (window overlaps/partials moved to excludedOutsideWindow), coverage 96.7%→98.1%. Prior shipped mp4 (rendered 2026-07-12 @ commit c699529) showed the stale 96.7%/3.1M. New render verified: 330.048s, 0 audio gaps, method card 03 shows \"98.1% map to a neighborhood\"; on-screen category totals 260,146+1,508,006+264,153+1,039,285=3,071,590 reconcile exactly. render.lock.json updated (sha256 c4eb3d44). Score unchanged (producer's call); note the \"coverage line wording\" blocker's on-screen evidence is now satisfiable."
       }
     ]
   },
