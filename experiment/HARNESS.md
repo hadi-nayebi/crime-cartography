@@ -173,6 +173,24 @@ is NOT a one-off: it recurs by default whenever a countTerm/label re-render land
 approve. Raise priority — the producer verify step needs the verify-restale flag as a HARD
 step, not advice. (Watcher re-verified DC's shipped bytes vs render.lock + 3 stills before
 signing, per the checkpoint; but the routine should not depend on the watcher catching it.)
+THIRD OCCURRENCE — and the FIRST MATERIAL one (2026-07-20, grand-rapids-mi owner APPROVE @22:54:46):
+here the un-syncing re-render was NOT a byte-identical label no-op but a real content change —
+the driver's @0661c29a wave added the seamExplain WHY-THE-JUMP card + neon palette (sha
+43c58841). The owner approved (22:54:46) and PUBLISHED private (22:55:34, videoId EV4T91mTBQQ)
+the prior 2026-07-11 cut (sha e8b3976b), then the fix re-render landed 6 min later (23:00:43).
+So this time the SHIPPED cut itself is genuinely stale (not just the verify light) — GR needs an
+owner re-review + RE-PUBLISH, not merely a re-approve. Two upgrades to the ask: (1) the trigger
+is broader than "label/copy change" — ANY re-render that changes the mp4 sha after an approve
+must stamp the verify-restale flag AND, if the city is already published, a "published cut
+superseded — re-publish" blocker; (2) note the bitter irony worth a guard — the un-syncing
+re-render was the fix for the owner's OWN earlier note (15:30 seamExplain ask), so a resolved
+content note whose re-render is still pending should BLOCK/flag publish of that city until the
+fix ships, or the owner keeps publishing cuts that lack their own requested fix. GOOD NEWS that
+narrows the fix surface: the studio ENGINE already re-gates correctly here — server.mjs:105
+sets verified only when approve.at >= mp4.mtime, and priorityOf surfaces "re-approve — render is
+newer than your approval" (l.143); GR shows no false-green. So the residual gap is purely (a)
+the producer's confidence.json stamp on re-render, and (b) a publish-time guard against
+publishing a city with an open re-render blocker — NOT the verify engine.
 
 ### title-authoring step must emit ≥2 titleOptions per config  (from channel note 2026-07-20, resolved by note-watcher)
 The producer's title/`youtube.json`-authoring step does not guarantee the

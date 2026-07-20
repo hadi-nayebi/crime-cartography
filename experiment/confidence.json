@@ -10,7 +10,8 @@
     },
     "blockers": [
       "full end-to-end watch-through with audio not yet logged",
-      "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis"
+      "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis",
+      "LIVE published cut EV4T91mTBQQ (private, uploaded 2026-07-20T22:55:34Z) is the 2026-07-11 render sha e8b3976b — it LACKS the seamExplain WHY-THE-JUMP card + neon palette. Current render.lock @0661c29a (sha 43c58841, 2026-07-20T23:00:43Z) carries both. Owner APPROVE 22:54:46Z validated the stale July-11 cut only → owner re-review + re-publish the @0661c29a render to ship the seamExplain fix the owner requested (note 15:30)."
     ],
     "history": [
       {
@@ -32,6 +33,10 @@
       {
         "date": "2026-07-20",
         "change": "producer: re-rendered @0661c29 (driver wave) + producer frame-verified. seamExplain WHY-THE-JUMP card now PRESENT on the trend (t141: 'Through 2022 the gray bars are the FBI... From 2023 GRPD NIBRS Group A... the measure widened, not because crime jumped') -- was ABSENT (old 3826de8 render predated the 8df8b56 seam feature; GR now uses the unified FullTrend Chapter-1). Neon catColors applied on the map (t220: persons #ff2e63 / property #ffc233 / society #34e0e0, coherent, high-contrast). countTerm 'Group A' correct (native-NIBRS, no-op vs the pre-fix hardcoded default). Density-dot disclosures + '96.7% mapped to a police beat' intact; 2023=16,449 exact; 330.048s, 0 gaps. Score held at 88 (frame-verified the two blocked features, not a full watch-through; density-dot honesty ceiling stands). Gate: owner watch-through."
+      },
+      {
+        "date": "2026-07-20",
+        "change": "note-watcher: owner APPROVE 2026-07-20T22:54:46Z recorded as verify EVIDENCE — for the PUBLISHED cut only, which is now MATERIALLY un-synced (3rd channel-wide occurrence after boston + DC, and the FIRST material one — boston/DC were byte-identical countTerm no-ops). Hard bytes: live video EV4T91mTBQQ (uploaded 22:55:34Z, private) = 2026-07-11 render sha e8b3976b (pre-seamExplain, pre-neon-palette); render.lock advanced 6 min later to @0661c29a sha 43c58841 (2026-07-20T23:00:43Z, seamExplain PRESENT + neon catColors, producer frame-verified) — a DIFFERENT cut, unapproved + unpublished. The studio engine ALREADY re-gates this correctly: server.mjs:105 flips verified only when approve.at >= mp4.mtime, and priorityOf surfaces 're-approve — render is newer than your approval' (l.143), so GR shows NO false-green verify. Supersession blocker added. Score held 88 (content IMPROVED via seamExplain, not regressed; pure publish-state). Root cause = a fix re-render (resolving the owner's OWN 15:30 seamExplain note) landed AFTER the owner approved+published the prior cut, and the producer's re-render verify step did not stamp a 'prior approve stale / published cut superseded — owner re-review + re-publish' flag. Escalated as 3rd occurrence in HARNESS.md."
       }
     ]
   },
