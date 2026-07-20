@@ -4,6 +4,34 @@ Non-blocking items the producer resolved with its best judgment, plus a few that
 genuinely want Hadi's taste/eye. Nothing here blocks production; these are logged
 so Hadi can override any call on a watch-through. Newest first.
 
+## 2026-07-20 — two on-screen items surfaced during encode verification (producer)
+
+While encode-verifying the 12 batch-1 renders (all 12 PASS — hooks/punchlines/ref-lines/
+reveals/credits all match config and source data, 0 honesty defects), two non-blocking
+on-screen items came up that want a taste/policy call:
+
+**1. On-screen "made by an AI" authorship line — absent by design.** The video Credits
+card carries the data-source credit, the license attribution (OSM/ODbL + city data), a
+reproducibility line ("every number here is reproducible · full code, data & sources on
+GitHub"), and a music-AI disclosure ("Music generated with Stable Audio Open (Stability
+AI)") — but **no explicit "this video was made by an AI (Claude/Anthropic)" line on the
+video itself.** The full AI-authorship + transparency statement lives in every
+`youtube.json` **description** (verified present on all 12: "AI ✓ Claude ✓ transparency ✓").
+The 8 already-shipped originals are the same way, so this is a consistent repo-wide design,
+not a per-video gap. **Producer call (non-blocking): the description carries the required
+transparency, so I did not treat this as a defect.** If Hadi wants the AI-authorship stated
+*on-screen* too (arguably stronger transparency given "your reputation is attached"), that's
+a one-line Credits.tsx addition + a batch re-render — flag it and I'll do it in the next
+render wave. Logged so it's an explicit choice, not an oversight.
+
+**2. Reveal leaderboard header noun for division/precinct cities.** For the four cities whose
+regions are police divisions/precincts (charlotte, dallas = "police division"; nashville,
+memphis = "police precinct"), the reveal panel header still reads the generic **"Busiest
+neighborhoods"** even though the listed entries correctly name the divisions/precincts. The
+data is right; only the header noun is generic. Small engine nit (Reveal/Leaderboard header
+should read from `regionNoun`). I docked those four cities' representation axis by 1 (rep 22→21)
+to reflect it and filed it as an engine item; not a honesty issue, not a publish-blocker.
+
 ## 2026-07-20 — experiment matrix assigned (producer)
 
 Built `experiment/matrix.json` — the 7-dimension feature vector for all 20 videos

@@ -1,479 +1,511 @@
 {
-  "_rubric": "score = data + representation + narrative + technical (25 each). 100 required to publish. Evidence-only increments; defects drop score + add blocker.",
-  "grand-rapids-mi": {
-    "score": 88,
-    "axes": {
-      "data": 24,
-      "representation": 22,
-      "narrative": 20,
-      "technical": 22
-    },
-    "blockers": [
-      "full end-to-end watch-through with audio not yet logged",
-      "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial ledger entry after V6 encode verification (+ref-line fix)"
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+ "_rubric": "score = data + representation + narrative + technical (25 each). 100 required to publish. Evidence-only increments; defects drop score + add blocker.",
+ "grand-rapids-mi": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "chicago-il": {
-    "score": 90,
-    "axes": {
-      "data": 25,
-      "representation": 23,
-      "narrative": 21,
-      "technical": 21
-    },
-    "blockers": [
-      "full watch-through with audio not yet logged",
-      "seam-label/punchline overlap fix rendered? (fix landed post-render — verify or re-render)"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial entry; corrective ref-line re-render verified"
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged",
+   "density-dot mode (no real coords) — weakest map honesty grade of the batch; revisit copy emphasis"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial ledger entry after V6 encode verification (+ref-line fix)"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   }
+  ]
+ },
+ "chicago-il": {
+  "score": 90,
+  "axes": {
+   "data": 25,
+   "representation": 23,
+   "narrative": 21,
+   "technical": 21
   },
-  "seattle-wa": {
-    "score": 90,
-    "axes": {
-      "data": 25,
-      "representation": 23,
-      "narrative": 21,
-      "technical": 21
-    },
-    "blockers": [
-      "full watch-through with audio not yet logged",
-      "seam-label/punchline overlap fix rendered? (verify or re-render)",
-      "re-render: trend rebuilt CITYWIDE (audit 2026-07-19 — era mixed citywide 2008-16 with placed-only 2017+; 2018 peak 92,715 was understated, 2017→25 decline is −13.3% not −11.5%) + config annotation/plateau-note text updated — shipped mp4 shows the old chart"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial entry; corrective ref-line re-render verified"
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged",
+   "seam-label/punchline overlap fix rendered? (fix landed post-render — verify or re-render)"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial entry; corrective ref-line re-render verified"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   }
+  ]
+ },
+ "seattle-wa": {
+  "score": 90,
+  "axes": {
+   "data": 25,
+   "representation": 23,
+   "narrative": 21,
+   "technical": 21
   },
-  "washington-dc": {
-    "score": 91,
-    "axes": {
-      "data": 25,
-      "representation": 23,
-      "narrative": 21,
-      "technical": 22
-    },
-    "blockers": [
-      "full watch-through with audio not yet logged",
-      "society=0 counter row reads oddly — consider hiding structurally-empty categories",
-      "re-render to pick up seam 'WHY THE JUMP?' explainer + DC-specific seamExplain copy (user feedback 2026-07-18) + verify encode",
-      "re-render also picks up the engine zero-count 'safest' fix (PR #4, 2026-07-20): shipped mp4 answers 'Observatory Circle: 0' (no-data polygon — US Naval Observatory); post-fix answer 'Rock Creek Park: 15' + quiz options change; verify reveal frame on re-render (note in feedback.json)"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial entry after five-city encode verification"
-      },
-      {
-        "date": "2026-07-18",
-        "change": "user feedback: seam needs on-chart explanation -> SeamCallout built engine-wide, still-verified; awaiting re-render"
-      },
-      {
-        "date": "2026-07-19",
-        "change": "note 2026-07-18T01:50: added verified DC-specific seamExplain (FBI UCR yearly totals 1985-2007 vs MPD incident feed 2008+, same Part-I tier, source/measure change not re-classification); corrects generic card's 'broader' overstatement. Awaiting re-render."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged",
+   "seam-label/punchline overlap fix rendered? (verify or re-render)"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial entry; corrective ref-line re-render verified"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:38): CITYWIDE trend fix PRESENT — trend chart y-axis peak 92,715 (all-recorded-offenses), lollipop, seam '2008 · the measure changes', honest 'compare within each era, not across the dashed seam' caption, source credit present. Citywide re-render blocker RESOLVED. (seam-label/punchline overlap: seam label clean at t140; punchline card not frame-captured — owner watch-through to confirm.) Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
+   }
+  ]
+ },
+ "washington-dc": {
+  "score": 91,
+  "axes": {
+   "data": 25,
+   "representation": 23,
+   "narrative": 21,
+   "technical": 22
   },
-  "san-francisco-ca": {
-    "score": 90,
-    "axes": {
-      "data": 24,
-      "representation": 23,
-      "narrative": 21,
-      "technical": 22
-    },
-    "blockers": [
-      "full watch-through with audio not yet logged",
-      "5.4% unmapped rows — confirm on-screen coverage line wording lands"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial entry; peak-month figure recomputed by producer before configs"
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "DRIVER re-rendered stale mp4 to pick up the SF accounting fix (commit 7e7dda2, 2026-07-19): totalRecords 3,117,438→3,071,590 (window overlaps/partials moved to excludedOutsideWindow), coverage 96.7%→98.1%. Prior shipped mp4 (rendered 2026-07-12 @ commit c699529) showed the stale 96.7%/3.1M. New render verified: 330.048s, 0 audio gaps, method card 03 shows \"98.1% map to a neighborhood\"; on-screen category totals 260,146+1,508,006+264,153+1,039,285=3,071,590 reconcile exactly. render.lock.json updated (sha256 c4eb3d44). Score unchanged (producer's call); note the \"coverage line wording\" blocker's on-screen evidence is now satisfiable."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged",
+   "society=0 counter row reads oddly — consider hiding structurally-empty categories",
+   "re-render to pick up seam 'WHY THE JUMP?' explainer + DC-specific seamExplain copy (user feedback 2026-07-18) + verify encode"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial entry after five-city encode verification"
+   },
+   {
+    "date": "2026-07-18",
+    "change": "user feedback: seam needs on-chart explanation -> SeamCallout built engine-wide, still-verified; awaiting re-render"
+   },
+   {
+    "date": "2026-07-19",
+    "change": "note 2026-07-18T01:50: added verified DC-specific seamExplain (FBI UCR yearly totals 1985-2007 vs MPD incident feed 2008+, same Part-I tier, source/measure change not re-classification); corrects generic card's 'broader' overstatement. Awaiting re-render."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:43): zero-count 'safest' FIX PRESENT — reveal quiz answer 'Rock Creek Park' (15), then Arboretum/Anacostia River (31), Joint Base Anacostia-Bolling (104); disclosure '1 area with no mapped records excluded — no data isn't no crime'. NOT the old 'Observatory Circle 0' artifact. Zero-count re-render blocker RESOLVED. society=0 counter STILL shows bare '0' (label '(not in DC's published feed)' truncated in counter row) — society blocker STAYS (genuine: PROVENANCE confirms MPD publishes only 9 Part-I offenses; honest but reads oddly). Score unchanged (gate = owner watch-through). [blockers cleared: 1]"
+   }
+  ]
+ },
+ "san-francisco-ca": {
+  "score": 90,
+  "axes": {
+   "data": 24,
+   "representation": 23,
+   "narrative": 21,
+   "technical": 22
   },
-  "boston-ma": {
-    "score": 91,
-    "axes": {
-      "data": 24,
-      "representation": 24,
-      "narrative": 21,
-      "technical": 22
-    },
-    "blockers": [
-      "full watch-through with audio not yet logged",
-      "58% service/non-crime share — verify the crime-only framing is unmissable in the map chapter",
-      "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) + un-pin the 2023-05 South End note from beat D4 to the granular band so it no longer occludes the 'Boston University' landmark label (note 2026-07-19T22:23) — user feedback 2026-07-19; still-verified via 5 annotation stills (all notes on distinct slate panels in empty bands, no text overlap), awaiting re-render"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial entry; sexual-assault exclusion disclosed on-screen"
-      },
-      {
-        "date": "2026-07-19",
-        "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide — all cities inherit it on next render."
-      },
-      {
-        "date": "2026-07-19",
-        "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard — evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
-      },
-      {
-        "date": "2026-07-19",
-        "change": "note 2026-07-19T22:23 (conditional APPROVE: 'if you cannot find any issues with note placement, push to publication'): ran the note-placement QA. Reviewed all 5 annotations via deterministic stills at their mid-fade frames (f5153/6378/7346/8249/8571). Found ONE issue: the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label. FIXED by un-pinning it (dropped config beat:D4) so it renders in the proven-clean granular band; leaderboard shows South End #1 at that moment so spatial context is kept; re-rendered still confirms the label is legible and the note clears the timeline title. All 5 now place cleanly -> videos/boston-ma/qa.json notePlacement=pass. +1 representation (23->24), the clarity axis this defect sat on. Publication NOT greenlit: an issue WAS found (owner's condition unmet) and, independently, the exported mp4 predates the fix, so the re-render blocker is RETAINED. No narrative bump (this conditional approve is the same 22:22 sign-off, already counted; not double-inflated)."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged",
+   "5.4% unmapped rows — confirm on-screen coverage line wording lands"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial entry; peak-month figure recomputed by producer before configs"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "DRIVER re-rendered stale mp4 to pick up the SF accounting fix (commit 7e7dda2, 2026-07-19): totalRecords 3,117,438→3,071,590 (window overlaps/partials moved to excludedOutsideWindow), coverage 96.7%→98.1%. Prior shipped mp4 (rendered 2026-07-12 @ commit c699529) showed the stale 96.7%/3.1M. New render verified: 330.048s, 0 audio gaps, method card 03 shows \"98.1% map to a neighborhood\"; on-screen category totals 260,146+1,508,006+264,153+1,039,285=3,071,590 reconcile exactly. render.lock.json updated (sha256 c4eb3d44). Score unchanged (producer's call); note the \"coverage line wording\" blocker's on-screen evidence is now satisfiable."
+   }
+  ]
+ },
+ "boston-ma": {
+  "score": 91,
+  "axes": {
+   "data": 24,
+   "representation": 24,
+   "narrative": 21,
+   "technical": 22
   },
-  "philadelphia-pa": {
-    "score": 90,
-    "axes": {
-      "data": 25,
-      "representation": 23,
-      "narrative": 21,
-      "technical": 21
-    },
-    "blockers": [
-      "full watch-through with audio not yet logged",
-      "district renumbering artifacts — confirm no annotation touches merged districts"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial entry; citywide punchline rebuilt after retired-district bias catch"
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged",
+   "re-render to pick up Boston seamExplain (what changed at the 2016 measure seam: BPD's Aug-2015 new incident records system, broader case-by-case taxonomy, source/measure change not a real crime jump) + engine annotation fix (per-chapter empty-band placement so notes never land on the timeline/trend, raised slate panel distinct from the video background for readability) + un-pin the 2023-05 South End note from beat D4 to the granular band so it no longer occludes the 'Boston University' landmark label (note 2026-07-19T22:23) — user feedback 2026-07-19; still-verified via 5 annotation stills (all notes on distinct slate panels in empty bands, no text overlap), awaiting re-render"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial entry; sexual-assault exclusion disclosed on-screen"
+   },
+   {
+    "date": "2026-07-19",
+    "change": "note 2026-07-19T20:36 (REQUEST CHANGES): added verified Boston-specific copy.seamExplain answering 'what changed about the measure from 2016' (FBI UCR index crimes through 2015 vs BPD new-system incident feed from Aug 2015; 36% figure 46,849->29,963 re-verified from trend.json). Engine: Annotation now places notes in a chapter-specific empty band (granular=above TimelineChart, history=below FullTrend) on a raised slate panel (rgba(24,31,43,0.96)+border) distinct from the near-black bg; MapAnnotation matched. tsc clean; 3 stills verified (granular anno clears chart title, history note below trend, seam card reads). Engine change is repo-wide — all cities inherit it on next render."
+   },
+   {
+    "date": "2026-07-19",
+    "change": "note 2026-07-19T22:22 (APPROVE): owner approved Boston on the dashboard — evidence the seamExplain + annotation-placement work landed the story. +1 narrative (20->21), the axis that fix targeted, on owner sign-off. Re-render blocker RETAINED and publication still gated: the encoded artifact (videos/boston-ma/out/boston-ma.mp4) is dated Jul 12, predating the Jul 19 seamExplain + empty-band annotation fixes, so the current mp4 does not yet contain what was approved. Approval validates design intent; a verified encode of the fixed cut is still required before publish."
+   },
+   {
+    "date": "2026-07-19",
+    "change": "note 2026-07-19T22:23 (conditional APPROVE: 'if you cannot find any issues with note placement, push to publication'): ran the note-placement QA. Reviewed all 5 annotations via deterministic stills at their mid-fade frames (f5153/6378/7346/8249/8571). Found ONE issue: the 2023-05 South End note, map-pinned to beat D4, occluded the 'Boston University' landmark label. FIXED by un-pinning it (dropped config beat:D4) so it renders in the proven-clean granular band; leaderboard shows South End #1 at that moment so spatial context is kept; re-rendered still confirms the label is legible and the note clears the timeline title. All 5 now place cleanly -> videos/boston-ma/qa.json notePlacement=pass. +1 representation (23->24), the clarity axis this defect sat on. Publication NOT greenlit: an issue WAS found (owner's condition unmet) and, independently, the exported mp4 predates the fix, so the re-render blocker is RETAINED. No narrative bump (this conditional approve is the same 22:22 sign-off, already counted; not double-inflated)."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER encode-verified current mp4 (re-rendered 2026-07-20 00:47): crime-only framing UNMISSABLE — service/non-crime shown as dimmed '(context) 47,570' separate from Group A (persons+property+society); Boston University landmark label CLEAR/un-occluded at t190 (South-End-note re-pin fix present); annotations on distinct empty-band slate panels. Service-framing blocker RESOLVED. NOTE: mp4 re-rendered AFTER owner's 22:23 approve → approval STALE by design → verify light owner-gated pending re-approval. Score unchanged. [blockers cleared: 1]"
+   }
+  ]
+ },
+ "philadelphia-pa": {
+  "score": 90,
+  "axes": {
+   "data": 25,
+   "representation": 23,
+   "narrative": 21,
+   "technical": 21
   },
-  "minneapolis-mn": {
-    "score": 91,
-    "axes": {
-      "data": 25,
-      "representation": 23,
-      "narrative": 21,
-      "technical": 22
-    },
-    "blockers": [
-      "full watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-12",
-        "change": "initial entry; Shots-Fired trend artifact excluded + disclosed"
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged",
+   "district renumbering artifacts — confirm no annotation touches merged districts"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial entry; citywide punchline rebuilt after retired-district bias catch"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   }
+  ]
+ },
+ "minneapolis-mn": {
+  "score": 91,
+  "axes": {
+   "data": 25,
+   "representation": 23,
+   "narrative": 21,
+   "technical": 22
   },
-  "detroit-mi": {
-    "score": 64,
-    "axes": {
-      "data": 22,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 10
-    },
-    "blockers": [
-      "not yet rendered (music generation holding the GPU this session) — no stills/encode verification",
-      "music track (audio/detroit-mi-music-sao.wav) — verify present + 0 audio gaps at render",
-      "full watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-19",
-        "change": "config authored by producer; every on-screen number recomputed from normalized data (factsheet harness): hook -69% (1985 149,954 -> 2016 46,048), busiest month 2024-08=7,385, Downtown busiest, State Fair -55%; refs validated, palette patched, tsc clean, data synced. steps trendStyle, long-fall frame."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-12",
+    "change": "initial entry; Shots-Fired trend artifact excluded + disclosed"
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   }
+  ]
+ },
+ "detroit-mi": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "denver-co": {
-    "score": 64,
-    "axes": {
-      "data": 22,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 10
-    },
-    "blockers": [
-      "not yet rendered (music generation holding the GPU this session) — no stills/encode verification",
-      "music track (audio/denver-co-music-sao.wav) — verify present + 0 audio gaps at render",
-      "full watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-19",
-        "change": "config authored by producer; numbers recomputed from data: hook -20% (2022 70,227 -> 2025 55,942), FBI U-shape acknowledged (led on recent same-measure decline, not a misleading 40-yr line), Five Points busiest, University Park -53%, window -24%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-19",
+    "change": "config authored by producer; every on-screen number recomputed from normalized data (factsheet harness): hook -69% (1985 149,954 -> 2016 46,048), busiest month 2024-08=7,385, Downtown busiest, State Fair -55%; refs validated, palette patched, tsc clean, data synced. steps trendStyle, long-fall frame."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −69% (1985 149,954→2016 46,048) steps · busiest Downtown 11,467 / fewest Belle Isle 27 · refLine 2016≈3837/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ },
+ "denver-co": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "milwaukee-wi": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered (music generation holding the GPU this session) — no stills/encode verification",
-      "music track (audio/milwaukee-wi-music-sao.wav) — verify present + 0 audio gaps at render",
-      "full watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-19",
-        "change": "TREND UNBLOCKED + config authored by producer. Seam gap resolved by extending FBI history to real 2005=39,404 (CDE WIMPD0000) so incident era starts 2006, contiguous 1985-2025. Numbers recomputed: hook -44% (2006 61,099 -> 2025 34,281), Old North Milwaukee busiest, Haymarket -60%, window -22%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle, long-fall frame."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-19",
+    "change": "config authored by producer; numbers recomputed from data: hook -20% (2022 70,227 -> 2025 55,942), FBI U-shape acknowledged (led on recent same-measure decline, not a misleading 40-yr line), Five Points busiest, University Park -53%, window -24%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −20% (2022 70,227→2025 55,942) lollipop · busiest Five Points 17,930 / fewest Wellshire 249 · refLine 2020≈3412/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ },
+ "milwaukee-wi": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "atlanta-ga": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification (producer to score on first render)",
-      "music track audio/atlanta-ga-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "render with engine zero-count 'safest' exclusion (note 2026-07-19): safest reveal/quiz must resolve to a REAL low-count neighborhood (Bankhead Courts, gA=3/all=5), NOT a no-data join artifact — Bankhead / Englewood Manor / Midwest Cascade all have all=0 (nothing lands there; already disclosed in creditsSources). Engine now filters allTotal===0 hoods out of hoodRanking, so a fresh render is automatically correct; do not render from a stale engine build.",
-      "full watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-19",
-        "change": "note-watcher: resolved critic note 2026-07-19T23:33 (engine-level zero-count 'safest' artifact). ROOT CAUSE: derive.ts hoodRanking was a plain groupATotalAll-desc sort with no data-presence guard, so a spatial-join artifact (allTotal===0, e.g. Atlanta 'Midwest Cascade') could be crowned 'safest'. FIX: hoodRanking now excludes allTotal===0 hoods (true no-data) while keeping genuinely-low-Group-A hoods (allTotal>0) eligible; Reveal caveat discloses the exclusion; tsc clean. SWEEP: scanned all 20 cities — ONLY Atlanta had no-data hoods (3: Bankhead, Englewood Manor, Midwest Cascade); other 19 safest answers unchanged. Atlanta is unrendered, so its first render picks up the fix (pre-fix answer 'Midwest Cascade'[all=0] -> post-fix 'Bankhead Courts'[gA=3])."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "producer CORRECTION to the 2026-07-19 sweep claim: the full-timeline scan missed window-only zeros. Re-sweep mirroring the render's mapWindowMonths slice (merged PR #4, which supersedes the parallel local fix and adds hoodNoDataCount + conditional caveat): THREE cities affected — atlanta (answer Bankhead Courts:3, caveat '3 areas ... excluded'), milwaukee-wi (Brown Deer Park 0-in-window -> Zoo:1), washington-dc (Observatory Circle 0-in-window -> Rock Creek Park:15; SHIPPED mp4 shows the artifact — blocker added to its entry). Verified via reveal stills ATL/MKE/DET/DEN + ATL quiz still; validate.mjs PASS x5."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
-      },
-      {
-        "date": "2026-07-20",
-        "change": "producer scored to data-verified/unrendered tier (was stub 0/0-axes). Config numbers independently re-verified from data/atlanta-ga/normalized this session: hook -70% gap-safe; trend span 1985-2025 seam 2021 with declared seamGap 2019-2020 (disclosed) — hook cites FBI-era peak, unaffected by placement. data 23, representation 15, narrative 17, technical 9 = 64. Render + zero-count 'safest' fix + music + watch-through remain blockers."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-19",
+    "change": "TREND UNBLOCKED + config authored by producer. Seam gap resolved by extending FBI history to real 2005=39,404 (CDE WIMPD0000) so incident era starts 2006, contiguous 1985-2025. Numbers recomputed: hook -44% (2006 61,099 -> 2025 34,281), Old North Milwaukee busiest, Haymarket -60%, window -22%; refs validated, palette patched, tsc clean, synced. lollipop trendStyle, long-fall frame."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −44% (2006 61,099→2025 34,281) lollipop · busiest Old North Milwaukee 7,083 / fewest Zoo 1 (1 no-data area excluded) · refLine 2005≈3284/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ },
+ "atlanta-ga": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "buffalo-ny": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/buffalo-ny-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +32% rebound (2022 10,822 -> 2023 14,319) VERIFIED against trend.json; incident-era annuals are CITYWIDE (custom plan, ~2% unmapped disclosed) so the rebound is not a placed-share artifact. steps trendStyle, rebound-and-retreat frame, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
+  "blockers": [
+   "full watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-19",
+    "change": "note-watcher: resolved critic note 2026-07-19T23:33 (engine-level zero-count 'safest' artifact). ROOT CAUSE: derive.ts hoodRanking was a plain groupATotalAll-desc sort with no data-presence guard, so a spatial-join artifact (allTotal===0, e.g. Atlanta 'Midwest Cascade') could be crowned 'safest'. FIX: hoodRanking now excludes allTotal===0 hoods (true no-data) while keeping genuinely-low-Group-A hoods (allTotal>0) eligible; Reveal caveat discloses the exclusion; tsc clean. SWEEP: scanned all 20 cities — ONLY Atlanta had no-data hoods (3: Bankhead, Englewood Manor, Midwest Cascade); other 19 safest answers unchanged. Atlanta is unrendered, so its first render picks up the fix (pre-fix answer 'Midwest Cascade'[all=0] -> post-fix 'Bankhead Courts'[gA=3])."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "producer CORRECTION to the 2026-07-19 sweep claim: the full-timeline scan missed window-only zeros. Re-sweep mirroring the render's mapWindowMonths slice (merged PR #4, which supersedes the parallel local fix and adds hoodNoDataCount + conditional caveat): THREE cities affected — atlanta (answer Bankhead Courts:3, caveat '3 areas ... excluded'), milwaukee-wi (Brown Deer Park 0-in-window -> Zoo:1), washington-dc (Observatory Circle 0-in-window -> Rock Creek Park:15; SHIPPED mp4 shows the artifact — blocker added to its entry). Verified via reveal stills ATL/MKE/DET/DEN + ATL quiz still; validate.mjs PASS x5."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "experiment matrix feature vector ASSIGNED (experiment/matrix.json) — blocker closed. This city's 7-dim vector is recorded; see matrix.json vectors + cleanNearTwinPairs."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "producer scored to data-verified/unrendered tier (was stub 0/0-axes). Config numbers independently re-verified from data/atlanta-ga/normalized this session: hook -70% gap-safe; trend span 1985-2025 seam 2021 with declared seamGap 2019-2020 (disclosed) — hook cites FBI-era peak, unaffected by placement. data 23, representation 15, narrative 17, technical 9 = 64. Render + zero-count 'safest' fix + music + watch-through remain blockers."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −70% (1989 88,536→2018 26,995) stacked · busiest Downtown 21,248 / fewest Bankhead Courts 3 (ZERO-COUNT 'safest' FIX CONFIRMED — 3 no-data areas excluded, 'no data isn't no crime', not an artifact) · refLine 2018≈2250/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ },
+ "buffalo-ny": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "cincinnati-oh": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/cincinnati-oh-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -45% (2002 28,803 -> 2019 15,718) VERIFIED; incident-era annuals CITYWIDE (sodaGroupMinDate dedupe plan). trendStyle area->steps this session (matrix D1 balance; unrendered). long-fall frame, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +32% rebound (2022 10,822 -> 2023 14,319) VERIFIED against trend.json; incident-era annuals are CITYWIDE (custom plan, ~2% unmapped disclosed) so the rebound is not a placed-share artifact. steps trendStyle, rebound-and-retreat frame, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook +32% (2022 10,822→2023 14,319; sub discloses 2025 eased to 12,352, 44% below 2007 peak 21,958=−43.7%) steps · busiest North Park 3,873 / fewest First Ward 329 · refLine 2005≈1753/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ },
+ "cincinnati-oh": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "kansas-city-mo": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/kansas-city-mo-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -51% (1991 58,374 -> 2014 28,885) VERIFIED; FBI-era endpoints; incident-era annuals CITYWIDE (dedupe plan; the 2017 false-crater geocoding bug is fixed). bars, long-fall; anchors 3 clean near-twins (chicago/baltimore/nashville). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -45% (2002 28,803 -> 2019 15,718) VERIFIED; incident-era annuals CITYWIDE (sodaGroupMinDate dedupe plan). trendStyle area->steps this session (matrix D1 balance; unrendered). long-fall frame, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −45% (2002 28,803→2019 15,718) steps · busiest Westwood 12,755 / fewest California 80 · refLine 2019≈1310/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ },
+ "kansas-city-mo": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
   },
-  "charlotte-nc": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/charlotte-nc-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +/-0% flat (2017 75,042 -> 2025 75,179) VERIFIED; BOTH endpoints are incident-era but placement is administrative (CMPD_PATROL_DIVISION identity join, 99.9%, PROVENANCE 'placed+unplaced==citywide' per month x cat) — drift-resistant; incident series is smooth (68.5k-77.9k band) with no placement cliff, so the flat line is real not an artifact. area, geography-shift, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -51% (1991 58,374 -> 2014 28,885) VERIFIED; FBI-era endpoints; incident-era annuals CITYWIDE (dedupe plan; the 2017 false-crater geocoding bug is fixed). bars, long-fall; anchors 3 clean near-twins (chicago/baltimore/nashville). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −51% (1991 58,374→2014 28,885) bars · busiest CBD Downtown 9,240 / fewest Glen Lake 17 · refLine 2014≈2407/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ },
+ "charlotte-nc": {
+  "score": 87,
+  "axes": {
+   "data": 24,
+   "representation": 21,
+   "narrative": 20,
+   "technical": 22
   },
-  "nashville-tn": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/nashville-tn-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -40% (1996 59,467 -> 2018 35,624) VERIFIED; FBI-era endpoints (not placement-affected). bars, long-fall, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook +/-0% flat (2017 75,042 -> 2025 75,179) VERIFIED; BOTH endpoints are incident-era but placement is administrative (CMPD_PATROL_DIVISION identity join, 99.9%, PROVENANCE 'placed+unplaced==citywide' per month x cat) — drift-resistant; incident series is smooth (68.5k-77.9k band) with no placement cliff, so the flat line is real not an artifact. area, geography-shift, question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook ±0% (2017 75,042→2025 75,179, +0.2%/8yr) area · busiest University City 41,058 / fewest Airport 4,039 (division) · refLine 2016≈3626/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   }
+  ]
+ },
+ "nashville-tn": {
+  "score": 87,
+  "axes": {
+   "data": 24,
+   "representation": 21,
+   "narrative": 20,
+   "technical": 22
   },
-  "dallas-tx": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/dallas-tx-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -68% (1988 171,772 -> 2014 54,511) VERIFIED; FBI-era endpoints. lollipop, long-fall, zoom hook (target); incident-era rose-then-fell shown honestly in notes. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -40% (1996 59,467 -> 2018 35,624) VERIFIED; FBI-era endpoints (not placement-affected). bars, long-fall, 270 tight-cut (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −40% (1996 59,467→2018 35,624) bars · busiest Southeast 39,647 / fewest West 25,932 (precinct) · refLine 2018≈2969/mo consistent; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   }
+  ]
+ },
+ "dallas-tx": {
+  "score": 87,
+  "axes": {
+   "data": 24,
+   "representation": 21,
+   "narrative": 20,
+   "technical": 22
   },
-  "memphis-tn": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/memphis-tn-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -32% (2023 106,788 -> 2025 72,843) VERIFIED; BOTH endpoints incident-era but placement is administrative (precinct station area, 98.8%, PROVENANCE identity-validated) — drift-resistant; the decline is smooth (-14.8%, -20.0%) with no placement cliff, so -32% is a real fall not an artifact. stacked, composition-shift (property/MV-theft wave), question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -68% (1988 171,772 -> 2014 54,511) VERIFIED; FBI-era endpoints. lollipop, long-fall, zoom hook (target); incident-era rose-then-fell shown honestly in notes. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −68% (1988 171,772→2014 54,511) lollipop · busiest Northeast 60,688 / fewest Downtown-CBD 14,706 (division) · ODC-BY + sex/juvenile exclusions disclosed; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   }
+  ]
+ },
+ "memphis-tn": {
+  "score": 87,
+  "axes": {
+   "data": 24,
+   "representation": 21,
+   "narrative": 20,
+   "technical": 22
   },
-  "baltimore-md": {
-    "score": 64,
-    "axes": {
-      "data": 23,
-      "representation": 15,
-      "narrative": 17,
-      "technical": 9
-    },
-    "blockers": [
-      "not yet rendered — no out/ artifact, no stills/encode verification",
-      "music track audio/baltimore-md-music-sao.wav NOT generated yet (12 batch-1 wavs pending; driver/GPU task) — verify present + 0 audio gaps at render",
-      "full end-to-end watch-through with audio not yet logged"
-    ],
-    "history": [
-      {
-        "date": "2026-07-20",
-        "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -71% (1995 95,760 -> 2020 28,048) VERIFIED; FBI-era endpoints. 1999 reporting artifact OMITTED+disclosed and 2021 seam gap OMITTED+disclosed (both in seamExplain/PROVENANCE). bars (kept, preserves the clean baltimore<->kansas-city palette twin), long-fall. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
-      }
-    ]
-  }
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -32% (2023 106,788 -> 2025 72,843) VERIFIED; BOTH endpoints incident-era but placement is administrative (precinct station area, 98.8%, PROVENANCE identity-validated) — drift-resistant; the decline is smooth (-14.8%, -20.0%) with no placement cliff, so -32% is a real fall not an artifact. stacked, composition-shift (property/MV-theft wave), question hook (target). Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −32% (2023 106,788→2025 72,843) stacked · 'the wave was property crime — 96% of the fall' verified 95.9% on screen · busiest Appling Farms 58,174 / fewest North Main 34,724 (precinct); source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→21 (−1: reveal header reads generic 'Busiest neighborhoods' for division/precinct city; entries correct), data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→87."
+   }
+  ]
+ },
+ "baltimore-md": {
+  "score": 88,
+  "axes": {
+   "data": 24,
+   "representation": 22,
+   "narrative": 20,
+   "technical": 22
+  },
+  "blockers": [
+   "full end-to-end watch-through with audio not yet logged"
+  ],
+  "history": [
+   {
+    "date": "2026-07-20",
+    "change": "producer ledger entry — config authored (agent fan-out, producer-committed) and every on-screen NUMBER independently re-verified from normalized data this session. hook -71% (1995 95,760 -> 2020 28,048) VERIFIED; FBI-era endpoints. 1999 reporting artifact OMITTED+disclosed and 2021 seam gap OMITTED+disclosed (both in seamExplain/PROVENANCE). bars (kept, preserves the clean baltimore<->kansas-city palette twin), long-fall. Matrix vector assigned (experiment/matrix.json). Not rendered (music not generated) -> representation/technical low."
+   },
+   {
+    "date": "2026-07-20",
+    "change": "PRODUCER ENCODE-VERIFIED the rendered mp4 (this session). Mechanical: ffprobe 330.048s, h264 1920×1080 + AAC 48k stereo, 0 silence gaps (silencedetect −50dB/0.3s). Data: hook stat recomputed EXACT from trend.json endpoints. Encode frames (t≈3.5/147/210/~300/322 via parallel verifier + producer re-verify) confirm on-screen: hook −71% (1995 95,760→2020 28,048) bars · busiest Downtown 8,483 / fewest Dundalk Marine Terminal 2 · 1999 broken-FBI-year + 2021 NIBRS-transition gaps VISIBLY LABELED 'Gaps stay gaps, nothing estimated'; source-credit verbatim; credits carry source+license(ODbL/city)+music attribution. Axes raised on evidence: technical 9/10→22 (encode equivalent to shipped 8), representation 15→22, data →24 (fresh full recompute), narrative →20 (structure/annotations render correctly). Resolved stale blockers (render+music-0-gaps). Remaining blocker = owner watch-through/approve. Score 64→88."
+   }
+  ]
+ }
 }
