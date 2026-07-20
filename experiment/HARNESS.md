@@ -56,3 +56,6 @@ video up ("note placement flagged") and the producer should add a re-render
 blocker to `experiment/confidence.json`. Set `status:"pending"` only while a
 review is in flight. `reviewedAt.commit` != current render commit ⇒ treat as
 stale (re-review). Honesty: do not write `pass` without an actual review.
+
+## requested (2026-07-19 late, orchestrator)
+- harness-improver MUST check every scheduled task's `enabled` flag each audit: batch1-production-driver was found silently DISABLED tonight (last run 19:25, likely auto-disabled when a run died in the 529/session-limit window) — cost ~2h of idle GPU before the orchestrator caught it. Also verify lastRunAt vs schedule for every routine, not just commit signatures.
