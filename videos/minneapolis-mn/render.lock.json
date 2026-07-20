@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-12T08:32:42Z",
-  "commit": "c699529c00a6217159ad7bd9672fa6d656e76cd9",
+  "renderedAt": "2026-07-20T23:05:22Z",
+  "commit": "0661c29a52014b740a07c0eb2b03e5e561d7d1ad",
   "datasetFetchedAt": "2026-07-12T07:13:42.752Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/minneapolis-mn-music-sao.wav",
   "output": "out/minneapolis-mn.mp4",
-  "sha256": "a2124f29218b6e3630761e1b9036aa73288f4b9fbadc1742b4befc90e45072c1",
+  "sha256": "6070b0a288d32d2f98437af0d3ca47f873c30560ebba6afe3a2efb6366531d88",
   "remotion": "render CrimeStory --props=config.json"
 }

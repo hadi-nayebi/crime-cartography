@@ -1,11 +1,11 @@
 {
-  "renderedAt": "2026-07-11T15:37:08Z",
-  "commit": "3826de8def1643ccced6f90f8e4da273ad3b38ae",
+  "renderedAt": "2026-07-20T23:00:43Z",
+  "commit": "0661c29a52014b740a07c0eb2b03e5e561d7d1ad",
   "datasetFetchedAt": "2026-06-23T03:23:51.993Z",
   "durationSec": 330.048,
   "fps": 30,
   "audioSrc": "audio/grand-rapids-music-sao.wav",
   "output": "out/grand-rapids-mi.mp4",
-  "sha256": "e8b3976bb5ab5c4b08e7ffd9d0ed614ac8d816cf0f519759a79c727e5fdbd988",
+  "sha256": "43c58841d5c5fa17d678f8ce58d9097bf636285f5591c122dd5ea5aa7e1696f8",
   "remotion": "render CrimeStory --props=config.json"
 }
