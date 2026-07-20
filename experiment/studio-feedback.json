@@ -67,5 +67,23 @@
     "resolved": false,
     "by": "critic",
     "lens": "infrastructure"
+  },
+  {
+    "at": "2026-07-20T14:30:34.056Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CHANNEL/growth> Thumbnail candidates missing on 12 batch-1 cities — a hard publish blocker. These have NEITHER videos/<slug>/thumbnail.jpg NOR any videos/<slug>/thumbs/ candidate frames: atlanta-ga, baltimore-md, buffalo-ny, charlotte-nc, cincinnati-oh, dallas-tx, denver-co, detroit-mi, kansas-city-mo, memphis-tn, milwaukee-wi, nashville-tn. The all-green publish gate + studio publish modal both require real candidate frames to pick/compose from, so none of the 12 can even reach the modal. Exact fix (category sweep, one pass): for each of the 12, extract the 6 real ffmpeg frames the studio already defines — POST /api/publish/<slug>/thumbs (frames at t=004/045/110/155/210/290s of videos/<slug>/out/<slug>.mp4 into videos/<slug>/thumbs/), same as the pre-warmed original 8 — then the owner picks/composes one at publish time. Honesty rule: thumbnail must be composed ONLY from real rendered frames, no external art. The original 8 (boston, chicago, grand-rapids, minneapolis, philadelphia, san-francisco, seattle, washington-dc) already have 6 candidates each and clear this bar.",
+    "resolved": false,
+    "by": "channel",
+    "lens": "growth"
+  },
+  {
+    "at": "2026-07-20T14:30:34.056Z",
+    "kind": "comment",
+    "videoTime": null,
+    "text": "<CHANNEL/growth> titleOptions empty on 3 cities — denver-co, detroit-mi, milwaukee-wi — so the publish modal's title picker has no alternates to offer (all other 17 videos carry 2 each). These are also the ledger's lowest-confidence cities (~64/100). Exact fix: author exactly 2 alternate titles in youtube.json titleOptions for each, each ≤100 chars, built ONLY from producer-verified hook/punchline figures for that city (no new/unverified numbers), matching the style of the primary title. Verify each against the city's confidence.json + config before writing.",
+    "resolved": false,
+    "by": "channel",
+    "lens": "growth"
   }
 ]

@@ -1,0 +1,29 @@
+{
+  "date": "2026-07-20",
+  "run": "youtube-channel-manager daily",
+  "channel": {
+    "id": "UCTsrF3UvpWzSGDXfbnZAWKA",
+    "title": "Earth One",
+    "subscriberCount": 1,
+    "viewCount": 915,
+    "videoCount": 6,
+    "note": "The 6 channel videos + 915 lifetime views belong to the pre-existing 'En Vocab as Categories' project, not crime-cartography. This project's cohort is entirely unpublished."
+  },
+  "playlists": [
+    { "id": "PLWw8s8_dq_Co", "title": "US Cities · Crime, Mapped", "itemCount": 0, "privacy": "public", "integrity": "ok" },
+    { "id": "PLpW7Sa73DuUxomt3c6w8Dfu3jiMA6KO8y", "title": "En Vocab as Categories", "itemCount": 6, "note": "foreign project; not managed here" }
+  ],
+  "project": {
+    "videosTracked": 20,
+    "published": 0,
+    "uploadsLast24h": 0,
+    "quotaRemainingToday": 6
+  },
+  "perVideoState": {
+    "_comment": "State-sync (videos.list part=status,statistics,snippet) runs per youtube.json with a videoId. All 20 have videoId=\"\" → nothing to sync this run. Populates once the first upload lands."
+  },
+  "drift": [],
+  "analyticsDeltas": {
+    "_comment": "No prior state file and no published videos → no deltas this run. First real deltas appear after the first publish + a subsequent daily run."
+  }
+}
