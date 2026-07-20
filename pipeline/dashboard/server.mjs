@@ -375,7 +375,7 @@ async function accessToken() {
 async function authStatus() {
   const hasSecret = Boolean(oauthConf(await readJson(SECRET_PATH)));
   const hasToken = Boolean((await readJson(TOKEN_PATH))?.refresh_token);
-  let channel = null;
+  let channel = null, analyticsScope = null;
   if (hasSecret && hasToken) {
     try {
       const at = await accessToken();
@@ -383,10 +383,18 @@ async function authStatus() {
         const r = await fetch("https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true", { headers: { Authorization: `Bearer ${at}` } });
         const sn = (await r.json()).items?.[0]?.snippet;
         if (sn) channel = { title: sn.title, thumb: sn.thumbnails?.default?.url ?? null };
+        // Does the granted token unlock the SEPARATE youtubeAnalytics API? Retention,
+        // averageViewPercentage, watch-time, CTR/impressions & subscriberGains all 403
+        // without yt-analytics.readonly (DECISIONS.md D6). tokeninfo authoritatively
+        // lists the granted scopes; null = unknown/unconnected, false = confirmed missing.
+        try {
+          const ti = await (await fetch("https://oauth2.googleapis.com/tokeninfo?access_token=" + encodeURIComponent(at))).json();
+          analyticsScope = String(ti.scope || "").split(/\s+/).includes("https://www.googleapis.com/auth/yt-analytics.readonly");
+        } catch {}
       }
     } catch {}
   }
-  return { hasSecret, hasToken, channel, redirect: REDIRECT };
+  return { hasSecret, hasToken, channel, analyticsScope, redirect: REDIRECT };
 }
 
 // ---- publish flow ----------------------------------------------------------

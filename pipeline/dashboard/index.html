@@ -987,7 +987,14 @@ async function pushThumb(slug){
 async function authUI(){
   const s = await (await fetch("/api/auth/status")).json();
   const el = $("yt-body");
-  if (s.channel) el.innerHTML = `<div class="row" style="margin:0">${s.channel.thumb?`<img src="${esc(s.channel.thumb)}" style="width:30px;height:30px;border-radius:50%">`:""}<span style="color:var(--green);font:600 13px var(--sans)">Connected — ${esc(s.channel.title)}</span><span style="flex:1"></span><button class="sm" onclick="location.href='/oauth/start'">Re-authorize</button></div>`;
+  if (s.channel) {
+    // When the token lacks yt-analytics.readonly, retention/CTR/watch-time/subscriber
+    // stats 403 — tell the owner WHY a re-authorize is worth clicking, in-context.
+    const scopeWarn = s.analyticsScope === false
+      ? `<div class="warnbar" style="margin-top:8px">⚠ Analytics scope missing — retention, average-view %, watch-time, CTR &amp; subscriber gains are locked (403). Click <b>Re-authorize</b> and grant the analytics permission to unlock deep stats.</div>`
+      : "";
+    el.innerHTML = `<div class="row" style="margin:0">${s.channel.thumb?`<img src="${esc(s.channel.thumb)}" style="width:30px;height:30px;border-radius:50%">`:""}<span style="color:var(--green);font:600 13px var(--sans)">Connected — ${esc(s.channel.title)}</span><span style="flex:1"></span><button class="sm" onclick="location.href='/oauth/start'">Re-authorize</button></div>` + scopeWarn;
+  }
   else if (s.hasSecret) el.innerHTML = `<button class="primary" onclick="location.href='/oauth/start'">Authorize with Google</button>`;
   else el.innerHTML = `<span class="feat">No OAuth credentials yet — see the setup instructions in the repo README.</span>`;
 }

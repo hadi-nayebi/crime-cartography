@@ -10,13 +10,20 @@ The dashboard now shows every LIVE stat the current Data-API grant exposes
 (views/likes/comments + duration/quality/captions/privacy/uploadStatus) with a
 freshness badge, plus a machine-readable GET /api/stats for routines. But
 watch-time, avg view duration, CTR, impressions, traffic sources and subscriber
-gains need the youtubeAnalytics API + the `yt-analytics.readonly` scope, which is
-NOT in OAUTH_SCOPE (server.mjs:28-29 = `youtube.upload youtube`). A scheduled
-run can't trigger OAuth consent. Harness ask: when the owner is next
-interactive, add `https://www.googleapis.com/auth/yt-analytics.readonly` to
-OAUTH_SCOPE and re-run /oauth/start so the refresh_token carries it; then a
-follow-up can wire youtubeAnalytics.reports.query into /api/stats. See
-experiment/DECISIONS.md D6.
+gains need the youtubeAnalytics API + the `yt-analytics.readonly` scope. That
+scope IS already in OAUTH_SCOPE (server.mjs:28-29) — the only gap is that the
+STORED refresh_token predates it, so it grants `youtube.upload youtube` only
+(confirmed 2026-07-20 via tokeninfo; /api/auth/status now returns
+`analyticsScope:false`). A scheduled run can't trigger OAuth consent. Harness
+ask: when the owner is next interactive, re-run /oauth/start and grant the
+analytics permission so a fresh refresh_token carries the scope; then a
+follow-up can wire youtubeAnalytics.reports.query into /api/stats.
+UPDATE 2026-07-20 (note-watcher, scientist note 23:10): the studio now PROMPTS
+the owner for exactly this — the Channel module shows an amber warnbar
+("Analytics scope missing — Re-authorize to unlock") whenever
+analyticsScope===false, so the re-auth ask is no longer buried in a note. The
+only remaining CODE step is the youtubeAnalytics.reports.query wiring, which
+lands after the owner re-consents. See experiment/DECISIONS.md D6.
 
 ### producer/driver must SEED a baseline `experiment/confidence.json` entry when it lands a new config  (from critic studio note 2026-07-20T00:01:57Z, resolved by note-watcher 2026-07-20)
 8 of 20 configs (baltimore-md, buffalo-ny, charlotte-nc, cincinnati-oh, dallas-tx,

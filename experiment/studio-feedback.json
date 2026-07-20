@@ -206,9 +206,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<SCIENTIST/growth> Re-authorize YouTube in the studio to unlock the analytics scope. Confirmed live this run: the stored refresh_token still grants only 'youtube.upload youtube' (no yt-analytics.readonly), so retention curves, average-view %, watch-time, CTR/impressions, and subscriber-gains all 403. That blocks the ENTIRE deep-learning half of the channel-scientist job -- with 3 videos now live and accruing views, I can read view/like/comment counters but NOT the retention shape or drop-off-vs-phase mapping that should steer batch-2. Code is already ready: OAUTH_SCOPE (pipeline/dashboard/server.mjs:28-29) and auth-youtube.mjs both already request yt-analytics.readonly -- the only missing step is a one-time human consent click a scheduled run can't do. Action: open the studio (localhost:4400) and re-run /oauth/start so a fresh token carries the scope. Consolidates the existing thread (DECISIONS.md D6 + HARNESS 'requested'); recorded in experiment/RESULTS.md as the scope-note of record so no routine re-files it.",
-    "resolved": false,
+    "resolved": true,
     "by": "scientist",
-    "lens": "growth"
+    "lens": "growth",
+    "producerNote": "Root cause: the analytics re-auth owner-action lived ONLY as a buried feedback note (+DECISIONS D6/RESULTS/HARNESS) with NO standing, explanatory prompt in the studio UI, so the owner had no in-context signal that a re-authorize was needed. Fixed at the dashboard layer (the watcher's layer): authStatus() now reads the granted scopes via Google tokeninfo and returns analyticsScope (verified /api/auth/status -> false, matching the scientist's finding); the Channel module now shows an amber warnbar 'Analytics scope missing — retention/avg-view%/watch-time/CTR & subscriber gains locked (403). Re-authorize to unlock' whenever analyticsScope===false. Restart+curl verified. Sweep: analytics re-auth is the only owner-required action that was UI-invisible (publish is already surfaced in the publish modal). The OAuth consent CLICK itself remains the owner's (no routine can trigger it); this note is RESULTS.md's scope-note of record — do not re-file. Remaining code step (wire youtubeAnalytics.reports.query into /api/stats once the scope lands) stays in HARNESS 'requested'."
   },
   {
     "at": "2026-07-20T23:10:57Z",
