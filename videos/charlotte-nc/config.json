@@ -20,6 +20,7 @@
     "sub": "+0.2% in eight years · reported criminal incidents (CMPD), the same measure"
   },
   "theme": {
+    "name": "brass",
     "colors": {
       "bg": "#06090b",
       "beatFill": "#0c1014",

@@ -257,6 +257,53 @@ named light/dark **theme presets** (engine-level, `surface/remotion/src/theme.ts
 instead of each config carrying a full color block? Larger engine change —
 flagged, not done, pending your call.
 
+### 2026-07-20 — theme-name vocabulary defined + set on all 20 (note-watcher)
+
+Resolves the critic/studio note (`studio-feedback.json` 2026-07-20T00:01:57Z):
+`theme.name` was null on all 20 configs, so the dashboard theme badge fell back to
+the luminance-derived mode — 19 identical "dark" badges + grand-rapids (no theme
+block) showing none — making the batch illegible as distinct "experiment points"
+(owner note 2026-07-19T21:18). **Root cause:** the config-authoring step never
+emits `theme.name`, and no vocabulary existed. **Fix (this run):** defined the
+vocabulary below and set a distinct, honest `theme.name` on every config, each
+name DERIVED FROM that city's real committed palette (`theme.colors.bg` tint +
+`theme.catColors`), not invented. Grand-rapids got a full `theme` block whose
+color values EQUAL the engine defaults (`surface/remotion/src/theme.ts` COLORS +
+CAT_COLORS) — badge parity with zero render change.
+
+**Metadata-only, NO re-render:** `applyThemeOverrides` (theme.ts) reads only
+`theme.colors`/`theme.catColors`; `theme.name` is consumed solely by the dashboard
+(`index.html` `themeBadge`, `server.mjs` `themeSummary`). GR's block equals the
+defaults it already rendered with, so all 20 mp4s are untouched → no confidence
+blocker filed.
+
+**Vocabulary (name = accurate description of that config's actual dark palette):**
+`moss` (atlanta, green-black + mint), `rust` (baltimore, orange+teal),
+`sage` (boston, muted green-gold), `steel` (buffalo, silver property),
+`brass` (charlotte, metallic gold), `ember` (chicago, warm amber bg),
+`clay` (cincinnati, terracotta), `cobalt` (dallas, sky-blue),
+`glacier` (denver, pale glacial blue), `iron` (detroit, steel-blue+yellow),
+`neon` (grand-rapids, vivid pink/amber/cyan = engine default),
+`jade` (kansas-city, turquoise), `cyan` (memphis, bright cyan),
+`wheat` (milwaukee, wheat-gold), `amethyst` (minneapolis, purple property),
+`honey` (nashville, warm gold), `iris` (philadelphia, periwinkle+purple),
+`sunset` (san-francisco, warm balanced), `tide` (seattle, deep+bright blue),
+`marble` (washington-dc, pale gold+sky). All 20 are dark-mode.
+
+**Honesty rule for this field:** a `theme.name` is an operator-facing label that
+must accurately describe the config's own colors — never assert light when the bg
+is dark, never a hue the palette doesn't carry. It is NOT an on-screen data claim
+(never appears in the video), so it carries no incident-data honesty risk.
+
+**Still open — the light/dark axis is untested (0 light-mode cities).** The owner
+wanted to compare light vs dark; all 20 are dark. Flipping an existing city to
+light means new bg/ink colors = a REAL re-render (producer's GPU + a design call),
+so it was NOT done here. Filed to HARNESS.md 'requested': (1) authoring must emit
+a `theme.name` from this vocabulary for every new config; (2) a future wave should
+include ≥1 genuinely light-mode city (light bg palette + re-render) so the axis has
+data. Grand-rapids's default-mirroring block is the template for adding a theme
+block to any bare config without changing its render.
+
 ### DECISIONS NEEDED (Hadi's call — not blocking)
 
 1. **Baltimore FBI 1999 = 503 (a broken UCR reporting year).** Baltimore's FBI

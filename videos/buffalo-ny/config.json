@@ -20,6 +20,7 @@
     "sub": "+32% in one year under the same BPD measure · 2025: 12,352 — easing, still 44% below the 2007 peak"
   },
   "theme": {
+    "name": "steel",
     "colors": {
       "bg": "#0a0808",
       "beatFill": "#141011",

@@ -20,6 +20,7 @@
     "sub": "−20% in three years · reported criminal offenses (DPD), the same measure"
   },
   "theme": {
+    "name": "glacier",
     "colors": {
       "bg": "#070a0e",
       "beatFill": "#0e131a",

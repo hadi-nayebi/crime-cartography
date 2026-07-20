@@ -20,6 +20,7 @@
     "sub": "485,969 → 237,497 recorded incidents per year · CPD"
   },
   "theme": {
+    "name": "ember",
     "colors": {
       "bg": "#0a0705",
       "beatFill": "#151009",

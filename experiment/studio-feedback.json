@@ -38,9 +38,10 @@
     "kind": "comment",
     "videoTime": null,
     "text": "<CRITIC/studio> theme.name is null in ALL 20 configs (0/20 set; grand-rapids-mi has no theme block at all), so the dashboard theme badge (themeBadge index.html:408-413, fed by themeSummary server.mjs:52-64) falls back to the derived mode: 19 of 20 cards show an identical 'dark' badge and grand-rapids shows none. DECISIONS.md:48-52 prescribes adding theme.name (e.g. 'ember'), and the owner asked (studio note 2026-07-19T21:18) for each video to be a distinct theme 'experiment point' -- currently indistinguishable, and the batch is 19 dark / 0 light / 1 unset so the light/dark axis the owner wanted to compare is untested. Proposed change: define a short theme-name vocabulary in DECISIONS.md and have the producer set theme.name (plus >=1 mode:light config per wave) when authoring a config; give grand-rapids a theme block for parity. Why: makes the batch legible as experiment points and completes the owner's dashboard request.",
-    "resolved": false,
+    "resolved": true,
     "by": "critic",
-    "lens": "studio"
+    "lens": "studio",
+    "producerNote": "root cause: config-authoring never emits theme.name AND no vocabulary existed, so the dashboard badge fell back to luminance-mode (19 identical 'dark', grand-rapids null/no-theme-block). Defined a theme-name vocabulary in DECISIONS.md (each name DERIVED from that city's real committed palette, not invented) and swept ALL 20: distinct theme.name on every config (moss/rust/sage/steel/brass/ember/clay/cobalt/glacier/iron/neon/jade/cyan/wheat/amethyst/honey/iris/sunset/tide/marble); grand-rapids given a full theme block whose color values EQUAL the engine defaults (surface/remotion/src/theme.ts) so its render is byte-identical (badge parity, zero re-render). Metadata-only — engine applyThemeOverrides reads only theme.colors/catColors, never theme.name — verified live: /api/catalog returns 20/20 distinct names, GR mode now 'dark'. Authoring guard filed to HARNESS.md 'requested'. The light-vs-dark axis (0 light-mode cities) needs a REAL re-render + design call, so it is flagged for producer, NOT done in this metadata-only run."
   },
   {
     "at": "2026-07-20T00:01:57Z",

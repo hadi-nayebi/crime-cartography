@@ -10,6 +10,25 @@
   "repoUrl": "github.com/hadi-nayebi/crime-cartography",
   "trendStyle": "bars",
   "mapWindowMonths": 60,
+  "theme": {
+    "name": "neon",
+    "colors": {
+      "bg": "#07090d",
+      "beatFill": "#0d141d",
+      "beatStroke": "rgba(125,145,175,0.22)",
+      "panelStroke": "rgba(125,145,175,0.20)",
+      "grid": "rgba(125,145,175,0.12)",
+      "ink": "#e7eef7",
+      "inkDim": "#9fb0c4",
+      "inkFaint": "#65788f"
+    },
+    "catColors": {
+      "persons": "#ff2e63",
+      "property": "#ffc233",
+      "society": "#34e0e0",
+      "other": "#7486a0"
+    }
+  },
   "hook": {
     "stat": "−51%",
     "line": "Grand Rapids' reported crime since 1985",

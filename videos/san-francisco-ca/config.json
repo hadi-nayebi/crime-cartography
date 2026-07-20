@@ -20,6 +20,7 @@
     "sub": "140,286 → 95,480 recorded incidents per year · SFPD"
   },
   "theme": {
+    "name": "sunset",
     "colors": {
       "bg": "#070a0d",
       "beatFill": "#0d1216",

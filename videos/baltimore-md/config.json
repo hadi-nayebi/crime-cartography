@@ -20,6 +20,7 @@
     "sub": "−71% under the same FBI measure · the city's own count begins in 2022"
   },
   "theme": {
+    "name": "rust",
     "colors": {
       "bg": "#0a0709",
       "beatFill": "#130d0f",

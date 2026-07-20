@@ -20,6 +20,7 @@
     "sub": "−71% under the same FBI measure · crime-only reports fell another 36% by 2025"
   },
   "theme": {
+    "name": "sage",
     "colors": {
       "bg": "#07090c",
       "beatFill": "#0c1210",

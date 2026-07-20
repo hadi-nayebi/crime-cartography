@@ -5,6 +5,28 @@ these up; producer/driver may act on the ones that gate production.
 
 ## requested
 
+### config-authoring must emit a `theme.name` per city + a future wave should include ≥1 light-mode city  (from critic studio note 2026-07-20T00:01:57Z, resolved by note-watcher 2026-07-20)
+`theme.name` was null on all 20 configs, so the dashboard theme badge collapsed to
+19 identical "dark" labels + grand-rapids showing none — the batch was illegible as
+distinct "experiment points" (owner's 2026-07-19T21:18 ask). Fixed this run: a
+theme-name vocabulary is now defined in `DECISIONS.md` (2026-07-20 section) and a
+distinct, honest `theme.name` — each DERIVED FROM the city's real palette, never
+invented — is set on all 20 (grand-rapids got a full theme block mirroring the
+engine defaults so its render is unchanged). `theme.name` is dashboard-only
+metadata (engine's `applyThemeOverrides` ignores it), so this needed NO re-render.
+Remaining automation ask: **the config-authoring step must SET `theme.name`** (from
+the `DECISIONS.md` vocabulary, describing that config's actual `theme.colors`) when
+it lands a new config, so the badge can never fall back to a bare "dark" again —
+same class as the `countTerm`/`titleOptions`/`seamExplain` authoring-guarantee gaps.
+SEPARATE, bigger ask (needs a real re-render, so it's producer/driver's GPU call,
+not the watcher's): **a future wave should ship ≥1 genuinely LIGHT-mode city** (a
+light bg/ink palette in `theme.colors`) so the owner's light-vs-dark comparison axis
+— currently 20/20 dark, 0 data — actually has something to compare. Do NOT flip an
+existing shipped city to light without re-rendering + re-verifying it; author the
+light palette on a new/queued city instead. Honesty note: a `theme.name` must
+describe the config's real colors (never label a dark palette "light") and never
+appears on-screen, so it carries no incident-data honesty risk.
+
 ### driver/producer should verify the custom thumbnail actually landed after a publish, and re-push if not  (from owner DC note 2026-07-20T16:45, resolved by note-watcher 2026-07-20)
 The publish engine now retries YouTube `thumbnails.set` through the fresh-upload "still processing"
 race and exposes a re-apply path (POST `/api/publish/<slug>/setthumb` + a "⤴ Push thumbnail" button
