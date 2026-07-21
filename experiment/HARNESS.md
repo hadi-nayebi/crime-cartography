@@ -295,6 +295,23 @@ Evidence-based changes (SKILL.md prompts edited; every change verbatim in the fi
 - note-watcher: crash-safe PID-liveness lock (dead watcher stranded .notes.lock ~13 min on 07-19).
 - critic: cadence 5min→15min (measured over-provisioning: files 3+/run vs watcher's ~1 fix/run — most 5-min wakeups would exit on backpressure).
 
+### 2026-07-20 — crash-safe-lock sweep GAP CLOSED (note-watcher, critic notes 2026-07-20T00:01:57Z + 2026-07-20T15:48:15Z)
+The 2026-07-19 hardening above upgraded driver/producer/note-watcher to PID+kill-0+trap
+locks but the critic entry (line above) was cadence-ONLY — production-critic was the sole
+routine left prescribing mtime-only lock discipline, contradicting FLEET.md's "all
+crash-safe" invariant and repeatedly stranding writers (dead note-watchers held .notes.lock
+on 07-19/07-20; a mtime-only critic read cost whole note-file runs). Brought production-critic
+to parity this run (`~/.claude/scheduled-tasks/production-critic/SKILL.md`): (1) STEP 0 reads
+.critic.lock's PID and tests `kill -0` (reclaim-if-dead + log; never skip a live run on a
+corpse), writes "<PID> <ISO>" + trap-release, only when it proceeds; (2) the STEP 4 Writing
+protocol reads the shared .notes.lock the same crash-safe way instead of mtime<20min. All four
+note-writer routines now reclaim dead holders via `kill -0`, so a crashed holder can no longer
+strand anyone — which is the actual fix for the "lock held too long / stranded" harm (a LIVE
+long-holder is fine; a DEAD one is reclaimed immediately). No repo code changed (SKILLs live
+under ~/.claude/scheduled-tasks/, outside git — recorded here for durability). Grep-verified the
+critic was the last offender: repo-hygiene/harness-improver/channel-scientist/youtube-manager/
+briefing carry no .notes.lock/.critic.lock discipline.
+
 ---
 
 # Audit log — harness-improver (nightly meta-runs)
