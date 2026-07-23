@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "crime-cartography-five-minute-factual-memory",
+  "status": "working",
+  "updated_at": "2026-07-23T19:00:00.000Z",
+  "purpose": "Turn sourced time-and-place data into an engaging, accurate, durable memory of recent history.",
+  "duration_seconds": {
+    "minimum": 270,
+    "target": 300,
+    "maximum": 360
+  },
+  "viewer_memory": {
+    "minimum_takeaways": 3,
+    "required_dimensions": [
+      "time",
+      "place",
+      "composition-when-supported",
+      "context",
+      "limits"
+    ]
+  },
+  "context_anchors": {
+    "required_for_spans_of_at_least_years": 20,
+    "minimum": 2,
+    "maximum": 4,
+    "required_fields": [
+      "id",
+      "atYear",
+      "label",
+      "detail",
+      "source.label",
+      "source.url",
+      "relationship"
+    ],
+    "relationships": [
+      "context-only",
+      "directly-affects-measure"
+    ],
+    "causal_language": "prohibited unless the cited evidence supports the causal claim"
+  },
+  "composition": {
+    "required_when": "The source supplies stable categories whose meaning is defensible within the displayed era.",
+    "allowed_forms": [
+      "stacked annual trend",
+      "category histogram",
+      "small multiples",
+      "category-specific map or timeline"
+    ],
+    "must_disclose": [
+      "taxonomy",
+      "missing categories",
+      "classification changes",
+      "non-comparable eras"
+    ]
+  },
+  "human_review_gates": [
+    "source-and-measure",
+    "historical-context",
+    "story-and-memory",
+    "visual-implication",
+    "audio-and-pacing",
+    "final-release"
+  ],
+  "anti_generic_checks": [
+    "The city has a distinct factual question, not only a changed place name.",
+    "At least one takeaway depends on this city's actual time series.",
+    "At least one takeaway depends on this city's spatial distribution.",
+    "Context anchors are selected for the displayed period and story.",
+    "The final three takeaways are explicitly reviewed by a human."
+  ],
+  "public_repository_boundary": {
+    "include": [
+      "production source code",
+      "public harnesses",
+      "schemas and rubrics",
+      "data provenance and transformations",
+      "video configurations and metadata",
+      "checksums and release records",
+      "shareable background research"
+    ],
+    "exclude": [
+      "finished video files",
+      "final narration recordings",
+      "final scripts unless separately released",
+      "music masters",
+      "final thumbnails",
+      "channel artwork and logos"
+    ]
+  }
+}

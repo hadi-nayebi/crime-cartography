@@ -305,6 +305,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
           accent={CAT_COLORS.property}
           punchline={props.punchline}
           seamExplain={copy?.seamExplain}
+          contextAnchors={props.contextAnchors ?? []}
         />
       ) : history && historyOpacity > 0.001 ? (
         <HistoryEra history={history} yearFloat={yearFloat} opacity={historyOpacity} />
@@ -369,7 +370,7 @@ export const CrimeStory: React.FC<StoryProps> = (props) => {
       ))}
 
       {/* Cold open — a verified shock-stat HOOK when configured, else title */}
-      <Sequence from={0} durationInFrames={Math.round(PHASES.coldOpenEnd * fps)} layout="none">
+      <Sequence durationInFrames={Math.round(PHASES.coldOpenEnd * fps)} layout="none">
         {props.hook ? (
           <HookOpen
             stat={props.hook.stat}

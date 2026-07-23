@@ -1,6 +1,6 @@
 import React from "react";
 import { interpolate, Easing } from "remotion";
-import type { TrendFile } from "../data/types";
+import type { ContextAnchor, TrendFile } from "../data/types";
 import { fmtInt } from "../data/derive";
 import { CAT_COLORS, COLORS, FONT_MONO, FONT_SANS } from "../theme";
 
@@ -20,6 +20,8 @@ interface Props {
   /** why-the-jump explainer shown while the sweep crosses the seam
       (config copy.seamExplain overrides the engine default). */
   seamExplain?: string;
+  /** sourced historical memory anchors; context-only never implies causation. */
+  contextAnchors?: ContextAnchor[];
 }
 
 const X0 = 300;
@@ -41,6 +43,7 @@ export const FullTrend: React.FC<Props> = ({
   kicker,
   punchline,
   seamExplain,
+  contextAnchors = [],
 }) => {
   const years = trend.years;
   const n = years.length;
@@ -53,6 +56,12 @@ export const FullTrend: React.FC<Props> = ({
   const seamIdx = years.findIndex((y) => y.year === trend.seamYear);
   const yOf = (v: number) => BASE_Y - (v / maxTotal) * CHART_H;
   const colorOf = (era: string) => (era === "fbi" ? FBI_COLOR : accent);
+  const anchorMarkers = contextAnchors
+    .map((anchor) => {
+      const index = years.findIndex((year) => year.year === anchor.atYear);
+      return index < 0 ? null : {anchor, index};
+    })
+    .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
 
   // punchline appears once the sweep is essentially complete
   const punchT = interpolate(yearFloat, [n - 1.5, n - 0.4], [0, 1], {
@@ -95,7 +104,7 @@ export const FullTrend: React.FC<Props> = ({
 
         {/* series, revealed left→right */}
         {style === "area" ? (
-          <AreaSeries years={years} yearFloat={yearFloat} yOf={yOf} slot={slot} colorOf={colorOf} seamIdx={seamIdx} />
+          <AreaSeries years={years} yearFloat={yearFloat} yOf={yOf} slot={slot} colorOf={colorOf} />
         ) : style === "steps" ? (
           <StepSeries years={years} yearFloat={yearFloat} yOf={yOf} slot={slot} colorOf={colorOf} />
         ) : style === "stacked" ? (
@@ -130,6 +139,72 @@ export const FullTrend: React.FC<Props> = ({
             );
           })
         )}
+
+        {/* Sourced memory anchors. These locate the chart in recent history;
+            "context-only" markers explicitly avoid a causal claim. */}
+        {anchorMarkers.map(({anchor, index}, markerIndex) => {
+          const reveal = interpolate(yearFloat, [index - 0.45, index + 0.2], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          });
+          if (reveal <= 0.001) return null;
+          const x = X0 + index * slot + slot / 2;
+          const currentEmphasis = interpolate(Math.abs(yearFloat - index), [0, 1.4], [1, 0.38], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          });
+          const labelY = yOf(maxTotal) - 52 - (markerIndex % 2) * 48;
+          const labelWidth = Math.max(150, Math.min(330, anchor.label.length * 10 + 34));
+          const contextLabel =
+            anchor.relationship === "context-only" ? "CONTEXT · NOT CAUSE" : "AFFECTS THE MEASURE";
+          return (
+            <g key={anchor.id} opacity={reveal * currentEmphasis}>
+              <line
+                x1={x}
+                y1={labelY + 34}
+                x2={x}
+                y2={BASE_Y}
+                stroke={COLORS.ink}
+                strokeOpacity={0.5}
+                strokeWidth={1.4}
+                strokeDasharray="5 6"
+              />
+              <circle cx={x} cy={BASE_Y + 3} r={4.5} fill={accent} />
+              <rect
+                x={x - labelWidth / 2}
+                y={labelY - 22}
+                width={labelWidth}
+                height={52}
+                rx={8}
+                fill="rgba(8,11,16,0.94)"
+                stroke={anchor.relationship === "context-only" ? COLORS.panelStroke : accent}
+                strokeWidth={1}
+              />
+              <text
+                x={x}
+                y={labelY - 2}
+                fill={COLORS.ink}
+                fontSize={17}
+                fontFamily={FONT_SANS}
+                fontWeight={700}
+                textAnchor="middle"
+              >
+                {anchor.atYear} · {anchor.label}
+              </text>
+              <text
+                x={x}
+                y={labelY + 18}
+                fill={anchor.relationship === "context-only" ? COLORS.inkFaint : accent}
+                fontSize={12}
+                fontFamily={FONT_MONO}
+                letterSpacing={1.4}
+                textAnchor="middle"
+              >
+                {contextLabel}
+              </text>
+            </g>
+          );
+        })}
 
         {/* SEAM — explicit measure change */}
         {seamIdx > 0 && yearFloat > seamIdx - 2 && (
@@ -373,8 +448,7 @@ const AreaSeries: React.FC<{
   yOf: (v: number) => number;
   slot: number;
   colorOf: (era: string) => string;
-  seamIdx: number;
-}> = ({ years, yearFloat, yOf, slot, colorOf, seamIdx }) => {
+}> = ({ years, yearFloat, yOf, slot, colorOf }) => {
   const shown = Math.max(1, Math.min(years.length, yearFloat + 0.5));
   const segs: Array<{ era: string; pts: Array<[number, number]> }> = [];
   for (let i = 0; i < shown; i++) {

@@ -56,6 +56,7 @@ const GRAND_RAPIDS: StoryProps = {
       text: "2020: violent crime jumps about 50% (1,299 → 1,951); property rises too.",
     },
   ],
+  contextAnchors: [],
   annotations: [
     {
       atMonth: "2023-04",

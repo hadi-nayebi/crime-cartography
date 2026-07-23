@@ -160,6 +160,18 @@ export interface HistoryNote {
   text: string; // checkable against history.json
 }
 
+export interface ContextAnchor {
+  id: string;
+  atYear: number; // must exist in the displayed full-trend years
+  label: string; // short on-chart memory anchor
+  detail: string; // why the event helps orient the viewer
+  source: {
+    label: string;
+    url: string;
+  };
+  relationship: "context-only" | "directly-affects-measure";
+}
+
 // Per-city copy overrides. Every field is optional; the engine falls back to
 // neutral defaults derived from the bundle (summary/history), so a config only
 // declares what is genuinely city-specific. City-isms live HERE, not in the
@@ -219,6 +231,7 @@ export interface StoryConfig {
   fps: number;
   annotations: Annotation[]; // granular era (2023+)
   historyNotes: HistoryNote[]; // deep-history era (2000–2022)
+  contextAnchors?: ContextAnchor[]; // sourced memory anchors on the long arc
   emphasizeGroupA: boolean;
   audioSrc?: string; // public-relative wav, e.g. "audio/grand-rapids.wav"
   copy?: CityCopy; // city-specific strings (engine has neutral fallbacks)

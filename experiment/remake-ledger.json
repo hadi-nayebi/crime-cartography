@@ -1,0 +1,974 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-23T18:53:54.628Z",
+  "contract_id": "crime-cartography-five-minute-factual-memory",
+  "editorial_north_star": "experiment/EDITORIAL-NORTH-STAR.md",
+  "destination": {
+    "project_channel": "Crime Cartography",
+    "other_channels_in_scope": []
+  },
+  "test_release_recommendation": {
+    "candidates": [
+      "atlanta-ga",
+      "boston-ma"
+    ],
+    "status": "recommendation-only",
+    "rationale": "Atlanta tests category composition and contextual memory anchors; Boston tests the long-arc and spatial format on a previously released city."
+  },
+  "cities": [
+    {
+      "slug": "atlanta-ga",
+      "title": "Atlanta · The Interrupted Fall",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 242,
+      "records": 295360,
+      "coverage_percent": 90.8,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "stacked annual trend plus recent category timeline",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "636ece60a714ded72eb5d2e8d2633589e61e4aee7c9cf0f54aef3bed60abde24",
+        "rendered_at": "2026-07-20T18:29:43Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "baltimore-md",
+      "title": "Baltimore · Down From the Peak",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 278,
+      "records": 224602,
+      "coverage_percent": 99.9,
+      "category_breakdown": {
+        "available_categories": 3,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "7756147f7d326b6033a7db6a1ffc950bdbd197c0e598dfccc9cf2e5b57fe694c",
+        "rendered_at": "2026-07-20T18:36:57Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "boston-ma",
+      "title": "Boston · Forty Years of Crime",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 12,
+      "records": 923773,
+      "coverage_percent": 99.4,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": false,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "2cc6682d920869f1f56ee8a176dcf160b3c8b03bc22718bfe9b098defb360315",
+        "rendered_at": "2026-07-20T20:30:20Z"
+      },
+      "prior_publications": [
+        {
+          "platform": "youtube",
+          "channel_id": "UCTsrF3UvpWzSGDXfbnZAWKA",
+          "video_id": "XHDs73XhSqY",
+          "uploaded_at": "2026-07-20T16:17:25.527Z",
+          "removed_at": "2026-07-23T18:50:58.958Z",
+          "removal": "permanent-delete"
+        }
+      ],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "category-breakdown-needs-era-review",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "buffalo-ny",
+      "title": "Buffalo · The Rebound",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 35,
+      "records": 333672,
+      "coverage_percent": 97.9,
+      "category_breakdown": {
+        "available_categories": 2,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "24c34d1ae713a43f40e0079f3138feab656ebfdd40ed4d51b31c160d14ed2f41",
+        "rendered_at": "2026-07-20T20:35:27Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "charlotte-nc",
+      "title": "Charlotte · The Flat Line",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 14,
+      "records": 698399,
+      "coverage_percent": 99.9,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "53d8185a571a8b2aa2e4eeb9cb8836efd6b0b543310b4561090034b49e6c810c",
+        "rendered_at": "2026-07-20T18:43:32Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "chicago-il",
+      "title": "Chicago · Forty Years of Crime",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1986,
+        "to": 2025,
+        "years": 40
+      },
+      "spatial_units": 77,
+      "records": 8590211,
+      "coverage_percent": 88.6,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": false,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "af9eb6173c8d081208882b083c5df5f2d9192061019d4161de2f21abbe1f0eeb",
+        "rendered_at": "2026-07-20T20:41:46Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "category-breakdown-needs-era-review",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "cincinnati-oh",
+      "title": "Cincinnati · The Long Slide",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1999,
+        "to": 2025,
+        "years": 27
+      },
+      "spatial_units": 50,
+      "records": 154460,
+      "coverage_percent": 94.9,
+      "category_breakdown": {
+        "available_categories": 3,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "fb13f8f7e8d3de95eb95adb02476aa3973854cb02a6dc88eec20569409d5d682",
+        "rendered_at": "2026-07-20T20:48:05Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "dallas-tx",
+      "title": "Dallas · Two-Thirds Down",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 8,
+      "records": 1200698,
+      "coverage_percent": 99.9,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "fee90f3c5c53c219ed1f1053f0b7451c3fc154db54a78f682f3653d927f384e5",
+        "rendered_at": "2026-07-20T18:50:15Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "denver-co",
+      "title": "Denver · The Recent Turn",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 78,
+      "records": 344726,
+      "coverage_percent": 99.9,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "9c83a5ba8f6001638c864fb41951888ca43d4bd1e1a6197b2f6452a11b8644e0",
+        "rendered_at": "2026-07-20T20:54:03Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "detroit-mi",
+      "title": "Detroit · The Long Fall",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 205,
+      "records": 733923,
+      "coverage_percent": 99.1,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "2c1f560daed150b87ae0f2595103dcc6418d1727eb6dbde751119604530bb72e",
+        "rendered_at": "2026-07-20T20:59:28Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "grand-rapids-mi",
+      "title": "Grand Rapids · A Quarter-Century of Crime",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 33,
+      "records": 210488,
+      "coverage_percent": 96.7,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": false,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "43c58841d5c5fa17d678f8ce58d9097bf636285f5591c122dd5ea5aa7e1696f8",
+        "rendered_at": "2026-07-20T23:00:43Z"
+      },
+      "prior_publications": [
+        {
+          "platform": "youtube",
+          "channel_id": "UCTsrF3UvpWzSGDXfbnZAWKA",
+          "video_id": "EV4T91mTBQQ",
+          "uploaded_at": "2026-07-20T22:55:34.682Z",
+          "removed_at": "2026-07-23T18:50:58.958Z",
+          "removal": "permanent-delete"
+        }
+      ],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "category-breakdown-needs-era-review",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "kansas-city-mo",
+      "title": "Kansas City · Halved",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 240,
+      "records": 636430,
+      "coverage_percent": 86.8,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "4c1a2b89183ba210d7d2473de34c49ff18dfc2738f3f76c4159647dae9b455ba",
+        "rendered_at": "2026-07-20T21:04:45Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "memphis-tn",
+      "title": "Memphis · The Wave That Broke",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 9,
+      "records": 569063,
+      "coverage_percent": 98.8,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "stacked annual trend plus recent category timeline",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "b43e819a8fd47ec204270fd8d12e3291a51194c078f0e90c8d9e38ebb6b5e20d",
+        "rendered_at": "2026-07-20T04:29:27Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "milwaukee-wi",
+      "title": "Milwaukee · Nearly Halved",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 190,
+      "records": 1189202,
+      "coverage_percent": 98.8,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "8465c7df9cd8253df5b5520dd66f0623b1f18e3e67c020d1140725f2ce0752d9",
+        "rendered_at": "2026-07-20T03:47:15Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "minneapolis-mn",
+      "title": "Minneapolis · The Fall and the Plateau",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1991,
+        "to": 2025,
+        "years": 35
+      },
+      "spatial_units": 87,
+      "records": 382475,
+      "coverage_percent": 99,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "6070b0a288d32d2f98437af0d3ca47f873c30560ebba6afe3a2efb6366531d88",
+        "rendered_at": "2026-07-20T23:05:22Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "nashville-tn",
+      "title": "Nashville · The Long Slide",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 9,
+      "records": 744956,
+      "coverage_percent": 98.6,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": true,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "1d27d4c8c5f1a73dcec214e56182eeb18e01668c1b915bf23342552497202b2e",
+        "rendered_at": "2026-07-20T04:19:37Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "philadelphia-pa",
+      "title": "Philadelphia · Forty Years of Crime",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 21,
+      "records": 3566030,
+      "coverage_percent": 94.3,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": false,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "b978d39bcc81fbe3b25239fae7c7568d56dd860636aab1e652d601f8c6cfca75",
+        "rendered_at": "2026-07-20T21:09:46Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "category-breakdown-needs-era-review",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "san-francisco-ca",
+      "title": "San Francisco · Forty Years of Crime",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 41,
+      "records": 3071590,
+      "coverage_percent": 98.1,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": false,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "f07d764e280059aac51a35c8a9c130453a60cf752abe133d1deac81f3b182b34",
+        "rendered_at": "2026-07-20T21:14:51Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "category-breakdown-needs-era-review",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "seattle-wa",
+      "title": "Seattle · Four Decades of Crime",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 58,
+      "records": 1542608,
+      "coverage_percent": 51.3,
+      "category_breakdown": {
+        "available_categories": 4,
+        "annual_parts_available": false,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "d0e1c0bf5332c8aeb2d75ffd2a60acdf860dfbf860dcb5d817e9411effbdc26a",
+        "rendered_at": "2026-07-20T23:10:11Z"
+      },
+      "prior_publications": [],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "category-breakdown-needs-era-review",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    },
+    {
+      "slug": "washington-dc",
+      "title": "Washington DC · Forty Years of Crime",
+      "duration_seconds": 330,
+      "historical_span": {
+        "from": 1985,
+        "to": 2025,
+        "years": 41
+      },
+      "spatial_units": 46,
+      "records": 596352,
+      "coverage_percent": 99.2,
+      "category_breakdown": {
+        "available_categories": 2,
+        "annual_parts_available": false,
+        "current_visual": "recent category timeline; annual trend composition not foregrounded",
+        "remake_question": "Would a category histogram or composition view add a memorable city-specific fact?"
+      },
+      "context_anchors": {
+        "required": true,
+        "minimum": 2,
+        "authored": 0,
+        "ids": []
+      },
+      "existing_render": {
+        "duration_seconds": 330.048,
+        "sha256": "583ccd304a210daf6a2f0f664b1421d872079ae392f7bd7aec8550124622ee04",
+        "rendered_at": "2026-07-20T20:19:59Z"
+      },
+      "prior_publications": [
+        {
+          "platform": "youtube",
+          "channel_id": "UCTsrF3UvpWzSGDXfbnZAWKA",
+          "video_id": "ldg_pQsNdMo",
+          "uploaded_at": "2026-07-20T16:44:56.652Z",
+          "removed_at": "2026-07-23T18:50:58.958Z",
+          "removal": "permanent-delete"
+        }
+      ],
+      "destination_status": "not-published",
+      "global_upgrade_rules": [
+        "five-minute-factual-memory",
+        "sourced-context-anchors",
+        "category-composition-when-supported",
+        "measurement-seams-before-comparison",
+        "city-specific-anti-generic-pass",
+        "human-final-three-takeaways"
+      ],
+      "blockers": [
+        "needs-sourced-context-anchors",
+        "category-breakdown-needs-era-review",
+        "needs-owner-remake-notes",
+        "needs-fresh-human-watch-through"
+      ],
+      "status": "remake-review-required"
+    }
+  ]
+}
