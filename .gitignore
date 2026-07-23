@@ -54,6 +54,8 @@ videos/*/feedback.json
 pipeline/routine-runs.mjs
 /tmp/
 .hn/
+# Local dashboard screenshots are verification artifacts, not public product output.
+public/dashboard-vps-email.png
 # OAuth secrets for the publish pipeline — NEVER commit
 .secrets/
 
