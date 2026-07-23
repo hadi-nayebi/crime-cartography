@@ -962,6 +962,16 @@ async function loadPublicPreview(){
       <div class="feat">Next: ${esc(status.current_milestone?.next)} · generated ${esc(ago(status.generated_at))}</div>
       <ul class="public-list">${(status.calls_to_participate??[]).map((item)=>`<li>${esc(item)}</li>`).join("")}</ul>
     </div>`;
+    if(status.operating_tracks?.infrastructure){
+      $("public-preview").insertAdjacentHTML("beforeend", `
+        <div class="work-card" style="margin-top:var(--s-3)">
+          <div class="row" style="justify-content:space-between">
+            <div><span class="eyebrow">Operating shape</span><h3>${esc(status.operating_tracks.infrastructure.deployment)}</h3></div>
+            <span class="chip">${esc(status.operating_tracks.infrastructure.status)}</span>
+          </div>
+          <div class="feat">${esc(status.operating_tracks.infrastructure.interface)} · ${esc(status.operating_tracks.infrastructure.manager_rate_proposal)}</div>
+        </div>`);
+    }
 }
 
 // pipeline phase drives which feedback controls make sense
