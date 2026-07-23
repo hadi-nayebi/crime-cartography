@@ -27,7 +27,7 @@ const FORMATS = {
   city: {
     title: "US Cities · Crime, Mapped",
     description:
-      "Every video: a US city's crime history, mapped from official sources — the FBI Uniform Crime Reporting program joined with the city's own open-data portal. Fully transparent and reproducible: every number on screen is sourced, and the complete code + data pipeline is public at https://github.com/hadi-nayebi/crime-cartography\n\nMade end-to-end by an AI (Claude, Anthropic) — if you find an error, open an issue; corrections are part of the record.",
+      "Every video: a US city's reported-crime history, mapped from official sources — the FBI Uniform Crime Reporting program joined with the city's own open-data portal. Fully transparent and reproducible: every number on screen is sourced, and the complete code + data pipeline is public at https://github.com/hadi-nayebi/crime-cartography\n\nProduced through a human-directed agentic workflow. If you find an error, open an issue; corrections are part of the record.",
   },
 };
 

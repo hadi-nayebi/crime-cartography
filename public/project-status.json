@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "crime-cartography",
+  "name": "Crime Cartography",
+  "stage": "public-design",
+  "generated_at": "2026-07-23T18:57:57.247Z",
+  "production": {
+    "videos_total": 20,
+    "rendered": 20,
+    "awaiting_editorial_review": 18,
+    "approved_for_release": 2,
+    "previously_published_on_earthone": 3
+  },
+  "operating_tracks": {
+    "release": {
+      "status": "active",
+      "mode": "Hadi edits and approves the introduction and first remade test videos",
+      "waits_for_project_subscribers": false,
+      "next": "Launch the introduction and website, then release one or two remade tests"
+    },
+    "community_editorial": {
+      "status": "preparing",
+      "before_activation": "Collect feedback and use it to improve the harness and workflow",
+      "activation": "500 project subscribers plus enough relevant community feedback to operate responsibly"
+    }
+  },
+  "current_milestone": {
+    "id": "public-design",
+    "label": "Creator-led launch and public project design",
+    "status": "active",
+    "next": "Community editorial beta"
+  },
+  "calls_to_participate": [
+    "Critique the proposed project model",
+    "Comment on public drafts and remade test videos",
+    "Propose sourced historical context for charts",
+    "Help design the later editorial email workflow"
+  ],
+  "links": {
+    "repository": "https://github.com/hadi-nayebi/crime-cartography",
+    "project_page": "https://hadi-nayebi.github.io/projects/crime-cartography.html"
+  }
+}

@@ -24,7 +24,7 @@ const SECRETS = join(ROOT, ".secrets");
 
 const SENDER = "earthone@earthone.life";      // sole allowed sender — hard policy
 const RECIPIENT = "hadinayebi@earthone.life"; // sole allowed recipient — hard policy
-const SENDER_NAME = "Earth One Production";
+const SENDER_NAME = "Crime Cartography Production";
 
 // ---- args ----
 const args = process.argv.slice(2);

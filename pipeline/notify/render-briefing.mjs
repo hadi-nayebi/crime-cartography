@@ -53,7 +53,7 @@ function blocksHtml(blocks, { accent = "#111827" } = {}) {
 export function renderBriefing(md) {
   const lines = md.split(/\r?\n/);
   const subjectLine = lines.find((l) => /^Subject:\s*/.test(l));
-  const subject = subjectLine ? subjectLine.replace(/^Subject:\s*/, "").trim() : "Earth One · Channel Briefing";
+  const subject = subjectLine ? subjectLine.replace(/^Subject:\s*/, "").trim() : "Crime Cartography · Production Briefing";
 
   // Split into preamble + ①..⑥ sections.
   const sections = []; // { glyph, title, lines[] }

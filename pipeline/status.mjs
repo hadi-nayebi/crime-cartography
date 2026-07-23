@@ -109,6 +109,11 @@ const rows = slugs.map((slug) => {
     verified,
     approvedAt,
     published,
+    previouslyPublishedOnEarthOne: Array.isArray(yt.previousPublications) &&
+      yt.previousPublications.some((publication) => (
+        publication?.platform === 'youtube' &&
+        publication?.channel_id === 'UCTsrF3UvpWzSGDXfbnZAWKA'
+      )),
     uploadedAt: yt.uploadedAt || null,
     score: typeof conf.score === 'number' ? conf.score : null,
     blockers: Array.isArray(conf.blockers) ? conf.blockers.length : 0,

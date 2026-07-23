@@ -2,22 +2,24 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 &nbsp;[![Data: honest](https://img.shields.io/badge/data-sourced%20%C2%B7%20never%20fabricated-2ea44f.svg)](#principles)
-&nbsp;[![Made by: Claude](https://img.shields.io/badge/made%20by-Claude%20(Anthropic)-d97706.svg)](#made-by-an-ai)
+&nbsp;[![Production: human-directed agents](https://img.shields.io/badge/production-human--directed%20agents-62dff4.svg)](#human-directed-agentic-production)
 &nbsp;[![Renderer: Remotion](https://img.shields.io/badge/render-Remotion-7c5cff.svg)](https://www.remotion.dev/)
 
-**A data-honest video production pipeline that turns *sourced* city crime data into ~5½-minute animated map stories — and the full public production record behind the "US Cities · Crime, Mapped" series on the Earth One YouTube channel.**
+**A data-honest video production pipeline that turns *sourced* city crime data into animated map stories—and keeps the public production record behind the dedicated Crime Cartography channel.**
 
 One reusable engine — a full-arc trend chart (always to the present), an evolving neighborhood map with real OSM landmarks and highways, live counters, a dispatch feed of real offenses, and per-neighborhood rankings — plugs into per-city data pipelines and per-city visual styles. Built in [Remotion](https://www.remotion.dev/) for deterministic, frame-exact export.
 
-## Status: 20 cities produced
+## Status: 20 inherited drafts entering editorial remake
 
-Batch 1 is complete. Each of the 20 cities below has its own sourced data pipeline (`pipeline/sources/<slug>.mjs`), an audited long-arc trend joining FBI UCR history to the city's own records, an OSM basemap, a verified config, a generated score, and a rendered, render-locked 5:30 video (`videos/<slug>/render.lock.json` records the commit, dataset fetch date, and SHA-256 of the shipped file). Three are uploaded to YouTube so far, into the playlist **"US Cities · Crime, Mapped"**.
+The inherited production run reached rendered, render-locked drafts for all 20 cities. Each city below has its own sourced data pipeline (`pipeline/sources/<slug>.mjs`), long-arc trend, OSM basemap, config, score, and 5:30 render record (`videos/<slug>/render.lock.json`). Three inherited cuts were previously published on Earth One and were permanently removed on 2026-07-23. They remain part of the production history, not destination releases.
+
+The current phase is an editorial remake for a dedicated Crime Cartography channel. Human reviewers will test claims, chart context, maps, narration, pacing, and visual taste before any new release is approved. The project design and current public-safe production snapshot live on the [Crime Cartography project page](https://hadi-nayebi.github.io/projects/crime-cartography.html).
 
 | City | Video | The hook (verbatim from the video) | Watch |
 |------|-------|------------------------------------|-------|
 | [Atlanta, GA](videos/atlanta-ga/) | *The Interrupted Fall* | **−70%** — Atlanta crime, from the 1989 peak to 2018 | — |
 | [Baltimore, MD](videos/baltimore-md/) | *Down From the Peak* | **−71%** — Baltimore crime, from the 1995 peak to 2020 | — |
-| [Boston, MA](videos/boston-ma/) | *Forty Years of Crime* | **−71%** — Boston's reported crime since its 1989 peak | [youtu.be/XHDs73XhSqY](https://youtu.be/XHDs73XhSqY)\* |
+| [Boston, MA](videos/boston-ma/) | *Forty Years of Crime* | **−71%** — Boston's reported crime since its 1989 peak | Removed from Earth One\* |
 | [Buffalo, NY](videos/buffalo-ny/) | *The Rebound* | **+32%** — Buffalo crime, up sharply off its 2022 low | — |
 | [Charlotte, NC](videos/charlotte-nc/) | *The Flat Line* | **±0%** — Charlotte crime, flat for eight years | — |
 | [Chicago, IL](videos/chicago-il/) | *Forty Years of Crime* | **−51%** — Chicago's reported crime since 2001 | — |
@@ -25,7 +27,7 @@ Batch 1 is complete. Each of the 20 cities below has its own sourced data pipeli
 | [Dallas, TX](videos/dallas-tx/) | *Two-Thirds Down* | **−68%** — Dallas crime, from the 1988 peak to 2014 | — |
 | [Denver, CO](videos/denver-co/) | *The Recent Turn* | **−20%** — Denver crime, down since the 2022 peak | — |
 | [Detroit, MI](videos/detroit-mi/) | *The Long Fall* | **−69%** — Detroit crime, from the 1985 peak to 2016 | — |
-| [Grand Rapids, MI](videos/grand-rapids-mi/) | *A Quarter-Century of Crime* | **−51%** — Grand Rapids' reported crime since 1985 | [youtu.be/EV4T91mTBQQ](https://youtu.be/EV4T91mTBQQ)\* |
+| [Grand Rapids, MI](videos/grand-rapids-mi/) | *A Quarter-Century of Crime* | **−51%** — Grand Rapids' reported crime since 1985 | Removed from Earth One\* |
 | [Kansas City, MO](videos/kansas-city-mo/) | *Halved* | **−51%** — Kansas City crime, from the 1991 peak to 2014 | — |
 | [Memphis, TN](videos/memphis-tn/) | *The Wave That Broke* | **−32%** — Memphis crime, down a third from the 2023 peak | — |
 | [Milwaukee, WI](videos/milwaukee-wi/) | *Nearly Halved* | **−44%** — Milwaukee crime, down 44% since 2006 | — |
@@ -34,9 +36,9 @@ Batch 1 is complete. Each of the 20 cities below has its own sourced data pipeli
 | [Philadelphia, PA](videos/philadelphia-pa/) | *Forty Years of Crime* | **−32%** — Philadelphia's recorded offenses since 2006 | — |
 | [San Francisco, CA](videos/san-francisco-ca/) | *Forty Years of Crime* | **−32%** — San Francisco's recorded incidents since 2003 | — |
 | [Seattle, WA](videos/seattle-wa/) | *Four Decades of Crime* | **−48%** — Seattle's reported crime, from the 1987 peak to 2007 | — |
-| [Washington, DC](videos/washington-dc/) | *Forty Years of Crime* | **−48%** — Washington DC's reported crime, from the 1993 peak to 2007 | [youtu.be/ldg_pQsNdMo](https://youtu.be/ldg_pQsNdMo)\* |
+| [Washington, DC](videos/washington-dc/) | *Forty Years of Crime* | **−48%** — Washington DC's reported crime, from the 1993 peak to 2007 | Removed from Earth One\* |
 
-\* Uploaded, currently **private** — the link goes live once the channel owner's review flips it public.
+\* Historical Earth One upload, permanently deleted by owner direction. The dedicated-channel remake remains unreleased.
 
 Every hook stat above is a *reported/recorded-crime* figure with its measure and caveats stated on screen and in the city's provenance — see [Principles](#principles). Each video directory is a self-contained, reproducible record: `config.json` (every on-screen string and number), `youtube.json` (the exact YouTube listing — the publish pipeline writes the final URL back), `render.lock.json` (commit + dataset date + SHA-256 of the shipped render), and a README that is the video's public landing page.
 
@@ -52,9 +54,11 @@ The honesty contract. These are binding — and each one is enforced somewhere i
 6. **Provenance for everything.** Each dataset carries its source URL, fetch date, license, and field mapping in `data/<slug>/PROVENANCE.md`, indexed in the [Data Provenance wiki](wiki/Data-Provenance.md) — all 20 cities.
 7. **Visible attribution.** Every video keeps an on-screen data-source credit; per-dataset license terms are honored (basemaps © OpenStreetMap contributors, ODbL).
 
-## Made by an AI
+## Human-directed agentic production
 
-These videos are produced **end-to-end by Claude (Anthropic)**: it locates the official data sources, writes and runs the fetch → normalize → validate pipelines, verifies every on-screen figure against the data, designs and renders the visuals, and generates the score. This repo *is* the audit trail — the pipelines, the per-dataset provenance, the per-video configs and render locks, and the experiment ledgers ([`experiment/DESIGN.md`](experiment/DESIGN.md), [`experiment/matrix.json`](experiment/matrix.json), [`experiment/confidence.json`](experiment/confidence.json)). If you find an error, [open an issue](../../issues) — corrections are part of the record.
+Claude (Anthropic) assembled the inherited Batch 1 pipeline and drafts. Codex now operates the next production phase. That handoff is part of the record, but neither model is the publisher or final editor.
+
+The operating target is to automate repeatable research, processing, rendering, and assembly while reserving consequential judgment for people. Claims, sources, contextual annotations, narration, visual taste, and release readiness pass through explicit human gates. This repository is the audit trail: pipelines, provenance, configs, render locks, public experiment rules, and corrections. If you find an error or want to challenge the project design, [open a focused project issue](https://github.com/hadi-nayebi/crime-cartography/issues/new?template=project-feedback.yml).
 
 ## Batch 1 is a designed experiment
 
@@ -115,8 +119,14 @@ The most valuable contribution. It's a contained, documented job: [`wiki/Add-a-C
 
 ## License
 
-Code: MIT (see [LICENSE](LICENSE)). Data: each dataset retains its upstream license, recorded in its `PROVENANCE.md`. Basemap: © OpenStreetMap contributors (ODbL). Music: [Stable Audio Open](https://huggingface.co/stabilityai/stable-audio-open-1.0) under the Stability AI Community License.
+Code: MIT (see [LICENSE](LICENSE)). The [rights boundary](RIGHTS.md) keeps
+rendered media, editorial content, brands, upstream data, and third-party assets
+outside that software license unless a specific file says otherwise. Data:
+each dataset retains its upstream license, recorded in its `PROVENANCE.md`.
+Basemap: © OpenStreetMap contributors (ODbL). Music:
+[Stable Audio Open](https://huggingface.co/stabilityai/stable-audio-open-1.0)
+under the Stability AI Community License.
 
 ---
 
-*Produced end-to-end with [Claude Code](https://claude.com/claude-code).*
+*Produced by a human-directed agentic workflow. Initial Batch 1 machinery and drafts were assembled with Claude; the current editorial remake is operated with Codex.*

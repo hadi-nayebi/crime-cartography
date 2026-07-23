@@ -1,10 +1,10 @@
 {
-  "status": "draft",
+  "status": "removed-from-earthone",
   "url": "",
   "videoId": "",
   "title": "Washington DC Crime, 1985–2026 — Forty Years Mapped, Cluster by Cluster",
   "categoryId": "27",
-  "privacyStatus": "private",
+  "privacyStatus": null,
   "tags": [
     "Washington DC",
     "crime data",
@@ -48,9 +48,28 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload.",
+  "_note": "Historical Earth One listing metadata. The inherited upload was permanently deleted by owner direction; the dedicated Crime Cartography remake remains separately gated.",
   "titleOptions": [
     "DC Crime Fell 48% From Its 1993 Peak — and Kept Falling. 40 Years, Mapped",
     "68,146 to 35,706: Washington DC's Crime Decline, Mapped Cluster by Cluster"
+  ],
+  "thumbnailFrame": "composed",
+  "thumbnailFile": "thumbnail.jpg",
+  "publishedVia": "studio",
+  "uploadedAt": null,
+  "publishedAt": "2026-07-20T16:53:16Z",
+  "thumbnailSetAt": "2026-07-20T16:44:58.635Z",
+  "playlistId": "PLWw8s8_dq_Co",
+  "playlistTitle": "US Cities · Crime, Mapped",
+  "previousPublications": [
+    {
+      "platform": "youtube",
+      "channel_id": "UCTsrF3UvpWzSGDXfbnZAWKA",
+      "video_id": "ldg_pQsNdMo",
+      "url": "https://youtu.be/ldg_pQsNdMo",
+      "uploaded_at": "2026-07-20T16:44:56.652Z",
+      "removed_at": "2026-07-23T18:50:58.958Z",
+      "removal": "permanent-delete"
+    }
   ]
 }

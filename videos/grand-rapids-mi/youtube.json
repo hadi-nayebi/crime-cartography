@@ -1,10 +1,10 @@
 {
-  "status": "draft",
+  "status": "removed-from-earthone",
   "url": "",
   "videoId": "",
   "title": "Grand Rapids Crime, 1985–2026 — How It Rose, Fell, and Moved | Data Map",
   "categoryId": "27",
-  "privacyStatus": "private",
+  "privacyStatus": null,
   "tags": [
     "Grand Rapids",
     "crime data",
@@ -49,9 +49,29 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata for videos/grand-rapids-mi. The upload script (P3) will read this to create the YouTube listing; url/videoId get written back after upload. Chapter timestamps mirror theme.ts PHASES; update both together.",
+  "_note": "Historical Earth One listing metadata. The inherited upload was permanently deleted by owner direction; the dedicated Crime Cartography remake remains separately gated. Chapter timestamps mirror theme.ts PHASES; update both together.",
   "titleOptions": [
     "Grand Rapids Crime Fell 51% Since 1985 — Watch It Move, Beat by Beat",
     "40 Years of Grand Rapids Crime in 5 Minutes — Every Number Sourced"
+  ],
+  "thumbnailFrame": "composed",
+  "thumbnailFile": "thumbnail.jpg",
+  "publishedVia": "studio",
+  "uploadedAt": null,
+  "publishedAt": "2026-07-20T22:59:16Z",
+  "thumbnailSetAt": "2026-07-20T22:55:38.032Z",
+  "thumbnailPushed": true,
+  "playlistId": "PLWw8s8_dq_Co",
+  "playlistTitle": "US Cities · Crime, Mapped",
+  "previousPublications": [
+    {
+      "platform": "youtube",
+      "channel_id": "UCTsrF3UvpWzSGDXfbnZAWKA",
+      "video_id": "EV4T91mTBQQ",
+      "url": "https://youtu.be/EV4T91mTBQQ",
+      "uploaded_at": "2026-07-20T22:55:34.682Z",
+      "removed_at": "2026-07-23T18:50:58.958Z",
+      "removal": "permanent-delete"
+    }
   ]
 }

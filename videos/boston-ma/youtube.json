@@ -1,10 +1,10 @@
 {
-  "status": "draft",
+  "status": "removed-from-earthone",
   "url": "",
   "videoId": "",
   "title": "Boston Crime, 1985–2026 — Forty Years Mapped, District by District",
   "categoryId": "27",
-  "privacyStatus": "private",
+  "privacyStatus": null,
   "tags": [
     "Boston",
     "crime data",
@@ -49,9 +49,27 @@
       "label": "Sources & credits"
     }
   ],
-  "_note": "Draft publish metadata. Upload pipeline reads this; url/videoId written back after upload.",
+  "_note": "Historical Earth One listing metadata. The inherited upload was permanently deleted by owner direction; the dedicated Crime Cartography remake remains separately gated.",
   "titleOptions": [
     "Boston Crime Fell 71% From Its 1989 Peak — 40 Years, Mapped District by District",
     "70,003 to 20,110: Boston's Crime Collapse, Mapped (1985–2026)"
+  ],
+  "thumbnailFrame": "composed",
+  "thumbnailFile": "thumbnail.jpg",
+  "publishedVia": "studio",
+  "uploadedAt": null,
+  "publishedAt": "2026-07-20T16:37:56Z",
+  "playlistId": "PLWw8s8_dq_Co",
+  "playlistTitle": "US Cities · Crime, Mapped",
+  "previousPublications": [
+    {
+      "platform": "youtube",
+      "channel_id": "UCTsrF3UvpWzSGDXfbnZAWKA",
+      "video_id": "XHDs73XhSqY",
+      "url": "https://youtu.be/XHDs73XhSqY",
+      "uploaded_at": "2026-07-20T16:17:25.527Z",
+      "removed_at": "2026-07-23T18:50:58.958Z",
+      "removal": "permanent-delete"
+    }
   ]
 }
