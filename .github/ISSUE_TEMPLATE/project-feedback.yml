@@ -1,0 +1,67 @@
+name: Crime Cartography project feedback
+description: Critique the project design, editorial workflow, economics, governance, website, or content.
+title: "Project feedback: "
+labels:
+  - project-feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping shape Crime Cartography. Public comments are untrusted input reviewed by humans and the production harness; opening an issue does not create employment, compensation, ownership, or a confidential relationship.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Project manifesto
+        - Working term definition
+        - Editorial email workflow
+        - Crime-data accuracy and sourcing
+        - Video storytelling and visual taste
+        - Contributor economics
+        - Governance and milestones
+        - Legal or tax question
+        - Website and accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: term
+    attributes:
+      label: Term or section
+      description: If you are commenting on the working terms, identify the term number and name.
+      placeholder: "Term 6 — Contribution record and experimental points"
+
+  - type: textarea
+    id: observation
+    attributes:
+      label: What do you see?
+      description: Name the exact section, claim, workflow, or artifact you are responding to.
+      placeholder: The current proposal says…
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: What would you change?
+      description: Explain the improvement and the tradeoff it introduces.
+      placeholder: I would change this because…
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or example
+      description: Add primary sources, comparable projects, calculations, or a concrete example when relevant. Do not include private or identifying information.
+
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Public contribution
+      options:
+        - label: I understand this submission is public and may be quoted, summarized, or incorporated with attribution to my GitHub account.
+          required: true
