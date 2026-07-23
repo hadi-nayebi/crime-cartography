@@ -3,12 +3,12 @@
   "project_id": "crime-cartography",
   "name": "Crime Cartography",
   "stage": "public-design",
-  "generated_at": "2026-07-23T18:57:57.247Z",
+  "generated_at": "2026-07-23T19:16:42.073Z",
   "production": {
     "videos_total": 20,
     "rendered": 20,
-    "awaiting_editorial_review": 18,
-    "approved_for_release": 2,
+    "awaiting_editorial_review": 20,
+    "approved_for_release": 0,
     "previously_published_on_earthone": 3
   },
   "operating_tracks": {

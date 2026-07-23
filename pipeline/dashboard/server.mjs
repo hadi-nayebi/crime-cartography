@@ -19,6 +19,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { createDecisionStore } from "../operations/decision-store.mjs";
+import { dedicatedCutApproval } from "../operations/remake-baseline.mjs";
 import { createYoutubeChannelConnections } from "../auth/youtube-channel-connections.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
@@ -172,7 +173,10 @@ async function cityRow(slug) {
     const s = await stat(mp4Name);
     mp4 = { bytes: s.size, mtime: s.mtime };
   }
-  const approveFresh = Boolean(approvedAt && mp4 && new Date(approvedAt) >= mp4.mtime);
+  const approveFresh = Boolean(mp4 && dedicatedCutApproval({
+    renderedAt: lock?.renderedAt,
+    approvedAt,
+  }));
   stages.verified = approveFresh;
   return {
     approval: approvedAt ? { at: approvedAt, fresh: approveFresh } : null,

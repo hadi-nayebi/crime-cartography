@@ -34,6 +34,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { dedicatedCutApproval } from './operations/remake-baseline.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = path.join(ROOT, 'surface', 'remotion', 'public');
@@ -65,23 +66,23 @@ function musicOK(slug, cfg) {
   return exists(path.join(PUBLIC, 'audio', `${slug}-music-sao.wav`));
 }
 
-// Studio-canonical verify light: a fresh operator APPROVE (kind:"decision",
-// text starts "APPROVE") whose timestamp is >= the current mp4's mtime. Mirrors
-// pipeline/dashboard/server.mjs cityRow() EXACTLY — the verify light is the
-// owner's alone; confidence.json blockers are context, never a verify gate.
-function verifyOf(slug, renderMs) {
-  if (!renderMs) return { verified: false, approvedAt: null };
+// Studio-canonical verify light: a post-takeover remake render plus a later
+// operator APPROVE. Pre-takeover Earth One approvals never carry into the
+// dedicated Crime Cartography channel.
+function verifyOf(slug, renderedAt) {
+  if (!renderedAt) return { verified: false, approvedAt: null };
   const fb = readJSON(path.join(ROOT, 'videos', slug, 'feedback.json'));
   const arr = Array.isArray(fb) ? fb : (fb && Array.isArray(fb.entries) ? fb.entries : []);
   const lastDecision = [...arr].reverse().find((f) => f && f.kind === 'decision');
   const approvedAt = lastDecision && /^APPROVE/.test(lastDecision.text || '') ? lastDecision.at : null;
-  const verified = Boolean(approvedAt && new Date(approvedAt).getTime() >= renderMs);
+  const verified = dedicatedCutApproval({ renderedAt, approvedAt });
   return { verified, approvedAt };
 }
 
 const rows = slugs.map((slug) => {
   const cfgPath = path.join(ROOT, 'videos', slug, 'config.json');
   const cfg = readJSON(cfgPath);
+  const renderLock = readJSON(path.join(ROOT, 'videos', slug, 'render.lock.json'));
   const mp4 = path.join(ROOT, 'videos', slug, 'out', `${slug}.mp4`);
   let renderInfo = null;
   let renderMs = 0;
@@ -92,7 +93,7 @@ const rows = slugs.map((slug) => {
   }
   const conf = confidence[slug] || {};
   const yt = readJSON(path.join(ROOT, 'videos', slug, 'youtube.json')) || {};
-  const { verified, approvedAt } = verifyOf(slug, renderMs);
+  const { verified, approvedAt } = verifyOf(slug, renderLock?.renderedAt);
   const published = Boolean(yt.url);
   return {
     slug,
