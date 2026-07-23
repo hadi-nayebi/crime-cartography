@@ -356,6 +356,90 @@
   .privbtn.sel { border-color:var(--gold); color:var(--gold); font-weight:700; background:rgba(240,180,62,.06); }
   .charcount { font:var(--f-xs) var(--mono); color:var(--faint); }
   .charcount.over { color:var(--red); font-weight:700; }
+
+  /* ── compartment navigation & non-city workspaces ─────────────────────── */
+  .workspace-nav {
+    display:flex; gap:6px; align-items:center; flex-wrap:wrap;
+    padding:6px; margin:-8px 0 var(--s-5); border:1px solid var(--line);
+    border-radius:var(--r-md); background:var(--panel);
+  }
+  .workspace-nav button { border-color:transparent; }
+  .workspace-nav button.on {
+    color:var(--gold); border-color:rgba(240,180,62,.45);
+    background:rgba(240,180,62,.07);
+  }
+  .workspace { display:none; }
+  .workspace.on { display:block; }
+  .workspace-head {
+    display:flex; justify-content:space-between; gap:var(--s-4);
+    align-items:flex-start; flex-wrap:wrap; margin-bottom:var(--s-4);
+  }
+  .workspace-head h2 { font:650 var(--f-xl)/1.25 var(--sans); margin-top:3px; }
+  .workspace-head p { color:var(--dim); max-width:760px; margin-top:6px; }
+  .workspace-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:var(--s-3);
+  }
+  .work-card {
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md);
+    padding:var(--s-4); min-width:0;
+  }
+  .work-card h3 { font:600 var(--f-lg)/1.35 var(--sans); margin:5px 0; }
+  .work-card .next { margin-top:var(--s-3); padding-top:var(--s-3); border-top:1px solid var(--line); color:var(--dim); }
+  .track-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; margin-top:var(--s-3); }
+  .track-grid span {
+    border:1px solid var(--line); border-radius:5px; padding:4px 6px;
+    font:10px/1.35 var(--mono); color:var(--faint); overflow:hidden; text-overflow:ellipsis;
+  }
+  .question-card.answered { border-color:rgba(64,209,131,.35); }
+  .question-context { color:var(--dim); margin:var(--s-2) 0 var(--s-3); }
+  .question-rationale {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--s-3);
+    margin:var(--s-3) 0;
+  }
+  .question-rationale > div {
+    border:1px solid var(--line); border-radius:var(--r-sm); padding:var(--s-3);
+    background:rgba(255,255,255,.018); color:var(--dim);
+  }
+  .question-rationale .recommendation { border-color:rgba(98,223,244,.28); }
+  .question-card.current { max-width:880px; }
+  .question-card select {
+    width:100%; background:var(--input); color:var(--ink); border:1px solid var(--line2);
+    border-radius:8px; padding:9px 11px; margin-bottom:var(--s-2);
+  }
+  .question-card textarea { min-height:86px; }
+  .qstatus { margin-top:var(--s-2); min-height:18px; }
+  .metric-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:var(--s-3); }
+  .metric {
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--r-md);
+    padding:var(--s-4);
+  }
+  .metric b { display:block; font:700 28px/1.1 var(--mono); color:var(--gold); margin-top:5px; }
+  .public-list { margin:var(--s-4) 0 0 20px; color:var(--dim); }
+  .public-list li + li { margin-top:6px; }
+  .remake-overview { margin-bottom:var(--s-4); }
+  .remake-card.recommended { border-color:rgba(98,223,244,.38); }
+  .remake-card.selected { box-shadow:inset 3px 0 0 var(--gold); }
+  .remake-facts {
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px;
+    margin:var(--s-3) 0;
+  }
+  .remake-facts span {
+    border:1px solid var(--line); border-radius:5px; padding:5px 7px;
+    font:10.5px/1.4 var(--mono); color:var(--dim);
+  }
+  .remake-blockers { display:flex; flex-wrap:wrap; gap:5px; margin:var(--s-2) 0 var(--s-3); }
+  .remake-blockers .chip { color:var(--amber); border-color:rgba(226,147,61,.3); }
+  .remake-card select {
+    width:100%; background:var(--input); color:var(--ink); border:1px solid var(--line2);
+    border-radius:8px; padding:9px 11px;
+  }
+  .remake-card textarea { min-height:132px; }
+  .remake-test {
+    display:flex; align-items:flex-start; gap:8px; color:var(--dim);
+    margin:var(--s-3) 0; cursor:pointer;
+  }
+  .remake-save-status { min-height:18px; margin-top:var(--s-2); }
 </style>
 
 <header>
@@ -369,7 +453,15 @@
   <div class="funnel" id="stats"></div>
 </header>
 
-<div id="home">
+<nav class="workspace-nav" aria-label="Studio workspaces">
+  <button class="on" data-workspace="city" onclick="showWorkspace('city')">City production</button>
+  <button data-workspace="remakes" onclick="showWorkspace('remakes')">Remake control</button>
+  <button data-workspace="experiments" onclick="showWorkspace('experiments')">Experiment videos</button>
+  <button data-workspace="questions" onclick="showWorkspace('questions')">Questions for Hadi <span id="question-badge"></span></button>
+  <button data-workspace="public" onclick="showWorkspace('public')">Public project preview</button>
+</nav>
+
+<div id="home" class="workspace on">
   <section id="deck"></section>
   <div class="top">
     <div>
@@ -377,23 +469,63 @@
       <div id="board"></div>
     </div>
     <aside class="rail">
-      <div class="mod"><h4>Channel</h4><div id="yt-body" class="feat">checking…</div></div>
-      <div class="mod"><h4>Fleet health</h4><div id="health" class="feat">…</div></div>
+      <div class="mod"><h4>Distribution identity</h4><div id="yt-body" class="feat">checking…</div></div>
+      <div class="mod"><h4>Operations</h4><div id="health" class="feat">…</div></div>
       <div class="mod"><h4>Decisions needed</h4><pre class="brief" id="decisions">…</pre></div>
-      <div class="mod"><h4>Notes → producer</h4>
-        <textarea id="gnote" placeholder="Anything about the dashboard, production, priorities… A watcher picks up unresolved notes every 5 minutes."></textarea>
-        <div class="row" style="margin-top:var(--s-2)"><button class="primary sm" onclick="sendGlobal()">Send note</button><span class="feat" id="gcount"></span></div>
+      <div class="mod"><h4>Private project note</h4>
+        <textarea id="gnote" placeholder="Leave production context that does not fit a structured decision card. Notes remain private and are never executed as commands."></textarea>
+        <div class="row" style="margin-top:var(--s-2)"><button class="primary sm" onclick="sendGlobal()">Save note</button><span class="feat" id="gcount"></span></div>
       </div>
-      <div class="mod">
-        <details class="briefd">
-          <summary>Latest briefing <span class="bfile" id="brief-file"></span></summary>
-          <pre class="brief" id="briefing">…</pre>
-        </details>
-      </div>
-      <div class="mod"><h4>Recent commits</h4><div id="commits" class="feat">…</div></div>
+      <div class="mod"><h4>Recent public changes</h4><div id="commits" class="feat">…</div></div>
     </aside>
   </div>
 </div>
+
+<section id="remakes-view" class="workspace">
+  <div class="workspace-head">
+    <div>
+      <div class="eyebrow">Inherited batch · private owner review over a public-safe ledger</div>
+      <h2>Turn 20 rendered drafts into Crime Cartography releases</h2>
+      <p>Record corrections city by city, choose the one or two launch tests, and move each remake through sourced context research and a fresh human watch-through. Saving here updates private Codex state and wakes the harness with a pointer—your notes and identity never enter the public ledger.</p>
+    </div>
+  </div>
+  <div id="remake-overview" class="remake-overview"><div class="empty">Loading remake control…</div></div>
+  <div id="remake-grid" class="workspace-grid"><div class="empty">Loading cities…</div></div>
+</section>
+
+<section id="experiments-view" class="workspace">
+  <div class="workspace-head">
+    <div>
+      <div class="eyebrow">Documentary lane · canonical state in Hadosh Video Studio</div>
+      <h2>Explain the experiment while we build it</h2>
+      <p>The intro, website walkthrough, milestone updates, and harness-engineering episodes use a separate video control plane. This studio projects their state without duplicating or editing it.</p>
+    </div>
+  </div>
+  <div id="experiment-grid" class="workspace-grid"><div class="empty">Loading documentary projects…</div></div>
+</section>
+
+<section id="questions-view" class="workspace">
+  <div class="workspace-head">
+    <div>
+      <div class="eyebrow">Durable decision inbox</div>
+      <h2>One well-contextualized question at a time</h2>
+      <p>The next question stays hidden until the current one is answered. Every response is bound to the artifact revision shown, recorded once, and placed into a private wake queue. Your own typed answer is always allowed and is never executed as a command.</p>
+    </div>
+    <span class="chip" id="wake-count">0 wake events pending</span>
+  </div>
+  <div id="question-grid" class="workspace-grid"><div class="empty">Loading questions…</div></div>
+</section>
+
+<section id="public-view" class="workspace">
+  <div class="workspace-head">
+    <div>
+      <div class="eyebrow">Allowlisted public projection</div>
+      <h2>Exactly what the Academy website may see</h2>
+      <p>This preview excludes raw feedback, emails, internal paths, legal deliberation, channel credentials, unpublished IDs, and operational telemetry.</p>
+    </div>
+  </div>
+  <div id="public-preview"><div class="empty">Loading public projection…</div></div>
+</section>
 
 <div id="pubmodal" onclick="if(event.target===this)closePublish()"><div class="box">
   <div class="row" style="justify-content:space-between">
@@ -435,6 +567,7 @@
 const STAGES = ["data","trend","basemap","config","music","render","verified","published"];
 const ST_SHORT = { data:"data", trend:"trnd", basemap:"base", config:"cnfg", music:"musc", render:"rndr", verified:"vrfd", published:"live" };
 let CAT = [], CUR = null, FILTER = "all", SORT = "priority";
+let WORKSPACE = "city";
 const $ = (id) => document.getElementById(id);
 const esc = (s) => (s ?? "").toString().replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtT = (s) => s==null ? "" : `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
@@ -454,7 +587,8 @@ function pubTag(c){
   const p = livePrivacy(c);
   if(p==="private")  return `<span class="livetag hold" title="private on YouTube — only you can see it">PRIVATE</span>`;
   if(p==="unlisted") return `<span class="livetag hold" title="unlisted — anyone with the link">UNLISTED</span>`;
-  return `<span class="livetag" title="public — live for everyone">LIVE</span>`; // public, or unknown → assume live
+  if(p==="public") return `<span class="livetag" title="public — live for everyone">LIVE</span>`;
+  return `<span class="livetag hold" title="YouTube privacy could not be verified">UNKNOWN</span>`;
 }
 function privacyLabel(c){
   const p = livePrivacy(c) || "?";
@@ -591,18 +725,243 @@ async function loadPulse(){
   const p = await (await fetch("/api/pulse")).json();
   $("health").innerHTML = Object.entries(p.health).map(([k,v])=>{
     const fresh = v.last && (Date.now()-new Date(v.last)) < 12*3600*1000;
-    return `<div class="hrow" title="${esc(v.msg||"no signature commit yet")}">
-      <span class="dot ${v.last?(fresh?"ok":"stale"):"dead"}"></span><span class="hname">${esc(k)}</span><span class="hago">${ago(v.last)}</span></div>`;
+    return `<div class="hrow" title="${esc(v.msg||"no update recorded")}">
+      <span class="dot ${v.last?(fresh?"ok":"stale"):"dead"}"></span><span class="hname">${esc(v.label||k)}</span><span class="hago">${ago(v.last)}</span></div>`;
   }).join("");
   const dec = (p.decisions ?? "").trim();
   $("decisions").textContent = dec && dec !== "none" ? dec.slice(0, 3000) : "Nothing pending — decisions land here.";
-  $("brief-file").textContent = p.briefing ? p.briefing.file.replace(/\.md$/,"") : "";
-  $("briefing").textContent = p.briefing ? p.briefing.text.slice(0, 3000) : "No briefings yet — the first one lands here.";
   $("commits").innerHTML = p.commits.map(c=>
     `<div class="crow" title="${esc(c.msg)}"><span class="chash">${esc(c.hash)}</span><span class="cmsg">${esc(c.msg)}</span><span class="cago">${ago(c.when).replace(" ago","")}</span></div>`).join("")
     || `<div class="feat">no commits yet</div>`;
   const gf = await (await fetch("/api/feedback/_project")).json();
   $("gcount").textContent = `${gf.filter(f=>!f.resolved).length} open project notes`;
+}
+
+function showWorkspace(name){
+  WORKSPACE = name;
+  $("detail").style.display = "none";
+  try{$("player").pause();}catch{}
+  const ids = {city:"home", remakes:"remakes-view", experiments:"experiments-view", questions:"questions-view", public:"public-view"};
+  Object.entries(ids).forEach(([key,id])=>{
+    const element=$(id);
+    element.classList.toggle("on", key===name);
+    element.style.display = key===name ? "block" : "none";
+  });
+  document.querySelectorAll("[data-workspace]").forEach((button)=>{
+    button.classList.toggle("on", button.dataset.workspace===name);
+  });
+  if(name==="remakes") loadRemakes();
+  if(name==="experiments") loadExperiments();
+  if(name==="questions") loadQuestions();
+  if(name==="public") loadPublicPreview();
+}
+
+async function loadRemakes(){
+  const payload = await (await fetch("/api/remakes")).json();
+  if(payload.error){
+    $("remake-overview").innerHTML = `<div class="empty">${esc(payload.error)}</div>`;
+    $("remake-grid").innerHTML = "";
+    return;
+  }
+  const cities = payload.cities ?? [];
+  const recommendations = new Set(payload.test_release_recommendation?.candidates ?? []);
+  const selected = cities.filter((city)=>city.owner_review?.selected_for_test).length;
+  const notes = cities.filter((city)=>String(city.owner_review?.owner_notes ?? "").trim()).length;
+  const ready = cities.filter((city)=>city.owner_review?.status==="ready-for-remake").length;
+  const anchors = cities.reduce((sum,city)=>sum+(city.context_anchors?.authored??0),0);
+  const facts = [
+    ["Drafts",cities.length],
+    ["Owner notes",notes],
+    ["Selected tests",selected],
+    ["Ready for remake",ready],
+    ["Sourced anchors",anchors],
+  ];
+  $("remake-overview").innerHTML = `
+    <div class="metric-grid">${facts.map(([label,value])=>
+      `<div class="metric"><span class="eyebrow">${esc(label)}</span><b>${esc(value)}</b></div>`).join("")}</div>
+    <div class="work-card" style="margin-top:var(--s-3)">
+      <span class="eyebrow">Recommendation—not a decision</span>
+      <h3>${esc((payload.test_release_recommendation?.candidates??[]).join(" + ") || "No test candidates recorded")}</h3>
+      <div class="feat">${esc(payload.test_release_recommendation?.rationale || "")}</div>
+    </div>`;
+  $("remake-grid").innerHTML = cities.map((city)=>{
+    const review = city.owner_review ?? {};
+    const recommended = recommendations.has(city.slug);
+    const blockers = (city.blockers??[]).map((blocker)=>
+      `<span class="chip">${esc(blocker.replaceAll("-"," "))}</span>`).join("");
+    const prior = city.prior_publications?.length
+      ? `${city.prior_publications.length} removed Earth One publication`
+      : "No prior publication";
+    const statusOptions = [
+      ["needs-owner-notes","Needs owner notes"],
+      ["notes-recorded","Notes recorded"],
+      ["context-research","Context research"],
+      ["ready-for-remake","Ready for remake"],
+      ["hold","Hold"],
+    ].map(([value,label])=>
+      `<option value="${value}" ${review.status===value?"selected":""}>${label}</option>`).join("");
+    return `<article class="work-card remake-card ${recommended?"recommended":""} ${review.selected_for_test?"selected":""}" id="remake-${city.slug}">
+      <div class="row" style="justify-content:space-between">
+        <span class="eyebrow">${recommended?"Recommended test":"Remake review"}</span>
+        <button class="sm" onclick="showWorkspace('city');show('${city.slug}')">Open current cut</button>
+      </div>
+      <h3>${esc(city.title)}</h3>
+      <div class="remake-facts">
+        <span>${esc(city.historical_span?.from)}–${esc(city.historical_span?.to)} · ${esc(city.historical_span?.years)} years</span>
+        <span>${fmtN(city.records)} records · ${esc(city.spatial_units)} spatial units</span>
+        <span>${esc(city.category_breakdown?.available_categories)} categories · ${city.category_breakdown?.annual_parts_available?"annual composition":"era review needed"}</span>
+        <span>${esc(city.context_anchors?.authored)}/${esc(city.context_anchors?.minimum)} context anchors · ${esc(prior)}</span>
+      </div>
+      <div class="feat">${esc(city.category_breakdown?.remake_question)}</div>
+      <div class="remake-blockers">${blockers}</div>
+      <label>
+        <span class="eyebrow">Review status</span>
+        <select id="remake-status-${city.slug}">${statusOptions}</select>
+      </label>
+      <label class="remake-test">
+        <input id="remake-test-${city.slug}" type="checkbox" ${review.selected_for_test?"checked":""}>
+        <span>Select as one of the first dedicated-channel test releases. This records intent; it does not approve publishing.</span>
+      </label>
+      <label>
+        <span class="eyebrow">Your remake notes</span>
+        <textarea id="remake-notes-${city.slug}" placeholder="What felt generic, misleading, forgettable, visually weak, or missing? Name timestamps when useful.">${esc(review.owner_notes || "")}</textarea>
+      </label>
+      <div class="row" style="margin-top:var(--s-2)">
+        <button class="primary" onclick="saveRemake('${city.slug}')">Save private review</button>
+        <span class="feat">${review.updated_at?`saved ${esc(ago(review.updated_at))}`:"not reviewed yet"}</span>
+      </div>
+      <div class="remake-save-status feat" id="remake-save-${city.slug}"></div>
+    </article>`;
+  }).join("") || `<div class="empty">No remake records found.</div>`;
+}
+
+async function saveRemake(slug){
+  const status = $(`remake-save-${slug}`);
+  status.textContent = "Saving…";
+  const response = await fetch(`/api/remakes/${slug}/review`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      status:$(`remake-status-${slug}`).value,
+      selected_for_test:$(`remake-test-${slug}`).checked,
+      owner_notes:$(`remake-notes-${slug}`).value,
+    }),
+  });
+  const result = await response.json();
+  if(!response.ok){
+    status.textContent = result.error || "Could not save this review.";
+    return;
+  }
+  status.textContent = "Saved privately and queued for the harness.";
+  $(`remake-${slug}`).classList.toggle("selected",result.review.selected_for_test===true);
+  await loadPulse();
+}
+
+async function loadExperiments(){
+  const payload = await (await fetch("/api/experiments")).json();
+  const projects = payload.projects ?? [];
+  $("experiment-grid").innerHTML = projects.map((project)=>{
+    const tracks = Object.entries(project.tracks ?? {}).map(([key,value])=>
+      `<span title="${esc(key)}">${esc(key)} · ${esc(value)}</span>`).join("");
+    return `<article class="work-card">
+      <div class="row" style="justify-content:space-between">
+        <span class="eyebrow">${esc(project.stage)}</span>
+        <span class="chip">${esc(project.next_gate || "no pending gate")}</span>
+      </div>
+      <h3>${esc(project.title)}</h3>
+      <div class="feat">updated ${esc(ago(project.updated_at))}</div>
+      <div class="track-grid">${tracks}</div>
+      <div class="next"><span class="eyebrow">Next artifact</span><div>${esc(project.next_action || "No next action recorded.")}</div></div>
+    </article>`;
+  }).join("") || `<div class="empty"><div class="eg">◌</div><div>No Crime Cartography documentary project yet</div><div class="feat">${esc(payload.source || "Create the intro project in Hadosh Video Studio.")}</div></div>`;
+}
+
+async function loadQuestions(){
+  const payload = await (await fetch("/api/questions")).json();
+  const questions = payload.questions ?? [];
+  const openQuestions = questions.filter((question)=>question.status==="open");
+  const open = openQuestions.length;
+  $("question-badge").textContent = open ? `· 1/${open}` : "";
+  $("wake-count").textContent = `${payload.pending_wake_events ?? 0} wake event${payload.pending_wake_events===1?"":"s"} pending`;
+  const question = openQuestions[0];
+  if(!question){
+    $("question-grid").innerHTML = `<div class="empty">No question needs your answer right now.</div>`;
+    return;
+  }
+  {
+    const choices = (question.choices ?? []).map((choice)=>
+      `<option value="${esc(choice.id)}">${esc(choice.label)}</option>`).join("");
+    const form = `
+      ${choices ? `<select id="choice-${question.id}" aria-label="Answer choice"><option value="">Choose an option, or answer in your own words below…</option>${choices}</select>` : ""}
+      <textarea id="note-${question.id}" placeholder="Your answer, correction, reasoning, or context…"></textarea>
+      <div class="row" style="margin-top:var(--s-2)">
+        <button class="primary" onclick="answerQuestion('${question.id}','${esc(question.artifact_revision)}')">Record answer</button>
+        <span class="feat">bound to ${esc(question.artifact_revision)}</span>
+      </div>
+      <div class="qstatus feat" id="status-${question.id}"></div>`;
+    $("question-grid").innerHTML = `<article class="work-card question-card current">
+      <div class="row" style="justify-content:space-between">
+        <span class="eyebrow">${esc(question.area)}</span>
+        <span class="chip">Question 1 of ${open}</span>
+      </div>
+      <h3>${esc(question.prompt)}</h3>
+      <div class="question-context">${esc(question.context)}</div>
+      <div class="question-rationale">
+        <div><span class="eyebrow">Why only you can decide</span><div>${esc(question.why_hadi || "This decision requires the project owner's judgment.")}</div></div>
+        <div class="recommendation"><span class="eyebrow">Codex recommendation</span><div>${esc(question.recommendation || "No recommendation recorded.")}</div></div>
+      </div>
+      ${form}
+      ${open>1?`<div class="feat" style="margin-top:var(--s-3)">${open-1} later question${open===2?"":"s"} queued and intentionally hidden until this answer is recorded.</div>`:""}
+    </article>`;
+  }
+}
+
+async function answerQuestion(id, artifactRevision){
+  const status = $(`status-${id}`);
+  const choice = $(`choice-${id}`)?.value || null;
+  const note = $(`note-${id}`)?.value.trim() || "";
+  if(!choice && !note){
+    status.textContent = "Choose an option or write your own answer.";
+    return;
+  }
+  status.textContent = "Recording…";
+  const response = await fetch(`/api/questions/${id}/answer`, {
+    method:"POST",
+    headers:{"Content-Type":"application/json","Idempotency-Key":crypto.randomUUID()},
+    body:JSON.stringify({choice_id:choice,note,artifact_revision:artifactRevision}),
+  });
+  const result = await response.json();
+  if(!response.ok){
+    status.textContent = result.error || "Could not record this answer.";
+    return;
+  }
+  await loadQuestions();
+  await loadPulse();
+}
+
+async function loadPublicPreview(){
+  const status = await (await fetch("/api/public-preview")).json();
+  if(status.error){
+    $("public-preview").innerHTML = `<div class="empty">${esc(status.error)}</div>`;
+    return;
+  }
+  const metrics = [
+    ["Videos",status.production?.videos_total],
+    ["Rendered",status.production?.rendered],
+    ["Awaiting review",status.production?.awaiting_editorial_review],
+    ["Approved",status.production?.approved_for_release],
+  ];
+  $("public-preview").innerHTML = `
+    <div class="metric-grid">${metrics.map(([label,value])=>
+      `<div class="metric"><span class="eyebrow">${esc(label)}</span><b>${esc(value)}</b></div>`).join("")}</div>
+    <div class="work-card" style="margin-top:var(--s-3)">
+      <div class="row" style="justify-content:space-between">
+        <div><span class="eyebrow">Current stage</span><h3>${esc(status.current_milestone?.label)}</h3></div>
+        <span class="chip">${esc(status.current_milestone?.status)}</span>
+      </div>
+      <div class="feat">Next: ${esc(status.current_milestone?.next)} · generated ${esc(ago(status.generated_at))}</div>
+      <ul class="public-list">${(status.calls_to_participate??[]).map((item)=>`<li>${esc(item)}</li>`).join("")}</ul>
+    </div>`;
 }
 
 // pipeline phase drives which feedback controls make sense
@@ -737,7 +1096,7 @@ function renderNav(){
     + `<span class="pos">${i>=0?i+1:"–"} / ${n}</span>`
     + `<button class="sm" ${next?`onclick="nav(1)" title="${esc(next.title)}"`:"disabled"}>next ›</button>`;
 }
-function showHome(){ $("detail").style.display="none"; $("home").style.display="block"; try{$("player").pause();}catch{} }
+function showHome(){ showWorkspace("city"); }
 async function show(slug){
   CUR = CAT.find(c=>c.slug===slug);
   $("home").style.display="none"; $("detail").style.display="block";
@@ -796,7 +1155,13 @@ async function refreshFb(){
     : '<span class="feat">No notes yet — scrub the cut and drop the first one at a timestamp.</span>';
 }
 function seek(t){ $("player").currentTime=t; $("player").play(); }
-async function post(slug, body){ await fetch(`/api/feedback/${slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}); }
+async function post(slug, body){
+  await fetch(`/api/feedback/${slug}`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({...body,requestId:crypto.randomUUID()}),
+  });
+}
 async function sendComment(withTime){ const text=$("comment").value.trim(); if(!text) return; await post(CUR.slug,{text, videoTime: withTime&&CUR.mp4 ? $("player").currentTime : null}); $("comment").value=""; refreshFb(); }
 async function decision(d){
   const c=$("comment"); const note=c?c.value.trim():"";
@@ -903,7 +1268,7 @@ function selStat(){
   el.innerHTML = PUB.sel.has("thumbnail.jpg") ? `will publish with the <b style="color:var(--gold)">composed</b> thumbnail`
     : n===0 ? `<span style="color:var(--amber)">no thumbnail selected — YouTube will auto-pick</span>`
     : n===1 ? `1 frame selected → publishes as-is, or add guidance + compose`
-    : `<span style="color:var(--gold)">${n} frames selected</span> → hit compose; Claude builds one thumbnail from them (publish uses the COMPOSED card when it appears)`;
+    : `<span style="color:var(--gold)">${n} frames selected</span> → hit compose; the production agent builds one thumbnail from them (publish uses the COMPOSED card when it appears)`;
 }
 async function requestCompose(){
   const frames = [...PUB.sel].filter(t=>t!=="thumbnail.jpg");
@@ -934,7 +1299,7 @@ async function firePublish(){
   if (!title) return alert("title required");
   if (title.length > 100) return alert("YouTube titles max 100 characters");
   const frames = [...PUB.sel];
-  if (frames.length > 1) return alert("several frames are selected — hit compose first (Claude builds one thumbnail from them), or narrow to a single frame");
+  if (frames.length > 1) return alert("several frames are selected — hit compose first (the production agent builds one thumbnail from them), or narrow to a single frame");
   const thumb = frames[0] ?? null;
   if (!confirm(`Upload "${title}"\nas ${PUB.privacy.toUpperCase()}${thumb?` with thumbnail ${thumb==="thumbnail.jpg"?"COMPOSED":thumb}`:" (no thumbnail)"}\ninto playlist: ${PUB.data.playlist?.title ?? "—"}?`)) return;
   const go = $("pub-go"); go.disabled = true; go.textContent = "Uploading… (this takes a minute)";
@@ -993,10 +1358,52 @@ async function authUI(){
     const scopeWarn = s.analyticsScope === false
       ? `<div class="warnbar" style="margin-top:8px">⚠ Analytics scope missing — retention, average-view %, watch-time, CTR &amp; subscriber gains are locked (403). Click <b>Re-authorize</b> and grant the analytics permission to unlock deep stats.</div>`
       : "";
-    el.innerHTML = `<div class="row" style="margin:0">${s.channel.thumb?`<img src="${esc(s.channel.thumb)}" style="width:30px;height:30px;border-radius:50%">`:""}<span style="color:var(--green);font:600 13px var(--sans)">Connected — ${esc(s.channel.title)}</span><span style="flex:1"></span><button class="sm" onclick="location.href='/oauth/start'">Re-authorize</button></div>` + scopeWarn;
+    const identityWarning = s.activeIdentityValid
+      ? ""
+      : `<div class="warnbar" style="margin-top:8px">The live OAuth identity does not match its saved channel record. Uploads remain blocked; reconnect this channel.</div>`;
+    const destinationLabel = s.destinationMatches ? "Locked destination" : "Active API identity";
+    const destinationWarning = s.destinationMatches
+      ? ""
+      : `<div class="warnbar" style="margin-top:8px">This active identity is not the owner-locked Crime Cartography destination. Uploads are server-blocked.</div>`;
+    const connections = (s.connections ?? []).map((connection)=>{
+      const active = connection.channel_id===s.channel.id;
+      return `<div class="row" style="margin-top:7px;padding-top:7px;border-top:1px solid var(--line)">
+        ${connection.thumb?`<img src="${esc(connection.thumb)}" style="width:24px;height:24px;border-radius:50%">`:""}
+        <span style="font:600 12px var(--sans);color:${active?"var(--cyan)":"var(--dim)"}">${esc(connection.title)}</span>
+        ${connection.handle?`<span class="feat">${esc(connection.handle)}</span>`:""}
+        <span style="flex:1"></span>
+        ${active?`<span class="chip">active</span>`:`<button class="sm" onclick="activateYoutubeChannel('${connection.channel_id}')">Use API identity</button>`}
+      </div>`;
+    }).join("");
+    const destination = s.destinationConfigured
+      ? `<div class="feat" style="margin-top:8px">Upload lock: <b>${esc(s.destination?.title || s.destination?.channel_id || "configured channel")}</b></div>`
+      : `<div class="feat" style="margin-top:8px">Upload lock: not set; owner confirmation is the current dashboard question.</div>`;
+    el.innerHTML = `
+      <div class="row" style="margin:0">
+        ${s.channel.thumb?`<img src="${esc(s.channel.thumb)}" style="width:30px;height:30px;border-radius:50%">`:""}
+        <span style="color:var(--green);font:600 13px var(--sans)">${destinationLabel} — ${esc(s.channel.title)}</span>
+      </div>
+      <div class="feat" style="margin-top:7px">One Google login can own several channels, but each saved OAuth connection is channel-scoped.</div>
+      ${connections}
+      ${destination}
+      <div class="row" style="margin-top:9px">
+        <button class="sm" onclick="location.href='/oauth/start'">Connect another channel identity</button>
+      </div>
+      ${destinationWarning}${identityWarning}${scopeWarn}`;
   }
-  else if (s.hasSecret) el.innerHTML = `<button class="primary" onclick="location.href='/oauth/start'">Authorize with Google</button>`;
+  else if (s.hasSecret) el.innerHTML = `<div class="feat" style="margin-bottom:8px">Connect one exact YouTube channel identity. Additional channels under the same Google login can be added afterward without overwriting it.</div><button class="primary" onclick="location.href='/oauth/start'">Connect a YouTube channel</button>`;
   else el.innerHTML = `<span class="feat">No OAuth credentials yet — see the setup instructions in the repo README.</span>`;
+}
+async function activateYoutubeChannel(channelId){
+  const response = await fetch("/api/auth/active", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({channel_id:channelId}),
+  });
+  const result = await response.json();
+  if(!response.ok) return alert(result.error || "Could not activate this channel identity.");
+  await authUI();
+  await load();
 }
 // keyboard: ←/→ move between videos on a detail page; Esc goes back, or closes
 // the publish modal when it's open. Skip when typing in a field, or when the
@@ -1011,6 +1418,13 @@ document.addEventListener("keydown", (e)=>{
   else if(e.key==="Escape"){ showHome(); }
 });
 if (new URLSearchParams(location.search).get("connected")) history.replaceState(null, "", "/");
-load(); loadPulse(); authUI();
-setInterval(()=>{ if($("home").style.display!=="none"){ load(); loadPulse(); } }, 60000);
+load(); loadPulse(); loadQuestions(); loadExperiments(); loadPublicPreview(); authUI();
+const initialWorkspace = location.hash.slice(1);
+if(["remakes","experiments","questions","public"].includes(initialWorkspace)){
+  showWorkspace(initialWorkspace);
+}
+setInterval(()=>{
+  if(WORKSPACE==="city"){ load(); loadPulse(); }
+  if(WORKSPACE==="questions") loadQuestions();
+}, 60000);
 </script>

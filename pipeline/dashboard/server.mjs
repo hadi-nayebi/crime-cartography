@@ -6,35 +6,84 @@
  *   (installed as systemd user service crime-studio.service — always on)
  *
  * Shows EVERY city at its true production stage (data → trend → basemap →
- * config → music → render → verified → published), the project pulse (latest
- * briefing, commits, decisions, routine health), video playback with
- * timestamped notes, and a project-level notes channel. All feedback lands in
- * repo files; a 5-minute note-watcher routine picks up unresolved notes.
+ * config → music → render → verified → published), public-safe operational
+ * projections, video playback with timestamped notes, and a project-level
+ * notes channel.
  */
 import { createServer } from "node:http";
-import { readFile, readdir, stat, writeFile, mkdir, copyFile } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { readFile, readdir, stat, writeFile, mkdir, copyFile, rename } from "node:fs/promises";
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
+import { createDecisionStore } from "../operations/decision-store.mjs";
+import { createYoutubeChannelConnections } from "../auth/youtube-channel-connections.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const PORT = Number(process.env.PORT || 4400);
+const HOST = process.env.HOST || "127.0.0.1";
 const SECRETS = join(ROOT, ".secrets");
 const SECRET_PATH = join(SECRETS, "youtube_client_secret.json");
 const TOKEN_PATH = join(SECRETS, "youtube_token.json");
 const GLOBAL_FEEDBACK = join(ROOT, "experiment/studio-feedback.json");
+const CODEX_STATE = join(ROOT, ".codex/state");
+const CONTROL_PLANE_DB = process.env.CRIME_STUDIO_DB || join(ROOT, ".codex/runtime/studio.sqlite");
+const QUESTIONS_SEED = process.env.CRIME_STUDIO_QUESTIONS || join(CODEX_STATE, "questions.json");
+const PUBLIC_STATUS = join(ROOT, "public/project-status.json");
+const REMAKE_LEDGER = join(ROOT, "experiment/remake-ledger.json");
+const REMAKE_REVIEWS = join(CODEX_STATE, "remake-reviews.json");
+const VIDEO_STUDIO_ROOT = process.env.HADOSH_VIDEO_STUDIO_DIR || join(ROOT, "../hadosh_videos");
+const ENV_DESTINATION_CHANNEL_ID = process.env.CRIME_CARTOGRAPHY_CHANNEL_ID || null;
 const OAUTH_SCOPE =
   "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly";
 const REDIRECT = `http://localhost:${PORT}/oauth/callback`;
 const pexec = promisify(execFile);
+const decisionStore = createDecisionStore({
+  databasePath: CONTROL_PLANE_DB,
+  seedPath: QUESTIONS_SEED,
+});
+const channelConnections = createYoutubeChannelConnections({ secretsDirectory: SECRETS });
 
 async function readJson(p, fallback = null) {
   try { return JSON.parse(await readFile(p, "utf8")); } catch { return fallback; }
 }
 const exists = (p) => existsSync(p);
 const mtimeOf = (p) => { try { return statSync(p).mtime.toISOString(); } catch { return null; } };
+
+async function readJsonBody(req, maxBytes = 64 * 1024) {
+  let body = "";
+  for await (const chunk of req) {
+    body += chunk;
+    if (Buffer.byteLength(body) > maxBytes) {
+      const error = new Error(`request body exceeds ${maxBytes} bytes`);
+      error.statusCode = 413;
+      throw error;
+    }
+  }
+  try {
+    return JSON.parse(body || "{}");
+  } catch {
+    const error = new Error("not valid JSON");
+    error.statusCode = 400;
+    throw error;
+  }
+}
+
+function mutationOriginAllowed(req) {
+  const origin = req.headers.origin;
+  if (!origin) return true;
+  const host = req.headers.host;
+  return origin === `http://${host}` || origin === `https://${host}`;
+}
+
+async function atomicWriteJson(file, value) {
+  await mkdir(dirname(file), { recursive: true });
+  const temporary = `${file}.${process.pid}.${randomUUID()}.tmp`;
+  await writeFile(temporary, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  await rename(temporary, file);
+}
 
 // ---- stage model -----------------------------------------------------------
 // The single source of truth the user sees: where each city REALLY is.
@@ -43,6 +92,24 @@ const STAGES = ["data", "trend", "basemap", "config", "music", "render", "verifi
 // and 100 is required to publish. Used as the attention-sort's "how far from
 // ready" reference so a low ledger score raises a city's priority.
 const PUBLISH_BAR = 100;
+// The single canonical phrasing of the manual watch-through advisory blocker.
+// confidence.json is hand-maintained free text, so authors used two wordings
+// ("full watch-through…" vs "full end-to-end watch-through…") for one identical
+// gate — undercounting any "N still need watch-through" predicate. This constant
+// is the source of truth: the ledger is migrated to match it, and the server
+// reconciles it against the real gate below (a fresh APPROVE on the current cut
+// IS the watch-through, so once verified this advisory is satisfied).
+const WATCH_THROUGH_BLOCKER = "full watch-through with audio not yet logged";
+// A fresh operator APPROVE on the CURRENT render is the manual watch-through
+// sign-off, so once `verified` is true the advisory watch-through blocker is
+// cleared. Reconcile a ledger blocker list against the live gate: returns the
+// list unchanged unless verified clears the watch-through item (never mutates
+// the input — callers may share the ledger object).
+function reconcileBlockers(blockers, verified) {
+  if (!verified || !Array.isArray(blockers)) return blockers ?? [];
+  const kept = blockers.filter((b) => b !== WATCH_THROUGH_BLOCKER);
+  return kept.length === blockers.length ? blockers : kept;
+}
 
 // Each video in the batch is an experiment point. Its color theme, geographic
 // scope, and note-placement QA result are metadata the operator scans at a
@@ -179,6 +246,14 @@ async function catalog() {
   for (const slug of [...dirs].sort()) {
     const row = await cityRow(slug);
     row.confidence = ledger[slug] ?? null;
+    // Reconcile the advisory ledger to the real gate: a fresh APPROVE clears the
+    // watch-through blocker, so an approved (verified) city stops carrying it in
+    // its priority weight, card to-do list, and gatebar. No mutation of the
+    // shared ledger object — a filtered clone only when something actually drops.
+    if (row.confidence?.blockers?.length && row.stages.verified) {
+      const kept = reconcileBlockers(row.confidence.blockers, true);
+      if (kept !== row.confidence.blockers) row.confidence = { ...row.confidence, blockers: kept };
+    }
     row.features = matrix[slug] ?? null;
     // verified is the operator's own light: it flips ONLY on a fresh human
     // APPROVE (computed in cityRow). The confidence ledger is advisory — a high
@@ -308,49 +383,161 @@ async function pulse() {
       return { hash: h, when: new Date(Number(ct) * 1000).toISOString(), msg: rest.join("|") };
     });
   } catch {}
-  let briefing = null;
-  try {
-    const files = (await readdir(join(ROOT, "experiment/briefings"))).filter((f) => f.endsWith(".md")).sort();
-    if (files.length) {
-      const f = files[files.length - 1];
-      briefing = { file: f, text: await readFile(join(ROOT, "experiment/briefings", f), "utf8") };
-    }
-  } catch {}
-  let decisions = null;
-  try { decisions = await readFile(join(ROOT, "experiment/DECISIONS.md"), "utf8"); } catch {}
-  // routine health: last commit containing each routine's signature
-  const health = {};
-  for (const [key, sig] of [["driver", "driver:"], ["producer", "producer:"], ["briefing", "briefing:"], ["channel", "channel:"], ["harness", "harness:"]]) {
-    const hit = commits.find((c) => c.msg.startsWith(sig));
-    health[key] = hit ? { last: hit.when, msg: hit.msg } : { last: null };
-  }
+  const questions = decisionStore.listRequests();
+  const openQuestions = questions.filter((question) => question.status === "open");
+  const decisions = openQuestions.length
+    ? `[NEXT] ${openQuestions[0].prompt}${openQuestions.length > 1 ? `\n+ ${openQuestions.length - 1} later question(s) queued` : ""}`
+    : "No owner decision is currently open.";
+  const introManifest = join(VIDEO_STUDIO_ROOT, "projects/crime-cartography-intro/project.json");
+  const health = {
+    city_pipeline: {
+      label: "city pipeline",
+      last: mtimeOf(join(ROOT, "experiment/matrix.json")),
+      msg: "Canonical city assignments and production matrix",
+    },
+    experiment_video: {
+      label: "experiment video",
+      last: mtimeOf(introManifest),
+      msg: "Crime Cartography intro manifest in Hadosh Video Studio",
+    },
+    questions: {
+      label: "questions",
+      last: questions.map((question) => question.updated_at).filter(Boolean).sort().at(-1) ?? null,
+      msg: `${questions.filter((question) => question.status === "open").length} open decision(s)`,
+    },
+    wake_bridge: {
+      label: "wake bridge",
+      last: mtimeOf(join(ROOT, ".codex/runtime/decision-wake-bridge.log")),
+      msg: "Pointer-only decision wake service",
+    },
+    public_export: {
+      label: "public export",
+      last: mtimeOf(PUBLIC_STATUS),
+      msg: "Allowlisted Academy project status",
+    },
+  };
   const globalFb = (await readJson(GLOBAL_FEEDBACK)) ?? [];
-  const active = [];
-  try {
-    const am = await readFile(join(ROOT, ".claude/memory/jobs/ACTIVE.md"), "utf8");
-    for (const line of am.split("\n")) if (line.includes("DRIVER BLOCKED")) active.push(line.trim().slice(0, 200));
-  } catch {}
+  const active = decisionStore.pendingWakeEvents()
+    .map((event) => `${event.topic}:${event.record_id}`);
   return {
     now: new Date().toISOString(),
     commits: commits.slice(0, 8),
-    briefing,
     decisions,
     health,
     blocked: active,
     globalOpenNotes: globalFb.filter((f) => !f.resolved).length,
+    questionCounts: {
+      open: questions.filter((question) => question.status === "open").length,
+      answered: questions.filter((question) => question.status === "answered").length,
+    },
   };
 }
 
 // ---- feedback --------------------------------------------------------------
+const feedbackQueues = new Map();
 async function appendFeedback(file, entry) {
-  const list = (await readJson(file)) ?? [];
-  list.push(entry);
-  await mkdir(dirname(file), { recursive: true });
-  await writeFile(file, JSON.stringify(list, null, 2));
-  return list.length;
+  const previous = feedbackQueues.get(file) ?? Promise.resolve();
+  const operation = previous.then(async () => {
+    const list = (await readJson(file)) ?? [];
+    if (list.some((item) => item.id === entry.id)) return list.length;
+    list.push(entry);
+    await atomicWriteJson(file, list);
+    return list.length;
+  });
+  feedbackQueues.set(file, operation.catch(() => {}));
+  return operation;
+}
+
+async function remakeControl() {
+  const ledger = await readJson(REMAKE_LEDGER, {
+    error: "remake ledger has not been generated",
+    cities: [],
+  });
+  const reviews = await readJson(REMAKE_REVIEWS, {
+    schema_version: "1.0.0",
+    updated_at: null,
+    cities: {},
+  });
+  return {
+    schema_version: "1.0.0",
+    generated_at: ledger.generated_at ?? null,
+    contract_id: ledger.contract_id ?? null,
+    test_release_recommendation: ledger.test_release_recommendation ?? null,
+    cities: (ledger.cities ?? []).map((city) => ({
+      ...city,
+      owner_review: reviews.cities?.[city.slug] ?? {
+        status: "needs-owner-notes",
+        selected_for_test: false,
+        owner_notes: "",
+        updated_at: null,
+      },
+    })),
+  };
+}
+
+async function saveRemakeReview(slug, body) {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug ?? "")) {
+    const error = new Error("invalid remake slug");
+    error.statusCode = 400;
+    throw error;
+  }
+  const ledger = await readJson(REMAKE_LEDGER, {cities: []});
+  if (!(ledger.cities ?? []).some((city) => city.slug === slug)) {
+    const error = new Error("remake city not found");
+    error.statusCode = 404;
+    throw error;
+  }
+  const allowedStatuses = new Set([
+    "needs-owner-notes",
+    "notes-recorded",
+    "context-research",
+    "ready-for-remake",
+    "hold",
+  ]);
+  const status = String(body.status ?? "notes-recorded");
+  if (!allowedStatuses.has(status)) {
+    const error = new Error("invalid remake review status");
+    error.statusCode = 400;
+    throw error;
+  }
+  const ownerNotes = String(body.owner_notes ?? "").trim();
+  if (ownerNotes.length > 12000) {
+    const error = new Error("owner remake notes exceed 12000 characters");
+    error.statusCode = 400;
+    throw error;
+  }
+  const state = await readJson(REMAKE_REVIEWS, {
+    schema_version: "1.0.0",
+    updated_at: null,
+    cities: {},
+  });
+  const updatedAt = new Date().toISOString();
+  state.schema_version = "1.0.0";
+  state.updated_at = updatedAt;
+  state.cities = state.cities ?? {};
+  state.cities[slug] = {
+    status,
+    selected_for_test: body.selected_for_test === true,
+    owner_notes: ownerNotes,
+    updated_at: updatedAt,
+    by: "Hadi via local Crime Cartography studio",
+  };
+  await atomicWriteJson(REMAKE_REVIEWS, state);
+  await appendFeedback(GLOBAL_FEEDBACK, {
+    id: `remake-${randomUUID()}`,
+    at: updatedAt,
+    kind: "comment",
+    videoTime: null,
+    text: `REMAKE REVIEW UPDATED — ${slug} — read trusted record .codex/state/remake-reviews.json`,
+    resolved: false,
+  });
+  return state.cities[slug];
 }
 function fbEntry(body) {
   return {
+    id: /^[a-zA-Z0-9_-]{8,100}$/.test(body.requestId ?? "")
+      ? body.requestId
+      : `feedback-${randomUUID()}`,
     at: new Date().toISOString(),
     kind: body.kind === "decision" ? "decision" : "comment",
     videoTime: Number.isFinite(body.videoTime) ? Math.round(body.videoTime * 10) / 10 : null,
@@ -359,30 +546,129 @@ function fbEntry(body) {
   };
 }
 
-// ---- youtube oauth (unchanged behavior) ------------------------------------
+function documentaryStage(project) {
+  const tracks = project?.tracks ?? {};
+  if (tracks.publishing === "published") return "published";
+  if (tracks.edit === "master") return "master";
+  if (["rough-cut", "fine-cut"].includes(tracks.edit)) return "review";
+  if (tracks.edit === "assembly") return "assembly";
+  if (tracks.editorial === "locked") return "preproduction";
+  if (tracks.editorial === "drafted") return "words";
+  if (tracks.editorial === "outlined") return "structure";
+  if (tracks.editorial === "researched") return "research";
+  return tracks.editorial === "discovery" ? "discovery" : "inbox";
+}
+
+async function experimentVideos() {
+  const rows = [];
+  let entries = [];
+  try {
+    entries = await readdir(join(VIDEO_STUDIO_ROOT, "projects"), { withFileTypes: true });
+  } catch {
+    return {
+      available: false,
+      source: "Hadosh Video Studio is not configured",
+      projects: [],
+    };
+  }
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const project = await readJson(join(VIDEO_STUDIO_ROOT, "projects", entry.name, "project.json"));
+    if (!project) continue;
+    const related = project.slug?.startsWith("crime-cartography-") ||
+      JSON.stringify(project).toLowerCase().includes("crime cartography");
+    if (!related) continue;
+    const gates = Object.entries(project.gates ?? {});
+    rows.push({
+      slug: project.slug,
+      title: project.title,
+      stage: documentaryStage(project),
+      updated_at: project.updated_at,
+      next_action: project.next_action?.deliverable ?? null,
+      next_gate: gates.find(([, gate]) => gate.required && gate.status !== "approved")?.[0] ?? null,
+      tracks: project.tracks,
+    });
+  }
+  return {
+    available: true,
+    source: "Hadosh Video Studio project manifests",
+    projects: rows.sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at))),
+  };
+}
+
+// ---- channel-scoped YouTube OAuth -------------------------------------------
+// One Google login may manage many YouTube/Brand channels, but a normal
+// third-party OAuth grant resolves to one current channel identity. Keep one
+// refresh token per resolved channel, require an explicit active connection,
+// and keep the upload destination as a separate owner-locked setting.
 function oauthConf(cs) { const c = cs?.installed ?? cs?.web; return c?.client_id && c?.client_secret ? c : null; }
-async function accessToken() {
+async function refreshAccessToken(token) {
   const conf = oauthConf(await readJson(SECRET_PATH));
-  const tok = await readJson(TOKEN_PATH);
-  if (!conf || !tok?.refresh_token) return null;
+  if (!conf || !token?.refresh_token) return null;
   const r = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ client_id: conf.client_id, client_secret: conf.client_secret, refresh_token: tok.refresh_token, grant_type: "refresh_token" }),
+    body: new URLSearchParams({ client_id: conf.client_id, client_secret: conf.client_secret, refresh_token: token.refresh_token, grant_type: "refresh_token" }),
   });
-  return (await r.json()).access_token ?? null;
+  const result = await r.json();
+  return r.ok ? result.access_token ?? null : null;
+}
+async function channelForAccessToken(accessTokenValue) {
+  if (!accessTokenValue) return null;
+  const r = await fetch("https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true", {
+    headers: { Authorization: `Bearer ${accessTokenValue}` },
+  });
+  if (!r.ok) return null;
+  const item = (await r.json()).items?.[0];
+  const snippet = item?.snippet;
+  if (!item?.id || !snippet) return null;
+  return {
+    id: item.id,
+    title: snippet.title,
+    handle: snippet.customUrl ?? null,
+    thumb: snippet.thumbnails?.default?.url ?? null,
+  };
+}
+async function ensureLegacyConnection() {
+  if (await channelConnections.active()) return;
+  const legacy = await readJson(TOKEN_PATH);
+  if (!legacy?.refresh_token) return;
+  const accessTokenValue = await refreshAccessToken(legacy);
+  const channel = await channelForAccessToken(accessTokenValue);
+  if (!channel) return;
+  await channelConnections.saveConnection({
+    channel,
+    token: legacy,
+    source: "legacy-import",
+  });
+}
+async function activeTokenRecord() {
+  await ensureLegacyConnection();
+  return channelConnections.active();
+}
+async function accessToken() {
+  const active = await activeTokenRecord();
+  return refreshAccessToken(active?.token);
+}
+async function configuredDestination() {
+  if (ENV_DESTINATION_CHANNEL_ID) {
+    return { channel_id: ENV_DESTINATION_CHANNEL_ID, source: "environment" };
+  }
+  const local = await channelConnections.destination();
+  return local ? { ...local, source: "owner-lock" } : null;
 }
 async function authStatus() {
   const hasSecret = Boolean(oauthConf(await readJson(SECRET_PATH)));
-  const hasToken = Boolean((await readJson(TOKEN_PATH))?.refresh_token);
+  await ensureLegacyConnection();
+  const connections = await channelConnections.listConnections();
+  const active = await channelConnections.active();
+  const hasToken = Boolean(active?.token?.refresh_token);
   let channel = null, analyticsScope = null;
   if (hasSecret && hasToken) {
     try {
       const at = await accessToken();
       if (at) {
-        const r = await fetch("https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true", { headers: { Authorization: `Bearer ${at}` } });
-        const sn = (await r.json()).items?.[0]?.snippet;
-        if (sn) channel = { title: sn.title, thumb: sn.thumbnails?.default?.url ?? null };
+        channel = await channelForAccessToken(at);
         // Does the granted token unlock the SEPARATE youtubeAnalytics API? Retention,
         // averageViewPercentage, watch-time, CTR/impressions & subscriberGains all 403
         // without yt-analytics.readonly (DECISIONS.md D6). tokeninfo authoritatively
@@ -394,7 +680,23 @@ async function authStatus() {
       }
     } catch {}
   }
-  return { hasSecret, hasToken, channel, analyticsScope, redirect: REDIRECT };
+  const destination = await configuredDestination();
+  return {
+    hasSecret,
+    hasToken,
+    channel,
+    connections,
+    analyticsScope,
+    redirect: REDIRECT,
+    destination,
+    destinationConfigured: Boolean(destination?.channel_id),
+    destinationMatches: Boolean(channel?.id && destination?.channel_id && channel.id === destination.channel_id),
+    activeIdentityValid: Boolean(
+      channel?.id &&
+      active?.connection?.channel_id &&
+      channel.id === active.connection.channel_id
+    ),
+  };
 }
 
 // ---- publish flow ----------------------------------------------------------
@@ -444,7 +746,8 @@ async function gateOf(slug) {
   // The confidence ledger is reported for context but NEVER flips verify — the
   // owner's manual approve is the sole verify gate.
   const missing = STAGES.slice(0, 7).filter((s) => !row.stages[s]);
-  return { ready: missing.length === 0, missing, confidence: conf?.score ?? null, blockers: conf?.blockers ?? [], approval: row.approval };
+  const blockers = reconcileBlockers(conf?.blockers ?? [], row.stages.verified);
+  return { ready: missing.length === 0, missing, confidence: conf?.score ?? null, blockers, approval: row.approval };
 }
 
 async function publishPreview(slug) {
@@ -464,7 +767,7 @@ async function publishPreview(slug) {
     description: yt.description ?? "",
     tags: yt.tags ?? [],
     hasRender: Boolean(await mp4Of(slug)),
-    authOk: auth.hasSecret && auth.hasToken,
+    authOk: auth.hasSecret && auth.hasToken && auth.destinationMatches && auth.activeIdentityValid,
     channel: auth.channel,
     gate: await gateOf(slug),
     playlist: playlists[scope] ? { title: playlists[scope].title, url: playlists[scope].url } : null,
@@ -535,6 +838,14 @@ async function doPublish(slug, p) {
     return [412, { error: `not all lights green — missing: ${gate.missing.join(", ")}` +
       (gate.missing.includes("verified") ? ` (verify is a manual light — Approve the current cut on its review page first)` : "") }];
   if (!(await accessToken())) return [401, { error: "YouTube not connected — authorize the channel first" }];
+  const configured = await configuredDestination();
+  if (!configured?.channel_id) {
+    return [412, { error: "dedicated Crime Cartography channel is not locked; connect it, verify the resolved identity, and explicitly lock that channel as the upload destination" }];
+  }
+  const destination = await authStatus();
+  if (!destination.destinationMatches) {
+    return [412, { error: `connected YouTube identity (${destination.channel?.title ?? "unknown"}) is not the configured Crime Cartography destination` }];
+  }
   // Nothing publishes outside a playlist (each format is a playlist) — check
   // BEFORE the upload so we never strand a video without one.
   const fmts = (await readJson(join(ROOT, "experiment/channel/playlists.json")))?.formats ?? {};
@@ -646,37 +957,123 @@ async function streamVideo(req, res, slug) {
 const server = createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://localhost:${PORT}`);
+    if (!["GET", "HEAD", "OPTIONS"].includes(req.method ?? "GET") && !mutationOriginAllowed(req)) {
+      return send(res, 403, { error: "cross-origin studio mutation blocked" });
+    }
     if (url.pathname === "/" || url.pathname === "/index.html")
       return send(res, 200, await readFile(join(ROOT, "pipeline/dashboard/index.html"), "utf8"), "text/html; charset=utf-8");
     if (url.pathname === "/api/catalog") return send(res, 200, await catalog());
     if (url.pathname === "/api/stats") return send(res, 200, await liveStats(url.searchParams.get("fresh") === "1"));
     if (url.pathname === "/api/pulse") return send(res, 200, await pulse());
+    if (url.pathname === "/api/experiments") return send(res, 200, await experimentVideos());
+    if (url.pathname === "/api/remakes" && req.method === "GET") {
+      return send(res, 200, await remakeControl());
+    }
+    if (url.pathname.startsWith("/api/remakes/") && url.pathname.endsWith("/review") && req.method === "POST") {
+      const slug = url.pathname.split("/")[3];
+      return send(res, 200, {
+        ok: true,
+        review: await saveRemakeReview(slug, await readJsonBody(req)),
+      });
+    }
+    if (url.pathname === "/api/public-preview") return send(res, 200, await readJson(PUBLIC_STATUS, {
+      error: "public status has not been generated",
+    }));
+    if (url.pathname === "/api/questions" && req.method === "GET") {
+      return send(res, 200, {
+        questions: decisionStore.listRequests(),
+        pending_wake_events: decisionStore.pendingWakeEvents().length,
+      });
+    }
+    if (url.pathname.startsWith("/api/questions/") && url.pathname.endsWith("/answer") && req.method === "POST") {
+      const requestId = url.pathname.split("/")[3];
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(requestId ?? "")) {
+        return send(res, 400, { error: "invalid question id" });
+      }
+      const parsed = await readJsonBody(req);
+      const result = decisionStore.answerRequest({
+        requestId,
+        idempotencyKey: String(req.headers["idempotency-key"] ?? parsed.idempotency_key ?? ""),
+        choiceId: parsed.choice_id ?? null,
+        note: parsed.note ?? "",
+        artifactRevision: parsed.artifact_revision,
+      });
+      return send(res, result.status, result);
+    }
     if (url.pathname === "/api/auth/status") return send(res, 200, await authStatus());
     if (url.pathname === "/api/auth/secret" && req.method === "POST") {
-      let body = ""; for await (const c of req) body += c;
-      let parsed; try { parsed = JSON.parse(body); } catch { return send(res, 400, { error: "not valid JSON" }); }
+      const parsed = await readJsonBody(req, 256 * 1024);
       if (!oauthConf(parsed)) return send(res, 400, { error: "JSON lacks installed/web client_id+client_secret (Desktop-app OAuth client)" });
       await mkdir(SECRETS, { recursive: true });
-      await writeFile(SECRET_PATH, JSON.stringify(parsed, null, 2));
+      await atomicWriteJson(SECRET_PATH, parsed);
       return send(res, 200, { ok: true });
+    }
+    if (url.pathname === "/api/auth/active" && req.method === "POST") {
+      const parsed = await readJsonBody(req);
+      const channelId = String(parsed.channel_id ?? "");
+      const token = await channelConnections.tokenFor(channelId);
+      if (!token) return send(res, 404, { error: "channel connection not found" });
+      const resolved = await channelForAccessToken(await refreshAccessToken(token));
+      if (!resolved || resolved.id !== channelId) {
+        return send(res, 409, { error: "saved token no longer resolves to the selected channel; reconnect that identity" });
+      }
+      await channelConnections.activate(channelId);
+      statsCache = { at: 0, map: {} };
+      return send(res, 200, { ok: true, channel: resolved });
+    }
+    if (url.pathname === "/api/auth/destination" && req.method === "POST") {
+      const parsed = await readJsonBody(req);
+      const channelId = String(parsed.channel_id ?? "");
+      if (parsed.confirmation !== "LOCK_CRIME_DESTINATION") {
+        return send(res, 400, { error: "explicit destination confirmation is required" });
+      }
+      const token = await channelConnections.tokenFor(channelId);
+      if (!token) return send(res, 404, { error: "connect the channel before locking it as the destination" });
+      const resolved = await channelForAccessToken(await refreshAccessToken(token));
+      if (!resolved || resolved.id !== channelId) {
+        return send(res, 409, { error: "the selected token does not resolve to that channel" });
+      }
+      const destination = await channelConnections.lockDestination(channelId);
+      return send(res, 200, { ok: true, destination });
     }
     if (url.pathname === "/oauth/start") {
       const conf = oauthConf(await readJson(SECRET_PATH));
       if (!conf) return send(res, 400, { error: "no client secret saved yet" });
-      res.writeHead(302, { Location: "https://accounts.google.com/o/oauth2/v2/auth?" + new URLSearchParams({ client_id: conf.client_id, redirect_uri: REDIRECT, response_type: "code", scope: OAUTH_SCOPE, access_type: "offline", prompt: "consent" }) });
+      const state = await channelConnections.createState();
+      res.writeHead(302, { Location: "https://accounts.google.com/o/oauth2/v2/auth?" + new URLSearchParams({
+        client_id: conf.client_id,
+        redirect_uri: REDIRECT,
+        response_type: "code",
+        scope: OAUTH_SCOPE,
+        access_type: "offline",
+        prompt: "select_account consent",
+        state,
+      }) });
       return res.end();
     }
     if (url.pathname === "/oauth/callback") {
+      const oauthError = url.searchParams.get("error");
       const code = url.searchParams.get("code");
-      if (!code) return send(res, 400, "<body style='background:#07090d;color:#e7eef7;font-family:sans-serif;padding:40px'>Authorization failed — <a style='color:#ffc233' href='/'>back</a></body>", "text/html");
+      const state = url.searchParams.get("state");
+      if (oauthError || !code) return send(res, 400, "<body style='background:#07090d;color:#e7eef7;font-family:sans-serif;padding:40px'>Authorization was not completed — <a style='color:#ffc233' href='/'>back</a></body>", "text/html");
+      try {
+        await channelConnections.consumeState(state);
+      } catch {
+        return send(res, 400, "<body style='background:#07090d;color:#e7eef7;font-family:sans-serif;padding:40px'>OAuth state is invalid or expired. Start the channel connection again. — <a style='color:#ffc233' href='/'>back</a></body>", "text/html");
+      }
       const conf = oauthConf(await readJson(SECRET_PATH));
       const r = await fetch("https://oauth2.googleapis.com/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ code, client_id: conf.client_id, client_secret: conf.client_secret, redirect_uri: REDIRECT, grant_type: "authorization_code" }) });
       const tok = await r.json();
-      const prev = (await readJson(TOKEN_PATH)) ?? {};
-      if (!tok.refresh_token && prev.refresh_token) tok.refresh_token = prev.refresh_token;
-      await mkdir(SECRETS, { recursive: true });
-      await writeFile(TOKEN_PATH, JSON.stringify(tok, null, 2));
-      res.writeHead(302, { Location: "/?connected=1" });
+      if (!r.ok || !tok.access_token || !tok.refresh_token) {
+        return send(res, 400, "<body style='background:#07090d;color:#e7eef7;font-family:sans-serif;padding:40px'>Google did not return a channel-specific refresh token. Revoke this app grant if necessary, then connect the intended channel again. No existing channel token was reused. — <a style='color:#ffc233' href='/'>back</a></body>", "text/html");
+      }
+      const channel = await channelForAccessToken(tok.access_token);
+      if (!channel) {
+        return send(res, 400, "<body style='background:#07090d;color:#e7eef7;font-family:sans-serif;padding:40px'>The OAuth grant did not resolve to a YouTube channel identity. — <a style='color:#ffc233' href='/'>back</a></body>", "text/html");
+      }
+      await channelConnections.saveConnection({ channel, token: tok });
+      statsCache = { at: 0, map: {} };
+      res.writeHead(302, { Location: `/?connected=1&channel=${encodeURIComponent(channel.id)}` });
       return res.end();
     }
     // publish flow
@@ -697,8 +1094,7 @@ const server = createServer(async (req, res) => {
         if (PUBLISHING.has(slug)) return send(res, 409, { error: "publish already in progress" });
         PUBLISHING.add(slug);
         try {
-          let body = ""; for await (const c of req) body += c;
-          let parsed; try { parsed = JSON.parse(body || "{}"); } catch { return send(res, 400, { error: "not valid JSON" }); }
+          const parsed = await readJsonBody(req);
           const [code, out] = await doPublish(slug, parsed);
           return send(res, code, out);
         } finally { PUBLISHING.delete(slug); }
@@ -719,8 +1115,7 @@ const server = createServer(async (req, res) => {
       const file = slug === "_project" ? GLOBAL_FEEDBACK : join(ROOT, "videos", slug, "feedback.json");
       if (req.method === "GET") return send(res, 200, (await readJson(file)) ?? []);
       if (req.method === "POST") {
-        let body = ""; for await (const c of req) body += c;
-        const parsed = JSON.parse(body || "{}");
+        const parsed = await readJsonBody(req);
         if (!parsed.text) return send(res, 400, { error: "text required" });
         const n = await appendFeedback(file, fbEntry(parsed));
         return send(res, 200, { ok: true, count: n });
@@ -729,8 +1124,8 @@ const server = createServer(async (req, res) => {
     if (url.pathname.startsWith("/video/")) return streamVideo(req, res, url.pathname.split("/")[2]);
     send(res, 404, { error: "not found" });
   } catch (e) {
-    send(res, 500, { error: String(e?.message ?? e) });
+    send(res, e?.statusCode ?? 500, { error: String(e?.message ?? e) });
   }
 });
 
-server.listen(PORT, () => console.log(`studio ready → http://localhost:${PORT}`));
+server.listen(PORT, HOST, () => console.log(`studio ready → http://${HOST}:${PORT}`));
