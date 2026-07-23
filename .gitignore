@@ -28,15 +28,30 @@ data/**/raw/*
 .env
 .env.local
 
-# Claude tooling: keep the skills + hooks (they document the workflow), but the
-# job memory is transient working state — not a published artifact.
-.claude/.tmp/
-.claude/memory/
-# Local, machine-specific Claude settings (permission allowlists, PIDs) — NEVER
-# tracked. Previously protected only by the machine's global git ignore; pinned
-# here so a fresh clone / contributor / CI can't accidentally commit them. Covers
-# settings.local.json and its .PROPOSED variant.
-.claude/settings.local*.json
+# Private agent harnesses and local codebase maps. These may be published later
+# as separate, intentionally reviewed artifacts; they are not production output.
+.claude/
+.codex/
+.understand-anything/
+/AGENTS.md
+/CLAUDE.md
+
+# Private operational state. Files remain available to the local studio and
+# routines, but raw feedback, internal deliberation, telemetry, and account
+# snapshots are not public production artifacts.
+experiment/briefings/
+experiment/channel/
+experiment/BATCH2-SCOUT.md
+experiment/CRITIC-LENS.md
+experiment/CRITIC.md
+experiment/DECISIONS.md
+experiment/FLEET.md
+experiment/HARNESS.md
+experiment/REFLECTIONS.md
+experiment/WATCHER-LENS.md
+experiment/studio-feedback.json
+videos/*/feedback.json
+pipeline/routine-runs.mjs
 /tmp/
 .hn/
 # OAuth secrets for the publish pipeline — NEVER commit

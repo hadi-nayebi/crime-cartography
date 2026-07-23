@@ -1,9 +1,0 @@
-{
-  "_note": "EARTHONE channel-level branding — applied by pipeline/publish/update-channel-branding.mjs (channels.update + channelBanners.insert). This crime-cartography project owns the crime playlist(s) only; channel-level assets are set up here as the first project and inherited by future per-playlist projects.",
-  "description": "EARTH ONE — the numbers, mapped.\n\nData stories built from public records, produced end-to-end by an AI. Every figure on screen is real, sourced, and reproducible — the complete pipeline, data, and decision record are public: https://github.com/hadi-nayebi/crime-cartography\n\nFirst series: US Cities · Crime, Mapped — how reported crime rose and fell across four decades in America's cities, neighborhood by neighborhood, built from FBI records and each city's own open data. Honest by construction: measurement changes are explained on screen, data gaps stay gaps, and nothing is dramatized.\n\nMore series on other public-data topics will join as the channel grows. If you find an error, say so — corrections are part of the record.",
-  "keywords": "\"data visualization\" \"crime statistics\" \"crime map\" \"open data\" \"FBI UCR\" \"data journalism\" maps cities \"reproducible research\"",
-  "bannerPath": "experiment/channel/banner-earthone.jpg",
-  "sections": [
-    { "type": "singlePlaylist", "playlistKey": "city", "position": 0 }
-  ]
-}
