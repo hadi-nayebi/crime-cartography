@@ -21,6 +21,13 @@ Management may later expand to a small team under published roles, access
 controls, conflict rules, and removal procedures. The harness never grants
 itself release, payment, or governance authority.
 
+The proposed launch management rate is **$42 per hour for verified harness
+manager work**, with a published monthly cap before any operative stage begins.
+The rate and cap are design inputs, not a current wage or entitlement. Manager
+costs would be accounted for with the other production costs before any future
+surplus allocation. A later manager may take the role under the same published
+rules or a separately approved revision; succession does not happen silently.
+
 ## 3. Project subscriber
 
 A **project subscriber** is an adult who separately requests Crime Cartography
@@ -152,6 +159,8 @@ for the actual class of messages being sent.
   classification;
 - eligibility and identity verification;
 - reserve, cost, cap, overflow, accounting, and dispute rules; and
+- the manager's hourly-rate evidence, monthly cap, approval, timesheet, and
+  succession rules;
 - management succession and collective governance.
 
 Each term should be challenged independently. A public comment improves the

@@ -7,6 +7,13 @@ website is the friendly input surface; the EarthOne mailbox is the initial
 subscriber record; the public repository contains only the protocol and
 processing machinery.
 
+The intended deployment is one private VPS running the production harness and
+mailbox worker. The website can remain static and separately hosted. A local
+file, mailbox, or encrypted operator backup may be used for operational state
+only when the worker needs it; a managed subscriber database is not a default
+requirement. This is a cost and simplicity preference, not a promise that email
+can satisfy every later privacy, moderation, identity, or revision-history need.
+
 ## Subscription path
 
 1. A visitor completes the Crime Cartography project form on the Hadosh Academy
@@ -81,3 +88,10 @@ compliance, and owner approval of the exact message class.
 - verify the worker sees the test without exposing its address in logs; and
 - publish the applicable privacy and consent text before collecting real
   requests.
+
+The VPS deployment should use a non-root service account, an environment or
+secret-file path outside the repository for OAuth material, restricted file
+permissions, encrypted backups where backups exist, and a firewall exposing
+only the service endpoints that are actually needed. The public repository may
+contain the service template and health checks, never the refresh token,
+mailbox contents, subscriber list, or private harness state.

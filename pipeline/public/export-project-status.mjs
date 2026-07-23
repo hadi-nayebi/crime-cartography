@@ -42,12 +42,20 @@ const publicStatus = {
       before_activation: "Collect feedback and use it to improve the harness and workflow",
       activation: "500 project subscribers plus enough relevant community feedback to operate responsibly",
     },
+    infrastructure: {
+      status: "designing",
+      deployment: "One private VPS for the harness and read-only mailbox worker",
+      interface: "Static website plus email-first project interaction",
+      avoids_by_default: "Hosted subscriber database, public portal, and recurring services until a concrete requirement appears",
+      manager_rate_proposal: "$42/hour for verified harness-manager work, with a future published monthly cap",
+    },
   },
   current_milestone: {
     id: "public-design",
     label: "Creator-led launch and public project design",
     status: "active",
     next: "Community editorial beta",
+    next_event: "Live project Q&A before the next video drop at a meaningful milestone",
   },
   calls_to_participate: [
     "Critique the proposed project model",

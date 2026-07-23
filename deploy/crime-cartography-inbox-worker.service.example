@@ -1,0 +1,20 @@
+[Unit]
+Description=Crime Cartography read-only mailbox intake
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=crime-cartography
+Group=crime-cartography
+WorkingDirectory=/srv/crime-cartography
+Environment=CRIME_CARTOGRAPHY_GMAIL_SECRET=/etc/crime-cartography/gmail-readonly.json
+ExecStart=/usr/bin/node pipeline/subscribers/list-subscriptions.mjs
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/crime-cartography
+
+[Install]
+WantedBy=multi-user.target

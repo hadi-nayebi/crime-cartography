@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Crime Cartography mailbox intake periodically
+
+[Timer]
+OnBootSec=10m
+OnUnitActiveSec=15m
+Persistent=true
+
+[Install]
+WantedBy=timers.target

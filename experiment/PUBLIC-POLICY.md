@@ -68,3 +68,14 @@ state.
   and the Earth One OAuth connection was removed. Earth One is no longer a
   managed or publishing channel for this project. This does not authorize any
   other Earth One mutation.
+
+- **2026-07-23 — owner infrastructure ruling.** Prefer one low-cost VPS as the
+  private home for the final Crime Cartography production machinery, harness,
+  and mailbox worker. Use the website as a public static surface and email as
+  the primary private interaction interface for as long as that is sufficient.
+  Do not add a hosted database, authenticated portal, queue service, or other
+  recurring infrastructure merely because it is conventional. Add a service
+  only when email cannot provide the required privacy, revision history,
+  moderation, identity, or delivery guarantees. VPS deployment examples may be
+  public; credentials, refresh tokens, mailbox contents, subscriber lists,
+  unpublished media, and private harness state remain ignored.
