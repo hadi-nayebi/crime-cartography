@@ -4,12 +4,16 @@ import {readFile} from "node:fs/promises";
 import {dirname, join} from "node:path";
 import {fileURLToPath} from "node:url";
 import {parseSubscriptionRequest, subscriptionProtocol} from "./email-protocol.mjs";
+import {
+  assertPrivateCredential,
+  gmailCredentialPaths,
+} from "./gmail-credential-paths.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const account = "earthone@earthone.life";
 const recipient = "earthone+crimecarto@earthone.life";
-const secrets = join(root, ".secrets");
 const rawJson = process.argv.includes("--json");
+const {clientSecretPath, tokenPath} = gmailCredentialPaths({root});
 
 function decodeBase64Url(value) {
   return Buffer.from(value ?? "", "base64url").toString("utf8");
@@ -25,12 +29,14 @@ function textParts(payload) {
 }
 
 async function accessToken() {
+  await assertPrivateCredential(clientSecretPath, "Gmail OAuth client secret");
+  await assertPrivateCredential(tokenPath, "Gmail read-only token");
   const clientSecret = JSON.parse(
-    await readFile(join(secrets, "youtube_client_secret.json"), "utf8"),
+    await readFile(clientSecretPath, "utf8"),
   );
   const client = clientSecret.installed ?? clientSecret.web;
   const stored = JSON.parse(
-    await readFile(join(secrets, "gmail_subscriber_inbox_token.json"), "utf8"),
+    await readFile(tokenPath, "utf8"),
   );
   if ((stored.account ?? "").toLowerCase() !== account) {
     throw new Error(`subscriber inbox token belongs to "${stored.account}", not ${account}`);
@@ -140,7 +146,7 @@ if (rawJson) {
     recipient,
     scanned_messages: messageIds.length,
     valid_requests: records.length,
-    unique_subscribers: current.length,
+    unique_unverified_requests: current.length,
     invalid_messages: invalid.length,
     latest_request_at: current.at(-1)?.requested_at ?? null,
     interests,

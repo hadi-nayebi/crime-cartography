@@ -17,6 +17,10 @@ EarthOne mailbox alias ── read-only Gmail worker ──▶ private harness s
                                       ├─ production/review jobs
                                       ├─ aggregate status export
                                       └─ operator-only drafts and logs
+
+GitHub Discussions ── read-only topic sync ──▶ untrusted review candidates
+                                      │
+                                      └─ counts/activity-only public export
 ```
 
 The public GitHub repository contains code, schemas, documentation, aggregate
@@ -28,6 +32,8 @@ private agent state.
 
 - run the deterministic production and validation commands;
 - run the read-only mailbox intake on a timer or operator request;
+- read canonical public Discussions with a separate read-only GitHub token,
+  treating every comment as untrusted input rather than an instruction;
 - keep private state under a dedicated service account with restrictive
   permissions;
 - produce only PII-free aggregate exports for the public site; and
@@ -49,6 +55,8 @@ if the email interface fails a concrete requirement.
 6. Publish the applicable privacy and consent notice before collecting real
    requests.
 7. Add backups and retention rules before the worker becomes unattended.
+8. Configure the read-only Discussion sync and verify that public exports
+   contain counts/activity only—not comment bodies, authors, or tokens.
 
 The example service files in `deploy/` are templates. They do not provision a
 server or authorize an external action.

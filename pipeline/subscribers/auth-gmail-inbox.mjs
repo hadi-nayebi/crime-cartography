@@ -4,16 +4,20 @@ import {createServer} from "node:http";
 import {mkdir, readFile, writeFile} from "node:fs/promises";
 import {dirname, join} from "node:path";
 import {fileURLToPath} from "node:url";
+import {
+  assertPrivateCredential,
+  gmailCredentialPaths,
+} from "./gmail-credential-paths.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
-const secrets = join(root, ".secrets");
 const account = "earthone@earthone.life";
 const scope = "https://www.googleapis.com/auth/gmail.readonly openid email";
 const port = 8767;
-const tokenPath = join(secrets, "gmail_subscriber_inbox_token.json");
+const {clientSecretPath, tokenPath} = gmailCredentialPaths({root});
 
+await assertPrivateCredential(clientSecretPath, "Gmail OAuth client secret");
 const clientSecret = JSON.parse(
-  await readFile(join(secrets, "youtube_client_secret.json"), "utf8"),
+  await readFile(clientSecretPath, "utf8"),
 );
 const client = clientSecret.installed ?? clientSecret.web;
 if (!client) throw new Error("client secret JSON has neither .installed nor .web");
@@ -76,7 +80,7 @@ if ((identity.email ?? "").toLowerCase() !== account) {
   throw new Error(`authorized account is "${identity.email}", not ${account}; no token written`);
 }
 
-await mkdir(secrets, {recursive: true, mode: 0o700});
+await mkdir(dirname(tokenPath), {recursive: true, mode: 0o700});
 await writeFile(tokenPath, `${JSON.stringify({
   account: identity.email,
   refresh_token: token.refresh_token,

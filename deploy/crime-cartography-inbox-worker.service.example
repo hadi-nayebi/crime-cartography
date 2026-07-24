@@ -8,7 +8,8 @@ Type=oneshot
 User=crime-cartography
 Group=crime-cartography
 WorkingDirectory=/srv/crime-cartography
-Environment=CRIME_CARTOGRAPHY_GMAIL_SECRET=/etc/crime-cartography/gmail-readonly.json
+Environment=CRIME_CARTOGRAPHY_GMAIL_CLIENT_SECRET=/etc/crime-cartography/gmail-oauth-client.json
+Environment=CRIME_CARTOGRAPHY_GMAIL_TOKEN=/var/lib/crime-cartography/gmail-readonly-token.json
 ExecStart=/usr/bin/node pipeline/subscribers/list-subscriptions.mjs
 NoNewPrivileges=true
 PrivateTmp=true

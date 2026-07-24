@@ -47,3 +47,19 @@ node pipeline/subscribers/list-subscriptions.mjs --json
 The latter emits personal information to the terminal. Do not redirect it into
 the public repository, paste it into issues, or include it in agent transcripts
 that may be shared.
+
+Until a confirmation/double-opt-in loop exists, aggregate output calls parsed
+messages `unique_unverified_requests`, not subscribers.
+
+## VPS credential paths
+
+Local development defaults to the gitignored `.secrets/` files. A VPS must use
+explicit paths:
+
+```text
+CRIME_CARTOGRAPHY_GMAIL_CLIENT_SECRET=/etc/crime-cartography/gmail-oauth-client.json
+CRIME_CARTOGRAPHY_GMAIL_TOKEN=/var/lib/crime-cartography/gmail-readonly-token.json
+```
+
+Both files must be regular files with no group/other permissions. The worker
+fails closed if either credential is exposed.
