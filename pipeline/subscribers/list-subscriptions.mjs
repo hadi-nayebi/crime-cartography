@@ -8,11 +8,13 @@ import {
   assertPrivateCredential,
   gmailCredentialPaths,
 } from "./gmail-credential-paths.mjs";
+import {resolveSubscriberScanLimit} from "./scan-limits.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const account = "earthone@earthone.life";
 const recipient = "earthone+crimecarto@earthone.life";
 const rawJson = process.argv.includes("--json");
+const maxMessages = resolveSubscriberScanLimit(process.argv.slice(2));
 const {clientSecretPath, tokenPath} = gmailCredentialPaths({root});
 
 function decodeBase64Url(value) {
@@ -82,21 +84,32 @@ async function gmailJson(token, path) {
 async function listMessageIds(token) {
   const ids = [];
   let pageToken;
+  let resultSizeEstimate = 0;
   do {
     const query = new URLSearchParams({
       q: `to:${recipient} ${subscriptionProtocol.marker.slice(0, -1)}`,
-      maxResults: "500",
+      maxResults: String(Math.min(500, maxMessages - ids.length)),
     });
     if (pageToken) query.set("pageToken", pageToken);
     const page = await gmailJson(token, `messages?${query}`);
-    ids.push(...(page.messages ?? []).map(({id}) => id));
+    resultSizeEstimate = Math.max(resultSizeEstimate, page.resultSizeEstimate ?? 0);
+    ids.push(
+      ...(page.messages ?? [])
+        .map(({id}) => id)
+        .slice(0, maxMessages - ids.length),
+    );
     pageToken = page.nextPageToken;
-  } while (pageToken);
-  return ids;
+  } while (pageToken && ids.length < maxMessages);
+  return {
+    ids,
+    resultSizeEstimate,
+    truncated: Boolean(pageToken) || resultSizeEstimate > ids.length,
+  };
 }
 
 const token = await accessToken();
-const messageIds = await listMessageIds(token);
+const messageScan = await listMessageIds(token);
+const messageIds = messageScan.ids;
 const records = [];
 const invalid = [];
 
@@ -132,6 +145,8 @@ if (rawJson) {
     schema_version: "1.0.0",
     private: true,
     recipient,
+    scan_limit: maxMessages,
+    scan_truncated: messageScan.truncated,
     records: current,
     invalid_message_ids: invalid,
   }, null, 2)}\n`);
@@ -144,6 +159,9 @@ if (rawJson) {
   }
   process.stdout.write(`${JSON.stringify({
     recipient,
+    scan_limit: maxMessages,
+    scan_truncated: messageScan.truncated,
+    estimated_matching_messages: messageScan.resultSizeEstimate,
     scanned_messages: messageIds.length,
     valid_requests: records.length,
     unique_unverified_requests: current.length,

@@ -1,8 +1,8 @@
 const MARKER = "CRIME_CARTOGRAPHY_SUBSCRIPTION_V1:";
 const PROJECT_ID = "crime-cartography";
 const SCHEMA_VERSION = "1.0.0";
-const MAX_NAME_LENGTH = 120;
-const MAX_INTERESTS = 12;
+const MAX_NAME_LENGTH = 80;
+const MAX_INTERESTS = 3;
 const MAX_INTEREST_LENGTH = 80;
 
 function requiredString(value, field, maxLength = 256) {

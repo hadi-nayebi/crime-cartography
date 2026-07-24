@@ -38,6 +38,17 @@ Aggregate, safe-by-default view:
 node pipeline/subscribers/list-subscriptions.mjs
 ```
 
+The command scans at most 500 matching messages per run so a mailbox flood
+cannot monopolize the harness or Gmail API. An operator may raise the bound for
+a deliberate reconciliation, but never above the hard 2,000-message ceiling:
+
+```bash
+node pipeline/subscribers/list-subscriptions.mjs --max-messages=1200
+```
+
+When the result says `scan_truncated: true`, its counts cover only the bounded
+scan and must not be presented as the complete subscriber population.
+
 Private decoded operator view:
 
 ```bash

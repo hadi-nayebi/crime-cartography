@@ -56,4 +56,15 @@ test("rejects malformed or incomplete input", () => {
     () => encodeSubscriptionRequest({...request, consent_version: ""}),
     /consent_version is required/,
   );
+  assert.throws(
+    () => encodeSubscriptionRequest({...request, name: "x".repeat(81)}),
+    /name is too long/,
+  );
+  assert.throws(
+    () => encodeSubscriptionRequest({
+      ...request,
+      interests: ["one", "two", "three", "four"],
+    }),
+    /too many interests/,
+  );
 });

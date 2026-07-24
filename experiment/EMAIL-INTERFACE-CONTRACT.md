@@ -30,6 +30,38 @@ EmailJS is a transit processor in this design. “Mailbox-backed” means the
 project does not operate its own subscriber datastore; it does not mean that
 the browser, EmailJS, or the email provider never processes the submission.
 
+## Abuse-resistance boundary
+
+The public form uses layered friction:
+
+- a hidden honeypot and a minimum completion time;
+- fixed choices plus bounded name and email fields;
+- one in-flight request, a 60-second EmailJS SDK throttle, and a 15-minute
+  post-success browser cooldown; and
+- EmailJS headless-browser blocking.
+
+These browser controls reduce accidental repeats and low-effort automation.
+They are not an authoritative security boundary because public JavaScript can
+be inspected or bypassed.
+
+Before the form is described as abuse-resistant for production collection, the
+EmailJS template must also enforce:
+
+1. an origin allowlist limited to the production Academy origin;
+2. reCAPTCHA v2 verification on the intake template; and
+3. provider account and IP quotas that fail closed before mailbox or billing
+   overload.
+
+The reCAPTCHA secret belongs in the EmailJS dashboard, never this repository.
+The browser passes only the solved token. If provider enforcement is unavailable
+or abuse exhausts legitimate capacity, intake pauses until a small VPS relay
+can enforce server-side rate limits and CAPTCHA verification.
+
+The mailbox worker treats repeated normalized addresses as duplicate
+unverified requests, rejects malformed envelopes, and must cap work per run so
+a mailbox flood cannot monopolize harness operation. It never auto-replies to
+an unconfirmed address.
+
 ## Structured envelope
 
 The human-readable EmailJS message contains one machine-readable line:
@@ -83,6 +115,10 @@ compliance, and owner approval of the exact message class.
 - confirm the EarthOne mail system accepts the `+crimecarto` recipient;
 - configure the EmailJS notification template to deliver to that exact
   recipient and preserve the structured message;
+- restrict the EmailJS domain allowlist to the production Academy origin;
+- enable and test reCAPTCHA v2 enforcement on the intake template;
+- verify provider quotas reject a controlled excess request without delivering
+  it to the mailbox;
 - run a form-to-inbox test with a non-production address;
 - authorize the separate read-only Gmail credential;
 - verify the worker sees the test without exposing its address in logs; and
