@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { chmod, mkdtemp, writeFile } from "node:fs/promises";
+import { chmod, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
   assertPrivateCredential,
@@ -8,6 +8,7 @@ import {
 } from "./gmail-credential-paths.mjs";
 
 const ROOT = new URL("../../", import.meta.url).pathname;
+const TEST_RUNTIME = join(ROOT, ".codex/runtime");
 
 test("uses explicit VPS credential paths when provided", () => {
   assert.deepEqual(gmailCredentialPaths({
@@ -29,8 +30,10 @@ test("defaults to repository-local ignored credentials for local development", (
   });
 });
 
-test("rejects credentials exposed to group or other users", async () => {
-  const directory = await mkdtemp(join(ROOT, ".codex/runtime/gmail-path-test-"));
+test("rejects credentials exposed to group or other users", async (t) => {
+  await mkdir(TEST_RUNTIME, { recursive: true });
+  const directory = await mkdtemp(join(TEST_RUNTIME, "gmail-path-test-"));
+  t.after(() => rm(directory, { recursive: true, force: true }));
   const path = join(directory, "credential.json");
   await writeFile(path, "{}", {mode: 0o600});
   await assert.doesNotReject(assertPrivateCredential(path, "test credential"));

@@ -1,17 +1,19 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { createYoutubeChannelConnections } from "./youtube-channel-connections.mjs";
 import { createYoutubeDestinationAuth } from "./youtube-destination-auth.mjs";
 
 const ROOT = new URL("../../", import.meta.url).pathname;
+const TEST_RUNTIME = join(ROOT, ".codex/runtime");
 const CRIME = "UCcrimecartography000000";
 const EARTH = "UCearthone00000000000000";
 
-async function fixture() {
-  const directory = await mkdtemp(join(ROOT, ".codex/runtime/youtube-auth-test-"));
-  await mkdir(directory, { recursive: true });
+async function fixture(t) {
+  await mkdir(TEST_RUNTIME, { recursive: true });
+  const directory = await mkdtemp(join(TEST_RUNTIME, "youtube-auth-test-"));
+  t.after(() => rm(directory, { recursive: true, force: true }));
   await writeFile(
     join(directory, "youtube_client_secret.json"),
     JSON.stringify({ installed: { client_id: "client", client_secret: "secret" } }),
@@ -36,8 +38,8 @@ function fakeFetch(resolvedChannelId = CRIME) {
   };
 }
 
-test("authorizes only when active, resolved, and locked channel identities match", async () => {
-  const secretsDirectory = await fixture();
+test("authorizes only when active, resolved, and locked channel identities match", async (t) => {
+  const secretsDirectory = await fixture(t);
   const store = createYoutubeChannelConnections({ secretsDirectory });
   await store.saveConnection({
     channel: { id: CRIME, title: "Crime Cartography" },
@@ -50,8 +52,8 @@ test("authorizes only when active, resolved, and locked channel identities match
   assert.equal(result.destination.channel_id, CRIME);
 });
 
-test("rejects an active connection that differs from the locked destination", async () => {
-  const secretsDirectory = await fixture();
+test("rejects an active connection that differs from the locked destination", async (t) => {
+  const secretsDirectory = await fixture(t);
   const store = createYoutubeChannelConnections({ secretsDirectory });
   await store.saveConnection({
     channel: { id: CRIME, title: "Crime Cartography" },
@@ -66,8 +68,8 @@ test("rejects an active connection that differs from the locked destination", as
   await assert.rejects(auth.authorizeMutation(), /does not match locked destination/);
 });
 
-test("rejects a token that resolves to a different channel", async () => {
-  const secretsDirectory = await fixture();
+test("rejects a token that resolves to a different channel", async (t) => {
+  const secretsDirectory = await fixture(t);
   const store = createYoutubeChannelConnections({ secretsDirectory });
   await store.saveConnection({
     channel: { id: CRIME, title: "Crime Cartography" },
