@@ -47,15 +47,22 @@ be inspected or bypassed.
 Before the form is described as abuse-resistant for production collection, the
 EmailJS template must also enforce:
 
-1. an origin allowlist limited to the production Academy origin;
-2. reCAPTCHA v2 verification on the intake template; and
-3. provider account and IP quotas that fail closed before mailbox or billing
+1. a dedicated Crime Cartography intake template that is not shared with
+   contact, access, or other project forms;
+2. an origin allowlist limited to the production Academy origin;
+3. reCAPTCHA v2 verification on the intake template; and
+4. provider account and IP quotas that fail closed before mailbox or billing
    overload.
 
 The reCAPTCHA secret belongs in the EmailJS dashboard, never this repository.
 The browser passes only the solved token. If provider enforcement is unavailable
 or abuse exhausts legitimate capacity, intake pauses until a small VPS relay
 can enforce server-side rate limits and CAPTCHA verification.
+
+The dedicated template isolates its CAPTCHA policy, message schema, history,
+and operational diagnosis from the Academy contact and access forms. The
+EmailJS account may still have a shared global quota, so provider alerts and a
+fail-closed intake pause remain necessary.
 
 The mailbox worker treats repeated normalized addresses as duplicate
 unverified requests, rejects malformed envelopes, and must cap work per run so
@@ -113,8 +120,8 @@ compliance, and owner approval of the exact message class.
 ## Deployment gates
 
 - confirm the EarthOne mail system accepts the `+crimecarto` recipient;
-- configure the EmailJS notification template to deliver to that exact
-  recipient and preserve the structured message;
+- create a dedicated Crime Cartography EmailJS template, configure it to deliver
+  to that exact recipient, and preserve the structured message;
 - restrict the EmailJS domain allowlist to the production Academy origin;
 - enable and test reCAPTCHA v2 enforcement on the intake template;
 - verify provider quotas reject a controlled excess request without delivering
