@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "repository": "hadi-nayebi/crime-cartography",
+  "discussions_enabled": true,
+  "activated_at": "2026-07-23",
+  "threads": {
+    "launch": {
+      "topic_id": "milestone.launch",
+      "number": 5,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/5",
+      "purpose": "Intro launch and first remade releases"
+    },
+    "live_qa": {
+      "topic_id": "milestone.live-qa",
+      "number": 6,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/6",
+      "purpose": "First live project Q&A checkpoint"
+    },
+    "editorial_beta": {
+      "topic_id": "milestone.editorial-beta",
+      "number": 7,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/7",
+      "purpose": "Email editorial beta activation and cohort design"
+    },
+    "content_growth": {
+      "topic_id": "milestone.content-growth",
+      "number": 8,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/8",
+      "purpose": "City batches, comparisons, and new formats"
+    },
+    "economics": {
+      "topic_id": "milestone.economics",
+      "number": 9,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/9",
+      "purpose": "Fair-value model, reserve, and formal operating terms"
+    },
+    "legal_experts": {
+      "topic_id": "expert.legal-governance",
+      "number": 10,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/10",
+      "purpose": "Legal, tax, labor, privacy, and governance expert review"
+    },
+    "editorial_experts": {
+      "topic_id": "expert.editorial-impact",
+      "number": 11,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/11",
+      "purpose": "Crime data, journalism, ethics, and accessibility expert review"
+    },
+    "engineering_experts": {
+      "topic_id": "expert.engineering",
+      "number": 12,
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/12",
+      "purpose": "Harness, email, VPS, security, and production reliability review"
+    }
+  }
+}

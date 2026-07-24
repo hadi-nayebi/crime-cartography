@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import {execFile} from "node:child_process";
-import {mkdir, rename, writeFile} from "node:fs/promises";
+import {mkdir, readFile, rename, writeFile} from "node:fs/promises";
 import {dirname, join} from "node:path";
 import {fileURLToPath} from "node:url";
 import {promisify} from "node:util";
@@ -14,6 +14,9 @@ const {stdout} = await exec(process.execPath, [join(root, "pipeline/status.mjs")
   maxBuffer: 8 * 1024 * 1024,
 });
 const status = JSON.parse(stdout);
+const discussions = JSON.parse(
+  await readFile(join(root, "experiment/DISCUSSION-REGISTRY.json"), "utf8"),
+).threads;
 
 const publicStatus = {
   schema_version: "1.0.0",
@@ -22,10 +25,11 @@ const publicStatus = {
   stage: "public-design",
   generated_at: new Date().toISOString(),
   production: {
-    videos_total: status.total,
-    rendered: status.counts.render,
-    awaiting_editorial_review: status.flow.reviewReady.length,
-    approved_for_release: status.flow.awaitingPublish.length,
+    cities_mapped: status.total,
+    inherited_reference_cuts: status.counts.render,
+    reference_cuts_awaiting_remake_review: status.flow.reviewReady.length,
+    dedicated_remakes_completed: 0,
+    dedicated_remakes_approved: 0,
     previously_published_on_earthone: status.rows.filter(
       (row) => row.previouslyPublishedOnEarthOne,
     ).length,
@@ -54,18 +58,65 @@ const publicStatus = {
     id: "public-design",
     label: "Creator-led launch and public project design",
     status: "active",
-    next: "Community editorial beta",
-    next_event: "Live project Q&A before the next video drop at a meaningful milestone",
+    next: "Introduction and two human-approved pilot remakes",
+    next_event: "Live Q&A plus Project Update #2 after two approved pilots and 30 substantive contributions across at least three expertise lanes",
   },
+  roadmap: [
+    {
+      id: "public-room",
+      status: "active",
+      label: "Public room and project subscription",
+      evidence: "Project context, email request form, and canonical public discussions are available",
+      discussion_url: discussions.launch.url,
+    },
+    {
+      id: "intro-pilots",
+      status: "next",
+      label: "Introduction and first remade releases",
+      evidence: "Introduction plus two dedicated-channel remakes receive human approval",
+      discussion_url: discussions.launch.url,
+    },
+    {
+      id: "live-qa-update-2",
+      status: "proposed-gate",
+      label: "Live Q&A and Project Update #2",
+      evidence: "Two approved pilots and 30 substantive contributions across at least three expertise lanes",
+      discussion_url: discussions.live_qa.url,
+    },
+    {
+      id: "email-editorial-beta",
+      status: "gated",
+      label: "Capped email editorial cohort",
+      evidence: "500 project requests plus tested consent, privacy, scoring, appeals, and release controls",
+      discussion_url: discussions.editorial_beta.url,
+    },
+    {
+      id: "content-expansion",
+      status: "gated",
+      label: "More cities, comparisons, and formats",
+      evidence: "Reliable sourcing, remake, human-review, correction, and release loop",
+      discussion_url: discussions.content_growth.url,
+    },
+    {
+      id: "formal-operating-model",
+      status: "gated",
+      label: "Effective governance and value distribution",
+      evidence: "Sustainable operations, professional review, versioned terms, effective date, and participant consent",
+      discussion_url: discussions.economics.url,
+    },
+  ],
   calls_to_participate: [
     "Critique the proposed project model",
     "Comment on public drafts and remade test videos",
     "Propose sourced historical context for charts",
-    "Help design the later editorial email workflow"
+    "Help design the later editorial email workflow",
+    "Legal, tax, privacy, crime-data, journalism, accessibility, security, and reliability experts can challenge the relevant public review thread"
   ],
   links: {
     repository: "https://github.com/hadi-nayebi/crime-cartography",
-    project_page: "https://hadi-nayebi.github.io/projects/crime-cartography.html"
+    project_page: "https://hadi-nayebi.github.io/projects/crime-cartography.html",
+    channel: "https://www.youtube.com/@CrimeCartography",
+    discussions: "https://github.com/hadi-nayebi/crime-cartography/discussions"
   }
 };
 
@@ -78,6 +129,7 @@ const allowedTopLevel = [
   "production",
   "operating_tracks",
   "current_milestone",
+  "roadmap",
   "calls_to_participate",
   "links",
 ];

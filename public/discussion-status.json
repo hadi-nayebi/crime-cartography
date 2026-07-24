@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "crime-cartography",
+  "synced_at": "2026-07-24T00:05:38.937Z",
+  "topics": [
+    {
+      "topic_id": "milestone.launch",
+      "discussion_number": 5,
+      "title": "Milestones 1-2: public room, intro, and first remade releases",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/5",
+      "updated_at": "2026-07-23T23:58:55Z",
+      "comment_count": 0
+    },
+    {
+      "topic_id": "milestone.live-qa",
+      "discussion_number": 6,
+      "title": "Milestone 3: first live project Q&A and Project Update #2",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/6",
+      "updated_at": "2026-07-23T23:58:56Z",
+      "comment_count": 0
+    },
+    {
+      "topic_id": "milestone.editorial-beta",
+      "discussion_number": 7,
+      "title": "Milestone 4: activate the email editorial beta",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/7",
+      "updated_at": "2026-07-23T23:58:56Z",
+      "comment_count": 0
+    },
+    {
+      "topic_id": "milestone.content-growth",
+      "discussion_number": 8,
+      "title": "Milestone 5: city batches, comparisons, and new formats",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/8",
+      "updated_at": "2026-07-23T23:58:57Z",
+      "comment_count": 0
+    },
+    {
+      "topic_id": "milestone.economics",
+      "discussion_number": 9,
+      "title": "Milestone 6: fair-value model, reserve, and formal operating terms",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/9",
+      "updated_at": "2026-07-23T23:58:57Z",
+      "comment_count": 0
+    },
+    {
+      "topic_id": "expert.legal-governance",
+      "discussion_number": 10,
+      "title": "Expert review: legal, tax, labor, privacy, and governance",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/10",
+      "updated_at": "2026-07-23T23:44:27Z",
+      "comment_count": 0
+    },
+    {
+      "topic_id": "expert.editorial-impact",
+      "discussion_number": 11,
+      "title": "Expert review: crime data, journalism, ethics, and accessibility",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/11",
+      "updated_at": "2026-07-23T23:44:28Z",
+      "comment_count": 0
+    },
+    {
+      "topic_id": "expert.engineering",
+      "discussion_number": 12,
+      "title": "Expert review: harness, email workflow, VPS, and production reliability",
+      "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/12",
+      "updated_at": "2026-07-23T23:44:29Z",
+      "comment_count": 0
+    }
+  ]
+}
