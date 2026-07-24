@@ -1,5 +1,9 @@
 # Batch-1 experiment — 20 US cities
 
+> **Inherited reference design.** The 20 renders are not publication-ready
+> dedicated-channel videos. They are inputs to the remake phase. Every inherited
+> approval is invalid until a new cut is produced, inspected, and approved.
+
 Twenty publication-ready videos, produced as a **designed experiment**. Every
 video is unique in at least two dimensions; every video shares each of its
 feature levels with at least one sibling. When batch-1 performance data lands

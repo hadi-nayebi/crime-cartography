@@ -60,9 +60,16 @@ Claude (Anthropic) assembled the inherited Batch 1 pipeline and drafts. Codex no
 
 The operating target is to automate repeatable research, processing, rendering, and assembly while reserving consequential judgment for people. Claims, sources, contextual annotations, narration, visual taste, and release readiness pass through explicit human gates. This repository is the audit trail: pipelines, provenance, configs, render locks, public experiment rules, and corrections. If you find an error or want to challenge the project design, [open a focused project issue](https://github.com/hadi-nayebi/crime-cartography/issues/new?template=project-feedback.yml).
 
-## Batch 1 is a designed experiment
+## Inherited Batch 1 was a designed experiment
 
-The 20 videos are not stylistic clones. Trend chart form (bars · area · lollipop · steps · stacked), story frame, palette family, and music family vary per city by design, with every feature level shared by several cities, so that when audience data lands, what worked can be *attributed* rather than guessed — and batch 2 (cities 21–40) produced from the winning levels. The design and assignment live in [`experiment/DESIGN.md`](experiment/DESIGN.md) and [`experiment/matrix.json`](experiment/matrix.json). The honesty rules above are invariants — never experiment variables.
+The 20 inherited cuts are not stylistic clones. Trend chart form, story frame,
+palette family, and music family varied per city. That matrix remains useful
+design evidence, but no winning level or Batch 2 decision can be inferred from
+the deleted Earth One sample. Dedicated-channel remakes must establish their
+own evidence. The inherited assignment lives in
+[`experiment/DESIGN.md`](experiment/DESIGN.md) and
+[`experiment/matrix.json`](experiment/matrix.json). The honesty rules above
+remain invariants.
 
 ## How it works
 

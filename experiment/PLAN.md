@@ -1,5 +1,10 @@
 # Operating plan (set 2026-07-18)
 
+> **Historical inherited plan—superseded on 2026-07-23.** Do not schedule,
+> publish, brief, or infer current work from this document. Earth One and
+> same-day cohort publication are no longer in scope. The forward plan is
+> [`CURRENT-OPERATING-PLAN.md`](CURRENT-OPERATING-PLAN.md).
+
 ## Month (to ~2026-08-18)
 - **W1:** Batch-1 complete → all 20 at confidence 100 → same-day cohort publish
   on Earth One. Playlist: "US Cities · Crime, Mapped".

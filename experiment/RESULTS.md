@@ -1,5 +1,11 @@
 # RESULTS.md — Channel Scientist ledger (live performance → learning)
 
+> **Closed historical snapshot.** The three Earth One Crime Cartography uploads
+> described below were permanently deleted on 2026-07-23. These observations
+> must not be treated as current channel analytics or dedicated-channel
+> performance. New results require dedicated Crime Cartography releases and a
+> fresh dated collection.
+
 > Reviewer tier. The channel-scientist writes here; nobody else. Every number
 > traces to a YouTube API response or a repo file **read on the dated run** — no
 > vibes, no carried-forward guesses. Findings correlate live performance with the

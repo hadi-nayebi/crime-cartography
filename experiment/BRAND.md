@@ -1,4 +1,6 @@
-# BRAND.md — Earth One channel brand book (living document)
+# BRAND.md — Crime Cartography dedicated-channel brand book
+
+Status: **current dedicated-channel brand direction**
 
 > Owner + orchestrator write here; channel-scientist audits against it and
 > proposes refinements via notes. Every public-facing choice traces to this.
@@ -6,8 +8,9 @@
 ## The promise (what a viewer can always count on)
 **"The numbers, mapped — every one of them real."** Sourced public data,
 honestly visualized: declared gaps stay gaps, measure changes are explained on
-screen, every figure reproducible from the public repo. Made end-to-end by an
-AI, with the full audit trail public — the transparency IS the brand.
+screen, every figure reproducible from the public repo. Produced through a
+human-directed agentic system with a public machinery trail—the transparency is
+part of the brand.
 
 ## Voice
 Plain, precise, curious. NEVER fear-mongering — crime data is history and
@@ -16,7 +19,7 @@ Correlation never causation. Rises get shown as honestly as falls. The viewer
 should leave knowing something true, even something small: how crime trends
 moved over years and across their own city's map.
 
-## Visual system (already shipping — keep consistent)
+## Visual system (remake direction)
 - Dark cartographic ground, one gold working accent, monospace data labels.
 - Thumbnails: REAL render frames only — big verified stat over the city map
   (the composed style: −71% over Boston). Never stock imagery, never clickbait
@@ -27,19 +30,14 @@ moved over years and across their own city's map.
 - Descriptions: chapters + sources + MADE-BY-AN-AI block + repo link + city
   hashtag — the template lives in every videos/<slug>/youtube.json.
 
-## Channel architecture (owner ruling, 2026-07-20)
-**EARTHONE is the umbrella channel; each playlist is a separate PROJECT** with
-its own repo/harness/routines. THIS project (crime-cartography) owns ONLY the
-crime-related playlist(s) — it did the one-time channel-level setup (banner,
-description, keywords, sections via pipeline/publish/update-channel-branding.mjs
-+ experiment/channel/branding.json) as the first project; future playlist
-projects inherit the channel and manage only their own playlist. This playlist
-may later grow other crime video formats, including owner-narrated videos.
-Goal: a dense, monetizable channel — a handful of playlists on key topics,
-each teaching the viewer something true, even something small.
+## Channel architecture (owner ruling, 2026-07-23)
+
+Crime Cartography is the only public destination for this project. Earth One is
+out of scope. The channel may grow multiple crime-related formats and playlists,
+including owner-narrated videos, but no other channel is an upload fallback.
 
 ## Playlist taxonomy (each format = one playlist = one viewer promise)
-1. **US Cities · Crime, Mapped** (live) — the city deep-dives.
+1. **US Cities · Crime, Mapped** (pre-launch remake phase) — city deep-dives.
 2. State vs State comparatives (when ≥5 cities/state — batch-2+).
 3. Counties in a state · sweeps (later).
 4. All-USA · timelines (later).

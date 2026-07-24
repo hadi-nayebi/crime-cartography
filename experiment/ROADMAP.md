@@ -1,5 +1,10 @@
 # Channel roadmap — Crime Cartography / Earth One
 
+> **Historical inherited roadmap—superseded on 2026-07-23.** Earth One, fixed
+> batches of 20, and same-day cohort publishing are not current strategy. See
+> [`CURRENT-OPERATING-PLAN.md`](CURRENT-OPERATING-PLAN.md) and the public
+> commentable roadmap instead.
+
 The standing production strategy. Every stage feeds measured learnings into the
 next; honesty invariants (see DESIGN.md) apply to every format forever.
 
