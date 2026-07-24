@@ -15,6 +15,12 @@ The inherited production run reached rendered, render-locked drafts for all 20 c
 
 The current phase is an editorial remake for a dedicated Crime Cartography channel. Human reviewers will test claims, chart context, maps, narration, pacing, and visual taste before any new release is approved. The project design and current public-safe production snapshot live on the [Crime Cartography project page](https://hadi-nayebi.github.io/projects/crime-cartography.html).
 
+The canonical project definition is the public [`context/`](context/INDEX.md)
+directory: [Project](context/PROJECT.md), [Editorial system](context/EDITORIAL.md),
+[Participation](context/PARTICIPATION.md), and the
+[Glossary](context/GLOSSARY.md). The Academy page presents and routes this
+material; it is not a second source of project truth.
+
 | City | Video | The hook (verbatim from the video) | Watch |
 |------|-------|------------------------------------|-------|
 | [Atlanta, GA](videos/atlanta-ga/) | *The Interrupted Fall* | **−70%** — Atlanta crime, from the 1989 peak to 2018 | — |

@@ -1,5 +1,10 @@
 # Crime Cartography revenue and seat-cap scenarios
 
+Canonical definitions for manager rate, reserve, distributable surplus, and
+economic activation live in
+[`context/PARTICIPATION.md`](../context/PARTICIPATION.md). This file is a
+quantitative scenario annex, not an independent policy source.
+
 Status: **planning model only; not a forecast, offer, or payout promise**
 
 ## What is known

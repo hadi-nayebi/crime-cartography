@@ -5,6 +5,12 @@ we intend to test. It is not an employment offer, compensation promise,
 contest, or active point-redemption program. Operative terms require a future
 effective date, participant consent, and appropriate professional review.
 
+Canonical project terms and statuses live in
+[`context/PARTICIPATION.md`](../context/PARTICIPATION.md) and
+[`context/GLOSSARY.md`](../context/GLOSSARY.md). This file is a detailed workflow
+annex; when its wording conflicts with the shared context, the shared context
+wins.
+
 ## 1. Project
 
 **Crime Cartography** is a human-managed, agent-operated production project for
