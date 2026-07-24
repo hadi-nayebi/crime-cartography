@@ -1,4 +1,4 @@
-# Design value distribution, reserve, and governance
+# Design collective governance and fair-value rules
 
 Crime Cartography is exploring whether a human-managed production harness can
 share created value with people who perform useful editorial work. No economic
@@ -26,9 +26,9 @@ These are design hypotheses, not promises.
 
 1. How should verified costs, manager time, and the reserve be defined and
    audited?
-2. Should beta contribution history have no guaranteed conversion, or should
-   tasks wait until contingent terms exist?
-3. Who should approve reserve overflow, manager succession, and later changes
-   to the allocation model?
+2. Which decisions belong to the manager, which should include contributors,
+   and how should either role be replaced or overruled?
+3. If distributable surplus eventually exists, what work qualifies, what caps
+   apply, and who may change those rules?
 
 Source: [Participation context](../PARTICIPATION.md)

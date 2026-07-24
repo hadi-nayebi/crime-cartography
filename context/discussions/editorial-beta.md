@@ -1,7 +1,9 @@
-# Design the email editorial beta
+# Design the human editorial layer and email beta
 
 The proposed editorial beta sends bounded pre-publication artifacts by email
-and asks participants for specific human judgment. It is not active today.
+and asks participants for specific human judgment. It tests whether people can
+reliably add taste, context, skepticism, and common sense to exact harness
+revisions. It is not active today.
 
 ## What is settled
 
@@ -19,10 +21,11 @@ and asks participants for specific human judgment. It is not active today.
 
 ## Three questions
 
-1. What evidence beyond 500 project requests should prove that the beta is
-   operationally ready?
-2. What should the first active cohort cap be, and why?
-3. Which first task best tests whether participant judgment improves a video
-   rather than merely generating more text?
+1. What should distinguish a useful editorial contribution from a generic
+   reaction, agreement, or preference?
+2. What evidence and participant protections must exist before pre-publication
+   email tasks begin?
+3. How should the project record credit, compare feedback, and handle appeals
+   without rewarding length, conformity, or agreement with the manager?
 
 Source: [Participation context](../PARTICIPATION.md)

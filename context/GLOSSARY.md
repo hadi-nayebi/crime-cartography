@@ -10,8 +10,9 @@ Status tags follow [INDEX.md](INDEX.md).
 
 | Term | Status | Short meaning | Canonical home |
 |---|---|---|---|
-| Crime Cartography | `[consolidated]` | The human-managed, agent-operated crime-data channel and public project. | [Project](PROJECT.md#the-project-consolidated) |
-| Harness | `[consolidated]` | The agent-operated production system that performs repeatable work under human control. | [Editorial](EDITORIAL.md#what-the-harness-contributes-consolidated) |
+| Crime Cartography | `[consolidated]` | The first public case for agentic production, human editorial work, useful factual media, and collective fair-value governance. | [Project](PROJECT.md#the-project-consolidated) |
+| Agentic production harness | `[consolidated]` | The LLM-operated production medium that performs repeatable research, data, visual, assembly, and routing work under human control. | [Project](PROJECT.md#1-agentic-production-plus-human-taste) |
+| Human editorial layer | `[consolidated]` | People who add revision-specific taste, context, skepticism, common sense, moral judgment, and release accountability. | [Project](PROJECT.md#1-agentic-production-plus-human-taste) |
 | Inherited reference cut | `[consolidated]` | One of the twenty EarthOne-era renders retained only as remake input. | [Project](PROJECT.md#what-is-true-now-consolidated) |
 | Dedicated remake | `[consolidated]` | A new Crime Cartography render that passes the current editorial and release test. | [Editorial](EDITORIAL.md#release-test-consolidated) |
 | Factual memory | `[consolidated]` | A durable viewer understanding of time, place, and meaning rather than isolated facts. | [Editorial](EDITORIAL.md#viewer-promise-consolidated) |
@@ -29,6 +30,7 @@ Status tags follow [INDEX.md](INDEX.md).
 | Editorial response | `[draft]` | Specific, supported, actionable human judgment about a content unit. | [Participation](PARTICIPATION.md#editorial-response-draft) |
 | Contribution record | `[draft]` | An auditable record that an editorial response was accepted or quality-boosted. | [Participation](PARTICIPATION.md#contribution-record-draft) |
 | Editorial cohort | `[draft]` `[future]` | A capped group that may receive pre-publication review tasks by email. | [Participation](PARTICIPATION.md#3-future-editorial-cohort) |
+| Flexible editorial work | `[draft]` `[future]` | Bounded human judgment around an agentic production artifact; a possible gig-economy role only if operative terms and required safeguards exist. | [Project](PROJECT.md#3-collective-governance-and-fair-value) |
 
 ## Money and governance
 

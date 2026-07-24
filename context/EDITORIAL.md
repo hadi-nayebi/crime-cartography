@@ -37,6 +37,11 @@ People provide what the production system does not reliably have:
 - moral judgment about privacy, stigma, and framing;
 - the final decision about what must change before release.
 
+This is the project's answer to the “AI slop” problem: high-volume output can
+be technically complete while remaining generic, shallow, poorly framed, or
+not worth remembering. The human layer must make revision-specific
+improvements, not merely express approval or preference.
+
 ## A concrete before-and-after
 
 The first-pass Boston chart can truthfully say:

@@ -7,6 +7,7 @@
     "launch": {
       "topic_id": "milestone.launch",
       "number": 5,
+      "title": "Milestones 1-2: public room, intro, and first remade releases",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/5",
       "purpose": "Intro launch and first remade releases",
       "source_body": "context/discussions/launch-and-remakes.md"
@@ -14,6 +15,7 @@
     "live_qa": {
       "topic_id": "milestone.live-qa",
       "number": 6,
+      "title": "Milestone 3: first live project Q&A and Project Update #2",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/6",
       "purpose": "First live project Q&A checkpoint",
       "source_body": "context/discussions/live-qa.md"
@@ -21,13 +23,15 @@
     "editorial_beta": {
       "topic_id": "milestone.editorial-beta",
       "number": 7,
+      "title": "Design the human editorial layer and email beta",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/7",
-      "purpose": "Email editorial beta activation and cohort design",
+      "purpose": "Human editorial contribution standard and email beta design",
       "source_body": "context/discussions/editorial-beta.md"
     },
     "content_growth": {
       "topic_id": "milestone.content-growth",
       "number": 8,
+      "title": "Milestone 5: city batches, comparisons, and new formats",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/8",
       "purpose": "City batches, comparisons, and new formats",
       "source_body": "context/discussions/content-growth.md"
@@ -35,13 +39,15 @@
     "economics": {
       "topic_id": "milestone.economics",
       "number": 9,
+      "title": "Design collective governance and fair-value rules",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/9",
-      "purpose": "Fair-value model, reserve, and formal operating terms",
+      "purpose": "Collective authority, fair-value model, reserve, and operating terms",
       "source_body": "context/discussions/economics-and-governance.md"
     },
     "legal_experts": {
       "topic_id": "expert.legal-governance",
       "number": 10,
+      "title": "Expert review: legal, tax, labor, privacy, and governance",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/10",
       "purpose": "Legal, tax, labor, privacy, and governance expert review",
       "source_body": "context/discussions/legal-review.md"
@@ -49,13 +55,15 @@
     "editorial_experts": {
       "topic_id": "expert.editorial-impact",
       "number": 11,
+      "title": "Define the content and release standard",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/11",
-      "purpose": "Crime data, journalism, ethics, and accessibility expert review",
+      "purpose": "Viewer value, human review, ethics, and release standard",
       "source_body": "context/discussions/editorial-review.md"
     },
     "engineering_experts": {
       "topic_id": "expert.engineering",
       "number": 12,
+      "title": "Expert review: harness, email workflow, VPS, and production reliability",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/12",
       "purpose": "Harness, email, VPS, security, and production reliability review",
       "source_body": "context/discussions/engineering-review.md"

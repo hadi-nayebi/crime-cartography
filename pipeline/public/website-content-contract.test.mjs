@@ -43,6 +43,7 @@ test("every canonical Discussion has a substantive source body", async () => {
   const registered = Object.values(registry.threads);
   assert.equal(registered.length, 8);
   for (const thread of registered) {
+    assert.ok(thread.title, `Discussion #${thread.number} needs a canonical title`);
     const expectedSource = map.discussion_sources[String(thread.number)];
     assert.equal(thread.source_body, expectedSource);
     const body = await readFile(join(root, expectedSource), "utf8");

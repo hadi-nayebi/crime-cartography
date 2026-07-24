@@ -1,8 +1,8 @@
-# Expert review: crime data, journalism, ethics, and accessibility
+# Define the content and release standard
 
-This room examines whether Crime Cartography can be engaging without creating
-false certainty, neighborhood stigma, victim exposure, or inaccessible visual
-complexity.
+This room defines what a Crime Cartography video must give its viewer before a
+human manager may release it. The goal is not merely accurate charts or
+attention. The video should be engaging, useful, memorable, and responsible.
 
 ## Current editorial promise
 
@@ -18,9 +18,11 @@ meaning while showing material limits in the source and measure.
 
 ## Three questions
 
-1. Which claims or visual forms most risk misleading a general audience?
-2. What minimum privacy, stigma, uncertainty, and accessibility checks belong
-   in every release?
-3. How should the project test whether viewers remember the right three facts?
+1. After a five-to-ten-minute video, what should a viewer be able to accurately
+   explain or remember?
+2. What minimum human review is needed to catch technically valid but generic,
+   misleading, tasteless, or context-poor output?
+3. Which privacy, stigma, uncertainty, accessibility, and source-limit checks
+   must every release pass?
 
 Source: [Editorial system](../EDITORIAL.md)

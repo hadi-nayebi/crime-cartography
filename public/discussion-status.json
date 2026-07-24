@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "project_id": "crime-cartography",
-  "synced_at": "2026-07-24T02:45:52.994Z",
+  "synced_at": "2026-07-24T04:14:13.085Z",
   "topics": [
     {
       "topic_id": "milestone.launch",
@@ -22,9 +22,9 @@
     {
       "topic_id": "milestone.editorial-beta",
       "discussion_number": 7,
-      "title": "Milestone 4: activate the email editorial beta",
+      "title": "Design the human editorial layer and email beta",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/7",
-      "updated_at": "2026-07-24T02:44:49Z",
+      "updated_at": "2026-07-24T04:13:53Z",
       "comment_count": 0
     },
     {
@@ -38,9 +38,9 @@
     {
       "topic_id": "milestone.economics",
       "discussion_number": 9,
-      "title": "Milestone 6: fair-value model, reserve, and formal operating terms",
+      "title": "Design collective governance and fair-value rules",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/9",
-      "updated_at": "2026-07-24T02:44:50Z",
+      "updated_at": "2026-07-24T04:13:54Z",
       "comment_count": 0
     },
     {
@@ -54,9 +54,9 @@
     {
       "topic_id": "expert.editorial-impact",
       "discussion_number": 11,
-      "title": "Expert review: crime data, journalism, ethics, and accessibility",
+      "title": "Define the content and release standard",
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/11",
-      "updated_at": "2026-07-24T02:44:51Z",
+      "updated_at": "2026-07-24T04:13:55Z",
       "comment_count": 0
     },
     {

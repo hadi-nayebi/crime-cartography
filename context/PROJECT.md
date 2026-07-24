@@ -4,17 +4,50 @@ Part of the [Crime Cartography shared context](INDEX.md).
 
 ## The project `[consolidated]`
 
-Crime Cartography is a human-managed, agent-operated channel that turns sourced
-crime data into visual stories about time, place, and composition.
+Crime Cartography is the first working case of a larger experiment: use an
+agentic harness as a production medium, surround it with a human editorial
+collective, and publicly develop the rules by which that collective operates
+and may share created value.
 
-Its first public experiment asks a practical question:
+Crime-data visualization is the first format because audience interest is
+already proven, public datasets make the machinery inspectable, and the output
+can be made more useful than an attractive moving chart. This channel remains
+crime-focused while expanding into comparisons, explainers, and other formats.
+The operating model may later be reused by separate projects in other factual
+domains.
 
-> Can a production harness do most repeatable work while people supply the
-> context, skepticism, taste, and release judgment that the machine lacks?
+## The experiment's three lenses `[consolidated direction]`
 
-Crime is the starting domain because public datasets make the production
-process inspectable. The longer mission is to develop a reusable way to help
-people form a healthier factual memory of recent history.
+### 1. Agentic production plus human taste
+
+Can a harness perform the repeatable research, data, visual, and assembly work
+while people provide the taste, context, skepticism, common sense, and moral
+judgment that generic AI output lacks?
+
+The human editorial layer is not decorative approval. It should identify
+specific problems, improve exact revisions, and retain final human
+accountability for release.
+
+### 2. Engaging media that leaves useful knowledge
+
+Can a format already capable of attracting large audiences—starting with data
+visualization—also help people build a healthier factual memory of the world?
+
+The first case uses crime trends across time, place, and category. A successful
+video should be engaging enough to watch and structured well enough that the
+viewer remembers defensible facts, source limits, and useful context. Separate
+future projects may test the same operating model in other factual domains.
+
+### 3. Collective governance and fair value
+
+Can the people who improve the machinery and its outputs also help shape its
+rules, receive traceable credit, and participate in a legally and operationally
+sound value-distribution system?
+
+This includes testing whether bounded, revision-specific human editorial work
+could become a recognizable form of flexible paid work—a possible new
+gig-economy role—without paying for YouTube engagement or promising economics
+before the required systems and terms exist.
 
 ## The three project promises `[consolidated]`
 

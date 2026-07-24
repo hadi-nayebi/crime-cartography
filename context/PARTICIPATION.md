@@ -5,6 +5,12 @@ Part of the [Crime Cartography shared context](INDEX.md).
 Status: **public working design**. Nothing in this file is an employment offer,
 contest, ownership grant, compensation promise, or active redemption program.
 
+The project is testing whether revision-specific human editorial judgment can
+become a useful and recognizable form of flexible work around agentic
+production. That possibility is one lens of the experiment, not a claim that
+the current email list, public Discussions, or future cohort is already a job
+or gig platform.
+
 ## Three ways to participate `[consolidated]`
 
 ### 1. Public review

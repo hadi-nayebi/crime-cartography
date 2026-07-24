@@ -97,7 +97,7 @@ async function main() {
     if (!live) throw new Error(`Discussion #${thread.number} does not exist`);
     const source = await readFile(join(root, thread.source_body), "utf8");
     const expected = renderDiscussionBody(source, thread.source_body);
-    if (live.body === expected) {
+    if (live.body === expected && live.title === thread.title) {
       process.stdout.write(`OK #${thread.number} ${live.title}\n`);
       continue;
     }
@@ -106,12 +106,12 @@ async function main() {
   }
 
   if (!drift.length) {
-    process.stdout.write("PASS all Discussion bodies match canonical sources\n");
+    process.stdout.write("PASS all Discussion titles and bodies match canonical sources\n");
     return;
   }
   if (!apply) {
     process.stderr.write(
-      `${drift.length} Discussion bodies differ; inspect and rerun with --apply\n`,
+      `${drift.length} Discussions differ; inspect and rerun with --apply\n`,
     );
     process.exitCode = 1;
     return;
@@ -119,12 +119,12 @@ async function main() {
 
   for (const {thread, live, expected} of drift) {
     const result = await graphql(
-      `mutation UpdateDiscussion($discussionId: ID!, $body: String!) {
-        updateDiscussion(input: {discussionId: $discussionId, body: $body}) {
-          discussion { number url updatedAt }
+      `mutation UpdateDiscussion($discussionId: ID!, $title: String!, $body: String!) {
+        updateDiscussion(input: {discussionId: $discussionId, title: $title, body: $body}) {
+          discussion { number title url updatedAt }
         }
       }`,
-      {discussionId: live.id, body: expected},
+      {discussionId: live.id, title: thread.title, body: expected},
       token,
     );
     process.stdout.write(
