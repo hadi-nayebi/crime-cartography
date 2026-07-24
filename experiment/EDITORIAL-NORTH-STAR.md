@@ -117,10 +117,11 @@ The public project may include:
 - background research that can be lawfully shared; and
 - the evolving project, contributor, and governance terms.
 
-Finished videos, narration, scripts, music, thumbnails, channel artwork, and
-other end-product editorial assets are not published in GitHub under the MIT
-software license. Public reproducibility does not require surrendering the
-rights to the end product.
+Finished videos, narration, scripts, music, and thumbnails are not current-tree
+artifacts in the maps repository. The public Academy website may serve the
+minimum profile/banner assets required for the page and channel identity, but
+those assets remain outside the MIT software license. Public reproducibility
+does not require surrendering rights to the end product.
 
 ## Success
 

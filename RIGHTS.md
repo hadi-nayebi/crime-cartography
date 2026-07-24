@@ -20,6 +20,11 @@ metadata does not license the resulting audiovisual work. Finished Crime
 Cartography media is distributed through the dedicated channel, not as an
 open-licensed repository artifact.
 
+The maps repository does not track finished thumbnails or channel-art binaries.
+The public Academy website may serve the minimum profile/banner assets required
+to render the project page and channel identity; public delivery does not place
+those files under the MIT software license.
+
 ## Data and maps
 
 Each dataset under `data/` retains the license and terms of its upstream source,

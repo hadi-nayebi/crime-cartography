@@ -16,6 +16,8 @@ videos/**/out/
 # publish flow). The chosen one is copied to videos/<slug>/thumbnail.jpg, which
 # IS committed as part of the per-video publish record.
 videos/**/thumbs/
+videos/*/thumbnail.jpg
+assets/channel/*.png
 
 # Raw source pulls are reproducible via pipeline/sources/*.mjs — keep them out of
 # git (can be large), but DO keep the provenance sidecar that records each fetch.
