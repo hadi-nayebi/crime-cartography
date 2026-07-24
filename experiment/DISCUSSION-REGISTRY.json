@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "repository": "hadi-nayebi/crime-cartography",
   "discussions_enabled": true,
   "activated_at": "2026-07-23",
@@ -8,49 +8,57 @@
       "topic_id": "milestone.launch",
       "number": 5,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/5",
-      "purpose": "Intro launch and first remade releases"
+      "purpose": "Intro launch and first remade releases",
+      "source_body": "context/discussions/launch-and-remakes.md"
     },
     "live_qa": {
       "topic_id": "milestone.live-qa",
       "number": 6,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/6",
-      "purpose": "First live project Q&A checkpoint"
+      "purpose": "First live project Q&A checkpoint",
+      "source_body": "context/discussions/live-qa.md"
     },
     "editorial_beta": {
       "topic_id": "milestone.editorial-beta",
       "number": 7,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/7",
-      "purpose": "Email editorial beta activation and cohort design"
+      "purpose": "Email editorial beta activation and cohort design",
+      "source_body": "context/discussions/editorial-beta.md"
     },
     "content_growth": {
       "topic_id": "milestone.content-growth",
       "number": 8,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/8",
-      "purpose": "City batches, comparisons, and new formats"
+      "purpose": "City batches, comparisons, and new formats",
+      "source_body": "context/discussions/content-growth.md"
     },
     "economics": {
       "topic_id": "milestone.economics",
       "number": 9,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/9",
-      "purpose": "Fair-value model, reserve, and formal operating terms"
+      "purpose": "Fair-value model, reserve, and formal operating terms",
+      "source_body": "context/discussions/economics-and-governance.md"
     },
     "legal_experts": {
       "topic_id": "expert.legal-governance",
       "number": 10,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/10",
-      "purpose": "Legal, tax, labor, privacy, and governance expert review"
+      "purpose": "Legal, tax, labor, privacy, and governance expert review",
+      "source_body": "context/discussions/legal-review.md"
     },
     "editorial_experts": {
       "topic_id": "expert.editorial-impact",
       "number": 11,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/11",
-      "purpose": "Crime data, journalism, ethics, and accessibility expert review"
+      "purpose": "Crime data, journalism, ethics, and accessibility expert review",
+      "source_body": "context/discussions/editorial-review.md"
     },
     "engineering_experts": {
       "topic_id": "expert.engineering",
       "number": 12,
       "url": "https://github.com/hadi-nayebi/crime-cartography/discussions/12",
-      "purpose": "Harness, email, VPS, security, and production reliability review"
+      "purpose": "Harness, email, VPS, security, and production reliability review",
+      "source_body": "context/discussions/engineering-review.md"
     }
   }
 }

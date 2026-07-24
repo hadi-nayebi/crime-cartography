@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "crime-cartography",
+  "invariant": "Every project-specific website block is a presentation of a canonical repository source. The website may paraphrase or visualize; it may not originate project facts, terms, policy, milestones, or decisions.",
+  "blocks": {
+    "crime-hero": {
+      "sources": [
+        "context/PROJECT.md",
+        "public/project-status.json"
+      ]
+    },
+    "crime-understand": {
+      "sources": [
+        "context/PROJECT.md",
+        "context/EDITORIAL.md"
+      ]
+    },
+    "crime-define": {
+      "sources": [
+        "context/PROJECT.md",
+        "context/PARTICIPATION.md",
+        "context/GLOSSARY.md"
+      ]
+    },
+    "crime-join": {
+      "sources": [
+        "context/PARTICIPATION.md",
+        "experiment/EMAIL-INTERFACE-CONTRACT.md"
+      ]
+    },
+    "crime-project-card": {
+      "sources": [
+        "context/PROJECT.md",
+        "public/project-status.json"
+      ]
+    }
+  },
+  "discussion_sources": {
+    "5": "context/discussions/launch-and-remakes.md",
+    "6": "context/discussions/live-qa.md",
+    "7": "context/discussions/editorial-beta.md",
+    "8": "context/discussions/content-growth.md",
+    "9": "context/discussions/economics-and-governance.md",
+    "10": "context/discussions/legal-review.md",
+    "11": "context/discussions/editorial-review.md",
+    "12": "context/discussions/engineering-review.md"
+  }
+}
