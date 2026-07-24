@@ -27,7 +27,6 @@ const PORT = Number(process.env.PORT || 4400);
 const HOST = process.env.HOST || "127.0.0.1";
 const SECRETS = join(ROOT, ".secrets");
 const SECRET_PATH = join(SECRETS, "youtube_client_secret.json");
-const TOKEN_PATH = join(SECRETS, "youtube_token.json");
 const GLOBAL_FEEDBACK = join(ROOT, "experiment/studio-feedback.json");
 const CODEX_STATE = join(ROOT, ".codex/state");
 const CONTROL_PLANE_DB = process.env.CRIME_STUDIO_DB || join(ROOT, ".codex/runtime/studio.sqlite");
@@ -633,21 +632,7 @@ async function channelForAccessToken(accessTokenValue) {
     thumb: snippet.thumbnails?.default?.url ?? null,
   };
 }
-async function ensureLegacyConnection() {
-  if (await channelConnections.active()) return;
-  const legacy = await readJson(TOKEN_PATH);
-  if (!legacy?.refresh_token) return;
-  const accessTokenValue = await refreshAccessToken(legacy);
-  const channel = await channelForAccessToken(accessTokenValue);
-  if (!channel) return;
-  await channelConnections.saveConnection({
-    channel,
-    token: legacy,
-    source: "legacy-import",
-  });
-}
 async function activeTokenRecord() {
-  await ensureLegacyConnection();
   return channelConnections.active();
 }
 async function accessToken() {
@@ -663,7 +648,6 @@ async function configuredDestination() {
 }
 async function authStatus() {
   const hasSecret = Boolean(oauthConf(await readJson(SECRET_PATH)));
-  await ensureLegacyConnection();
   const connections = await channelConnections.listConnections();
   const active = await channelConnections.active();
   const hasToken = Boolean(active?.token?.refresh_token);

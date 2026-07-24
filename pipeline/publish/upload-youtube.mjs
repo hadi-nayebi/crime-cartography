@@ -10,14 +10,15 @@
  * videoId/url/uploadedAt back into youtube.json — the per-video directory
  * stays the single source of truth mirroring the YouTube listing.
  *
- * Auth: .secrets/youtube_client_secret.json + .secrets/youtube_token.json
- * (created once by pipeline/publish/auth-youtube.mjs). Quota: one upload
- * costs ~1600 units of the default 10,000/day.
+ * Auth: the channel-scoped active connection must resolve to the separately
+ * owner-locked Crime Cartography destination. Legacy shared-token files are
+ * never accepted.
  */
 import { readFile, writeFile, stat } from "node:fs/promises";
 import { createReadStream } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createYoutubeDestinationAuth } from "../auth/youtube-destination-auth.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const slug = process.argv[2];
@@ -34,22 +35,13 @@ if (meta.videoId) {
   process.exit(1);
 }
 
-// ---- access token from refresh token ----
-const cs = JSON.parse(await readFile(join(ROOT, ".secrets/youtube_client_secret.json"), "utf8"));
-const conf = cs.installed ?? cs.web;
-const tok = JSON.parse(await readFile(join(ROOT, ".secrets/youtube_token.json"), "utf8"));
-const tr = await fetch("https://oauth2.googleapis.com/token", {
-  method: "POST",
-  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  body: new URLSearchParams({
-    client_id: conf.client_id,
-    client_secret: conf.client_secret,
-    refresh_token: tok.refresh_token,
-    grant_type: "refresh_token",
-  }),
+// Fail closed unless the exact token used for this mutation is the active,
+// channel-scoped token and resolves to the owner-locked destination.
+const destinationAuth = createYoutubeDestinationAuth({
+  secretsDirectory: join(ROOT, ".secrets"),
 });
-const { access_token } = await tr.json();
-if (!access_token) throw new Error("could not refresh access token — re-run auth-youtube.mjs");
+const { accessToken: access_token, channel } = await destinationAuth.authorizeMutation();
+console.log(`destination verified: ${channel.title} (${channel.id})`);
 
 // ---- resumable upload: init ----
 const body = {

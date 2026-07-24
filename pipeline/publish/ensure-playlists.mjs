@@ -11,12 +11,13 @@
  * id map to experiment/channel/playlists.json — the studio publish flow
  * reads that map to auto-insert each uploaded video.
  *
- * Auth: .secrets/youtube_client_secret.json + .secrets/youtube_token.json.
- * Quota: playlists.list 1 unit; playlists.insert 50 units (only on first run).
+ * Auth: the channel-scoped active connection must resolve to the owner-locked
+ * Crime Cartography destination. Legacy shared-token files are not accepted.
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createYoutubeDestinationAuth } from "../auth/youtube-destination-auth.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const OUT = join(ROOT, "experiment/channel/playlists.json");
@@ -31,21 +32,11 @@ const FORMATS = {
   },
 };
 
-const cs = JSON.parse(await readFile(join(ROOT, ".secrets/youtube_client_secret.json"), "utf8"));
-const conf = cs.installed ?? cs.web;
-const tok = JSON.parse(await readFile(join(ROOT, ".secrets/youtube_token.json"), "utf8"));
-const tr = await fetch("https://oauth2.googleapis.com/token", {
-  method: "POST",
-  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  body: new URLSearchParams({
-    client_id: conf.client_id,
-    client_secret: conf.client_secret,
-    refresh_token: tok.refresh_token,
-    grant_type: "refresh_token",
-  }),
+const destinationAuth = createYoutubeDestinationAuth({
+  secretsDirectory: join(ROOT, ".secrets"),
 });
-const { access_token } = await tr.json();
-if (!access_token) throw new Error("could not refresh access token — re-run auth-youtube.mjs");
+const { accessToken: access_token, channel } = await destinationAuth.authorizeMutation();
+console.log(`destination verified: ${channel.title} (${channel.id})`);
 const H = { Authorization: `Bearer ${access_token}`, "Content-Type": "application/json" };
 
 // existing playlists on the channel (title → id)

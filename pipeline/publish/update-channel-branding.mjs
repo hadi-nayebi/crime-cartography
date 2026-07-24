@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Apply EARTHONE channel-level branding from experiment/channel/branding.json.
+ * Apply Crime Cartography channel-level branding from
+ * experiment/channel/branding.json.
  *
  *   node pipeline/publish/update-channel-branding.mjs
  *
@@ -11,25 +12,23 @@
  * the same state. NOT API-accessible (owner does in Studio): channel name,
  * handle, avatar, and the unsubscribed trailer (needs a public video anyway).
  *
- * Auth: .secrets/youtube_client_secret.json + youtube_token.json (youtube scope).
+ * Auth: the channel-scoped active connection must resolve to the owner-locked
+ * Crime Cartography destination. Legacy shared-token files are not accepted.
  */
 import { readFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createYoutubeDestinationAuth } from "../auth/youtube-destination-auth.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const cfg = JSON.parse(await readFile(join(ROOT, "experiment/channel/branding.json"), "utf8"));
 
-const cs = JSON.parse(await readFile(join(ROOT, ".secrets/youtube_client_secret.json"), "utf8"));
-const conf = cs.installed ?? cs.web;
-const tok = JSON.parse(await readFile(join(ROOT, ".secrets/youtube_token.json"), "utf8"));
-const tr = await fetch("https://oauth2.googleapis.com/token", {
-  method: "POST",
-  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  body: new URLSearchParams({ client_id: conf.client_id, client_secret: conf.client_secret, refresh_token: tok.refresh_token, grant_type: "refresh_token" }),
+const destinationAuth = createYoutubeDestinationAuth({
+  secretsDirectory: join(ROOT, ".secrets"),
 });
-const { access_token } = await tr.json();
-if (!access_token) throw new Error("token refresh failed — re-run auth-youtube.mjs");
+const { accessToken: access_token, channel: authorizedChannel } =
+  await destinationAuth.authorizeMutation();
+console.log(`destination verified: ${authorizedChannel.title} (${authorizedChannel.id})`);
 const H = { Authorization: `Bearer ${access_token}` };
 const HJ = { ...H, "Content-Type": "application/json" };
 
