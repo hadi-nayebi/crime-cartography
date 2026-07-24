@@ -3,6 +3,17 @@
   "project_id": "crime-cartography",
   "invariant": "Every project-specific website block is a presentation of a canonical repository source. The website may paraphrase or visualize; it may not originate project facts, terms, policy, milestones, or decisions.",
   "blocks": {
+    "crime-page": {
+      "sources": [
+        "context/INDEX.md",
+        "context/PROJECT.md",
+        "context/EDITORIAL.md",
+        "context/PARTICIPATION.md",
+        "context/GLOSSARY.md",
+        "experiment/EMAIL-INTERFACE-CONTRACT.md",
+        "public/project-status.json"
+      ]
+    },
     "crime-hero": {
       "sources": [
         "context/PROJECT.md",
@@ -26,6 +37,12 @@
       "sources": [
         "context/PARTICIPATION.md",
         "experiment/EMAIL-INTERFACE-CONTRACT.md"
+      ]
+    },
+    "crime-mobile-actions": {
+      "sources": [
+        "context/PROJECT.md",
+        "context/PARTICIPATION.md"
       ]
     },
     "crime-project-card": {

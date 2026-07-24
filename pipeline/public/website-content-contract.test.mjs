@@ -21,6 +21,8 @@ test("every website content block resolves to canonical repository sources", asy
       "crime-define",
       "crime-hero",
       "crime-join",
+      "crime-mobile-actions",
+      "crime-page",
       "crime-project-card",
       "crime-understand",
     ],
